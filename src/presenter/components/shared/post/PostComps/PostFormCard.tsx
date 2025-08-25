@@ -1,4 +1,4 @@
-import { Select, Card, CardHeader, Button, Typography, CardBody, Input, Textarea, Checkbox, Option } from "@material-tailwind/react";
+import { Select, Card, CardHeader, Button, CardBody, Input, Textarea, Checkbox, Option } from "@material-tailwind/react";
 import { useState } from "react";
 import { Label } from "../../../../../domain/entities/frontEntities"
 import SubHeader from "../../../common/SubHeader";
@@ -9,6 +9,7 @@ import { PostCategory } from "../../../../../domain/entities/Post";
 import { Icon } from "../../../common/IconComp";
 import GroupSelect from "../../../common/GroupSelect";
 import { useUserStore } from "../../../../../application/stores/user.store";
+import { InputError } from "../../../common/adaptatersComps/input";
 
 
 interface PostFormCardProps {
@@ -89,34 +90,31 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                         <CardBody className="FixCardBody">
                             <div className="CardOverFlow  justify-between gap-4">
                                 <Input
-                                    label={formik.errors.title ? formik.errors.title as string : "titre"}
+                                    labelProps={{ className: "before:content-none after:content-none" }}
+                                    className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
+                                    placeholder={"Titre"}
                                     name="title"
-                                    variant="standard"
                                     onChange={formik.handleChange}
                                     value={formik.values.title}
-                                    error={Boolean(formik.errors.title)}
                                 />
-                                <div className="flex flex-col lg:flex-row gap-5 pt-3 h-full">
-                                    <div className="flex flex-col flex-1 pt-1">
+                                <InputError error={formik.errors.title} />
+                                <div className='flex flex-col lg:flex-row gap-5 pt-2 h-full '>
+                                    <div className='flex flex-col flex-1  '>
                                         <Textarea
+                                            className={`inputStandart min-h-full ${formik.errors.description ? 'error' : ''}`}
+                                            labelProps={{ className: "before:content-none after:content-none" }}
+                                            placeholder='Description'
                                             rows={2}
                                             resize={true}
-                                            variant="static"
-                                            label={formik.errors.description ? formik.errors.description as string : "Description"}
-                                            error={Boolean(formik.errors.description)}
                                             name="description"
                                             onChange={formik.handleChange}
-                                            className="focus:outline-none min-h-full"
-                                            value={formik.values.description}
-                                            containerProps={{ className: "grid h-full" }}
-                                            labelProps={{ className: "before:content-none after:content-none" }}
+                                            defaultValue={formik.values.description}
+                                            containerProps={{ className: "grid h-full pb-1" }}
                                         />
+                                        <InputError mt error={formik.errors.description} />
                                     </div>
                                 </div>
-                                <div className="flex flex-col justify-center pt-4 h-full w-full">
-                                    <Typography className={`${formik.errors.share && "error"} text-xs`}>
-                                        {formik.errors.share ? formik.errors.share as string : "partager"}
-                                    </Typography>
+                                <div className="flex flex-col gap-1 justify-center pt-4 h-full w-full">
                                     <div className="flex items-center gap-[10%]">
                                         <Checkbox
                                             className="checked:bg-rose-500 border-rose-500 checked:border-rose-700"
@@ -137,6 +135,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                             checked={checkShare("email")}
                                         />
                                     </div>
+                                    <InputError mt tips="Choisir un moyen de contact" error={formik.errors.share} />
                                 </div>
                             </div>
                         </CardBody>

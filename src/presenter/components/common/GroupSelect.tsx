@@ -19,6 +19,7 @@ export default function GroupSelect({ formik, user, setGroupId, groupId, disable
             name={"groupId"}
             labelProps={{ className: `${formik?.errors?.groupId && "error"} before:border-none after:border-none ` }}
             value={groupId || formik.values.groupId?.toString() || '0'}
+            defaultValue={groupId || formik.values.groupId?.toString() || '0'}
             onChange={(val: string | undefined) => {
                 formik.setFieldValue('groupId', val)
                 formik.groupId = val

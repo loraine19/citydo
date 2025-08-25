@@ -28,7 +28,6 @@ export class ServiceView extends Service {
         this.IResp = service?.userIdResp ? service.userIdResp === user.id : false;
         this.flagged = service?.Flags ? service?.Flags?.some((flag: Flag) => flag.userId === user.id) : false;
         this.mine = service?.userId === user?.id;
-        this.isLate = this.isLateCalc(service?.createdAt, 15);
         this.points = this.GetPoints(service, user?.Profile);
 
         this.categoryS = ServiceCategory[service?.category as string as keyof typeof ServiceCategory]
@@ -41,6 +40,7 @@ export class ServiceView extends Service {
         this.isValidated = this.statusS === ServiceStep.STEP_2 ? true : false;
         this.isFinish = this.statusS === ServiceStep.STEP_3 ? true : false;
         this.inIssue = this.statusS === ServiceStep.STEP_4 ? true : false;
+        this.isLate = this.isLateCalc(service?.createdAt, 15) && this.isNew
     }
 
     private isLateCalc = (date: Date, days: number) => new Date(date) < new Date((new Date().getTime() - days * 24 * 60 * 60 * 1000)) ? true : false

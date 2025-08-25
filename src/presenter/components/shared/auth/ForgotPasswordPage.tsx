@@ -6,6 +6,7 @@ import { Typography, Button, Card, CardBody, Input, CardHeader, CardFooter } fro
 import { User } from '../../../../domain/entities/User';
 import DI from '../../../../di/ioc';
 import { Icon } from '../../common/IconComp';
+import { InputError } from '../../common/adaptatersComps/input';
 
 export default function ForgotPasswordPage() {
     const resetPassword = async (email: string) => await DI.resolve('resetPasswordUseCase').execute(email)
@@ -49,11 +50,13 @@ export default function ForgotPasswordPage() {
                             </CardHeader>
                             <CardBody className='FixCardBody gap-8 my-4 !p-8'>
                                 <Input
-                                    label={formik?.errors.email ? formik?.errors.email : "Email"}
+                                    labelProps={{ className: "before:content-none after:content-none" }}
+                                    className={`inputStandart ${formik.errors.email ? 'error' : ''}`}
+                                    placeholder={"Email"}
                                     name="email"
-                                    variant="static" error={formik?.errors.email ? true : false}
                                     onChange={formik.handleChange}
                                     onInput={() => setHidden(false)} />
+                                <InputError error={formik.errors.email} />
                             </CardBody>
                             <CardFooter className='FixCardFooter'>
                                 <Button

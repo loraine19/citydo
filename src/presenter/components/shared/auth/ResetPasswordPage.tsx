@@ -8,6 +8,7 @@ import { User } from '../../../../domain/entities/User';
 import { Icon } from '../../common/IconComp';
 import DI from '../../../../di/ioc';
 import { ResetDTO } from '../../../../infrastructure/DTOs/AuthDTO';
+import { InputError } from '../../common/adaptatersComps/input';
 
 
 export default function ResetPasswordPage() {
@@ -63,14 +64,17 @@ export default function ResetPasswordPage() {
                             </CardHeader>
                             <CardBody className='FixCardBody gap-8 !px-10 py-2 mb-4'>
                                 <Input
-                                    className='px-4'
-                                    label={'email'}
+                                    labelProps={{ className: "before:content-none after:content-none" }}
+                                    className={`inputStandart ${formik.errors.email ? 'error' : ''}`}
+                                    placeholder={'email'}
                                     name="email"
-                                    variant="static"
                                     value={email as string}
                                     disabled={true} />
+                                <InputError error={formik.errors.email} />
                                 <Input
-                                    className='px-4'
+                                    labelProps={{ className: "before:content-none after:content-none" }}
+                                    className={`inputStandart ${formik.errors.password ? 'error' : ''}`}
+                                    placeholder={"Mot de passe"}
                                     type={passWordInput.value}
                                     icon={
                                         <Icon
@@ -80,10 +84,9 @@ export default function ResetPasswordPage() {
                                             icon={passWordInput.icon}
                                             style='!-mt-4 -ml-4' />
                                     }
-
-                                    label={formik.errors.password ? formik.errors.password : "Mot de passe"}
-                                    name="password" variant="static" error={formik?.errors.password ? true : false}
+                                    name="password"
                                     onChange={formik.handleChange} />
+                                <InputError error={formik.errors.password} />
                             </CardBody>
                             <CardFooter className='FixCardFooter'>
                                 <Button

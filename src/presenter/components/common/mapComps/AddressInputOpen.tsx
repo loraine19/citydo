@@ -109,7 +109,6 @@ export const AddressInputOpen = (props: {
             <Input
                 className={`items-center flex-1 inputStandart ${error ? 'error' : ''}`}
                 placeholder={"Adresse"}
-                variant='standard'
                 type="text"
                 name='address'
                 value={inputValue}

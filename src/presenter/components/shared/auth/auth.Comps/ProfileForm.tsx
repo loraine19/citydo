@@ -170,7 +170,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                             placeholder="Ajouter une compétences"
                             name="skills"
                             value={newSkill}
-                            variant="standard"
                             onChange={(e: any) => { e.preventDefault(); setNewSkill(e.target.value) }}
                             onSubmit={addSkill}
                             icon={

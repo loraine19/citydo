@@ -47,12 +47,12 @@ export default function ServiceDetailPage() {
     const generateActions = (service: ServiceView): Action[] => {
         let actions: Action[] = [];
         switch (true) {
-            case (!service.IResp && !mine || service.isFinish):
+            case (!service.IResp && !service.mine || service.isFinish):
                 actions = [
                     {
                         iconImage: service.isNew ? 'person' : service.isFinish ? 'check' : 'block',
                         icon: service.isNew ? 'Répondre au service' : service.isFinish ? 'ce service est terminé' : service.statusS,
-                        title: service.isNew ? 'Nous envoyerons un message à ' + service.User?.email + ' pour le premier contact' : '',
+                        title: service.isNew ? 'Nous envoyerons un message à ' + service.User?.email + ' pour le premier contact' : '55',
                         body: service?.title,
                         function: service.isNew ?
                             async () => {
@@ -64,7 +64,7 @@ export default function ServiceDetailPage() {
                     },
                 ];
                 break;
-            case (mine && service.isNew):
+            case (service.mine && service.isNew):
                 actions = [...myAction];
                 if (isLateValue && !service.isResp) {
                     actions.push({
@@ -77,7 +77,7 @@ export default function ServiceDetailPage() {
                     });
                 }
                 break;
-            case (mine && service.isResp):
+            case (service.mine && service.isResp):
                 actions = [
                     ...myAction,
                     {
@@ -106,7 +106,7 @@ export default function ServiceDetailPage() {
                     },
                 ];
                 break;
-            case (mine && service.isValidated):
+            case (service.mine && service.isValidated):
                 actions = [
                     {
                         color: 'cyan',
@@ -139,9 +139,9 @@ export default function ServiceDetailPage() {
                     {
                         color: service.isResp ? 'orange' : 'red',
                         iconImage: 'close',
-                        icon: service.isResp ? 'Annuler votre réponse' : service.isValidated ? "Besoin d'aide ?" : '',
-                        title: service.isResp ? 'Annuler votre réponse' : service.isValidated ? "Ouvrir une demande de conciliation?" : '',
-                        body: service.isResp ? service?.title : service.isValidated ? `Avant d'ouvrir une demande d'aide pouvez contacter ${generateContact(service.User)}` : '',
+                        icon: service.isResp ? 'Annuler votre réponse' : service.isValidated ? "Besoin d'aide ?" : '142',
+                        title: service.isResp ? 'Annuler votre réponse' : service.isValidated ? "Ouvrir une demande de conciliation?" : '143',
+                        body: service.isResp ? service?.title : service.isValidated ? `Avant d'ouvrir une demande d'aide pouvez contacter ${generateContact(service.User)}` : '144',
                         function: async () => {
                             if (service.isResp) {
                                 const data = await cancelRespService(service.id);
@@ -154,7 +154,7 @@ export default function ServiceDetailPage() {
                     },
                 ];
                 break;
-            case (service.inIssue && service.isResp || service.inIssue && mine):
+            case (service.inIssue && (service.mine || service.IResp)):
                 actions = [
                     {
                         color: 'red',
@@ -182,6 +182,7 @@ export default function ServiceDetailPage() {
             const updatedActions = generateActions(service);
             setActions([...updatedActions]);
         }
+        console.log(actions, service, isLoading)
     }, [isLoading, error])
 
     const updateService = async () => {

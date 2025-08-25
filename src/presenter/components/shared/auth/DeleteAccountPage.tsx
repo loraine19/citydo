@@ -71,12 +71,12 @@ export default function DeleteAccountPage() {
                                 {notif}
                             </Typography>
                             <Input
-                                label={'email'}
+                                labelProps={{ className: "before:content-none after:content-none" }}
+                                className={`inputStandart ${formik.errors.email ? 'error' : ''}`}
+                                placeholder={'email'}
                                 name="email"
-                                variant="static"
                                 value={email as string}
-                                disabled={true}
-                                className='!bg-red-100 !text-red-800 text-center rounded-full pb-4  ' />
+                                disabled={true} />
                             {/* <Input
                                 label={'email'}
                                 name="email"

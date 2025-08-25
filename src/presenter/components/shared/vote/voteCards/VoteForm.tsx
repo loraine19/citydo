@@ -12,6 +12,7 @@ import { ProfileDiv } from "../../../common/ProfilDiv";
 import { Icon } from "../../../common/IconComp";
 import { useUserStore } from "../../../../../application/stores/user.store";
 import GroupSelect from "../../../common/GroupSelect";
+import { InputError } from "../../../common/adaptatersComps/input";
 
 type PoolSurveyFormProps = {
     formik: any;
@@ -40,87 +41,86 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                             `Modifier votre ${formik.values.typeS}` : `Créer votre ${formik.values.typeS || 'vote'}`}
                         closeBtn
                         place={formik.values.id ? formik.values.title : ''} />
-                    <div className="w-respLarge flex flex-col lg:flex-row !gap-4 pt-4">
-                        <div className="flex lg:flex-[150%] gap-1 lg:gap-4">
-                            <div className="flex bg-white rounded-full pr-6 shadow-sm shadow-blue-gray-500/25 border h-10 gap-1 lg:gap-4">
-                                <Radio
-                                    labelProps={{ className: "text-sm font-normal text-blue-gray-600 -ml-1" }}
-                                    disabled={formik.values.pourcent > 1}
-                                    name="typeS"
-                                    label="Sondage"
-                                    value={VoteTarget.SURVEY}
-                                    color='orange'
-                                    checked={type === VoteTarget.SURVEY}
-                                    onChange={() => {
-                                        formik.setFieldValue('typeS', VoteTarget.SURVEY)
-                                        setType(VoteTarget.SURVEY)
-                                    }}
-                                />
-                                <Radio
-                                    labelProps={{ className: "text-sm font-normal text-blue-gray-600 -ml-1" }}
-                                    disabled={formik.values.pourcent > 1}
-                                    name="typeS"
-                                    label="Cagnotte"
-                                    value={VoteTarget.POOL}
-                                    color='orange'
-                                    checked={type === VoteTarget.POOL}
-                                    onChange={() => {
-                                        setType(VoteTarget.POOL)
-                                        formik.setFieldValue('typeS', VoteTarget.POOL)
-                                        refetch()
-                                    }}
-                                />
-                            </div>
-                            <div>
-                                {(type === VoteTarget.POOL) ?
-                                    <Select
-                                        className="rounded-full shadow bg-white border-none capitalize"
-                                        label={formik.errors.userIdBenef ? formik.errors.userIdBenef as string : "Choisir le bénéficiaire"}
-                                        name={"userIdBenef"}
-                                        labelProps={{ className: `${formik.errors?.userIdBenef && "error"} before:border-none after:border-none ` }}
-                                        defaultValue={formik.values?.UserBenef?.id?.toString()}
-                                        onChange={(val: string | undefined) => {
-                                            const find = users.find((user: Partial<User>) => user.id === parseInt(val || ''))
-                                            formik.setFieldValue('UserBenef', find as User)
-                                            formik.setFieldValue('userIdBenef', val)
-                                            formik.setFieldValue('category', '')
-                                        }} >
-                                        {users && users.length && !isLoading ? users?.map((user: any, index: number) =>
-                                            <Option
-                                                className={`${user.id?.toString() === formik.values?.UserBenef?.id && "bg-orange-100 shadow-md"} rounded-full my-1 capitalize`}
-                                                value={user?.id?.toString()}
-                                                key={index}
-                                            >
-                                                {user?.Profile?.firstName} {user?.id}
-                                            </Option>
 
-                                        ) :
-                                            <Option>Choissisez un groupe, pour voir les utilisateurs</Option>
-                                        }
-                                    </Select> :
-                                    <Select
-                                        className="rounded-full shadow bg-white border-none capitalize"
-                                        label={formik.errors.category ? formik.errors.category as string : "Choisir la catégorie"}
-                                        name={"category"}
-                                        labelProps={{ className: `${formik.errors.category && "error"} before:border-none after:border-none ` }}
-                                        value={formik.values.category}
-                                        onChange={(val: string | undefined) => {
-                                            formik.setFieldValue('category', val)
-                                            formik.setFieldValue('userIdBenef', '')
-                                            formik.setFieldValue('UserBenef', {} as User)
-                                        }} >
-                                        {surveyCategories.map((category: Label, index: number) => {
-                                            return (
-                                                <Option
-                                                    value={category.value}
-                                                    key={index}>
-                                                    {category.label}
-                                                </Option>
-                                            )
-                                        })}
-                                    </Select>
-                                }
-                            </div>
+                    <div className="w-respLarge divide-x-2 flex flex-col grid-cols-[1fr_1fr_1fr] lg:grid grid-rows-1 gap-3 py-4">
+                        <div className="flex bg-white rounded-full pr-6 shadow-sm shadow-blue-gray-500/25 border h-10 gap-1 lg:gap-4">
+                            <Radio
+                                labelProps={{ className: "text-sm font-normal text-blue-gray-600 -ml-1" }}
+                                disabled={formik.values.pourcent > 1}
+                                name="typeS"
+                                label="Sondage"
+                                value={VoteTarget.SURVEY}
+                                color='orange'
+                                checked={type === VoteTarget.SURVEY}
+                                onChange={() => {
+                                    formik.setFieldValue('typeS', VoteTarget.SURVEY)
+                                    setType(VoteTarget.SURVEY)
+                                }}
+                            />
+                            <Radio
+                                labelProps={{ className: "text-sm font-normal text-blue-gray-600 -ml-1" }}
+                                disabled={formik.values.pourcent > 1}
+                                name="typeS"
+                                label="Cagnotte"
+                                value={VoteTarget.POOL}
+                                color='orange'
+                                checked={type === VoteTarget.POOL}
+                                onChange={() => {
+                                    setType(VoteTarget.POOL)
+                                    formik.setFieldValue('typeS', VoteTarget.POOL)
+                                    refetch()
+                                }}
+                            />
+                        </div>
+                        <div>
+                            {(type === VoteTarget.POOL) ?
+                                <Select
+                                    className="rounded-full shadow bg-white border-none capitalize"
+                                    label={formik.errors.userIdBenef ? formik.errors.userIdBenef as string : "Choisir le bénéficiaire"}
+                                    name={"userIdBenef"}
+                                    labelProps={{ className: `${formik.errors?.userIdBenef && "error"} before:border-none after:border-none ` }}
+                                    defaultValue={formik.values?.UserBenef?.id?.toString()}
+                                    onChange={(val: string | undefined) => {
+                                        const find = users.find((user: Partial<User>) => user.id === parseInt(val || ''))
+                                        formik.setFieldValue('UserBenef', find as User)
+                                        formik.setFieldValue('userIdBenef', val)
+                                        formik.setFieldValue('category', '')
+                                    }} >
+                                    {users && users.length && !isLoading ? users?.map((user: any, index: number) =>
+                                        <Option
+                                            className={`${user.id?.toString() === formik.values?.UserBenef?.id && "bg-orange-100 shadow-md"} rounded-full my-1 capitalize`}
+                                            value={user?.id?.toString()}
+                                            key={index}
+                                        >
+                                            {user?.Profile?.firstName} {user?.id}
+                                        </Option>
+
+                                    ) :
+                                        <Option>Choissisez un groupe, pour voir les utilisateurs</Option>
+                                    }
+                                </Select> :
+                                <Select
+                                    className="rounded-full shadow bg-white border-none capitalize"
+                                    label={formik.errors.category ? formik.errors.category as string : "Choisir la catégorie"}
+                                    name={"category"}
+                                    labelProps={{ className: `${formik.errors.category && "error"} before:border-none after:border-none ` }}
+                                    value={formik.values.category}
+                                    onChange={(val: string | undefined) => {
+                                        formik.setFieldValue('category', val)
+                                        formik.setFieldValue('userIdBenef', '')
+                                        formik.setFieldValue('UserBenef', {} as User)
+                                    }} >
+                                    {surveyCategories.map((category: Label, index: number) => {
+                                        return (
+                                            <Option
+                                                value={category.value}
+                                                key={index}>
+                                                {category.label}
+                                            </Option>
+                                        )
+                                    })}
+                                </Select>
+                            }
                         </div>
                         <GroupSelect
                             setGroupId={setGroupId}
@@ -134,8 +134,8 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                         "FixCardNoImage !flex justify-between "} w-respLarge`}>
                         <CardHeader
                             className={(imgBlob || formik.values.image) ?
-                                "FixCardHeader" :
-                                "FixCardHeaderNoImage !flex p-4"}
+                                "FixCardHeader " :
+                                "FixCardHeaderNoImage pt-16 pb-0"}
                             floated={imgBlob || formik.values.image ?
                                 true : false} >
                             <div className={`${start ? 'ChipDiv !justify-end right-4' : 'invisible'}`}>
@@ -169,34 +169,28 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                         <CardBody className='FixCardBody '>
                             <div className='CardOverFlow h-full justify-between mt-2 gap-4'>
                                 <Input
-                                    error={formik.errors.title}
-                                    label={formik.errors.title ?
-                                        formik.errors.title as string : "titre"}
+                                    labelProps={{ className: "before:content-none after:content-none" }}
+                                    className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
+                                    placeholder={"Titre"}
                                     name="title"
-                                    variant="standard"
                                     onChange={formik.handleChange}
                                     value={formik.values.title}
                                 />
+                                <InputError error={formik.errors.title} />
                                 <div className='flex flex-col lg:flex-row gap-5 pt-3 h-full '>
                                     <div className='flex flex-col flex-1 pt-1 '>
                                         <Textarea
-                                            rows={2}
+                                            className={`inputStandart min-h-full ${formik.errors.description ? 'error' : ''}`}
+                                            labelProps={{ className: "before:content-none after:content-none" }}
+                                            placeholder='Description'
+                                            rows={1}
                                             resize={true}
-                                            variant="static"
-                                            error={formik.errors.description}
-                                            label={formik.errors.description ?
-                                                formik.errors.description as string : "Description"}
                                             name="description"
                                             onChange={formik.handleChange}
-                                            className="focus:outline-none min-h-full"
-                                            value={formik.values.description}
-                                            containerProps={{
-                                                className: "grid h-full",
-                                            }}
-                                            labelProps={{
-                                                className: "before:content-none after:content-none",
-                                            }}
+                                            defaultValue={formik.values.description}
+                                            containerProps={{ className: "grid h-full pb-1" }}
                                         />
+                                        <InputError mt error={formik.errors.description} />
                                     </div>
                                 </div>
 

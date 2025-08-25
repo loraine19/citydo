@@ -8,6 +8,7 @@ import { IssueView } from "../../../../views/viewsEntities/issueViewEntity"
 import { IssueStep } from "../../../../../domain/entities/Issue"
 import { ProfileDiv } from "../../../common/ProfilDiv"
 import { GroupLink } from "../../../common/GroupLink"
+import { InputError } from "../../../common/adaptatersComps/input"
 
 type IssueFormProps = { issue: IssueView, service?: Service, formik?: any, modos: User[] }
 export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, modos }) => {
@@ -48,15 +49,15 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, mo
                                         type="datetime-local"
                                         min={start}
                                         className="flex justify-end px-4 pb-4 RedChip"
-                                        label={formik?.errors.date as string || "date du probléme"}
+                                        placeholder={"date du probléme"}
                                         labelProps={{ className: `${formik?.errors.date && 'error'}  "mr-3 pr-4 pt-0 flex justify-end !text-gray-800 h-max peer-focus:after:content-none` }}
                                         name="date"
-                                        variant="standard"
                                         onChange={formik?.handleChange}
                                         value={formik?.values?.date ? formik?.values.date : start}
                                         error={Boolean(formik?.errors?.date)}
                                         containerProps={{ className: "!max-h-max h-8 !min-w-max opacity-80" }}
                                     />
+                                    <InputError error={formik?.errors?.date} />
                                 </div>}
                         </div>
                     </CardHeader>
