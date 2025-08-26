@@ -1,9 +1,9 @@
 import {
   require_react
-} from "./chunk-ZHUB4BJD.js";
+} from "./chunk-VPEBV5N7.js";
 import {
   __toESM
-} from "./chunk-OL46QLBJ.js";
+} from "./chunk-SNAQBZPT.js";
 
 // node_modules/emoji-picker-react/dist/emoji-picker-react.esm.js
 var import_react = __toESM(require_react());
@@ -18539,7 +18539,6 @@ function usePickerMainKeyboardEvents() {
       var key = event.key;
       disallowMouseMove();
       switch (key) {
-        // eslint-disable-next-line no-fallthrough
         case KeyboardEvents.Escape:
           event.preventDefault();
           if (hasOpenToggles()) {
@@ -18618,7 +18617,7 @@ function useSkinTonePickerKeyboardEvents() {
   var onKeyDown = (0, import_react.useMemo)(function() {
     return (
       // eslint-disable-next-line complexity
-      (function onKeyDown2(event) {
+      function onKeyDown2(event) {
         var key = event.key;
         if (isSkinToneInSearch) {
           switch (key) {
@@ -18669,7 +18668,7 @@ function useSkinTonePickerKeyboardEvents() {
               break;
           }
         }
-      })
+      }
     );
   }, [isOpen, focusSearchInput, setIsOpen, goDownFromSearchInput, onType, isSkinToneInPreview, isSkinToneInSearch]);
   (0, import_react.useEffect)(function() {
@@ -18735,7 +18734,7 @@ function useBodyKeyboardEvents() {
   var onKeyDown = (0, import_react.useMemo)(function() {
     return (
       // eslint-disable-next-line complexity
-      (function onKeyDown2(event) {
+      function onKeyDown2(event) {
         var key = event.key;
         var activeElement = buttonFromTarget(getActiveElement());
         switch (key) {
@@ -18771,7 +18770,7 @@ function useBodyKeyboardEvents() {
             onType(event);
             break;
         }
-      })
+      }
     );
   }, [goUpFromBody, onType, setVariationPicker, hasOpenToggles, closeAllOpenToggles]);
   (0, import_react.useEffect)(function() {
@@ -21072,7 +21071,7 @@ function ExpandedPickerContent(_ref) {
   return (0, import_react.createElement)(import_react.Fragment, null, (0, import_react.createElement)(Header, null), (0, import_react.createElement)(Body, null), (0, import_react.createElement)(Preview, null));
 }
 var EmojiPickerReact = (0, import_react.memo)(EmojiPicker, compareConfig);
-var ErrorBoundary = (function(_React$Component) {
+var ErrorBoundary = function(_React$Component) {
   _inheritsLoose(ErrorBoundary2, _React$Component);
   function ErrorBoundary2(props) {
     var _this;
@@ -21098,7 +21097,7 @@ var ErrorBoundary = (function(_React$Component) {
     return this.props.children;
   };
   return ErrorBoundary2;
-})(import_react.Component);
+}(import_react.Component);
 function ExportedEmoji(_ref) {
   var unified = _ref.unified, _ref$size = _ref.size, size = _ref$size === void 0 ? 32 : _ref$size, _ref$emojiStyle = _ref.emojiStyle, emojiStyle = _ref$emojiStyle === void 0 ? EmojiStyle.APPLE : _ref$emojiStyle, _ref$lazyLoad = _ref.lazyLoad, lazyLoad = _ref$lazyLoad === void 0 ? false : _ref$lazyLoad, getEmojiUrl = _ref.getEmojiUrl, emojiUrl = _ref.emojiUrl;
   if (!unified && !emojiUrl && !getEmojiUrl) {

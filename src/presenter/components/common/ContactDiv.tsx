@@ -1,6 +1,7 @@
 import { Typography } from "@material-tailwind/react";
 import { User } from "../../../domain/entities/User";
 import { Link } from "react-router-dom";
+import { JSX } from "react/jsx-runtime";
 
 type ContactDivProps = {
     user: User

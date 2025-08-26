@@ -1,4 +1,4 @@
-import { Select, Option } from "@material-tailwind/react";
+import { Select } from "@material-tailwind/react";
 import { Label } from "../../../domain/entities/frontEntities";
 
 type categoriesSelectProps = {
@@ -15,15 +15,13 @@ export function CategoriesSelect(props: categoriesSelectProps) {
     return (
         <div className="w-full px-4">
             <Select
-                className="rounded-full h-7 shadow bg-white border-t border-blue-gray-50 capitalize "
+                className="rounded-full h-7 shadow bg-white border-t border-slate-50 capitalize "
                 size="md"
                 label={label}
                 name={"categories"}
-                containerProps={{
-                    className: "grid h-7 p-0",
-                }}
+                // containerProps={{className: "grid h-7 p-0"}}
                 labelProps={{ className: " before:border-none after:border-none " }}
-                onChange={(e) => {
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                     change(e);
                 }}
                 value={categorySelected}
@@ -31,16 +29,16 @@ export function CategoriesSelect(props: categoriesSelectProps) {
             >
                 {categoriesArray.map((category: any, key: number) => {
                     return (
-                        <Option
+                        <Select.Option
                             data-cy={typeof category === "string" ? category : category.label}
                             className="rounded-full my-1 capitalize "
                             value={typeof category === "string" ? category : category.value}
                             key={key}
                         >
                             {typeof category === "string" ? category : category.label}
-                        </Option>
+                        </Select.Option>
                     );
                 })}
-            </Select></div>
+            </Select></div >
     );
 }

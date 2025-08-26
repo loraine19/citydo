@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { visualizer } from 'rollup-plugin-visualizer';
+import { visualizer } from 'rollup-plugin-visualizer'
 
 export default defineConfig(({ mode }) => {
   if (mode === 'analyze') {
@@ -8,10 +8,10 @@ export default defineConfig(({ mode }) => {
       plugins: [react(), visualizer()],
       build: {
         minify: 'terser', // Use Terser for minification
-        terserOptions: {
-          keep_fnames: true,
-          keep_classnames: true,
-        },
+        // terserOptions: {
+        //   keep_fnames: true,
+        //   keep_classnames: true,
+        // },
         rollupOptions: {
           output: {
             entryFileNames: `[name].js`,

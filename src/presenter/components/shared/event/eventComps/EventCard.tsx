@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardBody, CardFooter, Typography, Chip } from "@material-tailwind/react";
+import { Card, CardHeader, CardBody, CardFooter, Typography } from "@material-tailwind/react";
 import { AvatarStack } from "./AvatarStack";
 import { useState } from "react";
 import ModifBtnStack from "../../../common/ModifBtnStack";
@@ -10,6 +10,7 @@ import { EventView } from "../../../../views/viewsEntities/eventViewEntities";
 import { Title } from "../../../common/CardTitle";
 import { EventStatus } from "../../../../../domain/entities/Event";
 import { ProgressBarBlur } from "../../../common/ProgressBar";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 type EventCardProps = {
     event: EventView, refetch?: () => void,
@@ -76,9 +77,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                     type='evenement'
                     group={event.Group}
                 />
-                <Typography
-                    className="leading-[1.3rem] pt-1 !line-clamp-1"
-                    color="blue-gray">
+                <Typography className="leading-[1.3rem] pt-1 !line-clamp-1">
                     {description}
                 </Typography>
             </CardBody>

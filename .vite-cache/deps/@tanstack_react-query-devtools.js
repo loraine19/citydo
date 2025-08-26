@@ -10,19 +10,19 @@ import {
 import {
   onlineManager,
   useQueryClient
-} from "./chunk-RRIO22OT.js";
+} from "./chunk-H7YU46OT.js";
 import {
   require_jsx_runtime
-} from "./chunk-RIJBGROQ.js";
+} from "./chunk-P5EAQRRD.js";
 import {
   require_react
-} from "./chunk-ZHUB4BJD.js";
+} from "./chunk-VPEBV5N7.js";
 import {
   __privateAdd,
   __privateGet,
   __privateSet,
   __toESM
-} from "./chunk-OL46QLBJ.js";
+} from "./chunk-SNAQBZPT.js";
 
 // node_modules/@tanstack/react-query-devtools/build/modern/ReactQueryDevtools.js
 var React = __toESM(require_react(), 1);
@@ -101,7 +101,7 @@ var TanstackQueryDevtools = (_a = class {
       if (__privateGet(this, _Component)) {
         Devtools = __privateGet(this, _Component);
       } else {
-        Devtools = lazy(() => import("./EDEL3XIZ-XEJOQJ4F.js"));
+        Devtools = lazy(() => import("./EDEL3XIZ-VMUUZP5W.js"));
         __privateSet(this, _Component, Devtools);
       }
       setupStyleSheet(__privateGet(this, _styleNonce), __privateGet(this, _shadowDOMTarget));
@@ -231,7 +231,7 @@ var TanstackQueryDevtoolsPanel = (_a2 = class {
       if (__privateGet(this, _Component2)) {
         Devtools = __privateGet(this, _Component2);
       } else {
-        Devtools = lazy(() => import("./RN252AT2-JTCGFSIG.js"));
+        Devtools = lazy(() => import("./RN252AT2-Z7LT2E3G.js"));
         __privateSet(this, _Component2, Devtools);
       }
       setupStyleSheet(__privateGet(this, _styleNonce2), __privateGet(this, _shadowDOMTarget2));

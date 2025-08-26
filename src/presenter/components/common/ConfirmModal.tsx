@@ -20,8 +20,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({ open, handleConfirm,
                 <CardHeader
                     className="FixCardHeaderNoImage flex items-center justify-between p-4 text-center text-xl">
                     <Typography
-                        variant="h5"
-                        color="blue-gray">
+                        as="h5">
                         {title}
                     </Typography>
 

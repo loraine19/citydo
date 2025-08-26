@@ -1,4 +1,4 @@
-import { Card, CardHeader, Typography, CardBody, CardFooter, Chip, } from "@material-tailwind/react";
+import { Card, CardHeader, Typography, CardBody, CardFooter } from "@material-tailwind/react";
 import { Icon } from "../../../common/IconComp";
 import { DateChip } from "../../../common/ChipDate";
 import { dayMS } from "../../../../../domain/entities/frontEntities";
@@ -7,6 +7,7 @@ import { ProgressBar } from "../../../common/ProgressBar";
 import { Title } from "../../../common/CardTitle";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { PoolSurveyStatus } from "../../../../../domain/entities/PoolSurvey";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 type Props = { survey: PoolSurveyView, setOpen: (open: boolean) => void }
 
@@ -20,7 +21,7 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
             case 'OK': return 'green';
             case 'NO': return 'red';
             case 'WO': return 'orange';
-            default: return 'blue-gray';
+            default: return 'slate';
         }
     }
 
@@ -47,7 +48,7 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
                             onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
                             src={image as string}
                             alt={title}
-                            className="h-full w-full object-cover" />}
+                            className="h-full w-full object-cover CardImage" />}
                 </CardHeader>
                 <CardBody className="FixCardBody">
                     <Title

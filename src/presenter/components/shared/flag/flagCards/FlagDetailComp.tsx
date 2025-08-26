@@ -1,4 +1,4 @@
-import { Card, CardHeader, Typography, CardBody, CardFooter, Chip } from "@material-tailwind/react";
+import { Card, CardHeader, Typography, CardBody, CardFooter, Chip, ChipLabel } from "@material-tailwind/react";
 import { Icon } from "../../../common/IconComp";
 import { FlagView } from "../../../../views/viewsEntities/flagViewEntities";
 import { FlagTarget } from "../../../../../domain/entities/Flag";
@@ -17,26 +17,27 @@ export default function FlagDetailComp(props: { flag: FlagView, element?: any, l
                 <CardHeader className="FixCardHeaderNoImage"
                     floated={false}>
                     <div className="ChipDivNoImage">
-                        <Chip
-                            value={FlagTarget[flag.target as unknown as keyof typeof FlagTarget] ||
-                                FlagTarget[props.label as unknown as keyof typeof FlagTarget]}
-                            className="CyanChip">
+                        <Chip className="CyanChip">
+                            <ChipLabel>{FlagTarget[flag.target as unknown as keyof typeof FlagTarget]
+                                || FlagTarget[props.label as unknown as keyof typeof FlagTarget]}
+                            </ChipLabel>
                         </Chip>
-                        <Chip
-                            value={(new Date(createdAt ? createdAt : now)).toLocaleDateString('fr-FR')}
-                            className={`rounded-full GrayChip h-max flex items-center gap-2 shadow font-medium `}>
+                        <Chip className={`rounded-full GrayChip h-max flex items-center gap-2 shadow font-medium `}>
+                            <ChipLabel>
+                                {(new Date(createdAt ? createdAt : now)).toLocaleDateString('fr-FR')}
+                            </ChipLabel>
                         </Chip>
                     </div>
                 </CardHeader>
                 <CardBody
                     className="FixCardBody">
                     <div className="flex w-full items-center justify-between">
-                        <Typography variant="h5" color="blue-gray" className="mb-2">
+                        <Typography as="h5" className="mb-2">
                             {title}
                         </Typography>
                     </div>
                     <div className="CardOverFlow">
-                        <Typography color="blue-gray" className="mb-2">
+                        <Typography className="mb-2">
                             {element?.description}
                         </Typography>
                     </div>

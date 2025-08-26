@@ -1,6 +1,7 @@
-import { Card, CardBody, CardFooter, Typography, Chip, CardHeader } from "@material-tailwind/react";
+import { Card, CardBody, CardFooter, Typography, CardHeader } from "@material-tailwind/react";
 import { Icon } from "../../common/IconComp";
 import { NotifView } from "../../../views/viewsEntities/notifViewEntity";
+import Chip from "../../common/adaptatersComps/Chip";
 
 
 type notifCardProps = { notif: any, handleClick: (notif: NotifView) => void }
@@ -30,13 +31,11 @@ export function NotifCard(props: notifCardProps) {
             </CardHeader>
             <CardBody className="FixCardBody max-h-max !-mt-3 !py-0">
                 <Typography
-                    color="gray"
                     className="font-normal truncate ">
                     {notif.title}
                 </Typography>
                 <Typography
                     variant="small"
-                    color="gray"
                     className="font-normal truncate ">
                     {notif.description}
                 </Typography>
@@ -44,7 +43,6 @@ export function NotifCard(props: notifCardProps) {
             <CardFooter className="CardFooter items-center  !pt-0  !px-4">
                 <Typography
                     variant="small"
-                    color="gray"
                     className="font-normal truncate">
                     {update}
                 </Typography>

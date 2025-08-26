@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Popover, PopoverContent, PopoverHandler, Typography } from '@material-tailwind/react';
+import { Popover, PopoverContent, PopoverTrigger, Typography } from '@material-tailwind/react';
 import { EventCard } from '../shared/event/eventComps/EventCard';
 import { Icon } from './IconComp';
 import DI from '../../../di/ioc'
@@ -50,7 +50,7 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                             size="md"
                             title='Voir tous les événements' />
                         <div>
-                            <Typography color="blue-gray" className="hidden lg:flex pl-2">
+                            <Typography className="hidden lg:flex pl-2">
                                 Évenements
                             </Typography>
                         </div>
@@ -76,7 +76,7 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                                 icon='do_not_disturb_on'
                                 size='sm'
                                 onClick={removeCol} />
-                            <button onClick={resetCol}>
+                            <button className='font-normal' onClick={resetCol}>
                                 {col}
                             </button>
                             <Icon
@@ -104,10 +104,10 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
             <div className='relative max-h-full w-full flex flex-1 '>
                 {loadingEvents || errorEvents ? (
                     <div className='absolute flex flex-col flex-1 h-full p-2 gap-2 w-full rounded-2xl bg-white shadow '>
-                        <div className={`grid grid-cols-${num} rounded-lg h-full overflow-auto pb-3 bg-blue-gray-50 divide-x divide-cyan-500 divide-opacity-20`}>
+                        <div className={`grid grid-cols-${num} rounded-lg h-full overflow-auto pb-3 bg-slate-50 divide-x divide-cyan-500 divide-opacity-20`}>
                             {[...Array(num)].map((_, index) => (
                                 <div key={index} className='text-xs w-full flex flex-col text-center h-full'>
-                                    <p className='w-full sticky top-0 pt-1 text-center bg-blue-gray-50'>
+                                    <p className='w-full sticky top-0 pt-1 text-center bg-slate-50'>
                                         &nbsp;
                                     </p>
                                     <div className='flex flex-col h-full w-full items-center gap-3'>
@@ -122,24 +122,24 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                         </div>
                     </div>
                 ) :
-                    (<div className='border border-blue-gray-100/50 absolute flex flex-col flex-1 h-full p-2 gap-2  w-full rounded-2xl bg-white shadow-md '>
+                    (<div className='!border !border-slate-200 absolute flex flex-col flex-1 h-full p-2 gap-2  w-full rounded-2xl bg-white shadow-md '>
                         {weeks && weeks.map((week: any, key: number) => (
                             <div
                                 key={key}
-                                className={` grid rounded-xl  h-full overflow-auto  pb-3 bg-blue-gray-50 border border-blue-gray-100/50 
+                                className={`grid rounded-xl h-full overflow-auto pb-3 !border border-slate-200 !bg-slate-200/50
                                 ${colClass[col - 1]}`}>
                                 {week.map((day: any, index: number) =>
-                                    <div className={`${new Date(day.date).toDateString() === new Date().toDateString() && 'text-orange-500  underline text-font-bold'} text-xs flex flex-col text-center h-full  border-r border-blue-gray-100/50   `}
+                                    <div className={`${new Date(day.date).toDateString() === new Date().toDateString() && 'text-orange-500  underline text-font-bold'} text-xs flex flex-col text-center h-full  border-r border-slate-100/50  `}
                                         key={index}>
-                                        <p className='w-full  sticky top-0 pt-1 text-center bg-blue-gray-50 '>
+                                        <p className='w-full scale-95 min-h-4 sticky top-0 text-center bg-transparent '>
                                             {day.date.toLocaleDateString('fr-FR', { weekday: 'narrow', month: 'numeric', day: 'numeric' })}
                                         </p>
-                                        <div className='flex flex-col h-full w-full items-center gap-0.5' key={index}>
+                                        <div className=' min-h-4 h-full flex flex-col w-full items-center gap-0.5' key={index}>
                                             {day.events.sort((a: any, b: any) => a.id - b.id).map((event: any, indexEvent: number) => {
                                                 const eventDays = event.days.map((d: any) => new Date(d).toDateString());
                                                 const currentDay = new Date(new Date(day.date).getTime()).toDateString();
                                                 return (
-                                                    <div key={indexEvent} className=' w-full  rounded-xl  '>
+                                                    <div key={indexEvent} className='w-full rounded-xl  '>
                                                         <Popover
                                                             open={open && popId === event.id + day.date} >
                                                             <button
@@ -147,17 +147,17 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                                                                 title={'Voir événement' + ' ' + event.title}
                                                                 className=' w-full rounded-xl'
                                                                 onClick={() => { setOpen(true); setPopId(event.id + day.date) }}>
-                                                                <PopoverHandler>
+                                                                <PopoverTrigger className='w-full'>
                                                                     <div
                                                                         className=
                                                                         {`${!event.actif && 'invisible'} 
-                                                                             ${event.status !== EventStatus.VALIDATED ? `!bg-blue-gray-400/80` : `bg-cyan-500`} shadow-md  px-[0.5rem] mb-[0.2rem]  text-white h-6 truncate flex items-center justify-center font-normal z-50
+                                                                             ${event.status !== EventStatus.VALIDATED ? `!bg-slate-400/80` : `bg-cyan-500`} shadow-md px-[0.5rem] mb-[0.2rem]  text-white h-5 truncate flex items-center justify-center font-normal z-50 
                                                         ${(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) && 'rounded-l-2xl !justify-start !z-50 pl-4 !font-medium'}
                                                         ${(eventDays[eventDays.length - 1] === currentDay || new Date(day.date).getDay() === 0) && 'rounded-r-2xl '}
                                                     `}>
                                                                         {(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) ? getLabel(event.category, eventCategories) + '...' : `Jour ${eventDays.indexOf(currentDay) + 1}`}
                                                                     </div>
-                                                                </PopoverHandler>
+                                                                </PopoverTrigger>
                                                             </button>
                                                             <PopoverContent
                                                                 className='bg-transparent shadow-none z-40 border-none p-0 FixedCenter flex-col'>

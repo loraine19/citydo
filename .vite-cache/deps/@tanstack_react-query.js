@@ -55,10 +55,10 @@ import {
   useSuspenseInfiniteQuery,
   useSuspenseQueries,
   useSuspenseQuery
-} from "./chunk-RRIO22OT.js";
-import "./chunk-RIJBGROQ.js";
-import "./chunk-ZHUB4BJD.js";
-import "./chunk-OL46QLBJ.js";
+} from "./chunk-H7YU46OT.js";
+import "./chunk-P5EAQRRD.js";
+import "./chunk-VPEBV5N7.js";
+import "./chunk-SNAQBZPT.js";
 export {
   CancelledError,
   HydrationBoundary,
@@ -117,3 +117,4 @@ export {
   useSuspenseQueries,
   useSuspenseQuery
 };
+//# sourceMappingURL=@tanstack_react-query.js.map

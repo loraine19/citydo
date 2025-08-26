@@ -1,4 +1,4 @@
-import { Checkbox, List, ListItem, ListItemPrefix } from "@material-tailwind/react";
+import { Checkbox, List, Typography } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { Icon } from "./IconComp";
 import { useUxStore } from "../../../application/stores/ux.store";
@@ -35,25 +35,28 @@ export default function CheckCard(props: checkCardProps) {
             <div className="w-full !m-0  !max-w-screen pl-2 overflow-auto  !flex items-center rounded-xl">
                 <List className="flex-row flex w-full min-w-max justify-evenly items-center !p-0 overflow-auto">
                     {categoriesArray.map((category, index) => (
-                        <ListItem className="!pt-0.5 px-0.5 !pb-1  min-w-max hover:!bg-transparent" key={index}>
+                        <List.Item className="!pt-0.5 px-0.5 !pb-1  min-w-max hover:!bg-transparent" key={index}>
                             <label htmlFor={category} className="flex flex-1">
-                                <ListItemPrefix className={`!px-0 py-0.5 !m-0 w-full flex items-center justify-center rounded-2xl !shadow-sm  border-[1px] border-${colorShade(color)} shadow-sm ${checkedState[index] ?
+                                <List.ItemStart className={`!px-0 py-0.5 !m-0 w-full flex items-center justify-center rounded-2xl !shadow-sm  border-[1px] border-${colorShade(color)} shadow-sm ${checkedState[index] ?
                                     ` bg-${colorShade(color)} border-opacity-20 bg-opacity-30 text-${colorShade(color)}  w-full ` : `bg-transparent text-${colorShade(color)} !min-w-full border-opacity-40  `}`}>
                                     <Checkbox
-                                        labelProps={{ className: `${checkedState[index] ? `text-${colorShadeDark(color)} w-full` : `text-${colorShade(color)} text-opacity-90`} whitespace-nowrap text-sm font-normal !min-w-max px-3 ` }}
-                                        iconProps={{ className: "hidden" }}
+                                        // iconProps={{ className: "hidden" }}
                                         checked={checkedState[index]}
-                                        label={category}
                                         id={category}
                                         value={category}
-                                        ripple={false}
-                                        containerProps={{ className: "hidden" }}
+                                        // containerProps={{ className: "hidden" }}
                                         onChange={(e: any) => handleCheckboxChange(index, e.target.checked)}
-                                    />
-                                </ListItemPrefix>
+                                    >
+                                    </Checkbox>
+                                    <Typography
+                                        as="label"
+                                        htmlFor="default-checkbox"
+                                        className={`${checkedState[index] ? `text-${colorShadeDark(color)} w-full` : `text-${colorShade(color)} text-opacity-90`} whitespace-nowrap text-sm font-normal !min-w-max px-3 `}
+                                    >{category}</Typography>
+                                </List.ItemStart>
 
                             </label>
-                        </ListItem>
+                        </List.Item>
                     ))}
                 </List>
             </div>
@@ -63,7 +66,7 @@ export default function CheckCard(props: checkCardProps) {
                     size="lg"
                     fill={checkedState.some(Boolean)}
                     style='opacity-70'
-                    color={color ?? 'blue-gray'}
+                    color={color ?? 'slate'}
                     onClick={() => {
                         setBoxSelected([]);
                         setCheckedState(new Array(categoriesArray.length).fill(false));
@@ -74,7 +77,7 @@ export default function CheckCard(props: checkCardProps) {
                     style='opacity-70'
                     icon="check_circle"
                     size="lg"
-                    color={color ?? 'blue-gray'}
+                    color={color ?? 'slate'}
                     onClick={() => {
                         setBoxSelected(categoriesArray);
                         setCheckedState(new Array(categoriesArray.length).fill(true));

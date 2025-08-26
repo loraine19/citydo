@@ -90,7 +90,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
     const [openEmoji, setOpenEmoji] = useState(false);
 
     return (
-        <Card className='FixCardNoImage !flex bg-blue-gray-50 !border-white !border-8'>
+        <Card className='FixCardNoImage !flex bg-slate-50 !border-white !border-8'>
             <CardHeader className='FixCardHeaderNoImage  bg-transparent w-full !h-max pt-2 '>
                 {newConv &&
                     <ProfileDiv profile={userRec} />}
@@ -114,7 +114,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
 
                             <div
                                 className={`flex flex-1 [overflow-wrap:anywhere] flex-col px-5 shadow-sm border pt-3 pb-6 justify-between relative  
-                                    ${msg.isDeleted ? 'italic text-blue-gray-400' : ''} 
+                                    ${msg.isDeleted ? 'italic text-gray-400' : ''} 
                                     ${msg.IWrite ?
                                         'bg-cyan-100 !text-right justify-end rounded-s-[1.5rem] rounded-tr-[1.5rem] !ml-[28%] ' :
                                         'bg-orange-100 rounded-ss-[1.5rem] rounded-r-[1.5rem] !mr-[28%]'}`}>
@@ -151,7 +151,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                 <div className='flex-0 flex top-0' >
                     <Icon
                         onClick={() => setOpenEmoji(!openEmoji)}
-                        color='blue-gray'
+                        color='slate'
                         title='Emoji'
                         size='3xl'
                         icon='mood'
@@ -206,7 +206,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                     style={{ maxHeight: '120px' }}
                 />
                 <Icon
-                    color='blue-gray'
+                    color='slate'
                     title='Envoyer'
                     onClick={() => {
                         handleSendMessage();

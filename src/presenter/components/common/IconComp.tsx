@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Home, KeyboardDoubleArrowDown, PartnerExchange, Search, Event, Dashboard, Ballot, Add, Person, CalendarAddOn, Flag2, ExitToApp, ExploreNearby, Visibility, ArrowCircleRight, Notifications, ArrowCircleRightFilled, ThumbUp, ThumbUpFilled, HomeFilled, PersonFilled, CircleNotifications, CircleNotificationsFilled, PersonEdit, PersonEditFilled, Diversity3, Diversity3Filled, TwoPager, TwoPagerFilled, AddCircleFilled, AddCircle, DoNotDisturbOnFilled, DoNotDisturbOn, ArrowForwardIos, ArrowBackIos, CalendarViewMonth, CalendarViewMonthFilled, SearchFilled, ArrowForwardIosFilled, ArrowBackIosFilled, NotificationsFilled, VisibilityFilled, ExploreNearbyFilled, ExitToAppFilled, Flag2Filled, CalendarAddOnFilled, AddFilled, BallotFilled, DashboardFilled, EventFilled, PartnerExchangeFilled, KeyboardDoubleArrowDownFilled, TollFilled, Toll, ArrowDropDownFilled, ArrowDropDown, CalendarMonth, CalendarMonthFilled, ListFilled, List, CancelFilled, Cancel, CheckCircleFilled, CheckCircle, SmartCardReaderFilled, SmartCardReader, SignalCellularAltFilled, SignalCellularAlt, DesignServicesFilled, DesignServices, CloseFilled, Close, ChevronRight, ChevronRightFilled, MoreUp, MoreUpFilled, ExpandContentFilled, ExpandContent, EditFilled, Edit, GroupsFilled, Groups, PersonCancelFilled, PersonCancel, AddAPhoto, AddAPhotoFilled, VisibilityOffFilled, VisibilityOff, DistanceFilled, Distance, PersonPinCircleFilled, PersonPinCircle, SyncProblemFilled, SyncProblem, KeyboardDoubleArrowUp, KeyboardDoubleArrowUpFilled, SendFilled, Send, ForumFilled, Forum, NearMeFilled, NearMe, Sms, SmsFilled, MoodFilled, Mood, MyLocationFilled, MyLocation, CallFilled, Call, Mail, MailFilled, TodayFilled, Today, LocationOn, LocationOnFilled, ClearAllFilled, ClearAll, CheckFilled, Check, Block, BlockFilled, SaveFilled, Save, SortFilled, Sort, SortByAlphaFilled, SortByAlpha, ArrowDropUpFilled, ArrowDropUp, DeleteFilled, Delete, UndoFilled, Undo, RefreshFilled, Refresh, MoveUpFilled, MoveUp, MoveDownFilled, MoveDown, ArrowUpward, ArrowUpwardFilled, ChatFilled, Chat, SaveAsFilled, SaveAs, RadioButtonCheckedFilled, RadioButtonChecked, PendingActions, PendingActionsFilled } from '@project-lary/react-material-symbols-300-rounded';
+import { JSX } from "react";
 
 
 export const iconMap = {
@@ -115,20 +116,19 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
     const num = sizeMap[size as keyof typeof sizeMap]?.text ?? '30';
     const classRounded = sizeMap[size as keyof typeof sizeMap]?.class ?? 'icon2xl';
     const textSize = ` text-[${num}px]  `;
-
     const color = props.color ?? 'gray'
-    const textColor = (color: string) => props.color ? props.bg ? `text-${color}-500` : `text-${color}-500` : `text-gray-800`;
-    const bg = (color: string) => (props.bg && !clear) ?
-        (props.color ? `bg-${color}-500 bg-opacity-30 border border-${color}-500 border-opacity-20` : `!bg-gray-300 hover:!bg-gray-200 border border-gray-500 border-opacity-20`) : ''
+    const textColor = (color: string) => props.color ? `${color}Style` : `grayStyle`;
+    const bg = () => (props.bg && !clear) ?
+        `border  border-opacity-20` : '!bg-transparent'
 
-    const classIcon = (color: string) => `!rounded-full flex items-center justify-center ${textColor(color) as string} ${bg(color)} 
-     ${props.bg ? classRounded : textSize} ${style ?? ''} `
+    const classIcon = (color: string) => `!rounded-full flex items-center justify-center 
+    ${textColor(color) as string} ${bg()}  
+    ${props.bg ? classRounded : textSize} ${style ?? ''} `
 
-    const classActive = `hover:scale-[1.05] transition-all duration-200 ease-in-out hover:!bg-${color}-500 `
+    const classActive = `hover:scale-[1.05] transition-all duration-200 ease-in-out `
 
     return (
-        <div
-            className={`${(props.bg && !clear) ? 'max-h-max max-w-max bg-white' : ''} rounded-full  `}>
+        <div className={`${(props.bg && !clear) ? 'max-h-max max-w-max bg-white' : ''} rounded-full  `}>
             {onClick ?
                 <button
                     style={{ fontSize: `${num}px` }}

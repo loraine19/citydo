@@ -1,6 +1,6 @@
 import {
   __export
-} from "./chunk-OL46QLBJ.js";
+} from "./chunk-SNAQBZPT.js";
 
 // node_modules/engine.io-parser/build/esm/commons.js
 var PACKET_TYPES = /* @__PURE__ */ Object.create(null);
@@ -936,12 +936,12 @@ function unloadHandler() {
     }
   }
 }
-var hasXHR2 = (function() {
+var hasXHR2 = function() {
   const xhr = newRequest({
     xdomain: false
   });
   return xhr && xhr.responseType !== null;
-})();
+}();
 var XHR = class extends BaseXHR {
   constructor(opts) {
     super(opts);

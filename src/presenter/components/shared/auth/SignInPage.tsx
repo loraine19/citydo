@@ -92,10 +92,10 @@ export default function SignInPage() {
                 confirm={false}
                 inError={inError}
             />
-            <footer className="flex flex-col items-center gap-2 justify-center !static">
+            <footer className="flex flex-col items-center gap-1justify-center !static">
                 <Link to="/motdepasse_oublie">
                     <Typography
-                        className="text font-medium pb-2 nowrap text-center underline underline-offset-8 uppercase">
+                        className="text  py-3 nowrap text-center underline underline-offset-8 uppercase">
                         Mot de pass oublié
                     </Typography>
                 </Link>
@@ -103,7 +103,7 @@ export default function SignInPage() {
                     Pas encore de compte ?
                 </Typography>
                 <Link to="/signup">
-                    <Button className="!lgBtn rounded-full">
+                    <Button className="lgBtn ">
                         inscrivez-vous
                     </Button>
                 </Link>

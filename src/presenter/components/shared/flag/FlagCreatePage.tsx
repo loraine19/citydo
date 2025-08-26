@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
-import { Option, Button, Select, Switch } from '@material-tailwind/react';
+import { Button, Select, Switch, Typography } from '@material-tailwind/react';
 import { Flag, FlagTarget } from '../../../../domain/entities/Flag';
 import { Label } from '../../../../domain/entities/frontEntities';
 import { ConfirmModal } from '../../common/ConfirmModal';
@@ -87,9 +87,16 @@ export default function FlagCreatePage() {
                         <div className='w-respLarge h-full flex flex-col py-2 gap-2'>
                             <div className='flex justify-between items-center px-2'>
                                 <Switch
-                                    label={flag.reason ? "signalé" : "non signalé"}
-                                    className='px-2' color='cyan' name="active"
+                                    className='px-2 bg-cyan-500'
+                                    name="active"
                                     checked={flag.reason ? true : false} />
+                                <Typography
+                                    as="label"
+                                    htmlFor="active"
+                                    className="cursor-pointer text-foreground"
+                                >
+                                    {flag.reason ? "signalé" : "non signalé"}
+                                </Typography>
                             </div>
                             <Select
                                 className={` rounded-full shadow bg-white border-none capitalize`}
@@ -101,12 +108,12 @@ export default function FlagCreatePage() {
                             >
                                 {flagReasons.map((reason: Label, index: number) => {
                                     return (
-                                        <Option
+                                        <Select.Option
                                             className={"rounded-full my-1 capitalize"}
                                             value={reason.value}
                                             key={index} >
                                             {reason.label}
-                                        </Option>)
+                                        </Select.Option>)
                                 })}
                             </Select>
                         </div>
@@ -123,9 +130,8 @@ export default function FlagCreatePage() {
                 </main>
                 <footer className="CTA ">
                     <Button
-                        color='red'
                         type="submit"
-                        className="lgBtn" >
+                        className="lgBtn bg-red-500" >
                         <Icon
                             fill
                             size='lg'

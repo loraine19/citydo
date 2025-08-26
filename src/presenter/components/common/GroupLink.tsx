@@ -1,8 +1,9 @@
-import { Popover, PopoverContent, Typography, Chip, PopoverHandler } from "@material-tailwind/react"
+import { Popover, PopoverContent, Typography, PopoverTrigger } from "@material-tailwind/react"
 import { Icon } from "./IconComp"
 import { GroupView } from "../../views/viewsEntities/GroupViewEntity"
 import { groupCategories } from "../../constants"
 import { Group } from "../../../domain/entities/Group"
+import Chip from "./adaptatersComps/Chip"
 
 type GroupDivProps = { group: GroupView | Group }
 export const GroupLink: React.FC<GroupDivProps> = ({ group }) => {
@@ -12,15 +13,14 @@ export const GroupLink: React.FC<GroupDivProps> = ({ group }) => {
         <>
             <div className={`flex items-center  pb-0.5`}>
                 <Popover placement="bottom-start">
-                    <PopoverHandler>
+                    <PopoverTrigger>
                         <Typography
-                            variant="small"
-                            className={'italic text-gray-600 !line-clamp-1'}>
+                            className={'italic font-thin text-sm text-slate-500 !line-clamp-1'}>
                             ⌖ {group?.name}
                         </Typography>
-                    </PopoverHandler>
+                    </PopoverTrigger>
                     <PopoverContent className=" w-72 z-50 flex gap-2 flex-col ">
-                        <div className=" flex justify-between items-center border-b border-blue-gray-50  ">
+                        <div className=" flex justify-between items-center border-b border-slate-50  ">
                             <p>groupe {group?.name}</p>
                             <Icon
                                 bg clear

@@ -8,8 +8,8 @@ import { useUserStore } from '../../../../../application/stores/user.store';
 import { Skeleton } from '../../../common/Skeleton';
 import DI from '../../../../../di/ioc';
 import { generateContact } from '../../../../views/viewsEntities/utilsService';
-import { useEffect, useState } from 'react';
-import { Input, Select, Typography, Option } from '@material-tailwind/react';
+import { JSX, useEffect, useState } from 'react';
+import { Input, Select, Typography } from '@material-tailwind/react';
 import { IssueStep } from '../../../../../domain/entities/Issue';
 import { User } from '../../../../../domain/entities/User';
 import { ProfileDiv } from '../../../common/ProfilDiv';
@@ -68,9 +68,9 @@ export default function IssueDetailPage() {
                 labelProps={{ className: 'z-50  pl-8' }}
                 label={modoOnId === 0 ? '' : 'Modérateur choisi'}
                 variant='static'
-                className={`!relative top-0 z-50  !rounded-full !border-none !flex !justify-start !items-start !flex-col gap-4 ${modoOnId === 0 ? 'bg-red-100' : '!bg-blue-gray-50'} `}>
+                className={`!relative top-0 z-50  !rounded-full !border-none !flex !justify-start !items-start !flex-col gap-4 ${modoOnId === 0 ? 'bg-red-100' : '!bg-slate-50'} `}>
                 {modos.map((modo: User) =>
-                    <Option
+                    <Select.Option
                         onClick={() => setModoOnId(modo.id)}
                         key={modo.id}
                         className={` rounded-full   `}
@@ -80,7 +80,7 @@ export default function IssueDetailPage() {
                                 size="xs"
                                 profile={modo} />
                         </div>
-                    </Option >)
+                    </Select.Option>)
                 }
             </Select >
         </div >
@@ -106,24 +106,25 @@ export default function IssueDetailPage() {
             <div className='flex gap-8'>
                 <Input
                     className={`inputStandart min-h-full ${pourcent.IModo < 0 || pourcent.IModo > 100 ? 'error' : ''}`}
-                    labelProps={{ className: "before:content-none after:content-none" }}
+
                     placeholder={`Pourcentage de ${userImodo?.Profile?.firstName}`}
                     onChange={(e) => setPourcent({ ...pourcent, IModo: parseInt(e.target.value), other: 100 - parseInt(e.target.value) })}
                     value={pourcent.IModo}
                     type="number"
-                    label={`Pourcentage de ${userImodo?.Profile?.firstName}`}
                     name="pourcent"
-                    containerProps={{ className: "!flex items-end justify-end h-8 rounded-full max-w-max after:content-['%']" }}>
+                // containerProps={{ className: "!flex items-end justify-end h-8 rounded-full max-w-max after:content-['%']" }}
+                >
                 </Input>
                 <Input
                     className={`inputStandart min-h-full ${pourcent.other < 0 || pourcent.other > 100 ? 'error' : ''}`}
-                    labelProps={{ className: "before:content-none after:content-none" }}
+
                     placeholder={`Pourcentage de ${otherModo?.Profile?.firstName}`}
                     onChange={(e) => setPourcent({ ...pourcent, other: parseInt(e.target.value), IModo: 100 - parseInt(e.target.value) })}
                     value={pourcent.other}
                     type="number"
                     name="pourcent"
-                    containerProps={{ className: "bg-gray-200 !px-3 !rounded-full !flex items-end justify-end h-8 max-w-max after:content-['%']" }}>
+                //  containerProps={{ className: "bg-gray-200 !px-3 !rounded-full !flex items-end justify-end h-8 max-w-max after:content-['%']" }}
+                >
                 </Input>
             </div>
         </div>

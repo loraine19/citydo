@@ -1,4 +1,4 @@
-import { Card, CardHeader, Typography, CardBody, CardFooter, Chip } from "@material-tailwind/react";
+import { Card, CardHeader, Typography, CardBody, CardFooter } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import { ServiceStep, ServiceType, ServiceUpdate } from "../../../../../domain/entities/Service";
 import ModifBtnStack from "../../../common/ModifBtnStack";
@@ -11,6 +11,7 @@ import { GenereMyActions, getEnumVal, isLate } from "../../../../views/viewsEnti
 import { ServiceView } from "../../../../views/viewsEntities/serviceViewEntity";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { Title } from "../../../common/CardTitle";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 
 type ServiceProps = { service: ServiceView, mines?: boolean, change: (e: React.MouseEvent<HTMLButtonElement>) => void, update?: () => void }
@@ -126,9 +127,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
                         group={Group}
                     />
                     <div className="flex flex-col justify-between h-full overflow-auto">
-                        <Typography
-                            className="leading-[1.3rem] !line-clamp-2"
-                            color="blue-gray">
+                        <Typography className="leading-[1.3rem] !line-clamp-2">
                             {description}
                         </Typography>
                     </div>

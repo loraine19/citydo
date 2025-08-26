@@ -1,4 +1,4 @@
-import { Menu, MenuHandler, Chip, MenuList, Typography, MenuItem } from "@material-tailwind/react"
+import { Menu, MenuTrigger, MenuContent, Typography, MenuItem } from "@material-tailwind/react"
 import { Icon } from "./IconComp"
 import { NotifView } from "../../views/viewsEntities/notifViewEntity";
 import { useNavigate } from "react-router";
@@ -6,6 +6,7 @@ import DI from "../../../di/ioc";
 import { LoadMoreButton } from "./LoadMoreBtn";
 import { useEffect, useRef, useState } from "react";
 import { useNotificationStore } from "../../../application/stores/notification.store";
+import Chip from "./adaptatersComps/Chip";
 
 export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
     const notifViewModelFactory = DI.resolve('notifViewModel');
@@ -45,31 +46,29 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
 
 
     return (
-        <div className={` gap-3 md:gap-4 flex justify-end flex-1 w-full h-max  `}>
+        <div className={` gap-3 md:gap-4 flex h-full  `}>
             {!isLoading && badgeMap.map((list: NotifBadgeProps, index: number) =>
-                <div
-                    key={index}
-                    className={`relative w-max  ${onBoard ? 'lg:hidden' : ''}`}>
+                <div key={index}
+                    className={`relative w-max flex items-center justify-center ${onBoard ? 'lg:hidden' : ''}`}>
                     <div id='notifList'
                         key={index + '1'}
                         ref={divRef}>
                         <Menu placement="bottom-end" >
-                            <MenuHandler title="Notifications">
+                            <MenuTrigger title="Notifications">
                                 <span className={`${!list.count || list.count === 0 ? 'hidden' : `text-white absolute flex font-medium items-center justify-center w-[1.4rem] h-[1.4rem] text-[0.75rem] !min-w-max pt-[0.3rem] pb-1 bg-${list.color}-500 rounded-full bottom-0 -left-2.5 shadow z-50`}`}>
                                     {list.count >= 99 ? '⁺99 ' :
                                         (list.count ? list.count.toString() : '0')}
                                 </span>
-                            </MenuHandler>
-                            <MenuList className="flex flex-col max-h-[calc(100vh-9rem)] !w-[450px] !max-w-[calc(100vw-2rem)] ml-1 rounded-2xl backdropBlur !border border-blue-gray-100">
+                            </MenuTrigger>
+                            <MenuContent className="flex flex-col max-h-[calc(100vh-9rem)] !w-[450px] !max-w-[calc(100vw-2rem)] ml-1 rounded-2xl backdropBlur !border border-slate-100">
                                 <div onScroll={handleScroll}
                                     className="relative overflow-auto !border-none hover:!border-none flex flex-col gap-1">
                                     {list.count === 0 ? (
                                         <div className="flex items-center justify-center p-4">
                                             <Typography
                                                 variant="small"
-                                                color="gray"
                                                 className="font-normal">
-                                                Aucune nouveau message
+                                                Aucun nouveau message
                                             </Typography>
                                         </div>)
                                         : (list.notifs.map((notif: NotifView, index2: number) => notif?.read === false &&
@@ -83,13 +82,12 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                                                         color={list.color as any}>
                                                     </Chip>
                                                     <Typography
-                                                        className="flex items-center gap-1 px-4 text-xs font-normal text-blue-gray-500">
+                                                        className="flex items-center gap-1 px-4 text-xs font-normal text-gray-500">
                                                         {notif.update}
                                                     </Typography></div>
                                                 <div className="flex items-center justify-between gap-1">
                                                     <Typography
                                                         variant="small"
-                                                        color="gray"
                                                         className="max-w-[calc(100%-2rem)] truncate">
                                                         {notif.description}
                                                     </Typography>
@@ -118,7 +116,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                                     isBottom={isBottom}
                                     hasNextPage={hasNextPage}
                                     handleScroll={() => handleScroll()} />
-                            </MenuList>
+                            </MenuContent>
                         </Menu>
                     </div>
                     <Icon
@@ -128,7 +126,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                         fill bg
                         size="xl"
                         title={'ouvrir la page'}
-                        style={`" rounded-full z-40 relative " 
+                        style={` z-40 relative 
                             ${list.count > 0 ? 'opacity-100' : 'opacity-90'}`
                         } />
                 </div>)

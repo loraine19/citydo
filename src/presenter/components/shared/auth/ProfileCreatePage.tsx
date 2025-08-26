@@ -84,7 +84,6 @@ export default function ProfileCreatePage() {
                 <AuthHeader />
                 <div className="flex w-respLarge justify-between items-center pb-3">
                     <Typography
-                        color="blue-gray"
                         className='w-resp px-4 flex justify-center pb-2'>
                         Bienvenue, veuillez remplir votre profil pour pouvoir utiliser City'Do
                     </Typography>

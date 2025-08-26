@@ -41,7 +41,7 @@ export default function ForgotPasswordPage() {
                                 className="FixCardHeaderNoImage flex-col !my-0 p-8 "
                                 floated={false}>
                                 <Typography
-                                    variant="h5" >
+                                    as="h5" >
                                     Mot de pass oublié
                                 </Typography>
                                 <Typography >
@@ -49,9 +49,7 @@ export default function ForgotPasswordPage() {
                                 </Typography>
                             </CardHeader>
                             <CardBody className='FixCardBody gap-8 my-4 !p-8'>
-                                <Input
-                                    labelProps={{ className: "before:content-none after:content-none" }}
-                                    className={`inputStandart ${formik.errors.email ? 'error' : ''}`}
+                                <Input className={`inputStandart ${formik.errors.email ? 'error' : ''}`}
                                     placeholder={"Email"}
                                     name="email"
                                     onChange={formik.handleChange}
@@ -62,7 +60,7 @@ export default function ForgotPasswordPage() {
                                 <Button
                                     size='lg'
                                     type="submit"
-                                    color="cyan"
+                                    color="info"
                                     className={`lgBtn m-auto  ${hidden && ' invisible'}`}>
                                     <Icon icon="send" color="white" />
                                     Recevoir le lien

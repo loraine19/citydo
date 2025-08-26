@@ -22,15 +22,15 @@ export const useUxStore = create<UxStore, [['zustand/persist', UxStore]]>(
       setNavBottom: (value: boolean) => set(() => ({ navBottom: value })),
       hideNavBottom: false,
       setHideNavBottom: (value: boolean) => set(() => ({ hideNavBottom: value })),
-      color: 'blue-gray',
+      color: 'slate',
       setColor: (color: string) => set({ color }),
       getColor: (path?: string) => {
-        let color = 'blue-gray';
+        let color = 'slate';
         if (path) {
           const type = new URLSearchParams(path.split("/")[1]).toString().replace("=", '');
           switch (type) {
             case 'service':
-              color = 'light-blue';
+              color = 'sky';
               break;
             case 'evenement':
             case 'groupe':
@@ -48,10 +48,10 @@ export const useUxStore = create<UxStore, [['zustand/persist', UxStore]]>(
             case 'chat':
             case 'notification':
             case 'sign':
-              color = 'blue-gray';
+              color = 'slate';
               break;
             default:
-              color = 'blue-gray';
+              color = 'slate';
           }
         }
         set({ color });

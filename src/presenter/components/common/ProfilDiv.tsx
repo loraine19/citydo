@@ -1,4 +1,4 @@
-import { Popover, PopoverHandler, PopoverContent, Typography } from "@material-tailwind/react"
+import { Popover, PopoverTrigger, PopoverContent, Typography } from "@material-tailwind/react"
 import { Icon } from "./IconComp"
 import { Profile } from "../../../domain/entities/Profile"
 import { DistanceCalculator } from "./CalculatorDistance"
@@ -22,7 +22,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
         <>
             <div className={`relative pl-1 min-w-max pb-0.5 truncate z-50 flex items-center px-0 gap-3`}>
                 <Popover placement="bottom-start">
-                    <PopoverHandler>
+                    <PopoverTrigger>
                         <div className={`relative mt-0.5 mb-0.5`}>
                             <AvatarUser
                                 avatarStyle=""
@@ -31,7 +31,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
                             <OnlineDot
                                 id={profile?.userId} />
                         </div>
-                    </PopoverHandler>
+                    </PopoverTrigger>
                     <PopoverContent className=" w-auto !p-6 z-50 ">
                         <div className="flex gap-6  pb-2 ">
                             <div className="relative gap-4 ">
@@ -48,16 +48,15 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
                                     avatarSize={'sm'} />
                             </div>
                             <div className="flex flex-col pl-2">
-                                <Typography
-                                    variant="h6"
-                                    color="blue-gray">{profile?.firstName} {profile?.lastName}
+                                <Typography as="h6">
+                                    {profile?.firstName} {profile?.lastName}
                                 </Typography>
                                 <Typography
                                     variant="small"
-                                    className={profile?.skills ? "font-normal text-blue-gray-500" : 'hidden'}>
+                                    className={profile?.skills ? "font-normal text-gray-500" : 'hidden'}>
                                     • {profile?.skills}
                                 </Typography>
-                                <div className="font-normal flex flex-col text-blue-gray-500">
+                                <div className="font-normal flex flex-col text-gray-500">
                                     {userDiv?.GroupUser?.map((group: GroupUser, index: number) =>
                                         <div className="!line-clamp-1"
                                             key={index}>
@@ -99,15 +98,12 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
                         </div>
                     </PopoverContent>
                 </Popover>
-
                 <div className="flex flex-col gap-1 truncate">
-                    <Typography
-                        variant={textSize}
-                        color="gray"
-                        className="border-b border-blue-gray-200 pr-4  ">
+                    <Typography variant={textSize}
+                        className="border-b border-slate-200 pr-4  ">
                         {profile?.firstName} {profile?.lastName}
                     </Typography>
-                    <div className={`text-blue-gray-500 !line-clamp-2 pr-4`}>
+                    <div className={`text-gray-500 !line-clamp-2 pr-4`}>
                         {userDiv?.GroupUser?.map((group: GroupUser, index: number) =>
                             <Typography
                                 className={`font-light ${texteSize2} !line-clamp-1`}

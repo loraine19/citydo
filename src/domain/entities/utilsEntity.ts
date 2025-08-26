@@ -45,7 +45,7 @@ export enum Colors {
     FUCHSIA = 'fuchsia',
     VIOLET = 'violet',
 
-    BLUE_GRAY = 'blue-gray',
+    BLUE_GRAY = 'slate',
     STONE = 'stone',
     ZINC = 'zinc',
     NEUTRAL = 'neutral',

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Select, Card, CardHeader, Button, Typography, CardBody, Input, Textarea, Progress, Option } from "@material-tailwind/react";
+import { Select, Card, CardHeader, Button, Typography, CardBody, Input, Textarea, Progress } from "@material-tailwind/react";
 import { Label } from "../../../../../domain/entities/frontEntities";
 import AddressMapOpen from "../../../common/mapComps/AddressMapOpen";
 import { AddressInputOpen } from "../../../common/mapComps/AddressInputOpen";
@@ -61,12 +61,12 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                             }}>
                             {eventCategories.map((category: Label, index: number) => {
                                 return (
-                                    <Option
+                                    <Select.Option
                                         className={`rounded-full my-1 capitalize`}
                                         value={category.value}
                                         key={index} >
                                         {category.label}
-                                    </Option>);
+                                    </Select.Option>);
                             })}
                         </Select>
                         <GroupSelect
@@ -102,7 +102,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                             <div className='CardOverFlow  h-full justify-between gap-4 lg:gap-3'>
                                 <Input
                                     className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
-                                    labelProps={{ className: "before:content-none after:content-none" }}
+
                                     placeholder={"Titre"}
                                     name="title"
                                     onChange={formik.handleChange}
@@ -112,14 +112,14 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                     <div className='flex flex-col flex-1'>
                                         <Textarea
                                             className={`inputStandart min-h-full placeholder:pt-3 ${formik.errors.description ? 'error' : ''}`}
-                                            labelProps={{ className: "before:content-none after:content-none" }}
+
                                             placeholder='Description'
                                             rows={1}
                                             resize={true}
                                             name="description"
                                             onChange={formik.handleChange}
                                             defaultValue={description}
-                                            containerProps={{ className: "grid h-full" }}
+                                        // containerProps={{ className: "grid h-full" }}
                                         />
                                         <InputError mt error={formik.errors.description} />
                                     </div>
@@ -138,7 +138,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                 <div className='flex justify-between gap-[4%]'>
                                     <div className='flex flex-col flex-1  !max-w-[48%] '>
                                         <Input
-                                            labelProps={{ className: "before:content-none after:content-none" }}
+
                                             className={`inputStandart !max-w-[85%] ${formik.errors.start ? 'error' : ''}`}
                                             type="datetime-local"
                                             placeholder={"date de debut"}
@@ -150,7 +150,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                     </div>
                                     <div className='flex flex-col flex-1 !max-w-[48%] '>
                                         <Input
-                                            labelProps={{ className: "before:content-none after:content-none" }}
+
                                             className={`inputStandart max-w-[85%] ${formik.errors.end ? 'error' : ''}`}
                                             type="datetime-local"
                                             min={today}
@@ -164,7 +164,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                 <div className='flex w-full gap-[4%] justify-between'>
                                     <div className='flex flex-col !max-w-[48%] w-full '>
                                         <Input
-                                            labelProps={{ className: "before:content-none after:content-none" }}
+
                                             className={`inputStandart max-w-[85%] ${formik.errors.participantsMin ? 'error' : ''}`}
                                             type='number'
                                             placeholder={"Participants minimum"}
@@ -176,23 +176,22 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                     <div className={"flex items-center max-w-[48%]  gap-1 flex-col justify-center w-full"}>
                                         <div className="mb-2 flex w-full items-center justify-between gap-4">
                                             <Typography
-                                                color="blue-gray"
                                                 variant="small">
                                                 {pourcentParticipants > 0 && `Inscrits` ||
                                                     pourcentParticipants >= 100 && `validé` || `aucun inscrit`}
                                             </Typography>
                                             <Typography
-                                                color="blue-gray"
                                                 variant="small"
                                                 className={pourcentParticipants <= 0 || pourcentParticipants >= 100 ? 'hidden' : ''}>
                                                 {Participants?.length}  /  {participantsMin}
                                             </Typography>
                                         </div>
                                         <Progress
-                                            label={``}
                                             value={pourcentParticipants}
                                             size="md"
-                                            color={pourcentParticipants === 100 ? "green" : "cyan"} />
+                                            color={pourcentParticipants === 100 ? "success" : "info"} >
+                                            <Progress.Bar />
+                                        </Progress>
                                     </div>
                                 </div>
                             </div>
@@ -202,10 +201,9 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
             </main>
             <footer className="CTA">
                 <Button
-                    color='cyan'
                     type="submit"
                     size="lg"
-                    className="lgBtn w-full rounded-full" >
+                    className="lgBtn w-full bg-cyan-500rounded-full" >
                     <Icon
                         size='lg'
                         color='white'

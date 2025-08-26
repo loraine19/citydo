@@ -1,5 +1,5 @@
-import { Chip } from "@material-tailwind/react";
 import { dayMS } from "../../../domain/entities/frontEntities";
+import Chip from "./adaptatersComps/Chip";
 
 export function DateChip(props: { start: Date | string, end?: Date | string, ended?: boolean, prefix?: string }) {
     const { start, end, prefix, ended } = props

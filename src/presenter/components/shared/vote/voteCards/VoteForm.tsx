@@ -1,4 +1,4 @@
-import { Radio, Select, Card, CardHeader, Button, CardBody, Input, Textarea, Option } from "@material-tailwind/react";
+import { Radio, Select, Card, CardHeader, Button, CardBody, Input, Textarea } from "@material-tailwind/react";
 import { useState } from "react";
 import { dayMS, Label } from "../../../../../domain/entities/frontEntities";
 import SubHeader from "../../../common/SubHeader";
@@ -43,35 +43,37 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                         place={formik.values.id ? formik.values.title : ''} />
 
                     <div className="w-respLarge divide-x-2 flex flex-col grid-cols-[1fr_1fr_1fr] lg:grid grid-rows-1 gap-3 py-4">
-                        <div className="flex bg-white rounded-full pr-6 shadow-sm shadow-blue-gray-500/25 border h-10 gap-1 lg:gap-4">
-                            <Radio
-                                labelProps={{ className: "text-sm font-normal text-blue-gray-600 -ml-1" }}
-                                disabled={formik.values.pourcent > 1}
-                                name="typeS"
-                                label="Sondage"
-                                value={VoteTarget.SURVEY}
-                                color='orange'
-                                checked={type === VoteTarget.SURVEY}
-                                onChange={() => {
-                                    formik.setFieldValue('typeS', VoteTarget.SURVEY)
-                                    setType(VoteTarget.SURVEY)
-                                }}
-                            />
-                            <Radio
-                                labelProps={{ className: "text-sm font-normal text-blue-gray-600 -ml-1" }}
-                                disabled={formik.values.pourcent > 1}
-                                name="typeS"
-                                label="Cagnotte"
-                                value={VoteTarget.POOL}
-                                color='orange'
-                                checked={type === VoteTarget.POOL}
-                                onChange={() => {
-                                    setType(VoteTarget.POOL)
-                                    formik.setFieldValue('typeS', VoteTarget.POOL)
-                                    refetch()
-                                }}
-                            />
-                        </div>
+                        <Radio>
+                            <div className="flex bg-white rounded-full pr-6 shadow-sm shadow-slate-500/25 border h-10 gap-1 lg:gap-4">
+                                <Radio.Item
+                                    labelProps={{ className: "text-sm font-normal text-gray-600 -ml-1" }}
+                                    disabled={formik.values.pourcent > 1}
+                                    name="typeS"
+                                    label="Sondage"
+                                    value={VoteTarget.SURVEY}
+                                    color='orange'
+                                    checked={type === VoteTarget.SURVEY}
+                                    onChange={() => {
+                                        formik.setFieldValue('typeS', VoteTarget.SURVEY)
+                                        setType(VoteTarget.SURVEY)
+                                    }}
+                                />
+                                <Radio.Item
+                                    labelProps={{ className: "text-sm font-normal text-gray-600 -ml-1" }}
+                                    disabled={formik.values.pourcent > 1}
+                                    name="typeS"
+                                    label="Cagnotte"
+                                    value={VoteTarget.POOL}
+                                    color='orange'
+                                    checked={type === VoteTarget.POOL}
+                                    onChange={() => {
+                                        setType(VoteTarget.POOL)
+                                        formik.setFieldValue('typeS', VoteTarget.POOL)
+                                        refetch()
+                                    }}
+                                />
+                            </div>
+                        </Radio>
                         <div>
                             {(type === VoteTarget.POOL) ?
                                 <Select
@@ -87,16 +89,16 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                         formik.setFieldValue('category', '')
                                     }} >
                                     {users && users.length && !isLoading ? users?.map((user: any, index: number) =>
-                                        <Option
+                                        <Select.Option
                                             className={`${user.id?.toString() === formik.values?.UserBenef?.id && "bg-orange-100 shadow-md"} rounded-full my-1 capitalize`}
                                             value={user?.id?.toString()}
                                             key={index}
                                         >
                                             {user?.Profile?.firstName} {user?.id}
-                                        </Option>
+                                        </Select.Option>
 
                                     ) :
-                                        <Option>Choissisez un groupe, pour voir les utilisateurs</Option>
+                                        <Select.Option>Choissisez un groupe, pour voir les utilisateurs </Select.Option>
                                     }
                                 </Select> :
                                 <Select
@@ -112,11 +114,11 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                     }} >
                                     {surveyCategories.map((category: Label, index: number) => {
                                         return (
-                                            <Option
+                                            <Select.Option
                                                 value={category.value}
                                                 key={index}>
                                                 {category.label}
-                                            </Option>
+                                            </Select.Option>
                                         )
                                     })}
                                 </Select>
@@ -168,9 +170,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                         </CardHeader>
                         <CardBody className='FixCardBody '>
                             <div className='CardOverFlow h-full justify-between mt-2 gap-4'>
-                                <Input
-                                    labelProps={{ className: "before:content-none after:content-none" }}
-                                    className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
+                                <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
                                     placeholder={"Titre"}
                                     name="title"
                                     onChange={formik.handleChange}
@@ -181,14 +181,14 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                     <div className='flex flex-col flex-1 pt-1 '>
                                         <Textarea
                                             className={`inputStandart min-h-full ${formik.errors.description ? 'error' : ''}`}
-                                            labelProps={{ className: "before:content-none after:content-none" }}
+
                                             placeholder='Description'
                                             rows={1}
                                             resize={true}
                                             name="description"
                                             onChange={formik.handleChange}
                                             defaultValue={formik.values.description}
-                                            containerProps={{ className: "grid h-full pb-1" }}
+                                        // containerProps={{ className: "grid h-full pb-1" }}
                                         />
                                         <InputError mt error={formik.errors.description} />
                                     </div>
@@ -201,11 +201,10 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
             </main>
             <footer className="CTA">
                 <Button
-                    color="orange"
                     size='lg'
                     type="submit"
                     disabled={formik.values.pourcent > 1}
-                    className="lgBtn ">
+                    className="lgBtn bg-orange-500">
                     <Icon
                         size='lg'
                         color="white"

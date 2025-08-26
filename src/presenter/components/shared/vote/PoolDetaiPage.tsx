@@ -56,8 +56,7 @@ export default function PoolDetailPage() {
                     <Button
                         disabled={pool?.status !== PoolSurveyStatus.PENDING}
                         size='md'
-                        color={pageColor}
-                        className='lgBtn'
+                        className={` bg-${pageColor} lgBtn`}
                         onClick={() => setOpenVote(true)}>
                         <Icon
                             size='lg'

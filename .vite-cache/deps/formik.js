@@ -1,13 +1,10 @@
 import {
-  require_react_is
-} from "./chunk-PZE7CTFH.js";
-import {
   require_react
-} from "./chunk-ZHUB4BJD.js";
+} from "./chunk-VPEBV5N7.js";
 import {
   __commonJS,
   __toESM
-} from "./chunk-OL46QLBJ.js";
+} from "./chunk-SNAQBZPT.js";
 
 // node_modules/react-fast-compare/index.js
 var require_react_fast_compare = __commonJS({
@@ -66,6 +63,173 @@ var require_react_fast_compare = __commonJS({
         throw error;
       }
     };
+  }
+});
+
+// node_modules/react-is/cjs/react-is.development.js
+var require_react_is_development = __commonJS({
+  "node_modules/react-is/cjs/react-is.development.js"(exports2) {
+    "use strict";
+    if (true) {
+      (function() {
+        "use strict";
+        var hasSymbol = typeof Symbol === "function" && Symbol.for;
+        var REACT_ELEMENT_TYPE2 = hasSymbol ? Symbol.for("react.element") : 60103;
+        var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for("react.portal") : 60106;
+        var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for("react.fragment") : 60107;
+        var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for("react.strict_mode") : 60108;
+        var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for("react.profiler") : 60114;
+        var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for("react.provider") : 60109;
+        var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for("react.context") : 60110;
+        var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for("react.async_mode") : 60111;
+        var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for("react.concurrent_mode") : 60111;
+        var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for("react.forward_ref") : 60112;
+        var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for("react.suspense") : 60113;
+        var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for("react.suspense_list") : 60120;
+        var REACT_MEMO_TYPE = hasSymbol ? Symbol.for("react.memo") : 60115;
+        var REACT_LAZY_TYPE = hasSymbol ? Symbol.for("react.lazy") : 60116;
+        var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for("react.block") : 60121;
+        var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for("react.fundamental") : 60117;
+        var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for("react.responder") : 60118;
+        var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for("react.scope") : 60119;
+        function isValidElementType(type) {
+          return typeof type === "string" || typeof type === "function" || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+          type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === "object" && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+        }
+        function typeOf(object) {
+          if (typeof object === "object" && object !== null) {
+            var $$typeof = object.$$typeof;
+            switch ($$typeof) {
+              case REACT_ELEMENT_TYPE2:
+                var type = object.type;
+                switch (type) {
+                  case REACT_ASYNC_MODE_TYPE:
+                  case REACT_CONCURRENT_MODE_TYPE:
+                  case REACT_FRAGMENT_TYPE:
+                  case REACT_PROFILER_TYPE:
+                  case REACT_STRICT_MODE_TYPE:
+                  case REACT_SUSPENSE_TYPE:
+                    return type;
+                  default:
+                    var $$typeofType = type && type.$$typeof;
+                    switch ($$typeofType) {
+                      case REACT_CONTEXT_TYPE:
+                      case REACT_FORWARD_REF_TYPE:
+                      case REACT_LAZY_TYPE:
+                      case REACT_MEMO_TYPE:
+                      case REACT_PROVIDER_TYPE:
+                        return $$typeofType;
+                      default:
+                        return $$typeof;
+                    }
+                }
+              case REACT_PORTAL_TYPE:
+                return $$typeof;
+            }
+          }
+          return void 0;
+        }
+        var AsyncMode = REACT_ASYNC_MODE_TYPE;
+        var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+        var ContextConsumer = REACT_CONTEXT_TYPE;
+        var ContextProvider = REACT_PROVIDER_TYPE;
+        var Element2 = REACT_ELEMENT_TYPE2;
+        var ForwardRef = REACT_FORWARD_REF_TYPE;
+        var Fragment = REACT_FRAGMENT_TYPE;
+        var Lazy = REACT_LAZY_TYPE;
+        var Memo = REACT_MEMO_TYPE;
+        var Portal = REACT_PORTAL_TYPE;
+        var Profiler = REACT_PROFILER_TYPE;
+        var StrictMode = REACT_STRICT_MODE_TYPE;
+        var Suspense = REACT_SUSPENSE_TYPE;
+        var hasWarnedAboutDeprecatedIsAsyncMode = false;
+        function isAsyncMode(object) {
+          {
+            if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+              hasWarnedAboutDeprecatedIsAsyncMode = true;
+              console["warn"]("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.");
+            }
+          }
+          return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+        }
+        function isConcurrentMode(object) {
+          return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+        }
+        function isContextConsumer(object) {
+          return typeOf(object) === REACT_CONTEXT_TYPE;
+        }
+        function isContextProvider(object) {
+          return typeOf(object) === REACT_PROVIDER_TYPE;
+        }
+        function isElement(object) {
+          return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE2;
+        }
+        function isForwardRef(object) {
+          return typeOf(object) === REACT_FORWARD_REF_TYPE;
+        }
+        function isFragment(object) {
+          return typeOf(object) === REACT_FRAGMENT_TYPE;
+        }
+        function isLazy(object) {
+          return typeOf(object) === REACT_LAZY_TYPE;
+        }
+        function isMemo(object) {
+          return typeOf(object) === REACT_MEMO_TYPE;
+        }
+        function isPortal(object) {
+          return typeOf(object) === REACT_PORTAL_TYPE;
+        }
+        function isProfiler(object) {
+          return typeOf(object) === REACT_PROFILER_TYPE;
+        }
+        function isStrictMode(object) {
+          return typeOf(object) === REACT_STRICT_MODE_TYPE;
+        }
+        function isSuspense(object) {
+          return typeOf(object) === REACT_SUSPENSE_TYPE;
+        }
+        exports2.AsyncMode = AsyncMode;
+        exports2.ConcurrentMode = ConcurrentMode;
+        exports2.ContextConsumer = ContextConsumer;
+        exports2.ContextProvider = ContextProvider;
+        exports2.Element = Element2;
+        exports2.ForwardRef = ForwardRef;
+        exports2.Fragment = Fragment;
+        exports2.Lazy = Lazy;
+        exports2.Memo = Memo;
+        exports2.Portal = Portal;
+        exports2.Profiler = Profiler;
+        exports2.StrictMode = StrictMode;
+        exports2.Suspense = Suspense;
+        exports2.isAsyncMode = isAsyncMode;
+        exports2.isConcurrentMode = isConcurrentMode;
+        exports2.isContextConsumer = isContextConsumer;
+        exports2.isContextProvider = isContextProvider;
+        exports2.isElement = isElement;
+        exports2.isForwardRef = isForwardRef;
+        exports2.isFragment = isFragment;
+        exports2.isLazy = isLazy;
+        exports2.isMemo = isMemo;
+        exports2.isPortal = isPortal;
+        exports2.isProfiler = isProfiler;
+        exports2.isStrictMode = isStrictMode;
+        exports2.isSuspense = isSuspense;
+        exports2.isValidElementType = isValidElementType;
+        exports2.typeOf = typeOf;
+      })();
+    }
+  }
+});
+
+// node_modules/react-is/index.js
+var require_react_is = __commonJS({
+  "node_modules/react-is/index.js"(exports2, module2) {
+    "use strict";
+    if (false) {
+      module2.exports = null;
+    } else {
+      module2.exports = require_react_is_development();
+    }
   }
 });
 
@@ -460,10 +624,10 @@ var coreJsData = root_default["__core-js_shared__"];
 var coreJsData_default = coreJsData;
 
 // node_modules/lodash-es/_isMasked.js
-var maskSrcKey = (function() {
+var maskSrcKey = function() {
   var uid = /[^.]+$/.exec(coreJsData_default && coreJsData_default.keys && coreJsData_default.keys.IE_PROTO || "");
   return uid ? "Symbol(src)_1." + uid : "";
-})();
+}();
 function isMasked(func) {
   return !!maskSrcKey && maskSrcKey in func;
 }
@@ -705,14 +869,14 @@ function arrayEach(array, iteratee) {
 var arrayEach_default = arrayEach;
 
 // node_modules/lodash-es/_defineProperty.js
-var defineProperty = (function() {
+var defineProperty = function() {
   try {
     var func = getNative_default(Object, "defineProperty");
     func({}, "", {});
     return func;
   } catch (e) {
   }
-})();
+}();
 var defineProperty_default = defineProperty;
 
 // node_modules/lodash-es/_baseAssignValue.js
@@ -783,9 +947,9 @@ var baseIsArguments_default = baseIsArguments;
 var objectProto8 = Object.prototype;
 var hasOwnProperty7 = objectProto8.hasOwnProperty;
 var propertyIsEnumerable = objectProto8.propertyIsEnumerable;
-var isArguments = baseIsArguments_default(/* @__PURE__ */ (function() {
+var isArguments = baseIsArguments_default(/* @__PURE__ */ function() {
   return arguments;
-})()) ? baseIsArguments_default : function(value) {
+}()) ? baseIsArguments_default : function(value) {
   return isObjectLike_default(value) && hasOwnProperty7.call(value, "callee") && !propertyIsEnumerable.call(value, "callee");
 };
 var isArguments_default = isArguments;
@@ -872,7 +1036,7 @@ var freeExports2 = typeof exports == "object" && exports && !exports.nodeType &&
 var freeModule2 = freeExports2 && typeof module == "object" && module && !module.nodeType && module;
 var moduleExports2 = freeModule2 && freeModule2.exports === freeExports2;
 var freeProcess = moduleExports2 && freeGlobal_default.process;
-var nodeUtil = (function() {
+var nodeUtil = function() {
   try {
     var types = freeModule2 && freeModule2.require && freeModule2.require("util").types;
     if (types) {
@@ -881,7 +1045,7 @@ var nodeUtil = (function() {
     return freeProcess && freeProcess.binding && freeProcess.binding("util");
   } catch (e) {
   }
-})();
+}();
 var nodeUtil_default = nodeUtil;
 
 // node_modules/lodash-es/isTypedArray.js
@@ -1273,7 +1437,7 @@ var initCloneByTag_default = initCloneByTag;
 
 // node_modules/lodash-es/_baseCreate.js
 var objectCreate = Object.create;
-var baseCreate = /* @__PURE__ */ (function() {
+var baseCreate = /* @__PURE__ */ function() {
   function object() {
   }
   return function(proto) {
@@ -1288,7 +1452,7 @@ var baseCreate = /* @__PURE__ */ (function() {
     object.prototype = void 0;
     return result;
   };
-})();
+}();
 var baseCreate_default = baseCreate;
 
 // node_modules/lodash-es/_initCloneObject.js
@@ -2634,7 +2798,7 @@ function withFormik(_ref) {
   } : _ref$mapPropsToValues, config = _objectWithoutPropertiesLoose(_ref, ["mapPropsToValues"]);
   return function createFormik(Component$1) {
     var componentDisplayName = Component$1.displayName || Component$1.name || Component$1.constructor && Component$1.constructor.name || "Component";
-    var C = (function(_React$Component) {
+    var C = function(_React$Component) {
       _inheritsLoose(C2, _React$Component);
       function C2() {
         var _this;
@@ -2673,7 +2837,7 @@ function withFormik(_ref) {
         }));
       };
       return C2;
-    })(import_react.Component);
+    }(import_react.Component);
     C.displayName = "WithFormik(" + componentDisplayName + ")";
     return (0, import_hoist_non_react_statics.default)(
       C,
@@ -2750,7 +2914,7 @@ var createAlterationHandler = function createAlterationHandler2(alteration, defa
     return data;
   };
 };
-var FieldArrayInner = (function(_React$Component) {
+var FieldArrayInner = function(_React$Component) {
   _inheritsLoose(FieldArrayInner2, _React$Component);
   function FieldArrayInner2(props) {
     var _this;
@@ -2932,12 +3096,12 @@ var FieldArrayInner = (function(_React$Component) {
     return component ? (0, import_react.createElement)(component, props) : render2 ? render2(props) : children ? typeof children === "function" ? children(props) : !isEmptyChildren(children) ? import_react.Children.only(children) : null : null;
   };
   return FieldArrayInner2;
-})(import_react.Component);
+}(import_react.Component);
 FieldArrayInner.defaultProps = {
   validateOnChange: true
 };
 var FieldArray = connect(FieldArrayInner);
-var ErrorMessageImpl = (function(_React$Component) {
+var ErrorMessageImpl = function(_React$Component) {
   _inheritsLoose(ErrorMessageImpl2, _React$Component);
   function ErrorMessageImpl2() {
     return _React$Component.apply(this, arguments) || this;
@@ -2957,9 +3121,9 @@ var ErrorMessageImpl = (function(_React$Component) {
     return !!touch && !!error ? render2 ? isFunction2(render2) ? render2(error) : null : children ? isFunction2(children) ? children(error) : null : component ? (0, import_react.createElement)(component, rest, error) : error : null;
   };
   return ErrorMessageImpl2;
-})(import_react.Component);
+}(import_react.Component);
 var ErrorMessage = connect(ErrorMessageImpl);
-var FastFieldInner = (function(_React$Component) {
+var FastFieldInner = function(_React$Component) {
   _inheritsLoose(FastFieldInner2, _React$Component);
   function FastFieldInner2(props) {
     var _this;
@@ -3050,7 +3214,7 @@ var FastFieldInner = (function(_React$Component) {
     return (0, import_react.createElement)(asElement, _extends({}, field, props), children);
   };
   return FastFieldInner2;
-})(import_react.Component);
+}(import_react.Component);
 var FastField = connect(FastFieldInner);
 export {
   ErrorMessage,
@@ -3088,4 +3252,16 @@ export {
   withFormik,
   yupToFormErrors
 };
+/*! Bundled license information:
+
+react-is/cjs/react-is.development.js:
+  (** @license React v16.13.1
+   * react-is.development.js
+   *
+   * Copyright (c) Facebook, Inc. and its affiliates.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   *)
+*/
 //# sourceMappingURL=formik.js.map

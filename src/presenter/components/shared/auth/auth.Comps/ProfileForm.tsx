@@ -1,4 +1,4 @@
-import { Card, CardHeader, Button, CardBody, Typography, Input, Select, Option, List, ListItem, ListItemSuffix } from "@material-tailwind/react";
+import { Card, CardHeader, Button, CardBody, Typography, Input, Select, List, } from "@material-tailwind/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { assistanceLevel, mailSubscriptions } from "../../../../../domain/entities/Profile";
@@ -89,7 +89,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                     </CardHeader>
                     <CardBody className="flex flex-1 flex-col h-full gap-3 mb-4 overflow-auto ">
                         <Input
-                            labelProps={{ className: "before:content-none after:content-none" }}
+
                             className={`inputStandart ${formik.errors.firstName ? 'error' : ''}`}
                             placeholder={"Prénom"}
                             name="firstName"
@@ -98,7 +98,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                         />
                         <InputError error={formik.errors.firstName} />
                         <Input
-                            labelProps={{ className: "before:content-none after:content-none" }}
+
                             className={`inputStandart ${formik.errors.lastName ? 'error' : ''}`}
                             placeholder={"Nom"}
                             name="lastName"
@@ -107,7 +107,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                         />
                         <InputError error={formik.errors.lastName} />
                         <Input
-                            labelProps={{ className: "before:content-none after:content-none" }}
+
                             className={`inputStandart ${formik.errors.phone ? 'error' : ''}`}
                             placeholder={"Télephone"}
                             name="phone"
@@ -122,7 +122,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                         />
 
                         <Select
-                            labelProps={{ className: "before:content-none after:content-none" }}
+
                             className={`p-5 capitaliz inputStandart  ${formik.errors.mailSub ? 'error' : ''}`}
                             placeholder={"Notifications mails"}
                             name="mailSub"
@@ -133,18 +133,18 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                             }}>
                             {mailSubscriptions.map((label: Label, index: number) => {
                                 return (
-                                    <Option
+                                    <Select.Option
                                         className="!flex"
                                         value={label.value}
                                         key={index}>
                                         {label.label}
-                                    </Option>
+                                    </Select.Option>
                                 )
                             })}
                         </Select>
                         <InputError error={formik.errors.mailSub} tips={'souscription aux mails'} />
                         <Select
-                            labelProps={{ className: "before:content-none after:content-none" }}
+
                             className={`p-5 capitaliz inputStandart  ${formik.errors.mailSub ? 'error' : ''}`}
                             placeholder={"Assistance"}
                             name="level"
@@ -155,11 +155,11 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                             }}>
                             {assistanceLevel.map((label: Label, index: number) => {
                                 return (
-                                    <Option
+                                    <Select.Option
                                         value={label.value}
                                         key={index}>
                                         {label.label}
-                                    </Option>
+                                    </Select.Option>
                                 )
                             })}
                         </Select>
@@ -172,33 +172,35 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                             value={newSkill}
                             onChange={(e: any) => { e.preventDefault(); setNewSkill(e.target.value) }}
                             onSubmit={addSkill}
-                            icon={
+                        >
+                            <Input.Icon placement="end">
                                 <div className="-mt-2 -ml-1  opacity-90">
                                     <Icon
-                                        color='blue-gray'
+                                        color='slate'
                                         icon='add'
                                         size='xl'
                                         onClick={addSkill}
                                         style={` ${newSkill && 'error bg-red-100 rounded-full'}`} />
-                                </div>}
-                        />
+                                </div>
+                            </Input.Icon>
+                        </Input>
                         <List className='flex p-0'>
                             <Typography className='text-xs text-gray-400 -mt-1 font-normal'>
                                 {skillList.length > 0 && 'Liste des compétences'}
                             </Typography>
                             {skillList.map((skill: string, index: number) =>
-                                <ListItem
+                                <List.Item
                                     ripple={true}
                                     key={index}
                                     className="!py-1 pl-4 rounded-full text-sm">
                                     {skill}
-                                    <ListItemSuffix>
+                                    <List.ItemEnd>
                                         <Icon
                                             onClick={() => { removeSkill(skill) }}
                                             icon="close"
                                             size="xl" />
-                                    </ListItemSuffix>
-                                </ListItem>
+                                    </List.ItemEnd>
+                                </List.Item>
                             )}
                         </List>
                     </CardBody>

@@ -21,32 +21,34 @@ export const VoteCard = ({ vote, refetch, open, close }: { vote: PoolSurveyView,
     const updateVote = async (data: VoteDTO) => await DI.resolve('updateVoteUseCase').execute(data)
 
     const body =
-        <div className="flex md:gap-10 overflow-auto">
-            <Radio
-                name="vote"
-                label="Contre"
-                value={VoteOpinion.NO}
-                color='red'
-                checked={voteDTO.opinion === VoteOpinion.NO}
-                onChange={() => setOpinion(VoteOpinion.NO)}
-            />
-            <Radio
-                name="vote"
-                label="pas d'avis"
-                value={VoteOpinion.NO}
-                color='orange'
-                checked={voteDTO.opinion === VoteOpinion.WO}
-                onChange={() => setOpinion(VoteOpinion.WO)}
-            />
-            <Radio
-                name="vote"
-                label="Pour"
-                value={VoteOpinion.OK}
-                color='green'
-                checked={voteDTO.opinion === VoteOpinion.OK}
-                onChange={() => setOpinion(VoteOpinion.OK)}
-            />
-        </div>
+        <Radio>
+            <div className="flex md:gap-10 overflow-auto">
+                <Radio.Item
+                    name="vote"
+                    label="Contre"
+                    value={VoteOpinion.NO}
+                    color='red'
+                    checked={voteDTO.opinion === VoteOpinion.NO}
+                    onChange={() => setOpinion(VoteOpinion.NO)}
+                />
+                <Radio.Item
+                    name="vote"
+                    label="pas d'avis"
+                    value={VoteOpinion.NO}
+                    color='orange'
+                    checked={voteDTO.opinion === VoteOpinion.WO}
+                    onChange={() => setOpinion(VoteOpinion.WO)}
+                />
+                <Radio.Item
+                    name="vote"
+                    label="Pour"
+                    value={VoteOpinion.OK}
+                    color='green'
+                    checked={voteDTO.opinion === VoteOpinion.OK}
+                    onChange={() => setOpinion(VoteOpinion.OK)}
+                />
+            </div>
+        </Radio>
     const [voteNotification] = useState<string | undefined>(undefined)
 
     const alertValues: AlertValues = {

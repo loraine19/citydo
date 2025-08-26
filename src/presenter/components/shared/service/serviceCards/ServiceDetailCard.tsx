@@ -1,4 +1,4 @@
-import { Card, CardHeader, Typography, CardBody, CardFooter, Chip } from "@material-tailwind/react";
+import { Card, CardHeader, Typography, CardBody, CardFooter } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import { HardLevel, SkillLevel, ServiceStep } from "../../../../../domain/entities/Service";
 import { Icon } from "../../../common/IconComp";
@@ -8,6 +8,7 @@ import { ServiceView } from "../../../../views/viewsEntities/serviceViewEntity";
 import { Title } from "../../../common/CardTitle";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { Profile } from "../../../../../domain/entities/Profile";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 export default function ServiceDetailComp(props: { service: ServiceView, mines?: boolean }) {
     const { service } = props
@@ -115,16 +116,14 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                     <div className="CardOverFlow h-full flex flex-col gap-4 !pt-1 ">
                         <div className="flex flex-1 flex-col lg:flex-row gap-4">
                             <Typography
-                                color="blue-gray"
                                 className="flex-1 min-h-[33%]  pr-4 max-h-20 overflow-y-auto">
                                 {description}
                             </Typography>
 
-                            <div className="flex border min-w-[33%] border-blue-gray-200 mx-2 p-3 bg-blue-gray-50 rounded-2xl h-full flex-col gap-2 lg:items-end">
+                            <div className="flex border min-w-[33%] border-slate-200 mx-2 p-3 bg-slate-50 rounded-2xl h-full flex-col gap-2 lg:items-end">
                                 <Typography
                                     className="text-left lg:text-right"
-                                    variant="h6"
-                                    color="blue-gray">
+                                    as="h6">
                                     {statusValues(statusS as ServiceStep).text}
                                 </Typography>
                                 <div className="flex lg:flex-col flex-row-reverse lg:items-end self-start lg:self-end">

@@ -60,18 +60,15 @@ export default function DeleteAccountPage() {
                     <Card className='w-respLarge flex py-4 flex-col items-center'>
                         <CardBody className='flex w-full w-resp flex-col text-center gap-4'>
                             <Typography
-                                variant="h5"
-                                color="blue-gray"
+                                as="h5"
                                 className="mb-2">
-                                Suppression de compte
                             </Typography>
                             <Typography
-                                color="gray"
                                 className="mb-4">
                                 {notif}
                             </Typography>
                             <Input
-                                labelProps={{ className: "before:content-none after:content-none" }}
+
                                 className={`inputStandart ${formik.errors.email ? 'error' : ''}`}
                                 placeholder={'email'}
                                 name="email"
@@ -85,7 +82,7 @@ export default function DeleteAccountPage() {
                         type="submit"
                         size="lg"
                         className="lgBtn"
-                        color="red" >
+                        color="error" >
                         <Icon
                             color="white"
                             icon="delete"

@@ -1,4 +1,4 @@
-import "./chunk-OL46QLBJ.js";
+import "./chunk-SNAQBZPT.js";
 
 // node_modules/awilix/lib/awilix.browser.mjs
 var EOL = "\n";
@@ -398,10 +398,6 @@ function parseParameterList(source) {
         break;
       case ")":
         return params;
-      // When we're encountering an identifier token
-      // at this level, it could be because it's an arrow function
-      // with a single parameter, e.g. `foo => ...`.
-      // This path won't be hit if we've already identified the `(` token.
       case "ident": {
         const param = { name: t.value, optional: false };
         if (t.value === "async") {
@@ -413,7 +409,6 @@ function parseParameterList(source) {
         params.push(param);
         return params;
       }
-      /* istanbul ignore next */
       default:
         throw unexpected();
     }
@@ -439,7 +434,6 @@ function parseParameterList(source) {
             params.push(param);
           }
           return;
-        /* istanbul ignore next */
         default:
           throw unexpected();
       }
@@ -807,19 +801,13 @@ function createContainerInternal(options, parentContainer, parentResolutionStack
       }
       if (!resolver) {
         switch (name) {
-          // The following checks ensure that console.log on the cradle does not
-          // throw an error (issue #7).
           case "inspect":
           case "toString":
             return toStringRepresentationFn;
           case Symbol.toStringTag:
             return CRADLE_STRING_TAG;
-          // Edge case: Promise unwrapping will look for a "then" property and attempt to call it.
-          // Return undefined so that we won't cause a resolution error. (issue #109)
           case "then":
             return void 0;
-          // When using `Array.from` or spreading the cradle, this will
-          // return the registration names.
           case Symbol.iterator:
             return cradleIterator;
         }

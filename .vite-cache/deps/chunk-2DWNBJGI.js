@@ -1,9 +1,9 @@
 import {
   require_react
-} from "./chunk-ZHUB4BJD.js";
+} from "./chunk-VPEBV5N7.js";
 import {
   __toESM
-} from "./chunk-OL46QLBJ.js";
+} from "./chunk-SNAQBZPT.js";
 
 // node_modules/react-router/dist/index.js
 var React = __toESM(require_react());
@@ -4204,13 +4204,13 @@ function _renderMatches(matches, parentMatches, dataRouterState, future) {
     }) : getChildren();
   }, null);
 }
-var DataRouterHook = (function(DataRouterHook2) {
+var DataRouterHook = function(DataRouterHook2) {
   DataRouterHook2["UseBlocker"] = "useBlocker";
   DataRouterHook2["UseRevalidator"] = "useRevalidator";
   DataRouterHook2["UseNavigateStable"] = "useNavigate";
   return DataRouterHook2;
-})(DataRouterHook || {});
-var DataRouterStateHook = (function(DataRouterStateHook2) {
+}(DataRouterHook || {});
+var DataRouterStateHook = function(DataRouterStateHook2) {
   DataRouterStateHook2["UseBlocker"] = "useBlocker";
   DataRouterStateHook2["UseLoaderData"] = "useLoaderData";
   DataRouterStateHook2["UseActionData"] = "useActionData";
@@ -4222,7 +4222,7 @@ var DataRouterStateHook = (function(DataRouterStateHook2) {
   DataRouterStateHook2["UseNavigateStable"] = "useNavigate";
   DataRouterStateHook2["UseRouteId"] = "useRouteId";
   return DataRouterStateHook2;
-})(DataRouterStateHook || {});
+}(DataRouterStateHook || {});
 function getDataRouterConsoleError(hookName) {
   return hookName + " must be used within a data router.  See https://reactrouter.com/v6/routers/picking-a-router.";
 }
@@ -4635,12 +4635,12 @@ function Await(_ref7) {
     errorElement
   }, React.createElement(ResolveAwait, null, children));
 }
-var AwaitRenderStatus = (function(AwaitRenderStatus2) {
+var AwaitRenderStatus = function(AwaitRenderStatus2) {
   AwaitRenderStatus2[AwaitRenderStatus2["pending"] = 0] = "pending";
   AwaitRenderStatus2[AwaitRenderStatus2["success"] = 1] = "success";
   AwaitRenderStatus2[AwaitRenderStatus2["error"] = 2] = "error";
   return AwaitRenderStatus2;
-})(AwaitRenderStatus || {});
+}(AwaitRenderStatus || {});
 var neverSettledPromise = new Promise(() => {
 });
 var AwaitErrorBoundary = class extends React.Component {
@@ -4922,4 +4922,4 @@ react-router/dist/index.js:
    * @license MIT
    *)
 */
-//# sourceMappingURL=chunk-2MA6GKCE.js.map
+//# sourceMappingURL=chunk-2DWNBJGI.js.map

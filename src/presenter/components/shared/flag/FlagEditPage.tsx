@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
-import { Option, Button, Select, Switch } from '@material-tailwind/react';
+import { Button, Select, Switch, Typography } from '@material-tailwind/react';
 import { ConfirmModal } from '../../common/ConfirmModal';
 import SubHeader from '../../common/SubHeader';
 import FlagDetailComp from './flagCards/FlagDetailComp';
@@ -60,13 +60,21 @@ export default function FlagEditPage() {
                             closeBtn />
 
                         <div className='w-respLarge h-full flex flex-col py-2 gap-2'>
-                            <Switch
-                                label={flag.reason ? "signalé" : "non signalé"}
-                                className='px-2'
-                                color='red'
-                                name="active"
-                                onChange={formik.handleChange}
-                                checked={flag.reason ? true : false} />
+                            <div className="flex items-center gap-2">
+                                <Switch
+                                    id='active'
+                                    className='px-2 bg-red-500'
+                                    name="active"
+                                    onChange={formik.handleChange}
+                                    checked={flag.reason ? true : false} />
+                                <Typography
+                                    as="label"
+                                    htmlFor="active"
+                                    className="cursor-pointer text-foreground"
+                                >
+                                    {flag.reason ? "signalé" : "non signalé"}
+                                </Typography>
+                            </div>
                             <Select
                                 className={` rounded-full shadow bg-white border-none capitalize`}
                                 label={formik.errors.reason ? formik.errors.reason as string : "Raison du signalement"}
@@ -78,11 +86,11 @@ export default function FlagEditPage() {
                             >
                                 {flagReasons.map((reason: any, index: number) => {
                                     return (
-                                        <Option
+                                        <Select.Option
                                             className={reason.value === '' ? "hidden" : "rounded-full my-1 capitalize"} value={reason.value}
                                             key={index} >
                                             {reason.label}
-                                        </Option>)
+                                        </Select.Option>)
                                 })}
                             </Select>
                         </div>

@@ -1,3 +1,4 @@
+import { JSX } from "react";
 import { EventCategory } from "../../domain/entities/Event";
 import { EventView } from "../../presenter/views/viewsEntities/eventViewEntities";
 

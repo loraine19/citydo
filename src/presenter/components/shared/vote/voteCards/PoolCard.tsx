@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardBody, CardFooter, Typography, Chip } from "@material-tailwind/react";
+import { Card, CardHeader, CardBody, CardFooter, Typography } from "@material-tailwind/react";
 import { Icon } from '../../../common/IconComp'
 import ModifBtnStack from "../../../common/ModifBtnStack";
 import { Action } from "../../../../../domain/entities/frontEntities";
@@ -12,6 +12,7 @@ import { ProfileDiv } from "../../../common/ProfilDiv";
 import { Title } from "../../../common/CardTitle";
 import { User } from "../../../../../domain/entities/User";
 import { PoolSurveyStatus } from "../../../../../domain/entities/PoolSurvey";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 type PoolCardProps = {
     pool: any,
@@ -35,7 +36,7 @@ export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
             case 'OK': return 'green';
             case 'NO': return 'red';
             case 'WO': return 'orange';
-            default: return 'blue-gray';
+            default: return 'slate';
         }
     }
 
@@ -77,7 +78,6 @@ export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
                         /></div>
                     <div className="CardOverFlow h-full  !pl-2 !p-0 flex justify-between flex-col gap-2">
                         <Typography
-                            color="blue-gray"
                             className="leading-[1.3rem] pt-1 !line-clamp-2 max-h-full">
                             {pool.description}
                         </Typography>
@@ -110,12 +110,13 @@ export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
                                 className="rounded-full GrayChip h-max flex items-center  "
                                 icon={
                                     <Icon
+
                                         icon="smart_card_reader"
                                         fill={pool?.IVoted}
                                         color={color()}
                                         size="md"
                                         title={`  ${pool.Votes?.length} personnes ${pool?.IVoted ? `dont vous ` : ''} ont voté`}
-                                        style="ml-0.5 -mr-1" />}>
+                                    />}>
                             </Chip>
                         </button>
                         <Icon

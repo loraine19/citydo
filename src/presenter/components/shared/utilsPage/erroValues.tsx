@@ -9,9 +9,7 @@ export const errorValues: AlertValues = {
     handleConfirm: () => { window.location.replace('/') },
     title: 'Vous êtes inactif ou Une erreur s\'est produite',
     element: <div className="items-center text-center pb-8 flex flex-col gap-4">
-        <Typography
-            variant="h6"
-            color="blue-gray">
+        <Typography as="h6">
             Veuillez réessayer de recharger la page
         </Typography>
 
@@ -23,8 +21,7 @@ export const errorValues: AlertValues = {
             size="3xl"
             color="orange"
             onClick={() => window.location.reload()} />
-        <Typography
-            color="blue-gray">
+        <Typography>
             Si la page de charge pas, vous pouvez retourner à la page d'accueil<br></br>
             ou vous pouvez vous re-connecter
         </Typography>

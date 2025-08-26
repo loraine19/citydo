@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardBody, CardFooter, Typography, Chip } from "@material-tailwind/react";
+import { Card, CardHeader, CardBody, CardFooter, Typography } from "@material-tailwind/react";
 import ModifBtnStack from "../../../common/ModifBtnStack";
 import { Icon } from "../../../common/IconComp";
 import { GenereMyActions } from "../../../../views/viewsEntities/utilsService";
@@ -11,6 +11,7 @@ import { useState } from "react";
 import { VoteCard } from "./VoteCard";
 import { Title } from "../../../common/CardTitle";
 import { PoolSurveyStatus } from "../../../../../domain/entities/PoolSurvey";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 
 type SurveyCardProps = {
@@ -32,7 +33,7 @@ export function SurveyCard({ survey, change, mines, update }: SurveyCardProps) {
             case 'OK': return 'green';
             case 'NO': return 'red';
             case 'WO': return 'orange';
-            default: return 'blue-gray';
+            default: return 'slate';
         }
     }
 
@@ -76,7 +77,7 @@ export function SurveyCard({ survey, change, mines, update }: SurveyCardProps) {
                             onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
                             src={survey?.image as any}
                             alt={survey?.title}
-                            className="h-full w-full object-cover"
+                            className="CardImage"
                         />}
                 </CardHeader>
                 <CardBody
@@ -89,7 +90,6 @@ export function SurveyCard({ survey, change, mines, update }: SurveyCardProps) {
                         group={survey?.Group}
                     />
                     <Typography
-                        color="blue-gray"
                         className="leading-[1.3rem]  !line-clamp-2 overflow-auto  pt-0.5">
                         {survey?.description}
                     </Typography>

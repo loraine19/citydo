@@ -1,9 +1,10 @@
-import { Navbar, SpeedDial, SpeedDialAction, SpeedDialContent, SpeedDialHandler, Typography } from "@material-tailwind/react";
+import { Navbar, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import { NavLink, useLocation } from 'react-router-dom';
 import { Icon } from "./IconComp";
 import { useNotificationStore } from "../../../application/stores/notification.store";
 import { useUxStore } from "../../../application/stores/ux.store";
+import { SpeedDial } from "./adaptatersComps/SpeedDial";
 
 interface NavBarProps {
     handleClick?: () => void;
@@ -14,7 +15,7 @@ interface NavBarProps {
 export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
     const location = useLocation()
     const type = new URLSearchParams(location.pathname.split("/")[1]).toString().replace("=", '');
-    const [closeDial, setCloseDial] = useState<boolean>(true)
+    const [closeDial, setCloseDial] = useState<boolean>(false)
     const { } = useNotificationStore((state) => state);
     const { navBottom, setColor, color } = useUxStore((state) => state);
 
@@ -22,87 +23,101 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
         to: string;
         icon: string;
         label: string;
-        color: string,
-        col: string;
+        color: { border: string, background: string, text: string, col: string } | any
     }
     const navItems: NavItem[] = [
-        { to: "/", icon: "home", label: "Home", color: "!border-blue-gray-500/20", col: 'blue-gray' },
-        { to: "/service", icon: "partner_exchange", label: "Service", color: "!border-light-blue-500/20", col: 'light-blue' },
-        { to: "/evenement", icon: "event", label: "Évenement", color: "!border-cyan-500/20", col: 'cyan' },
-        { to: "/annonce", icon: "dashboard", label: "Annonce", color: "!border-rose-500/20", col: 'rose' },
-        { to: "/vote", icon: "ballot", label: `${addBtn ? "Vote⠀" : 'Votes⠀⠀'}`, color: "!border-orange-500/20", col: 'orange' },
+        { to: "/", icon: "home", label: "Home", color: { border: "!border-slate-500/20", background: "!bg-slate-500", text: "!text-slate-500", col: 'slate' } },
+        { to: "/service", icon: "partner_exchange", label: "Service", color: { border: "!border-sky-500/20", background: "!bg-sky-500", text: "!text-sky-500", col: 'sky' } },
+        { to: "/evenement", icon: "event", label: "Évenement", color: { border: "!border-cyan-500/20", background: "!bg-cyan-500", text: "!text-cyan-500", col: 'cyan' } },
+        { to: "/annonce", icon: "dashboard", label: "Annonce", color: { border: "!border-rose-500/20", background: "!bg-rose-500", text: "!text-rose-500", col: 'rose' } },
+        { to: "/vote", icon: "ballot", label: `${addBtn ? "Vote⠀" : 'Votes⠀⠀'}`, color: { border: "!border-orange-500/20", background: "!bg-orange-500", text: "!text-orange-500", col: 'orange' } },
     ]
 
     const addBtnItem = type ? [{
         to: `/${type}/create`,
         icon: { service: "partner_exchange", evenement: "event", annonce: "dashboard", vote: "ballot", groupe: "groups" }[type] || "add",
         label: `Ajouter un ${type}`,
-        color: "!border-blue-gray-500/20",
-        col: 'blue-gray'
+        color: {
+            border: `"!border-${color}-500/20"`,
+            col: color,
+            text: `!text-${color}-500`,
+        }
     }] : [
         {
             to: `/service/create`,
             icon: "partner_exchange",
             label: `Ajouter un Service`,
-            color: "!border-light-blue-500/20",
-            col: 'light-blue'
+            color: {
+                border: "!border-sky-500/20",
+                col: 'sky',
+                text: "!text-sky-500",
+            }
         }, {
             to: `/evenement/create`,
             icon: "event",
             label: `Ajouter un Événement`,
-            color: "!border-cyan-500/20",
-            col: 'cyan'
-
+            color: {
+                border: "!border-cyan-500/20",
+                col: 'cyan',
+                text: "!text-cyan-500",
+            }
         },
         {
             to: `/annonce/create`,
             icon: "dashboard",
             label: `Ajouter une Annonce`,
-            color: "!border-rose-500/20",
-            col: 'rose'
+            color: {
+                border: "!border-rose-500/20",
+                col: 'rose',
+                text: "!text-rose-500",
+            }
         },
         {
             to: `/vote/create`,
             icon: "ballot",
             label: `Créer un Vote`,
-            color: "!border-orange-500/20",
-            col: 'orange'
+            color: {
+                border: "!border-orange-500/20",
+                col: 'orange',
+                text: "!text-orange-500",
+            }
         }
     ]
+    const BG = `!bg-${color}-500`
 
 
     return (
         <>
             <div className={`
-            ${(closeDial) ? 'hidden' : ''} 
+            ${(!closeDial) ? 'hidden' : ''} 
             ${navBottom ? `bottom-[65px]` : 'top-[0px]'}
                   left-0 h-screen w-full backdropBlur absolute`}>
             </div>
             <div className={
                 (navBottom ?
                     `items-center opacity-100 anim ${color}BG backdropBlur wRespXL rounded-full justify-center relative bottom-0 gap-6` :
-                    'z-0 md:scale-[0.75] scale-[0.72]  -ml-[2.5rem] -mr-[2rem] lg:!-mr-[5rem] pt-[5px] lg:px-auto gap-2 ') +
+                    'z-0 md:scale-[0.75] scale-[0.72] -ml-[2.5rem] -mr-[2rem] lg:!-mr-[5rem] pt-[5px] lg:px-auto gap-2 ') +
                 ` flex z-30 `
             }>
                 <Navbar className={`
                     ${navBottom ?
-                        'min-w-max w-full shadow-md !bg-white/95 border border-blue-gray-100/50'
+                        'min-w-max w-full shadow-md !bg-white/95 border border-slate-100/50'
                         :
                         `shadow-none bg-transparent overflow-x-auto lg:!pt-0 lg:overflow-hidden`} 
                         flex rounded-full h-full items-center p-0`}>
                     <div className={`${navBottom ? 'flex-row' : 'flex-row-reverse'} w-full min-w-max  h-full relative`}>
                         <ul className={`flex !max-w-[calc(100vw-6rem)] overflow-y-hidden overflow-auto flex-row w-full rounded-full justify-between h-full gap-auto  `}>
-                            {navItems.map(({ to, icon, label, color, col }: NavItem, index) => (
+                            {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                                 <Typography
-                                    onClick={() => { setColor(col) }}
+                                    onClick={() => { setColor(color.col) }}
                                     key={index}
                                     as="li"
-                                    className={` text-${col}-500 flex rounded-full h-full items-center font-medium`}>
+                                    className={` ${color.text} flex rounded-full h-full items-center font-medium`}>
                                     <NavLink
                                         to={to}
                                         className={({ isActive }) =>
                                             `flex gap-3 justify-center lg:justify-start p-[7px] items-center w-full !h-[57px] rounded-full
-                                            hover:bg-white/50 hover:shadow-blue-gray-100
+                                            hover:bg-white/50 hover:shadow-slate-100
                                             hover:scale-[101%] transition duration-200
                                             hover:shadow-sm
                                             ${(isActive && navBottom) ? `border-[1px] shadowMid !bg-white` : isActive ? `animSlide border-[1px] shadow-sm mb-0.5 lg:mr-2 z-30 ${color} ` : ''}`
@@ -114,7 +129,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                                     bg
                                                     icon={icon}
                                                     fill={isActive ? true : false}
-                                                    color={col}
+                                                    color={color.col}
                                                 />
                                                 <span className={`${navBottom ? 'md:block' : 'lg:block'} !text-[0.95rem] font-bold filter brightness-90 font-comfortaa hidden md:!text-[0.8rem] lg:pr-8 pr-3`}>
                                                     {label}
@@ -127,53 +142,43 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                         </ul>
                     </div>
                 </Navbar>
-                <div
-                    onMouseLeave={() => setCloseDial(true)}
-                    onMouseEnter={() => setCloseDial(false)}
-                    className={`${(!navBottom && !addBtn) ? 'hidden' : ''} "flex justify-center z-[22] items-center h-full  -mr-4"`}>
-                    <div className={`rounded-full`}>
-                        <SpeedDial
-                            placement={navBottom ? 'top' : 'bottom'}
-                            offset={10}>
-                            <SpeedDialHandler >
-                                <div className={`rounded-full text-white `}>
-                                    <Icon
-                                        icon="add"
-                                        color='white'
-                                        bg clear
-                                        size='5xl'
-                                        style={`${!closeDial ? '!text-white transition-transform group-hover:rotate-45 hover:scale-[1]' : 'hidden'} !text-[2rem] font-normal bg-${color}-500 h-16 w-16 !shadow-md`} />
-                                </div>
-                            </SpeedDialHandler>
-                            <SpeedDialContent
-                                className="flex relative flex-col h-max-max w-max ">
-                                {addBtnItem.map(({ to, icon, label, col }: NavItem, index) => <SpeedDialAction
+                <SpeedDial
+                    className={`${(!navBottom && !addBtn) ? 'hidden' : ''}  z-[22] -mr-4`}
+                    open={closeDial}
+                    setOpen={setCloseDial}
+                    placement={navBottom ? 'top' : 'bottom'}
+                    offset={10}
+                    Handler={
+                        <Icon
+                            onClick={() => setCloseDial && setCloseDial(!closeDial)}
+                            icon="add"
+                            bg
+                            size='5xl'
+                            style={`${!closeDial ? 'hover:scale-[1]' : 'transition-transform rotate-45'} !text-white !text-[2rem] font-normal ${BG}  !shadow-md`} />
+                    }
+                    Content={
+                        <div className="flex gap-2 flex-col">
+                            {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
+                                <div
                                     key={index}
-                                    className="flex over:scale-[1.1] !h-[58px] gap-6 w-[58px] shadow-lg"
+                                    className="bg-white rounded-full shadow-md flex over:scale-[1.1] !h-[58px] gap-6 w-[58px] !justify-center items-center border"
                                     title={label}>
                                     <div>
-                                        <Icon
-                                            size='md'
-                                            style={`absolute ${col ? ` bg-white shadow` : 'bg-white'} top-1 -left-1`}
-                                            icon="add"
-                                            color={col} />
                                         <Icon
                                             bg
                                             fill={type ? true : false}
                                             link={to}
                                             size='2xl'
                                             icon={icon}
-                                            color={type ? color : col} />
+                                            color={type ? color.col : color.col} />
                                     </div>
-                                    <div className={`py-2 px-4 right-[5rem] rounded-full text-${col}-500 absolute bg-white text-sm shadow-xl !border !border-gray-300`}>
+                                    <div className={`py-2 px-4 right-[5rem] rounded-full ${color.text} absolute bg-white text-sm shadow-xl whitespace-nowrap !border !border-gray-200`}>
                                         {label}
                                     </div>
-                                </SpeedDialAction>)}
-                            </SpeedDialContent>
-                        </SpeedDial>
-                    </div>
-                </div>
-            </div >
+                                </div>)}
+                        </div>}
+                />
+            </div>
 
         </>
     );

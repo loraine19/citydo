@@ -31,7 +31,7 @@ export default function NotFindPage() {
                 <AuthHeader />
             </header>
             <main className="flex items-center justify-evenly h-full py-10">
-                <Typography variant="lead" color="blue-gray" className="flex items-center justify-center mt-2">
+                <Typography variant="lead" className="flex items-center justify-center mt-2">
                     {`élements ${url} non trouvés désolé`}
                 </Typography>
                 <Button onClick={() => navigate('/')} className="rounded-full w-max p-5 text-sm !font-light">retour à l' acceuil</Button>

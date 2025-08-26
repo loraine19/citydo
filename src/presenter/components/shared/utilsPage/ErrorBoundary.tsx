@@ -151,7 +151,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
             }
 
             return (
-                <body className={`app ${this.props.color || 'bg-gray-100'}`}>
+                <body className={`app ${this.props.color ?? 'slate'}BG `}>
                     <AlertModal values={!errorMessage ? alertValues : errorAlertValues} />
                     <header className="h-[7rem] flex-col flex items-center justify-center pt-6 relative">
                         <div className="flex items-center justify-center gap-2">
@@ -163,8 +163,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                         <Card className="hidden md:flex  FixCardNoImage !p-8 welcome " >
                             <div className="absolute rounded-xl inset-0 bg-black/10  z-0" />
                             <Typography
-                                color="white"
-                                className="py-6 px-8 !leading-[1] text-[2.5rem] font-bold !text-center font-comfortaa relative z-10"
+                                className="py-6 px-8 !text-white !leading-[1] text-[2.5rem] font-bold !text-center font-comfortaa relative z-10"
                                 style={{ textShadow: "0px 1px 4px #000000" }} >
                                 oups...
                             </Typography>

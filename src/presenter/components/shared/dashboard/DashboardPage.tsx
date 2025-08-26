@@ -87,15 +87,15 @@ export default function DashboardPage() {
     useEffect(() => { (hide !== hideNavBottom) && setHideNavBottom(hide) }, [hide]);
 
     return (
-        <main className={`${(!navBottom || hideNavBottom) ? 'pb-2' : 'lg:!-mt-4 -mt-8 withBottom'} 
+        <main className={`${(!navBottom || hideNavBottom) ? 'pb-2' : 'lg:!-mt-5 -mt-8 withBottom'} 
               lg:!mb-2 relative flex pb-0.5 !overflow-hidden anim`}
             data-cy="dashboard-body" >
             <div ref={divRef}
                 onScroll={() => handleHideCallback()}
                 className={" px-[1%] flex-1 h-full flex flex-col lg:grid grid-cols-2 grid-rows-[auto_auto_auto_1fr_1fr_2fr_auto_auto] w-full gap-y-2 lg:gap-y-3 lg:gap-x-4 place-content-start overflow-auto "}>
                 <div className={`${userClasse}`}>
-                    <Card className="lg:h-full p-0 mt-6 lg:!mt-0 flex-1 flex anim">
-                        <CardHeader className="flex  flex-col items-center justify-center  bg-transparent shadow-none">
+                    <Card className="FixCard lg:h-full p-0 mt-6 lg:!mt-0 !flex-col rounded-xl bg-white flex-1 flex anim !overflow-visible ">
+                        <CardHeader className="-mt-6 flex flex-col items-center justify-center  bg-transparent shadow-none">
                             <div className="relative space-x-1 ">
                                 <AvatarUser
                                     avatarSize="lg"
@@ -108,14 +108,13 @@ export default function DashboardPage() {
                             <div className="flex flex-col items-center justify-center pt-1">
                                 <Typography
                                     className={'border-b-[1px] px-4 !border-gray-400'}
-                                    variant="h6"
-                                    color="blue-gray" >
+                                    as="h6" >
                                     {user?.Profile?.firstName}
                                 </Typography>
                             </div>
                         </CardHeader>
                         <CardBody className="flex flex-col items-center justify-center px-4 py-0">
-                            <div className="flex gap-2 pt-3 pb-4 justify-center items-center ">
+                            <div className="flex gap-2  pb-4 justify-center items-center ">
                                 <Icon
                                     link="/myprofile"
                                     icon="person_edit"
@@ -133,7 +132,7 @@ export default function DashboardPage() {
                                 <Icon
                                     link={modo ? '/conciliation' : ''}
                                     icon="diversity_3"
-                                    color={modo ? 'orange' : 'blue-gray'}
+                                    color={modo ? 'orange' : 'slate'}
                                     fill bg
                                     size="md"
                                     title={modo ? "ouvrir la page conciliation" : "vous devez être concialiateur dans un groupe"} />
@@ -150,7 +149,7 @@ export default function DashboardPage() {
                     </Card>
                 </div>
                 <div className={`hidden lg:${notifClasse} grid-cols-1 h-full  lg:grid`}>
-                    <Card className=" orangeBG anim">
+                    <Card className=" orangeBG anim FixCard">
                         <CardBody className="h-full flex flex-col pt-2.5 pb-0 px-4 ">
                             <div className="flex gap-2.5 py-1 items-center">
                                 <div className="relative">
@@ -226,7 +225,7 @@ export default function DashboardPage() {
                     </Card>
                 </div>
                 <div className={mapClasse}>
-                    <Card className="h-full flex-1 gray100 anim">
+                    <Card className="h-full flex-1 gray100 anim FixCard">
                         <CardBody className="h-full min-h-[20vh] lg!min-h-[100%] flex flex-col !pt-3 p-4">
                             <div className="flex items-center gap-2">
                                 <div className="flex items-center gap-2 mb-2">
@@ -236,11 +235,10 @@ export default function DashboardPage() {
                                         icon="location_on"
                                         link="/service"
                                         size="md"
-                                        color="blue-gray"
+                                        color="slate"
                                         title="voir mes services" />
 
-                                    <Typography
-                                        color="blue-gray">
+                                    <Typography >
                                         {isLoadingMap ?
                                             'Chargement...' :
                                             ` ${countMap ?? 0} nouveautés à proximité`}
@@ -256,25 +254,23 @@ export default function DashboardPage() {
 
                                         {isLoadingMap ?
                                             <Skeleton /> :
-                                            <Card className="FixCard h-full w-full flex-1 justify-center items-center bg-gray-50">
+                                            <Card className="FixCard h-full w-full !flex  !flex-col flex-1 justify-center items-center bg-gray-50">
                                                 <Typography
                                                     variant="small" className="px-8 py-4">
                                                     {user?.Profile?.Address ? 'pas de nouveautés à proximité , essayer de modifier de rafraichir' : 'Veuillez renseigner votre adresse pour voir les services à proximité'}
                                                 </Typography>
-                                                {
-                                                    user?.Profile?.Address ?
-                                                        <NotifDiv
-                                                            notif={'impossible de charger la carte, veuillez réessayer'}
-                                                            isLoading={isLoadingMap}
-                                                            refetch={refetchMap} />
-                                                        : <Icon
-                                                            icon="add"
-                                                            fill bg
-                                                            color="orange"
-                                                            title="ajouter votre adresse"
-                                                            onClick={() => navigate('/myprofile#address')} />
+                                                {user?.Profile?.Address ?
+                                                    <NotifDiv
+                                                        notif={'impossible de charger la carte, veuillez réessayer'}
+                                                        isLoading={isLoadingMap}
+                                                        refetch={refetchMap} />
+                                                    : <Icon
+                                                        icon="add"
+                                                        fill bg
+                                                        color="orange"
+                                                        title="ajouter votre adresse"
+                                                        onClick={() => navigate('/myprofile#address')} />
                                                 }
-
                                             </Card>
                                         }</>}
                             </div>
@@ -282,7 +278,7 @@ export default function DashboardPage() {
                     </Card>
                 </div>
                 <div className={eventClasse}>
-                    <Card className="h-full flex-1 cyanBG anim">
+                    <Card className="h-full flex-1 cyanBG anim FixCard">
                         <CardBody className="h-full flex flex-col !pt-0 p-4 ">
                             <CalendarComp logo={true} />
                         </CardBody>

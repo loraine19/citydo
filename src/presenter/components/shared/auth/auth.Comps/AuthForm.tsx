@@ -52,27 +52,27 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
 
     return (
-        <form onSubmit={formik.handleSubmit} className='main'>
+        <form onSubmit={formik.handleSubmit} className='main h-full'>
             <div className='flex md:flex-row  flex-1 items-center h-full gap-8 wRespXL px-[2%] pt-8 pb-2 w-full'>
-
-                <Card className={`border-blue-gray-200 !hidden md:!flex flex-[50%] FixCardNoImage !p-8`} >
+                {/* IMAGE CARD */}
+                <Card className={`border-slate-200 !hidden md:!flex flex-[50%] FixCardNoImage !p-8`} >
                     <div className="absolute rounded-xl inset-0 bg-black/10   z-0" />
                     <img src="image/welcome.jpg"
                         alt="connexion"
                         className="absolute inset-0 object-cover object-center w-full h-full rounded-xl opacity-90 z-0" />
                     <Typography
-                        color="white"
-                        className="py-6 px-8 !leading-[1] text-[2.5rem] font-bold !text-center font-comfortaa relative z-10"
+                        className="py-6 px-8 !leading-[1] text-[2.5rem] font-bold !text-center font-comfortaa relative z-10 !text-white"
                         style={{ textShadow: "0px 1px 4px #000000" }} >
                         Connecter vous à votre Quartier
                     </Typography>
                 </Card>
+                {/* FORM CARD */}
                 <Card className="md:flex-[50%] overflow-auto min-h-38 !h-full !w-full !flex flex-1 FixCardNoImage">
                     <CardHeader
-                        className="FixCardHeaderNoImage h-max w-full px-6 py-5 !flex flex-col"
+                        className="FixCardHeaderNoImage h-max w-full px-6 py-4 !flex flex-col"
                         floated={false}>
                         <Typography
-                            variant="h5">
+                            as="h5">
                             {lead}
                         </Typography>
                         <Typography
@@ -82,9 +82,8 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                         </Typography>
                     </CardHeader>
                     <CardBody className='FixCardBody  !flex overflow-auto'>
-                        <div className='flex flex-col gap-[1.5vh] w-full px-4 pt-2'>
+                        <div className='flex flex-col gap-[1vh] w-full px-4 pt-2'>
                             <Input
-                                labelProps={{ className: "before:content-none after:content-none" }}
                                 className={`inputStandart ${formik?.errors.email ? 'error' : ''}`}
                                 placeholder={"Email"}
                                 name="email"
@@ -92,38 +91,38 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 data-cy="email-input" />
                             <InputError error={formik?.errors.email} />
                             <Input
-                                labelProps={{ className: "before:content-none after:content-none" }}
-                                className={`inputStandart ${formik?.errors.password ? 'error' : ''}`}
-                                icon={
-                                    <Icon onClick={() => toggleInputStyle(passWordInput, setPassWordInput)}
-                                        size='xl'
-                                        icon={passWordInput.icon} />
-                                }
-                                error={!!formik?.errors.password}
+                                className={`inputStandart !relative`}
+                                isError={!!formik?.errors.password}
                                 placeholder={"Mot de passe"}
                                 name="password"
                                 onChange={formik.handleChange}
                                 type={passWordInput.value}
-                                data-cy="password-input" />
+                                data-cy="password-input" >
+                                <Icon
+                                    style={'!absolute top-[50%] translate-y-[-50%] right-2'}
+                                    onClick={() => toggleInputStyle(passWordInput, setPassWordInput)}
+                                    size='lg'
+                                    icon={passWordInput.icon} />
+                            </Input>
                             <InputError error={formik?.errors.password} />
                             <div className={!confirm ? "hidden" : ""}>
-                                <Input
-                                    labelProps={{ className: "before:content-none after:content-none" }}
-                                    className={`inputStandart ${formik?.errors.passwordConfirm ? 'error' : ''}`}
-                                    icon={
-                                        <Icon onClick={() =>
-                                            toggleInputStyle(passWordInput2, setPassWordInput2)}
-                                            icon={passWordInput2.icon}
-                                            size='xl' />
-                                    }
+                                <Input className={`inputStandart`}
+                                    isError={!!formik?.errors.passwordConfirm}
                                     placeholder={"Confirmer le mot de passe"}
                                     name="passwordConfirm"
                                     type={passWordInput2.value}
                                     onChange={formik.handleChange}
-                                    data-cy="password-confirm-input" />
+                                    data-cy="password-confirm-input" >
+                                    <Icon
+                                        style={'!absolute top-[50%] translate-y-[-50%] right-2'}
+                                        onClick={() => toggleInputStyle(passWordInput2, setPassWordInput2)}
+                                        icon={passWordInput2.icon}
+                                        size='lg' />
+                                </Input>
                                 <InputError mt error={formik?.errors.passwordConfirm} />
                             </div>
                         </div>
+
                         <div className={`flex pt-8 min-h-44  px-4 ${hiddeImage()} justify-center `}>
                             <Card className={`!flex  md:!hidden !min-h-24 FixCardNoImage`} >
                                 <img
@@ -133,38 +132,34 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                             </Card>
                         </div>
                     </CardBody>
-                    <CardFooter className={`flex flex-col !py-6`}>
-                        <Typography className={`${!checkbox ? "hidden" : 'text-xs error'}`} >
-                            {typeof formik.errors.checkbox === 'string' && formik.errors.checkbox}
-                        </Typography>
-                        <div className={`${!checkbox ? "hidden" : "flex justify-center  items-center"} `}>
+                    <CardFooter className={`flex flex-col !mt-0 !pt-0 !pb-6`}>
+                        <div className={`${!checkbox ? "hidden" : "flex items-center px-6"} `}>
                             <Checkbox
                                 data-cy="terms-checkbox"
                                 type="checkbox"
                                 name="checkbox"
                                 className={formik.errors.checkbox ? "error bg-red-300/50" : ""}
                                 onChange={(e: any) => { formik.values.checkbox = e.target.checked }} />
-                            <div className=' w-full flex flex-col'>
+                            <div className='!justify-start w-full flex flex-col'>
                                 <PopUp
-                                    variant={"text"}
-                                    classNames={`${popOverClass} rounded-full !py-2`}
+                                    variant={"ghost"}
+                                    classNames={`${popOverClass} scale-95 !flex ounded-full`}
                                     text={popOverButtonText}
                                     content={popOverContent} />
                             </div>
                         </div>
-                        <div className='flex flex-col gap-4 pb-2'>
+                        <InputError error={formik?.errors.checkbox} style='pl-6 !py-2' />
+                        <div className='flex flex-col gap-3 py-2'>
                             <Button
                                 data-cy="submit-button"
                                 type="submit"
-                                color="cyan"
                                 size="md"
-                                className=" w-[90%] m-auto rounded-full">
+                                className=" w-[90%] bg-cyan-500 m-auto rounded-full">
                                 {submitText}
                             </Button>
                             <Button
                                 size="md"
-                                variant="outlined"
-                                color="gray"
+                                variant="outline"
                                 className=" !relative flex max-h-10 px-4 items-center justify-center rounded-full w-[90%] m-auto "
                                 onClick={async () => {
                                     setIsLoggedIn(true)

@@ -1,4 +1,4 @@
-import { Radio, Select, Card, CardHeader, Button, Typography, Chip, CardBody, Input, Textarea, Option } from "@material-tailwind/react";
+import { Radio, Select, Card, CardHeader, Button, Typography, CardBody, Input, Textarea } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { Label } from "../../../../../domain/entities/frontEntities";
 import SubHeader from "../../../common/SubHeader";
@@ -12,6 +12,7 @@ import { ServiceView } from "../../../../views/viewsEntities/serviceViewEntity";
 import { ServiceType } from "../../../../../domain/entities/Service";
 import GroupSelect from "../../../common/GroupSelect";
 import { InputError } from "../../../common/adaptatersComps/input";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 export function ServiceForm(props: { formik: any }) {
     const { formik } = props;
@@ -47,44 +48,54 @@ export function ServiceForm(props: { formik: any }) {
                     />
                     <div className="w-respLarge flex flex-col lg:flex-row !gap-4 pt-4">
                         <div className="flex lg:flex-[150%]  gap-4 w-full">
-                            <div className="flex  bg-white rounded-full pr-6 shadow-sm shadow-blue-gray-500/25 border h-10 gap-6">
-                                <Radio
-                                    icon={
-                                        <Icon
-                                            fill
-                                            size="lg"
-                                            color='light-blue'
-                                            icon='check_circle'
-                                        />
-                                    }
-                                    className="checked:!border-light-blue-500 checked:border-2"
-                                    labelProps={{ className: "text-sm font-normal text-blue-gray-600" }}
-                                    disabled={formik.values.statusValue > 0}
-                                    name="type"
-                                    label="Demande"
-                                    value="GET"
-                                    checked={formik.values.typeS === ServiceType.GET}
-                                    onChange={(e) => { formik.handleChange(e) }}
-                                />
-                                <Radio
-                                    icon={
-                                        <Icon
-                                            fill
-                                            size="lg"
-                                            color='light-blue'
-                                            icon='check_circle'
-                                        />
-                                    }
-                                    className="checked:!border-light-blue-500 checked:border-2"
-                                    labelProps={{ className: "text-sm font-normal text-blue-gray-600 -ml-1" }}
-                                    disabled={formik.values.statusValue > 0}
-                                    name="type"
-                                    label="Offre"
-                                    value="DO"
-                                    checked={formik.values.typeS === ServiceType.DO}
-                                    onChange={(e) => { formik.handleChange(e) }}
-                                />
-                            </div>
+                            <Radio>
+                                <div className="flex  bg-white rounded-full pr-6 shadow-sm shadow-slate-500/25 border h-10 gap-6">
+                                    <Radio.Item
+                                        icon={
+                                            <Icon
+                                                fill
+                                                size="lg"
+                                                color='sky'
+                                                icon='check_circle'
+                                            />
+                                        }
+                                        className="checked:!border-sky-500 checked:border-2"
+                                        labelProps={{ className: "text-sm font-normal text-gray-600" }}
+                                        disabled={formik.values.statusValue > 0}
+                                        name="type"
+                                        label="Demande"
+                                        value="GET"
+                                        checked={formik.values.typeS === ServiceType.GET}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { formik.handleChange(e) }}
+                                    />
+                                    <Radio.Item
+                                        id='offre-radio'
+                                        className="checked:!border-sky-500 checked:border-2"
+                                        disabled={formik.values.statusValue > 0}
+                                        name="type"
+                                        label="Offre"
+                                        value="DO"
+                                        checked={formik.values.typeS === ServiceType.DO}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { formik.handleChange(e) }}
+                                    >
+                                        <Radio.Indicator>
+                                            <Icon
+                                                fill
+                                                size="lg"
+                                                color='sky'
+                                                icon='check_circle'
+                                            />
+                                        </Radio.Indicator>
+                                        <Typography
+                                            as="label"
+                                            htmlFor="offre-radio"
+                                            className="text-sm font-normal text-gray-600 -ml-1"
+                                        >
+                                            Offre
+                                        </Typography>
+                                    </Radio.Item>
+                                </div>
+                            </Radio>
                             <Select
                                 disabled={formik.values.statusValue > 0}
                                 className="rounded-full  shadow bg-white border-none capitalize"
@@ -97,14 +108,14 @@ export function ServiceForm(props: { formik: any }) {
                                 }} >
                                 {serviceCategoriesS.map((category: Label, index: number) => {
                                     return (
-                                        <Option
+                                        <Select.Option
                                             className={category.value === '' ?
                                                 "hidden" : "rounded-full my-1 capitalize"}
                                             value={category.value}
                                             key={index}
                                         >
                                             {category.label}
-                                        </Option>
+                                        </Select.Option>
                                     )
                                 })}
                             </Select>
@@ -142,9 +153,7 @@ export function ServiceForm(props: { formik: any }) {
                         </CardHeader>
                         <CardBody className='FixCardBody '>
                             <div className='CardOverFlow h-full justify-between gap-4 pt-2'>
-                                <Input
-                                    labelProps={{ className: "before:content-none after:content-none" }}
-                                    className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
+                                <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
                                     placeholder={"Titre"}
                                     name="title"
                                     onChange={formik.handleChange}
@@ -155,14 +164,14 @@ export function ServiceForm(props: { formik: any }) {
                                     <div className='flex flex-col flex-1  '>
                                         <Textarea
                                             className={`inputStandart min-h-full ${formik.errors.description ? 'error' : ''}`}
-                                            labelProps={{ className: "before:content-none after:content-none" }}
+
                                             placeholder='Description'
                                             rows={1}
                                             resize={true}
                                             name="description"
                                             onChange={formik.handleChange}
                                             defaultValue={formik.values.description}
-                                            containerProps={{ className: "grid h-full pb-1" }}
+                                        // containerProps={{ className: "grid h-full pb-1" }}
                                         />
                                         <InputError mt error={formik.errors.description} />
                                     </div>
@@ -180,18 +189,18 @@ export function ServiceForm(props: { formik: any }) {
                                                 placeholder={"Compétence"}
                                                 name={"skill"}
                                                 value={formik.values.skill?.toString()}
-                                                containerProps={{ className: "min-w-max h-8" }}
+                                                // containerProps={{ className: "min-w-max h-8" }}
                                                 onChange={(e: any) => {
                                                     formik.setFieldValue('skill', e);
                                                 }} >
                                                 {skillLevels.map(
                                                     (skill: Label, index: number) => {
                                                         return (
-                                                            <Option
+                                                            <Select.Option
                                                                 value={skill.value}
                                                                 key={index}>
                                                                 {skill.label}
-                                                            </Option>
+                                                            </Select.Option>
                                                         )
                                                     }
                                                 )}
@@ -207,7 +216,7 @@ export function ServiceForm(props: { formik: any }) {
                                                 labelProps={{
                                                     className: "before:border-none after:border-none border-none"
                                                 }}
-                                                containerProps={{ className: "min-w-max h-8" }}
+                                                // containerProps={{ className: "min-w-max h-8" }}
                                                 onChange={(e: any) => {
                                                     formik.setFieldValue('hard', e);
 
@@ -217,11 +226,11 @@ export function ServiceForm(props: { formik: any }) {
                                                 {hardLevels.map(
                                                     (hard: Label, index: number) => {
                                                         return (
-                                                            <Option
+                                                            <Select.Option
                                                                 value={hard.value}
                                                                 key={index}>
                                                                 {hard.label}
-                                                            </Option>
+                                                            </Select.Option>
                                                         )
                                                     }
                                                 )}
@@ -255,7 +264,7 @@ export function ServiceForm(props: { formik: any }) {
                     size='lg'
                     type="submit"
                     disabled={formik.values.statusValue > 0}
-                    className="lgBtn bg-light-blue-500">
+                    className="lgBtn bg-sky-500">
                     <Icon
                         disabled
                         size='lg'

@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -44,7 +43,7 @@
     @apply flex flex-col h-screen w-screen;
 }
 body {
-    @apply h-screen w-screen  flex flex-col;
+    @apply h-screen w-screen  flex flex-col text-slate-600;
 }
 
 .App {
@@ -89,6 +88,16 @@ header {
     @apply flex flex-col gap-0 relative;
 }
 
+h5 {
+    @apply text-xl !font-semibold !text-slate-700;
+}
+
+h6 {
+    @apply text-lg !font-semibold text-slate-600;
+}
+
+/* RESPONSIVE */
+
 .wRespXL {
     @apply w-full my-0 mx-auto max-w-[1000px];
 }
@@ -101,8 +110,9 @@ header {
     @apply flex gap-y-2 gap-x-4 w-respLarge justify-around  pt-1 !px-0 pb-3 h-max;
 }
 
+/**** INPUT STYLES ****/
 .inputStandart {
-    @apply !rounded-none border-b border-gray-400 ring-0 focus:!border-b-gray-800 dark:border-gray-600 dark:hover:border-gray-50 dark:focus:border-gray-50 !border-t-0 !border-x-0 hover:!border-t-0 placeholder:!opacity-90 placeholder:!text-blue-gray-600 !pl-0  focus:placeholder:!opacity-50 before:content-none after:content-none gap-4;
+    @apply !rounded-none border-b border-gray-400 ring-0 focus:!border-b-gray-800 dark:border-gray-600 dark:hover:border-gray-50 dark:focus:border-gray-50 !border-t-0 !border-x-0 hover:!border-t-0 placeholder:!opacity-90 placeholder:!text-slate-600 !pl-0  focus:placeholder:!opacity-50 before:content-none after:content-none gap-4;
 }
 
 .inputStandart span {
@@ -113,26 +123,21 @@ header {
     @apply right-0;
 }
 
-/*** COLORS ***/
+/**** COLORS ****/
 .cyanBG {
     background-image: linear-gradient(#f9fafb00, #a5f3fc);
 }
 
-.skyBG,
-.light-blueBG {
+.skyBG {
     background-image: linear-gradient(#f9fafb00, #bae6fd);
 }
 
-.blue-grayBG {
+.slateBG {
     background-image: linear-gradient(#f9fafb00, #90a1b9);
 }
 
 .roseBG {
     background-image: linear-gradient(#f9fafb00, #fecdd3);
-}
-
-.text-rose-500 {
-    color: #f43f5e;
 }
 
 .gray100 {
@@ -143,7 +148,7 @@ header {
     background-image: linear-gradient(#f9fafb00, #ffedd5);
 }
 
-/*** ANIMATIONS ***/
+/**** ANIMATIONS ****/
 
 .anim {
     @apply duration-700 fadeIn;
@@ -155,7 +160,6 @@ header {
     animation: down 1.5s forwards;
 }
 
-/* Animates slide-in for the first child, slide-out for the last child */
 .animSlide {
     @apply duration-700 fadeIn;
     animation: slide 1.2s forwards;
@@ -224,6 +228,7 @@ header {
     }
 }
 
+/**** GRID SYSTEM ****/
 .Grid {
     @apply max-h-full wRespXL grid grid-cols-[minmax(calc(50%-1rem),_1fr)] pt-1 pb-4 gap-y-3.5 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)] 
   lg:auto-rows-[minmax(300px,40vh)] auto-rows-[minmax(346px,40vh)];
@@ -243,6 +248,8 @@ header {
     @apply pt-6 max-w-[calc(100vw-1rem)] mx-2;
 }
 
+/**** RESPONSIVE ****/
+
 .w-resp {
     @apply w-full my-0 mx-auto max-w-[36rem];
 }
@@ -251,20 +258,19 @@ header {
     @apply w-full my-0 mx-auto lg:max-w-[54rem] md:max-w-[calc(100vw-2rem)];
 }
 
-/*** CARD ***/
+/**** CARD ****/
 
 .FixCard {
-    @apply border w-respLarge rounded-xl w-full my-0 mx-auto h-full flex flex-col relative !p-0 anim;
+    @apply border !bg-white w-respLarge rounded-xl w-full mx-auto h-full !flex flex-col !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md;
 }
 
 .FixCardNoImage {
-    @apply w-full border grid rounded-xl my-0 mx-auto !h-[calc(100%+1.5rem)] !-mt-6 !p-0 anim
-  grid-rows-[auto,1fr,auto];
+    @apply !bg-white w-full  grid rounded-xl my-0 mx-auto !h-[calc(100%+1.5rem)] !-mt-6 !p-0 anim
+  grid-rows-[auto,1fr,auto] !flex-col border border-slate-200 shadow-md;
 }
 
 .FixCardHeader {
-    @apply flex flex-1 z-50 !shadow-md fadeIn border !max-h-[40vw] sm:!max-h-[55vw] md:!max-h-[45%] 
-  /*!min-h-[10rem] */;
+    @apply !rounded-xl !relative !z-[999] -mt-6 flex flex-1 !shadow-md fadeIn border !max-h-[40vw] sm:!max-h-[55vw] md:!max-h-[45%];
 }
 
 .FixCardHeaderSmall {
@@ -276,7 +282,7 @@ header {
 }
 
 .ChipDiv {
-    @apply flex w-full gap-2 justify-between overflow-auto absolute p-2 h-max;
+    @apply flex w-full gap-2  justify-between overflow-auto absolute p-2 h-max;
 }
 
 .ChipDivNoImage {
@@ -300,25 +306,18 @@ header {
 }
 
 .CardImage {
-    @apply h-full w-full object-cover !shadow-lg !bg-white max-h-12 lg:!max-h-[vw] min-h-full;
+    @apply h-full w-full !rounded-xl object-cover !shadow-lg !bg-white max-h-12 lg:!max-h-[vw] min-h-full;
 }
 
 .DetailCardDiv {
     @apply lg:pt-8 pt-6 pb-1 h-full flex;
 }
 
-/* ICON */
+/**** ICON ****/
 .icon {
     font-variation-settings: "FILL" 0, "GRAD" 0, "opsz" 96;
     font-variation-settings: "wght" 400 !important;
     font-family: "icon", sans-serif;
-}
-
-.BgUser {
-    background-image: url("public/image/person.svg");
-    background-size: cover;
-    background-position: center;
-    background-color: #a5f3fc;
 }
 
 .icon .thin {
@@ -331,12 +330,12 @@ nav .icon {
 }
 
 nav li .icon {
-    @apply text-blue-gray-500 !-mb-0.5;
+    @apply text-gray-500 !-mb-0.5;
 }
 
 .active .icon {
     font-variation-settings: "FILL" 1 !important;
-    @apply text-blue-gray-700 !decoration-4 text-[31px];
+    @apply text-gray-700 !decoration-4 text-[31px];
 }
 
 .active .UOrange {
@@ -363,7 +362,7 @@ nav li .icon {
     font-variation-settings: "FILL" 0, "wght" 300, "opsz" 48, "GRAD" 200 !important;
 }
 
-/* CHIP LIGHT COLOR */
+/**** CHIP LIGHT COLOR ****/
 .Chip {
     @apply min-w-[calc(max-0.1rem)] px-3 pb-1 rounded-2xl shadow-sm
    max-w-max;
@@ -403,21 +402,21 @@ nav li .icon {
 }
 
 /*BUTTONS*/
+
 button:disabled {
     opacity: 90% !important;
 }
 
 button {
     text-transform: none !important;
-    @apply whitespace-nowrap font-bold;
+    @apply whitespace-nowrap font-bold !border-opacity-10 focus:!bg-opacity-25;
 }
 
 .lgBtn {
-    @apply !flex min-h-max min-w-max items-center justify-center rounded-full w-full !shadow-md px-4 py-1.5 lg:py-2 gap-2 !break-words;
+    @apply !flex min-h-max min-w-max items-center justify-center rounded-full !w-full !shadow-md px-4 py-1.5 lg:py-2 gap-2 !break-words;
 }
 
-/* COMP */
-
+/**** COMP ****/
 .BgUser {
     background-image: url("image/person.svg");
     background-size: cover;
@@ -426,7 +425,7 @@ button {
 }
 
 .welcome {
-    background-image: url("public/image/welcome.jpg");
+    background-image: url("/image/welcome.jpg");
     background-size: cover;
     background-position: center;
     background-color: #7a9db310 !important;
@@ -443,21 +442,7 @@ button {
 }
 
 .FixedCenter {
-    position: fixed;
-    top: 10% !important;
-    left: 50% !important;
-    padding: 5rem 1rem !important;
-    transform: translateX(-50%) !important;
-    height: calc(100vh - 20%) !important;
-    max-width: 900px !important;
-    width: calc(100vw - 1rem) !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    z-index: 1000 !important;
-    border: none !important;
-    box-shadow: none !important;
-    background: none !important;
+    @apply !static top-[20vh] max-h-screen bottom-[10vw] right-[10vw] w-[80vw] h-[calc(80vh-4rem)] p-8 bg-red-500 m-auto;
 }
 
 .leaflet-control-attribution.leaflet-control {
@@ -486,10 +471,10 @@ button span {
 }
 
 .shadowMid {
-    @apply shadow-[0_2px_8px_0.5px] !shadow-blue-gray-600/40;
+    @apply shadow-[0_2px_8px_0.5px] !shadow-slate-600/40;
 }
 
-/* ICON ROUND */
+/**** ICON ROUND ****/
 .iconSm {
     @apply flex items-center justify-center rounded-full;
     font-size: 14px;
@@ -537,4 +522,41 @@ button span {
     font-size: 42px;
     width: 58px;
     height: 56px;
+}
+
+/**** COMBINED STYLES ****/
+
+.cyanStyle {
+    @apply text-cyan-500 border-cyan-400;
+    background-color: #a9f1f9;
+}
+.orangeStyle {
+    @apply text-orange-500 bg-orange-200 border-orange-400;
+}
+.redStyle {
+    @apply text-red-500 bg-red-200 border-red-400;
+}
+.skyStyle {
+    @apply text-sky-500 bg-sky-200 border-sky-400;
+}
+.greenStyle {
+    @apply text-green-500 bg-green-200 border-green-400;
+}
+.grayStyle {
+    @apply text-gray-500 bg-gray-200 border-gray-400;
+}
+.slateStyle {
+    @apply text-slate-500 bg-slate-200 border-slate-400;
+}
+.tealStyle {
+    @apply text-teal-500 bg-teal-200 border-teal-400;
+}
+.amberStyle {
+    @apply text-amber-500 bg-amber-200 border-amber-400;
+}
+.roseStyle {
+    @apply text-rose-500 bg-rose-200 border-rose-400;
+}
+.yellowStyle {
+    @apply text-yellow-500 bg-yellow-200 border-yellow-400;
 }

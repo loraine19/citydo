@@ -1,4 +1,4 @@
-import { Card, CardBody, CardFooter, Typography, Chip, CardHeader } from "@material-tailwind/react";
+import { Card, CardBody, CardFooter, Typography, CardHeader } from "@material-tailwind/react";
 import { Icon } from "../../../common/IconComp";
 import { useNavigate } from "react-router-dom";
 import ModifBtnStack from "../../../common/ModifBtnStack";
@@ -6,6 +6,7 @@ import { FlagView } from "../../../../views/viewsEntities/flagViewEntities";
 import { FlagTarget } from "../../../../../domain/entities/Flag";
 import DI from "../../../../../di/ioc";
 import { Action } from "../../../../../domain/entities/frontEntities";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 export function FlagCard(props: { flag: FlagView, update: () => void }) {
     const { targetId, createdAt, target, targetS, element, reasonS } = props.flag
@@ -57,7 +58,6 @@ export function FlagCard(props: { flag: FlagView, update: () => void }) {
             </CardHeader>
             <CardBody className="FixCardBody max-h-max !py-2">
                 <Typography
-                    color="gray"
                     className="font-normal truncate ">
                     {element?.title}
                 </Typography>

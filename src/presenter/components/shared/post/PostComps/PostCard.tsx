@@ -1,4 +1,4 @@
-import { Card, CardHeader, Typography, CardBody, CardFooter, Chip } from "@material-tailwind/react";
+import { Card, CardHeader, Typography, CardBody, CardFooter } from "@material-tailwind/react";
 import ModifBtnStack from "../../../common/ModifBtnStack";
 import { Icon } from "../../../common/IconComp";
 import { Action } from "../../../../../domain/entities/frontEntities";
@@ -9,6 +9,7 @@ import { PostView } from "../../../../views/viewsEntities/postViewEntities";
 import { useState } from "react";
 import { Title } from "../../../common/CardTitle";
 import { ProfileDiv } from "../../../common/ProfilDiv";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 type PostCardProps = { post: PostView, mines?: boolean, change: (e: any) => void, update?: () => void, short?: boolean }
 
@@ -52,9 +53,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                     group={Group}
                 />
                 <div className="flex flex-col h-full ">
-                    <Typography
-                        className={`${short ? '!line-clamp-1' : '!line-clamp-2'} leading-[1.3rem] overflow-x-auto`}
-                        color="blue-gray">
+                    <Typography className={`${short ? '!line-clamp-1' : '!line-clamp-2'} leading-[1.3rem] overflow-x-auto`}>
                         {description}
                     </Typography>
                 </div>
@@ -73,7 +72,8 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                         onClick={async () => { setPost(await toogleLike()) }}
                         className={mines ? `hidden md:flex` : `flex`}>
                         <Chip
-                            size="md" value={`${Likes?.length}`}
+                            size="md"
+                            value={`${Likes?.length}`}
                             variant="ghost"
                             className="  rounded-full h-full GrayChip flex items-center"
                             icon={<Icon

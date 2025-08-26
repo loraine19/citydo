@@ -1,4 +1,4 @@
-import { Select, Option } from "@material-tailwind/react"
+import { Select } from "@material-tailwind/react"
 import { User } from "../../../domain/entities/User"
 
 
@@ -27,16 +27,16 @@ export default function GroupSelect({ formik, user, setGroupId, groupId, disable
             }} >
 
             {user?.GroupUser?.length > 0 ? user?.GroupUser?.map((group: any, index: number) =>
-                <Option
+                <Select.Option
                     className="rounded-full"
                     value={group.Group.id.toString()}
                     key={index}>
                     {group.Group.name}
-                </Option>)
-                : <Option
+                </Select.Option>)
+                : <Select.Option
                     className="rounded-full"
                     value={'0'}>
-                    Aucun groupe</Option>
+                    Aucun groupe </Select.Option>
             }
         </Select>
 

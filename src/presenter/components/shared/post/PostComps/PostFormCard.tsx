@@ -1,4 +1,4 @@
-import { Select, Card, CardHeader, Button, CardBody, Input, Textarea, Checkbox, Option } from "@material-tailwind/react";
+import { Select, Card, CardHeader, Button, CardBody, Input, Textarea, Checkbox } from "@material-tailwind/react";
 import { useState } from "react";
 import { Label } from "../../../../../domain/entities/frontEntities"
 import SubHeader from "../../../common/SubHeader";
@@ -42,13 +42,13 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                             value={formik.values.category || ""}
                             onChange={(val: any) => { formik.setFieldValue('category', val) }} >
                             {postCategories.map((category: Label, index: number) => (
-                                <Option
+                                <Select.Option
                                     className="rounded-full my-1 capitalize"
                                     value={category.value}
                                     key={index}
                                 >
                                     {category.label}
-                                </Option>
+                                </Select.Option>
                             ))}
                         </Select>
                         <GroupSelect
@@ -89,9 +89,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                         </CardHeader>
                         <CardBody className="FixCardBody">
                             <div className="CardOverFlow  justify-between gap-4">
-                                <Input
-                                    labelProps={{ className: "before:content-none after:content-none" }}
-                                    className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
+                                <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
                                     placeholder={"Titre"}
                                     name="title"
                                     onChange={formik.handleChange}
@@ -102,14 +100,13 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                     <div className='flex flex-col flex-1  '>
                                         <Textarea
                                             className={`inputStandart min-h-full ${formik.errors.description ? 'error' : ''}`}
-                                            labelProps={{ className: "before:content-none after:content-none" }}
                                             placeholder='Description'
                                             rows={2}
                                             resize={true}
                                             name="description"
                                             onChange={formik.handleChange}
                                             defaultValue={formik.values.description}
-                                            containerProps={{ className: "grid h-full pb-1" }}
+                                        //  // containerProps={{ className: "grid h-full pb-1" }}
                                         />
                                         <InputError mt error={formik.errors.description} />
                                     </div>
@@ -121,7 +118,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                             type="checkbox"
                                             name="shareA"
                                             value="PHONE"
-                                            label="telephone"
+                                            //  label="telephone"
                                             onChange={formik.handleChange}
                                             checked={checkShare("phone")}
                                         />
@@ -130,7 +127,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                             type="checkbox"
                                             name="shareA"
                                             value="EMAIL"
-                                            label="email"
+                                            // label="email"
                                             onChange={formik.handleChange}
                                             checked={checkShare("email")}
                                         />

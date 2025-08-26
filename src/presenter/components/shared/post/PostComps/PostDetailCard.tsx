@@ -1,4 +1,4 @@
-import { Card, CardHeader, Typography, CardBody, CardFooter, Chip } from "@material-tailwind/react";
+import { Card, CardHeader, Typography, CardBody, CardFooter } from "@material-tailwind/react";
 import { Icon } from "../../../common/IconComp";
 import { useState, } from "react";
 import { Flag } from "../../../../../domain/entities/Flag";
@@ -9,6 +9,7 @@ import { PostView } from "../../../../views/viewsEntities/postViewEntities";
 import { Title } from "../../../common/CardTitle";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { User } from "../../../../../domain/entities/User";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 export default function PostDetailCard(props: { post: PostView, mines?: boolean, change: (e: any) => void }) {
     const [post, setPost] = useState<PostView>(props.post)
@@ -41,7 +42,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                             onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
                             src={image as any}
                             alt={title}
-                            className="h-full w-full object-cover" />}
+                            className="CardImage" />}
                 </CardHeader>
                 <CardBody className="FixCardBody">
                     <Title
@@ -53,7 +54,6 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                     />
                     <div className="CardOverFlow">
                         <Typography
-                            color="blue-gray"
                             className="mb-2">
                             {description}
                         </Typography>

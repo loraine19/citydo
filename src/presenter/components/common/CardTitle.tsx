@@ -27,7 +27,7 @@ export function Title(props: { title: string, flagged?: boolean, id?: number, Cr
                 <div className="flex items-center gap-4 !max-w-[calc(100%-1.5rem)] w-full">
                     <Typography
                         id={title}
-                        variant="h6"
+                        as="h6"
                         className="w-full flex !line-clamp-1 leading-[1] pt-1"
                         title={title}>
                         {title}

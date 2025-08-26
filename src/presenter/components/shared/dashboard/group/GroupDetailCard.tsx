@@ -1,4 +1,4 @@
-import { Card, CardHeader, Chip, CardBody, Typography, CardFooter } from "@material-tailwind/react"
+import { Card, CardHeader, CardBody, Typography, CardFooter } from "@material-tailwind/react"
 import { useState } from "react"
 import { DateChip } from "../../../common/ChipDate"
 import { Title } from "../../../common/CardTitle"
@@ -9,6 +9,7 @@ import ModifBtnStack from "../../../common/ModifBtnStack"
 import { Action, Label } from "../../../../../domain/entities/frontEntities"
 import { useAlertStore } from "../../../../../application/stores/alert.store"
 import { AlertValues } from "../../../../../domain/entities/Error"
+import Chip from "../../../common/adaptatersComps/Chip"
 
 type groupDetailCardProps = {
     group: GroupView,

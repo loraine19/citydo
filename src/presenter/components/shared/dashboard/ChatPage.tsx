@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Card, Typography, CardBody, List, ListItem, ListItemPrefix } from '@material-tailwind/react';
+import { Card, Typography, CardBody, List } from '@material-tailwind/react';
 import SubHeader from '../../common/SubHeader';
 import { Skeleton } from '../../common/Skeleton';
 import DI from '../../../../di/ioc';
@@ -163,7 +163,7 @@ export default function ChatPage() {
                                             {conversations &&
                                                 conversations.map((message: MessageView, index: number) =>
                                                     <div key={index + 'div'}>
-                                                        <ListItem
+                                                        <List.Item
                                                             className={`p-1 ${(userIdRec === message?.isWith.id) ? '!bg-gray-200 border-white border-8 shadow-md -ml-2' : ''}`}
                                                             key={index}
                                                             onClick={() => {
@@ -173,7 +173,7 @@ export default function ChatPage() {
                                                                 setUserIdRec(userRec.id)
                                                                 setParams({ with: userRec.id.toString() })
                                                             }} >
-                                                            <ListItemPrefix className='relative flex min-w-max'>
+                                                            <List.ItemStart className='relative flex min-w-max'>
                                                                 <AvatarUser
                                                                     avatarSize='md'
                                                                     Profile={message?.isWith?.Profile}
@@ -184,31 +184,30 @@ export default function ChatPage() {
                                                                 border-4  p-1.5 border-white'>
                                                                     </span>
                                                                 }
-                                                            </ListItemPrefix>
+                                                            </List.ItemStart>
                                                             <div className="font-normal w-full flex flex-col">
                                                                 <div className='flex justify-between items-center flex-1 w-full'>
-                                                                    <Typography variant="h6" color="blue-gray">
+                                                                    <Typography as="h6" >
                                                                         {message.isWith?.Profile?.firstName}
                                                                     </Typography>
                                                                     <span
-                                                                        className='px-4 !text-xs text-blue-gray-300'>
+                                                                        className='px-4 !text-xs text-gray-300'>
                                                                         {message.formatedDate}
                                                                     </span>
                                                                 </div>
                                                                 <Typography
                                                                     variant="small"
-                                                                    color="blue-gray"
                                                                     className="font-normal !line-clamp-1">
                                                                     {message.IWrite &&
-                                                                        <span className='text-blue-gray-500'>
+                                                                        <span className='text-gray-500'>
                                                                             {message.read && '🗸'}
                                                                             {' vous : '}
                                                                         </span>}
                                                                     {message?.message ?? '...'}
                                                                 </Typography>
                                                             </div>
-                                                        </ListItem>
-                                                        <hr className='h-[0px] mx-3 bg-blue-gray-900'></hr>
+                                                        </List.Item>
+                                                        <hr className='h-[0px] mx-3 bg-slate-900'></hr>
                                                     </div>
                                                 )}
                                         </List>
@@ -231,7 +230,7 @@ export default function ChatPage() {
                                             />
                                             <Icon
                                                 style='absolute -top-5 !right-1'
-                                                color='blue-gray'
+                                                color='slate'
                                                 size='md'
                                                 bg clear
                                                 icon='close'

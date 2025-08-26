@@ -2,12 +2,13 @@ import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-le
 import { useState, useEffect } from 'react';
 import 'leaflet/dist/leaflet.css';
 import L, { CircleOptions } from 'leaflet';
-import { Popover, PopoverHandler, PopoverContent, Chip, Typography } from '@material-tailwind/react';
+import { Popover, PopoverTrigger, PopoverContent, Typography } from '@material-tailwind/react';
 import { Icon } from '../IconComp';
 import { Address } from '../../../../domain/entities/Address';
 import { AddressDTO } from '../../../../infrastructure/DTOs/AddressDTO';
 import { NotifView } from '../../../views/viewsEntities/notifViewEntity';
 import { ElementNotif } from '../../../../domain/entities/Notif';
+import Chip from '../adaptatersComps/Chip';
 
 
 function ZoomControls() {
@@ -20,7 +21,7 @@ function ZoomControls() {
             <Icon
                 style='!border-opacity-50 !shadow-md'
                 bg
-                color='blue-gray'
+                color='slate'
                 title='Zoomer'
                 onClick={handleZoomIn}
                 icon="add_circle"
@@ -29,7 +30,7 @@ function ZoomControls() {
             <Icon
                 style='!border-opacity-50 !shadow-md'
                 bg
-                color='blue-gray'
+                color='slate'
                 title='Dézoomer'
                 onClick={handleZoomOut}
                 icon="do_not_disturb_on"
@@ -86,7 +87,6 @@ const MarkerList = ({ notifsMap }: { notifsMap: NotifView[] }) => {
                         <div className='flex flex-1 justify-between items-center  w-full'>
                             <Typography
                                 variant='h6'
-                                color='gray'
                                 className=''>
                                 {notif.title}
                             </Typography>
@@ -98,7 +98,6 @@ const MarkerList = ({ notifsMap }: { notifsMap: NotifView[] }) => {
                         <div className='flex max-h-16 justify-between items-center w-full'>
                             <Typography
                                 variant="small"
-                                color='gray'
                                 className='font-normal truncate !p-0 !my-0'>
                                 {notif.description}
                             </Typography>
@@ -186,8 +185,8 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
 
     return (
         <Popover open={open} >
-            <PopoverHandler>
-                <div className='border border-blue-gray-100 relative flex flex-1 min-h-[8.5rem] lg:min-h-[6rem] !h-[100%] !rounded-[0.8rem]  shadow-md mb-2 lg:mb-0'>
+            <PopoverTrigger className='!w-full !h-full '>
+                <div className='!relative border border-slate-300 !flex flex-1 !h-[100%] !rounded-[0.8rem] shadow-md mb-2 lg:mb-0'>
                     <ExpandButton />
                     <MapContainer
                         center={position}
@@ -195,7 +194,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
                         zoomControl={false}
                         attributionControl={false}
                         scrollWheelZoom={false}
-                        className='!z-10 flex flex-1 min-h-20 !rounded-xl ' >
+                        className='!z-10 flex flex-1 !rounded-xl ' >
                         <TileLayer url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}" />
                         <ZoomControls />
                         {notifs && <MarkerList notifsMap={notifs} />}
@@ -229,7 +228,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
                         {!fly && <FlyButton />}
                     </MapContainer>
                 </div>
-            </PopoverHandler >
+            </PopoverTrigger >
             <PopoverContent>
                 <div className='Map flex flex-col FixedCenter'>
                     <MapContainer

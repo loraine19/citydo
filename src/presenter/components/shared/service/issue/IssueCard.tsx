@@ -1,4 +1,4 @@
-import { Card, CardHeader, Typography, CardBody, CardFooter, Chip } from "@material-tailwind/react";
+import { Card, CardHeader, Typography, CardBody, CardFooter } from "@material-tailwind/react";
 import { ServiceType, } from "../../../../../domain/entities/Service";
 import ModifBtnStack from "../../../common/ModifBtnStack";
 import { DateChip } from "../../../common/ChipDate";
@@ -14,6 +14,7 @@ import React from 'react';
 import { IssueStep } from '../../../../../domain/entities/Issue';
 import { User } from "../../../../../domain/entities/User";
 import { GroupLink } from "../../../common/GroupLink";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 type IssueCardProps = { issue: IssueView, mines?: boolean, change: (e: any) => void, update?: () => void }
 const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) => {
@@ -86,7 +87,7 @@ const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) =
                     <div className="relative flex items-center justify-between">
                         <div className="flex flex-col md:gap-4 lg:gap-0 justify-between w-full mr-8">
                             <Typography
-                                variant="h6">
+                                as="h6">
                                 Probleme :
                             </Typography>
                             <GroupLink group={Service.Group} />
@@ -99,10 +100,7 @@ const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) =
                             style="absolute -top-2 -right-3"
                             fill />
                     </div>
-
-                    <Typography
-                        className="leading-[1rem] pt-1 text-[0.9rem] !line-clamp-2 md:!line-clamp-6 lg:!line-clamp-2  pr-6"
-                        color="blue-gray">
+                    <Typography className="leading-[1rem] pt-1 text-[0.9rem] !line-clamp-2 md:!line-clamp-6 lg:!line-clamp-2  pr-6">
                         {description}
                     </Typography>
                 </CardBody>

@@ -115,11 +115,15 @@ export const AddressInputOpen = (props: {
                 onChange={(event) => {
                     if (event.target.value.trim() !== '' || event.target.value === '') { handleInputChange(event) }
                 }}
-                icon={inputValue && (<button onClick={() => { setInputValue('') }}> &#x2715;</button>)}
-            />
+            >
+                <Input.Icon placement='end'>
+                    {inputValue && (<button onClick={() => { setInputValue('') }}> &#x2715;</button>)}
+                </Input.Icon>
+            </Input>
             <InputError error={error ? Object.values(error).join(', ') : ""} mt />
             {inputValue.length > 1 && inputLoading && (
-                <div className='z-50 absolute px-0.5 w-full' ref={(el) => el && el.scrollIntoView({ behavior: 'smooth', block: 'end' })}>
+                <div className='z-50 absolute px-0.5 w-full'
+                    ref={(el) => { if (el) el.scrollIntoView({ behavior: 'smooth', block: 'end' }); }}>
                     <List className='bg-white rounded-xl border border-gray-300 overflow-auto w-full shadow-lg max-h-[7.5rem] '>
                         {suggestions.length > 0 ? (
                             suggestions.map((suggestion, index) => (

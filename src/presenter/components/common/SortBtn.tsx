@@ -1,4 +1,4 @@
-import { Menu, MenuHandler, MenuList } from "@material-tailwind/react";
+import { Menu, MenuTrigger, MenuContent } from "@material-tailwind/react";
 import { Icon } from "./IconComp";
 import { SortLabel } from "../../../domain/entities/frontEntities"
 import { useUxStore } from "../../../application/stores/ux.store";
@@ -20,16 +20,16 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
             <div className="flex items-center w-full h-full  gap-2">
                 <Menu
                     placement="bottom-end">
-                    <MenuHandler className="relative z-auto h-max min-w-max flex items-center  cursor-pointer">
+                    <MenuTrigger className="relative z-auto h-max min-w-max flex items-center  cursor-pointer">
                         <div className="flex items-center relative">
                             <Icon
-                                color={color ?? 'blue-gray'}
+                                color={color ?? 'slate'}
                                 icon="sort"
                                 size="lg"
                             />
                         </div>
-                    </MenuHandler>
-                    <MenuList className="backdropBlur overflow-hidden bg-transparent m-auto !border-none shadow-none  flex rounded-2xl justify-end h-[calc(100%-110px)] wRespXL ">
+                    </MenuTrigger>
+                    <MenuContent className="backdropBlur overflow-hidden bg-transparent m-auto !border-none shadow-none  flex rounded-2xl justify-end h-[calc(100%-110px)] wRespXL ">
                         <div className="p-4 h-max bg-white shadow-lg rounded-2xl border relative right-0 flex flex-col justify-start">
                             {sortList.map((item: SortLabel, index: number) =>
                                 <div
@@ -64,7 +64,7 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
                                 </div>
                             )}
                         </div>
-                    </MenuList>
+                    </MenuContent>
                 </Menu>
             </div>
         </div >

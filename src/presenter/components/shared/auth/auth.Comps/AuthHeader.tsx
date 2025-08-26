@@ -10,7 +10,6 @@ export function AuthHeader() {
                 alt="logo" />
             <Typography
                 variant="h1"
-                color="blue-gray"
                 className="font-comfortaa  text-[3rem] font-bold">
                 City'Do
             </Typography>

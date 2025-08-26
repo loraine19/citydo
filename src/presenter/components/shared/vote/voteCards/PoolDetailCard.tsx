@@ -1,4 +1,4 @@
-import { Card, CardHeader, Typography, CardBody, CardFooter, Chip, } from "@material-tailwind/react";
+import { Card, CardHeader, Typography, CardBody, CardFooter, } from "@material-tailwind/react";
 import { Icon } from "../../../common/IconComp";
 import { dayMS } from "../../../../views/viewsEntities/utilsService";
 import { DateChip } from "../../../common/ChipDate";
@@ -8,6 +8,7 @@ import { Title } from "../../../common/CardTitle";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { User } from "../../../../../domain/entities/User";
 import { PoolSurveyStatus } from "../../../../../domain/entities/PoolSurvey";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 type PoolDetailCardProps = { pool: PoolSurveyView, setOpen: (open: boolean) => void }
 
@@ -20,7 +21,7 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
             case 'OK': return 'green';
             case 'NO': return 'red';
             case 'WO': return 'orange';
-            default: return 'blue-gray';
+            default: return 'slate';
         }
     }
     return (
@@ -49,8 +50,7 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
                         group={pool?.Group}
                     />
                     <div className="CardOverFlow flex h-full justify-between !pb-8">
-                        <Typography
-                            color="blue-gray">
+                        <Typography>
                             {pool?.description}
                         </Typography>
                         <ProfileDiv

@@ -55,37 +55,35 @@ export default function ResetPasswordPage() {
                     <section className='flex flex-col py-6  '>
                         <Card className='FixCardNoImage flex py-8 w-respLarge'>
                             <CardHeader className="FixCardHeaderNoImage flex-col !my-0 p-8 " floated={false}>
-                                <Typography variant="h5" color="blue-gray" className="mb-2">
+                                <Typography as="h5" className="mb-2">
                                     Reinitialisation du mot de passe
                                 </Typography>
-                                <Typography color="gray">
+                                <Typography >
                                     {notif}
                                 </Typography>
                             </CardHeader>
                             <CardBody className='FixCardBody gap-8 !px-10 py-2 mb-4'>
-                                <Input
-                                    labelProps={{ className: "before:content-none after:content-none" }}
-                                    className={`inputStandart ${formik.errors.email ? 'error' : ''}`}
+                                <Input className={`inputStandart ${formik.errors.email ? 'error' : ''}`}
                                     placeholder={'email'}
                                     name="email"
                                     value={email as string}
                                     disabled={true} />
                                 <InputError error={formik.errors.email} />
-                                <Input
-                                    labelProps={{ className: "before:content-none after:content-none" }}
-                                    className={`inputStandart ${formik.errors.password ? 'error' : ''}`}
+                                <Input className={`inputStandart`}
+                                    isError={!!formik.errors.password}
                                     placeholder={"Mot de passe"}
                                     type={passWordInput.value}
-                                    icon={
+                                    name="password"
+                                    onChange={formik.handleChange} >
+                                    <Input.Icon placement="end">
                                         <Icon
                                             onClick={() => {
                                                 passWordInput.value === 'password' ? setPassWordInput(textType) : setPassWordInput(passwordType)
                                             }}
                                             icon={passWordInput.icon}
                                             style='!-mt-4 -ml-4' />
-                                    }
-                                    name="password"
-                                    onChange={formik.handleChange} />
+                                    </Input.Icon>
+                                </Input>
                                 <InputError error={formik.errors.password} />
                             </CardBody>
                             <CardFooter className='FixCardFooter'>

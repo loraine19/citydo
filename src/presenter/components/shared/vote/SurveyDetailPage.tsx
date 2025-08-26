@@ -59,8 +59,7 @@ export default function SurveyDetailPage() {
                         <Button
                             disabled={survey?.status !== PoolSurveyStatus.PENDING}
                             size='lg'
-                            color={pageColor}
-                            className='lgBtn w-respLarge min-h-max'
+                            className={`bg-${pageColor} lgBtn w-respLarge min-h-max`}
                             onClick={() => setOpenVote(true)} >
                             <Icon
                                 size='lg'

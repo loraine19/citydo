@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardBody, CardFooter, Typography, Chip, } from "@material-tailwind/react";
+import { Card, CardHeader, CardBody, CardFooter, Typography, } from "@material-tailwind/react";
 import { AvatarStack } from "./AvatarStack";
 import AddressMapOpen from "../../../common/mapComps/AddressMapOpen";
 import { Icon } from "../../../common/IconComp";
@@ -9,6 +9,7 @@ import { EventView } from "../../../../views/viewsEntities/eventViewEntities";
 import { Title } from "../../../common/CardTitle";
 import { ProgressBarBlur } from "../../../common/ProgressBar";
 import { ProfileDiv } from "../../../common/ProfilDiv";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 type EventCardProps = {
     EventLoad: EventView,

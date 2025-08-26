@@ -1,4 +1,4 @@
-import { Popover, Typography, PopoverContent, PopoverHandler } from "@material-tailwind/react";
+import { Popover, Typography, PopoverContent, PopoverTrigger } from "@material-tailwind/react";
 import { Participant } from "../../../../../domain/entities/Participant";
 import { Icon } from "../../../common/IconComp";
 import { OnlineDot } from "../../../common/onlineDot";
@@ -12,14 +12,14 @@ export function AvatarStack(props: AvatarStackProps) {
         <div className="flex items-center -space-x-3 overflow-auto rounded-full mr-2">
             {avatarDatas?.map((Participant: Participant, index) =>
                 <Popover key={index} >
-                    <PopoverHandler>
+                    <PopoverTrigger>
                         <div className="relative hover:!z-10">
                             <AvatarUser
                                 Profile={Participant.User?.Profile}
                                 avatarSize={'sm'}
                                 avatarStyle="border-2 !h-[2.6rem] !w-[2.6rem] !border-white !hover:z-10 !focus:z-10" />
                         </div>
-                    </PopoverHandler>
+                    </PopoverTrigger>
                     <PopoverContent className="!z-[1000]  !ml-24 !py-2">
                         <div className="p-2 w-auto flex items-center gap-4 ">
                             <div className=" relative pt-2  pr-2">
@@ -43,13 +43,12 @@ export function AvatarStack(props: AvatarStackProps) {
                             </div>
                             <div className="flex flex-col pl-2">
                                 <Typography
-                                    variant="h6"
-                                    color="blue-gray">
+                                    as="h6">
                                     {Participant.User?.Profile?.firstName} {Participant.User?.Profile?.lastName}
                                 </Typography>
                                 <Typography
                                     variant="small"
-                                    className="font-normal text-blue-gray-500  border-t border-blue-gray-50 pt-2">
+                                    className="font-normal text-gray-500  border-t border-slate-50 pt-2">
                                     {Participant.User?.GroupUser?.map((group, index) =>
                                         <p key={index}
                                             className="!line-clamp-1">⌖ {group.Group.name.split(':')[0]}</p>)}

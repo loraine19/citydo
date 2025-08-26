@@ -11,7 +11,7 @@ export class Error {
 export class AlertValues {
     handleConfirm: () => void = () => { };
     title: string = 'Une erreur est survenue';
-    element: string | JSX.Element = ''
+    element: string | Element | React.ReactNode = ''
     disableConfirm?: boolean = false;
     confirmString?: string = 'Ok';
     button2?: { text: string, onClick: () => void } = undefined;

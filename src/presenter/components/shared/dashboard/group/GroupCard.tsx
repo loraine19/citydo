@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardBody, CardFooter, Typography, Chip } from "@material-tailwind/react";
+import { Card, CardHeader, CardBody, CardFooter, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import { GenereMyActions } from "../../../../views/viewsEntities/utilsService";
 import { DateChip } from "../../../common/ChipDate";
@@ -8,6 +8,7 @@ import DI from "../../../../../di/ioc";
 import { Icon } from "../../../common/IconComp";
 import { Title } from "../../../common/CardTitle";
 import AddressMapOpen from "../../../common/mapComps/AddressMapOpen";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 
 type GroupCardProps = {
@@ -60,9 +61,7 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
                     type='evenement'
                     subTitle={'⌖ ' + group?.fullAddress + ' - ' + group?.area + ', metres'}
                 />
-                <Typography
-                    className="leading-[1.3rem] pt-1 !line-clamp-2"
-                    color="blue-gray">
+                <Typography className="leading-[1.3rem] pt-1 !line-clamp-2">
                     {group.rules}
                 </Typography>
             </CardBody>

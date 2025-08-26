@@ -1,4 +1,4 @@
-import { Typography, Progress, TypographyProps } from "@material-tailwind/react";
+import { Typography, Progress, TypographyProps, ProgressBar as ProgressBarMT } from "@material-tailwind/react";
 import { ProgressProps } from "@material-tailwind/react";
 import { EventStatus } from "../../../domain/entities/Event";
 import { PoolSurveyStatus } from "../../../domain/entities/PoolSurvey";
@@ -38,15 +38,18 @@ export function ProgressBar({ value, label, needed, status, size = 'md' }: Progr
         < div className={`h-max w-full flex -m-1 flex-col px-2 pb-3 gap-2 ${size === "lg" && "mb-2"}`}>
             <div className=" flex  w-full items-center justify-between gap-2 px-1">
                 <Typography
-                    color={"blue-gray"}
                     variant={textSize as TypographyProps['variant']} >
                     {labelTexte}
                 </Typography>
             </div>
             <Progress
-                barProps={{ className: `!line-clamp-0  px-2 ${color}   ` }}
                 value={value}
-                size={size} />
+                size={size} >
+                <ProgressBarMT
+                    value={value}
+                    className={`!line-clamp-0  px-2 ${color}   `}
+                />
+            </Progress>
         </div>)
 }
 
@@ -93,9 +96,17 @@ export function ProgressBarBlur({ value, label, needed, status, size = 'md', isP
             {status === EventStatus.PENDING && value !== 0 &&
                 (
                     <Progress
-                        barProps={{ className: `!min-w-[2.7rem] text-center !line-clamp-1 whitespace-nowrap truncate flex items-center ${size === "lg" ? 'py-0.5  px-3' : 'px-2'} !bg-orange-500 "` }}
                         value={(status === EventStatus.PENDING) ? value : 100}
-                        size={size}
-                        label={`, ${needed} ${label} manquant`} />)}
+                        size={size}>
+                        <ProgressBarMT
+                            value={(status === EventStatus.PENDING) ? value : 100}
+                            className={`!min-w-[2.7rem] text-center !line-clamp-1 whitespace-nowrap truncate flex items-center ${size === "lg" ? 'py-0.5  px-3' : 'px-2'} !bg-orange-500 `}
+                        >
+                            <Typography className="text-xs" color="secondary">
+                                <span className="font-semibold pr-2">{value} %</span>  {` ${needed} ${label} manquant`}
+                            </Typography>
+                        </ProgressBarMT>
+                    </Progress>
+                )}
         </div>)
 }

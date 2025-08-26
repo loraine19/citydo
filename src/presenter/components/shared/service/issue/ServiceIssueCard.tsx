@@ -1,10 +1,11 @@
-import { Card, CardHeader, Typography, CardBody, Chip } from "@material-tailwind/react";
+import { Card, CardHeader, Typography, CardBody } from "@material-tailwind/react";
 import { Service, ServiceType } from "../../../../../domain/entities/Service";
 import { Icon } from "../../../common/IconComp";
 import { ServiceView } from "../../../../views/viewsEntities/serviceViewEntity";
 import { useUserStore } from "../../../../../application/stores/user.store";
 import { AvatarUser } from "../../../common/AvatarUser";
 import { Profile } from "../../../../../domain/entities/Profile";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 
 export default function ServiceIssueCard(props: { service: Service, clamp?: boolean }) {
@@ -15,7 +16,7 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
 
 
     return (
-        <Card className={`CardFix !h-full shadow-none !flex !gap-2 border border-gray-200  bg-blue-gray-50 opacity-95 !py-0 mb-1 md:!py-1`}>
+        <Card className={`CardFix !h-full shadow-none !flex !gap-2 border border-gray-200  bg-slate-50 opacity-95 !py-0 mb-1 md:!py-1`}>
             <CardHeader
                 className="fixCardHeaderNoImage mx-2 mt-1 py-1 shadow-none bg-transparent"
                 floated={false}>
@@ -47,7 +48,6 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
                         <div className="flex items-center justify-between pr-2">
                             <Typography
                                 variant="small"
-                                color="blue-gray"
                                 className="truncate max-w-[40vw] pt-2 lg:max-w-[20vw] pr-2 font-medium">
                                 {title}
                             </Typography>
@@ -73,8 +73,8 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
                             </div>
                         </div>
                         <div
-                            className="flex flex-1 overflow-auto">  <Typography
-                                color="blue-gray"
+                            className="flex flex-1 overflow-auto">
+                            <Typography
                                 variant="small"
                                 className={`${props.clamp ? '!line-clamp-3 md:!line-clamp-4 lg:!line-clamp-1' : ''} flex-0 pr-2  leading-[1.1rem]`}>
                                 {description}
@@ -84,7 +84,6 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
                     <div className="flex flex-1 flex-col pt-1 justify-between items-end border-l-[1px] border-gray-400 overflow-y-auto gap-0.5">
                         <Typography
                             variant="small"
-                            color="blue-gray"
                             className="text-right font-medium">
                             à réaliser le service
                         </Typography>
@@ -102,7 +101,7 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
                                 </Typography>
                             </div>
                         </div>
-                        <Typography variant="h5" >
+                        <Typography as="h5" >
                             {points[1] && <span className="!text-[1.2rem] font-light">de </span>}
                             {points[0]}
                             {points[1] && <>
