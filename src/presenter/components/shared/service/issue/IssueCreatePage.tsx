@@ -96,7 +96,7 @@ export default function IssueEditPage() {
 
 
     return (
-        <form onSubmit={formik.handleSubmit} className='flex flex-col'>
+        <form onSubmit={formik.handleSubmit} className='flex h-full flex-col'>
             <main>
                 <div className="sectionHeader">
                     <SubHeader type={"Conciliation"} place={` sur ${service?.type === ServiceType.GET ? "une demande" : "une offre"} de service  ${userId === service?.userId ? "que j'ai créé" : "à laquelle j'ai repondu"}`} closeBtn />
@@ -112,7 +112,7 @@ export default function IssueEditPage() {
             <footer className="CTA">
                 <Button
                     type="submit"
-                    className="!lgBtn w-respLarge rounded-full" >
+                    className="lgBtn" >
                     <Icon
                         size='xl'
                         color="white"

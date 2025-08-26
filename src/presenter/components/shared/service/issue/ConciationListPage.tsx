@@ -33,7 +33,7 @@ export default function ConciationListPage() {
 
     //// STATE
     const user = useUserStore().user
-    const ImModo = (user.GroupUser.map(g => g.role).includes(Role.MODO))
+    const ImModo = (user?.GroupUser?.map(g => g.role).includes(Role.MODO))
 
     //// NAMING
     const filterName = (): string => filter === IssueFilter.FINISH && 'resolus' || filter === IssueFilter.PENDING && 'demande' || filter === IssueFilter.WAITING && 'en cours' || ''

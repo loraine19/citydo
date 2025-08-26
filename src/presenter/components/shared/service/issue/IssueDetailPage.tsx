@@ -38,6 +38,7 @@ export default function IssueDetailPage() {
             }
             fetchModos()
         }
+        console.log('issue', issue)
     }, [isLoading]);
 
 
@@ -53,7 +54,7 @@ export default function IssueDetailPage() {
         iconImage: 'close',
         icon: issue.stepValue <= 3 ? 'Supprimer ' : issue.statusS,
         title: 'Supprimer la conciliation',
-        body: 'service.title as string',
+        body: <>Voulez-vous vraiment supprimer la conciliation sur <br /><hr /> {issue?.Service?.title}</>,
         color: 'red',
         function: async () => {
             const data = await deleteIssue(issue.serviceId);
@@ -86,6 +87,7 @@ export default function IssueDetailPage() {
 
     const RespActions = [
         {
+            iconImage: issue.status === IssueStep.STEP_1 ? 'send' : 'pending_actions',
             icon: issue.status === IssueStep.STEP_1 ? 'Choisir mon modérateur' : issue.statusS,
             title: 'Choisir mon modérateur',
             body: ChoiceModoSelect,
@@ -103,21 +105,24 @@ export default function IssueDetailPage() {
             </Typography>
             <div className='flex gap-8'>
                 <Input
+                    className={`inputStandart min-h-full ${pourcent.IModo < 0 || pourcent.IModo > 100 ? 'error' : ''}`}
+                    labelProps={{ className: "before:content-none after:content-none" }}
+                    placeholder={`Pourcentage de ${userImodo?.Profile?.firstName}`}
                     onChange={(e) => setPourcent({ ...pourcent, IModo: parseInt(e.target.value), other: 100 - parseInt(e.target.value) })}
                     value={pourcent.IModo}
                     type="number"
                     label={`Pourcentage de ${userImodo?.Profile?.firstName}`}
                     name="pourcent"
-                    variant="standard"
                     containerProps={{ className: "!flex items-end justify-end h-8 rounded-full max-w-max after:content-['%']" }}>
                 </Input>
                 <Input
-                    disabled
+                    className={`inputStandart min-h-full ${pourcent.other < 0 || pourcent.other > 100 ? 'error' : ''}`}
+                    labelProps={{ className: "before:content-none after:content-none" }}
+                    placeholder={`Pourcentage de ${otherModo?.Profile?.firstName}`}
+                    onChange={(e) => setPourcent({ ...pourcent, other: parseInt(e.target.value), IModo: 100 - parseInt(e.target.value) })}
                     value={pourcent.other}
                     type="number"
-                    label={`Pourcentage de ${otherModo?.Profile?.firstName}`}
                     name="pourcent"
-                    variant="outlined"
                     containerProps={{ className: "bg-gray-200 !px-3 !rounded-full !flex items-end justify-end h-8 max-w-max after:content-['%']" }}>
                 </Input>
             </div>
@@ -156,7 +161,7 @@ export default function IssueDetailPage() {
                         closeBtn />
                 </div>
                 {isLoading || !issue || error ?
-                    <Skeleton className="w-respLarge !rounded-2xl !h-[calc(100vh-16rem)] shadow m-auto" /> :
+                    <Skeleton className="w-respLarge !rounded-2xl h-full shadow m-auto" /> :
                     <IssueForm
                         modos={modos}
                         issue={issue} />
@@ -167,12 +172,12 @@ export default function IssueDetailPage() {
                     <CTAMines
                         key={'mine'}
                         disabled1={issue?.stepValue >= 2}
-                        disabled2={issue?.stepValue >= 3}
+                        disabled2={issue?.stepValue >= 4}
                         actions={MyActions} />}
                 {issue?.onMe &&
                     <CTAMines
                         key={'onMe'}
-                        disabled1={issue?.stepValue >= 2}
+                        disabled1={issue?.stepValue >= 1}
                         disabled2={issue?.stepValue >= 3}
                         actions={RespActions} />}
                 {(issue?.ImModo || issue?.ImModoOn) &&

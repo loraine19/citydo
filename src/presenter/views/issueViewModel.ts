@@ -25,9 +25,10 @@ export const issueViewModel = () => {
       });
 
     const count = isLoading ? 0 : (data?.pages[data?.pages.length - 1].count)
-    const flat = data?.pages.flat().map(page => page.issues).flat()
+    const flat = (isLoading || !data) ? [] : data?.pages.flat().map(page => page.issues).flat()
     const issues = userLoading || isLoading ? [] : flat?.map((issue: Issue) => new IssueView(issue, userId))
 
+    console.log(issues)
 
     return {
       count,

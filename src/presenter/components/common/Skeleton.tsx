@@ -5,7 +5,8 @@ export function Skeleton(props: { className?: string }) {
     const style = `animate-pulse anim flex items-center justify-center !w-full !h-full`;
     return (
         <div className={`h-full w-full flex items-center justify-center ${className ?? ''}`}>
-            <Card className={style}> &nbsp;</Card></div>
+            <Card className={style}> &nbsp;</Card>
+        </div>
     );
 };
 

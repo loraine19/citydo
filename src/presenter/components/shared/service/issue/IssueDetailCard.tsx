@@ -18,10 +18,9 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, mo
 
     return (
         <>
-            <section className={`flex flex-1 pt-3`}>
-                <Card className=" w-respLarge FixCard z-50  ">
-                    <CardHeader
-                        className={"FixCardHeaderNoImage px-4 min-h-max pt-2 gap-3 justify-between lg:items-center shadow-none flex !mt-0 flex-col lg:flex-row"}
+            <section className={`flex flex-1 pt-2`}>
+                <Card className=" w-respLarge FixCard z-50 ">
+                    <CardHeader className={"FixCardHeaderNoImage px-4 min-h-max pt-3 gap-3 justify-between lg:items-center shadow-none flex !mt-0 flex-col lg:flex-row"}
                         floated={false}>
                         <div className="flex flex-col ">
                             <Typography
@@ -33,8 +32,7 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, mo
                             <GroupLink group={issue?.Service?.Group} />
                         </div>
                         <div className="flex gap-2 items-center">
-                            <Chip
-                                className={`${issue?.statusS === IssueStep.STEP_3 && 'GreenChip' || issue?.statusS === IssueStep.STEP_4 && 'GrayChip' || 'OrangeChip'} lowercase`}
+                            <Chip className={`${issue?.statusS === IssueStep.STEP_3 && 'GreenChip' || issue?.statusS === IssueStep.STEP_4 && 'GrayChip' || 'OrangeChip'} lowercase`}
                                 value={issue?.statusS ?? 'nouveau'}>
                             </Chip>
                             {issue?.date ?
@@ -61,22 +59,21 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, mo
                                 </div>}
                         </div>
                     </CardHeader>
-                    <CardBody className={` flex-col flex flex-1 w-full gap-2 `}  >
-                        <div className={`${formik ? 'pt-2' : 'py-0'} pb-2 lg:items-center flex h-full w-full gap-4`}>
-                            <div className={`flex flex-1 h-full overflow-auto`}>
+                    <CardBody className={`flex-col flex  relative !w-full gap-2 `}  >
+                        <div className={` lg:items-center flex h-full w-full gap-4 `}>
+                            <div className={`flex flex-1 h-full `}>
                                 <Textarea
-                                    variant={formik ? "static" : "outlined"}
-                                    error={Boolean(formik?.errors?.description)}
-                                    label={formik?.errors.description as string || "Description du probleme"}
-                                    name="description"
+                                    className={`inputStandart overflow-auto py-1 !rounded ${formik?.errors?.description ? 'error' : ''}`}
+                                    containerProps={{ className: `${formik ? ' ' : 'px-3 border bg-blue-gray-50 rounded-2xl '}` }}
+                                    labelProps={{ className: "before:content-none after:content-none" }}
+                                    placeholder="description"
                                     onChange={formik?.handleChange}
                                     defaultValue={formik?.value?.description ?? issue.description}
                                     disabled={formik ? false : true}
-                                    className="!rounded-2xl flex flex-1 after:!border-none peer-focus:after:!border-none "
-                                    labelProps={{ className: "peer-focus:after:!border-none h-full" }}
                                 />
+                                <InputError error={formik?.errors?.description} />
                             </div>
-                            <div className={imgBlob ? 'relative flex-1 flex' : `relative`}>
+                            <div className={imgBlob ? 'flex-1 flex ' : ``}>
                                 <div className={imgBlob ? ' flex w-full' : `hidden`}>
                                     <Popover>
                                         <PopoverHandler>
@@ -102,7 +99,7 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, mo
                                         </PopoverContent>
                                     </Popover>
                                 </div>
-                                <div className={formik ? 'flex absolute bottom-12 right-12' : `hidden`}>
+                                <div className={formik ? 'flex absolute bottom-14 right-14' : `hidden`}>
                                     <ImageBtn
                                         setImgBlob={setImgBlob}
                                         formik={formik}
@@ -110,14 +107,14 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, mo
                                 </div>
                             </div>
                         </div>
-                        <Typography variant="small">Concilateurs :</Typography>
                     </CardBody>
-                    <CardFooter className="CardFooter !overflow-auto w-full flex-1 flex flex-col  gap-3 !-mt-4 lg:!pb-4">
+                    <CardFooter className=" !overflow-auto flex-[100%] !flex flex-col gap-3 -mt-6 lg:!pb-5">
+                        <Typography variant="h6" color="blue-gray" className="-mt-2 leading-4">Concilateurs :</Typography>
                         <div className='flex gap-4 md:!flex-row flex-col max-w-[100%] min-h-max '>
                             <Select
                                 key='userIdModo'
                                 className="rounded-full flex  !shadow !py-1 bg-white border-none capitalize overflow-auto"
-                                label={`Choisir un modérateur de ${Service.User.Profile.firstName}`}
+                                label={`Choisir un modérateur de ${Service?.User?.Profile.firstName}`}
                                 name={"userIdModo"}
                                 labelProps={{ className: `before:border-none after:border-none ` }}
                                 menuProps={{ className: 'overflow-auto max-h-44' }}

@@ -26,12 +26,12 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                             color="red" />}
                 </CardHeader>
                 <CardBody className="
-                FixCardBody min-h-[18vh]  max-h-[80vh] flex flex-col overflow-auto gap-6">
+                FixCardBody min-h-[25vh] max-h-[85vh] flex flex-col overflow-auto gap-6">
                     <hr></hr>
                     {notif && <p className="text-center italic text-red-800">{notif}</p>}
                     {element && typeof element === 'string' ? parse(element as string) : element}
                 </CardBody>
-                <CardFooter className="justify-end FixCardFooter max-w-full flex gap-8 pt-0">
+                <CardFooter className="justify-end FixCardFooter max-w-full flex flex-wrap gap-8 pt-0">
                     {button2 &&
                         <Button
                             type="button"

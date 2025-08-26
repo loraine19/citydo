@@ -108,7 +108,7 @@ const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) =
                 </CardBody>
 
                 <CardFooter className="CardFooter  flex-col flex-1  pb-4 ">
-                    <ServiceIssueCard service={Service} />
+                    <ServiceIssueCard service={Service} clamp={true} />
                     <div
                         className="flex items-center justify-between">
                         {mine && mines &&

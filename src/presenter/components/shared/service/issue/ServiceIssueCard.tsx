@@ -7,15 +7,17 @@ import { AvatarUser } from "../../../common/AvatarUser";
 import { Profile } from "../../../../../domain/entities/Profile";
 
 
-export default function ServiceIssueCard(props: { service: Service }) {
+export default function ServiceIssueCard(props: { service: Service, clamp?: boolean }) {
     const user = useUserStore((state) => state.user)
-    const { id, title, description, createdAt, User, UserResp, typeS, points, categoryS, type } = new ServiceView(props.service, user)
+    const { id, title, description, createdAt, User, UserResp, typeS, points, categoryS, type, } = new ServiceView(props.service, user)
+
+
 
 
     return (
         <Card className={`CardFix !h-full shadow-none !flex !gap-2 border border-gray-200  bg-blue-gray-50 opacity-95 !py-0 mb-1 md:!py-1`}>
             <CardHeader
-                className="fixCardHeaderNoImage mx-2 mt-1 py-1.5 shadow-none bg-transparent"
+                className="fixCardHeaderNoImage mx-2 mt-1 py-1 shadow-none bg-transparent"
                 floated={false}>
                 <div className="flex justify-between items-center ">
                     <div className="flex items-center gap-2 ">
@@ -41,7 +43,7 @@ export default function ServiceIssueCard(props: { service: Service }) {
             </CardHeader>
             <CardBody className={` FixCardBody  !flex-1 !py-2.5 `}>
                 <div className="flex h-full ">
-                    <div className="flex flex-col flex-1 gap-1.5 justify-between overflow-y-auto">
+                    <div className="flex flex-col flex-1 gap-2 justify-between overflow-y-auto">
                         <div className="flex items-center justify-between pr-2">
                             <Typography
                                 variant="small"
@@ -70,12 +72,14 @@ export default function ServiceIssueCard(props: { service: Service }) {
                                 </Typography>
                             </div>
                         </div>
-                        <Typography
-                            color="blue-gray"
-                            variant="small"
-                            className="flex-0 pr-2 !line-clamp-2  md:!line-clamp-6 lg:!line-clamp-1  leading-[1.1rem] ">
-                            {description}
-                        </Typography>
+                        <div
+                            className="flex flex-1 overflow-auto">  <Typography
+                                color="blue-gray"
+                                variant="small"
+                                className={`${props.clamp ? '!line-clamp-3 md:!line-clamp-4 lg:!line-clamp-1' : ''} flex-0 pr-2  leading-[1.1rem]`}>
+                                {description}
+                            </Typography>
+                        </div>
                     </div>
                     <div className="flex flex-1 flex-col pt-1 justify-between items-end border-l-[1px] border-gray-400 overflow-y-auto gap-0.5">
                         <Typography

@@ -78,7 +78,7 @@ export default function IssueEditPage() {
 
     return (
 
-        <form onSubmit={formik.handleSubmit} className='flex flex-col'>
+        <form onSubmit={formik.handleSubmit} className='flex h-full flex-col'>
             <main>
                 <ConfirmModal
                     open={open}
@@ -104,7 +104,7 @@ export default function IssueEditPage() {
                 <Button
                     type="submit"
                     disabled={issue?.status > 1}
-                    className="!lgBtn w-respLarge rounded-full" >
+                    className="lgBtn" >
                     <Icon
                         size='xl'
                         color="white"

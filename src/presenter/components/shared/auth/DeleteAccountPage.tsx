@@ -77,14 +77,6 @@ export default function DeleteAccountPage() {
                                 name="email"
                                 value={email as string}
                                 disabled={true} />
-                            {/* <Input
-                                label={'email'}
-                                name="email"
-                                variant="static"
-                                value={email as string}
-                                disabled={true}
-                                className='!bg-red-100 !text-red-800 text-center rounded-full pb-4  ' /> */}
-
                         </CardBody>
                     </Card>
                 </main>
