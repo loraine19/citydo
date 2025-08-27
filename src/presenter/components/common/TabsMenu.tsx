@@ -24,18 +24,18 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
     const { color } = useUxStore((state) => state);
     const [indexSelected, setIndex] = useState<number>(0);
     return (
-        <div className="flex relative items-center justify-between gap-x-1" style={{ zIndex: 0 }}>
+        <div className="flex relative items-center py-1 justify-between gap-x-1" style={{ zIndex: 0 }}>
             <Tabs value={defaultTab as string || labels[0].value}
-                className="!z-10 !w-full max-w-100vh overflow-auto">
+                className="!z-10 !w-full  max-w-100vh overflow-auto">
 
                 <Tabs.List
-                    className="w-full !flex flex-1 !gap-4 !px-0 mb-1 "
+                    className="w-full !flex flex-1 !gap-4 !px-0  "
                     indicatorProps={{ className: `rounded-full bg-${color ?? 'gray'}-500` }}>
                     {labels.map(({ label, value, result }, index: number) => (
                         <Tabs.Trigger
                             key={index}
                             value={value}
-                            className={`text-[0.9rem] !flex-1 whitespace-nowrap rounded-full shadow !px-3 ${index !== indexSelected ? `!bg-white ${color}Style ` : ` !text-white bg-${color}-500 animSlide`} `}
+                            className={`text-[0.9rem] lg:!py-1 !capitalize !flex-1 whitespace-nowrap rounded-full shadow !px-3 ${index !== indexSelected ? `!bg-white ${color}Style ` : ` !text-white bg-${color}-500 animSlide`} `}
                             onClick={() => { setIndex(index); result() }}>
                             {label}
                         </Tabs.Trigger>

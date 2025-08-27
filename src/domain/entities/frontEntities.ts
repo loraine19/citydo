@@ -8,7 +8,7 @@ export class Action {
     iconImage?: string;
     title?: string;
     body?: string | Element | JSX.Element | Element[] | JSX.Element[];
-    function?: () => void;
+    function: () => void = () => { };
     color?: string;
 }
 export class Label {

@@ -35,23 +35,23 @@ export default function CheckCard(props: checkCardProps) {
             <div className="w-full !m-0  !max-w-screen pl-2 overflow-auto  !flex items-center rounded-xl">
                 <List className="flex-row flex w-full min-w-max justify-evenly items-center !p-0 overflow-auto">
                     {categoriesArray.map((category, index) => (
-                        <List.Item className="!pt-0.5 px-0.5 !pb-1  min-w-max hover:!bg-transparent" key={index}>
+                        <List.Item className="!pt-0.5 px-0.5 w-full !pb-1  min-w-max hover:!bg-transparent" key={index}>
                             <label htmlFor={category} className="flex flex-1">
-                                <List.ItemStart className={`!px-0 py-0.5 !m-0 w-full flex items-center justify-center rounded-2xl !shadow-sm  border-[1px] border-${colorShade(color)} shadow-sm ${checkedState[index] ?
-                                    ` bg-${colorShade(color)} border-opacity-20 bg-opacity-30 text-${colorShade(color)}  w-full ` : `bg-transparent text-${colorShade(color)} !min-w-full border-opacity-40  `}`}>
+                                <List.ItemStart className={`relative w-full  !px-0 py-0.5 !m-0 flex items-center justify-center rounded-2xl !shadow-sm  border-[1px] border-${colorShade(color)} shadow-sm ${checkedState[index] ?
+                                    ` bg-${colorShade(color)} border-opacity-20 bg-opacity-30 text-${colorShade(color)} ` : `bg-transparent text-${colorShade(color)}  border-opacity-40  `}`}>
                                     <Checkbox
-                                        // iconProps={{ className: "hidden" }}
                                         checked={checkedState[index]}
                                         id={category}
                                         value={category}
-                                        // containerProps={{ className: "hidden" }}
+                                        className="absolute !flex !justify-start !shadow-none rounded-full w-full h-full !bg-transparent border-none"
                                         onChange={(e: any) => handleCheckboxChange(index, e.target.checked)}
                                     >
+
                                     </Checkbox>
                                     <Typography
                                         as="label"
                                         htmlFor="default-checkbox"
-                                        className={`${checkedState[index] ? `text-${colorShadeDark(color)} w-full` : `text-${colorShade(color)} text-opacity-90`} whitespace-nowrap text-sm font-normal !min-w-max px-3 `}
+                                        className={`${checkedState[index] ? `text-${colorShadeDark(color)} ` : `text-${colorShade(color)} text-opacity-90`} whitespace-nowrap text-sm font-normal !min-w-max `}
                                     >{category}</Typography>
                                 </List.ItemStart>
 

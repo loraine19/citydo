@@ -112,7 +112,7 @@ export const AddressInputOpen = (props: {
                 type="text"
                 name='address'
                 value={inputValue}
-                onChange={(event) => {
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     if (event.target.value.trim() !== '' || event.target.value === '') { handleInputChange(event) }
                 }}
             >

@@ -1,5 +1,4 @@
 import { Icon } from "./IconComp";
-import { Typography } from "@material-tailwind/react";
 import { GroupLink } from "./GroupLink";
 import { Group } from "../../../domain/entities/Group";
 
@@ -24,16 +23,16 @@ export function Title(props: { title: string, flagged?: boolean, id?: number, Cr
     return (
         <div className="min-h-max pt-1.5">
             <div className="flex items-center w-full justify-between gap-2">
-                <div className="flex items-center gap-4 !max-w-[calc(100%-1.5rem)] w-full">
-                    <Typography
+                <div className="flex items-center gap-4  w-full">
+                    <h4
                         id={title}
-                        as="h6"
-                        className="w-full flex !line-clamp-1 leading-[1] pt-1"
+                        className="w-full flex !line-clamp-1 pt-1"
                         title={title}>
                         {title}
-                    </Typography>
+                    </h4>
                     {CreatedAt &&
-                        <span className="hidden lg:flex text-xs text-gray-500 italic">{new Date(CreatedAt).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' })}</span>}
+                        <i className="hidden lg:flex pt-1 -mr-2">{new Date(CreatedAt).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' })}
+                        </i>}
                 </div>
                 {id &&
                     <FlagIcon
@@ -44,11 +43,9 @@ export function Title(props: { title: string, flagged?: boolean, id?: number, Cr
             </div>
             {subTitle &&
                 <div className="flex  flex-col justify-between pr-1">
-                    <Typography
-                        variant="small"
-                        className="truncate font-normal">
+                    <h5 className="truncate">
                         {subTitle}
-                    </Typography>
+                    </h5>
                     {group &&
                         <GroupLink group={group ?? {} as Group} />}
                 </div>}

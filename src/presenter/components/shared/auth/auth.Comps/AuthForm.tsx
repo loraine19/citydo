@@ -38,7 +38,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
     const textType = { value: 'text', icon: 'visibility_off' }
     const [passWordInput, setPassWordInput] = useState<{ value: string, icon: string }>(passwordType)
     const [passWordInput2, setPassWordInput2] = useState<{ value: string, icon: string }>(passwordType)
-    useEffect(() => { hidden && formik.resetForm() && (formik.values = {}) }, [hidden])
+    useEffect(() => { if (hidden) { formik.resetForm(); formik.values = {}; } }, [hidden])
     const { setIsLoggedIn } = useUserStore()
     const toggleInputStyle = (inputState: { value: string, icon: string }, setInputState: React.Dispatch<React.SetStateAction<{ value: string, icon: string }>>) => {
         setInputState(inputState.value === 'password' ? textType : passwordType);

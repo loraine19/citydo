@@ -113,7 +113,8 @@ export function SurveyCard({ survey, change, mines, update }: SurveyCardProps) {
                             onClick={() => { setOpen(true) }}>
                             <Chip
                                 value={survey?.Votes?.length}
-                                size='md' variant="ghost"
+                                size='sm'
+                                variant="ghost"
                                 className="rounded-full GrayChip h-max flex items-center  "
                                 icon={
                                     <Icon

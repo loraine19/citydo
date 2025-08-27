@@ -14,7 +14,12 @@ export default {
     extend: {
       fontFamily: {
         comfortaa: ["Comfortaa", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
       },
+      screens: {
+        'xxs': '320px',
+        'xs': '390px',
+      }
     },
   },
   plugins: [mtConfig],

@@ -20,7 +20,7 @@ export default function ModifBtnStack({ actions, disabled1, disabled2, update, i
     useEffect(() => {
         setAlertValues({
             handleConfirm: () => {
-                buttons[index]?.function && buttons[index].function();
+                if (typeof buttons[index]?.function === 'function') buttons[index].function();
                 update && update()
                 setOpen(false)
             },

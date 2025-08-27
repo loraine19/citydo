@@ -25,7 +25,7 @@ export const SpeedDial: React.FC<SpeedDialProps> = ({ placement = 'top', Handler
                     <div
                         onMouseLeave={() => setOpen && setOpen(false)}
                         className={`
-                            absolute left-0 w-full -ml-1
+                            absolute -left-1 w-full 
                             ${placement === 'bottom' ? 'top-full mt-4' : 'bottom-full mb-4'}
                         `}
                         style={{ zIndex: 10 }}

@@ -46,7 +46,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
     useEffect(() => {
         setAlertValues({
             handleConfirm: () => {
-                actions[index]?.function && actions[index].function();
+                if (typeof actions[index]?.function === 'function') actions[index].function();
                 setOpen(false)
             },
             title: actions[index]?.title as string,
@@ -55,6 +55,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
             confirmString: 'Confirmer',
             notif: '',
         })
+        console.log(defColor)
     }, [index]);
 
     const colorMap = {

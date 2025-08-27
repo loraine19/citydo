@@ -108,7 +108,7 @@ export default function IssueDetailPage() {
                     className={`inputStandart min-h-full ${pourcent.IModo < 0 || pourcent.IModo > 100 ? 'error' : ''}`}
 
                     placeholder={`Pourcentage de ${userImodo?.Profile?.firstName}`}
-                    onChange={(e) => setPourcent({ ...pourcent, IModo: parseInt(e.target.value), other: 100 - parseInt(e.target.value) })}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPourcent({ ...pourcent, IModo: parseInt(e.target.value), other: 100 - parseInt(e.target.value) })}
                     value={pourcent.IModo}
                     type="number"
                     name="pourcent"
@@ -119,7 +119,7 @@ export default function IssueDetailPage() {
                     className={`inputStandart min-h-full ${pourcent.other < 0 || pourcent.other > 100 ? 'error' : ''}`}
 
                     placeholder={`Pourcentage de ${otherModo?.Profile?.firstName}`}
-                    onChange={(e) => setPourcent({ ...pourcent, other: parseInt(e.target.value), IModo: 100 - parseInt(e.target.value) })}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPourcent({ ...pourcent, other: parseInt(e.target.value), IModo: 100 - parseInt(e.target.value) })}
                     value={pourcent.other}
                     type="number"
                     name="pourcent"

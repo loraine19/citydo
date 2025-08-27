@@ -151,11 +151,12 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
                     }
                     <div className="flex items-center">
                         <Chip
-                            size="md"
+                            size="sm"
                             value={`${points.join(' à ')}   pts`}
                             className={` GrayChip lowercase !font-medium px-3.5 rounded-full ${mines && 'hidden md:flex'}`}
                             icon=
                             {<Icon
+                                style='-mt-0.5'
                                 icon="toll"
                                 title={`Ce service ${service.typeS === ServiceType.GET ? 'vous fais gagner' : 'coute'} ${points.join(' à ')}pts`}
                                 fill={user.Profile?.points > points[0]}

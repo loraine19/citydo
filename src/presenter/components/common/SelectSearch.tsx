@@ -47,23 +47,22 @@ export default function SelectSearch(props: selectSearchProps) {
                     </MenuContent>
                 </Menu>
                 <Input
-                    onClick={(e) => {
+                    onClick={(e: React.MouseEvent<HTMLInputElement>) => {
                         e.stopPropagation();
                         setSearchCat({ label: '', value: null })
                     }}
                     data-cy="input-search"
                     type="search"
                     placeholder="Rechercher"
-                    className="bg-none border-none"
-                    // containerProps={{ className: "min-w-0 border-none ", }}
+                    className="bg-none border-none hover:ring-1 pb-0 pt-0.5 rounded-full"
                     key={searchCat.value}
                     value={searchCat.label}
-                    onChange={(e) => {
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         setSearchCat({ label: e.target.value, value: null })
 
 
                     }}
-                    onKeyDown={(e) => e.key === 'Enter' && search(searchCat)}
+                    onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && search(searchCat)}
                     autoComplete="on"
                 //  crossOrigin={undefined}
 

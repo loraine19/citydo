@@ -77,7 +77,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                     type='evenement'
                     group={event.Group}
                 />
-                <Typography className="leading-[1.3rem] pt-1 !line-clamp-1">
+                <Typography className="leading-[1.3rem] pt-1.5 !line-clamp-2">
                     {description}
                 </Typography>
             </CardBody>
@@ -110,6 +110,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                             event && setEvent(event)
                         }}>
                         <Chip
+                            size="sm"
                             value={participantsMin}
                             variant="ghost"
                             className="rounded-full GrayChip h-max flex items-center  "

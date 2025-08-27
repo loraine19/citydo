@@ -19,7 +19,7 @@ const NotifDiv: React.FC<NotifDivProps> = ({ notif, isLoading, refetch, error })
     }, [notif, error]);
 
     return (
-        <div className={`notif min-w-max  min-h-max !justify-start pt-4`}>
+        <div className={`notif min-w-max min-h-max !justify-start `}>
             {error ? 'Une erreur est survenue : ' : ''}
             {notif}
             <span

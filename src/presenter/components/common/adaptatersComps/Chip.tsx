@@ -25,7 +25,7 @@ const Chip: React.FC<ChipProps> = ({
             size={size}
             className={`flex  items-center justify-center !max-h-max !rounded-full ${className}`}
             variant={variant} >
-            <ChipMt.Label className="pt-[0.2em] px-0">
+            <ChipMt.Label className="pt-[0.2em] !font-semibold px-0">
                 {value}
             </ChipMt.Label>
             {icon &&

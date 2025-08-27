@@ -99,18 +99,18 @@ export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
                             disabled2={disabledEditCTA}
                             actions={actions}
                             update={update} />}
-                    <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center justify-between ">
                         <button
                             disabled={pool?.status !== PoolSurveyStatus.PENDING}
                             onClick={() => setOpen(true)}>
                             <Chip
+                                size='sm'
                                 key={pool.id}
                                 value={pool.Votes?.length}
                                 variant="ghost"
                                 className="rounded-full GrayChip h-max flex items-center  "
                                 icon={
                                     <Icon
-
                                         icon="smart_card_reader"
                                         fill={pool?.IVoted}
                                         color={color()}

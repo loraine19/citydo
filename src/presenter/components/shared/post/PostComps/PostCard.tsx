@@ -72,11 +72,12 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                         onClick={async () => { setPost(await toogleLike()) }}
                         className={mines ? `hidden md:flex` : `flex`}>
                         <Chip
-                            size="md"
+                            size="sm"
                             value={`${Likes?.length}`}
                             variant="ghost"
                             className="  rounded-full h-full GrayChip flex items-center"
                             icon={<Icon
+                                style='scale-95 mt-0.5'
                                 icon="thumb_up"
                                 size="md"
                                 fill={ILike}

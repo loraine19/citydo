@@ -30,7 +30,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
         { to: "/service", icon: "partner_exchange", label: "Service", color: { border: "!border-sky-500/20", background: "!bg-sky-500", text: "!text-sky-500", col: 'sky' } },
         { to: "/evenement", icon: "event", label: "Évenement", color: { border: "!border-cyan-500/20", background: "!bg-cyan-500", text: "!text-cyan-500", col: 'cyan' } },
         { to: "/annonce", icon: "dashboard", label: "Annonce", color: { border: "!border-rose-500/20", background: "!bg-rose-500", text: "!text-rose-500", col: 'rose' } },
-        { to: "/vote", icon: "ballot", label: `${addBtn ? "Vote⠀" : 'Votes⠀⠀'}`, color: { border: "!border-orange-500/20", background: "!bg-orange-500", text: "!text-orange-500", col: 'orange' } },
+        { to: "/vote", icon: "ballot", label: `${addBtn ? "Vote⠀⠀" : 'Votes⠀⠀'}`, color: { border: "!border-orange-500/20", background: "!bg-orange-500", text: "!text-orange-500", col: 'orange' } },
     ]
 
     const addBtnItem = type ? [{
@@ -95,16 +95,18 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             </div>
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim ${color}BG backdropBlur wRespXL rounded-full justify-center relative bottom-0 gap-6` :
-                    'z-0 md:scale-[0.75] scale-[0.72] -ml-[2.5rem] -mr-[2rem] lg:!-mr-[5rem] pt-[5px] lg:px-auto gap-2 ') +
-                ` flex z-30 `
+                    `items-center opacity-100 anim ${color}BG backdropBlur wRespXL rounded-full justify-center relative gap-6 w-full flex ` :
+                    ' flex lg:gap-3 gap-[2vw] !max-w-[calc(100vw-10rem)] '
+                ) +
+                `z-30  `
             }>
                 <Navbar className={`
                     ${navBottom ?
-                        'min-w-max w-full shadow-md !bg-white/95 border border-slate-100/50'
+                        ' shadow-md !bg-white border border-slate-100/50 -ml-5 !flex-1 !max-w-max lg:!max-w-[100%] md:w-full '
                         :
-                        `shadow-none bg-transparent overflow-x-auto lg:!pt-0 lg:overflow-hidden`} 
-                        flex rounded-full h-full items-center p-0`}>
+                        `shadow-none bg-transparent overflow-auto  `}
+                        
+                       flex rounded-full h-full items-center p-0 !overflow-auto`}>
                     <div className={`${navBottom ? 'flex-row' : 'flex-row-reverse'} w-full min-w-max  h-full relative`}>
                         <ul className={`flex !max-w-[calc(100vw-6rem)] overflow-y-hidden overflow-auto flex-row w-full rounded-full justify-between h-full gap-auto  `}>
                             {navItems.map(({ to, icon, label, color }: NavItem, index) => (
@@ -143,7 +145,9 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                     </div>
                 </Navbar>
                 <SpeedDial
-                    className={`${(!navBottom && !addBtn) ? 'hidden' : ''}  z-[22] -mr-4`}
+                    className={`${(!navBottom && !addBtn) ? 'hidden' : ''}
+                        ${!navBottom ? '-top-2 -mlr-2 hidden xs:flex' : ''} 
+                        mt-1 z-[50]  -mr-4`}
                     open={closeDial}
                     setOpen={setCloseDial}
                     placement={navBottom ? 'top' : 'bottom'}
@@ -159,8 +163,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                     Content={
                         <div className="flex gap-2 flex-col">
                             {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
-                                <div
-                                    key={index}
+                                <div key={index}
                                     className="bg-white rounded-full shadow-md flex over:scale-[1.1] !h-[58px] gap-6 w-[58px] !justify-center items-center border"
                                     title={label}>
                                     <div>

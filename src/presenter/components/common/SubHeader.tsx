@@ -18,17 +18,17 @@ export default function SubHeader({ type, qty, place, closeBtn, link }: SubHeade
             setHideNavBottom(false);
         }
     }
-    const colorBorder = `border-b-[1px] border-${color}-500 border-opacity-40`;
 
     return (
-        <div className={`flex w-full divider-y py-1 gap-2 justify-end lg:justify-between`}>
-
+        <div className={`flex w-full  pt-1 gap-2 justify-end lg:justify-between`}>
             <Typography
-                className={`!line-clamp-1 leading-[1.2] pb-1 lg:text-[1.3rem] text-[1.1rem] pl-2 flex-1  font-medium ${colorBorder}`}>
+                as="h3"
+                className={`!line-clamp-1 leading-[1.2]  lg:text-[1.2rem] text-[1rem] pl-2 flex-1  `}>
                 {qty} {type}
-                <span className=" font-thin ">
+                <span className=" !font-thin ">
                     {place ?? " à proximité"}
                 </span>
+                <hr className={`bg-${color}-500 opacity-35 mt-1  pt-[1px] w-full `}></hr>
             </Typography>
             {hideNavBottom &&
                 <Icon
@@ -48,6 +48,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link }: SubHeade
                     link={goBack}
                     title={"retour " + goBack?.replace("/", "")}
                 />}
+
         </div>
     )
 }

@@ -30,9 +30,10 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
     return (
         <header onClick={() => { hideNavBottom && setHideNavBottom(false) }}>
-            <div className={`wRespXL relative h-full w-full flex justify-between items-end py-1.5
-                ${hideNavBottom ? 'lg:flex animRev ' : 'animRev'}`} >
-                <div className={`flex w-full max-w-max h-full ${hideNavBottom ? 'hidden' : ''}`}>
+            <div className={`wRespXL h-full  justify-between items-end pt-2 pb-3 lg:pb-1
+            ${navBottom ? 'flex ' : 'grid grid-cols-[auto_1fr_auto] '}
+                ${hideNavBottom ? ' flex animRev' : ' flex animRev'}`} >
+                <div className={`flex max-w-max  h-full ${hideNavBottom ? 'hidden' : ''}`}>
                     <Menu placement="bottom-start">
                         <MenuTrigger className="relative h-full min-w-max  z-50 flex items-center cursor-pointer">
                             {onBoard ?
@@ -72,21 +73,21 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                             ))}
                         </MenuContent>
                     </Menu>
-                    {(navBottom && !hideNavBottom) &&
-                        <div className='flex items-center h-full w-full'>
+                    {(!hideNavBottom) &&
+                        <div className={`${!navBottom ? 'hidden lg:flex' : ''} max-w-[30vw] lg:max-w-[220px] flex items-center h-full w-full pl-4`}>
                             {onBoard ?
                                 <Typography
-                                    className='text-gray-700 font-comfortaa text-[1.8rem] lg:text-[2.1rem] font-bold'>
+                                    className='text-slate-700 font-comfortaa text-[1.8rem] lg:text-[2.1rem] font-bold'>
                                     City'Do
                                 </Typography> :
-                                <div className='flex flex-col items-start'>
+                                <div className='flex flex-col mt-1 !font-comfortaa items-start'>
                                     <Typography
-                                        variant='h5'
-                                        className='text-gray-800'>
-                                        {user?.Profile?.firstName}
+                                        className="whitespace-nowrap"
+                                        as='h3'>
+                                        {user?.Profile?.firstName} hjbhjbhj
                                     </Typography>
                                     <Typography
-                                        className='mt-0 flex text-gray-700 !line-clamp-1 italic text-[0.9rem]'>
+                                        className=' flex !line-clamp-1 text-slate-500 font-extralight italic text-[0.9rem]'>
                                         {user?.GroupUser?.map((group) => (group.Group?.name.split(':')[0])).join(', ')}
                                     </Typography>
                                 </div>}
@@ -94,12 +95,14 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                 </div>
 
                 {(!navBottom && navIcons && !hideNavBottom) &&
-                    <div className="w-[75%] lg:w-max max-w-[calc(100vw-12rem)]">
-                        <NavBarSection addBtn={addBtn} />
+                    <div className="relative w-full h-full flex justify-end items-end">
+                        <div className="absolute w-[128%]  justify-center flex  bg-slate-50 h-full scale-[0.75] -mr-[13.5%] pr-6 ">
+                            <NavBarSection addBtn={addBtn} />
+                        </div>
                     </div>
                 }
                 <div
-                    className={`justify-end items-center flex h-full
+                    className={`justify-end items-center flex h-full w-full !flex-1 pl-4
                     ${onBoard ? 'lg:pr-0' : 'pr-0'} 
                     ${hideNavBottom ? 'hidden' : ''} 
                     ${navBottom ? ' w-full' : ''}`} >

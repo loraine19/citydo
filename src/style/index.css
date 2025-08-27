@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,14 +17,22 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: "Roboto";
+    src: url("/fonts/Roboto.ttf") format("ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     box-sizing: border-box;
 }
 
 :root {
     background-color: #f9fafb;
-    font-size: 15px;
-    line-height: 1.3;
+    color: #334155;
+    font-size: 14px;
+    line-height: 1;
     font-weight: 400;
     display: flex;
     flex-direction: column;
@@ -43,7 +51,7 @@
     @apply flex flex-col h-screen w-screen;
 }
 body {
-    @apply h-screen w-screen  flex flex-col text-slate-600;
+    @apply h-screen w-screen  flex flex-col;
 }
 
 .App {
@@ -88,12 +96,24 @@ header {
     @apply flex flex-col gap-0 relative;
 }
 
+h3 {
+    @apply font-bold text-[1.3rem] !text-slate-800 !font-roboto;
+}
+h4 {
+    @apply font-semibold text-[1.1rem] !text-slate-800 !font-roboto;
+}
 h5 {
-    @apply text-xl !font-semibold !text-slate-700;
+    @apply text-lg text-[0.95rem] font-normal !text-slate-700 !font-roboto;
+}
+h6 {
+    @apply font-normal text-sm  !text-slate-700 !font-roboto;
+}
+p {
+    @apply text-base font-light text-slate-600 !font-roboto;
 }
 
-h6 {
-    @apply text-lg !font-semibold text-slate-600;
+i {
+    @apply italic text-[0.95rem] font-normal !text-slate-400 !font-roboto;
 }
 
 /* RESPONSIVE */
@@ -180,7 +200,7 @@ h6 {
 }
 
 .notif {
-    @apply -bottom-[100%] pt-4 items-center flex-col gap-4 absolute w-full h-full flex justify-center anim;
+    @apply -bottom-full pt-9 items-center flex-col gap-4 absolute w-full h-full flex justify-center anim;
 }
 
 @keyframes fadeIn {
@@ -270,7 +290,7 @@ h6 {
 }
 
 .FixCardHeader {
-    @apply !rounded-xl !relative !z-[999] -mt-6 flex flex-1 !shadow-md fadeIn border !max-h-[40vw] sm:!max-h-[55vw] md:!max-h-[45%];
+    @apply !rounded-xl !relative !z-[999] -mt-6 flex flex-1 max-w-[calc(100%-1.8rem)] m-auto !shadow-md fadeIn border !max-h-[40vw] sm:!max-h-[55vw] md:!max-h-[45%];
 }
 
 .FixCardHeaderSmall {
@@ -306,7 +326,7 @@ h6 {
 }
 
 .CardImage {
-    @apply h-full w-full !rounded-xl object-cover !shadow-lg !bg-white max-h-12 lg:!max-h-[vw] min-h-full;
+    @apply h-full w-full !rounded-xl object-cover !shadow-lg !bg-white  min-h-full !max-h-[40vw] sm:!max-h-[55vw] md:!max-h-[45%];
 }
 
 .DetailCardDiv {
