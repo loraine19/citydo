@@ -1,4 +1,4 @@
-import { Button, Input, Menu, MenuTrigger, MenuItem, MenuContent } from "@material-tailwind/react";
+import { Input, Menu, MenuTrigger, MenuItem, MenuContent } from "@material-tailwind/react";
 import { Label } from "../../../domain/entities/frontEntities";
 import { Icon } from "./IconComp";
 import { useUxStore } from "../../../application/stores/ux.store";
@@ -16,7 +16,7 @@ export default function SelectSearch(props: selectSearchProps) {
     const { searchCat, setSearchCat, category, search, style = '' } = props
     return (
         <div className={` w-full py-1 ${style}`} >
-            <div className="flex !rounded-full h-7 border w-full items-center bg-white shadow " >
+            <div className="flex !rounded-full h-8 border w-full items-center bg-white shadow " >
                 <Menu placement="bottom-start">
                     <MenuTrigger
                         className={category.length > 0 ? 'px-2' : 'invisible'}>
@@ -59,29 +59,15 @@ export default function SelectSearch(props: selectSearchProps) {
                     value={searchCat.label}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         setSearchCat({ label: e.target.value, value: null })
-
-
                     }}
                     onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && search(searchCat)}
-                    autoComplete="on"
-                //  crossOrigin={undefined}
-
-                />
-                <Button
-                    data-cy="btn-search"
-                    ripple={false}
-                    variant="ghost"
-                    size="sm"
+                    autoComplete="on" />
+                <Icon
                     onClick={() => search(searchCat)}
-                    className="flex items-center  bg-none rounded-full py-1 !px-3"
-                >
-                    <Icon
-                        style='shadow'
-                        color={color ?? 'slate'}
-                        size="md"
-                        icon="search" />
-                </Button>
-
+                    style='pr-2'
+                    color={color ?? 'slate'}
+                    size="md"
+                    icon="search" />
             </div>
         </div>
     );

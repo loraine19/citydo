@@ -2,7 +2,7 @@ import { Card } from "@material-tailwind/react";
 
 export function Skeleton(props: { className?: string }) {
     const { className } = props ?? 'SubGrid'
-    const style = `animate-pulse anim flex items-center justify-center !w-full !h-full`;
+    const style = `animate-pulse anim flex items-center FixCard justify-center !w-full !h-full`;
     return (
         <div className={`h-full w-full flex items-center justify-center ${className ?? ''}`}>
             <Card className={style}> &nbsp;</Card>

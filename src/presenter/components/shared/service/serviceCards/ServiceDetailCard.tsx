@@ -44,7 +44,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
         }
     }
     return (
-        <div className="DetailCardDiv">
+        <div className="DetailCardDiv ">
             <Card className="FixCard w-respLarge !h-full" >
                 <CardHeader
                     className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
@@ -77,7 +77,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                             onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
                             src={image as any}
                             alt={title}
-                            className="h-full w-full object-cover"
+                            className="CardImage"
                         />
                     }
                 </CardHeader>
@@ -92,21 +92,23 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                     <div className="flex justify-between items-end pt-2 ">
                         <div className="flex  items-center gap-2 mb-1">
                             <Chip
+                                size="sm"
                                 value={SkillLevel[skill as unknown as keyof typeof SkillLevel]}
-                                className=" GrayChip  px-4 rounded-full h-full flex items-center justify-center"
+                                className=" GrayChip "
                                 icon={<Icon
                                     disabled
-                                    size="md"
+                                    size="sm"
                                     icon="design_services"
                                     style=" pointer-events-none"
                                     title="Compétence" />}>
                             </Chip>
                             <Chip
+                                size="sm"
                                 value={HardLevel[hard as unknown as keyof typeof HardLevel]}
-                                className="GrayChip px-4 rounded-full h-full flex items-center justify-center gap-4"
+                                className="GrayChip "
                                 icon={<Icon
                                     disabled
-                                    size="md"
+                                    size="sm"
                                     icon="signal_cellular_alt"
                                     style="pointer-events-none"
                                     title="Difficulté" />}>
@@ -120,7 +122,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                                 {description}
                             </Typography>
 
-                            <div className="flex border min-w-[33%] border-slate-200 mx-2 p-3 bg-slate-50 rounded-2xl h-full flex-col gap-2 lg:items-end">
+                            <div className="flex border min-w-[33%] border-slate-200 mx-2 p-3 bg-slate-50 rounded-2xl h-max flex-col gap-2 lg:items-end">
                                 <Typography
                                     className="text-left lg:text-right"
                                     as="h6">
@@ -149,7 +151,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                     }
                     <div className="flex items-center gap-2">
                         <Typography
-                            variant="h3"
+                            as='h3'
                             className={`text-end ${points.length > 0 && "w-full"}`} >
                             {points.length > 0 && points[1] && <span className="!text-[1.2rem] font-light">de </span>}
                             {points[0]}

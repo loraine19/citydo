@@ -71,58 +71,64 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
     return (
         <footer className={`CTA h-full overflow-y-auto !flex items-center justify-center `}>
 
-            <div className="!flex w-full items-center justify-center">
-                <Button className={actions[0]?.icon === '' ?
-                    "hidden" :
-                    `${customColor} ${colorMap[actions[0]?.color as keyof typeof colorMap] ?? ''} !min-w-full lgBtn `}
-                    onClick={() => { setOpen(true), setIndex(0) }}
-                    size='lg'
-                    disabled={disabled1} >
-                    {actions[0]?.iconImage &&
-                        <Icon
-                            fill
-                            color='white'
-                            icon={actions[0]?.iconImage}
-                            size='lg' />}
-                    {actions[0]?.icon}
-                </Button>
-            </div>
+            {actions[0]?.icon && actions[0]?.icon !== '' &&
+                <div className="!flex w-full items-center justify-center">
+                    <Button className={`${customColor} ${colorMap[actions[0]?.color as keyof typeof colorMap] ?? ''} !min-w-full lgBtn `}
+                        onClick={() => { setOpen(true), setIndex(0) }}
+                        size='lg'
+                        disabled={disabled1} >
+                        {actions[0]?.iconImage &&
+                            <Icon
+                                fill
+                                color='white'
+                                icon={actions[0]?.iconImage}
+                                size='lg' />}
+                        {actions[0]?.icon}
+                    </Button>
+                </div>}
 
-            <div className={`${actions[1]?.icon === '' || !actions[1]?.icon ?
-                "hidden" : '!flex w-full items-center justify-center'} `}>
-                <Button className={`${customColor} lgBtn !min-w-full ${colorMap[actions[1]?.color as keyof typeof colorMap] ?? ''}`}
-                    onClick={() => { setOpen(true), setIndex(1) }}
-                    size='lg'
-                    disabled={disabled2} >
-                    {actions[1]?.iconImage &&
-                        <Icon
-                            fill color='white' icon={actions[1]?.iconImage} size="lg" />}
-                    {actions[1]?.icon}
-                </Button>
-            </div>
+            {actions[1]?.icon && actions[1]?.icon !== '' &&
+                <div className={`!flex w-full items-center justify-center`} >
+                    <Button className={`${customColor} lgBtn !min-w-full ${colorMap[actions[1]?.color as keyof typeof colorMap] ?? ''}`}
+                        onClick={() => { setOpen(true), setIndex(1) }}
+                        size='lg'
+                        disabled={disabled2} >
+                        {actions[1]?.iconImage &&
+                            <Icon
+                                fill color='white'
+                                icon={actions[1]?.iconImage}
+                                size="lg" />}
+                        {actions[1]?.icon}
+                    </Button>
+                </div>}
 
-            <div className={`${actions[2]?.icon === '' || !actions[2]?.icon ?
-                "hidden" : '!flex w-full items-center justify-center'} `}>
-                <Button className={`${customColor} lgBtn !min-w-full ${colorMap[actions[2]?.color as keyof typeof colorMap] ?? ''}`}
-                    size='lg'
-                    onClick={() => { setOpen(true), setIndex(2) }}>
-                    {actions[2]?.iconImage &&
-                        <Icon fill color='white' icon={actions[2]?.iconImage} size="lg" />}
-                    {actions[2]?.icon}
+            {actions[2]?.icon && actions[2]?.icon !== '' &&
+                <div className={`!flex w-full items-center justify-center`} >
+                    <Button className={`${customColor} lgBtn !min-w-full ${colorMap[actions[2]?.color as keyof typeof colorMap] ?? ''}`}
+                        size='lg'
+                        onClick={() => { setOpen(true), setIndex(2) }}>
+                        {actions[2]?.iconImage &&
+                            <Icon
+                                fill color='white'
+                                icon={actions[2]?.iconImage}
+                                size="lg" />}
+                        {actions[2]?.icon}
+                    </Button>
+                </div>}
 
-                </Button>
-            </div>
-
-            <div className={`${(actions[3]?.icon === '' || !actions[3]?.icon) ?
-                "hidden" : '!flex w-full items-center justify-center'} `}>
-                <Button className={`${customColor} lgBtn !min-w-full ${colorMap[actions[3]?.color as keyof typeof colorMap] ?? ''}`}
-                    size='lg'
-                    onClick={() => { setOpen(true), setIndex(3) }}>
-                    {actions[3]?.iconImage &&
-                        <Icon fill color='white' icon={actions[3]?.iconImage} size="lg" />}
-                    {actions[3]?.icon}
-                </Button>
-            </div>
+            {actions[3]?.icon && actions[3]?.icon !== '' &&
+                <div className={`!flex w-full items-center justify-center`} >
+                    <Button className={`${customColor} lgBtn !min-w-full ${colorMap[actions[3]?.color as keyof typeof colorMap] ?? ''}`}
+                        size='lg'
+                        onClick={() => { setOpen(true), setIndex(3) }}>
+                        {actions[3]?.iconImage &&
+                            <Icon
+                                fill color='white'
+                                icon={actions[3]?.iconImage}
+                                size="lg" />}
+                        {actions[3]?.icon}
+                    </Button>
+                </div>}
 
         </footer>
     );

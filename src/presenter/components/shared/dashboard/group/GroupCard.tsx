@@ -56,8 +56,7 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
                         address={Address} />}
             </CardHeader>
             <CardBody className="FixCardBody">
-                <Title
-                    title={name ?? ''}
+                <Title title={name ?? ''}
                     type='evenement'
                     subTitle={'⌖ ' + group?.fullAddress + ' - ' + group?.area + ', metres'}
                 />
@@ -82,24 +81,22 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
                         update={refetch} />
                 )}
                 <div className="flex items-center gap-2">
-                    <button
-                        onClick={async () => {
-                            const groupUpdated = group.toogleModo && await group?.toogleModo();
-                            setGroup(groupUpdated)
-                        }}>
+                    <button onClick={async () => {
+                        const groupUpdated = group.toogleModo && await group?.toogleModo();
+                        setGroup(groupUpdated)
+                    }}>
                         <Chip
+                            size='sm'
                             value={group?.ImModo ? '⠀✓' : '⠀'}
                             variant="ghost"
-                            className="rounded-full GrayChip h-max flex items-center  !min-w-max "
+                            className="GrayChip gap-2"
                             icon={
                                 <Icon
                                     size="md"
                                     icon="diversity_3"
                                     fill={group?.ImModo}
                                     color={group?.ImModo ? "orange" : "gray"}
-                                    title={group?.ImModo ? "Je suis conciliateur" : "Je ne suis pas conciliateur"} />}
-                        />
-
+                                    title={group?.ImModo ? "Je suis conciliateur" : "Je ne suis pas conciliateur"} />} />
                     </button>
                     <button
                         onClick={async () => {
@@ -107,19 +104,18 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
                             setGroup(groupUpdated)
                         }}>
                         <Chip
+                            size='sm'
                             value={group?.GroupUser?.length}
                             variant="ghost"
-                            className="rounded-full GrayChip h-max flex items-center pl-6 !min-w-max "
+                            className="GrayChip gap-2"
                             icon={
                                 <Icon
                                     size="md"
                                     icon="groups"
                                     fill={group?.ImIn}
                                     color={group?.ImIn ? "cyan" : "gray"}
-                                    title={group?.ImIn ? "Je suis membre" : "Je ne suis pas membre"} />}
-                        />
+                                    title={group?.ImIn ? "Je suis membre" : "Je ne suis pas membre"} />} />
                     </button>
-
                     <Icon
                         icon="arrow_circle_right"
                         link={`/groupe/${id}`}

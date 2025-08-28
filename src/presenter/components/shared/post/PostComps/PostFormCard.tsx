@@ -1,4 +1,4 @@
-import { Select, Card, CardHeader, Button, CardBody, Input, Textarea, Checkbox } from "@material-tailwind/react";
+import { Select, Card, CardHeader, Button, CardBody, Input, Textarea, Checkbox, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import { Label } from "../../../../../domain/entities/frontEntities"
 import SubHeader from "../../../common/SubHeader";
@@ -41,15 +41,20 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                             labelProps={{ className: `${formik.errors.category && "error"} before:border-none after:border-none` }}
                             value={formik.values.category || ""}
                             onChange={(val: any) => { formik.setFieldValue('category', val) }} >
-                            {postCategories.map((category: Label, index: number) => (
-                                <Select.Option
-                                    className="rounded-full my-1 capitalize"
-                                    value={category.value}
-                                    key={index}
-                                >
-                                    {category.label}
-                                </Select.Option>
-                            ))}
+                            <Select.Trigger
+                                placeholder="Choisir la catégorie"
+                                className="inputDiv" />
+                            <Select.List>
+                                {postCategories.map((category: Label, index: number) => (
+                                    <Select.Option
+                                        className="rounded-full my-1 capitalize"
+                                        value={category.value}
+                                        key={index}
+                                    >
+                                        {category.label}
+                                    </Select.Option>
+                                ))}
+                            </Select.List>
                         </Select>
                         <GroupSelect
                             groupId={groupId?.toString()}
@@ -65,7 +70,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                         <CardHeader
                             className={(imgBlob || formik.values.image) ?
                                 "FixCardHeader" :
-                                "FixCardHeaderNoImage  pt-16"}
+                                "FixCardHeaderNoImage pt-2"}
                             floated={imgBlob || formik.values.image ?
                                 true : false} >
                             <div className={`${start ? 'ChipDiv !justify-end' : 'invisible'}`}>
@@ -111,26 +116,76 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                         <InputError mt error={formik.errors.description} />
                                     </div>
                                 </div>
-                                <div className="flex flex-col gap-1 justify-center pt-4 h-full w-full">
-                                    <div className="flex items-center gap-[10%]">
-                                        <Checkbox
-                                            className="checked:bg-rose-500 border-rose-500 checked:border-rose-700"
-                                            type="checkbox"
-                                            name="shareA"
-                                            value="PHONE"
-                                            //  label="telephone"
-                                            onChange={formik.handleChange}
-                                            checked={checkShare("phone")}
-                                        />
-                                        <Checkbox
-                                            className="checked:bg-rose-500 border-rose-500 checked:border-rose-700"
-                                            type="checkbox"
-                                            name="shareA"
-                                            value="EMAIL"
-                                            // label="email"
-                                            onChange={formik.handleChange}
-                                            checked={checkShare("email")}
-                                        />
+                                <div className="flex flex-col gap-1 justify-center pt-6 h-full w-full">
+                                    <div className="flex items-center gap-4">
+                                        <div className="flex items-center gap-2 px-4">
+                                            <Checkbox
+                                                className={`border-none shadow-none hover:shadow-none data-[checked=true]:bg-transparent`}
+                                                id='phone-checkbox'
+                                                type="checkbox"
+                                                name="shareA"
+                                                value="PHONE"
+                                                onChange={formik.handleChange}
+                                                checked={checkShare("phone")} >
+                                                <Checkbox.Indicator
+                                                    className="relative opacity-100 flex items-center justify-center">
+                                                    <Icon style={'opacity-0 group-data-[checked=true]:opacity-100 absolute top-[50%] translate-y-[-50%] -left-1'}
+                                                        bg
+                                                        size='sm'
+                                                        color={formik.errors.shareA ? 'red' : 'slate'}
+                                                        icon={""}
+                                                    />
+                                                    <Icon style={'opacity-100 group-data-[checked=true]:opacity-0 !absolute top-[50%] translate-y-[-50%] -left-1'}
+                                                        bg
+                                                        size='sm'
+                                                        color={formik.errors.shareA ? 'red' : 'rose'}
+                                                        icon={"check"}
+                                                    />
+                                                </Checkbox.Indicator>
+
+                                            </Checkbox>
+                                            <Typography
+                                                as="label"
+                                                htmlFor="default-checkbox"
+                                                className="cursor-pointer text-foreground"
+                                            >
+                                                Téléphone
+                                            </Typography>
+                                        </div>
+
+                                        <div className="flex items-center gap-2 px-4">
+                                            <Checkbox
+                                                className={`border-none shadow-none hover:shadow-none data-[checked=true]:bg-transparent`}
+                                                id='email-checkbox'
+                                                type="checkbox"
+                                                name="shareA"
+                                                value="EMAIL"
+                                                onChange={formik.handleChange}
+                                                checked={checkShare("email")}>
+                                                <Checkbox.Indicator
+                                                    className="relative opacity-100 flex items-center justify-center">
+                                                    <Icon style={'opacity-0 group-data-[checked=true]:opacity-100 absolute top-[50%] translate-y-[-50%] -left-1'}
+                                                        bg
+                                                        size='sm'
+                                                        color={formik.errors.checkbox ? 'red' : 'slate'}
+                                                        icon={""}
+                                                    />
+                                                    <Icon style={'opacity-100 group-data-[checked=true]:opacity-0 !absolute top-[50%] translate-y-[-50%] -left-1'}
+                                                        bg
+                                                        size='sm'
+                                                        color={formik.errors.checkbox ? 'red' : 'rose'}
+                                                        icon={"check"}
+                                                    />
+                                                </Checkbox.Indicator>
+                                            </Checkbox>
+                                            <Typography
+                                                as="label"
+                                                htmlFor="email-checkbox"
+                                                className="cursor-pointer text-foreground"
+                                            >
+                                                Email
+                                            </Typography>
+                                        </div>
                                     </div>
                                     <InputError mt tips="Choisir un moyen de contact" error={formik.errors.share} />
                                 </div>

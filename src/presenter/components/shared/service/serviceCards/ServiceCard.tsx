@@ -72,7 +72,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
 
     return (
         <>
-            <Card className={haveImage ? "FixCard" : "FixCardNoImage"}>
+            <Card className={haveImage ? "FixCard " : "FixCardNoImage"}>
                 <CardHeader
                     className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
                     floated={haveImage}>
@@ -115,22 +115,21 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
                             onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
                             src={image as any}
                             alt={title}
-                            className="CardImage"
+                            className=" CardImage "
                         />
                     }
                 </CardHeader>
-                <CardBody className={` FixCardBody !flex-1`}>
+                <CardBody className={` FixCardBody !overflow-auto`}>
                     <Title
                         title={title}
                         flagged={flagged} id={id}
                         type='service'
                         group={Group}
                     />
-                    <div className="flex flex-col justify-between h-full overflow-auto">
-                        <Typography className="leading-[1.3rem] !line-clamp-2">
+                    <div className="">
+                        <Typography className="description !line-clamp-3">
                             {description}
-                        </Typography>
-                    </div>
+                        </Typography></div>
                 </CardBody>
                 <CardFooter className="CardFooter">
                     {mine && mines &&

@@ -16,11 +16,9 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
 
 
     return (
-        <Card className={`CardFix !h-full shadow-none !flex !gap-2 border border-gray-200  bg-slate-50 opacity-95 !py-0 mb-1 md:!py-1`}>
-            <CardHeader
-                className="fixCardHeaderNoImage mx-2 mt-1 py-1 shadow-none bg-transparent"
-                floated={false}>
-                <div className="flex justify-between items-center ">
+        <Card className={`CardFix grid-rows-[auto_1fr] !h-full  shadow-none !gap-2 border border-gray-200  bg-slate-50 opacity-95 !py-0 mb-1 md:!py-1`}>
+            <CardHeader className="FixCardHeaderNoImage mt-1 px-3 py-2 shadow-none bg-transparent">
+                <div className="flex w-full justify-between items-center ">
                     <div className="flex items-center gap-2 ">
                         <Chip
                             size='sm'
@@ -42,9 +40,9 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
                     </div>
                 </div>
             </CardHeader>
-            <CardBody className={` FixCardBody  !flex-1 !py-2.5 `}>
-                <div className="flex h-full ">
-                    <div className="flex flex-col flex-1 gap-2 justify-between overflow-y-auto">
+            <CardBody className={` FixCardBody flex !flex-1 !py-2.5 `}>
+                <div className="flex h-[calc(100%-3rem)]  ">
+                    <div className="flex flex-col h-full flex-1 gap-2 justify-between !overflow-auto">
                         <div className="flex items-center justify-between pr-2">
                             <Typography
                                 variant="small"
@@ -72,33 +70,34 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
                                 </Typography>
                             </div>
                         </div>
-                        <div
-                            className="flex flex-1 overflow-auto">
+                        <div className="flex flex-1 pb-1 !overflow-auto">
                             <Typography
                                 variant="small"
-                                className={`${props.clamp ? '!line-clamp-3 md:!line-clamp-4 lg:!line-clamp-1' : ''} flex-0 pr-2  leading-[1.1rem]`}>
+                                className={`${props.clamp ? ' !line-clamp-1 ' : '!line-clamp-6 '} pr-2`}>
                                 {description}
                             </Typography>
                         </div>
                     </div>
                     <div className="flex flex-1 flex-col pt-1 justify-between items-end border-l-[1px] border-gray-400 overflow-y-auto gap-0.5">
-                        <Typography
-                            variant="small"
-                            className="text-right font-medium">
-                            à réaliser le service
-                        </Typography>
-                        <div className="flex flex-row-reverse gap-2 ">
-                            <AvatarUser Profile={UserResp?.Profile ?? {} as Profile} avatarSize="sm" />
-                            <div className="flex flex-col items-end">
-                                <Typography
-                                    className="max-h-4"
-                                    variant="small">
-                                    {UserResp?.Profile?.firstName}
-                                </Typography>
-                                <Typography
-                                    variant="small">
-                                    {UserResp?.Profile?.lastName}
-                                </Typography>
+                        <div className="flex flex-col items-end gap-2">
+                            <Typography
+                                variant="small"
+                                className="text-right font-medium">
+                                à réaliser le service
+                            </Typography>
+                            <div className="flex flex-row-reverse gap-2 ">
+                                <AvatarUser Profile={UserResp?.Profile ?? {} as Profile} avatarSize="sm" />
+                                <div className="flex flex-col items-end">
+                                    <Typography
+                                        className="max-h-4"
+                                        variant="small">
+                                        {UserResp?.Profile?.firstName}
+                                    </Typography>
+                                    <Typography
+                                        variant="small">
+                                        {UserResp?.Profile?.lastName}
+                                    </Typography>
+                                </div>
                             </div>
                         </div>
                         <Typography as="h5" >

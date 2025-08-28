@@ -90,8 +90,8 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
     const [openEmoji, setOpenEmoji] = useState(false);
 
     return (
-        <Card className='FixCardNoImage !flex bg-slate-50 !border-white !border-8'>
-            <CardHeader className='FixCardHeaderNoImage  bg-transparent w-full !h-max pt-2 '>
+        <Card className='FixCardNoImage !flex !border-white !border-8 p-1'>
+            <CardHeader className='FixCardHeaderNoImage !bg-slate-200 w-full px-3 !h-max pt-2 '>
                 {newConv &&
                     <ProfileDiv profile={userRec} />}
                 <div className='h-full w-full !flex !justify-start border opacity-30 -ml-[calc(50%-8rem)] py-1.5 '>
@@ -105,19 +105,16 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
             <CardBody
                 ref={divRef}
                 onScroll={() => handleScroll()}
-                className='!flex flex-1 !overflow-auto flex-col-reverse px-4 '>
+                className='bg-slate-200 !flex flex-1 !overflow-auto flex-col-reverse px-4 '>
                 <div className='gap-3  lg:px-2 flex-1 justify-end items-end flex flex-col-reverse' >
-
                     {!isLoading && messages && messages.map((msg: MessageView, index: number) => (
-                        <div className={`flex p-0 w-full items-start ${msg.userId === messages[index + 1]?.userId ? ' pt-0' : ' pt-4'}`}
-                            key={index}>
-
-                            <div
-                                className={`flex flex-1 [overflow-wrap:anywhere] flex-col px-5 shadow-sm border pt-3 pb-6 justify-between relative  
+                        <div key={index}
+                            className={`flex p-0 w-full items-start ${msg.userId === messages[index + 1]?.userId ? ' pt-0' : ' pt-4'}`} >
+                            <div className={`flex flex-1 [overflow-wrap:anywhere] flex-col px-5 shadow-sm border pt-3 pb-6 justify-between relative  
                                     ${msg.isDeleted ? 'italic text-gray-400' : ''} 
                                     ${msg.IWrite ?
-                                        'bg-cyan-100 !text-right justify-end rounded-s-[1.5rem] rounded-tr-[1.5rem] !ml-[28%] ' :
-                                        'bg-orange-100 rounded-ss-[1.5rem] rounded-r-[1.5rem] !mr-[28%]'}`}>
+                                    'bg-cyan-100 !text-right justify-end rounded-s-[1.5rem] rounded-tr-[1.5rem] !ml-[28%] ' :
+                                    'bg-orange-100 rounded-ss-[1.5rem] rounded-r-[1.5rem] !mr-[28%]'}`}>
                                 <div className='text-xs font-light items-center flex flex-row-reverse justify-between'>
                                     {msg.formatedDate}
                                     {(msg.IWrite && !msg.isDeleted) &&
@@ -134,89 +131,86 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                             </div>
                         </div>
                     ))}
-
-
                 </div>
                 <LoadMoreButton
                     revers
                     isBottom={isBottom}
                     hasNextPage={hasNextPage}
                     handleScroll={handleScroll} />
-
             </CardBody >
-            <CardFooter
-                onMouseLeave={() => { setImTyping(false) }}
-                onMouseEnter={() => { setImTyping(true) }}
-                className={`${imTyping ? '-top-2' : '-top-1'}  flex justify-between rounded-[2rem] relative bg-white p-2 shadow-md m-2 min-h-min`}>
-                <div className='flex-0 flex top-0' >
-                    <Icon
-                        onClick={() => setOpenEmoji(!openEmoji)}
-                        color='slate'
-                        title='Emoji'
-                        size='3xl'
-                        icon='mood'
-                        style={`max-h-max relative`}
-                    />
-                    <div className='absolute flex overflow-auto items-end w-full pr-3 -ml-3 z-50 mb-14 bottom-0 '>
-                        <EmojiPicker
-                            className='bg-cyan-600 !overflow-auto max-h-[85%] z-40 p-1 mr-2 flex flex-1'
-                            previewConfig={{ showPreview: false }}
-                            searchPlaceHolder='Rechercher un emoji'
-                            skinTonesDisabled={true}
-                            searchDisabled={false}
-                            emojiStyle={EmojiStyle.GOOGLE}
-                            open={openEmoji}
-                            onEmojiClick={(emoji) => {
-                                setMessage(message + ' ' + emoji.emoji + ' ');
-                                setOpenEmoji(false)
-                            }} />
+            <CardFooter className='bg-slate-200'>
+                <div
+                    onMouseLeave={() => { setImTyping(false) }}
+                    onMouseEnter={() => { setImTyping(true) }}
+                    className={`${imTyping ? '-top-2' : '-top-1'} bg-white flex justify-between rounded-[2rem] relative p-2 shadow-md m-2 min-h-min `}>
+                    <div className='flex-0 flex top-0' >
+                        <Icon
+                            onClick={() => setOpenEmoji(!openEmoji)}
+                            color='slate'
+                            title='Emoji'
+                            size='3xl'
+                            icon='mood'
+                            style={`max-h-max relative`}
+                        />
+                        <div className='absolute flex overflow-auto items-end w-full pr-3 -ml-3 z-50 mb-14 bottom-0 '>
+                            <EmojiPicker
+                                className='bg-cyan-600 !overflow-auto max-h-[85%] z-40 p-1 mr-2 flex flex-1'
+                                previewConfig={{ showPreview: false }}
+                                searchPlaceHolder='Rechercher un emoji'
+                                skinTonesDisabled={true}
+                                searchDisabled={false}
+                                emojiStyle={EmojiStyle.GOOGLE}
+                                open={openEmoji}
+                                onEmojiClick={(emoji) => {
+                                    setMessage(message + ' ' + emoji.emoji + ' ');
+                                    setOpenEmoji(false)
+                                }} />
+                        </div>
                     </div>
-                </div>
-                <textarea
-                    className='rounded-xl py-1.5 pl-4 w-full focus:outline-none resize-none overflow-hidden'
-                    rows={1}
-                    value={message}
-                    placeholder='Ecrivez un message...'
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter' && !e.shiftKey && message.trim() !== '') {
-                            e.preventDefault();
+                    <textarea
+                        className='rounded-full h-10 py-2.5 bg-slate-100 pl-4 mx-1 w-full focus:outline-none resize-none overflow-hidden'
+                        rows={1}
+                        value={message}
+                        placeholder='Ecrivez un message...'
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' && !e.shiftKey && message.trim() !== '') {
+                                e.preventDefault();
+                                handleSendMessage();
+                                setNewConv(false);
+                                setImTyping(false);
+                            }
+                        }}
+                        onChange={(e) => {
+                            setMessage(e.target.value);
+                            setImTyping(true);
+                            const target = e.target as HTMLTextAreaElement;
+                            target.style.height = 'auto';
+                            target.style.height = `${target.scrollHeight}px`;
+                        }}
+                        onInput={(e) => {
+                            const target = e.target as HTMLTextAreaElement;
+                            if (target.value.trim() === '') {
+                                setImTyping(false);
+                            } else {
+                                setImTyping(true);
+                                setMessage(target.value);
+                            }
+                            target.style.height = 'auto';
+                            target.style.height = `${target.scrollHeight}px`;
+                        }}
+                        style={{ maxHeight: '120px' }}
+                    />
+                    <Icon
+                        color='slate'
+                        title='Envoyer'
+                        onClick={() => {
                             handleSendMessage();
                             setNewConv(false);
-                            setImTyping(false);
-                        }
-                    }}
-                    onChange={(e) => {
-                        setMessage(e.target.value);
-                        setImTyping(true);
-                        const target = e.target as HTMLTextAreaElement;
-                        target.style.height = 'auto';
-                        target.style.height = `${target.scrollHeight}px`;
-                    }}
-                    onInput={(e) => {
-                        const target = e.target as HTMLTextAreaElement;
-                        if (target.value.trim() === '') {
-                            setImTyping(false);
-                        } else {
-                            setImTyping(true);
-                            setMessage(target.value);
-                        }
-                        target.style.height = 'auto';
-                        target.style.height = `${target.scrollHeight}px`;
-                    }}
-                    style={{ maxHeight: '120px' }}
-                />
-                <Icon
-                    color='slate'
-                    title='Envoyer'
-                    onClick={() => {
-                        handleSendMessage();
-                        setNewConv(false);
-                        setImTyping(false)
-                    }}
-                    icon='send'
-                    size='3xl'
-                />
-
+                            setImTyping(false)
+                        }}
+                        icon='send'
+                        size='3xl' />
+                </div>
             </CardFooter>
         </Card >
     );

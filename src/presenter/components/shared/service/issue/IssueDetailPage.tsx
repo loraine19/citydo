@@ -43,7 +43,7 @@ export default function IssueDetailPage() {
 
 
     const MyActions: Action[] = [{
-        iconImage: 'edit',
+        iconImage: issue.stepValue < 2 ? 'edit ' : '',
         icon: issue.stepValue < 2 ? 'Modifier ' : '',
         title: 'Modifier la conciliation',
         body: 'Aller à la page de modification de la conciliation',

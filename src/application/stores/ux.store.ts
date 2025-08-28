@@ -44,10 +44,12 @@ export const useUxStore = create<UxStore, [['zustand/persist', UxStore]]>(
             case 'sondage':
               color = 'orange';
               break;
-            case 'flag':
             case 'chat':
+              color = 'teal';
+              break;
             case 'notification':
             case 'sign':
+            case 'flag':
               color = 'slate';
               break;
             default:

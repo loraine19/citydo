@@ -67,7 +67,7 @@ export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
                             prefix="finis dans" />
                     </div>
                 </CardHeader>
-                <CardBody className="FixCardBody !pb-0 ">
+                <CardBody className="FixCardBody">
                     <div className="py-1 ">
                         <ProfileDiv
                             profile={pool?.UserBenef || {} as Partial<User>}
@@ -75,14 +75,12 @@ export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
                         <Title
                             title={pool.title}
                             group={pool.Group}
-                        /></div>
-                    <div className="CardOverFlow h-full  !pl-2 !p-0 flex justify-between flex-col gap-2">
-                        <Typography
-                            className="leading-[1.3rem] pt-1 !line-clamp-2 max-h-full">
-                            {pool.description}
-                        </Typography>
-
+                        />
                     </div>
+                    <Typography
+                        className="description">
+                        {pool.description}
+                    </Typography>
                 </CardBody>
                 <CardFooter
                     className="CardFooter items-center gap-6">

@@ -14,19 +14,19 @@ export function FlagIcon(props: { flagged: boolean, id: number, type: string }) 
             color={flagged ? 'red' : 'gray'}
             fill={flagged} size="md"
             title={"signaler " + type}
-            style="hover:!bg-red-500/30 hover:text-red-700 pb-1 pt-1" />
+            style="hover:!bg-red-500/30 hover:text-red-700 !py-0 !-mb-1.5" />
     )
 }
 export function Title(props: { title: string, flagged?: boolean, id?: number, CreatedAt?: string | Date, subTitle?: string, type?: string, group?: Group, }) {
     const { flagged, id, CreatedAt, subTitle, type, group, title } = props
 
     return (
-        <div className="min-h-max pt-1.5">
+        <div className="min-h-max pt-1 gap-1 flex flex-col">
             <div className="flex items-center w-full justify-between gap-2">
-                <div className="flex items-center gap-4  w-full">
+                <div className="flex items-center gap-4 w-full">
                     <h4
                         id={title}
-                        className="w-full flex !line-clamp-1 pt-1"
+                        className="w-full flex !line-clamp-1 py-1"
                         title={title}>
                         {title}
                     </h4>
@@ -41,16 +41,13 @@ export function Title(props: { title: string, flagged?: boolean, id?: number, Cr
                         type={type ?? ''} />
                 }
             </div>
-            {subTitle &&
-                <div className="flex  flex-col justify-between pr-1">
-                    <h5 className="truncate">
-                        {subTitle}
-                    </h5>
-                    {group &&
-                        <GroupLink group={group ?? {} as Group} />}
+            {(group || subTitle) &&
+                <div className="flex flex-col justify-between pr-1">
+                    {subTitle &&
+                        <h5 className="truncate">
+                            {subTitle}
+                        </h5>}
+                    {group && <GroupLink group={group ?? {} as Group} />}
                 </div>}
-            {group && !subTitle &&
-
-                <GroupLink group={group ?? {} as Group} />}
         </div>)
 }

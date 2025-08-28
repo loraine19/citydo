@@ -43,9 +43,9 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
     return (
         <form onSubmit={formik.handleSubmit} className='flex h-full flex-col gap-2 ' >
             <main className='relative flex flex-1 pt-6 -mt-4'>
-                <Card className="w-respLarge h-full ">
+                <Card className="w-respLarge FixCard !flex !flex-col h-full ">
                     <CardHeader
-                        className="!bg-transparent !rounded-none !pb-2 shadow-none flex justify-center items-end"
+                        className="-mt-6 !bg-transparent !rounded-none !pb-2 shadow-none flex justify-center items-end "
                         floated={true}>
                         <ImageBtn
                             setImgBlob={setImgBlob}
@@ -59,12 +59,12 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                             avatarSize={'lg'}
                             avatarStyle="shadow-md !rounded-full !h-[5rem] !w-[5rem]" />
 
-                        <div className="w-full z-0 absolute left-0 top-10 flex justify-between">
+                        <div className="w-full z-0 absolute px-6 top-6 flex justify-between">
                             <Typography
                                 className="!font-light !whitespace-break-spaces max-w-[30vw] !text-xs !text-left">
                                 {user.email}
                             </Typography>
-                            <div className="flex flex-col gap-1">
+                            <div className="relative  flex flex-col gap-1">
                                 <Link
                                     to="/motdepasse_oublie"
                                     className="!font-light !whitespace-break-spaces max-w-[30vw] !text-[0.7rem] !text-right hover:underline hover:text-cyan-500"
@@ -87,7 +87,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                             </div>
                         </div>
                     </CardHeader>
-                    <CardBody className="flex flex-1 flex-col h-full gap-3 mb-4 overflow-auto ">
+                    <CardBody className="-mt-6 px-6 flex flex-1 flex-col h-full gap-3 mb-4 overflow-auto ">
                         <Input
 
                             className={`inputStandart ${formik.errors.firstName ? 'error' : ''}`}
@@ -122,67 +122,70 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                         />
 
                         <Select
-
-                            className={`p-5 capitaliz inputStandart  ${formik.errors.mailSub ? 'error' : ''}`}
-                            placeholder={"Notifications mails"}
                             name="mailSub"
                             value={formik.values.mailSub}
                             onChange={(val: any) => {
                                 setMailSub(val);
                                 formik.values.mailSub = val
                             }}>
-                            {mailSubscriptions.map((label: Label, index: number) => {
-                                return (
-                                    <Select.Option
-                                        className="!flex"
-                                        value={label.value}
-                                        key={index}>
-                                        {label.label}
-                                    </Select.Option>
-                                )
-                            })}
+                            <Select.Trigger
+                                className={`capitaliz inputStandart  ${formik.errors.mailSub ? 'error' : ''}`}
+                                placeholder={"Notifications mails"}
+                            />
+                            <Select.List>
+                                {mailSubscriptions.map((label: Label, index: number) => {
+                                    return (
+                                        <Select.Option
+                                            value={label.value}
+                                            key={index}>
+                                            {label.label}
+                                        </Select.Option>
+                                    )
+                                })}
+                            </Select.List>
                         </Select>
                         <InputError error={formik.errors.mailSub} tips={'souscription aux mails'} />
-                        <Select
-
-                            className={`p-5 capitaliz inputStandart  ${formik.errors.mailSub ? 'error' : ''}`}
-                            placeholder={"Assistance"}
-                            name="level"
+                        <Select name="level"
                             value={formik.values.assistance}
                             onChange={(val: any) => {
                                 setAssistance(val);
                                 formik.values.assistance = val
                             }}>
-                            {assistanceLevel.map((label: Label, index: number) => {
-                                return (
-                                    <Select.Option
-                                        value={label.value}
-                                        key={index}>
-                                        {label.label}
-                                    </Select.Option>
-                                )
-                            })}
+                            <Select.Trigger className={`capitaliz inputStandart  ${formik.errors.mailSub ? 'error' : ''}`}
+                                placeholder={"Assistance"}
+                            />
+
+                            <Select.List>
+                                {assistanceLevel.map((label: Label, index: number) => {
+                                    return (
+                                        <Select.Option
+                                            value={label.value}
+                                            key={index}>
+                                            {label.label}
+                                        </Select.Option>
+                                    )
+                                })}
+                            </Select.List>
                         </Select>
                         <InputError error={formik.errors.assistance} tips={'niveau d\'assistance'} />
+
+                        {/* GROUP SELECT  */}
                         <ListGroup groups={groups} />
+
+                        {/* SKILLS  */}
                         <Input
                             className={`inputStandart ${formik.errors.skills ? 'error' : ''}`}
                             placeholder="Ajouter une compétences"
                             name="skills"
                             value={newSkill}
                             onChange={(e: any) => { e.preventDefault(); setNewSkill(e.target.value) }}
-                            onSubmit={addSkill}
-                        >
-                            <Input.Icon placement="end">
-                                <div className="-mt-2 -ml-1  opacity-90">
-                                    <Icon
-                                        color='slate'
-                                        icon='add'
-                                        size='xl'
-                                        onClick={addSkill}
-                                        style={` ${newSkill && 'error bg-red-100 rounded-full'}`} />
-                                </div>
-                            </Input.Icon>
+                            onSubmit={addSkill} >
+                            <Icon
+                                color='slate'
+                                icon='add'
+                                size='lg'
+                                onClick={addSkill}
+                                style={` ${newSkill && 'error bg-red-100 rounded-full'} absolute right-1 top-1`} />
                         </Input>
                         <List className='flex p-0'>
                             <Typography className='text-xs text-gray-400 -mt-1 font-normal'>

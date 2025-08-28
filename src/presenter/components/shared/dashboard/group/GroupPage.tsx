@@ -130,6 +130,7 @@ export default function GroupPage() {
                     setSelectedSort={setSelectedSort} />
                 <div className="flex items-center justify-center gap-4 pb-1 lg:px-8">
                     <CategoriesSelect
+                        label={'Catégories'}
                         categoriesArray={groupCategories}
                         change={change}
                         categorySelected={category.toString()} />

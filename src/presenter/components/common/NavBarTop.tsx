@@ -7,7 +7,7 @@ import { OnlineDot } from "./onlineDot";
 import { useNotificationStore } from "../../../application/stores/notification.store";
 import { AvatarUser } from "./AvatarUser";
 import { useUxStore } from "../../../application/stores/ux.store";
-import { NavBarSection } from "./NavBar";
+import { NavBarSection } from "./NavLinks";
 
 export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navIcons?: boolean }) {
     const { unReadMsgNotif } = useNotificationStore((state) => state);
@@ -30,22 +30,24 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
     return (
         <header onClick={() => { hideNavBottom && setHideNavBottom(false) }}>
-            <div className={`wRespXL h-full  justify-between items-end pt-2 pb-3 lg:pb-1
+            <div className={`wRespXL h-full justify-between items-end pt-2 pb-3 lg:pb-1
             ${navBottom ? 'flex ' : 'grid grid-cols-[auto_1fr_auto] '}
                 ${hideNavBottom ? ' flex animRev' : ' flex animRev'}`} >
-                <div className={`flex max-w-max  h-full ${hideNavBottom ? 'hidden' : ''}`}>
+                <div className={`flex h-full ${hideNavBottom ? 'hidden' : ''}`}>
+
+                    {/* PROFILE MENU  */}
                     <Menu placement="bottom-start">
-                        <MenuTrigger className="relative h-full min-w-max  z-50 flex items-center cursor-pointer">
+                        <MenuTrigger className="relative h-full justify-center max-w-max grid  z-50  items-center !p-0">
                             {onBoard ?
-                                <div className='flex w-full flex-1 items-center'>
+                                <div className='flex w-[48px] flex-1 items-center'>
                                     <img className="!w-[48px] !h-[48px] object-cover object-center"
                                         src="/image/logo.svg"
                                         alt="logo" />
                                 </div> :
-                                <div className="flex items-center relative">
+                                <div className="flex max-w-[42px] items-center relative">
                                     <AvatarUser
                                         style='!shadow-none'
-                                        avatarStyle='!min-w-[43px] !h-[42px] !text-[26px]'
+                                        avatarStyle='!w-[42px] !h-[42px] !text-[26px] bg-yellow-900'
                                         avatarSize={'sm'}
                                         Profile={user?.Profile} />
                                     <OnlineDot
@@ -53,7 +55,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                         id={user?.id} />
                                 </div>}
                         </MenuTrigger>
-                        <MenuContent className='flex flex-1 flex-col !rounded-xl !shadow-xl -ml-2'>
+                        <MenuContent className='flex flex-1 flex-col !rounded-xl !shadow-xl -ml-3'>
                             {menuItems.map((item, index) => (
                                 <MenuItem
                                     key={index}
@@ -73,41 +75,43 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                             ))}
                         </MenuContent>
                     </Menu>
+
+                    {/* INFO TEXT LOGO   */}
                     {(!hideNavBottom) &&
-                        <div className={`${!navBottom ? 'hidden lg:flex' : ''} max-w-[30vw] lg:max-w-[220px] flex items-center h-full w-full pl-4`}>
+                        <div className={`${!navBottom ? 'hidden lg:flex' : ''} max-w-[30vw] lg:max-w-[220px] flex items-center h-full w-full px-3 justify-center pt-1`}>
                             {onBoard ?
-                                <Typography
-                                    className='text-slate-700 font-comfortaa text-[1.8rem] lg:text-[2.1rem] font-bold'>
+                                <h2 className=' font-comfortaa text-[1.8rem] lg:!text-[2.1rem] font-bold'>
                                     City'Do
-                                </Typography> :
+                                </h2> :
                                 <div className='flex flex-col mt-1 !font-comfortaa items-start'>
-                                    <Typography
-                                        className="whitespace-nowrap"
-                                        as='h3'>
-                                        {user?.Profile?.firstName} hjbhjbhj
-                                    </Typography>
-                                    <Typography
-                                        className=' flex !line-clamp-1 text-slate-500 font-extralight italic text-[0.9rem]'>
+                                    <h2 className="whitespace-nowrap">
+                                        {user?.Profile?.firstName}
+                                    </h2>
+                                    <i className=' flex !line-clamp-1'>
                                         {user?.GroupUser?.map((group) => (group.Group?.name.split(':')[0])).join(', ')}
-                                    </Typography>
+                                    </i>
                                 </div>}
                         </div>}
+
                 </div>
 
+                {/* INSERTION NAVLINK TOP  */}
                 {(!navBottom && navIcons && !hideNavBottom) &&
-                    <div className="relative w-full h-full flex justify-end items-end">
-                        <div className="absolute w-[128%]  justify-center flex  bg-slate-50 h-full scale-[0.75] -mr-[13.5%] pr-6 ">
+                    <div className="relative w-full h-full flex justify-end items-center pt-0.5">
+                        <div className="absolute w-[135%] h-[135%] justify-center flex scale-[0.75] -mr-[calc(10%+2.5rem)] ">
                             <NavBarSection addBtn={addBtn} />
                         </div>
                     </div>
                 }
-                <div
-                    className={`justify-end items-center flex h-full w-full !flex-1 pl-4
+
+                {/* NOTIF BAGDES  */}
+                <div className={`justify-end items-center flex h-full w-full !flex-1 pl-4
                     ${onBoard ? 'lg:pr-0' : 'pr-0'} 
                     ${hideNavBottom ? 'hidden' : ''} 
                     ${navBottom ? ' w-full' : ''}`} >
                     <NotifBadge />
                 </div>
+
             </div >
         </header >
     );

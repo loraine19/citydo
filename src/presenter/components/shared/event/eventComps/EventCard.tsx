@@ -77,7 +77,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                     type='evenement'
                     group={event.Group}
                 />
-                <Typography className="leading-[1.3rem] pt-1.5 !line-clamp-2">
+                <Typography className="description !line-clamp-1">
                     {description}
                 </Typography>
             </CardBody>

@@ -95,9 +95,11 @@ header {
 .sectionHeader {
     @apply flex flex-col gap-0 relative;
 }
-
+h2 {
+    @apply font-bold !text-[1.5rem] !text-slate-600;
+}
 h3 {
-    @apply font-bold text-[1.3rem] !text-slate-800 !font-roboto;
+    @apply font-semibold text-[1.3rem] !text-slate-600 !font-roboto;
 }
 h4 {
     @apply font-semibold text-[1.1rem] !text-slate-800 !font-roboto;
@@ -106,7 +108,7 @@ h5 {
     @apply text-lg text-[0.95rem] font-normal !text-slate-700 !font-roboto;
 }
 h6 {
-    @apply font-normal text-sm  !text-slate-700 !font-roboto;
+    @apply font-normal  !text-slate-700 !font-roboto;
 }
 p {
     @apply text-base font-light text-slate-600 !font-roboto;
@@ -114,6 +116,10 @@ p {
 
 i {
     @apply italic text-[0.95rem] font-normal !text-slate-400 !font-roboto;
+}
+
+.description {
+    @apply leading-[1.2rem] pt-1.5 line-clamp-2;
 }
 
 /* RESPONSIVE */
@@ -132,7 +138,18 @@ i {
 
 /**** INPUT STYLES ****/
 .inputStandart {
-    @apply !rounded-none border-b border-gray-400 ring-0 focus:!border-b-gray-800 dark:border-gray-600 dark:hover:border-gray-50 dark:focus:border-gray-50 !border-t-0 !border-x-0 hover:!border-t-0 placeholder:!opacity-90 placeholder:!text-slate-600 !pl-0  focus:placeholder:!opacity-50 before:content-none after:content-none gap-4;
+    @apply !rounded-none border-b !border-slate-400 ring-0 focus:!border-b-slate-800  !border-t-0 !border-x-0 hover:!border-t-0 placeholder:!opacity-90 placeholder:!text-slate-600 !pl-0  focus:placeholder:!opacity-50 before:content-none after:content-none gap-4 font-normal  text-sm  !text-slate-500 !font-roboto;
+}
+.inputStandart::placeholder {
+    @apply !text-slate-600 !opacity-90 !font-roboto;
+}
+
+input {
+    @apply !text-slate-600 !opacity-95 !font-roboto;
+}
+
+[role="option"] {
+    @apply !text-slate-500 !opacity-95 !font-roboto !font-normal;
 }
 
 .inputStandart span {
@@ -141,6 +158,10 @@ i {
 
 .inputStandart :last-child {
     @apply right-0;
+}
+
+.inputDiv {
+    @apply rounded-full h-9 shadow bg-white border-t px-4 !border-slate-50 capitalize font-normal;
 }
 
 /**** COLORS ****/
@@ -166,6 +187,10 @@ i {
 
 .orangeBG {
     background-image: linear-gradient(#f9fafb00, #ffedd5);
+}
+
+.tealBG {
+    background-image: linear-gradient(#f9fafb00, #6fe3d2);
 }
 
 /**** ANIMATIONS ****/
@@ -250,7 +275,7 @@ i {
 
 /**** GRID SYSTEM ****/
 .Grid {
-    @apply max-h-full wRespXL grid grid-cols-[minmax(calc(50%-1rem),_1fr)] pt-1 pb-4 gap-y-3.5 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)] 
+    @apply max-h-full wRespXL grid grid-cols-[minmax(calc(50%-1rem),_1fr)] pt-2 pb-4 gap-y-3.5 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)] 
   lg:auto-rows-[minmax(300px,40vh)] auto-rows-[minmax(346px,40vh)];
 }
 
@@ -265,7 +290,7 @@ i {
 }
 
 .SubGrid {
-    @apply pt-6 max-w-[calc(100vw-1rem)] mx-2;
+    @apply pt-6 max-w-[calc(100vw-1rem)] mx-1.5;
 }
 
 /**** RESPONSIVE ****/
@@ -281,16 +306,16 @@ i {
 /**** CARD ****/
 
 .FixCard {
-    @apply border !bg-white w-respLarge rounded-xl w-full mx-auto h-full !flex flex-col !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md;
+    @apply border !bg-white w-respLarge rounded-xl w-full mx-auto h-full grid grid-rows-[minmax(40%,1fr),1fr,auto] !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md;
 }
 
 .FixCardNoImage {
-    @apply !bg-white w-full  grid rounded-xl my-0 mx-auto !h-[calc(100%+1.5rem)] !-mt-6 !p-0 anim
-  grid-rows-[auto,1fr,auto] !flex-col border border-slate-200 shadow-md;
+    @apply !bg-white w-full grid rounded-xl my-0 mx-auto !h-[calc(100%+1.5rem)] !-mt-6 !p-0 anim
+  grid-rows-[auto_1fr_auto] !flex-col border border-slate-200 shadow-md;
 }
 
 .FixCardHeader {
-    @apply !rounded-xl !relative !z-[999] -mt-6 flex flex-1 max-w-[calc(100%-1.8rem)] m-auto !shadow-md fadeIn border !max-h-[40vw] sm:!max-h-[55vw] md:!max-h-[45%];
+    @apply !flex h-[calc(100%+1.5rem)] !rounded-xl !relative !z-[999] -mt-6 max-w-[calc(100%-1.8rem)] m-auto !shadow-md fadeIn border;
 }
 
 .FixCardHeaderSmall {
@@ -302,7 +327,7 @@ i {
 }
 
 .ChipDiv {
-    @apply flex w-full gap-2  justify-between overflow-auto absolute p-2 h-max;
+    @apply flex w-full gap-2 justify-between overflow-auto absolute p-2 h-max;
 }
 
 .ChipDivNoImage {
@@ -314,7 +339,7 @@ i {
 }
 
 .FixCardBody {
-    @apply relative flex flex-1 !min-h-max flex-col px-5 py-3 -mt-5 overflow-hidden;
+    @apply relative  h-full flex flex-1 !min-h-max flex-col px-5 !py-0 overflow-hidden;
 }
 
 .CardOverFlow {
@@ -322,15 +347,15 @@ i {
 }
 
 .CardFooter {
-    @apply relative flex justify-between pt-0 px-5 pb-4 max-h-max;
+    @apply relative flex  justify-between pt-0 px-5 !py-3 !my-0 max-h-max;
 }
 
 .CardImage {
-    @apply h-full w-full !rounded-xl object-cover !shadow-lg !bg-white  min-h-full !max-h-[40vw] sm:!max-h-[55vw] md:!max-h-[45%];
+    @apply h-full w-full !rounded-xl object-cover !shadow-lg !bg-white;
 }
 
 .DetailCardDiv {
-    @apply lg:pt-8 pt-6 pb-1 h-full flex;
+    @apply lg:pt-8 pt-6 pb-1 h-full flex overflow-hidden;
 }
 
 /**** ICON ****/
@@ -429,7 +454,11 @@ button:disabled {
 
 button {
     text-transform: none !important;
-    @apply whitespace-nowrap font-bold !border-opacity-10 focus:!bg-opacity-25;
+    @apply whitespace-nowrap font-bold !border-current !border-opacity-30;
+}
+
+button:hover {
+    @apply !bg-opacity-90 !brightness-90 !saturate-[1.8];
 }
 
 .lgBtn {
@@ -460,9 +489,22 @@ button {
 .Map {
     @apply w-full h-full flex flex-1 rounded-2xl;
 }
-
 .FixedCenter {
-    @apply !static top-[20vh] max-h-screen bottom-[10vw] right-[10vw] w-[80vw] h-[calc(80vh-4rem)] p-8 bg-red-500 m-auto;
+    position: fixed;
+    top: 10% !important;
+    left: 50% !important;
+    padding: 5rem 1rem !important;
+    transform: translateX(-50%) !important;
+    height: calc(100vh - 10%) !important;
+    max-width: 500px !important;
+    width: calc(100vw - 1rem) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 1000 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: none !important;
 }
 
 .leaflet-control-attribution.leaflet-control {
@@ -475,16 +517,20 @@ button {
 
 /* SCROLL BARE */
 ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px;
+    width: 4px;
+    height: 4px;
+}
+::-webkit-scrollbar:hover {
+    @apply bg-slate-300/30;
+    cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply bg-white/30 rounded-2xl;
+    @apply bg-slate-300/30 rounded-2xl;
 }
 ::-webkit-scrollbar-thumb:hover,
 ::-webkit-scrollbar-thumb:active {
-    @apply bg-white/50;
+    @apply bg-slate-300/50;
 }
 button span {
     @apply !truncate max-w-full min-h-max;
@@ -547,36 +593,35 @@ button span {
 /**** COMBINED STYLES ****/
 
 .cyanStyle {
-    @apply text-cyan-500 border-cyan-400;
-    background-color: #a9f1f9;
+    @apply text-cyan-500 bg-cyan-200/70 border-cyan-400 focus:bg-cyan-300;
 }
 .orangeStyle {
-    @apply text-orange-500 bg-orange-200 border-orange-400;
+    @apply text-orange-500 bg-orange-200/80 border-orange-400 focus:bg-orange-300;
 }
 .redStyle {
-    @apply text-red-500 bg-red-200 border-red-400;
+    @apply text-red-500 bg-red-200/80 border-red-400 focus:bg-red-300;
 }
 .skyStyle {
-    @apply text-sky-500 bg-sky-200 border-sky-400;
+    @apply text-sky-500 bg-sky-200/80 border-sky-400 focus:bg-sky-300;
 }
 .greenStyle {
-    @apply text-green-500 bg-green-200 border-green-400;
+    @apply text-green-500 bg-green-200/80 border-green-400 focus:bg-green-300;
 }
 .grayStyle {
-    @apply text-gray-500 bg-gray-200 border-gray-400;
+    @apply text-gray-500 bg-gray-200/80 border-gray-400 focus:bg-gray-300;
 }
 .slateStyle {
-    @apply text-slate-500 bg-slate-200 border-slate-400;
+    @apply text-slate-500 bg-slate-200/80 border-slate-400 focus:!bg-slate-300;
 }
 .tealStyle {
-    @apply text-teal-500 bg-teal-200 border-teal-400;
+    @apply text-teal-500 bg-teal-200/80 border-teal-400 focus:bg-teal-300;
 }
 .amberStyle {
-    @apply text-amber-500 bg-amber-200 border-amber-400;
+    @apply text-amber-500 bg-amber-200/80 border-amber-400 focus:bg-amber-300;
 }
 .roseStyle {
-    @apply text-rose-500 bg-rose-200 border-rose-400;
+    @apply text-rose-500 bg-rose-200/80 border-rose-400 focus:bg-rose-300;
 }
 .yellowStyle {
-    @apply text-yellow-500 bg-yellow-200 border-yellow-400;
+    @apply text-yellow-500 bg-yellow-200/80 border-yellow-400 focus:bg-yellow-300;
 }

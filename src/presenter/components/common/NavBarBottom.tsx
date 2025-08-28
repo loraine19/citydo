@@ -1,6 +1,6 @@
 import { useNotificationStore } from "../../../application/stores/notification.store";
 import { useUxStore } from "../../../application/stores/ux.store";
-import { NavBarSection } from "./NavBar";
+import { NavBarSection } from "./NavLinks";
 
 interface NavBarBottomProps {
     handleClick?: () => void;

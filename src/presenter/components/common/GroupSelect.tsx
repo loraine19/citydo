@@ -14,10 +14,7 @@ export default function GroupSelect({ formik, user, setGroupId, groupId, disable
     return (
         <Select
             disabled={disabled}
-            className="rounded-full shadow bg-white border-none capitalize"
-            label={formik.errors.groupId ? formik.errors.groupId as string : "Choisir le groupe"}
             name={"groupId"}
-            labelProps={{ className: `${formik?.errors?.groupId && "error"} before:border-none after:border-none ` }}
             value={groupId || formik.values.groupId?.toString() || '0'}
             defaultValue={groupId || formik.values.groupId?.toString() || '0'}
             onChange={(val: string | undefined) => {
@@ -25,19 +22,24 @@ export default function GroupSelect({ formik, user, setGroupId, groupId, disable
                 formik.groupId = val
                 setGroupId(val as string)
             }} >
-
-            {user?.GroupUser?.length > 0 ? user?.GroupUser?.map((group: any, index: number) =>
-                <Select.Option
-                    className="rounded-full"
-                    value={group.Group.id.toString()}
-                    key={index}>
-                    {group.Group.name}
-                </Select.Option>)
-                : <Select.Option
-                    className="rounded-full"
-                    value={'0'}>
-                    Aucun groupe </Select.Option>
-            }
+            <Select.Trigger
+                placeholder={formik.errors.groupId ? formik.errors.groupId as string : "Choisir le groupe"}
+                className="inputDiv " />
+            <Select.List>
+                {user?.GroupUser?.length > 0 ? user?.GroupUser?.map((group: any, index: number) =>
+                    <Select.Option
+                        className="rounded-full"
+                        value={group.Group.id.toString()}
+                        key={index}>
+                        {group.Group.name}
+                    </Select.Option>)
+                    : <Select.Option
+                        className="rounded-full"
+                        value={'0'}>
+                        Aucun groupe
+                    </Select.Option>
+                }
+            </Select.List>
         </Select>
 
     )

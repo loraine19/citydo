@@ -138,12 +138,28 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 data-cy="terms-checkbox"
                                 type="checkbox"
                                 name="checkbox"
-                                className={formik.errors.checkbox ? "error bg-red-300/50" : ""}
-                                onChange={(e: any) => { formik.values.checkbox = e.target.checked }} />
+                                className={`border-none shadow-none hover:shadow-none data-[checked=true]:bg-transparent`}
+                                onChange={(e: any) => { formik.values.checkbox = e.target.checked }} >
+                                <Checkbox.Indicator
+                                    className="relative opacity-100 flex items-center justify-center">
+                                    <Icon style={'opacity-0 group-data-[checked=true]:opacity-100 absolute top-[50%] translate-y-[-50%] -left-1'}
+                                        bg
+                                        size='sm'
+                                        color={formik.errors.checkbox ? 'red' : 'slate'}
+                                        icon={""}
+                                    />
+                                    <Icon style={'opacity-100 group-data-[checked=true]:opacity-0 !absolute top-[50%] translate-y-[-50%] -left-1'}
+                                        bg
+                                        size='sm'
+                                        color={formik.errors.checkbox ? 'red' : 'cyan'}
+                                        icon={"check"}
+                                    />
+                                </Checkbox.Indicator>
+                            </Checkbox>
                             <div className='!justify-start w-full flex flex-col'>
                                 <PopUp
                                     variant={"ghost"}
-                                    classNames={`${popOverClass} scale-95 !flex ounded-full`}
+                                    classNames={`${popOverClass} !border-none scale-95 !flex ounded-full`}
                                     text={popOverButtonText}
                                     content={popOverContent} />
                             </div>

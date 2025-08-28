@@ -24,7 +24,9 @@ export const ImageBtn = (props: { formik: any; setImgBlob: any; imgDef?: string;
 
     return (
         <div className={`absolute -mb-1 pb-2 pl-1 z-30 ${className}`}>
-            <Button className="!shadow-md w-10 h-10 rounded-full px-0" ripple={false}>
+            <Button
+                type="button"
+                className="!shadow-md w-10 h-10 rounded-full px-0" ripple={false}>
                 <label htmlFor="image" className="flex flex-col items-center justify-center w-full h-full cursor-pointer">
                     <Icon
                         bg clear

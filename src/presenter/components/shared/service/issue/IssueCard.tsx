@@ -50,9 +50,9 @@ const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) =
 
     return (
         <>
-            <Card className={`!flex justify-between ${haveImage ? "FixCard" : "FixCardNoImage"} ${withMe ? "!border-orange-400 !border-[1px]" : ""} `}>
+            <Card className={` ${haveImage ? "FixCard" : "FixCardNoImage !grid-rows-[auto_23%_1fr] "} ${withMe ? "!border-orange-400 !border-[1px]" : ""} `}>
                 <CardHeader
-                    className={haveImage ? "h-full  lg:!max-h-[16vh] !max-h-[14vh] !mb-0" : "FixCardHeaderNoImage !m-0"}
+                    className={haveImage ? "h-full  lg:!max-h-[16vh] !max-h-[14vh] !mb-0" : "FixCardHeaderNoImage "}
                     floated={haveImage}>
                     <div className={haveImage ? "ChipDiv" : "ChipDivNoImage"}>
                         <div className="flex items-start gap-2 ">
@@ -79,11 +79,11 @@ const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) =
                             title="image de concialtion"
                             src={image as any}
                             alt={Service.title}
-                            className="CardImage"
+                            className="ImageCard"
                         />
                     }
                 </CardHeader>
-                <CardBody className={` FixCardBody h-full !flex-1`}>
+                <CardBody className={` FixCardBody`}>
                     <div className="relative flex items-center justify-between">
                         <div className="flex flex-col md:gap-4 lg:gap-0 justify-between w-full mr-8">
                             <Typography
@@ -100,7 +100,7 @@ const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) =
                             style="absolute -top-2 -right-3"
                             fill />
                     </div>
-                    <Typography className="leading-[1rem] pt-1 text-[0.9rem] !line-clamp-2 md:!line-clamp-6 lg:!line-clamp-2  pr-6">
+                    <Typography className="description ">
                         {description}
                     </Typography>
                 </CardBody>

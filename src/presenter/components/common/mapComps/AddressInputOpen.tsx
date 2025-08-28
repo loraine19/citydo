@@ -6,6 +6,7 @@ import { Skeleton } from '../Skeleton';
 import { AddressDTO } from '../../../../infrastructure/DTOs/AddressDTO';
 import DI from '../../../../di/ioc';
 import { InputError } from '../adaptatersComps/input';
+import { Icon } from '../IconComp';
 
 interface AddressSuggestion { label: string; value: Address }
 
@@ -107,7 +108,7 @@ export const AddressInputOpen = (props: {
     return (
         <div className='relative z-40 '>
             <Input
-                className={`items-center flex-1 inputStandart ${error ? 'error' : ''}`}
+                className={`items-center flex-1 !relative inputStandart ${error ? 'error' : ''}`}
                 placeholder={"Adresse"}
                 type="text"
                 name='address'
@@ -116,9 +117,12 @@ export const AddressInputOpen = (props: {
                     if (event.target.value.trim() !== '' || event.target.value === '') { handleInputChange(event) }
                 }}
             >
-                <Input.Icon placement='end'>
-                    {inputValue && (<button onClick={() => { setInputValue('') }}> &#x2715;</button>)}
-                </Input.Icon>
+                <Icon
+                    icon='close'
+                    style={'!absolute top-[50%] translate-y-[-50%] right-2'}
+                    onClick={() => { setInputValue('') }}
+                    size='sm'
+                    color='gray' />
             </Input>
             <InputError error={error ? Object.values(error).join(', ') : ""} mt />
             {inputValue.length > 1 && inputLoading && (

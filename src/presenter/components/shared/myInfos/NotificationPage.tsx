@@ -111,7 +111,6 @@ export default function NotificationPage() {
                 </div>
                 {notifFind &&
                     <NotifDiv
-
                         notif={notifFind}
                         isLoading={isLoading}
                         refetch={refetch} />}

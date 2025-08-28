@@ -192,11 +192,11 @@ export default function ServiceDetailPage() {
 
     return (
         <>
-            <main>
+            <main >
                 <div className="px-4 sectionHeader">
                     <SubHeader type={`${typeS ?? ''} de service ${categoryS ?? ''}`} closeBtn />
                 </div>
-                <section>
+                <section className="">
                     {isLoading || error || !service ?
                         <Skeleton />
                         :

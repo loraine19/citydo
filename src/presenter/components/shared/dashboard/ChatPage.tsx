@@ -159,12 +159,12 @@ export default function ChatPage() {
                             <CardBody className=' !p-0  h-full'>
                                 <div className='flex flex-1 h-full  '>
                                     <div className='flex-1  overflow-y-auto overflow-x-hidden'>
-                                        <List className='flex-1 pt-2'>
+                                        <List className='flex-1 border-8 gap-1 border-white'>
                                             {conversations &&
                                                 conversations.map((message: MessageView, index: number) =>
                                                     <div key={index + 'div'}>
                                                         <List.Item
-                                                            className={`p-1 ${(userIdRec === message?.isWith.id) ? '!bg-gray-200 border-white border-8 shadow-md -ml-2' : ''}`}
+                                                            className={`p-1 gap-1 ${(userIdRec === message?.isWith.id) ? '!bg-slate-200 !border-white !border-8 shadow-md -mt-1 -ml-2' : 'bg-white '}`}
                                                             key={index}
                                                             onClick={() => {
                                                                 setOpen(true)

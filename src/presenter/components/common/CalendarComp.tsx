@@ -55,6 +55,8 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                             </Typography>
                         </div>
                     </div>}
+
+                {/* DATE NAVIGATION */}
                 <div className='flex  w-full justify-between items-center flex-row-reverse'>
                     <div className='flex items-center'>
                         <Icon
@@ -69,6 +71,8 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                             size='sm'
                             onClick={addWeek} />
                     </div>
+
+                    {/* DAY SETTING */}
                     <div className='flex items-center pl-8 pb-2'>
                         <div className={`flex gap-1 items-center font-light`}>
                             jours
@@ -84,6 +88,8 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                                 size='sm'
                                 onClick={addCol} />
                         </div>
+
+                        {/* WEEKS SETTING */}
                         {!logo &&
                             <div className='flex gap-2 px-4 items-center font-light'>
                                 semaine
@@ -101,6 +107,8 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                     </div>
                 </div>
             </div>
+
+            {/* CALENDAR */}
             <div className='relative max-h-full w-full flex flex-1 '>
                 {loadingEvents || errorEvents ? (
                     <div className='absolute flex flex-col flex-1 h-full p-2 gap-2 w-full rounded-2xl bg-white shadow '>
@@ -129,12 +137,12 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                                 className={`grid rounded-xl h-full overflow-auto pb-3 !border border-slate-200 !bg-slate-200/50
                                 ${colClass[col - 1]}`}>
                                 {week.map((day: any, index: number) =>
-                                    <div className={`${new Date(day.date).toDateString() === new Date().toDateString() && 'text-orange-500  underline text-font-bold'} text-xs flex flex-col text-center h-full  border-r border-slate-100/50  `}
+                                    <div className={`flex flex-col text-center h-full  border-r border-slate-100/50  `}
                                         key={index}>
-                                        <p className='w-full scale-95 min-h-4 sticky top-0 text-center bg-transparent '>
+                                        <p className={`${new Date(day.date).toDateString() === new Date().toDateString() && '!text-orange-500  underline underline-offset-4 text-font-bold'} 'w-full !text-xs min-h-4 sticky top-0 text-center bg-slate-100`}>
                                             {day.date.toLocaleDateString('fr-FR', { weekday: 'narrow', month: 'numeric', day: 'numeric' })}
                                         </p>
-                                        <div className=' min-h-4 h-full flex flex-col w-full items-center gap-0.5' key={index}>
+                                        <div className='min-h-4 h-full flex flex-col w-full items-center gap-0.5' key={index}>
                                             {day.events.sort((a: any, b: any) => a.id - b.id).map((event: any, indexEvent: number) => {
                                                 const eventDays = event.days.map((d: any) => new Date(d).toDateString());
                                                 const currentDay = new Date(new Date(day.date).getTime()).toDateString();

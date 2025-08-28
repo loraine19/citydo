@@ -31,14 +31,15 @@ export default function CheckCard(props: checkCardProps) {
     const colorShadeDark = (color: string): string => `${color}-500 `;
 
     return (
-        <div className={`flex w-full !p-0 ${style} `}>
-            <div className="w-full !m-0  !max-w-screen pl-2 overflow-auto  !flex items-center rounded-xl">
-                <List className="flex-row flex w-full min-w-max justify-evenly items-center !p-0 overflow-auto">
+        <div className={`flex w-full  ${style} `}>
+            <div className="w-full !m-0 h-full !max-w-screen pl-2 overflow-auto !flex items-center rounded-xl">
+                <List className="flex-row h-full flex w-full min-w-max justify-evenly items-center !p-0 overflow-auto">
                     {categoriesArray.map((category, index) => (
-                        <List.Item className="!pt-0.5 px-0.5 w-full !pb-1  min-w-max hover:!bg-transparent" key={index}>
+                        <List.Item className="px-0.5 h-full w-full min-w-max hover:!bg-transparent" key={index}>
                             <label htmlFor={category} className="flex flex-1">
-                                <List.ItemStart className={`relative w-full  !px-0 py-0.5 !m-0 flex items-center justify-center rounded-2xl !shadow-sm  border-[1px] border-${colorShade(color)} shadow-sm ${checkedState[index] ?
-                                    ` bg-${colorShade(color)} border-opacity-20 bg-opacity-30 text-${colorShade(color)} ` : `bg-transparent text-${colorShade(color)}  border-opacity-40  `}`}>
+                                <List.ItemStart className={`bg-slate-400 h-7 relative w-full !px-0 py-0.5 !m-0 flex items-center justify-center rounded-full !shadow-sm border-[1px] border-${color}-500 shadow-sm ${checkedState[index] ?
+                                    `${color}Style !border-opacity-50 ` :
+                                    `bg-transparent !text-${color}-500  border-current opacity-70`}`}>
                                     <Checkbox
                                         checked={checkedState[index]}
                                         id={category}
