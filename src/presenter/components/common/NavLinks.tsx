@@ -106,7 +106,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                         : `shadow-none bg-transparent`}
                     flex rounded-full h-full items-center p-0  hover:!shadow-none`}>
                     <div className={`${navBottom ? 'flex-row' : 'flex-row-reverse'} w-full min-w-max  h-full relative`}>
-                        <ul className={`flex !max-w-[calc(100vw-13rem)] overflow-x-auto overflow-y-hidden flex-row w-full rounded-full justify-between h-full gap-auto  `}>
+                        <ul className={`${navBottom ? '!max-w-[calc(100vw-4rem)]' : '!max-w-[calc(100vw-13rem)]'} flex  overflow-x-auto overflow-y-hidden flex-row w-full rounded-full justify-between h-full gap-auto  `}>
                             {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                                 <Typography
                                     onClick={() => { setColor(color.col) }}
