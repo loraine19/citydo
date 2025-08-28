@@ -74,16 +74,17 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, mo
                             </div>
                             <div className={imgBlob ? 'flex h-[calc(100%_+_1rem)] -mt-2 p-1 relative items-center justify-center' : ``}>
                                 <div className={imgBlob ? 'flex flex-col h-full overflow-hidden rounded-2xl justify-center' : `hidden`}>
-                                    <PopOver trigger={<div className="flex rounded-2xl flex-1  overflow-hidden items-center justify-center">
-                                        <img
-                                            onError={(e) => e.currentTarget.src = '/image/placeholder.jpg'}
-                                            src={imgBlob ?? issue.image ?? '/image/placeholder.jpg'}
-                                            alt='image'
-                                            title='cliquez pour agrandir'
-                                            className="max-h-[300px] max-w-full object-contain rounded-2xl shadow-sm"
-                                            style={{ flex: 1, maxHeight: '300px' }}
-                                        />
-                                    </div>}
+                                    <PopOver
+                                        trigger={<div className="flex rounded-2xl flex-1  overflow-hidden items-center justify-center">
+                                            <img
+                                                onError={(e) => e.currentTarget.src = '/image/placeholder.jpg'}
+                                                src={imgBlob ?? issue.image ?? '/image/placeholder.jpg'}
+                                                alt='image'
+                                                title='cliquez pour agrandir'
+                                                className="max-h-[300px] max-w-full object-contain rounded-2xl shadow-sm"
+                                                style={{ flex: 1, maxHeight: '300px' }}
+                                            />
+                                        </div>}
                                         children={
                                             <div className="flex max-h-[100%] w-full">
                                                 <img

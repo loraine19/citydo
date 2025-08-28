@@ -90,15 +90,14 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
         <>
             <div className={`
             ${(!closeDial) ? 'hidden' : ''} 
-            ${navBottom ? `bottom-[65px] w-full` : 'w-screen top-[132px] -right-[25%] scale-[1.22]'}
-                   h-screen  backdropBlur absolute `}>
+            ${navBottom ? `bottom-[4rem] left-0 w-screen h-[calc(100vh-4rem)]` : '-right-[10rem] w-[calc(100vw*1.3)] md:w-[calc((100%*1.3)+4rem)] h-[calc(100vh*1.31)]  top-0'}
+                   backdropBlur  absolute `}>
             </div>
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim ${color}BG backdropBlur lg:wRespXL px-4 lg:px-1 rounded-full justify-center relative gap-6 w-full flex ` :
-                    ' flex lg:gap-3 gap-[2vw] !max-w-[calc(100vw-10rem)] '
-                ) +
-                `z-30  `
+                    `items-center opacity-100 anim ${color}BG backdropBlur wRespXL rounded-full justify-center relative bottom-0 gap-6` :
+                    'z-0 md:scale-[0.75] scale-[0.72]  -ml-[2.5rem] -mr-[2rem] lg:!-mr-[5rem] pt-[5px] lg:px-auto gap-2 ') +
+                ` flex z-30 `
             }>
                 <Navbar className={`
                     ${navBottom ? '!shadow-md bg-white border border-slate-300 -ml-5 !flex-1 !max-w-max sm:!max-w-[100%] '
@@ -144,26 +143,26 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
 
                 {/* ACTION BUTTON  */}
                 <SpeedDial
-                    className={`${(!navBottom && !addBtn) ? 'hidden' : ''}
-                        ${!navBottom ? '-top-1 mr-0 hidden xs:flex' : ''} 
-                        mt-1 z-[50]  -mr-4`}
                     open={closeDial}
                     setOpen={setCloseDial}
+                    className={`${(!navBottom && !addBtn) ? 'hidden' : ''}
+                        ${!navBottom ? ' hidden xs:flex ' : ''} 
+                        mt-1 z-[50]  -mr-4`}
                     placement={navBottom ? 'top' : 'bottom'}
                     offset={10}
                     Handler={
                         <Icon
-                            onClick={() => setCloseDial && setCloseDial(!closeDial)}
+                            onClick={() => setCloseDial(!closeDial)}
                             icon="add"
                             bg
                             size='5xl'
-                            style={`${!closeDial ? 'hover:scale-[1]' : 'transition-transform rotate-45'} !text-white !text-[2rem] font-normal ${BG}  ${navBottom ? `!shadow-md` : ''}`} />
+                            style={`hover:!transition-transform hover:!rotate-45 !text-white !text-[2rem] font-normal ${BG}  ${navBottom ? `!shadow-md` : ''}`} />
                     }
                     Content={
-                        <div className="flex gap-2 flex-col">
+                        <div className={`${!navBottom ? 'scale-[0.75] -mt-[60%]' : ''} flex gap-2 flex-col `}>
                             {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
                                 <div key={index}
-                                    className="bg-white rounded-full shadow-md flex over:scale-[1.1] !h-[58px] gap-6 w-[58px] !justify-center items-center border"
+                                    className={` "bg-white rounded-full shadow-md flex over:scale-[1.1] !h-[58px] gap-6 w-[58px] !justify-center items-center border"`}
                                     title={label}>
                                     <div>
                                         <Icon

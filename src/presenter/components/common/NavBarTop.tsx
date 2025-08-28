@@ -55,7 +55,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                         id={user?.id} />
                                 </div>}
                         </MenuTrigger>
-                        <MenuContent className='flex flex-1 flex-col !rounded-xl !shadow-xl -ml-3'>
+                        <MenuContent className='flex z-40 flex-1 flex-col !rounded-xl !shadow-xl -ml-3'>
                             {menuItems.map((item, index) => (
                                 <MenuItem
                                     key={index}

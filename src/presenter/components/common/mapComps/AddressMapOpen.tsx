@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-le
 import { useState, useEffect } from 'react';
 import 'leaflet/dist/leaflet.css';
 import L, { CircleOptions } from 'leaflet';
-import { Typography } from '@material-tailwind/react';
+import { Dialog, Typography } from '@material-tailwind/react';
 import { Icon } from '../IconComp';
 import { Address } from '../../../../domain/entities/Address';
 import { AddressDTO } from '../../../../infrastructure/DTOs/AddressDTO';
@@ -41,7 +41,10 @@ function ZoomControls() {
 }
 function FlyToMarker({ position, setFly, zoom }: { position: [number, number], zoom: number, setFly?: React.Dispatch<React.SetStateAction<boolean>> }) {
     const map = useMap();
+
+    console.log('Flying to:', position);
     useEffect(() => {
+        // const positionNumber = [Number(position[0]), Number(position[1])];
         const currentCenter = map.getCenter();
         if (currentCenter?.lat !== position[0] || currentCenter?.lng !== position[1]) {
             map.flyTo(position, zoom, {
@@ -60,10 +63,10 @@ const MarkerList = ({ notifsMap }: { notifsMap: NotifView[] }) => {
         notifsMap.map((notif: NotifView, index: number) => notif?.Address && notif?.Address.lat && notif?.Address?.lng &&
             <Marker
                 key={notif.id}
-                position={[notif?.Address.lat, notif?.Address.lng]}
+                position={[Number(notif?.Address.lat), Number(notif?.Address.lng)]}
                 icon={notif.type === ElementNotif.EVENT ?
                     L.icon({
-                        iconUrl: '/image/marker_l2.svg',
+                        iconUrl: '/image/marker_l3.svg',
                         iconSize: [50, 50],
                         iconAnchor: [(notif.Address?.id && index > 0 && notif.Address.id === notifsMap[index - 1]?.Address?.id) ? 35 : 25, 50],
                         popupAnchor: [0, -20],
@@ -73,7 +76,7 @@ const MarkerList = ({ notifsMap }: { notifsMap: NotifView[] }) => {
                         pane: 'markerPane',
                     }) :
                     L.icon({
-                        iconUrl: '/image/marker_l3.svg',
+                        iconUrl: '/image/marker_l2.svg',
                         iconSize: [50, 50],
                         iconAnchor: [(notif.Address?.id && index > 0 && notif.Address.id === notifsMap[index - 1]?.Address?.id) ? 35 : 25, 50],
                         popupAnchor: [0, -20],
@@ -121,9 +124,17 @@ type AddressMapOpenProps = { address: AddressDTO | Address, message?: string | E
 
 export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message, notifs, aera, color }) => {
 
-    const [position, setPosition] = useState<[number, number]>([address?.lat ?? '0', address?.lng ?? '0']);
-    useEffect(() => { setPosition([address?.lat, address?.lng]) }, [address]);
-    const [open, setOpen] = useState(false);
+    const [position, setPosition] = useState<[number, number]>([
+        Number(address?.lat ?? 0),
+        Number(address?.lng ?? 0)
+    ]);
+
+    useEffect(() => {
+        setPosition([
+            Number(address?.lat ?? 0),
+            Number(address?.lng ?? 0)
+        ]);
+    }, [address]);
     const googleMapsLink = `https://www.google.com/maps/dir/?api=1&destination=${address?.lat},${address?.lng}`;
     const zoom = (aera && (aera / 100) > 5) ? (21 - (aera / 100)) : 14;
 
@@ -152,27 +163,22 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
         </div>)
 
     const CloseButton = () => (
-        <div style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 900 }}>
-            <Icon
-                style='!border-opacity-50 shadow-md'
-                bg fill
-                icon='close'
-                size='md'
-                onClick={() => setOpen(false)}
-                title='Fermer la carte' />
-        </div>)
+        <Icon
+            style='!border-opacity-50 shadow-md'
+            bg fill
+            icon='close'
+            size='md'
+            title='Fermer la carte' />)
 
     const ExpandButton = () => (
-        <div style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 600 }}>
-            <Icon
-                style='!border-opacity-50 shadow-md'
-                bg
-                icon='expand_content'
-                fill
-                size='md'
-                onClick={() => setOpen(true)}
-                title='Ouvrir la carte' />
-        </div>)
+        <Icon
+            style='!border-opacity-50 shadow-md'
+            bg
+            icon='expand_content'
+            fill
+            size='md'
+            title='Ouvrir la carte' />)
+
 
     const [fly, setFly] = useState(false);
 
@@ -187,7 +193,6 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
     return (
         <>
             <div className='border border-blue-gray-100 relative flex flex-1 min-h-[8.5rem] lg:min-h-[6rem] !h-[100%] !rounded-[0.8rem] w-full  shadow-md mb-2 lg:mb-0'>
-                <ExpandButton />
                 <MapContainer
                     center={position}
                     zoom={zoom}
@@ -226,55 +231,66 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
                     <IntenaryChip />
                     {!fly && <FlyButton />}
                 </MapContainer>
+                <Dialog>
+                    <Dialog.Trigger className='z-[50] absolute top-2.5 right-2.5'>
+                        <ExpandButton />
+                    </Dialog.Trigger>
+
+
+                    <Dialog.Overlay className='backdropBlur !bg-transparent'>
+                        <Dialog.Content className='flex flex-1 h-full w-full border-0 shadow-none !bg-transparent'>
+                            <div className='Map '>
+                                <MapContainer
+                                    center={position}
+                                    zoom={zoom}
+                                    scrollWheelZoom={false}
+                                    className='shadow-xl rounded-xl border-2 border-gray-300 flex w-full h-full' >
+                                    <TileLayer url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}" />
+
+                                    {notifs && <MarkerList notifsMap={notifs} />}
+                                    {!aera ? <Marker
+                                        position={position}
+                                        icon={L.icon({
+                                            iconUrl: '/image/marker_orange.svg',
+                                            iconSize: [60, 60],
+                                            iconAnchor: [30, 60],
+                                            popupAnchor: [0, -5],
+                                            shadowAnchor: [30, 60],
+                                            shadowSize: [61, 61],
+                                            shadowUrl: '/image/marker_shadow.png'
+                                        })}>
+                                        <Popup>
+                                            {typeof message === 'string' ?
+                                                message :
+                                                <>{message}</>
+                                                || `${address?.address} ${address?.city}`}
+                                            <br />
+                                            <a href={googleMapsLink} target="_blank" rel="noopener noreferrer">
+                                                y aller
+                                            </a>
+                                        </Popup>
+                                    </Marker> :
+                                        <Circle
+                                            center={position}
+                                            radius={circleRadius}
+                                            pathOptions={circleOptions}
+                                        />}
+
+                                    {!message && <FlyToMarker position={position} zoom={zoom} />}
+                                    {fly && <FlyToMarker position={position} setFly={setFly} zoom={zoom} />}
+                                    <IntenaryChip />
+                                    <FlyButton />
+                                    <Dialog.DismissTrigger className='z-[600] absolute top-2.5 right-2.5'>
+                                        <CloseButton />
+                                    </Dialog.DismissTrigger>
+                                </MapContainer>
+                            </div>
+                        </Dialog.Content>
+                    </Dialog.Overlay>
+                </Dialog>
             </div>
 
-            <div className={`!fixed -top-6 left-0 h-[calc(100%_+_1.5rem)] w-[100%] !z-[9999] flex justify-center items-center ${open ? '' : ' hidden'} `}
-                style={{ zIndex: '9999' }}>
-                <div className='Map '>
-                    <MapContainer
-                        center={position}
-                        zoom={zoom}
-                        scrollWheelZoom={false}
-                        className='shadow-xl rounded-xl border-2 border-gray-300 flex w-full h-full' >
-                        <TileLayer url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}" />
 
-                        {notifs && <MarkerList notifsMap={notifs} />}
-                        {!aera ? <Marker
-                            position={position}
-                            icon={L.icon({
-                                iconUrl: '/image/marker_orange.svg',
-                                iconSize: [60, 60],
-                                iconAnchor: [30, 60],
-                                popupAnchor: [0, -5],
-                                shadowAnchor: [30, 60],
-                                shadowSize: [61, 61],
-                                shadowUrl: '/image/marker_shadow.png'
-                            })}>
-                            <Popup>
-                                {typeof message === 'string' ?
-                                    message :
-                                    <>{message}</>
-                                    || `${address?.address} ${address?.city}`}
-                                <br />
-                                <a href={googleMapsLink} target="_blank" rel="noopener noreferrer">
-                                    y aller
-                                </a>
-                            </Popup>
-                        </Marker> :
-                            <Circle
-                                center={position}
-                                radius={circleRadius}
-                                pathOptions={circleOptions}
-                            />}
-
-                        {!message && <FlyToMarker position={position} zoom={zoom} />}
-                        {fly && <FlyToMarker position={position} setFly={setFly} zoom={zoom} />}
-                        <IntenaryChip />
-                        <FlyButton />
-                        <CloseButton />
-                    </MapContainer>
-                </div>
-            </div>
         </>
     );
 }
