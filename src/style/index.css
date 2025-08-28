@@ -35,7 +35,6 @@
     line-height: 1;
     font-weight: 400;
     display: flex;
-    max-height: 100vh;
     flex-direction: column;
     font-synthesis: none;
     text-rendering: optimizeLegibility;

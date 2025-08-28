@@ -97,7 +97,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim ${color}BG backdropBlur wRespXL justify-center relative bottom-0 gap-6` :
+                    `items-center opacity-100 anim ${color}BG backdropBlur wRespXL justify-center  bottom-0 gap-6 sticky` :
                     'z-0 md:gap-6 gap-2') +
                 ` flex z-30 px-4`
             }>
