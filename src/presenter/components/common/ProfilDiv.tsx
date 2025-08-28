@@ -80,19 +80,19 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
                                     ${profile?.addressShared ? 'flex ' : 'hidden'}`}>
                                         <AddressMapOpen
                                             message={<DistanceCalculator
-                                                lat1={profile?.Address?.lat}
-                                                lon1={profile?.Address?.lng}
-                                                lat2={user.Profile?.Address?.lat}
-                                                lon2={user.Profile?.Address?.lng} /> as any}
+                                                lat1={Number(profile?.Address?.lat)}
+                                                lon1={Number(profile?.Address?.lng)}
+                                                lat2={Number(user.Profile?.Address?.lat)}
+                                                lon2={Number(user.Profile?.Address?.lng)} /> as any}
                                             address={profile?.Address} />
                                     </div>
                                 }
                             </div>
                             <DistanceCalculator
-                                lat1={profile?.Address?.lat}
-                                lon1={profile?.Address?.lng}
-                                lat2={user.Profile?.Address?.lat}
-                                lon2={user.Profile?.Address?.lng} />
+                                lat1={Number(profile?.Address?.lat)}
+                                lon1={Number(profile?.Address?.lng)}
+                                lat2={Number(user.Profile?.Address?.lat)}
+                                lon2={Number(user.Profile?.Address?.lng)} />
                             <br></br>
                             {profile?.Address?.city}, {profile?.Address?.zipcode}
                         </div>

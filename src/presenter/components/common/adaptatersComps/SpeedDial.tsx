@@ -1,4 +1,4 @@
-import { Dialog, Popover } from '@material-tailwind/react';
+import { Popover } from '@material-tailwind/react';
 import React from 'react'
 
 export interface SpeedDialProps {
