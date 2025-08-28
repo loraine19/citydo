@@ -32,8 +32,8 @@ export default function CheckCard(props: checkCardProps) {
 
     return (
         <div className={`flex w-full  ${style} `}>
-            <div className="w-full !m-0 h-full !max-w-screen pl-2 overflow-auto !flex items-center rounded-xl">
-                <List className="flex-row h-full flex w-full min-w-max justify-evenly items-center !p-0 overflow-auto">
+            <div className="w-full !m-0 h-full !max-w-[calc(100vw)] overflow-auto pl-2 !flex items-center rounded-xl">
+                <List className="flex-row h-full flex w-full !min-w-max justify-evenly items-center !p-0  ">
                     {categoriesArray.map((category, index) => (
                         <List.Item className="px-0.5 h-full w-full min-w-max hover:!bg-transparent" key={index}>
                             <label htmlFor={category} className="flex flex-1">
@@ -52,7 +52,7 @@ export default function CheckCard(props: checkCardProps) {
                                     <Typography
                                         as="label"
                                         htmlFor="default-checkbox"
-                                        className={`${checkedState[index] ? `text-${colorShadeDark(color)} ` : `text-${colorShade(color)} text-opacity-90`} whitespace-nowrap text-sm font-normal !min-w-max `}
+                                        className={`${checkedState[index] ? `text-${colorShadeDark(color)} ` : `text-${colorShade(color)} text-opacity-90`} whitespace-nowrap text-sm font-normal !min-w-max  px-4`}
                                     >{category}</Typography>
                                 </List.ItemStart>
 

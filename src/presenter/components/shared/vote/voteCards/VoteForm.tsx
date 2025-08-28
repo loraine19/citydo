@@ -1,6 +1,6 @@
 import { Radio, Select, Card, CardHeader, Button, CardBody, Input, Textarea, Typography } from "@material-tailwind/react";
 import { useState } from "react";
-import { dayMS, Label } from "../../../../../domain/entities/frontEntities";
+import { Label } from "../../../../../domain/entities/frontEntities";
 import SubHeader from "../../../common/SubHeader";
 import { ImageBtn } from "../../../common/ImageBtn";
 import { DateChip } from "../../../common/ChipDate";
@@ -21,7 +21,6 @@ type PoolSurveyFormProps = {
 }
 export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
     const start = formik.values.createdAt || new Date()
-    const end = new Date(new Date().getTime() + (15 * dayMS)).toLocaleDateString('fr-FR')
     const haveImage = (formik.values.image && formik.values.typeS === VoteTarget.SURVEY) ? true : false;
     const [imgBlob, setImgBlob] = useState<string | undefined>(formik.values.image);
 
@@ -180,8 +179,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                             <div className={`${start ? 'ChipDiv !justify-end right-3 top-3' : 'invisible'}`}>
                                 <DateChip
                                     prefix="publié le"
-                                    start={start}
-                                    end={end} />
+                                    start={start} />
                             </div>
 
                             <ImageBtn
@@ -218,14 +216,12 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                     <div className='flex flex-col flex-1 pt-1 '>
                                         <Textarea
                                             className={`inputStandart min-h-full ${formik.errors.description ? 'error' : ''}`}
-
                                             placeholder='Description'
                                             rows={1}
                                             resize={true}
                                             name="description"
                                             onChange={formik.handleChange}
                                             defaultValue={formik.values.description}
-                                        // containerProps={{ className: "grid h-full pb-1" }}
                                         />
                                         <InputError mt error={formik.errors.description} />
                                     </div>

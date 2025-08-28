@@ -168,7 +168,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                         </div>
                     </div>
                     <textarea
-                        className='rounded-full h-10 py-2.5 bg-slate-100 pl-4 mx-1 w-full focus:outline-none resize-none overflow-hidden'
+                        className='rounded-3xl h-10 py-2.5 bg-slate-200/70 pl-4 mx-1 w-full focus:outline-none resize-none overflow-hidden'
                         rows={1}
                         value={message}
                         placeholder='Ecrivez un message...'
@@ -178,14 +178,15 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                                 handleSendMessage();
                                 setNewConv(false);
                                 setImTyping(false);
+                                const target = e.target as HTMLTextAreaElement;
+                                target.style.height = `40px`;
                             }
                         }}
                         onChange={(e) => {
                             setMessage(e.target.value);
                             setImTyping(true);
                             const target = e.target as HTMLTextAreaElement;
-                            target.style.height = 'auto';
-                            target.style.height = `${target.scrollHeight}px`;
+                            target.style.height = `40px`;
                         }}
                         onInput={(e) => {
                             const target = e.target as HTMLTextAreaElement;
@@ -195,8 +196,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                                 setImTyping(true);
                                 setMessage(target.value);
                             }
-                            target.style.height = 'auto';
-                            target.style.height = `${target.scrollHeight}px`;
+                            target.style.height = '40px';
                         }}
                         style={{ maxHeight: '120px' }}
                     />

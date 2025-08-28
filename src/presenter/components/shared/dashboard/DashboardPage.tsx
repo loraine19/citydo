@@ -45,9 +45,9 @@ export default function DashboardPage() {
 
     //// CLASSES
     const userClasse = "flex row-span-3 lg:grid pt-11 lg:pt-8 animRev z-50";
-    const eventClasse = "h-full flex !min-h-[12rem] row-span-5 lg:grid overflow-auto";
+    const eventClasse = "h-full flex !min-h-[15rem] row-span-5 lg:grid overflow-auto";
     const notifClasse = " row-span-2 lg:pt-8" + (notifs.length > 0 ? " min-h-[8rem]" : " min-h-[5.5rem]")
-    const mapClasse = "flex row-span-6 !min-h-[16rem] 15rem] lg:min-h-[32%] lg:grid ";
+    const mapClasse = "flex row-span-6 !min-h-[15rem] lg:min-h-[32%] lg:grid ";
 
 
     //// HANDLE SCROLL NOTIFICATIONS
@@ -102,7 +102,7 @@ export default function DashboardPage() {
                                     avatarStyle="!shadow-md -mb-0.5 border border-gray-300  w-16 h-16 lg:w-[4.5rem] lg:h-[4.5rem] "
                                     Profile={user?.Profile} />
                                 <OnlineDot
-                                    id={user.id} />
+                                    id={user?.id} />
                             </div>
 
                             <div className="flex flex-col items-center justify-center pt-1">

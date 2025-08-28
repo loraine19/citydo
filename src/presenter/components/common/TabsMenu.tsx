@@ -26,14 +26,14 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
     return (
         <div className="!relative w-full flex items-center py-1 justify-between gap-x-1 " style={{ zIndex: 0 }}>
             <Tabs value={defaultTab as string || labels[0].value}
-                className="w-full !z-10 h-10 max-w-[100vw] pb-1">
+                className="w-full !z-10  max-w-[100vw] ">
                 <Tabs.List
                     className="w-full !flex flex-1 !gap-4 !px-0 to !bg-transparent ">
                     {labels.map(({ label, value, result }, index: number) => (
                         <Tabs.Trigger
                             key={index}
                             value={value}
-                            className={`text-[0.9rem] lg:!py-1 !capitalize !flex-1 whitespace-nowrap rounded-full shadow !px-3 ${index !== indexSelected ? `!bg-white ${color}Style ` : ` !text-white bg-${color}-500 animSlide`} `}
+                            className={`text-[0.9rem] lg:!py-1 !capitalize !flex-1 whitespace-nowrap rounded-full shadow !h-7 !px-3 ${index !== indexSelected ? `!bg-white ${color}Style ` : ` !text-white bg-${color}-500 animSlide`} `}
                             onClick={() => { setIndex(index); result() }}>
                             {label}
                         </Tabs.Trigger>

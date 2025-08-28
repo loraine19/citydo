@@ -10,8 +10,8 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
     const { open, setOpen } = useAlertStore(state => state)
 
     if (isOpen || open) return (
-        <div className={`!absolute top-0 left-0 h-screen px-[3rem] py-[10vh] lg:py-[20vh] w-screen  z-[1500] !flex flex-1 justify-center items-center backdropBlur `} >
-            <Card className="relative FixCardNoImage min-h-min !p-8 w-resp m-auto flex ">
+        <div className={`!absolute top-0 left-0 h-screen px-[3rem] py-[10vh] lg:py-[20vh] w-screen z-[1500] !flex flex-1 justify-center items-center backdropBlur `} >
+            <Card className="relative FixCardNoImage min-h-min !p-8 w-resp m-auto flex max-h-[400px] ">
                 <CardHeader
                     className="FixCardHeaderNoImage flex items-center justify-between p-4 text-center text-xl">
                     <Typography

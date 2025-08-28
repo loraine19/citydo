@@ -19,18 +19,16 @@ function ZoomControls() {
     return (
         <div className='flex flex-col lg:flex-row  gap-[1px] absolute top-[10px] left-[10px] z-[1000]'>
             <Icon
-                style='!shadow-md'
+                style='!border-opacity-50 shadow-md'
                 bg
-                color='slate'
                 title='Zoomer'
                 onClick={handleZoomIn}
                 icon="add_circle"
                 size="md"
             />
             <Icon
-                style='!shadow-md'
+                style='!border-opacity-50 shadow-md'
                 bg
-                color='slate'
                 title='Dézoomer'
                 onClick={handleZoomOut}
                 icon="do_not_disturb_on"
@@ -42,9 +40,7 @@ function ZoomControls() {
 function FlyToMarker({ position, setFly, zoom }: { position: [number, number], zoom: number, setFly?: React.Dispatch<React.SetStateAction<boolean>> }) {
     const map = useMap();
 
-    console.log('Flying to:', position);
     useEffect(() => {
-        // const positionNumber = [Number(position[0]), Number(position[1])];
         const currentCenter = map.getCenter();
         if (currentCenter?.lat !== position[0] || currentCenter?.lng !== position[1]) {
             map.flyTo(position, zoom, {

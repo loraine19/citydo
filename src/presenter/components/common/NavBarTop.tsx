@@ -97,8 +97,8 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
                 {/* INSERTION NAVLINK TOP  */}
                 {(!navBottom && navIcons && !hideNavBottom) &&
-                    <div className="relative w-full h-full flex justify-end items-center pt-0.5">
-                        <div className="absolute w-[135%] h-[135%] justify-center flex scale-[0.75] -mr-[calc(10%+2.5rem)] ">
+                    <div className="relative w-full h-full flex  justify-end items-center">
+                        <div className=" absolute w-[133%] h-[133%] justify-center flex scale-[0.75] px-4 -mt-0.5 translate-x-[12%]">
                             <NavBarSection addBtn={addBtn} />
                         </div>
                     </div>

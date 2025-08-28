@@ -20,10 +20,10 @@ export default function SubHeader({ type, qty, place, closeBtn, link }: SubHeade
     }
 
     return (
-        <div className={`flex w-full  pt-1 gap-2 justify-end lg:justify-between`}>
+        <div className={`flex w-full  pt-2 gap-2 justify-end lg:justify-between`}>
             <Typography
                 as="h3"
-                className={`!line-clamp-1 leading-[1.2]  lg:text-[1.2rem] text-[1rem] pl-2 flex-1  `}>
+                className={`!line-clamp-1 leading-[1.1] text-[1.2rem] pl-2 flex-1  `}>
                 {qty} {type}
                 <span className=" !font-thin ">
                     {place ?? " à proximité"}

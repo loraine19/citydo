@@ -175,7 +175,7 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                                                                     icon="cancel"
                                                                     size="3xl"
                                                                     onClick={() => setOpen(false)}
-                                                                    style='absolute top-6 right-8' />
+                                                                    style='absolute top-4 right-8' />
                                                                 <EventCard event={event} change={() => { }} />
                                                             </PopoverContent>
                                                         </Popover>

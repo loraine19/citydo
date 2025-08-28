@@ -127,7 +127,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
                         group={Group}
                     />
                     <div className="">
-                        <Typography className="description !line-clamp-3">
+                        <Typography className="description !line-clamp-2 lg:!line-clamp-1">
                             {description}
                         </Typography></div>
                 </CardBody>
