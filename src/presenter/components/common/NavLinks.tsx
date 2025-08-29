@@ -97,7 +97,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim ${color}BG backdropBlur wRespXL justify-center  bottom-0 gap-6 !sticky` :
+                    `items-center opacity-100 anim ${color}BG backdropBlur wRespXL justify-center  !bottom-0 gap-6 absolute px-6 md:px-0 pb-1` :
                     'z-0 md:gap-6 gap-2') +
                 ` flex z-30 px-4`
             }>
@@ -106,7 +106,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                         : `shadow-none bg-transparent`}
                     flex rounded-full h-full items-center p-0  hover:!shadow-none`}>
                     <div className={`${navBottom ? 'flex-row' : 'flex-row-reverse'} w-full min-w-max  h-full relative`}>
-                        <ul className={`${navBottom ? '!max-w-[calc(100vw-4rem)]' : '!max-w-[calc(100vw-13rem)]'} flex  overflow-x-auto overflow-y-hidden flex-row w-full rounded-full justify-between h-full gap-auto  `}>
+                        <ul className={`${navBottom ? '!max-w-[calc(100vw-4rem)]' : '!max-w-[calc(100vw-13rem)]'} flex  overflow-x-auto pr-9 xs:pr-0 !overflow-y-hidden flex-row w-full rounded-full justify-between h-full gap-auto  `}>
                             {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                                 <Typography
                                     onClick={() => { setColor(color.col) }}

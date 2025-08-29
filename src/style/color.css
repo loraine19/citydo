@@ -1,0 +1,98 @@
+/**** COLORS ****/
+.cyanBG {
+    background-image: linear-gradient(#f9fafb00, #a5f3fc);
+}
+
+.skyBG {
+    background-image: linear-gradient(#f9fafb00, #bae6fd);
+}
+
+.slateBG {
+    background-image: linear-gradient(#f9fafb00, #90a1b9);
+}
+
+.roseBG {
+    background-image: linear-gradient(#f9fafb00, #fecdd3);
+}
+
+.gray100 {
+    background-image: linear-gradient(#f9fafb00, #e2e8f0);
+}
+
+.orangeBG {
+    background-image: linear-gradient(#f9fafb00, #ffedd5);
+}
+
+.tealBG {
+    background-image: linear-gradient(#f9fafb00, #6fe3d2);
+}
+
+/**** COMBINED STYLES ****/
+.style {
+    @apply bg-opacity-75 !border-opacity-50;
+}
+
+.cyanStyle {
+    @apply text-cyan-500 bg-cyan-200 border-cyan-400 style;
+}
+.orangeStyle {
+    @apply text-orange-500 bg-orange-200 border-orange-400 style;
+}
+.redStyle {
+    @apply text-red-500 bg-red-200 border-red-400 style;
+}
+.skyStyle {
+    @apply text-sky-500 bg-sky-200 border-sky-400 style;
+}
+.greenStyle {
+    @apply text-green-500 bg-green-200 border-green-400 style;
+}
+.grayStyle {
+    @apply text-gray-500 bg-gray-200 border-gray-400 style;
+}
+.slateStyle {
+    @apply text-slate-500 bg-slate-200 border-slate-400 style;
+}
+.tealStyle {
+    @apply text-teal-500 bg-teal-200 border-teal-400 style;
+}
+.amberStyle {
+    @apply text-amber-500 bg-amber-200 border-amber-400 style;
+}
+.roseStyle {
+    @apply text-rose-500 bg-rose-200 border-rose-400 style;
+}
+.yellowStyle {
+    @apply text-yellow-500 bg-yellow-200 border-yellow-400 style;
+}
+
+/**** CHIP LIGHT COLOR ****/
+.Chip {
+    @apply min-w-[calc(max-0.1rem)] px-3 pb-1 rounded-2xl shadow-sm
+   max-w-max;
+}
+
+.OrangeChip {
+    @apply Chip orangeStyle
+    /* bg-[#FED7AA] text-orange-600 border-orange-500 border-opacity-20 border; */;
+}
+
+.GreenChip {
+    @apply Chip greenStyle
+     /* bg-green-100 text-green-600 border-green-500 border-opacity-20 border; */;
+}
+
+.RedChip {
+    @apply Chip redStyle
+    /* bg-red-200 text-red-600 border-red-500 border-opacity-20 border; */;
+}
+
+.CyanChip {
+    @apply Chip cyanStyle
+     /* bg-cyan-200 text-cyan-600 border-cyan-500 border-opacity-20 border; */;
+}
+
+.GrayChip {
+    @apply Chip grayStyle
+    /* bg-gray-300 text-gray-600 px-3.5 border-gray-500 border-opacity-20 border; */;
+}

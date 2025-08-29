@@ -46,10 +46,13 @@ function FlyToMarker({ position, setFly, zoom }: { position: [number, number], z
     useEffect(() => {
         const currentCenter = map.getCenter();
         if (currentCenter?.lat !== position[0] || currentCenter?.lng !== position[1]) {
-            map.flyTo(position, zoom, {
+            const map = useMap();
+            const point = map.project(position, map.getZoom());
+            const newLatLng = map.unproject(point, map.getZoom());
+            map.flyTo([newLatLng.lat, newLatLng.lng], zoom, {
                 animate: true,
                 duration: 1,
-            })
+            });
         }
     }, [position, map]);
     if (setFly) setFly(false);
@@ -70,9 +73,7 @@ const MarkerList = ({ notifsMap }: { notifsMap: NotifView[] }) => {
                         iconSize: [50, 50],
                         iconAnchor: [(notif.Address?.id && index > 0 && notif.Address.id === notifsMap[index - 1]?.Address?.id) ? 35 : 25, 50],
                         popupAnchor: [0, -20],
-                        shadowAnchor: [(notif.Address?.id && index > 0 && notif.Address.id === notifsMap[index - 1]?.Address?.id) ? 35 : 25, 50],
-                        shadowSize: [50, 50],
-                        shadowUrl: '/image/marker_shadow.png',
+                        className: 'drop-shadow-md',
                         pane: 'markerPane',
                     }) :
                     L.icon({
@@ -80,9 +81,7 @@ const MarkerList = ({ notifsMap }: { notifsMap: NotifView[] }) => {
                         iconSize: [50, 50],
                         iconAnchor: [(notif.Address?.id && index > 0 && notif.Address.id === notifsMap[index - 1]?.Address?.id) ? 35 : 25, 50],
                         popupAnchor: [0, -20],
-                        shadowAnchor: [(notif.Address?.id && index > 0 && notif.Address.id === notifsMap[index - 1]?.Address?.id) ? 35 : 25, 50],
-                        shadowUrl: '/image/marker_shadow.png',
-                        shadowSize: [50, 50],
+                        className: 'drop-shadow-md',
                         pane: 'markerPane',
                     })} >
                 <Popup>
@@ -195,8 +194,9 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
             zoomControl={false}
             attributionControl={false}
             scrollWheelZoom={false}
-            className='!z-10 flex flex-1 !rounded-xl ' >
-            <TileLayer url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}" />
+            className='!z-10 flex flex-1 items-center justify-center !rounded-xl ' >
+            <TileLayer
+                url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}" />
             <ZoomControls />
             {notifs &&
                 <MarkerList notifsMap={notifs} />}
@@ -204,13 +204,10 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
                 <Marker
                     position={position}
                     icon={L.icon({
+                        className: 'drop-shadow-lg  !pt-5',
                         iconUrl: '/image/marker_orange.svg',
-                        iconSize: [60, 60],
-                        iconAnchor: [30, 60],
-                        popupAnchor: [0, -30],
-                        shadowAnchor: [30, 60],
-                        shadowSize: [61, 61],
-                        shadowUrl: '/image/marker_shadow.png'
+                        iconSize: [80, 80],
+                        iconAnchor: [40, 75],
                     })}>
                     <Popup>
                         {typeof message === 'string' ? message : <>{message}</> || `${address?.address} ${address?.city}`}
@@ -231,7 +228,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
 
     return (
         <>
-            <div className='border border-blue-gray-100 relative flex flex-1 min-h-[8.5rem] lg:min-h-[6rem] !h-[100%] !rounded-[0.8rem] w-full  shadow-md mb-2 lg:mb-0'>
+            <div className='border border-slate-200 relative flex flex-1 min-h-[8.5rem] lg:min-h-[7rem] !h-[100%] !rounded-[0.8rem] w-full shadow-md mb-2  lg:mb-0'>
                 <MapDiv />
 
                 <Dialog>

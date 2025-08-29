@@ -41,14 +41,30 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
             console.error('load', error, errorInfo, this.props.retryCount);
             this.setState({ hasError: true })
         }
-    }
 
+        this.setState({ error });
+        console.error(
+            'ErrorBoundary caught an error:',
+            error,
+            '\nError stack:',
+            error.stack,
+            '\nError message:',
+            error.message,
+            '\nComponent stack:',
+            errorInfo.componentStack
+        );
+    }
 
     render() {
 
         let errorMessage = this.state.error?.message;
         if (this.state.error) {
-            console.error('ErrorBoundary caught an error:', this.state.error, this.state.error.stack);
+            console.error('ErrorBoundary caught an error:',
+                this.state.error,
+                'Error stack:',
+                this.state.error.stack,
+                'Error message:',
+                this.state.error.message);
         }
 
         switch (true) {

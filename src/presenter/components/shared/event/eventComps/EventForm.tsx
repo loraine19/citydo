@@ -96,7 +96,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                 imgDef={imgCategory} />
                             <img
                                 onError={(e) => e.currentTarget.src = '/images/eventDefault.png'}
-                                src={imgBlob || formik.values.image || formik.values.blob || imgCategory || './load.gif'}
+                                src={imgBlob ?? formik.values.image ?? formik.values.blob ?? imgCategory ?? './load.gif'}
                                 alt={title || 'image'}
                                 width={100}
                                 height={100}
