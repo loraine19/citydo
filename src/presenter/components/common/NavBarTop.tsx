@@ -43,7 +43,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                 <div className={`wRespXL slide h-full justify-between items-end pt-2 pb-3 lg:pb-1
             ${navBottom ? 'flex ' : 'grid grid-cols-[auto_1fr_auto] '}
                 ${hideNavBottom ? ' flex animRev' : ' flex animRev'}`} >
-                    <div className={`flex h-full ${hideNavBottom ? 'hidden' : ''}`}>
+                    <div className={`flex h-full ${hideNavBottom ? 'hidden' : 'pr-2'}`}>
 
                         {/* PROFILE MENU  */}
                         <Menu placement="bottom-start">
@@ -96,8 +96,8 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                 <h2 className='flex font-comfortaa text-[1.8rem] lg:!text-[2.1rem] font-bold'>
                                     City'Do
                                 </h2>
-                                {!onBoard &&
-                                    <i className=' flex !line-clamp-1'>
+                                {(!onBoard) &&
+                                    <i className='text-[0.9rem] flex !line-clamp-1'>
                                         {user?.GroupUser?.map((group) => (group.Group?.name.split(':')[0])).join(', ')}
                                     </i>}
                             </div>}
@@ -106,8 +106,8 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
                     {/* INSERTION NAVLINK TOP  */}
                     {(!navBottom && navIcons && !hideNavBottom) &&
-                        <div className="relative w-full h-full flex  justify-end items-center">
-                            <div className=" absolute w-[133%] h-[133%] justify-center flex scale-[0.75] px-4 -mt-0.5 translate-x-[12%]">
+                        <div className="relative w-full h-full flex justify-end items-center">
+                            <div className="absolute w-[133%] h-[133%] justify-center flex scale-[0.75] px-4 -mt-0.5 translate-x-[12%]">
                                 <NavBarSection addBtn={addBtn} />
                             </div>
                         </div>

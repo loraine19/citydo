@@ -112,7 +112,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                                 <LoadMoreButton
                                     color={list.color}
                                     style="-mb-3"
-                                    size="3xl"
+                                    size="2xl"
                                     isBottom={isBottom}
                                     hasNextPage={hasNextPage}
                                     handleScroll={() => handleScroll()} />

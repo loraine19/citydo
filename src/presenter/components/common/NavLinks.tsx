@@ -91,23 +91,24 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/*BLUR POP BACKGROUND */}
             <div className={`
             ${(!closeDial) ? 'hidden' : ''} 
-            ${navBottom ? `bottom-[4rem] left-0 w-screen h-[calc(100vh-4rem)]` : '-right-[10rem] w-[calc(100vw*1.3)] md:w-[calc((100%*1.3)+4rem)] h-[calc(100vh*1.31)]  top-0'}
+            ${navBottom ? `bottom-[4rem] left-0 w-screen h-[calc(100vh-4rem)]` :
+                    '-right-[11rem] w-[calc(100vw*1.3)] md:w-[calc((100%*1.44)+10rem)] h-[calc(100vh*1.318)]  top-0 '}
                    backdropBlur  absolute `}>
             </div>
 
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim rounded-2xl ${color}BG backdropBlur wRespXL justify-center gap-6  py-2` :
-                    'z-0 md:gap-6 gap-2') +
+                    `items-center opacity-100 anim rounded-2xl ${color}BG backdropBlur wRespXL justify-center gap-6 -ml-2 py-2 ` :
+                    'z-0 md:gap-4 lg:!-ml-12 gap-2 ') +
                 ` flex z-30 md:!px-8 sm:px-8 px-6 lg:!px-0 `
             }>
                 <Navbar className={`
-                    ${navBottom ? '!shadow-md bg-white border border-slate-300 -ml-5 !flex-1 !max-w-max sm:!max-w-[100%] '
+                    ${navBottom ? '!shadow-md bg-white border border-slate-300 !flex-1 !max-w-max sm:!max-w-[100%]  '
                         : `shadow-none bg-transparent`}
                     flex rounded-full h-full items-center p-0  hover:!shadow-none`}>
                     <div className={`${navBottom ? 'flex-row' : 'flex-row-reverse'} w-full min-w-max  h-full relative`}>
-                        <ul className={`${navBottom ? '!max-w-[calc(100vw-4rem)]' : '!max-w-[calc(100vw-13rem)]'} flex  overflow-x-auto pr-9 xs:pr-0 !overflow-y-hidden flex-row w-full rounded-full justify-between h-full gap-auto  `}>
+                        <ul className={`${navBottom ? '!max-w-[calc(100vw-4rem)]' : '!max-w-[calc(100vw-13rem)]'} flex overflow-x-auto pr-9 xs:pr-0 !overflow-y-hidden flex-row w-full rounded-full justify-between h-full gap-auto  `}>
                             {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                                 <Typography
                                     onClick={() => { setColor(color.col) }}
@@ -117,7 +118,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                     <NavLink
                                         to={to}
                                         className={({ isActive }) =>
-                                            `flex gap-3 justify-center lg:justify-start p-[7px] items-center w-full !h-[57px] rounded-full
+                                            `flex gap-3 justify-center lg:justify-start !px-[7px] !pt-[7px] !pb-[6.5px] items-center w-full !h-[calc(100%)] rounded-full
                                             hover:bg-white/50 hover:shadow-slate-100
                                             hover:scale-[101%] transition duration-200
                                             hover:shadow-sm
@@ -128,6 +129,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                             <>
                                                 <Icon
                                                     bg
+                                                    size='3xl'
                                                     icon={icon}
                                                     fill={isActive ? true : false}
                                                     color={color.col}
@@ -162,7 +164,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                             style={` ${closeDial ? 'rotate-45' : ''} hover:!transition-transform hover:!rotate-45 !border-0 !text-white !text-[2.2rem]  ${BG} ${navBottom ? `!shadow-md` : ''}`} />
                     }
                     Content={
-                        <div className={`${!navBottom ? 'scale-[0.82] -mt-5 -mr-1.5' : ''} flex gap-2 flex-col `}>
+                        <div className={`${!navBottom ? 'scale-[0.82] -translate-y-[9%] -mr-1.5 items-end' : ''} flex gap-2 flex-col `}>
                             {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
                                 <div key={index}
                                     className={` bg-white rounded-full shadow-md flex hover:scale-[1.1] !h-[58px] gap-6 w-[58px] !justify-center items-center border"`}

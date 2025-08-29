@@ -517,24 +517,24 @@ button span {
 .icon2xl {
     @apply flex items-center justify-center rounded-full;
     font-size: 30px;
-    width: 45.5px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
 }
 .icon3xl {
     @apply flex items-center justify-center rounded-full;
     font-size: 34px;
     width: 50px;
-    height: 48px;
+    height: 50px;
 }
 .icon4xl {
     @apply flex items-center justify-center rounded-full;
     font-size: 38px;
     width: 54px;
-    height: 52px;
+    height: 54px;
 }
 .icon5xl {
     @apply flex items-center justify-center rounded-full;
     font-size: 42px;
     width: 58px;
-    height: 56px;
+    height: 58px;
 }

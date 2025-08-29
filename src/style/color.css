@@ -33,10 +33,10 @@
 }
 
 .cyanStyle {
-    @apply !text-cyan-500 bg-cyan-200  style;
+    @apply !text-cyan-500 !bg-cyan-200  style;
 }
 .orangeStyle {
-    @apply !text-orange-500 bg-orange-200  style;
+    @apply !text-orange-500 !bg-orange-200  style;
 }
 .redStyle {
     @apply !text-red-500 bg-red-200  style;
@@ -60,10 +60,10 @@
     @apply !text-amber-500 bg-amber-200  style;
 }
 .roseStyle {
-    @apply !text-rose-500 bg-rose-200 style;
+    @apply !text-rose-500 !bg-rose-200 style;
 }
 .yellowStyle {
-    @apply !text-yellow-500 bg-yellow-200  style;
+    @apply !text-yellow-500 !bg-yellow-200  style;
 }
 
 /**** CHIP LIGHT COLOR ****/
