@@ -82,12 +82,16 @@ export default function IssueEditPage() {
         formik.values.date = new Date(formik.values.date).toISOString()
         formik.values.serviceId = typeof service.id === 'string' ? parseInt(service.id) : service.id
         const dto = new IssueDTO({ ...formik.values })
-        const data = await postIssue(dto)
-        if (data) {
-            setOpen(false);
-            navigate(`/conciliation/${data?.id}`);
+        try {
+            const data = await postIssue(dto)
+            if (data) {
+                setOpen(false);
+                navigate(`/conciliation/${data?.id}`);
+            }
+            else handleApiError("Erreur lors de la création du litige");
+        } catch (error) {
+            handleApiError(error ?? "Erreur lors de la création du litige");
         }
-        else handleApiError("Erreur lors de la création du litige");
 
     }
 

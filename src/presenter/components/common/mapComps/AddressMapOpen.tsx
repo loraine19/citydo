@@ -11,6 +11,8 @@ import { ElementNotif } from '../../../../domain/entities/Notif';
 import Chip from '../adaptatersComps/Chip';
 
 
+
+//// ZOOM CONTROLS
 function ZoomControls() {
     const map = useMap();
     const handleZoomIn = () => map.zoomIn()
@@ -37,9 +39,10 @@ function ZoomControls() {
         </div>
     );
 }
+
+//// FLY TO MARKER
 function FlyToMarker({ position, setFly, zoom }: { position: [number, number], zoom: number, setFly?: React.Dispatch<React.SetStateAction<boolean>> }) {
     const map = useMap();
-
     useEffect(() => {
         const currentCenter = map.getCenter();
         if (currentCenter?.lat !== position[0] || currentCenter?.lng !== position[1]) {
@@ -54,6 +57,7 @@ function FlyToMarker({ position, setFly, zoom }: { position: [number, number], z
 }
 
 
+//// MARKER LIST
 const MarkerList = ({ notifsMap }: { notifsMap: NotifView[] }) => {
     return (
         notifsMap.map((notif: NotifView, index: number) => notif?.Address && notif?.Address.lat && notif?.Address?.lng &&
@@ -83,10 +87,9 @@ const MarkerList = ({ notifsMap }: { notifsMap: NotifView[] }) => {
                     })} >
                 <Popup>
                     <div>
-                        <div className='flex flex-1 justify-between items-center  w-full'>
+                        <div className='flex flex-1 justify-between items-center py-1 w-full'>
                             <Typography
-                                variant='h6'
-                                className=''>
+                                as='h4'>
                                 {notif.title}
                             </Typography>
                             <Chip
@@ -101,7 +104,6 @@ const MarkerList = ({ notifsMap }: { notifsMap: NotifView[] }) => {
                                 {notif.description}
                             </Typography>
                             <Icon
-                                style='!text-gray-900'
                                 icon='arrow_circle_right'
                                 link={notif.link}
                                 title={`voir les details de ${notif.title}`}
@@ -186,101 +188,64 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
     };
     const circleRadius = aera ?? 200;
 
+    const MapDiv: React.FC = () => (
+        <MapContainer
+            center={position}
+            zoom={zoom}
+            zoomControl={false}
+            attributionControl={false}
+            scrollWheelZoom={false}
+            className='!z-10 flex flex-1 !rounded-xl ' >
+            <TileLayer url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}" />
+            <ZoomControls />
+            {notifs &&
+                <MarkerList notifsMap={notifs} />}
+            {!aera ? (
+                <Marker
+                    position={position}
+                    icon={L.icon({
+                        iconUrl: '/image/marker_orange.svg',
+                        iconSize: [60, 60],
+                        iconAnchor: [30, 60],
+                        popupAnchor: [0, -30],
+                        shadowAnchor: [30, 60],
+                        shadowSize: [61, 61],
+                        shadowUrl: '/image/marker_shadow.png'
+                    })}>
+                    <Popup>
+                        {typeof message === 'string' ? message : <>{message}</> || `${address?.address} ${address?.city}`}
+                    </Popup>
+                </Marker>
+            ) : (
+                <Circle
+                    center={position}
+                    radius={circleRadius}
+                    pathOptions={circleOptions}
+                />
+            )}
+            {!message && <FlyToMarker position={position} zoom={zoom} />}
+            {fly && <FlyToMarker position={position} setFly={setFly} zoom={zoom} />}
+            <IntenaryChip />
+            {!fly && <FlyButton />}
+        </MapContainer>)
+
     return (
         <>
             <div className='border border-blue-gray-100 relative flex flex-1 min-h-[8.5rem] lg:min-h-[6rem] !h-[100%] !rounded-[0.8rem] w-full  shadow-md mb-2 lg:mb-0'>
-                <MapContainer
-                    center={position}
-                    zoom={zoom}
-                    zoomControl={false}
-                    attributionControl={false}
-                    scrollWheelZoom={false}
-                    className='!z-10 flex flex-1 !rounded-xl ' >
-                    <TileLayer url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}" />
-                    <ZoomControls />
-                    {notifs && <MarkerList notifsMap={notifs} />}
-                    {!aera ? (
-                        <Marker
-                            position={position}
-                            icon={L.icon({
-                                iconUrl: '/image/marker_orange.svg',
-                                iconSize: [60, 60],
-                                iconAnchor: [30, 60],
-                                popupAnchor: [0, -30],
-                                shadowAnchor: [30, 60],
-                                shadowSize: [61, 61],
-                                shadowUrl: '/image/marker_shadow.png'
-                            })}>
-                            <Popup>
-                                {typeof message === 'string' ? message : <>{message}</> || `${address?.address} ${address?.city}`}
-                            </Popup>
-                        </Marker>
-                    ) : (
-                        <Circle
-                            center={position}
-                            radius={circleRadius}
-                            pathOptions={circleOptions}
-                        />
-                    )}
-                    {!message && <FlyToMarker position={position} zoom={zoom} />}
-                    {fly && <FlyToMarker position={position} setFly={setFly} zoom={zoom} />}
-                    <IntenaryChip />
-                    {!fly && <FlyButton />}
-                </MapContainer>
+                <MapDiv />
+
                 <Dialog>
                     <Dialog.Trigger className='z-[50] absolute top-2.5 right-2.5'>
                         <ExpandButton />
                     </Dialog.Trigger>
-
-
                     <Dialog.Overlay className='backdropBlur !bg-transparent'>
                         <Dialog.Content className='flex flex-1 h-full w-full border-0 shadow-none !bg-transparent'>
                             <div className='Map '>
-                                <MapContainer
-                                    center={position}
-                                    zoom={zoom}
-                                    scrollWheelZoom={false}
-                                    className='shadow-xl rounded-xl border-2 border-gray-300 flex w-full h-full' >
-                                    <TileLayer url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}" />
-
-                                    {notifs && <MarkerList notifsMap={notifs} />}
-                                    {!aera ? <Marker
-                                        position={position}
-                                        icon={L.icon({
-                                            iconUrl: '/image/marker_orange.svg',
-                                            iconSize: [60, 60],
-                                            iconAnchor: [30, 60],
-                                            popupAnchor: [0, -5],
-                                            shadowAnchor: [30, 60],
-                                            shadowSize: [61, 61],
-                                            shadowUrl: '/image/marker_shadow.png'
-                                        })}>
-                                        <Popup>
-                                            {typeof message === 'string' ?
-                                                message :
-                                                <>{message}</>
-                                                || `${address?.address} ${address?.city}`}
-                                            <br />
-                                            <a href={googleMapsLink} target="_blank" rel="noopener noreferrer">
-                                                y aller
-                                            </a>
-                                        </Popup>
-                                    </Marker> :
-                                        <Circle
-                                            center={position}
-                                            radius={circleRadius}
-                                            pathOptions={circleOptions}
-                                        />}
-
-                                    {!message && <FlyToMarker position={position} zoom={zoom} />}
-                                    {fly && <FlyToMarker position={position} setFly={setFly} zoom={zoom} />}
-                                    <IntenaryChip />
-                                    <FlyButton />
-                                    <Dialog.DismissTrigger className='z-[600] absolute top-2.5 right-2.5'>
-                                        <CloseButton />
-                                    </Dialog.DismissTrigger>
-                                </MapContainer>
+                                <MapDiv />
                             </div>
+                            <Dialog.DismissTrigger className='z-[600] absolute top-5 right-5'>
+                                <CloseButton />
+                            </Dialog.DismissTrigger>
                         </Dialog.Content>
                     </Dialog.Overlay>
                 </Dialog>

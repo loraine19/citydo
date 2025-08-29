@@ -39,9 +39,9 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
     return (
         <div className='flex flex-col flex-1 pt-3 '
             data-cy="calendar">
-            <div className="flex overflow-auto justify-between  gap-2 items-center p-0">
+            <div className="flex overflow-auto w-full pb-1 justify-between gap-2 items-center p-0">
                 {logo &&
-                    <div className='flex items-center pb-2'>
+                    <div className='flex flex-1  w-full items-center '>
                         <Icon
                             fill bg
                             color='cyan'
@@ -56,55 +56,64 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                         </div>
                     </div>}
 
+
+
+                {/* DAY SETTING */}
+                <div className={`flex flex-1 justify-center gap-1 items-center font-normal text-sm `}>
+                    <Typography>jour</Typography>
+                    <Icon
+                        icon='do_not_disturb_on'
+                        size='sm'
+                        onClick={removeCol} />
+                    <Typography
+                        as='button'
+                        onClick={resetCol}
+                        className='!font-extralight underline underline-offset-4 pt-0.5'>
+                        {col}
+                    </Typography>
+                    <Icon
+                        icon='add_circle'
+                        size='sm'
+                        onClick={addCol} />
+                </div>
+
+                {/* WEEKS SETTING */}
+                {!logo &&
+                    <div className='flex justify-center flex-1 gap-2 px-4 items-center font-normal'>
+                        semaine
+                        <Icon
+                            icon='do_not_disturb_on'
+                            size='sm'
+                            onClick={() => setNumberOfwweks(numberOfwweks > 1 ? numberOfwweks - 1 : 1)} />
+                        <Typography as='button'
+                            className='!font-extralight underline underline-offset-4 text-base pt-0.5'
+                            onClick={() => setNumberOfwweks(2)}>
+                            {numberOfwweks}
+
+                        </Typography>
+                        <Icon
+                            icon='add_circle'
+                            size='sm'
+                            onClick={() => setNumberOfwweks(numberOfwweks < 4 ? numberOfwweks + 1 : 4)} />
+                    </div>}
+
+
                 {/* DATE NAVIGATION */}
-                <div className='flex  w-full justify-between items-center flex-row-reverse'>
-                    <div className='flex items-center'>
-                        <Icon
-                            icon='arrow_back_ios'
-                            size='sm'
-                            onClick={removeWeek} />
-                        <button onClick={resetWeek} className='text-sm md:text-md'>
-                            {(new Date().toLocaleDateString('fr-FR', { weekday: 'short', month: 'numeric', day: 'numeric' }))}
-                        </button>
-                        <Icon
-                            icon='arrow_forward_ios'
-                            size='sm'
-                            onClick={addWeek} />
-                    </div>
-
-                    {/* DAY SETTING */}
-                    <div className='flex items-center pl-8 pb-2'>
-                        <div className={`flex gap-1 items-center font-light`}>
-                            jours
-                            <Icon
-                                icon='do_not_disturb_on'
-                                size='sm'
-                                onClick={removeCol} />
-                            <button className='font-normal' onClick={resetCol}>
-                                {col}
-                            </button>
-                            <Icon
-                                icon='add_circle'
-                                size='sm'
-                                onClick={addCol} />
-                        </div>
-
-                        {/* WEEKS SETTING */}
-                        {!logo &&
-                            <div className='flex gap-2 px-4 items-center font-light'>
-                                semaine
-                                <Icon
-                                    icon='do_not_disturb_on'
-                                    size='sm'
-                                    onClick={() => setNumberOfwweks(numberOfwweks > 1 ? numberOfwweks - 1 : 1)} />
-                                <button
-                                    onClick={() => setNumberOfwweks(2)}>{numberOfwweks}</button>
-                                <Icon
-                                    icon='add_circle'
-                                    size='sm'
-                                    onClick={() => setNumberOfwweks(numberOfwweks < 4 ? numberOfwweks + 1 : 4)} />
-                            </div>}
-                    </div>
+                <div className='flex flex-1 justify-end items-center'>
+                    <Icon
+                        icon='arrow_back_ios'
+                        size='sm'
+                        onClick={removeWeek} />
+                    <Typography
+                        as='button'
+                        onClick={resetWeek}
+                        className='!font-extralight !text-slate-600/80 underline underline-offset-4 pt-1'>
+                        {(new Date().toLocaleDateString('fr-FR', { weekday: 'short', month: 'numeric', day: 'numeric' }))}
+                    </Typography>
+                    <Icon
+                        icon='arrow_forward_ios'
+                        size='sm'
+                        onClick={addWeek} />
                 </div>
             </div>
 

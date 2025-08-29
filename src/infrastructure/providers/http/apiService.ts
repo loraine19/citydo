@@ -133,7 +133,8 @@ export class ApiService implements ApiServiceI {
                 'count:', this.requestPending.count);
             return this.api.request(this.requestPending.config);
         }
-        else return Promise.reject(newError);
+        throw new Error(newError.message);
+        //  else return Promise.reject(newError);
 
     };
 
@@ -171,10 +172,7 @@ export class ApiService implements ApiServiceI {
             this.handleResponse(response)
             return response.data;
         } catch (error) {
-            let data = await this.handleResponseError(error);
-            console.error('Error in get:', data);
-            // throw new Error('test');
-            return data
+            return this.handleResponseError(error);
         }
     }
 

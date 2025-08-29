@@ -47,7 +47,6 @@ export default function EventCreatePage() {
             }
         }
         catch (error: any) {
-            console.error("Error creating event:", error);
             handleApiError(error ?? "Erreur lors de la création de l'événement");
         }
 

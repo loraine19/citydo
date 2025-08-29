@@ -56,9 +56,13 @@ export default function ServiceDetailPage() {
                         body: service?.title,
                         function: service.isNew ?
                             async () => {
-                                const data = await respService(service.id)
-                                if (data.error || !data) handleApiError(data.error)
-                                else updateService();
+                                try {
+                                    const data = await respService(service.id)
+                                    if (data) updateService();
+
+                                } catch (error) {
+                                    handleApiError(error ?? "Erreur lors de la réponse au service");
+                                }
                             } :
                             () => { alert('Service déjà répondu'); },
                     },
@@ -87,9 +91,13 @@ export default function ServiceDetailPage() {
                         title: `Accepter la reponse de ${service.UserResp?.Profile.firstName}`,
                         body: `${service?.title} <br> Nous envoyerons un message à ${service.UserResp?.email} - ${service.UserResp?.Profile.phone} , ${service?.points} points seront débités de votre compte, et crédités à ${service.UserResp?.Profile.firstName} après validation de la fin du service`,
                         function: async () => {
-                            const data = await validRespService(service.id);
-                            if (data.error || !data) handleApiError(data.error)
-                            else updateService();
+                            try {
+                                const data = await validRespService(service.id);
+                                if (data.error || !data) handleApiError(data.error)
+                                else updateService();
+                            } catch (error) {
+                                handleApiError(error ?? "Erreur lors de la validation de la réponse");
+                            }
                         },
                     },
                     {
@@ -99,9 +107,13 @@ export default function ServiceDetailPage() {
                         title: `Refuser la reponse de ${service.UserResp?.Profile.firstName}`,
                         body: `${service?.title} <br> Nous envoyerons un message à ${service.UserResp?.email} - ${service.UserResp?.Profile.phone}`,
                         function: async () => {
-                            const data = await cancelRespService(service.id)
-                            if (data.error || !data) handleApiError(data.error)
-                            else updateService();
+                            try {
+                                const data = await cancelRespService(service.id);
+                                if (data.error || !data) handleApiError(data.error);
+                                else updateService();
+                            } catch (error) {
+                                handleApiError(error ?? "Erreur lors de l'annulation de la réponse");
+                            }
                         },
                     },
                 ];
@@ -127,9 +139,13 @@ export default function ServiceDetailPage() {
                         title: 'Terminer le service',
                         body: `${service?.title}<br> et crediter ${service.UserResp?.Profile.firstName} <br> de ${service?.points} points, Nous enverrons un message à ${service.UserResp?.email} `,
                         function: async () => {
-                            const data = await finishService(service.id);
-                            if (data.error || !data) handleApiError(data.error)
-                            else updateService();
+                            try {
+                                const data = await finishService(service.id);
+                                if (data.error || !data) handleApiError(data.error);
+                                else updateService();
+                            } catch (error) {
+                                handleApiError(error ?? "Erreur lors de la finalisation du service");
+                            }
                         }
                     },
                 ];
@@ -143,14 +159,18 @@ export default function ServiceDetailPage() {
                         title: service.isResp ? 'Annuler votre réponse' : service.isValidated ? "Ouvrir une demande de conciliation?" : '143',
                         body: service.isResp ? service?.title : service.isValidated ? `Avant d'ouvrir une demande d'aide pouvez contacter ${generateContact(service.User)}` : '144',
                         function: async () => {
-                            if (service.isResp) {
-                                const data = await cancelRespService(service.id);
-                                if (data.error) handleApiError(data.error)
-                                else updateService();
+                            try {
+                                if (service.isResp) {
+                                    const data = await cancelRespService(service.id);
+                                    if (data.error) handleApiError(data.error);
+                                    else updateService();
+                                }
+                                else if (service.isValidated) navigate(`/conciliation/create/${service.id}`);
+                            } catch (error) {
+                                handleApiError(error ?? "Erreur lors de l'annulation de la réponse");
                             }
-                            else if (service.isValidated) navigate(`/conciliation/create/${service.id}`)
-                            else alert('Service déjà répondu');
-                        },
+                        }
+
                     },
                 ];
                 break;

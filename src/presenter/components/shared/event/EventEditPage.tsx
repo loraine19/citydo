@@ -89,13 +89,16 @@ export default function EventDetailPage() {
         formik.values.end = new Date(formik.values.end).toISOString()
         const { ...rest } = formik.values;
         const updateData = new EventDTO({ ...rest })
-        const updated = await updateEvent(event.id, updateData, Address)
-        if (updated) {
-            navigate("/evenement/" + updated.id);
-            location.reload()
-            setOpen(false)
+        try {
+            const updated = await updateEvent(event.id, updateData, Address)
+            if (updated) {
+                navigate("/evenement/" + updated.id);
+                location.reload()
+                setOpen(false)
+            }
+        } catch (error) {
+            handleApiError(error ?? 'Erreur lors de la modification de l\'événement')
         }
-        else handleApiError("Erreur lors de la modification de l'événement");
 
     }
 

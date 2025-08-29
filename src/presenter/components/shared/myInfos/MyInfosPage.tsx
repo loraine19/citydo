@@ -45,15 +45,13 @@ export default function MyInfosPage() {
         const { blob, ...rest } = formik.values;
         const updateData = new ProfileDTO({ assistance, ...rest })
         const updated = await updateProfile(updateData, address)
-        if (!updated || updated?.error) {
-            handleApiError(new Error(updated?.error) ??
-                "Une erreur est survenue lors de la mise à jour du profil",
-                refetch)
-        }
-        else {
+        try {
             navigate("/");
             setOpen(false)
             setUser({ ...user, Profile: updated })
+            refetch()
+        } catch (error) {
+            handleApiError(error ?? 'Erreur lors de la mise à jour du profil')
         }
     }
 

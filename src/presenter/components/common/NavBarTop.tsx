@@ -30,7 +30,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
     return (
         <header onClick={() => { hideNavBottom && setHideNavBottom(false) }}>
-            <div className={`wRespXL h-full justify-between items-end pt-2 pb-3 lg:pb-1
+            <div className={`wRespXL slide h-full justify-between items-end pt-2 pb-3 lg:pb-1
             ${navBottom ? 'flex ' : 'grid grid-cols-[auto_1fr_auto] '}
                 ${hideNavBottom ? ' flex animRev' : ' flex animRev'}`} >
                 <div className={`flex h-full ${hideNavBottom ? 'hidden' : ''}`}>

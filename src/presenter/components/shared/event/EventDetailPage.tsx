@@ -52,8 +52,11 @@ export default function EventDetailPage() {
                 `Confirmer votre participation à ${eventUp?.title}`,
             function: async () => {
                 const data = await eventUp?.toogleParticipate();
-                if (data) updateEvent()
-                else handleApiError(data.error ?? 'Erreur inconnue')
+                try {
+                    if (data) updateEvent()
+                } catch (error) {
+                    handleApiError(error ?? 'Erreur lors de la mise à jour de votre participation')
+                }
             }
         }
     ]

@@ -59,13 +59,16 @@ export default function ProfileCreatePage() {
     const post = async () => {
         const { ...rest } = formik.values;
         const updateData = { ...rest }
-        let updated: any = await postProfile(updateData)
-        if (updated) {
+        try {
+            let updated: any = await postProfile(updateData)
             setUser({ ...user, Profile: updated })
             navigate("/");
             setOpen(false)
+
+        } catch (error) {
+            handleApiError(error ?? 'Erreur lors de la création de votre profil')
         }
-        else handleApiError("Erreur lors de la création de votre profil")
+
     }
 
 
