@@ -37,7 +37,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                 <div className="sectionHeader">
                     <SubHeader
                         type={formik.values.id ?
-                            `Modifier votre ${formik.values.typeS}` : `Créer votre ${formik.values.typeS === 'POOL' ? 'cagnotte' : formik.values.typeS === 'SURVEY' ? 'sondage' : 'vote'}`}
+                            `Modifier votre ${formik.values.typeS} ` : `Créer votre ${formik.values.typeS === 'POOL' ? 'cagnotte ' : formik.values.typeS === 'SURVEY' ? 'sondage ' : 'vote'}`}
                         closeBtn
                         place={formik.values.id ? formik.values.title : ''} />
 
@@ -51,7 +51,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                     disabled={formik.values.pourcent > 1}
                                     name="typeS"
                                     value={VoteTarget.SURVEY}
-                                    checked={type === VoteTarget.SURVEY}
+                                    checked={type === VoteTarget.SURVEY || formik.values.typeS === VoteTarget.SURVEY}
                                     onChange={() => {
                                         formik.setFieldValue('typeS', VoteTarget.SURVEY)
                                         setType(VoteTarget.SURVEY)
@@ -75,12 +75,13 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                 </Radio.Item>
                             </div>
                             <div className="flex items-center flex-1 gap-2 inputDiv ">
+
                                 <Radio.Item
                                     id='cagnotte-radio'
                                     disabled={formik.values.pourcent > 1}
                                     name="typeS"
                                     value={VoteTarget.POOL}
-                                    checked={type === VoteTarget.POOL}
+                                    checked={type === VoteTarget.POOL || formik.values.typeS === 'cagnotte'}
                                     onChange={() => {
                                         setType(VoteTarget.POOL)
                                         formik.setFieldValue('typeS', VoteTarget.POOL)
@@ -99,7 +100,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                     <Typography
                                         as="label"
                                         htmlFor="cagnotte-radio"
-                                        className="text-sm font-normal text-gray-600 pl-8">
+                                        className="text-sm font-normal text-gray-600 pl-8 pr-4">
                                         Cagnotte
                                     </Typography>
                                 </Radio.Item>
@@ -144,8 +145,9 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                         formik.setFieldValue('userIdBenef', '')
                                         formik.setFieldValue('UserBenef', {} as User)
                                     }} >
+
                                     <Select.Trigger
-                                        placeholder="Choisir une catégorie"
+                                        placeholder={formik.errors.category ? formik.errors.category as string : formik.values.category ?? "Choisir une catégorie"}
                                         className="inputDiv" />
                                     <Select.List>
                                         {surveyCategories.map((category: Label, index: number) => {

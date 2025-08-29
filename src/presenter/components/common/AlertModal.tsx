@@ -26,8 +26,7 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                                 size="xl"
                                 color="red" />}
                     </CardHeader>
-                    <CardBody className="
-                FixCardBody max-h-[70vh] h-max items-center flex flex-col ">
+                    <CardBody className="FixCardBody max-h-[70vh] h-max items-center flex flex-col ">
                         <hr className="pb-1"></hr>
                         {notif && <p className="text-center italic text-red-800">{notif}</p>}
                         <div className="overflow-auto flex w-full max-h-max justify-center ">
