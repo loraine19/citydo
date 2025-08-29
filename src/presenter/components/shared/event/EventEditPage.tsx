@@ -69,7 +69,7 @@ export default function EventDetailPage() {
                 confirmString: "Enregistrer les modifications",
                 title: "Confimrer la modification",
                 element: (
-                    <div className='flex flex-col gap-8 max-h-[80vh] bg-gray-100 rounded-2xl p-5'>
+                    <div className='flex flex-col gap-8 min-h-max bg-gray-100 rounded-2xl p-5'>
                         <Typography variant='h6'> Évenement au : {formik.values?.Address?.address} le {new Date(formik.values?.start).toLocaleDateString('fr-FR')}</Typography>
                         <EventCard
                             event={new EventView({ ...formik.values, image: formik.values?.blob || formik.values?.image }, 0)}

@@ -45,12 +45,12 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
     }
     return (
         <div className="DetailCardDiv ">
-            <Card className="FixCard w-respLarge !h-full" >
+            <Card className="CardDetailGrid">
                 <CardHeader
                     className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
                     floated={haveImage}>
-                    <div className={haveImage ? "ChipDiv" : "ChipDivNoImage"}>
-                        <div className="ChipSubDiv ">
+                    <div className={haveImage ? "ChipDiv " : "ChipDivNoImage"}>
+                        <div className="ChipSubDiv  ">
                             <Chip
                                 size="sm"
                                 value={`${categoryS}`}

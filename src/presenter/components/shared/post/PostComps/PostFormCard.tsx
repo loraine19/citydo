@@ -63,23 +63,23 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                             user={user} />
                     </div>
                 </div>
-                <section className={`flex pb-1 flex-1 relative pt-6`}>
+                <section className={`flex pb-1 flex-1 relative pt-6 overflow-y-hidden`}>
                     <Card className={`${(imgBlob || formik.values.image) ?
                         "FixCard" :
                         "FixCardNoImage"} w-respLarge`}>
                         <CardHeader
                             className={(imgBlob || formik.values.image) ?
                                 "FixCardHeader" :
-                                "FixCardHeaderNoImage pt-2"}
+                                "FixCardHeaderNoImage pt-16 "}
                             floated={imgBlob || formik.values.image ?
                                 true : false} >
-                            <div className={`${start ? 'ChipDiv !justify-end' : 'invisible'}`}>
+                            <div className={`${start ? 'ChipDiv !justify-end absolute top-3' : 'invisible'}`}>
                                 <DateChip
                                     prefix="publié le"
                                     start={start} />
                             </div>
                             <ImageBtn
-                                className="!absolute z-40 !h-max bottom-0 !left-3 mb-1"
+                                className="!absolute z-40 !h-max top-4 !left-3 mb-1"
                                 formik={formik}
                                 setImgBlob={setImgBlob} />
                             <img
@@ -92,8 +92,8 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                     "CardImage" : "hidden"}
                             />
                         </CardHeader>
-                        <CardBody className="FixCardBody">
-                            <div className="CardOverFlow  justify-between gap-4">
+                        <CardBody className={`${(imgBlob || formik.values.image) ? ' max-h-full' : ' h-max '} FixCardBody `}>
+                            <div className="overflow-auto h-full pt-2">
                                 <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
                                     placeholder={"Titre"}
                                     name="title"
@@ -101,8 +101,8 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                     value={formik.values.title}
                                 />
                                 <InputError error={formik.errors.title} />
-                                <div className='flex flex-col lg:flex-row gap-5 pt-2 h-full '>
-                                    <div className='flex flex-col flex-1  '>
+                                <div className='flex flex-col lg:flex-row  pt-1 '>
+                                    <div className='flex flex-col '>
                                         <Textarea
                                             className={`inputStandart min-h-full ${formik.errors.description ? 'error' : ''}`}
                                             placeholder='Description'
@@ -116,7 +116,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                         <InputError mt error={formik.errors.description} />
                                     </div>
                                 </div>
-                                <div className="flex flex-col gap-1 justify-center pt-6 h-full w-full">
+                                <div className="flex flex-col gap-1 justify-center pt-4 w-full">
                                     <div className="flex items-center gap-4">
                                         <div className="flex items-center gap-2 px-4">
                                             <Checkbox

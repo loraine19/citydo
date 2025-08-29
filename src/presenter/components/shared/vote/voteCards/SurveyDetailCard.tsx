@@ -27,7 +27,7 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
 
     return (
         <div className="DetailCardDiv">
-            <Card className="FixCard w-respLarge" >
+            <Card className="CardDetailGrid">
                 <CardHeader
                     className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
                     floated={haveImage}>
@@ -50,26 +50,26 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
                             alt={title}
                             className="h-full w-full object-cover CardImage" />}
                 </CardHeader>
-                <CardBody className="FixCardBody">
-                    <Title
+                <CardBody className="FixCardBody  justify-between">
+                    <div>   <Title
                         title={title}
                         flagged={flagged}
                         id={id}
                         CreatedAt={createdAt}
                         type='sondage' />
-                    <div className="CardOverFlow h-full !py-0 ">
-                        <Typography
-                            className=" leading-[1.3rem] ">
-                            {description}
-                        </Typography>
-                    </div>
+                        <div className="CardOverFlow ">
+                            <Typography
+                                className="description">
+                                {description}
+                            </Typography>
+                        </div></div>
                     <ProgressBar
                         value={pourcent}
                         label="votes pour"
                         size={'lg'}
                         needed={needed} />
                 </CardBody>
-                <CardFooter className="CardFooter mb-2">
+                <CardFooter className="CardFooter">
                     <ProfileDiv
                         profile={User} />
                     <div className="flex items-center gap-2 ">
@@ -79,7 +79,7 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
                             <Chip
                                 value={Votes?.length}
                                 variant="ghost"
-                                size='lg'
+                                size='sm'
                                 className="rounded-full GrayChip !px-4"
                                 icon={<Icon
                                     icon="smart_card_reader"

@@ -168,12 +168,12 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                 </div>
                 <section className={`flex pb-1 flex-1 relative pt-6`}>
                     <Card className={`${(imgBlob || formik.values.image) ?
-                        "FixCard" :
+                        "CardDetailGrid" :
                         "FixCardNoImage !flex justify-between "} w-respLarge `}>
                         <CardHeader
                             className={(imgBlob || formik.values.image) ?
                                 "FixCardHeader !relative " :
-                                "FixCardHeaderNoImage !relative pt-16 pb-0"}
+                                "FixCardHeaderNoImage !grid-rows-[auto_1fr] pt-16 "}
                             floated={imgBlob || formik.values.image ?
                                 true : false} >
                             <div className={`${start ? 'ChipDiv !justify-end right-3 top-3' : 'invisible'}`}>
@@ -203,21 +203,21 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                     profile={formik.values?.UserBenef} />
                             }
                         </CardHeader>
-                        <CardBody className='FixCardBody -mt-2 mb-4 '>
-                            <div className='CardOverFlow h-full justify-between mt-2 gap-4'>
+                        <CardBody className={`${haveImage ? ' max-h-max' : ' h-full '} FixCardBody `}>
+                            <div className='overflow-auto h-full  pt-2 justify-between  gap-4'>
                                 <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
                                     placeholder={"Titre"}
                                     name="title"
                                     onChange={formik.handleChange}
                                     value={formik.values.title}
                                 />
-                                <InputError error={formik.errors.title} />
-                                <div className='flex flex-col lg:flex-row gap-5 pt-3 h-full '>
+                                <InputError mt error={formik.errors.title} />
+                                <div className='flex flex-col lg:flex-row gap-4  '>
                                     <div className='flex flex-col flex-1 pt-1 '>
                                         <Textarea
-                                            className={`inputStandart min-h-full ${formik.errors.description ? 'error' : ''}`}
+                                            className={`inputStandart min-h-max ${formik.errors.description ? 'error' : ''}`}
                                             placeholder='Description'
-                                            rows={1}
+                                            rows={3}
                                             resize={true}
                                             name="description"
                                             onChange={formik.handleChange}

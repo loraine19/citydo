@@ -140,8 +140,8 @@ export function ServiceForm(props: { formik: any }) {
                             disabled={formik.values.statusValue > 0} />
                     </div>
                 </div>
-                <section className={`flex pb-1 flex-1 relative pt-8`}>
-                    <Card className={`${haveImage ? "FixCard" : "FixCardNoImage"} w-respLarge`}>
+                <section className={`flex pb-1 flex-1 relative pt-8 overflow-hidden`}>
+                    <Card className={`${haveImage ? "CardDetailGrid " : "FixCardNoImage "} w-respLarge`}>
                         <CardHeader className={haveImage ?
                             "FixCardHeader" :
                             "FixCardHeaderNoImage pt-16 pb-0"} >
@@ -164,15 +164,16 @@ export function ServiceForm(props: { formik: any }) {
                             />
                         </CardHeader>
                         <CardBody className='FixCardBody '>
-                            <div className='CardOverFlow h-full justify-between gap-4 pt-2'>
+
+                            <div className='overflow-auto py-2 h-full -mt-2 '>
                                 <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
                                     placeholder={"Titre"}
                                     name="title"
                                     onChange={formik.handleChange}
                                     value={formik.values.title}
                                 />
-                                <InputError error={formik.errors.title} />
-                                <div className='flex flex-col lg:flex-row gap-5 pt-2 h-full '>
+                                <InputError mt error={formik.errors.title} />
+                                <div className='flex flex-col lg:flex-row gap-5 pt-2 '>
                                     <div className='flex flex-col flex-1  '>
                                         <Textarea
                                             className={`inputStandart min-h-full ${formik.errors.description ? 'error' : ''}`}
@@ -186,7 +187,7 @@ export function ServiceForm(props: { formik: any }) {
                                         <InputError mt error={formik.errors.description} />
                                     </div>
                                 </div>
-                                <div className="flex flex-col justify-center h-full">
+                                <div className="flex flex-col justify-center h-max ">
                                     <Typography className='text-xs'>Difficulté du service: </Typography>
                                     <div className="flex gap-[20%]">
                                         <div className="flex flex-1 flex-col">

@@ -28,7 +28,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
 
     ///// BLOB FUNCTION ;
     const imgCategory = EventImage[formik.values.category as keyof typeof EventImage] || EventImage.default
-    const [imgBlob, setImgBlob] = useState<string>(formik.values.image ?? imgCategory);
+    const [imgBlob, setImgBlob] = useState<string>(formik.values.image);
 
     //// ADDRESS GPS FUNCTION
     useEffect(() => {
@@ -51,17 +51,15 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                     <div className="w-respLarge flex flex-col lg:flex-row !gap-4 pt-3 pb-2">
                         <Select
                             className='rounded-full shadow bg-white border-none capitalize'
-                            label={formik?.errors?.category ? formik?.errors?.category as string : "Choisir la catégorie"}
                             name={"category"}
                             error={formik.errors.category ? true : false}
-                            labelProps={{ className: `before:border-none after:border-none` }}
                             value={category || ''}
                             onChange={(val: any) => {
                                 formik.values.category = val;
                                 !formik.values.image && setImgBlob(EventImage[val as keyof typeof EventImage || EventImage.default]);
                             }}>
                             <Select.Trigger
-                                placeholder="Choisir la catégorie"
+                                placeholder={formik.errors.category ? formik.errors.category as string : formik.values.category ? getLabel(formik.values.category, eventCategories) : "Choisir la catégorie"}
                                 className="inputDiv" />
                             <Select.List>
                                 {eventCategories.map((category: Label, index: number) => {
@@ -83,7 +81,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                     </div>
                 </div>
                 <section className="flex flex-1 pt-6 relative overflow-hidden">
-                    <Card className="w-respLarge FixCard !relative !z-10">
+                    <Card className="CardDetailGrid">
                         <CardHeader className="FixCardHeader">
                             <div className={`${start ? 'ChipDiv !justify-end' : 'hidden'}`}>
                                 <DateChip
@@ -98,7 +96,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                 imgDef={imgCategory} />
                             <img
                                 onError={(e) => e.currentTarget.src = '/images/eventDefault.png'}
-                                src={imgBlob || formik.values.blob || './load.gif'}
+                                src={imgBlob || formik.values.image || formik.values.blob || imgCategory || './load.gif'}
                                 alt={title || 'image'}
                                 width={100}
                                 height={100}
@@ -193,9 +191,8 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                             </div>
                                             <Progress
                                                 value={pourcentParticipants}
-                                                size="md"
-                                                color={pourcentParticipants === 100 ? "success" : "info"} >
-                                                <Progress.Bar />
+                                                size="md">
+                                                <Progress.Bar className={`bg-${pourcentParticipants === 100 ? "green" : "cyan"}-500`} />
                                             </Progress>
                                         </div>
                                     </div>

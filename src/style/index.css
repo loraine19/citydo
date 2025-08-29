@@ -327,7 +327,7 @@ input {
 }
 
 .ChipDiv {
-    @apply flex w-full gap-2 justify-between overflow-auto absolute p-2 h-max;
+    @apply flex max-w-[calc(100%-1rem)] w-full gap-2 justify-between overflow-auto absolute p-2 h-max;
 }
 
 .ChipDivNoImage {
@@ -343,7 +343,7 @@ input {
 }
 
 .CardOverFlow {
-    @apply min-h-max  flex flex-col overflow-auto py-4 px-0;
+    @apply min-h-max  overflow-auto py-4 px-0;
 }
 
 .CardFooter {
@@ -356,6 +356,10 @@ input {
 
 .DetailCardDiv {
     @apply lg:pt-8 pt-6 pb-1 h-full flex overflow-hidden;
+}
+
+.CardDetailGrid {
+    @apply w-respLarge FixCard !h-full  !grid-rows-[25vh,1fr,auto] md:!grid-rows-[30vh,1fr,auto];
 }
 
 /**** ICON ****/

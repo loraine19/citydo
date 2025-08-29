@@ -22,7 +22,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
 
     return (
         <div className="DetailCardDiv">
-            <Card className="w-respLarge FixCard !h-full">
+            <Card className="CardDetailGrid">
                 <CardHeader className="FixCardHeader ">
                     <div className="ChipDiv flex-col justify-between !h-full">
                         <div className="flex w-full flex-wrap items-center justify-between gap-2">

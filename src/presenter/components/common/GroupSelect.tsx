@@ -1,5 +1,6 @@
 import { Select } from "@material-tailwind/react"
 import { User } from "../../../domain/entities/User"
+import { GroupUser } from "../../../domain/entities/GroupUser";
 
 
 interface GroupSelectProps {
@@ -10,6 +11,8 @@ interface GroupSelectProps {
     disabled?: boolean;
 }
 export default function GroupSelect({ formik, user, setGroupId, groupId, disabled }: GroupSelectProps) {
+
+    const selectedGroup = user?.GroupUser?.filter((gu: any) => gu?.Group?.id.toString() === formik.values.groupId?.toString())?.[0]?.Group.name;
 
     return (
         <Select
@@ -23,7 +26,8 @@ export default function GroupSelect({ formik, user, setGroupId, groupId, disable
                 setGroupId(val as string)
             }} >
             <Select.Trigger
-                placeholder={formik.errors.groupId ? formik.errors.groupId as string : "Choisir le groupe"}
+                placeholder={formik.errors.groupId ? formik.errors.groupId as string :
+                    selectedGroup ?? "Choisir le groupe"}
                 className="inputDiv " />
             <Select.List>
                 {user?.GroupUser?.length > 0 ? user?.GroupUser?.map((group: any, index: number) =>
