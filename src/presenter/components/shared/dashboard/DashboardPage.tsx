@@ -87,7 +87,9 @@ export default function DashboardPage() {
     useEffect(() => { (hide !== hideNavBottom) && setHideNavBottom(hide) }, [hide]);
 
     return (
-        <main className={`${(hideNavBottom) ? 'pb-2' : !navBottom ? 'pb-5' : 'lg:!-mt-5 -mt-10 pb-[2.8rem] lg:pb-[5rem]'} 
+        <main className={`${(hideNavBottom) ? 'pb-2' : !navBottom ?
+            'lg:!-mt-3 !-mt-7 pb-[1rem] ' :
+            'lg:!-mt-5 -mt-10 pb-[2.8rem] lg:pb-[5rem]'} 
                relative flex !overflow-hidden anim `}
             data-cy="dashboard-body" >
             <div ref={divRef}

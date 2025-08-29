@@ -71,7 +71,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                 </button>
                             </MenuTrigger>
                             <MenuContent
-                                onMouseLeave={() => setCloseDial(!false)}
+                                onMouseLeave={() => setCloseDial(false)}
                                 className='flex z-40 flex-1 flex-col !rounded-xl !shadow-xl -ml-1'>
                                 {menuItems.map((item, index) => (
                                     <MenuItem
