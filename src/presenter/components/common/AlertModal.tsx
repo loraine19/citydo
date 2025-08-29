@@ -1,4 +1,4 @@
-import { Button, Card, CardBody, CardFooter, CardHeader, Typography } from "@material-tailwind/react";
+import { Button, Card, CardBody, CardFooter, CardHeader } from "@material-tailwind/react";
 import parse from 'html-react-parser';
 import { Icon } from "./IconComp";
 import { useAlertStore } from "../../../application/stores/alert.store";

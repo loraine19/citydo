@@ -12,7 +12,7 @@ interface GroupSelectProps {
 }
 export default function GroupSelect({ formik, user, setGroupId, groupId, disabled }: GroupSelectProps) {
 
-    const selectedGroup = user?.GroupUser?.filter((gu: any) => gu?.Group?.id.toString() === formik.values.groupId?.toString())?.[0]?.Group.name;
+    const selectedGroup = user?.GroupUser?.filter((gu: GroupUser) => gu?.Group?.id.toString() === formik.values.groupId?.toString())?.[0]?.Group.name;
 
     return (
         <Select
