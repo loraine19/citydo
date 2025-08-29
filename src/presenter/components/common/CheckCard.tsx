@@ -38,8 +38,8 @@ export default function CheckCard(props: checkCardProps) {
                         <List.Item className="px-0.5 h-full w-full min-w-max hover:!bg-transparent" key={index}>
                             <label htmlFor={category} className="flex flex-1">
                                 <List.ItemStart className={`bg-slate-400 h-7 relative w-full !px-0 py-0.5 !m-0 flex items-center justify-center rounded-full !shadow-sm border-[1px] border-${color}-500 shadow-sm ${checkedState[index] ?
-                                    `${color}Style !border-opacity-50 ` :
-                                    `bg-transparent !text-${color}-500  border-current opacity-70`}`}>
+                                    ` ${color}Style  ` :
+                                    ` bg-transparent !text-${color}-500  border-current opacity-70`}`}>
                                     <Checkbox
                                         checked={checkedState[index]}
                                         id={category}

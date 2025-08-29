@@ -42,7 +42,7 @@
     @apply !text-red-500 bg-red-200  style;
 }
 .skyStyle {
-    @apply !text-sky-500 bg-sky-200 style;
+    @apply !text-sky-500 !bg-sky-200 style;
 }
 .greenStyle {
     @apply !text-green-500 bg-green-200 style;
@@ -68,15 +68,12 @@
 
 /**** CHIP LIGHT COLOR ****/
 .Chip {
-    @apply !min-w-[calc(max-0.1rem)] !px-3 !pb-1 !rounded-2xl !shadow-sm
+    @apply !min-w-[calc(max-0.1rem)] !px-3 !pb-1 !rounded-2xl !shadow-sm !bg-opacity-95 backdrop-brightness-[20000%]
    !max-w-max;
+    background-image: linear-gradient(background-color, background-color);
 }
 
 @layer components {
-    .Chip {
-        @apply backdrop-brightness-[2000000000] !bg-opacity-95 backdrop:!backdrop-blur-3xl;
-    }
-
     .OrangeChip {
         @apply Chip orangeStyle;
     }

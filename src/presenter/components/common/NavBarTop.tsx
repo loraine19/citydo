@@ -35,7 +35,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
             <header onClick={() => { hideNavBottom && setHideNavBottom(false) }}>
 
                 {/*BLUR POP BACKGROUND */}
-                <div className={` ${(closeDial) ? 'hidden' :
+                <div className={` ${(!closeDial) ? 'hidden' :
                     ' h-screen w-screen -left-0 top-0  backdropBlur  absolute slide'}`}>
                 </div>
 
@@ -49,7 +49,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                         <Menu placement="bottom-start">
                             <MenuTrigger
                                 className="relative h-full justify-center max-w-max grid  z-50  items-center !p-0">
-                                <button onClick={() => setCloseDial((prev) => !prev)}>
+                                <button onClick={() => setCloseDial(!closeDial)}>
                                     {onBoard ?
                                         <div className='flex w-[48px] flex-1 items-center'>
                                             <img className="!w-[48px] !h-[48px] object-cover object-center"
@@ -91,9 +91,9 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
                         {/* INFO TEXT LOGO   */}
                         {(!hideNavBottom) &&
-                            <div className={`${!navBottom ? 'hidden lg:flex' : ''} max-w-[30vw] lg:max-w-[220px] flex flex-col h-full w-full px-3  pt-1`}>
+                            <div className={`${!navBottom ? 'hidden lg:flex' : ''} max-w-[30vw] lg:max-w-[220px] flex flex-col h-full justify-center w-full px-3  pt-1`}>
 
-                                <h2 className=' font-comfortaa text-[1.8rem] lg:!text-[2.1rem] font-bold'>
+                                <h2 className='flex font-comfortaa text-[1.8rem] lg:!text-[2.1rem] font-bold'>
                                     City'Do
                                 </h2>
                                 {!onBoard &&
