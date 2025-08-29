@@ -104,8 +104,8 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                 ` flex z-30 w-full `
             }>
                 <Navbar className={`
-                    ${navBottom ? 'ml-2 lg:-ml-2  !shadow-md bg-white border border-slate-300 !flex-1 !max-w-max sm:!max-w-[100%]  ' : ` !pt-1  shadow-none border-none bg-transparent w-full `}
-                    flex rounded-full h-full items-center !p-0 overflow-x-auto overflow-y-hidden hover:!shadow-none `}>
+                    ${navBottom ? 'ml-2 lg:-ml-2  rounded-full !shadow-md bg-white border border-slate-300 !flex-1 !max-w-max sm:!max-w-[100%]  ' : ` !pt-1  shadow-none border-none bg-transparent w-full `}
+                    flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden hover:!shadow-none `}>
                     <ul className={`${navBottom ? ' gap-0 justify-between ' : 'md:gap-4 gap-3 justify-around opacity-80'} 
                             flex  xs:pr-0 !max-w-[calc(100vw-6rem)] flex-row  rounded-full h-full  w-full  `}>
                         {navItems.map(({ to, icon, label, color }: NavItem, index) => (

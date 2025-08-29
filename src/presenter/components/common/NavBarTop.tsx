@@ -118,8 +118,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                     }
 
                     {/* NOTIF BAGDES  */}
-                    <div className={`justify-end items-center flex h-full w-full !flex-1 pl-2
-                    ${onBoard ? 'lg:pr-0' : 'pr-0'} 
+                    <div className={`justify-end items-center flex h-full w-full !flex-1 pl-0.5 md:pl-2
                     ${hideNavBottom ? 'hidden' : ''} 
                     ${navBottom ? ' w-full' : ''}`} >
                         <NotifBadge />
