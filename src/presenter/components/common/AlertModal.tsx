@@ -31,10 +31,10 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                         <hr className="pb-1"></hr>
                         {notif && <p className="text-center italic text-red-800">{notif}</p>}
                         <div className="overflow-auto flex w-full max-h-max justify-center ">
-                            <>{element && typeof element === 'string' ?
+                            {element && typeof element === 'string' ?
                                 <Typography as='h5' className="pt-[2vh] pb-[8vh] my-6">  {parse(element as string)}</Typography> :
-                                { element }}
-                            </>
+                                <>{element}</>
+                            }
                         </div>
                     </CardBody>
                     <CardFooter className="justify-end FixCardFooter max-w-full flex flex-wrap gap-8 py-6">

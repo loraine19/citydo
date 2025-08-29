@@ -21,7 +21,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
     const { id, title, description, label, image, participantsMin, pourcent, Participants, Igo, User, Address, flagged, end, start, toogleParticipate, agendaLink, eventDateInfo, status, isPast, Group } = EventLoad;
 
     return (
-        <div className="DetailCardDiv">
+        <div className="DetailCardDiv !pt-9">
             <Card className="CardDetailGrid">
                 <CardHeader className="FixCardHeader ">
                     <div className="ChipDiv flex-col justify-between !h-full">

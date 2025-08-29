@@ -14,7 +14,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
     const { unReadMsgNotif } = useNotificationStore((state) => state);
     const navigate = useNavigate();
     const { user } = useUserStore((state) => state);
-    const { hideNavBottom, navBottom, setNavBottom, color } = useUxStore((state) => state);
+    const { hideNavBottom, navBottom, setNavBottom, color, setHideNavBottom } = useUxStore((state) => state);
 
     const menuItems = [
         { icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate" },
@@ -31,7 +31,10 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
     const [closeDial, setCloseDial] = useState<boolean>(false)
 
     return (
-        <>    {hideNavBottom && <hr className={` bg-${color}-500 border-slate-200 mt-1 h-[2px] opacity-75 `}></hr>}
+        <>  {hideNavBottom &&
+            <hr
+                onMouseEnter={() => setHideNavBottom(false)}
+                className={` bg-${color}-500   h-[4px] opacity-75 `}></hr>}
             <header>
 
                 {/*BLUR POP BACKGROUND */}
@@ -112,7 +115,9 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
                     {/* INSERTION NAVLINK TOP  */}
                     {(!navBottom && navIcons && !hideNavBottom) &&
-                        <div className="pr-4 pl-2 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
+                        <div
+                            onMouseEnter={() => setCloseDial(false)}
+                            className="pr-4 pl-2 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
                             <NavBarSection addBtn={addBtn} />
                         </div>
                     }

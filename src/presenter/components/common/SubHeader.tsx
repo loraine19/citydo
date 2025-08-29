@@ -20,16 +20,19 @@ export default function SubHeader({ type, qty, place, closeBtn, link }: SubHeade
     }
 
     return (
-        <div className={`flex w-full  pt-1 pb-1 gap-2 justify-end lg:justify-between`}>
-            <Typography
-                as="h2"
-                className={`!line-clamp-1 leading-[1.1] text-[1.2rem] pl-2 flex-1  `}>
-                {qty} {type}
-                <span className=" !font-thin ">
-                    {place ?? " à proximité"}
-                </span>
-                <hr className={`bg-${color}-500 opacity-35 mt-1  pt-[1px] w-full `}></hr>
-            </Typography>
+        <div className={`flex w-full h-full `}>
+            <div className={`flex flex-col w-full  h-full py-1 gap-2 justify-end lg:justify-between`}>
+                <Typography
+                    as="h2"
+                    className={`!line-clamp-1 leading-[1.1] text-[1.2rem] pl-2 flex-1  `}>
+                    {qty} {type}
+                    <span className=" !font-thin ">
+                        {place ?? " à proximité"}
+                    </span>
+
+                </Typography>
+                <hr className={`bg-${color}-500 opacity-35   pt-[1px] w-full `}></hr>
+            </div>
             {hideNavBottom &&
                 <Icon
                     icon="arrow_upward"
