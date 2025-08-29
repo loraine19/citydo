@@ -88,6 +88,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
 
     return (
         <>
+            {/*BLUR POP BACKGROUND */}
             <div className={`
             ${(!closeDial) ? 'hidden' : ''} 
             ${navBottom ? `bottom-[4rem] left-0 w-screen h-[calc(100vh-4rem)]` : '-right-[10rem] w-[calc(100vw*1.3)] md:w-[calc((100%*1.3)+4rem)] h-[calc(100vh*1.31)]  top-0'}
@@ -97,9 +98,9 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim ${color}BG backdropBlur wRespXL justify-center gap-6  px-6 md:px-0 pb-1` :
+                    `items-center opacity-100 anim rounded-2xl ${color}BG backdropBlur wRespXL justify-center gap-6  py-2` :
                     'z-0 md:gap-6 gap-2') +
-                ` flex z-30 px-4`
+                ` flex z-30 md:!px-8 sm:px-8 px-6 lg:!px-0 `
             }>
                 <Navbar className={`
                     ${navBottom ? '!shadow-md bg-white border border-slate-300 -ml-5 !flex-1 !max-w-max sm:!max-w-[100%] '
@@ -131,7 +132,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                                     fill={isActive ? true : false}
                                                     color={color.col}
                                                 />
-                                                <span className={`${navBottom ? 'md:block md:!text-[0.8rem] ' : 'lg:block'} !text-[0.95rem] font-bold filter brightness-90 font-comfortaa hidden  lg:pr-8 pr-3`}>
+                                                <span className={`${navBottom ? 'md:block md:!text-[0.85rem] ' : 'lg:block'} !text-[0.95rem] font-bold filter brightness-90 font-comfortaa hidden  lg:pr-8 pr-3`}>
                                                     {label}
                                                 </span>
                                             </>
@@ -158,7 +159,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                             icon="add"
                             bg
                             size='5xl'
-                            style={`hover:!transition-transform hover:!rotate-45 !text-white !text-[2.2rem]  ${BG} ${navBottom ? `!shadow-md` : ''}`} />
+                            style={` ${closeDial ? 'rotate-45' : ''} hover:!transition-transform hover:!rotate-45 !border-0 !text-white !text-[2.2rem]  ${BG} ${navBottom ? `!shadow-md` : ''}`} />
                     }
                     Content={
                         <div className={`${!navBottom ? 'scale-[0.82] -mt-5 -mr-1.5' : ''} flex gap-2 flex-col `}>

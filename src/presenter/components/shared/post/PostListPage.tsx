@@ -20,9 +20,6 @@ import SelectSearch from "../../common/SelectSearch";
 
 export default function PostListPage() {
 
-    //// STATE
-    const { navBottom } = useUxStore((state) => state);
-
     //// INITIAL STATE
     const [filter, setFilter] = useState<string>('');
     const [category, setCategory] = useState<string>('');
@@ -165,7 +162,7 @@ export default function PostListPage() {
     //// RENDER
     return (
 
-        <main className={navBottom ? " withBottom pb-5" : ""}>
+        <main>
             <div className="sectionHeader">
                 <TabsMenu
                     labels={postTabs}

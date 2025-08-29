@@ -58,11 +58,10 @@ export default function FlagPage() {
     useEffect(() => { (hide !== hideNavBottom) && setHideNavBottom(hide) }, [hide]);
 
 
-    /////FILTER FUNCTIONS
-    const { navBottom } = useUxStore((state) => state);
+    //// RENDER
     return (
 
-        <main className={navBottom ? "withBottom" : ""}>
+        <main>
             <div className="sectionHeader">
                 <SubHeader
                     qty={count || 'aucun'}

@@ -101,10 +101,9 @@ export default function ConciationListPage() {
     useEffect(() => { (hide !== hideNavBottom) && setHideNavBottom(hide) }, [hide]);
 
     //// RENDER
-    const { navBottom } = useUxStore((state) => state);
     return (
 
-        <main className={navBottom ? "withBottom" : ""}>
+        <main>
             <div className="sectionHeader">
                 <SubHeader
                     closeBtn

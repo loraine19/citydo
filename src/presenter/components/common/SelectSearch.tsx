@@ -22,7 +22,7 @@ export default function SelectSearch(props: selectSearchProps) {
                         className={category.length > 0 ? 'px-2' : 'invisible'}>
                         <div className="flex">
                             <Icon
-                                color={color ?? 'slate'}
+                                clear color={color ?? 'slate'}
                                 data-cy="select"
                                 icon="arrow_drop_down"
                                 size='2xl' />

@@ -13,7 +13,7 @@ export const NavBarBottom: React.FC<NavBarBottomProps> = ({ addBtn }) => {
     const { setNavBottom, navBottom, hideNavBottom } = useUxStore((state) => state)
 
     if (navBottom && !hideNavBottom) return (
-        <footer className="flex items-center justify-center wRespXL fixed bottom-0"
+        <footer className="!left-0 fixed bottom-0 "
 
             onDoubleClick={() => setNavBottom(!navBottom)}
             onDoubleClickCapture={(e) => {

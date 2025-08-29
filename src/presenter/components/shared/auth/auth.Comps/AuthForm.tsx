@@ -59,22 +59,21 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                     <div className="absolute rounded-xl inset-0 bg-black/10   z-0" />
                     <img src="image/welcome.jpg"
                         alt="connexion"
-                        className="absolute inset-0 object-cover object-center w-full h-full rounded-xl opacity-90 z-0" />
+                        className="absolute inset-0 object-cover object-center w-full h-full rounded-xl opacity-90 brightness-90 z-0" />
                     <Typography
-                        className="py-6 px-8 !leading-[1] text-[2.5rem] font-bold !text-center font-comfortaa relative z-10 !text-white"
-                        style={{ textShadow: "0px 1px 4px #000000" }} >
+                        className="py-6 px-8 !leading-[1] text-[2.8rem] font-bold !text-center !font-comfortaa relative z-10 !text-white"
+                        style={{ textShadow: "0px 1px 4px #00000080" }} >
                         Connecter vous à votre Quartier
                     </Typography>
                 </Card>
                 {/* FORM CARD */}
                 <Card className="md:flex-[50%] overflow-auto min-h-38 !h-full !w-full !flex flex-1 FixCardNoImage">
                     <CardHeader
-                        className="FixCardHeaderNoImage h-max w-full px-6 py-4 !flex flex-col"
+                        className="FixCardHeaderNoImage h-max w-full p-6 !flex flex-col"
                         floated={false}>
-                        <Typography
-                            as="h5">
+                        <h3>
                             {lead}
-                        </Typography>
+                        </h3>
                         <Typography
                             data-cy="notif-text"
                             className={`text-sm ${inError ? "error" : ""}`}>

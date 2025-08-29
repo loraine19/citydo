@@ -48,7 +48,7 @@ export default function SignUpPage() {
 
 
     return (
-        <div className='flex flex-col justify-between h-full py-[6%] md:py-[2%] lg:py-2'>
+        <>
             <AuthHeader />
             <main>
                 <AuthForm
@@ -64,7 +64,8 @@ export default function SignUpPage() {
                     hidden={hidden}
                 />
             </main>
-            <footer className="flex flex-col items-center gap-2 py-auto">
+
+            <footer className="flex flex-col items-center gap-1 pb-12 justify-center pt-6">
                 <Typography
                     variant="small"
                     className=" flex justify-center">
@@ -77,6 +78,6 @@ export default function SignUpPage() {
                     </Button>
                 </Link>
             </footer>
-        </div>
+        </>
     )
 }

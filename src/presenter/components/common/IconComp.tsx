@@ -119,7 +119,7 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
     const color = props.color ?? 'gray'
     const textColor = (color: string) => props.color ? `${color}Style` : `grayStyle`;
     const bg = () => (props.bg && !clear) ?
-        `border  border-opacity-20` : '!bg-transparent'
+        `border` : '!bg-transparent'
 
     const classIcon = (color: string) => `!rounded-full flex items-center justify-center 
     ${textColor(color) as string} ${bg()}  

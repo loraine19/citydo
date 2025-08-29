@@ -128,7 +128,7 @@ export default function EventListPage() {
 
     //// HANDLE HIDE  
     const handleHide = (params: HandleHideParams) => utils.handleHide(params)
-    const { setHideNavBottom, hideNavBottom, navBottom } = useUxStore((state) => state);
+    const { setHideNavBottom, hideNavBottom } = useUxStore((state) => state);
     const handleHideCallback = useCallback(() => {
         const params: HandleHideParams = { divRef, setHide }
         handleHide(params)
@@ -145,8 +145,10 @@ export default function EventListPage() {
         { label: 'jours', key: EventSort.INDAYS, icon: 'calendar_month' }
     ]
 
+    //// RENDER
     return (
-        <main className={(navBottom && view === "view_agenda") ? "withBottom" : ""}>
+
+        <main>
             <div className="sectionHeader ">
                 {view === "view_agenda" &&
                     <TabsMenu

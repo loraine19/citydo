@@ -105,10 +105,10 @@ export default function GroupPage() {
         }
     }, [groups, isLoading, error, filter, category]);
 
-    const { navBottom } = useUxStore((state) => state);
+    //// RENDER
     return (
 
-        <main className={navBottom ? "withBottom" : ""}>
+        <main>
             <div className=" sectionHeader">
                 {notif &&
                     <NotifDiv

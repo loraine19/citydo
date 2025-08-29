@@ -19,8 +19,6 @@ import SelectSearch from "../../common/SelectSearch";
 import { surveyCategories } from "../../../constants";
 
 export default function VoteListPage() {
-    //// STATE
-    const { navBottom } = useUxStore((state) => state);
 
     //// INITIALIZE
     const pageColor = 'orange'
@@ -160,9 +158,10 @@ export default function VoteListPage() {
 
 
 
+    //// RENDER
     return (
 
-        <main className={navBottom ? "withBottom" : ""}>
+        <main>
             <div className="sectionHeader relative">
 
                 <TabsMenu
