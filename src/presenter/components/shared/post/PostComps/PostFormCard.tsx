@@ -33,7 +33,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                         place={PostCategory[formik.values.category as keyof typeof PostCategory] || ''}
                         closeBtn
                     />
-                    <div className="w-respLarge flex flex-col lg:flex-row !gap-4 pb-2 pt-4">
+                    <div className="w-respLarge flex flex-col lg:flex-row lg:gap-4 pb-2 pt-2 gap-2">
                         <Select
                             className="rounded-full shadow bg-white border-none capitalize"
                             label={formik.errors.category ? formik.errors.category as string : "Choisir la catégorie"}
@@ -116,8 +116,8 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                         <InputError mt error={formik.errors.description} />
                                     </div>
                                 </div>
-                                <div className="flex flex-col gap-1 justify-center pt-4 w-full">
-                                    <div className="flex items-center gap-4">
+                                <div className="flex flex-col gap-1 justify-center pt-6 w-full">
+                                    <div className="flex items-center gap-4 pb-1">
                                         <div className="flex items-center gap-2 px-4">
                                             <Checkbox
                                                 className={`border-none shadow-none hover:shadow-none data-[checked=true]:bg-transparent`}
@@ -147,7 +147,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                             <Typography
                                                 as="label"
                                                 htmlFor="default-checkbox"
-                                                className="cursor-pointer text-foreground"
+                                                className="cursor-pointer text-sm text-foreground"
                                             >
                                                 Téléphone
                                             </Typography>
@@ -181,7 +181,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                             <Typography
                                                 as="label"
                                                 htmlFor="email-checkbox"
-                                                className="cursor-pointer text-foreground"
+                                                className="cursor-pointer text-foreground text-sm"
                                             >
                                                 Email
                                             </Typography>

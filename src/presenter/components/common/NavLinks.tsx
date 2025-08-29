@@ -106,7 +106,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                 <Navbar className={`
                     ${navBottom ? 'ml-2 lg:-ml-2  !shadow-md bg-white border border-slate-300 !flex-1 !max-w-max sm:!max-w-[100%]  ' : ` !pt-1  shadow-none border-none bg-transparent w-full `}
                     flex rounded-full h-full items-center !p-0 overflow-x-auto overflow-y-hidden hover:!shadow-none `}>
-                    <ul className={`${navBottom ? ' gap-0 justify-between ' : 'gap-2 justify-around '} 
+                    <ul className={`${navBottom ? ' gap-0 justify-between ' : 'md:gap-4 gap-3 justify-around opacity-80'} 
                             flex  xs:pr-0 !max-w-[calc(100vw-6rem)] flex-row  rounded-full h-full  w-full  `}>
                         {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                             <Typography
@@ -118,10 +118,9 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                     to={to}
                                     className={({ isActive }) =>
                                         `flex gap-3 justify-center lg:justify-start items-center w-full h-full rounded-full
-                                            hover:bg-white/50 hover:shadow-slate-100
+                                            ${navBottom ? `!px-[8px] !pt-[8px] !pb-[7.5px]   hover:bg-white/50 hover:shadow-slate-100
                                             hover:scale-[101%] transition duration-200
-                                            hover:shadow-sm
-                                            ${navBottom ? '!px-[8px] !pt-[8px] !pb-[7.5px]' : ''}
+                                            hover:shadow-sm` : ''}
                                             ${(isActive && navBottom) ? `border-[1px] shadowMid !bg-white  shadow-sm mb-0.5 lg:mr-2 z-30 ` :
                                             isActive ? ` animSlide ` : ''}`
                                     }>
@@ -129,9 +128,9 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                         <>
                                             <Icon
                                                 style={
-                                                    (isActive && !navBottom) ? `outline outline-1 outline-${color.col} !shadow-md  bg-opacity-100 scale-[0.93]` : ''
+                                                    `${(isActive && !navBottom) ? `` : ''} min-h-[48px]`
                                                 }
-                                                bg
+                                                bg={(navBottom) ? true : false}
                                                 size={navBottom ? '3xl' : 'xl'}
                                                 icon={icon}
                                                 fill={isActive ? true : false}

@@ -41,11 +41,11 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                         closeBtn
                         place={formik.values.id ? formik.values.title : ''} />
 
-                    <div className="w-respLarge flex flex-col grid-cols-[1fr_1fr_1fr] lg:grid grid-rows-1 gap-3 py-4">
+                    <div className="w-respLarge flex flex-col grid-cols-[1fr_1fr_1fr] lg:grid grid-rows-1 lg:gap-4 gap-2 py-3">
                         <Radio
                             orientation="horizontal"
-                            className="inputDiv px-4 gap-6">
-                            <div className="flex items-center flex-1 gap-2">
+                            className=" gap-4">
+                            <div className="flex items-center flex-1 gap-2 inputDiv ">
                                 <Radio.Item
                                     id='sondage-radio'
                                     disabled={formik.values.pourcent > 1}
@@ -58,7 +58,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                     }}
                                 >
                                     <Radio.Indicator
-                                        className="!border border-orange-500/50 rounded-full flex !bg-white ">
+                                        className="!border border-orange-500/50 rounded-full flex !bg-white  ">
                                         <Icon
                                             fill
                                             size="lg"
@@ -74,7 +74,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                     </Typography>
                                 </Radio.Item>
                             </div>
-                            <div className="flex items-center flex-1 gap-2">
+                            <div className="flex items-center flex-1 gap-2 inputDiv ">
                                 <Radio.Item
                                     id='cagnotte-radio'
                                     disabled={formik.values.pourcent > 1}

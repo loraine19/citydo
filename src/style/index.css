@@ -160,7 +160,7 @@ input {
 }
 
 .inputDiv {
-    @apply rounded-full h-7 flex items-center shadow bg-white border-t px-4 !border-slate-50 capitalize font-normal;
+    @apply rounded-full h-7 flex items-center shadow bg-white border-t px-4 !border-slate-200 capitalize font-normal;
 }
 
 /**** ANIMATIONS ****/

@@ -14,7 +14,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
     const { unReadMsgNotif } = useNotificationStore((state) => state);
     const navigate = useNavigate();
     const { user } = useUserStore((state) => state);
-    const { hideNavBottom, navBottom, setNavBottom, setHideNavBottom } = useUxStore((state) => state);
+    const { hideNavBottom, navBottom, setNavBottom, color } = useUxStore((state) => state);
 
     const menuItems = [
         { icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate" },
@@ -31,8 +31,8 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
     const [closeDial, setCloseDial] = useState<boolean>(false)
 
     return (
-        <>
-            <header onClick={() => { hideNavBottom && setHideNavBottom(false) }}>
+        <>    {hideNavBottom && <hr className={` bg-${color}-500 border-slate-200 mt-1 h-[2px] opacity-75 `}></hr>}
+            <header>
 
                 {/*BLUR POP BACKGROUND */}
                 <div onClick={() => setCloseDial(!true)}
@@ -41,15 +41,14 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                 </div>
 
                 {/* CONTAINER */}
-                <div className={`wRespXL slide h-full justify-between items-end pt-2 pb-3 lg:pb-1
-            ${navBottom ? 'flex ' : 'grid grid-cols-[auto_1fr_auto] '}
-                ${hideNavBottom ? ' flex animRev' : ' flex animRev'}`} >
-                    <div className={`flex h-full ${hideNavBottom ? 'hidden' : 'pr-2'}`}>
+                <div className={`wRespXL slide h-full justify-between items-end 
+            ${navBottom ? 'flex ' : 'grid grid-cols-[auto_1fr_auto] gap-3 '}
+                ${hideNavBottom ? ' flex animRev !py-0' : ' flex animRev pt-2 pb-3 lg:pb-1'}`} >
+
+                    <div className={`flex h-full ${hideNavBottom ? 'hidden' : ''}`}>
 
                         {/* PROFILE MENU  */}
-                        <Menu
-
-                            placement="bottom-start">
+                        <Menu placement="bottom-start">
                             <MenuTrigger
                                 className="relative h-full justify-center max-w-max grid  z-50  items-center !p-0">
                                 <button onClick={() => setCloseDial(!closeDial)}>
@@ -99,7 +98,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
                         {/* INFO TEXT LOGO   */}
                         {(!hideNavBottom) &&
-                            <div className={`${!navBottom ? 'hidden lg:flex' : ''} max-w-[30vw] lg:max-w-[220px] flex flex-col h-full justify-center w-full  pl-4 pr-2  pt-1`}>
+                            <div className={`${!navBottom ? 'hidden lg:flex' : ''} max-w-[30vw] lg:max-w-[220px] flex flex-col h-full justify-center w-full  pl-6   pt-1`}>
                                 <h2 className='flex font-comfortaa text-[1.8rem] lg:!text-[2.1rem] font-bold'>
                                     City'Do
                                 </h2>
@@ -113,13 +112,13 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
                     {/* INSERTION NAVLINK TOP  */}
                     {(!navBottom && navIcons && !hideNavBottom) &&
-                        <div className="pr-4 pb-0.5 w-full h-full overflow-hidden flex justify-center items-center">
+                        <div className="pr-4 pl-2 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
                             <NavBarSection addBtn={addBtn} />
                         </div>
                     }
 
                     {/* NOTIF BAGDES  */}
-                    <div className={`justify-end items-center flex h-full w-full !flex-1 pl-4
+                    <div className={`justify-end items-center flex h-full w-full !flex-1 pl-2
                     ${onBoard ? 'lg:pr-0' : 'pr-0'} 
                     ${hideNavBottom ? 'hidden' : ''} 
                     ${navBottom ? ' w-full' : ''}`} >

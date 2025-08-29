@@ -46,10 +46,10 @@ export function ServiceForm(props: { formik: any }) {
                         place={formik.values.title}
                         closeBtn
                     />
-                    <div className="w-respLarge flex flex-col grid-cols-[1fr_1fr_1fr] lg:grid grid-rows-1 gap-3 pt-4">
+                    <div className="w-respLarge flex flex-col grid-cols-[1fr_1fr_1fr] lg:grid grid-rows-1 lg:gap-3 gap-2 pt-2">
                         <Radio orientation="horizontal"
-                            className="inputDiv px-4 gap-6">
-                            <div className="flex items-center flex-1 gap-2">
+                            className="gap-4">
+                            <div className="flex inputDiv  items-center flex-1 gap-2">
                                 <Radio.Item
                                     id='demande-radio'
                                     className="checked:!border-orange-500/50 checked:border-1"
@@ -77,7 +77,7 @@ export function ServiceForm(props: { formik: any }) {
                                     </Typography>
                                 </Radio.Item>
                             </div>
-                            <div className="flex items-center flex-1 w-full">
+                            <div className="flex inputDiv  items-center flex-1 w-full">
                                 <Radio.Item
                                     id='offre-radio'
                                     className="checked:!border-sky-500/50 checked:border-1 "
