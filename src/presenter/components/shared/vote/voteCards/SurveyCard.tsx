@@ -90,7 +90,7 @@ export function SurveyCard({ survey, change, mines, update }: SurveyCardProps) {
                         group={survey?.Group}
                     />
                     <Typography
-                        className="leading-[1.3rem]  !line-clamp-2 overflow-auto  pt-0.5">
+                        className="leading-[1.2rem]  !line-clamp-2 overflow-auto  pt-1">
                         {survey?.description}
                     </Typography>
                 </CardBody>

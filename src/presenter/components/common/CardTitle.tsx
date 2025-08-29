@@ -13,7 +13,7 @@ export function FlagIcon(props: { flagged: boolean, id: number, type: string }) 
             color={flagged ? 'red' : 'gray'}
             fill={flagged} size="md"
             title={"signaler " + type}
-            style="hover:!bg-red-500/30 hover:text-red-700 p-1 absolute top-0 right-0" />
+            style="hover:!bg-red-500/30 hover:text-red-700 bg-white " />
     )
 }
 export function Title(props: { title: string, flagged?: boolean, id?: number, CreatedAt?: string | Date, subTitle?: string, type?: string, group?: Group, }) {
@@ -22,7 +22,7 @@ export function Title(props: { title: string, flagged?: boolean, id?: number, Cr
     return (
         <div className="min-h-max relative pt-1 gap-1 flex flex-col">
             <div className="flex items-center w-full justify-between gap-2">
-                <div className="flex py-1 items-center gap-4 w-full">
+                <div className="flex flex-1 py-1 items-center gap-4 w-full">
                     <h4
                         id={title}
                         className="w-full flex !line-clamp-1 "
@@ -34,11 +34,11 @@ export function Title(props: { title: string, flagged?: boolean, id?: number, Cr
                         </i>}
                 </div>
                 {id &&
-                    <FlagIcon
+                    <div className="relative flex h-full w-max ">   <FlagIcon
                         flagged={flagged ? true : false}
                         id={id}
                         type={type ?? ''} />
-                }
+                    </div>}
             </div>
             {(group || subTitle) &&
                 <div className="flex flex-col justify-between gap-1 ">

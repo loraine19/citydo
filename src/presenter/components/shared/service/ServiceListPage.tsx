@@ -175,7 +175,7 @@ export default function ServicesPage() {
     const { navBottom } = useUxStore((state) => state);
     return (
 
-        <main className={navBottom ? " " : ""}>
+        <main className={navBottom ? " withBottom " : ""}>
             <div className="sectionHeader">
                 <TabsMenu
                     labels={serviceTabs}

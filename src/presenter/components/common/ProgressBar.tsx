@@ -1,4 +1,4 @@
-import { Typography, Progress, TypographyProps, ProgressBar as ProgressBarMT } from "@material-tailwind/react";
+import { Typography, Progress, ProgressBar as ProgressBarMT } from "@material-tailwind/react";
 import { ProgressProps } from "@material-tailwind/react";
 import { EventStatus } from "../../../domain/entities/Event";
 import { PoolSurveyStatus } from "../../../domain/entities/PoolSurvey";
@@ -13,7 +13,7 @@ type ProgressBarProps = {
 }
 
 export function ProgressBar({ value, label, needed, status, size = 'md' }: ProgressBarProps) {
-    const textSize = size === "lg" ? 'h6' : size === "md" ? 'small' : 'body1';
+    //  const textSize = size === "lg" ? 'h6' : size === "md" ? 'small' : 'body1';
     let color: string = 'gray'
     let labelTexte = ''
     switch (true) {
@@ -35,10 +35,13 @@ export function ProgressBar({ value, label, needed, status, size = 'md' }: Progr
     }
 
     return (
-        < div className={`h-max w-full flex -m-1 flex-col px-2 pb-3 gap-2 ${size === "lg" && "mb-2"}`}>
-            <div className=" flex  w-full items-center justify-between gap-2 px-1">
+        < div className={`h-max w-full flex  flex-col px-2 pb-3 gap-1 -ml-2 ${size === "lg" && "mb-2"}`}>
+            <div className=" flex  w-full items-center justify-between gap-1 px-1">
                 <Typography
-                    variant={textSize as TypographyProps['variant']} >
+                    as='i'
+                    className="!p-0 !-mb-1"
+                // variant={textSize as TypographyProps['variant']}
+                >
                     {labelTexte}
                 </Typography>
             </div>
