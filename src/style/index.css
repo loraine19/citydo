@@ -58,11 +58,11 @@ body {
 }
 
 .App {
-    @apply flex flex-col w-screen overflow-hidden h-full px-[0.5vw] min-h-[500px];
+    @apply flex flex-col w-screen overflow-hidden h-full  min-h-[400px];
 }
 
 main {
-    @apply flex flex-col wRespXL h-[calc(100%+0rem)] px-2 md:px-4 gap-1 flex-1 w-full mx-auto py-1;
+    @apply flex flex-col wRespXL h-[calc(100%+0rem)] px-2 md:px-4  flex-1 w-full mx-auto;
     min-height: 0;
     z-index: 0;
     max-height: 100vh;
@@ -80,11 +80,11 @@ section,
 }
 
 footer {
-    @apply !px-[1%] md:px-[5%] lg:px-[2%] mx-auto flex justify-center items-center pb-[0.7rem];
+    @apply mx-auto flex justify-center items-center;
     width: 100%;
     margin: 0 auto;
     flex-shrink: 0;
-    z-index: 40 !important;
+    z-index: 9999 !important;
 }
 
 header {
