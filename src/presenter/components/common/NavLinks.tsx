@@ -38,7 +38,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
         icon: { service: "partner_exchange", evenement: "event", annonce: "dashboard", vote: "ballot", groupe: "groups" }[type] || "add",
         label: `Ajouter un ${type}`,
         color: {
-            border: `"!border-${color}-500/20"`,
+            border: `"!border-${color}-500"`,
             col: color,
             text: `!text-${color}-500`,
         }
@@ -48,7 +48,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             icon: "partner_exchange",
             label: `Ajouter un Service`,
             color: {
-                border: "!border-sky-500/20",
+                border: "!border-sky-500 ",
                 col: 'sky',
                 text: "!text-sky-500",
             }
@@ -57,7 +57,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             icon: "event",
             label: `Ajouter un Événement`,
             color: {
-                border: "!border-cyan-500/20",
+                border: "!border-cyan-500",
                 col: 'cyan',
                 text: "!text-cyan-500",
             }
@@ -67,7 +67,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             icon: "dashboard",
             label: `Ajouter une Annonce`,
             color: {
-                border: "!border-rose-500/20",
+                border: "!border-rose-500",
                 col: 'rose',
                 text: "!text-rose-500",
             }
@@ -77,7 +77,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             icon: "ballot",
             label: `Créer un Vote`,
             color: {
-                border: "!border-orange-500/20",
+                border: "!border-orange-500",
                 col: 'orange',
                 text: "!text-orange-500",
             }
@@ -121,7 +121,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                             ${navBottom ? `!px-[8px] !pt-[8px] !pb-[7.5px]   hover:bg-white/50 hover:shadow-slate-100
                                             hover:scale-[101%] transition duration-200
                                             hover:shadow-sm` : ''}
-                                            ${(isActive && navBottom) ? `border-[1px] shadowMid !bg-white  shadow-sm mb-0.5 lg:mr-2 z-30 ` :
+                                            ${(isActive && navBottom) ? `border-[1px] shadowMid !bg-white  shadow-sm mb-0.5 lg:mr-2 z-30 ` : (isActive && !navBottom) ? ` border-b-[4px] md:border-none rounded-none ${color.border} !border-opacity-100 ` :
                                             isActive ? ` animSlide ` : ''}`
                                     }>
                                     {({ isActive }) => (
