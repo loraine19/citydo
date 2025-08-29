@@ -35,8 +35,9 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
             <header onClick={() => { hideNavBottom && setHideNavBottom(false) }}>
 
                 {/*BLUR POP BACKGROUND */}
-                <div className={` ${(!closeDial) ? 'hidden' :
-                    ' h-screen w-screen -left-0 top-0  backdropBlur  absolute slide'}`}>
+                <div onClick={() => setCloseDial(!true)}
+                    className={` ${(!closeDial) ? 'hidden' :
+                        ' h-screen w-screen -left-0 top-0  backdropBlur  absolute slide'}`}>
                 </div>
 
                 {/* CONTAINER */}
@@ -46,7 +47,9 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                     <div className={`flex h-full ${hideNavBottom ? 'hidden' : 'pr-2'}`}>
 
                         {/* PROFILE MENU  */}
-                        <Menu placement="bottom-start">
+                        <Menu
+
+                            placement="bottom-start">
                             <MenuTrigger
                                 className="relative h-full justify-center max-w-max grid  z-50  items-center !p-0">
                                 <button onClick={() => setCloseDial(!closeDial)}>
@@ -59,7 +62,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                         <div className="flex max-w-[42px] items-center relative">
                                             <AvatarUser
                                                 style='!shadow-none'
-                                                avatarStyle='!w-[42px] !h-[42px] !text-[26px]'
+                                                avatarStyle='!w-[48px] !h-[48px] !text-[26px]'
                                                 avatarSize={'sm'}
                                                 Profile={user?.Profile} />
                                             <OnlineDot
@@ -68,20 +71,25 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                         </div>}
                                 </button>
                             </MenuTrigger>
-                            <MenuContent className='flex z-40 flex-1 flex-col  !rounded-xl !shadow-xl -ml-1'>
+                            <MenuContent
+                                onMouseLeave={() => setCloseDial(!false)}
+                                className='flex z-40 flex-1 flex-col !rounded-xl !shadow-xl -ml-1'>
                                 {menuItems.map((item, index) => (
                                     <MenuItem
                                         key={index}
                                         className={`flex !flex-1 !min-w-60 pr-[10vw] items-center gap-2.5 pl-2 hover:bg-slate-100/40  ${item.style || ''}`}
-                                        onClick={item.onClick || undefined}>
+                                        onClick={item.onClick || undefined}
+                                    >
                                         <Icon
                                             fill bg
                                             size='lg'
                                             color={item.color ?? 'slate'}
-                                            icon={item.icon} />
+                                            icon={item.icon}
+                                        />
                                         <Typography
                                             variant="small"
-                                            className="font-medium">
+                                            className="font-medium"
+                                        >
                                             {item.text}
                                         </Typography>
                                     </MenuItem>
@@ -91,8 +99,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
                         {/* INFO TEXT LOGO   */}
                         {(!hideNavBottom) &&
-                            <div className={`${!navBottom ? 'hidden lg:flex' : ''} max-w-[30vw] lg:max-w-[220px] flex flex-col h-full justify-center w-full px-3  pt-1`}>
-
+                            <div className={`${!navBottom ? 'hidden lg:flex' : ''} max-w-[30vw] lg:max-w-[220px] flex flex-col h-full justify-center w-full  pl-4 pr-2  pt-1`}>
                                 <h2 className='flex font-comfortaa text-[1.8rem] lg:!text-[2.1rem] font-bold'>
                                     City'Do
                                 </h2>
@@ -106,10 +113,8 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
                     {/* INSERTION NAVLINK TOP  */}
                     {(!navBottom && navIcons && !hideNavBottom) &&
-                        <div className="relative w-full h-full flex justify-end items-center">
-                            <div className="absolute w-[133%] h-[133%] justify-center flex scale-[0.75] px-4 -mt-0.5 translate-x-[12%]">
-                                <NavBarSection addBtn={addBtn} />
-                            </div>
+                        <div className="pr-4 pb-0.5 w-full h-full overflow-hidden flex justify-center items-center">
+                            <NavBarSection addBtn={addBtn} />
                         </div>
                     }
 

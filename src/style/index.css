@@ -180,6 +180,11 @@ input {
     animation: slide 1.2s forwards;
 }
 
+.animSlideUp {
+    @apply duration-700 fadeIn;
+    animation: slideUp 1.2s forwards;
+}
+
 @keyframes slideOut {
     from {
         transform: translateX(0);

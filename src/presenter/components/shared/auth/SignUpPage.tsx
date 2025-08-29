@@ -65,7 +65,7 @@ export default function SignUpPage() {
                 />
             </main>
 
-            <footer className="flex flex-col items-center gap-1 pb-12 justify-center pt-6">
+            <footer className="flex flex-col items-center gap-1 pb-[4rem] justify-center pt-4">
                 <Typography
                     variant="small"
                     className=" flex justify-center">

@@ -91,59 +91,62 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/*BLUR POP BACKGROUND */}
             <div className={`
             ${(!closeDial) ? 'hidden' : ''} 
-            ${navBottom ? `bottom-[4rem] left-0 w-screen h-[calc(100vh-4rem)]` :
-                    '-right-[11rem] w-[calc(100vw*1.3)] md:w-[calc((100%*1.44)+10rem)] h-[calc(100vh*1.318)]  top-0 '}
+            ${navBottom ? `bottom-[4rem] left-0 w-screen anim h-[calc(100vh-4rem)]` :
+                    'top-[4rem] left-0 w-screen animRev h-[calc(100vh-4rem)]'}
                    backdropBlur  absolute `}>
             </div>
 
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim rounded-2xl ${color}BG backdropBlur wRespXL justify-center gap-6 -ml-2 py-2 ` :
-                    'z-0 md:gap-4 lg:!-ml-12 gap-2 ') +
-                ` flex z-30 md:!px-8 sm:px-8 px-6 lg:!px-0 `
+                    `items-center opacity-100 anim rounded-2xl ${color}BG backdropBlur wRespXL justify-center gap-4 lg:gap-6 py-2 pr-8  lg:!px-0 ` :
+                    'z-0 md:gap-4 gap-2 ') +
+                ` flex z-30 w-full `
             }>
                 <Navbar className={`
-                    ${navBottom ? '!shadow-md bg-white border border-slate-300 !flex-1 !max-w-max sm:!max-w-[100%]  '
-                        : `shadow-none bg-transparent`}
-                    flex rounded-full h-full items-center p-0  hover:!shadow-none`}>
-                    <div className={`${navBottom ? 'flex-row' : 'flex-row-reverse'} w-full min-w-max  h-full relative`}>
-                        <ul className={`${navBottom ? '!max-w-[calc(100vw-4rem)]' : '!max-w-[calc(100vw-13rem)]'} flex overflow-x-auto pr-9 xs:pr-0 !overflow-y-hidden flex-row w-full rounded-full justify-between h-full gap-auto  `}>
-                            {navItems.map(({ to, icon, label, color }: NavItem, index) => (
-                                <Typography
-                                    onClick={() => { setColor(color.col) }}
-                                    key={index}
-                                    as="li"
-                                    className={` ${color.text} flex rounded-full h-full items-center font-medium`}>
-                                    <NavLink
-                                        to={to}
-                                        className={({ isActive }) =>
-                                            `flex gap-3 justify-center lg:justify-start !px-[7px] !pt-[7px] !pb-[6.5px] items-center w-full !h-[calc(100%)] rounded-full
+                    ${navBottom ? 'ml-2 lg:-ml-2  !shadow-md bg-white border border-slate-300 !flex-1 !max-w-max sm:!max-w-[100%]  ' : ` !pt-1  shadow-none border-none bg-transparent w-full `}
+                    flex rounded-full h-full items-center !p-0 overflow-x-auto overflow-y-hidden hover:!shadow-none `}>
+                    <ul className={`${navBottom ? ' gap-0 justify-between ' : 'gap-2 justify-around '} 
+                            flex  xs:pr-0 !max-w-[calc(100vw-6rem)] flex-row  rounded-full h-full  w-full  `}>
+                        {navItems.map(({ to, icon, label, color }: NavItem, index) => (
+                            <Typography
+                                onClick={() => { setColor(color.col) }}
+                                key={index}
+                                as="li"
+                                className={` ${color.text} flex rounded-full h-full items-center font-medium`}>
+                                <NavLink
+                                    to={to}
+                                    className={({ isActive }) =>
+                                        `flex gap-3 justify-center lg:justify-start items-center w-full h-full rounded-full
                                             hover:bg-white/50 hover:shadow-slate-100
                                             hover:scale-[101%] transition duration-200
                                             hover:shadow-sm
-                                            ${(isActive && navBottom) ? `border-[1px] shadowMid !bg-white` : isActive ? `animSlide border-[1px] shadow-sm mb-0.5 lg:mr-2 z-30 ${color} ` : ''}`
-                                        }
-                                    >
-                                        {({ isActive }) => (
-                                            <>
-                                                <Icon
-                                                    bg
-                                                    size='3xl'
-                                                    icon={icon}
-                                                    fill={isActive ? true : false}
-                                                    color={color.col}
-                                                />
-                                                <span className={`${navBottom ? 'md:block md:!text-[0.85rem] ' : 'lg:block'} !text-[0.95rem] font-bold filter brightness-90 font-comfortaa hidden  lg:pr-8 pr-3`}>
-                                                    {label}
-                                                </span>
-                                            </>
-                                        )}
-                                    </NavLink>
-                                </Typography>
-                            ))}
-                        </ul>
-                    </div>
+                                            ${navBottom ? '!px-[8px] !pt-[8px] !pb-[7.5px]' : ''}
+                                            ${(isActive && navBottom) ? `border-[1px] shadowMid !bg-white  shadow-sm mb-0.5 lg:mr-2 z-30 ` :
+                                            isActive ? ` animSlide ` : ''}`
+                                    }>
+                                    {({ isActive }) => (
+                                        <>
+                                            <Icon
+                                                style={
+                                                    (isActive && !navBottom) ? `outline outline-1 outline-${color.col} !shadow-md  bg-opacity-100 scale-[0.93]` : ''
+                                                }
+                                                bg
+                                                size={navBottom ? '3xl' : 'xl'}
+                                                icon={icon}
+                                                fill={isActive ? true : false}
+                                                color={color.col}
+                                            />
+                                            <span className={`${navBottom ? 'lg:pr-8 md:block md:!text-[0.85rem] ' : 'md:block md:!text-[0.75rem]'} text-[0.95rem] font-bold  font-comfortaa hidden  pr-2
+                                                ${(isActive && !navBottom) ? 'underline underline-offset-8' : ''}`}>
+                                                {label}
+                                            </span>
+                                        </>
+                                    )}
+                                </NavLink>
+                            </Typography>
+                        ))}
+                    </ul>
                 </Navbar>
 
                 {/* ACTION BUTTON  */}
@@ -160,21 +163,21 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                             onClick={() => setCloseDial(!closeDial)}
                             icon="add"
                             bg
-                            size='5xl'
-                            style={` ${closeDial ? 'rotate-45' : ''} hover:!transition-transform hover:!rotate-45 !border-0 !text-white !text-[2.2rem]  ${BG} ${navBottom ? `!shadow-md` : ''}`} />
+                            size={navBottom ? '5xl' : 'xl'}
+                            style={` ${closeDial ? 'rotate-45 transition-transform ' : ''} hover:!transition-transform hover:!rotate-45 !border-0 !text-white !text-[2.2rem]  ${BG} ${navBottom ? `!shadow-md` : ''}`} />
                     }
                     Content={
-                        <div className={`${!navBottom ? 'scale-[0.82] -translate-y-[9%] -mr-1.5 items-end' : ''} flex gap-2 flex-col `}>
+                        <div className={`${!navBottom ? ' -mr-1.5 items-end' : ''} flex gap-2 flex-col `}>
                             {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
                                 <div key={index}
-                                    className={` bg-white rounded-full shadow-md flex hover:scale-[1.1] !h-[58px] gap-6 w-[58px] !justify-center items-center border"`}
+                                    className={` bg-white rounded-full shadow-md flex hover:scale-[1.1] p-[8px] gap-6  !justify-center items-center border"`}
                                     title={label}>
                                     <div>
                                         <Icon
                                             bg
                                             fill={type ? true : false}
                                             link={to}
-                                            size='2xl'
+                                            size={navBottom ? '3xl' : 'xl'}
                                             icon={icon}
                                             color={type ? color.col : color.col} />
                                     </div>
