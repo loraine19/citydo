@@ -53,7 +53,7 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                             color="primary"
                             disabled={notif ? true : false}
                             size='lg'
-                            className={`rounded-full text-white lgBtn max-w-max bg-${color}-500`}
+                            className={`rounded-full text-white lgBtn max-w-max ${color}StyleInv`}
                             onClick={() => {
                                 values.handleConfirm && values.handleConfirm();
                                 // close && close() || setOpen(false)

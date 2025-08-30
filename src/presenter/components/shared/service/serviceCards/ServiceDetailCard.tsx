@@ -89,7 +89,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                         type='service'
                         group={service.Group}
                     />
-                    <div className="overflow-auto flex flex-col h-full bg-orange-300">
+                    <div className="overflow-auto flex flex-col h-full ">
                         <div className="flex justify-between items-end pt-2 ">
                             <div className="flex  items-center gap-2 mb-1">
                                 <Chip
@@ -116,7 +116,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                                 </Chip>
                             </div>
                         </div>
-                        <div className="flex bg-red-500 h-full flex-1 flex-col lg:flex-row gap-2  justify-between lg:gap-4">
+                        <div className="flex h-full flex-1 flex-col lg:flex-row gap-2  justify-between lg:gap-4">
                             <Typography
                                 className="pr-4 max-h-full  description overflow-y-auto">
                                 {description}

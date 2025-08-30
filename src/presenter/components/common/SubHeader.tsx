@@ -27,7 +27,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link }: SubHeade
                     className={`!line-clamp-1 flex capitalize text-[1.2rem] pl-2 flex-1 gap-2 w-full  `}>
                     {qty} {type}
                     <span className="hidden sm:inline-block flex-1 !font-thin opacity-75 ">
-                        {place ?? " dans vos groupes"}
+                        &nbsp;{place ?? "dans vos groupes"}
                     </span>
 
                 </Typography>

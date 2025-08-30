@@ -111,7 +111,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                 <h1 className='flex font-comfortaa text-[1.9rem] lg:!text-[2.1rem] !font-extrabold'>
                                     City'Do
                                 </h1>
-                                {(!onBoard && (navBottom && !hideNavBottom)) &&
+                                {((!onBoard && (navBottom && !hideNavBottom) || !navIcons)) &&
                                     <i className='text-[0.9rem] truncate flex !line-clamp-1'>
                                         {user?.GroupUser?.map((group) => (group.Group?.name.split(':')[0])).join(', ')}
                                     </i>}
