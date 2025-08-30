@@ -53,10 +53,10 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
                                 </Typography>
                                 <Typography
                                     variant="small"
-                                    className={profile?.skills ? "font-normal text-gray-500" : 'hidden'}>
+                                    className={profile?.skills ? "font-normal " : 'hidden'}>
                                     • {profile?.skills}
                                 </Typography>
-                                <div className="font-normal flex flex-col text-gray-500">
+                                <div className="font-normal flex flex-col ">
                                     {userDiv?.GroupUser?.map((group: GroupUser, index: number) =>
                                         <div className="!line-clamp-1"
                                             key={index}>
@@ -100,10 +100,10 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
                 </Popover>
                 <div className="flex flex-col gap-1 truncate">
                     <Typography variant={textSize}
-                        className="border-b border-slate-200 pr-4  ">
+                        className="border-b pb-1 border-slate-400/50 pr-4  ">
                         {profile?.firstName} {profile?.lastName}
                     </Typography>
-                    <div className={`text-gray-500 !line-clamp-2 pr-4`}>
+                    <div className={`text-slate-500 !line-clamp-2 pr-4`}>
                         {userDiv?.GroupUser?.map((group: GroupUser, index: number) =>
                             <Typography
                                 className={`font-light ${texteSize2} !line-clamp-1`}

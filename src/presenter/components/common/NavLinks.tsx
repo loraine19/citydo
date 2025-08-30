@@ -99,14 +99,16 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim rounded-2xl ${color}BG backdropBlur wRespXL justify-center gap-4 lg:gap-6 py-2 pr-8  lg:!px-0 ` :
-                    'z-0 md:gap-4 gap-2 ') +
+                    `items-center opacity-100 anim rounded-2xl ${color}BG backdropBlur wRespXL justify-center gap-4 lg:gap-6 pt-1 pb-2 pr-8  lg:!px-0 ` :
+                    'z-0 md:gap-4 gap-4 ') +
                 ` flex z-30 w-full `
             }>
                 <Navbar className={`
-                    ${navBottom ? 'ml-2 lg:-ml-2  rounded-full !shadow-md bg-white border border-slate-300 !flex-1 !max-w-max sm:!max-w-[100%]  ' : ` !pt-1  shadow-none border-none bg-transparent w-full `}
+                    ${navBottom ? 'ml-2 lg:ml-0  rounded-full !shadow-md bg-white border border-slate-300 !flex-1 !max-w-max sm:!max-w-[100%]  ' :
+                        ` !pt-1  shadow-none border-none bg-transparent w-full `}
                     flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden hover:!shadow-none `}>
-                    <ul className={`${navBottom ? ' gap-0 justify-between ' : 'md:gap-4 gap-3 justify-around opacity-80'} 
+                    <ul className={`${navBottom ?
+                        ' gap-0 justify-between  pr-0' : 'md:gap-0 gap-1 justify-around '} 
                             flex  xs:pr-0 !max-w-[calc(100vw-6rem)] flex-row  rounded-full h-full  w-full  `}>
                         {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                             <Typography
@@ -118,11 +120,12 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                     to={to}
                                     className={({ isActive }) =>
                                         `flex gap-3 justify-center lg:justify-start items-center w-full h-full rounded-full
-                                            ${navBottom ? `!px-[8px] !pt-[8px] !pb-[7.5px]   hover:bg-white/50 hover:shadow-slate-100
-                                            hover:scale-[101%] transition duration-200
-                                            hover:shadow-sm` : ''}
-                                            ${(isActive && navBottom) ? `border-[1px] shadowMid !bg-white  shadow-sm mb-0.5 lg:mr-2 z-30 ` : (isActive && !navBottom) ? ` border-b-[4px] md:border-none rounded-none ${color.border} !border-opacity-100 ` :
-                                            isActive ? ` animSlide ` : ''}`
+                                            ${navBottom ? `lg:!px-[11px] px-[9px] py-[8px] hover:bg-white/50 hover:shadow-slate-100
+                                            hover:scale-[101%] transition duration-200 
+                                            hover:shadow-sm` : 'opacity-90'}
+                                            ${(isActive && navBottom) ? `border-[1px] shadowMid !bg-white  shadow-sm mb-[1px]  z-30 ` :
+                                            (isActive && !navBottom) ? ` border-b-[1px] px-1 md:border-none rounded-none !border-current !opacity-100 ` :
+                                                isActive ? ` animSlide ` : ''}`
                                     }>
                                     {({ isActive }) => (
                                         <>

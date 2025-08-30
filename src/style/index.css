@@ -9,7 +9,7 @@
 @font-face {
     font-family: "Comfortaa";
     src: url("/fonts/Comfortaa.ttf") format("ttf");
-    font-weight: normal;
+    font-weight: 400;
     font-style: normal;
 }
 
@@ -58,7 +58,7 @@ body {
 }
 
 .App {
-    @apply flex flex-col w-screen overflow-hidden h-full  min-h-[400px];
+    @apply flex flex-col w-screen overflow-hidden h-full min-w-[280px] min-h-[550px];
 }
 
 main {
@@ -95,7 +95,7 @@ header {
     @apply flex flex-col gap-0 relative;
 }
 h2 {
-    @apply font-bold !text-[1.5rem] !text-slate-600;
+    @apply font-bold !text-[1.5rem] !text-slate-700/95;
 }
 h3 {
     @apply font-semibold text-[1.3rem] !text-slate-600 !font-roboto;
@@ -118,7 +118,7 @@ i {
 }
 
 .description {
-    @apply leading-[1.2rem] pt-1 line-clamp-2;
+    @apply leading-[1.3rem] pt-1 overflow-auto;
 }
 
 /* RESPONSIVE */
@@ -132,7 +132,7 @@ i {
 }
 
 .CTA {
-    @apply flex gap-y-2 gap-x-4 w-respLarge justify-around  pt-1 !px-0 pb-3 h-max;
+    @apply sticky bottom-0 flex flex-row flex-wrap gap-y-2 gap-x-4 wRespXL justify-around px-2 pt-1  pb-3 h-max;
 }
 
 /**** INPUT STYLES ****/
@@ -160,7 +160,7 @@ input {
 }
 
 .inputDiv {
-    @apply rounded-full h-7 flex items-center shadow bg-white border-t px-4 !border-slate-200 capitalize font-normal;
+    @apply rounded-full h-7 flex items-center border-slate-300 !shadow-none bg-white border-t px-4 !border capitalize font-normal;
 }
 
 /**** ANIMATIONS ****/
@@ -281,7 +281,10 @@ input {
 /**** CARD ****/
 
 .FixCard {
-    @apply border !bg-white w-respLarge rounded-xl w-full mx-auto h-full grid lg:grid-rows-[minmax(48%,1fr),1fr,auto] grid-rows-[minmax(50%,1fr),1fr,auto] !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md;
+    @apply border !bg-white w-respLarge rounded-xl w-full mx-auto 
+    h-full grid 
+    lg:grid-rows-[minmax(48%,1fr),1fr,auto] grid-rows-[minmax(50%,1fr),1fr,auto] 
+    !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md;
 }
 
 .FixCardNoImage {
@@ -302,7 +305,7 @@ input {
 }
 
 .ChipDiv {
-    @apply flex max-w-[calc(100%-1rem)] w-full gap-2 justify-between overflow-auto absolute p-2 h-max;
+    @apply flex max-w-[calc(100%-1rem)] w-full gap-2 justify-between overflow-auto flex-wrap absolute p-2 h-max;
 }
 
 .ChipDivNoImage {
@@ -314,7 +317,8 @@ input {
 }
 
 .FixCardBody {
-    @apply relative  h-full flex flex-1 !min-h-max flex-col px-5 !py-0 overflow-hidden;
+    @apply flex relative flex-col px-5 !py-0 overflow-hidden
+    max-h-full h-full;
 }
 
 .CardOverFlow {
@@ -322,7 +326,7 @@ input {
 }
 
 .CardFooter {
-    @apply relative flex  justify-between pt-0 px-5 !py-3 !my-0 max-h-max;
+    @apply flex !relative justify-between pt-0 px-5 !py-3 !my-0 max-h-max;
 }
 
 .CardImage {
@@ -330,11 +334,13 @@ input {
 }
 
 .DetailCardDiv {
-    @apply lg:pt-8 pt-6 pb-1 h-full flex overflow-hidden;
+    @apply pt-8 pb-1 h-full flex overflow-hidden;
 }
 
 .CardDetailGrid {
-    @apply w-respLarge FixCard !h-full  !grid-rows-[25vh,1fr,auto] md:!grid-rows-[30vh,1fr,auto];
+    @apply w-respLarge FixCard 
+    
+     !h-full  !grid-rows-[25vh,1fr,auto] md:!grid-rows-[30vh,1fr,auto];
 }
 
 /**** ICON ****/

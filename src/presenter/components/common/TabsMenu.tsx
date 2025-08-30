@@ -24,7 +24,7 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
     const { color } = useUxStore((state) => state);
     const [indexSelected, setIndex] = useState<number>(0);
     return (
-        <div className="!relative w-full flex items-center py-1 justify-between gap-x-1 " style={{ zIndex: 0 }}>
+        <div className="!relative w-full flex items-center pb-1 justify-between gap-x-1 " style={{ zIndex: 0 }}>
             <Tabs value={defaultTab as string || labels[0].value}
                 className="w-full !z-10  max-w-[100vw] ">
                 <Tabs.List
@@ -34,7 +34,7 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
                             key={index}
                             value={value}
                             className={`text-[0.9rem]  !capitalize !flex-1 whitespace-nowrap rounded-full shadow !h-7 !px-3 
-                                ${index !== indexSelected ? `!bg-white  border-[1px] ${color}Style !border-slate-200  ` : ` !text-white bg-${color}-500 animSlide`} `}
+                                ${index !== indexSelected ? `inputDiv !bg-white ${color}Style !border-opacity-30 ` : ` !text-white bg-${color}-500 animSlide`} `}
                             onClick={() => { setIndex(index); result() }}>
                             {label}
                         </Tabs.Trigger>

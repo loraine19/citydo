@@ -89,46 +89,46 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                         type='service'
                         group={service.Group}
                     />
-                    <div className="flex justify-between items-end pt-2 ">
-                        <div className="flex  items-center gap-2 mb-1">
-                            <Chip
-                                size="sm"
-                                value={SkillLevel[skill as unknown as keyof typeof SkillLevel]}
-                                className=" GrayChip "
-                                icon={<Icon
-                                    disabled
+                    <div className="overflow-auto flex flex-col h-full bg-orange-300">
+                        <div className="flex justify-between items-end pt-2 ">
+                            <div className="flex  items-center gap-2 mb-1">
+                                <Chip
                                     size="sm"
-                                    icon="design_services"
-                                    style=" pointer-events-none"
-                                    title="Compétence" />}>
-                            </Chip>
-                            <Chip
-                                size="sm"
-                                value={HardLevel[hard as unknown as keyof typeof HardLevel]}
-                                className="GrayChip "
-                                icon={<Icon
-                                    disabled
+                                    value={SkillLevel[skill as unknown as keyof typeof SkillLevel]}
+                                    className=" GrayChip "
+                                    icon={<Icon
+                                        disabled
+                                        size="sm"
+                                        icon="design_services"
+                                        style=" pointer-events-none"
+                                        title="Compétence" />}>
+                                </Chip>
+                                <Chip
                                     size="sm"
-                                    icon="signal_cellular_alt"
-                                    style="pointer-events-none"
-                                    title="Difficulté" />}>
-                            </Chip>
+                                    value={HardLevel[hard as unknown as keyof typeof HardLevel]}
+                                    className="GrayChip "
+                                    icon={<Icon
+                                        disabled
+                                        size="sm"
+                                        icon="signal_cellular_alt"
+                                        style="pointer-events-none"
+                                        title="Difficulté" />}>
+                                </Chip>
+                            </div>
                         </div>
-                    </div>
-                    <div className="CardOverFlow h-full flex flex-col gap-4 !pt-1 ">
-                        <div className="flex flex-1 flex-col lg:flex-row gap-4">
+                        <div className="flex bg-red-500 h-full flex-1 flex-col lg:flex-row gap-2  justify-between lg:gap-4">
                             <Typography
-                                className="flex-1 min-h-[33%]  pr-4 max-h-20 overflow-y-auto">
+                                className="pr-4 max-h-full  description overflow-y-auto">
                                 {description}
                             </Typography>
 
-                            <div className="flex border min-w-[33%] border-slate-200 mx-2 p-3 bg-slate-50 rounded-2xl h-max flex-col gap-2 lg:items-end">
+                            <div className="flex border min-w-[33%] border-slate-200  p-2 bg-slate-50 rounded-2xl h-max flex-col gap-1 lg:gap-2 lg:items-end">
                                 <Typography
                                     className="text-left lg:text-right"
                                     as="h6">
                                     {statusValues(statusS as ServiceStep).text}
                                 </Typography>
-                                <div className="flex lg:flex-col flex-row-reverse lg:items-end self-start lg:self-end">
+                                <div className="flex lg:flex-col flex-row-reverse lg:items-end self-start lg:self-end ">
                                     {UserResp ?
                                         <ProfileDiv profile={UserResp} size="md" /> :
                                         <ProfileDiv profile={new Profile({
@@ -141,7 +141,6 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
 
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </CardBody>

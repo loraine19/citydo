@@ -61,9 +61,9 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                         type='evenement'
                         group={Group}
                     />
-                    <div className="flex flex-1 gap-x-3 py-1.5 flex-col !justify-evenly sm:flex-row">
-                        <div className="relative flex flex-col h-full sm:min-w-[50%] lg:min-w-[60%]">
-                            <div className="min-h-max break-all absolute ">
+                    <div className="overflow-auto flex-1">
+                        <div className="flex flex-1 gap-x-3 py-1.5 flex-col  sm:!justify-evenly sm:!flex-row h-full">
+                            <div className="relative h-max flex flex-col w-full sm:flex-1 sm:min-w-[50%] lg:min-w-[60%]">
                                 <Link
                                     to={agendaLink as string}
                                     target="_blank" rel="noopener noreferrer"
@@ -80,13 +80,13 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                                     {description}
                                 </Typography>
                             </div>
-                        </div>
-                        <div className=" min-h-[60%] lg:-mt-12 !w-full lg:h-[calc(100%+3rem)] flex-1 rounded-full">
-                            {Address ?
-                                <AddressMapOpen
-                                    address={Address}
-                                    message={`${Address.address}, ${Address.zipcode} ${Address.city}`} /> :
-                                <Skeleton />}
+                            <div className="flex flex-col min-h-[60%]  !w-full h-full  flex-1 ">
+                                {Address ?
+                                    <AddressMapOpen
+                                        address={Address}
+                                        message={`${Address.address}, ${Address.zipcode} ${Address.city}`} /> :
+                                    <Skeleton />}
+                            </div>
                         </div>
                     </div>
                 </CardBody>

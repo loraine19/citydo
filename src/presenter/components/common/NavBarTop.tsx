@@ -14,7 +14,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
     const { unReadMsgNotif } = useNotificationStore((state) => state);
     const navigate = useNavigate();
     const { user } = useUserStore((state) => state);
-    const { hideNavBottom, navBottom, setNavBottom, color, setHideNavBottom } = useUxStore((state) => state);
+    const { hideNavBottom, navBottom, setNavBottom, color } = useUxStore((state) => state);
 
     const menuItems = [
         { icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate" },
@@ -32,9 +32,14 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
     return (
         <>  {hideNavBottom &&
-            <hr
-                onMouseEnter={() => setHideNavBottom(false)}
-                className={` bg-${color}-500   h-[4px] opacity-75 `}></hr>}
+            <div
+                className="w-full  py-1 ">
+
+                <hr
+
+                    className={` bg-${color}-500  h-[2px] opacity-75 `}
+                />
+            </div>}
             <header>
 
                 {/*BLUR POP BACKGROUND */}
@@ -74,13 +79,15 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                 </button>
                             </MenuTrigger>
                             <MenuContent
-                                onMouseLeave={() => setCloseDial(false)}
                                 className='flex z-40 flex-1 flex-col !rounded-xl !shadow-xl -ml-1'>
                                 {menuItems.map((item, index) => (
                                     <MenuItem
                                         key={index}
                                         className={`flex !flex-1 !min-w-60 pr-[10vw] items-center gap-2.5 pl-2 hover:bg-slate-100/40  ${item.style || ''}`}
-                                        onClick={item.onClick || undefined}
+                                        onClick={() => {
+                                            item.onClick && item.onClick()
+                                            setCloseDial(false);
+                                        }}
                                     >
                                         <Icon
                                             fill bg
@@ -98,15 +105,14 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                 ))}
                             </MenuContent>
                         </Menu>
-
                         {/* INFO TEXT LOGO   */}
-                        {(!hideNavBottom) &&
-                            <div className={`${!navBottom ? 'hidden lg:flex' : ''} max-w-[30vw] lg:max-w-[220px] flex flex-col h-full justify-center w-full  pl-6   pt-1`}>
-                                <h2 className='flex font-comfortaa text-[1.8rem] lg:!text-[2.1rem] font-bold'>
+                        {(!hideNavBottom || !navIcons) &&
+                            <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : 'truncate '} max-w-[calc(100vw-12rem)] lg:max-w-[calc(1000px-14rem)] flex flex-col h-full justify-center w-full  pl-6   pt-1`}>
+                                <h1 className='flex font-comfortaa text-[1.9rem] lg:!text-[2.1rem] !font-extrabold'>
                                     City'Do
-                                </h2>
+                                </h1>
                                 {(!onBoard) &&
-                                    <i className='text-[0.9rem] flex !line-clamp-1'>
+                                    <i className='text-[0.9rem] truncate flex !line-clamp-1'>
                                         {user?.GroupUser?.map((group) => (group.Group?.name.split(':')[0])).join(', ')}
                                     </i>}
                             </div>}
@@ -117,7 +123,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                     {(!navBottom && navIcons && !hideNavBottom) &&
                         <div
                             onMouseEnter={() => setCloseDial(false)}
-                            className="pr-4 pl-2 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
+                            className="pr-4 pl-1 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
                             <NavBarSection addBtn={addBtn} />
                         </div>
                     }

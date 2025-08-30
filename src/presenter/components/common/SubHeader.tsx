@@ -21,13 +21,13 @@ export default function SubHeader({ type, qty, place, closeBtn, link }: SubHeade
 
     return (
         <div className={`flex w-full h-full `}>
-            <div className={`flex flex-col w-full  h-full py-1 gap-2 justify-end lg:justify-between`}>
+            <div className={`flex flex-col w-full  h-full pt-1 gap-2 justify-end lg:justify-between`}>
                 <Typography
                     as="h2"
-                    className={`!line-clamp-1 leading-[1.1] text-[1.2rem] pl-2 flex-1  `}>
+                    className={`!line-clamp-1 flex capitalize text-[1.2rem] pl-2 flex-1 gap-2 w-full  `}>
                     {qty} {type}
-                    <span className=" !font-thin ">
-                        {place ?? " à proximité"}
+                    <span className="hidden sm:inline-block flex-1 !font-thin opacity-75 ">
+                        {place ?? " dans vos groupes"}
                     </span>
 
                 </Typography>
@@ -35,6 +35,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link }: SubHeade
             </div>
             {hideNavBottom &&
                 <Icon
+                    style="scale-90 mt-1 ml-1"
                     icon="arrow_upward"
                     color={color ?? 'gray'}
                     size="sm"
@@ -43,7 +44,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link }: SubHeade
                     title="retour" />}
             {closeBtn &&
                 <Icon
-                    style="scale-90"
+                    style="scale-90 mt-1 ml-1"
                     icon="close"
                     color={color ?? 'gray'}
                     size="sm"

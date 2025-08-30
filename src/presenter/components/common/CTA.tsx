@@ -69,10 +69,10 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
 
 
     return (
-        <footer className={`CTA h-full overflow-y-auto !flex items-center justify-center `}>
+        <footer className={`CTA h-full w-full !flex items-center justify-center `}>
 
             {actions[0]?.icon && actions[0]?.icon !== '' &&
-                <div className="!flex w-full items-center justify-center">
+                <div className="!flex flex-1 w-full items-center justify-center">
                     <Button className={`${customColor} ${colorMap[actions[0]?.color as keyof typeof colorMap] ?? ''} !min-w-full lgBtn `}
                         onClick={() => { setOpen(true), setIndex(0) }}
                         size='lg'
@@ -88,7 +88,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                 </div>}
 
             {actions[1]?.icon && actions[1]?.icon !== '' &&
-                <div className={`!flex w-full items-center justify-center`} >
+                <div className={`!flex w-full flex-1 items-center justify-center`} >
                     <Button className={`${customColor} lgBtn !min-w-full ${colorMap[actions[1]?.color as keyof typeof colorMap] ?? ''}`}
                         onClick={() => { setOpen(true), setIndex(1) }}
                         size='lg'
@@ -103,7 +103,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                 </div>}
 
             {actions[2]?.icon && actions[2]?.icon !== '' &&
-                <div className={`!flex w-full items-center justify-center`} >
+                <div className={`!flex w-full flex-1 items-center justify-center`} >
                     <Button className={`${customColor} lgBtn !min-w-full ${colorMap[actions[2]?.color as keyof typeof colorMap] ?? ''}`}
                         size='lg'
                         onClick={() => { setOpen(true), setIndex(2) }}>

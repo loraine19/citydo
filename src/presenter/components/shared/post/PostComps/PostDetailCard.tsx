@@ -27,7 +27,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                 <CardHeader
                     className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
                     floated={haveImage}>
-                    <div className={haveImage ? "ChipDiv" : "ChipDivNoImage"}>
+                    <div className={haveImage ? "ChipDiv " : "ChipDivNoImage"}>
                         <Chip
                             size='sm'
                             value={categoryS}
@@ -52,12 +52,10 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                         type="annonce"
                         group={post.Group}
                     />
-                    <div className="CardOverFlow">
-                        <Typography
-                            className="mb-2">
-                            {description}
-                        </Typography>
-                    </div>
+                    <Typography
+                        className="description">
+                        {description}
+                    </Typography>
                 </CardBody>
                 <CardFooter className="CardFooter flex gap-4 mb-2">
                     <ProfileDiv profile={Author} />

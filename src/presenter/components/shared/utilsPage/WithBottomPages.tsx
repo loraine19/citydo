@@ -5,6 +5,7 @@ import { NavBarBottom } from "../../common/NavBarBottom"
 export const WithBottomPages = ({ addBtn }: { addBtn?: boolean }) => {
     const { navBottom } = useUxStore((state) => state)
 
+
     if (!navBottom)
         return (
             <>
@@ -15,7 +16,8 @@ export const WithBottomPages = ({ addBtn }: { addBtn?: boolean }) => {
 
     return (
         <>
-            <NavBarBottom addBtn={addBtn} /> <Outlet />
+            <NavBarBottom addBtn={addBtn} />
+            <Outlet />
 
 
         </>)
