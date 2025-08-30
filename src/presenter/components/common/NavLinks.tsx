@@ -107,7 +107,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                         ` !pt-1  shadow-none border-none bg-transparent w-full `}
                     flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden hover:!shadow-none `}>
                     <ul className={`${navBottom ?
-                        ' gap-0 justify-between  pr-0' : 'md:gap-0 gap-1 justify-around '} 
+                        ' gap-0 justify-between pb-[1px] pr-0' : 'md:gap-0 gap-1 justify-around '} 
                             flex  xs:pr-0 !max-w-[calc(100vw-6rem)] flex-row  rounded-full h-full  w-full  `}>
                         {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                             <Typography
@@ -119,10 +119,10 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                     to={to}
                                     className={({ isActive }) =>
                                         `flex gap-2 justify-center lg:justify-start items-center w-full h-full rounded-full
-                                            ${navBottom ? ` px-[10.5px] py-[8px] hover:bg-white/50 hover:shadow-slate-100
+                                            ${navBottom ? ` px-[8.5px] py-[8px] hover:bg-white/50 hover:shadow-slate-100
                                             hover:scale-[101%] transition duration-200 
                                             hover:shadow-sm` : 'opacity-90'}
-                                            ${(isActive && navBottom) ? `border-[1px] shadowMid !bg-white  shadow-sm my-[0.5px] !p-[8px] z-30 ` :
+                                            ${(isActive && navBottom) ? `border-[1px] shadowMid !bg-white  shadow-sm   z-30 ` :
                                             (isActive && !navBottom) ? ` border-b-[1px] px-1 md:border-none rounded-none !border-current !opacity-100 ` :
                                                 isActive ? ` animSlide ` : ''}`
                                     }>
