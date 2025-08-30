@@ -107,7 +107,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                         ` !pt-1  shadow-none border-none bg-transparent w-full `}
                     flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden hover:!shadow-none `}>
                     <ul className={`${navBottom ?
-                        ' gap-0 justify-between pb-[1px] pr-0' : 'md:gap-0 gap-1 justify-around '} 
+                        ' gap-0 justify-between pr-0' : 'md:gap-0 gap-1 justify-around '} 
                             flex  xs:pr-0 !max-w-[calc(100vw-6rem)] flex-row  rounded-full h-full  w-full  `}>
                         {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                             <Typography
