@@ -1,6 +1,5 @@
-import { Select, Card, CardHeader, Button, CardBody, Input, Textarea, Checkbox, Typography } from "@material-tailwind/react";
+import { Card, CardHeader, Button, CardBody, Input, Textarea, Checkbox, Typography } from "@material-tailwind/react";
 import { useState } from "react";
-import { Label } from "../../../../../domain/entities/frontEntities"
 import SubHeader from "../../../common/SubHeader";
 import { ImageBtn } from "../../../common/ImageBtn";
 import { DateChip } from "../../../common/ChipDate";
@@ -10,6 +9,7 @@ import { Icon } from "../../../common/IconComp";
 import GroupSelect from "../../../common/GroupSelect";
 import { useUserStore } from "../../../../../application/stores/user.store";
 import { InputError } from "../../../common/adaptatersComps/input";
+import { Select } from "../../../common/adaptatersComps/Select";
 
 
 interface PostFormCardProps {
@@ -34,28 +34,15 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                         closeBtn
                     />
                     <div className="w-respLarge flex flex-col lg:flex-row lg:gap-4 pb-2 pt-2 gap-2">
+
                         <Select
-                            className="rounded-full shadow bg-white border-none capitalize"
-                            label={formik.errors.category ? formik.errors.category as string : "Choisir la catégorie"}
+
+                            options={postCategories}
+                            placeholder="Choisir la catégorie"
+                            formik={formik}
                             name="category"
-                            labelProps={{ className: `${formik.errors.category && "error"} before:border-none after:border-none` }}
-                            value={formik.values.category || ""}
-                            onChange={(val: any) => { formik.setFieldValue('category', val) }} >
-                            <Select.Trigger
-                                placeholder="Choisir la catégorie"
-                                className="inputDiv" />
-                            <Select.List>
-                                {postCategories.map((category: Label, index: number) => (
-                                    <Select.Option
-                                        className="rounded-full my-1 capitalize"
-                                        value={category.value}
-                                        key={index}
-                                    >
-                                        {category.label}
-                                    </Select.Option>
-                                ))}
-                            </Select.List>
-                        </Select>
+
+                        />
                         <GroupSelect
                             groupId={groupId?.toString()}
                             setGroupId={setGroupId}
@@ -101,17 +88,16 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                     value={formik.values.title}
                                 />
                                 <InputError error={formik.errors.title} />
-                                <div className='flex flex-col lg:flex-row  pt-1 '>
+                                <div className='flex flex-col min-h-max  pt-1 '>
                                     <div className='flex flex-col '>
                                         <Textarea
                                             className={`inputStandart min-h-full ${formik.errors.description ? 'error' : ''}`}
                                             placeholder='Description'
-                                            rows={2}
+                                            rows={4}
                                             resize={true}
                                             name="description"
                                             onChange={formik.handleChange}
                                             defaultValue={formik.values.description}
-                                        //  // containerProps={{ className: "grid h-full pb-1" }}
                                         />
                                         <InputError mt error={formik.errors.description} />
                                     </div>

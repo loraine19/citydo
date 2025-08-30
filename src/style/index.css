@@ -32,7 +32,7 @@
 }
 
 :root {
-    @apply scroll-smooth text-[15px] md:!text-[14px];
+    @apply scroll-smooth text-[16px] md:!text-[16px];
     background-color: #f9fafb;
     color: #334155;
     line-height: 1.2;
@@ -132,7 +132,7 @@ i {
 }
 
 .CTA {
-    @apply sticky bottom-0 flex flex-row flex-wrap gap-y-2 gap-x-4 wRespXL justify-around px-2 pt-1  pb-3 h-max;
+    @apply !sticky bottom-0 flex flex-row flex-wrap gap-y-2 gap-x-4 wRespXL justify-around px-2 pt-1  pb-3 h-max;
 }
 
 /**** INPUT STYLES ****/
@@ -160,7 +160,7 @@ input {
 }
 
 .inputDiv {
-    @apply rounded-full h-7 flex items-center border-slate-300 !shadow-none bg-white border-t px-4 !border capitalize font-normal;
+    @apply rounded-full h-7 flex items-center !shadow-none bg-opacity-0 border-t px-4 !border capitalize font-normal;
 }
 
 /**** ANIMATIONS ****/
@@ -421,7 +421,7 @@ button:hover {
 }
 
 .lgBtn {
-    @apply !flex min-h-max min-w-max items-center justify-center rounded-full !w-full !shadow-md px-4 py-1.5 lg:py-2 gap-2 !break-words;
+    @apply !flex min-h-max min-w-max items-center justify-center rounded-full !w-full !shadow-md px-4 py-1.5 lg:py-2 gap-2 !break-words border-hidden;
 }
 
 /**** COMP ****/
@@ -452,11 +452,11 @@ button:hover {
     position: fixed;
     top: 10% !important;
     left: 50% !important;
-    padding: 5rem 1rem !important;
+    padding: 5rem 0.5rem !important;
     transform: translateX(-50%) !important;
     height: calc(100vh - 10%) !important;
     max-width: 500px !important;
-    width: calc(100vw - 1rem) !important;
+    width: calc(100vw - 0.5rem) !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;

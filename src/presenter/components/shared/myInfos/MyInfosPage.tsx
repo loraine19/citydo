@@ -51,6 +51,7 @@ export default function MyInfosPage() {
             setUser({ ...user, Profile: updated })
             refetch()
         } catch (error) {
+            console.error(error)
             handleApiError(error ?? 'Erreur lors de la mise à jour du profil')
         }
     }
@@ -87,7 +88,7 @@ export default function MyInfosPage() {
 
     return (
         <>
-            <header className="w-respLarge relative flex-col flex justify-between pt-2">
+            <header className="w-respLarge relative flex-col flex">
                 <div className="flex absolute justify-between items-center top-4 z-50 w-full pr-4">
                     <LogOutButton />
                     <Icon

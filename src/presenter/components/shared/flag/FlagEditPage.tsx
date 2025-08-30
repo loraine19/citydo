@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
-import { Button, Select, Switch, Typography } from '@material-tailwind/react';
+import { Button, Switch, Typography } from '@material-tailwind/react';
 import { ConfirmModal } from '../../common/ConfirmModal';
 import SubHeader from '../../common/SubHeader';
 import FlagDetailComp from './flagCards/FlagDetailComp';
@@ -12,6 +12,7 @@ import { FlagView } from '../../../views/viewsEntities/flagViewEntities';
 import { FlagTarget } from '../../../../domain/entities/Flag';
 import { flagReasons } from '../../../constants';
 import { Icon } from '../../common/IconComp';
+import { Select } from '../../common/adaptatersComps/Select';
 
 
 export default function FlagEditPage() {
@@ -76,23 +77,13 @@ export default function FlagEditPage() {
                                 </Typography>
                             </div>
                             <Select
-                                className={` rounded-full shadow bg-white border-none capitalize`}
-                                label={formik.errors.reason ? formik.errors.reason as string : "Raison du signalement"}
+                                value={formik.values.reason}
+                                options={flagReasons}
+                                placeholder='Choisir une raison'
+                                formik={formik}
                                 name="reason"
-                                labelProps={{ className: `${formik.errors.reason && "error"} before:border-none after:border-none ` }}
-                                value={flag.reason as unknown as string || ''}
-                                disabled={flag.reason ? true : false}
-                                onChange={(val: any) => { formik.values.reason = val; }}
-                            >
-                                {flagReasons.map((reason: any, index: number) => {
-                                    return (
-                                        <Select.Option
-                                            className={reason.value === '' ? "hidden" : "rounded-full my-1 capitalize"} value={reason.value}
-                                            key={index} >
-                                            {reason.label}
-                                        </Select.Option>)
-                                })}
-                            </Select>
+
+                            />
                         </div>
                     </div>
 

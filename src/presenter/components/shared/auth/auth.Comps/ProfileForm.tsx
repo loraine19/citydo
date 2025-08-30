@@ -1,16 +1,16 @@
-import { Card, CardHeader, Button, CardBody, Typography, Input, Select, List, } from "@material-tailwind/react";
+import { Card, CardHeader, Button, CardBody, Typography, Input, List, } from "@material-tailwind/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { assistanceLevel, mailSubscriptions } from "../../../../../domain/entities/Profile";
 import { AddressInputOpen } from "../../../common/mapComps/AddressInputOpen";
 import { useUserStore } from "../../../../../application/stores/user.store";
-import { Label } from "../../../../../domain/entities/frontEntities";
 import { ImageBtn } from "../../../common/ImageBtn";
 import { Icon } from "../../../common/IconComp";
 import DI from "../../../../../di/ioc";
 import { ListGroup } from "../../myInfos/ListGroup";
 import { AvatarUser } from "../../../common/AvatarUser";
 import { InputError } from "../../../common/adaptatersComps/input";
+import { Select } from "../../../common/adaptatersComps/Select";
 
 type ProfileFormProps = {
     formik: any,
@@ -42,7 +42,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
 
     return (
         <form onSubmit={formik.handleSubmit} className='flex h-full flex-col gap-2 ' >
-            <main className='relative flex flex-1 pt-6 -mt-4'>
+            <main className='relative flex flex-1 pt-8 -mt-4'>
                 <Card className="w-respLarge FixCard !flex !flex-col h-full ">
                     <CardHeader
                         className="-mt-6 !bg-transparent !rounded-none !pb-2 shadow-none flex justify-center items-end "
@@ -89,7 +89,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                     </CardHeader>
                     <CardBody className="-mt-6 px-6 flex flex-1 flex-col h-full gap-3 mb-4 overflow-auto ">
                         <Input
-
                             className={`inputStandart ${formik.errors.firstName ? 'error' : ''}`}
                             placeholder={"Prénom"}
                             name="firstName"
@@ -97,8 +96,8 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                             value={formik.values.firstName}
                         />
                         <InputError error={formik.errors.firstName} />
-                        <Input
 
+                        <Input
                             className={`inputStandart ${formik.errors.lastName ? 'error' : ''}`}
                             placeholder={"Nom"}
                             name="lastName"
@@ -106,8 +105,8 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                             value={formik.values.lastName}
                         />
                         <InputError error={formik.errors.lastName} />
-                        <Input
 
+                        <Input
                             className={`inputStandart ${formik.errors.phone ? 'error' : ''}`}
                             placeholder={"Télephone"}
                             name="phone"
@@ -115,62 +114,35 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                             value={formik.values.phone}
                             type='tel' />
                         <InputError error={formik.errors.phone} />
+
                         <AddressInputOpen
                             address={formik.values.Address}
                             setAddress={setAddress}
                             error={formik.errors.Address}
                         />
-
                         <Select
-                            name="mailSub"
+                            simple
+                            formik={formik}
                             value={formik.values.mailSub}
-                            onChange={(val: any) => {
-                                setMailSub(val);
-                                formik.values.mailSub = val
-                            }}>
-                            <Select.Trigger
-                                className={`capitaliz inputStandart  ${formik.errors.mailSub ? 'error' : ''}`}
-                                placeholder={"Notifications mails"}
-                            />
-                            <Select.List>
-                                {mailSubscriptions.map((label: Label, index: number) => {
-                                    return (
-                                        <Select.Option
-                                            value={label.value}
-                                            key={index}>
-                                            {label.label}
-                                        </Select.Option>
-                                    )
-                                })}
-                            </Select.List>
-                        </Select>
-                        <InputError error={formik.errors.mailSub} tips={'souscription aux mails'} />
-                        <Select name="level"
+                            setValue={setMailSub}
+                            name={"mailSub"}
+                            placeholder={'souscription aux mails'}
+                            options={mailSubscriptions}
+                        />
+                        <Select
+                            simple
+                            formik={formik}
                             value={formik.values.assistance}
-                            onChange={(val: any) => {
-                                setAssistance(val);
-                                formik.values.assistance = val
-                            }}>
-                            <Select.Trigger className={`capitaliz inputStandart  ${formik.errors.mailSub ? 'error' : ''}`}
-                                placeholder={"Assistance"}
-                            />
+                            setValue={setAssistance}
+                            name={"level"}
+                            placeholder={'niveau d\'assistance'}
+                            options={assistanceLevel}
+                        />
 
-                            <Select.List>
-                                {assistanceLevel.map((label: Label, index: number) => {
-                                    return (
-                                        <Select.Option
-                                            value={label.value}
-                                            key={index}>
-                                            {label.label}
-                                        </Select.Option>
-                                    )
-                                })}
-                            </Select.List>
-                        </Select>
-                        <InputError error={formik.errors.assistance} tips={'niveau d\'assistance'} />
 
                         {/* GROUP SELECT  */}
-                        <ListGroup groups={groups} />
+                        <ListGroup
+                            groups={groups} />
 
                         {/* SKILLS  */}
                         <Input
@@ -209,11 +181,11 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                     </CardBody>
                 </Card>
             </main>
-            <footer className="CTA w-respLarge pb-2">
+            <footer className="CTA">
 
                 <Button
                     type="submit"
-                    className="gap-4 rounded-full  lgBtn" >
+                    className="lgBtn" >
                     <Icon
                         color="white"
                         icon="save_as"

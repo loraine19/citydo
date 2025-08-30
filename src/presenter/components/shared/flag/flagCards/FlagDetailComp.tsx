@@ -12,10 +12,9 @@ export default function FlagDetailComp(props: { flag: FlagView, element?: any, l
     const id = flag.targetId
 
     return (
-        <>
-            <Card className="FixCard w-respLarge" >
-                <CardHeader className="FixCardHeaderNoImage"
-                    floated={false}>
+        <div className="DetailCardDiv">
+            <Card className="FixCardNoImage w-respLarge " >
+                <CardHeader className="FixCardHeaderNoImage">
                     <div className="ChipDivNoImage">
                         <Chip className="CyanChip">
                             <ChipLabel>{FlagTarget[flag.target as unknown as keyof typeof FlagTarget]
@@ -54,6 +53,6 @@ export default function FlagDetailComp(props: { flag: FlagView, element?: any, l
 
                 </CardFooter>
             </Card>
-        </>
+        </div>
     )
 }

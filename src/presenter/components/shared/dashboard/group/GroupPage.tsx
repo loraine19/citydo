@@ -9,12 +9,12 @@ import { GroupCard } from "./GroupCard";
 import TabsMenu from "../../../common/TabsMenu";
 import { TabLabel } from "../../../../../domain/entities/frontEntities";
 import { GroupCategory, GroupFilter } from "../../../../../domain/entities/Group";
-import { CategoriesSelect } from "../../../common/CategoriesSelect";
 import { groupCategories } from "../../../../constants";
 import { getValue } from "../../../../views/viewsEntities/utilsService";
 import { useUxStore } from "../../../../../application/stores/ux.store";
 import { HandleHideParams, HandleScrollParams } from "../../../../../application/useCases/utils.useCase";
 import NotifDiv from "../../../common/NotifDiv";
+import { Select } from "../../../common/adaptatersComps/Select";
 
 export default function GroupPage() {
     const [notif, setNotif] = useState<string>('');
@@ -120,12 +120,13 @@ export default function GroupPage() {
                         labels={Tabs}
                         selectedSort={selectedSort}
                         setSelectedSort={setSelectedSort} />
-
-                    <CategoriesSelect
-                        label={'Catégories'}
-                        categoriesArray={groupCategories}
-                        change={change}
-                        categorySelected={category.toString()} /></div>
+                    <Select
+                        setValue={change}
+                        options={groupCategories}
+                        placeholder="Choisir une catégorie"
+                        name={"category"}
+                        value={category} />
+                </div>
                 <SubHeader
                     closeBtn
                     link={`/`}

@@ -33,11 +33,11 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
     return (
         <>  {hideNavBottom &&
             <div
-                className="w-full  py-1 ">
+                className="w-full  py-2 ">
 
                 <hr
 
-                    className={` bg-${color}-500  h-[2px] opacity-75 `}
+                    className={` !border-${color}-500 border-t-0 !border-b-[1px] opacity-75 `}
                 />
             </div>}
             <header>

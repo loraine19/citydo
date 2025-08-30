@@ -177,7 +177,7 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                                                                 </PopoverTrigger>
                                                             </button>
                                                             <PopoverContent
-                                                                className='bg-transparent shadow-none z-40 border-none p-0 FixedCenter flex-col'>
+                                                                className='bg-transparent shadow-none z-40 border-none p-0 FixedCenter -mt-4 flex-col'>
                                                                 <Icon
                                                                     fill
                                                                     title='Fermer'

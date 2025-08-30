@@ -98,17 +98,17 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim rounded-2xl ${color}BG backdropBlur wRespXL justify-center gap-4 lg:gap-6 pt-1 pb-2 pr-8  lg:!px-0 ` :
+                    `items-center opacity-100 anim rounded-t-3xl ${color}BG backdropBlur wRespXL justify-center gap-4 lg:gap-6 pt-1 pb-2 pr-5  lg:!px-0 ` :
                     'z-0 md:gap-4 gap-4 ') +
                 ` flex z-30 w-full `
             }>
                 <Navbar className={`
-                    ${navBottom ? 'ml-2 lg:ml-0 border-[1px] rounded-full !shadow-md bg-white border-slate-300 !flex-1 !max-w-max sm:!max-w-[100%]  ' :
+                    ${navBottom ? 'ml-2 lg:ml-0 border-[1px] rounded-full !shadow-md bg-white border-slate-200 !flex-1 !max-w-max sm:!max-w-[100%] ' :
                         ` !pt-1  shadow-none border-none bg-transparent w-full `}
                     flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden hover:!shadow-none `}>
                     <ul className={`${navBottom ?
-                        ' gap-0 justify-between pr-0' : 'md:gap-0 gap-1 justify-around '} 
-                            flex  xs:pr-0 !max-w-[calc(100vw-6rem)] flex-row  rounded-full h-full  w-full  `}>
+                        ' gap-0 justify-between flex-1 !w-full !px-0' : 'md:gap-0 gap-1 justify-around '} 
+                            flex  xs:pr-0 !max-w-[calc(100vw-5.5rem)] flex-row  rounded-full h-full  w-full  `}>
                         {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                             <Typography
                                 onClick={() => { setColor(color.col) }}
@@ -118,11 +118,10 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                 <NavLink
                                     to={to}
                                     className={({ isActive }) =>
-                                        `flex gap-2 justify-center lg:justify-start items-center w-full h-full rounded-full
-                                            ${navBottom ? ` px-[8.5px] py-[8px] hover:bg-white/50 hover:shadow-slate-100
-                                            hover:scale-[101%] transition duration-200 
+                                        `flex gap-2 lg:gap-3 justify-center lg:justify-start items-center w-full h-full rounded-full
+                                            ${navBottom ? ` px-[8.5px] py-[8px] shadow-sm transition duration-200 
                                             hover:shadow-sm` : 'opacity-90'}
-                                            ${(isActive && navBottom) ? `border-[1px] shadowMid !bg-white  shadow-sm   z-30 ` :
+                                            ${(isActive && navBottom) ? `border-[1px] shadowMid shadow-sm  z-50 ` :
                                             (isActive && !navBottom) ? ` border-b-[1px] px-1 md:border-none rounded-none !border-current !opacity-100 ` :
                                                 isActive ? ` animSlide ` : ''}`
                                     }>
@@ -138,7 +137,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                                 fill={isActive ? true : false}
                                                 color={color.col}
                                             />
-                                            <span className={`${navBottom ? 'lg:pr-8 md:block md:!text-[0.85rem] ' : 'md:block md:!text-[0.75rem]'} text-[0.95rem] font-bold  font-comfortaa hidden  pr-2
+                                            <span className={`${navBottom ? 'lg:pr-8 md:block md:!text-[0.85rem] ' : 'md:block md:!text-[0.75rem]'} text-[0.95rem] font-bold font-comfortaa hidden  pr-2
                                                 ${(isActive && !navBottom) ? 'underline underline-offset-8' : ''}`}>
                                                 {label}
                                             </span>

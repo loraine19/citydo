@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Select, Card, CardHeader, Button, Typography, CardBody, Input, Textarea, Progress } from "@material-tailwind/react";
-import { Label } from "../../../../../domain/entities/frontEntities";
+import { Card, CardHeader, Button, Typography, CardBody, Input, Textarea, Progress } from "@material-tailwind/react";
 import AddressMapOpen from "../../../common/mapComps/AddressMapOpen";
 import { AddressInputOpen } from "../../../common/mapComps/AddressInputOpen";
 import SubHeader from "../../../common/SubHeader";
@@ -13,6 +12,7 @@ import { Icon } from "../../../common/IconComp";
 import GroupSelect from "../../../common/GroupSelect";
 import { useUserStore } from "../../../../../application/stores/user.store";
 import { InputError } from "../../../common/adaptatersComps/input";
+import { Select } from "../../../common/adaptatersComps/Select";
 
 interface EventFormProps {
     formik: any;
@@ -28,7 +28,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
 
     ///// BLOB FUNCTION ;
     const imgCategory = EventImage[formik.values.category as keyof typeof EventImage] || EventImage.default
-    const [imgBlob, setImgBlob] = useState<string>(formik.values.image);
+    const [imgBlob, setImgBlob] = useState<string>(formik.values.image ?? formik.values.blob ?? imgCategory);
 
     //// ADDRESS GPS FUNCTION
     useEffect(() => {
@@ -38,7 +38,13 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
         }
     }, [Address]);
 
-    const { image, title, category, description, start, end, participantsMin, Participants, id } = formik.values;
+    useEffect(() => {
+        !formik.values.image && setImgBlob(EventImage[formik.values.category as keyof typeof EventImage || EventImage.default])
+    }, [formik.values.category]);
+
+
+
+    const { title, category, description, start, end, participantsMin, Participants, id } = formik.values;
     const label = category ? getLabel(category, eventCategories) : '';
 
     return (
@@ -49,30 +55,14 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                         type={id ? 'Modifier mon évenement ' : 'Créer mon évenement '}
                         place={category ? label : ''} closeBtn />
                     <div className="w-respLarge flex flex-col lg:flex-row lg:gap-4 gap-2 pt-2 pb-2">
+
                         <Select
-                            className='rounded-full shadow bg-white border-none capitalize'
-                            name={"category"}
-                            error={formik.errors.category ? true : false}
-                            value={category || ''}
-                            onChange={(val: any) => {
-                                formik.values.category = val;
-                                !formik.values.image && setImgBlob(EventImage[val as keyof typeof EventImage || EventImage.default]);
-                            }}>
-                            <Select.Trigger
-                                placeholder={formik.errors.category ? formik.errors.category as string : formik.values.category ? getLabel(formik.values.category, eventCategories) : "Choisir la catégorie"}
-                                className="inputDiv" />
-                            <Select.List>
-                                {eventCategories.map((category: Label, index: number) => {
-                                    return (
-                                        <Select.Option
-                                            className={`rounded-full my-1 capitalize`}
-                                            value={category.value}
-                                            key={index} >
-                                            {category.label}
-                                        </Select.Option>);
-                                })}
-                            </Select.List>
-                        </Select>
+                            options={eventCategories}
+                            formik={formik}
+                            name="category"
+                            placeholder="Choisir la catégorie"
+
+                        />
                         <GroupSelect
                             groupId={groupId?.toString()}
                             setGroupId={setGroupId}
@@ -96,11 +86,11 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                 imgDef={imgCategory} />
                             <img
                                 onError={(e) => e.currentTarget.src = '/images/eventDefault.png'}
-                                src={imgBlob ?? formik.values.image ?? formik.values.blob ?? imgCategory ?? './load.gif'}
+                                src={imgBlob ?? formik.values.image ?? formik.values.blob ?? imgCategory}
                                 alt={title || 'image'}
                                 width={100}
                                 height={100}
-                                className={image || imgBlob ? "CardImage" : "hidden"} />
+                                className={'CardImage'} />
                         </CardHeader>
                         <CardBody className='FixCardBody '>
                             <div className='h-full overflow-auto !pb-6'>

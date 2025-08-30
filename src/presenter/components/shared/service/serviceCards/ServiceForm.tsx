@@ -1,18 +1,18 @@
-import { Radio, Select, Card, CardHeader, Button, Typography, CardBody, Input, Textarea } from "@material-tailwind/react";
+import { Card, CardHeader, Button, Typography, CardBody, Input, Textarea } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { Label } from "../../../../../domain/entities/frontEntities";
 import SubHeader from "../../../common/SubHeader";
 import { Profile } from "../../../../../domain/entities/Profile";
 import { useUserStore } from "../../../../../application/stores/user.store";
 import { ImageBtn } from "../../../common/ImageBtn";
 import { Icon } from "../../../common/IconComp";
 import { DateChip } from "../../../common/ChipDate";
-import { hardLevels, serviceCategoriesS, skillLevels } from "../../../../constants";
+import { hardLevels, serviceCategories, skillLevels } from "../../../../constants";
 import { ServiceView } from "../../../../views/viewsEntities/serviceViewEntity";
-import { ServiceType } from "../../../../../domain/entities/Service";
 import GroupSelect from "../../../common/GroupSelect";
 import { InputError } from "../../../common/adaptatersComps/input";
 import Chip from "../../../common/adaptatersComps/Chip";
+import { RadioGroup } from "../../../common/adaptatersComps/RadioGroup";
+import { Select } from "../../../common/adaptatersComps/Select";
 
 export function ServiceForm(props: { formik: any }) {
     const { formik } = props;
@@ -35,6 +35,7 @@ export function ServiceForm(props: { formik: any }) {
     const [imgBlob, setImgBlob] = useState<string | undefined>(formik.values.image);
     const [groupId, setGroupId] = useState<string | undefined>(formik.values.groupId);
 
+
     return (
         <form
             onSubmit={formik.handleSubmit}
@@ -47,91 +48,27 @@ export function ServiceForm(props: { formik: any }) {
                         closeBtn
                     />
                     <div className="w-respLarge flex flex-col grid-cols-[1fr_1fr_1fr] lg:grid grid-rows-1 lg:gap-3 gap-2 pt-2">
-                        <Radio orientation="horizontal"
-                            className="gap-4">
-                            <div className="flex inputDiv  items-center flex-1 gap-2">
-                                <Radio.Item
-                                    id='demande-radio'
-                                    className="checked:!border-orange-500/50 checked:border-1"
-                                    disabled={formik.values.statusValue > 0}
-                                    name="type"
-                                    label="Demande"
-                                    value="GET"
-                                    checked={formik.values.typeS === ServiceType.GET}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => { formik.handleChange(e) }}
-                                >
-                                    <Radio.Indicator
-                                        className="!border border-orange-500/50 rounded-full flex !bg-white ">
-                                        <Icon
-                                            fill
-                                            size="lg"
-                                            color='orange'
-                                            icon='check_circle'
-                                        />
-                                    </Radio.Indicator>
-                                    <Typography
-                                        as="label"
-                                        htmlFor="demande-radio"
-                                        className="text-sm font-normal text-gray-600 pl-8">
-                                        Demande
-                                    </Typography>
-                                </Radio.Item>
-                            </div>
-                            <div className="flex inputDiv  items-center flex-1 w-full">
-                                <Radio.Item
-                                    id='offre-radio'
-                                    className="checked:!border-sky-500/50 checked:border-1 "
-                                    disabled={formik.values.statusValue > 0}
-                                    name="type"
-                                    label="Offre"
-                                    value="DO"
-                                    checked={formik.values.typeS === ServiceType.DO}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => { formik.handleChange(e) }}
-                                >
-                                    <Radio.Indicator
-                                        className="!border !border-sky-500/50 rounded-full flex !bg-white">
-                                        <Icon
-                                            fill
-                                            size="lg"
-                                            color='sky'
-                                            icon='check_circle'
-                                        />
-                                    </Radio.Indicator>
-                                    <Typography
-                                        as="label"
-                                        htmlFor="offre-radio"
-                                        className="text-sm font-normal text-gray-600 pl-8">
-                                        Offre
-                                    </Typography>
-                                </Radio.Item>
-                            </div>
-                        </Radio>
+                        <RadioGroup
+                            name={"type"}
+                            orientation="horizontal"
+                            options={[
+                                { id: "demande-radio", label: "Demande", value: "GET" },
+                                { id: "offre-radio", label: "Offre", value: "DO" },
+                            ]}
+                            value={formik.values.type}
+                            onChange={(val) =>
+                                formik.setFieldValue("type", val)}
+                            disabled={formik.values.statusValue > 0}
+                        />
                         <Select
+                            options={serviceCategories}
                             disabled={formik.values.statusValue > 0}
                             name={"category"}
                             value={formik.values.category}
-                            onChange={(val: any) => {
-                                formik.setFieldValue('category', val)
-                            }} >
-                            <Select.Trigger
-                                className="inputDiv"
-                                placeholder={formik.errors.category ? formik.errors.category as string : "Choisir la catégorie"}
-                            />
-                            <Select.List>
-                                {serviceCategoriesS.map((category: Label, index: number) => {
-                                    return (
-                                        <Select.Option
-                                            className={category.value === '' ?
-                                                "hidden" : "rounded-full my-1 capitalize"}
-                                            value={category.value}
-                                            key={index}
-                                        >
-                                            {category.label}
-                                        </Select.Option>
-                                    )
-                                })}
-                            </Select.List>
-                        </Select>
+                            placeholder="Choisir une catégorie"
+                            formik={formik}
+
+                        />
                         <GroupSelect
                             groupId={groupId}
                             setGroupId={setGroupId}
@@ -164,7 +101,6 @@ export function ServiceForm(props: { formik: any }) {
                             />
                         </CardHeader>
                         <CardBody className='FixCardBody '>
-
                             <div className='overflow-auto py-2 h-full -mt-2 '>
                                 <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
                                     placeholder={"Titre"}
@@ -173,81 +109,45 @@ export function ServiceForm(props: { formik: any }) {
                                     value={formik.values.title}
                                 />
                                 <InputError mt error={formik.errors.title} />
-                                <div className='flex flex-col lg:flex-row gap-5 pt-2 '>
-                                    <div className='flex flex-col flex-1  '>
+                                <div className='flex flex-col h-max gap-5 pt-2 min-h-max '>
+                                    <div className=' relative flex flex-col flex-1 gap-3 '>
                                         <Textarea
                                             className={`inputStandart min-h-full ${formik.errors.description ? 'error' : ''}`}
                                             placeholder='Description'
-                                            rows={1}
+                                            rows={3}
                                             resize={true}
                                             name="description"
                                             onChange={formik.handleChange}
                                             defaultValue={formik.values.description}
                                         />
-                                        <InputError mt error={formik.errors.description} />
+                                        <InputError error={formik.errors.description} />
                                     </div>
                                 </div>
-                                <div className="flex flex-col justify-center h-max ">
+                                <div className="flex flex-col justify-center py-3 mt-2 h-max ">
                                     <Typography className='text-xs'>Difficulté du service: </Typography>
-                                    <div className="flex gap-[20%]">
-                                        <div className="flex flex-1 flex-col">
+                                    <div className="flex justify-between">
+                                        <div>
                                             <Select
-                                                name={"skill"}
+                                                simple
+                                                name={'skill'}
+                                                formik={formik}
                                                 value={formik.values.skill?.toString()}
-                                                onChange={(e: any) => {
-                                                    formik.setFieldValue('skill', e);
-                                                }} >
-                                                <Select.Trigger
-                                                    placeholder="Compétence"
-                                                    className={`inputStandart ${formik.errors.skill ? 'error' : ''}`}
-                                                />
-                                                <Select.List>
-                                                    {skillLevels.map(
-                                                        (skill: Label, index: number) => {
-                                                            return (
-                                                                <Select.Option
-                                                                    value={skill.value}
-                                                                    key={index}>
-                                                                    {skill.label}
-                                                                </Select.Option>
-                                                            )
-                                                        }
-                                                    )}
-                                                </Select.List>
-                                            </Select>
-                                            <InputError mt error={formik.errors.skill} />
+                                                options={skillLevels}
+                                                placeholder="Niveau de compétence"
+                                            />
                                         </div>
-                                        <div className="flex flex-1 flex-col">
+                                        <div>
                                             <Select
-                                                name={"hard"}
-                                                onChange={(e: any) => {
-                                                    formik.setFieldValue('hard', e);
-
-                                                }}
+                                                placeholder="Niveau de difficulté"
+                                                simple
+                                                name={'hard'}
+                                                formik={formik}
                                                 value={formik.values.hard?.toString()}
-                                            >
-                                                <Select.Trigger
-                                                    placeholder="Pénibilité"
-                                                    className={`inputStandart ${formik.errors.hard ? 'error' : ''}`}
-                                                />
-                                                <Select.List>
-                                                    {hardLevels.map(
-                                                        (hard: Label, index: number) => {
-                                                            return (
-                                                                <Select.Option
-                                                                    value={hard.value}
-                                                                    key={index}>
-                                                                    {hard.label}
-                                                                </Select.Option>
-                                                            )
-                                                        }
-                                                    )}
-                                                </Select.List>
-                                            </Select>
-                                            <InputError mt error={formik.errors.hard} />
+                                                options={hardLevels} />
                                         </div>
-                                        <div className="h-full flex flex-col justify-between">
-                                            <InputError tips={'Nombres de points'} />
+
+
+                                        <div className="h-full flex flex-col gap-4 justify-between">
                                             <Chip
                                                 size="sm"
                                                 value={`${points} points`}
@@ -261,7 +161,9 @@ export function ServiceForm(props: { formik: any }) {
                                                         style=" ml-0.5"
                                                         fill={userProfile?.points > parseInt(points[0])}
                                                     />}
-                                            /></div>
+                                            />
+                                            <InputError tips={'Nombres de points'} />
+                                        </div>
                                     </div>
                                 </div>
                             </div>

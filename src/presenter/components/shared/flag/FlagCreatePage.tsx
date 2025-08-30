@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
-import { Button, Select, Switch, Typography } from '@material-tailwind/react';
+import { Button, Switch, Typography } from '@material-tailwind/react';
 import { Flag, FlagTarget } from '../../../../domain/entities/Flag';
-import { Label } from '../../../../domain/entities/frontEntities';
 import { ConfirmModal } from '../../common/ConfirmModal';
 import SubHeader from '../../common/SubHeader';
 import FlagDetailComp from './flagCards/FlagDetailComp';
@@ -14,6 +13,7 @@ import DI from '../../../../di/ioc';
 import { flagReasons } from '../../../constants';
 import { FlagView } from '../../../views/viewsEntities/flagViewEntities';
 import { Icon } from '../../common/IconComp';
+import { Select } from '../../common/adaptatersComps/Select';
 
 export default function FlagCreatePage() {
     const { id, target } = useParams();
@@ -79,7 +79,7 @@ export default function FlagCreatePage() {
 
             <form onSubmit={formik.handleSubmit} className="flex flex-col h-full">
                 <main>
-                    <div className="sectionHeader px-4">
+                    <div className="sectionHeader">
                         <SubHeader
                             type={`Signaler `}
                             place={'un ' + target}
@@ -99,23 +99,13 @@ export default function FlagCreatePage() {
                                 </Typography>
                             </div>
                             <Select
-                                className={` rounded-full shadow bg-white border-none capitalize`}
-                                label={formik.errors.reason ? formik.errors.reason as string : "Raison du signalement"}
+                                value={formik.values.reason}
+                                options={flagReasons}
+                                placeholder='Choisir une raison'
+                                formik={formik}
                                 name="reason"
-                                labelProps={{ className: `${formik.errors.reason && "error"} before:border-none after:border-none ` }}
-                                value={flag.reason as unknown as string || ''}
-                                onChange={(val: string | undefined) => { if (val) formik.setFieldValue('reason', val); }}
-                            >
-                                {flagReasons.map((reason: Label, index: number) => {
-                                    return (
-                                        <Select.Option
-                                            className={"rounded-full my-1 capitalize"}
-                                            value={reason.value}
-                                            key={index} >
-                                            {reason.label}
-                                        </Select.Option>)
-                                })}
-                            </Select>
+
+                            />
                         </div>
                     </div>
 

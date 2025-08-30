@@ -44,7 +44,7 @@ export default function DashboardPage() {
     const { notifsMap, isLoadingMap, refetchMap, countMap } = notifMapViewModelFactory();
 
     //// CLASSES
-    const userClasse = "flex row-span-3 lg:grid pt-11 lg:pt-8 animRev z-50";
+    const userClasse = "flex row-span-3 lg:grid pt-14 lg:pt-8 animRev z-50";
     const eventClasse = "h-full flex !min-h-[15rem] row-span-5 lg:grid overflow-auto";
     const notifClasse = " row-span-2 lg:pt-8" + (notifs.length > 0 ? " min-h-[8rem]" : " min-h-[5.5rem]")
     const mapClasse = "flex row-span-6 !min-h-[15rem] lg:min-h-[32%] lg:grid ";
@@ -89,7 +89,7 @@ export default function DashboardPage() {
     return (
         <main className={`${(hideNavBottom) ? 'pb-2' : !navBottom ?
             'lg:!-mt-3 !-mt-7 pb-[1rem] ' :
-            'lg:!-mt-5 -mt-10 pb-[2.8rem] lg:pb-[5rem]'} 
+            'lg:!-mt-5 -mt-10 pb-[3.5rem] lg:pb-[5rem]'} 
                relative flex !overflow-hidden anim `}
             data-cy="dashboard-body" >
             <div ref={divRef}

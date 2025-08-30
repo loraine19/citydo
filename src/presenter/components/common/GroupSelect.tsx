@@ -1,50 +1,30 @@
-import { Select } from "@material-tailwind/react"
 import { User } from "../../../domain/entities/User"
-import { GroupUser } from "../../../domain/entities/GroupUser";
+import { Select } from "./adaptatersComps/Select";
 
 
 interface GroupSelectProps {
     formik: any;
     user: User;
-    setGroupId: (groupId: string) => void;
+    setGroupId?: (groupId: string) => void;
     groupId?: string;
     disabled?: boolean;
 }
-export default function GroupSelect({ formik, user, setGroupId, groupId, disabled }: GroupSelectProps) {
+export default function GroupSelect({ formik, user, groupId, disabled }: GroupSelectProps) {
 
-    const selectedGroup = user?.GroupUser?.filter((gu: GroupUser) => gu?.Group?.id.toString() === formik.values.groupId?.toString())?.[0]?.Group.name;
+    // const selectedGroup = user?.GroupUser?.filter((gu: GroupUser) => gu?.Group?.id.toString() === formik.values.groupId?.toString())?.[0]?.Group.name;
+
 
     return (
         <Select
-            disabled={disabled}
+            formik={formik}
+            value={groupId}
             name={"groupId"}
-            value={groupId || formik.values.groupId?.toString() || '0'}
-            defaultValue={groupId || formik.values.groupId?.toString() || '0'}
-            onChange={(val: string | undefined) => {
-                formik.setFieldValue('groupId', val)
-                formik.groupId = val
-                setGroupId(val as string)
-            }} >
-            <Select.Trigger
-                placeholder={formik.errors.groupId ? formik.errors.groupId as string :
-                    selectedGroup ?? "Choisir le groupe"}
-                className="inputDiv " />
-            <Select.List>
-                {user?.GroupUser?.length > 0 ? user?.GroupUser?.map((group: any, index: number) =>
-                    <Select.Option
-                        className="rounded-full"
-                        value={group.Group.id.toString()}
-                        key={index}>
-                        {group.Group.name}
-                    </Select.Option>)
-                    : <Select.Option
-                        className="rounded-full"
-                        value={'0'}>
-                        Aucun groupe
-                    </Select.Option>
-                }
-            </Select.List>
-        </Select>
+            placeholder={"Choisir le groupe"}
+            disabled={disabled}
+            options={user?.GroupUser?.map((group: any) => ({
+                label: group.Group.name,
+                value: group.Group.id.toString()
+            }))} />
 
     )
 }

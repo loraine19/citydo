@@ -16,6 +16,7 @@ export const userViewModel = () => {
       })
 
     //  const count = isLoading ? 0 : (data?.pages[data?.pages.length - 1].count)
+    console.log(data, isLoading);
     const flat = !data || error || isLoading ? [] : data?.pages.flat().map(page => page).flat()
     const users = (isLoading || !data) ? [] : flat?.map((user: User) => user)
 

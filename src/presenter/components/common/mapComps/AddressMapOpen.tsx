@@ -236,7 +236,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
                         <ExpandButton />
                     </Dialog.Trigger>
                     <Dialog.Overlay className='backdropBlur !bg-transparent'>
-                        <Dialog.Content className='flex flex-1 h-full w-full border-0 shadow-none !bg-transparent'>
+                        <Dialog.Content className='flex flex-1 h-[calc(100%-6rem)] w-full border-0 shadow-none !bg-transparent -mt-[2rem]'>
                             <div className='Map '>
                                 <MapDiv />
                             </div>
