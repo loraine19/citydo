@@ -83,7 +83,6 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             }
         }
     ]
-    const BG = `!bg-${color}-500`
 
 
     return (
@@ -166,13 +165,13 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                             icon="add"
                             bg
                             size={navBottom ? '5xl' : 'xl'}
-                            style={` ${closeDial ? 'rotate-45 transition-transform ' : ''} hover:!transition-transform hover:!rotate-45 !border-0 !text-white !text-[2.2rem]  ${BG} ${navBottom ? `!shadow-md` : ''}`} />
+                            style={` ${closeDial ? 'rotate-45 transition-transform ' : ''} hover:!transition-transform hover:!rotate-45 !border-0 !text-[2.2rem] !text-white ${color}StyleInv ${navBottom ? `!shadow-md` : ''}`} />
                     }
                     Content={
-                        <div className={`${!navBottom ? ' -mr-1.5 items-end' : ''} flex gap-2 flex-col `}>
+                        <div className={`${!navBottom ? ' items-end' : ''} flex gap-2 flex-col `}>
                             {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
                                 <div key={index}
-                                    className={` bg-white rounded-full shadow-md flex hover:scale-[1.1] p-[8px] gap-6  !justify-center items-center border"`}
+                                    className={`-mr-2 bg-white rounded-full shadow-md flex hover:scale-[1.1] p-[8px] gap-6  !justify-center items-center border"`}
                                     title={label}>
                                     <div>
                                         <Icon

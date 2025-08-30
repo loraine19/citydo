@@ -35,35 +35,70 @@
 .cyanStyle {
     @apply !text-cyan-500 !bg-cyan-200  style;
 }
+.cyanStyleInv {
+    @apply !bg-cyan-500 !text-white;
+}
+
 .orangeStyle {
     @apply !text-orange-500 !bg-orange-200  style;
+}
+.orangeStyleInv {
+    @apply !bg-orange-500 !text-white;
 }
 .redStyle {
     @apply !text-red-500 bg-red-200  style;
 }
+.redStyleInv {
+    @apply !bg-red-500 !text-white;
+}
 .skyStyle {
     @apply !text-sky-500 !bg-sky-200 style;
+}
+.skyStyleInv {
+    @apply !bg-sky-500 !text-white;
 }
 .greenStyle {
     @apply !text-green-500 bg-green-200 style;
 }
+.greenStyleInv {
+    @apply !bg-green-500 !text-white;
+}
+
 .grayStyle {
     @apply !text-gray-500 bg-gray-200 !border-gray-400 style;
+}
+.grayStyleInv {
+    @apply !bg-gray-500 !text-white;
 }
 .slateStyle {
     @apply !text-slate-500 bg-slate-200 style;
 }
+.slateStyleInv {
+    @apply !bg-slate-500 !text-white;
+}
 .tealStyle {
     @apply !text-teal-500 bg-teal-200  style;
+}
+.tealStyleInv {
+    @apply !bg-teal-500 !text-white;
 }
 .amberStyle {
     @apply !text-amber-500 bg-amber-200  style;
 }
+.amberStyleInv {
+    @apply !bg-amber-500 !text-white;
+}
 .roseStyle {
     @apply !text-rose-500 !bg-rose-200 style;
 }
+.roseStyleInv {
+    @apply !bg-rose-500 !text-white;
+}
 .yellowStyle {
     @apply !text-yellow-500 !bg-yellow-200  style;
+}
+.yellowStyleInv {
+    @apply !bg-yellow-500 !text-white;
 }
 
 /**** CHIP LIGHT COLOR ****/

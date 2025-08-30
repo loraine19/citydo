@@ -111,7 +111,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                 <h1 className='flex font-comfortaa text-[1.9rem] lg:!text-[2.1rem] !font-extrabold'>
                                     City'Do
                                 </h1>
-                                {(!onBoard) &&
+                                {(!onBoard && (navBottom && !hideNavBottom)) &&
                                     <i className='text-[0.9rem] truncate flex !line-clamp-1'>
                                         {user?.GroupUser?.map((group) => (group.Group?.name.split(':')[0])).join(', ')}
                                     </i>}
@@ -123,7 +123,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                     {(!navBottom && navIcons && !hideNavBottom) &&
                         <div
                             onMouseEnter={() => setCloseDial(false)}
-                            className="pr-4 pl-1 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
+                            className="pr-5 pl-1 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
                             <NavBarSection addBtn={addBtn} />
                         </div>
                     }

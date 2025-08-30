@@ -107,15 +107,25 @@ export default function GroupPage() {
 
     //// RENDER
     return (
-
         <main>
-            <div className=" sectionHeader">
+            <div className="sectionHeader ">
                 {notif &&
                     <NotifDiv
                         error={error}
                         notif={notif}
                         isLoading={isLoading}
                         refetch={refetch} />}
+                <div className={` flex flex-col items-center justify-center `}>
+                    <TabsMenu
+                        labels={Tabs}
+                        selectedSort={selectedSort}
+                        setSelectedSort={setSelectedSort} />
+
+                    <CategoriesSelect
+                        label={'Catégories'}
+                        categoriesArray={groupCategories}
+                        change={change}
+                        categorySelected={category.toString()} /></div>
                 <SubHeader
                     closeBtn
                     link={`/`}
@@ -124,19 +134,6 @@ export default function GroupPage() {
                     place={`${filterName() ?? 'proche de chez vous'}`}
                 />
 
-                <TabsMenu
-                    labels={Tabs}
-                    selectedSort={selectedSort}
-                    setSelectedSort={setSelectedSort} />
-                <div className="flex items-center justify-center gap-4 pb-1 lg:px-8">
-                    <CategoriesSelect
-                        label={'Catégories'}
-                        categoriesArray={groupCategories}
-                        change={change}
-                        categorySelected={category.toString()} />
-
-
-                </div>
                 <div className={notif && "w-full flex justify-center p-8"}>{notif}</div>
             </div>
             {isLoading || error ?

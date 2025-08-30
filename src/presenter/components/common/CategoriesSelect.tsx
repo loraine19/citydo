@@ -1,5 +1,6 @@
 import { Select } from "@material-tailwind/react";
 import { Label } from "../../../domain/entities/frontEntities";
+import { useUxStore } from "../../../application/stores/ux.store";
 
 type categoriesSelectProps = {
     categoriesArray: string[] | Label[];
@@ -11,6 +12,7 @@ type categoriesSelectProps = {
 export function CategoriesSelect(props: categoriesSelectProps) {
     const { categoriesArray, change, categorySelected, disabled, label } =
         props;
+    const { color } = useUxStore((state) => state);
 
     return (
         <div className="w-full px-4">
@@ -23,8 +25,8 @@ export function CategoriesSelect(props: categoriesSelectProps) {
                 value={categorySelected}
                 disabled={disabled}  >
                 <Select.Trigger
-                    className="inputDiv "
-                    placeholder={label} />
+                    className={`inputDiv ${color}Style !bg-white`}
+                    placeholder={categorySelected ?? label} />
                 <Select.List>
                     {categoriesArray.map((category: any, key: number) => {
                         return (

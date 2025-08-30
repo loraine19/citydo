@@ -33,8 +33,10 @@ export const useUxStore = create<UxStore, [['zustand/persist', UxStore]]>(
               color = 'sky';
               break;
             case 'evenement':
-            case 'groupe':
               color = 'cyan';
+              break;
+            case 'groupe':
+              color = 'teal';
               break;
             case 'annonce':
               color = 'rose';

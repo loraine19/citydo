@@ -173,7 +173,7 @@ export default function VoteListPage() {
                     setReverse={setReverse}
                     action={refetch}
                 />
-                <div className="flex items-center flex-col-reverse lg:flex-row justify-between gap-1 " >
+                <div className="flex items-center flex-col-reverse lg:flex-row justify-between lg:gap-2" >
 
                     <CheckCard
                         categoriesArray={boxArray}
