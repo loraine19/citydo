@@ -29,7 +29,7 @@
 
 /**** COMBINED STYLES ****/
 .style {
-    @apply bg-opacity-85 !border-opacity-50 border-current;
+    @apply bg-opacity-80 !border-opacity-50 border-current;
 }
 
 .inv {
