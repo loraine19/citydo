@@ -26,7 +26,7 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
     }
     return (
         <div className="DetailCardDiv">
-            <Card className="FixCardNoImage !flex  justify-between w-respLarge" >
+            <Card className="CardDetailGridNoImage" >
                 <CardHeader className={"FixCardHeaderNoImage"}
                     floated={false}>
                     <div className={`ChipDivNoImage flex-wrap`}>
@@ -49,7 +49,7 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
                         CreatedAt={pool?.createdAt}
                         group={pool?.Group}
                     />
-                    <div className="CardOverFlow flex h-full justify-between !pb-8">
+                    <div className="CardOverFlow w-full bg-slate-100  flex h-full justify-between !pb-8 flex-col">
                         <Typography>
                             {pool?.description}
                         </Typography>

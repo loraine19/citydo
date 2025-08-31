@@ -25,7 +25,10 @@
 }
 
 .DetailCardDiv {
-    @apply pt-8 pb-1 h-screen flex !overflow-auto;
+    @apply /* pt-8 pb-1 h-screen flex !overflow-auto */
+    max-h-full wRespXL grid pt-8 
+    grid-rows-[100%]
+    md:grid-rows-[100%];
 }
 
 /**** CARD ****/
@@ -45,8 +48,19 @@
         border !bg-white w-respLarge rounded-xl w-full mx-auto 
     !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md
     h-full 
+
     grid 
-    grid-rows-[minmax(52vw,1fr),1fr,auto];
+    grid-rows-[minmax(50vw,1fr),minmax(min-content,calc(100vh-30rem)),auto]
+    lg:grid-rows-[minmax(400px,1fr),minmax(min-content,calc(100vh-30rem)),auto];
+    }
+
+    .CardDetailGridNoImage {
+        @apply w-respLarge 
+        border !bg-white w-respLarge rounded-xl w-full mx-auto 
+    !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md
+    h-full 
+    grid 
+    grid-rows-[auto,minmax(min-content,calc(100vh-16rem)),auto];
     }
 
     .FixCardNoImage {
@@ -86,7 +100,7 @@
 
     /* CARDBODY */
     .FixCardBody {
-        @apply flex relative flex-col px-5 !py-0 
+        @apply flex  relative flex-col px-5 !py-0 
     max-h-full h-full min-h-full;
     }
 
