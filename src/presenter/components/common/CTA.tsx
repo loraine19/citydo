@@ -37,7 +37,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
 
 
     return (
-        <footer className="CTA sticky bottom-0 left-0 h-full w-full !flex items-center justify-center rounded-t-3xl ${color}BG backdropBlur ">
+        <footer className="CTA fixed bottom-0 left-0 h-full w-full !flex items-center justify-center rounded-t-3xl ${color}BG backdropBlur ">
             <div className="flex gap-x-4 gap-y-2 flex-row flex-wrap items-center justify-center w-full wRespXL p-1">
                 {actions.map((action, i) =>
                     action?.icon && action?.icon !== '' && (
