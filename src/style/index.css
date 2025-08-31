@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
+@import "./card.css";
 @import "./color.css";
+@import "./animation.css";
 
 @tailwind base;
 @tailwind utilities;
@@ -70,7 +72,7 @@ main {
 
 section,
 .Section {
-    @apply flex flex-col overflow-y-auto flex-1 px-[0%] md:px-[5%] lg:px-[2%];
+    @apply relative flex flex-col overflow-y-auto flex-1 px-[0%] md:px-[5%] lg:px-[2%];
     gap: 0.2rem;
     min-height: 0;
 }
@@ -132,7 +134,7 @@ i {
 }
 
 .CTA {
-    @apply !sticky bottom-0 flex flex-row flex-wrap gap-y-2 gap-x-4 wRespXL justify-around px-2 pt-1  pb-3 h-max;
+    @apply justify-around  pb-2 h-max;
 }
 
 /**** INPUT STYLES ****/
@@ -162,110 +164,8 @@ input {
 .inputDiv {
     @apply rounded-full h-7 flex items-center !shadow-none bg-opacity-0 border-t px-4 !border capitalize font-normal;
 }
-
-/**** ANIMATIONS ****/
-
-.anim {
-    @apply duration-700 fadeIn;
-    animation: up 2s forwards;
-}
-
-.animRev {
-    @apply duration-700;
-    animation: down 1.5s forwards;
-}
-
-.animSlide {
-    @apply duration-700 fadeIn;
-    animation: slide 1.2s forwards;
-}
-
-.animSlideUp {
-    @apply duration-700 fadeIn;
-    animation: slideUp 1.2s forwards;
-}
-
-@keyframes slideOut {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(90%);
-    }
-}
-
-.fadeIn {
-    @apply duration-700;
-    animation: fadeIn 1.2s forwards;
-}
-
 .notif {
     @apply -bottom-full pt-9 items-center flex-col gap-4 absolute w-full h-full flex justify-center anim;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes up {
-    from {
-        transform: translateY(100%);
-    }
-    to {
-        transform: translateY(0);
-    }
-}
-
-@keyframes down {
-    from {
-        transform: translateY(-100%);
-    }
-    to {
-        transform: translateY(0);
-    }
-}
-
-@keyframes slide {
-    from {
-        transform: translateX(-90%);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-.spin {
-    animation: spin 0.7s linear;
-}
-@keyframes spin {
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/**** GRID SYSTEM ****/
-.Grid {
-    @apply max-h-full wRespXL grid grid-cols-[minmax(calc(50%-1rem),_1fr)] pt-2 pb-4 gap-y-3.5 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)] 
-  lg:auto-rows-[minmax(300px,40vh)] auto-rows-[minmax(346px,40vh)];
-}
-
-.Grid2 {
-    @apply !max-h-full grid grid-cols-[minmax(calc(50%-1rem),_1fr)] gap-y-3 pb-4 gap-x-1 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)];
-    grid-auto-rows: minmax(320px, 53vh);
-}
-
-.GridSmall {
-    @apply !max-h-full grid grid-cols-[minmax(calc(50%-1rem),_1fr)] gap-y-3 gap-x-1 pb-4 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)];
-    grid-auto-rows: max-content;
-}
-
-.SubGrid {
-    @apply pt-6 max-w-[calc(100vw-1rem)] mx-1.5;
 }
 
 /**** RESPONSIVE ****/
@@ -276,71 +176,6 @@ input {
 
 .w-respLarge {
     @apply w-full my-0 mx-auto lg:max-w-[54rem] md:max-w-[calc(100vw-2rem)];
-}
-
-/**** CARD ****/
-
-.FixCard {
-    @apply border !bg-white w-respLarge rounded-xl w-full mx-auto 
-    h-full grid 
-    lg:grid-rows-[minmax(48%,1fr),1fr,auto] grid-rows-[minmax(50%,1fr),1fr,auto] 
-    !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md;
-}
-
-.FixCardNoImage {
-    @apply !bg-white w-full grid rounded-xl my-0 mx-auto !h-[calc(100%+1.5rem)] !-mt-6 !p-0 anim
-  grid-rows-[auto_1fr_auto] !flex-col border border-slate-200 shadow-md;
-}
-
-.FixCardHeader {
-    @apply !flex h-[calc(100%+1.5rem)] !rounded-xl !relative !z-[999] -mt-6 max-w-[calc(100%-1.8rem)] m-auto !shadow-md fadeIn border;
-}
-
-.FixCardHeaderSmall {
-    @apply flex flex-1 !min-h-[9rem] !max-h-[60vw] sm:!max-h-[45vw] md:!max-h-[30%] !shadow-md fadeIn;
-}
-
-.FixCardHeaderNoImage {
-    @apply !shadow-none max-h-[11rem] !min-h-max flex m-auto top-0 w-full !left-0;
-}
-
-.ChipDiv {
-    @apply flex max-w-[calc(100%-1rem)] w-full gap-2 justify-between overflow-auto flex-wrap absolute p-2 h-max;
-}
-
-.ChipDivNoImage {
-    @apply h-max w-full flex gap-2 justify-between overflow-auto !p-4;
-}
-
-.ChipSubDiv {
-    @apply w-full flex flex-wrap gap-2 items-start;
-}
-
-.FixCardBody {
-    @apply flex relative flex-col px-5 !py-0 overflow-hidden
-    max-h-full h-full;
-}
-
-.CardOverFlow {
-    @apply min-h-max  overflow-auto py-4 px-0;
-}
-
-.CardFooter {
-    @apply flex !relative justify-between pt-0 px-5 !py-3 !my-0 max-h-max;
-}
-
-.CardImage {
-    @apply h-full w-full !rounded-xl object-cover !shadow-lg !bg-white;
-}
-
-.DetailCardDiv {
-    @apply pt-8 pb-1 h-full flex overflow-hidden;
-}
-
-.CardDetailGrid {
-    @apply w-respLarge FixCard 
-    
-     !h-full  !grid-rows-[25vh,1fr,auto] md:!grid-rows-[30vh,1fr,auto];
 }
 
 /**** ICON ****/
@@ -368,14 +203,6 @@ nav li .icon {
     @apply text-gray-700 !decoration-4 text-[31px];
 }
 
-.active .UOrange {
-    @apply !decoration-orange-600;
-}
-
-.active .UCyan {
-    @apply !border-b-2 !border-red-100;
-}
-
 .error {
     @apply !text-red-500 !border-red-500;
 }
@@ -396,15 +223,6 @@ nav li .icon {
     @apply bg-gray-300 text-gray-600;
 }
 
-/* CHIP OUTLINED */
-.CyanChipOutlined {
-    @apply text-cyan-600 border-cyan-600 border;
-}
-
-.OrangeChipOutlined {
-    @apply text-orange-600 border-orange-600 border;
-}
-
 /*BUTTONS*/
 
 button:disabled {
@@ -421,7 +239,7 @@ button:hover {
 }
 
 .lgBtn {
-    @apply !flex min-h-max min-w-max items-center justify-center rounded-full !w-full !shadow-md px-4 py-1.5 lg:py-2 gap-2 !break-words border-hidden;
+    @apply !flex min-h-max min-w-max items-center justify-center rounded-full !w-full !shadow-md px-4 py-2.5 gap-4 !break-words border-hidden;
 }
 
 /**** COMP ****/

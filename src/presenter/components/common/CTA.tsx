@@ -37,32 +37,34 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
 
 
     return (
-        <footer className="CTA h-full w-full !flex items-center justify-center">
-            {actions.map((action, i) =>
-                action?.icon && action?.icon !== '' && (
-                    <div
-                        key={i}
-                        className={`!flex flex-1 w-full items-center justify-center`}
-                    >
-                        <Button
-                            className={`${action?.color ?? defColor}StyleInv !min-w-full lgBtn`}
-                            size="lg"
-                            onClick={() => { setOpen(true); setIndex(i); }}
-                            disabled={i === 0 ? disabled1 : i === 1 ? disabled2 : undefined}
+        <footer className="CTA sticky bottom-0 left-0 h-full w-full !flex items-center justify-center rounded-t-3xl ${color}BG backdropBlur ">
+            <div className="flex gap-x-4 gap-y-2 flex-row flex-wrap items-center justify-center w-full wRespXL p-1">
+                {actions.map((action, i) =>
+                    action?.icon && action?.icon !== '' && (
+                        <div
+                            key={i}
+                            className={`!flex flex-1 w-full items-center justify-center`}
                         >
-                            {action?.iconImage && (
-                                <Icon
-                                    fill
-                                    color="white"
-                                    icon={action?.iconImage}
-                                    size="lg"
-                                />
-                            )}
-                            {action?.icon}
-                        </Button>
-                    </div>
-                )
-            )}
+                            <Button
+                                className={`${action?.color ?? defColor}StyleInv !min-w-full lgBtn`}
+                                size="lg"
+                                onClick={() => { setOpen(true); setIndex(i); }}
+                                disabled={i === 0 ? disabled1 : i === 1 ? disabled2 : undefined}
+                            >
+                                {action?.iconImage && (
+                                    <Icon
+                                        fill
+                                        color="white"
+                                        icon={action?.iconImage}
+                                        size="lg"
+                                    />
+                                )}
+                                {action?.icon}
+                            </Button>
+                        </div>
+                    )
+                )}
+            </div>
         </footer>
     );
 }

@@ -51,7 +51,7 @@ export default function GroupDetailPage() {
     return (
         <>
             <main>
-                <div className="sectionHeader px-4">
+                <div className="sectionHeader ">
                     <SubHeader
                         type={`Groupes ${group?.categoryS ?? ""}`} closeBtn />
                 </div>

@@ -20,9 +20,9 @@ export function Title(props: { title: string, flagged?: boolean, id?: number, Cr
     const { flagged, id, CreatedAt, subTitle, type, group, title } = props
 
     return (
-        <div className="min-h-max relative pt-1 gap-1 flex flex-col">
+        <div className="min-h-max  relative pt-1 gap-1 flex flex-col">
             <div className="flex items-center w-full justify-between gap-2">
-                <div className="flex flex-1 py-1 items-center gap-4 w-full">
+                <div className="flex flex-1 pt-1 items-center gap-4 w-full">
                     <h4
                         id={title}
                         className="w-full flex !line-clamp-1 "
@@ -41,12 +41,15 @@ export function Title(props: { title: string, flagged?: boolean, id?: number, Cr
                     </div>}
             </div>
             {(group || subTitle) &&
-                <div className="flex flex-col justify-between gap-1 ">
+                <div className="grid flex-col   justify-between gap-1 ">
                     {subTitle &&
-                        <h6 className="truncate">
+                        <h6 className="truncate -mt-1  !text-base">
                             {subTitle}
                         </h6>}
-                    {group && <GroupLink group={group ?? {} as Group} />}
+                    {group &&
+                        <div className="truncate">
+                            <GroupLink group={group ?? {} as Group} />
+                        </div>}
                 </div>}
         </div>)
 }

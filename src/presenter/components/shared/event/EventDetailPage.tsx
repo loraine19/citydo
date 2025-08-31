@@ -65,7 +65,7 @@ export default function EventDetailPage() {
     return (
         <>
             <main data-cy="event-details-page">
-                <div className="sectionHader px-4">
+                <div className="sectionHeader">
                     <SubHeader
                         type={`évenement ${event?.label ?? ''}`}
                         place={` ${event?.Address?.address ?? ''} ${event?.Address?.city ?? ''}`}
@@ -78,11 +78,12 @@ export default function EventDetailPage() {
                             EventLoad={event}
                             refetch={async () => await updateEvent()} /> :
                         <Skeleton />}
-                    {notif && <NotifDiv
-                        isLoading={isLoading}
-                        refetch={refetch}
-                        notif={notif}
-                    />}
+                    {notif &&
+                        <NotifDiv
+                            isLoading={isLoading}
+                            refetch={refetch}
+                            notif={notif}
+                        />}
                 </section>
             </main>
             <footer >

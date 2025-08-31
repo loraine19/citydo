@@ -51,7 +51,7 @@ export default function PostDetailPage() {
     return (
         <>
             <main>
-                <div className="sectionHeader px-4">
+                <div className="sectionHeader ">
                     <SubHeader type={`annonce ${post?.categoryS ?? ""}`} closeBtn />
                 </div>
                 <section>

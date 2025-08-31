@@ -1,0 +1,101 @@
+/**** GRID SYSTEM ****/
+
+/* list section */
+.Grid {
+    @apply max-h-full wRespXL grid pt-2 pb-4 gap-y-3.5
+    grid-cols-[minmax(calc(50%-1rem),_1fr)]  
+    lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)] 
+  lg:auto-rows-[minmax(310px,40vh)] 
+  auto-rows-[minmax(330px,40vh)];
+}
+
+.Grid2 {
+    @apply !max-h-full grid grid-cols-[minmax(calc(50%-1rem),_1fr)] gap-y-3 pb-4 gap-x-1 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)];
+    grid-auto-rows: minmax(320px, 53vh);
+}
+
+.GridSmall {
+    @apply !max-h-full grid grid-cols-[minmax(calc(50%-1rem),_1fr)] gap-y-3 gap-x-1 pb-4 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)];
+    grid-auto-rows: max-content;
+}
+
+/* list grid */
+.SubGrid {
+    @apply pt-6 max-w-[calc(100vw-1rem)] mx-1.5;
+}
+
+.DetailCardDiv {
+    @apply pt-8 pb-1 h-screen flex !overflow-auto;
+}
+
+/**** CARD ****/
+@layer components {
+    /* CARD  */
+    .FixCard {
+        @apply border !bg-white w-respLarge rounded-xl w-full mx-auto 
+    !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md
+    h-full 
+    grid 
+    lg:grid-rows-[minmax(48%,1fr),auto,auto] 
+    grid-rows-[minmax(52%,1fr),minmax(min-content,1fr),auto];
+    }
+
+    .CardDetailGrid {
+        @apply w-respLarge 
+        border !bg-white w-respLarge rounded-xl w-full mx-auto 
+    !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md
+    h-full 
+    grid 
+    grid-rows-[minmax(52vw,1fr),1fr,auto];
+    }
+
+    .FixCardNoImage {
+        @apply !bg-white w-full grid rounded-xl my-0 mx-auto !h-[calc(100%+1.5rem)] !-mt-6 !p-0 anim
+  grid-rows-[auto_1fr_auto] !flex-col border border-slate-200 shadow-md;
+    }
+
+    /* CARD HEADER */
+    .FixCardHeader {
+        @apply !flex h-[calc(100%+1.5rem)] !rounded-xl !relative !z-[999] -mt-6 max-w-[calc(100%-1.8rem)] m-auto !shadow-md fadeIn border;
+    }
+
+    .FixCardHeaderSmall {
+        @apply flex flex-1 !min-h-[9rem] !max-h-[60vw] sm:!max-h-[45vw] md:!max-h-[30%] !shadow-md fadeIn;
+    }
+
+    .FixCardHeaderNoImage {
+        @apply !shadow-none max-h-[11rem] !min-h-max flex m-auto top-0 w-full !left-0;
+    }
+
+    .CardImage {
+        @apply h-full max-h-[60vh] w-full !rounded-xl object-cover !shadow-lg !bg-white;
+    }
+
+    /* CHIP */
+    .ChipDiv {
+        @apply flex max-w-[calc(100%-1rem)] w-full gap-2 justify-between overflow-auto flex-wrap absolute p-2 h-max;
+    }
+
+    .ChipDivNoImage {
+        @apply h-max w-full flex gap-2 justify-between overflow-auto !p-4;
+    }
+
+    .ChipSubDiv {
+        @apply w-full flex flex-wrap gap-2 items-start;
+    }
+
+    /* CARDBODY */
+    .FixCardBody {
+        @apply flex relative flex-col px-5 !py-0 
+    max-h-full h-full min-h-full;
+    }
+
+    .CardOverFlow {
+        @apply min-h-max  overflow-auto py-4 px-0;
+    }
+
+    /*FOOTER */
+    .CardFooter {
+        @apply flex bottom-0 justify-between pt-0 px-5 !py-3 !my-0 max-h-min  min-h-min;
+    }
+}

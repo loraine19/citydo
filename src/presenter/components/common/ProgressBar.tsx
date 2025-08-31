@@ -39,7 +39,7 @@ export function ProgressBar({ value, label, needed, status, size = 'md' }: Progr
             <div className=" flex  w-full items-center justify-between gap-1 px-1">
                 <Typography
                     as='i'
-                    className="!p-0 !-mb-1"
+                    className="!p-0 !-mb-1 truncate"
                 // variant={textSize as TypographyProps['variant']}
                 >
                     {labelTexte}

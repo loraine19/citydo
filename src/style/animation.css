@@ -1,0 +1,80 @@
+/**** ANIMATIONS ****/
+
+.anim {
+    @apply duration-700 fadeIn;
+    animation: up 2s forwards;
+}
+
+.animRev {
+    @apply duration-700;
+    animation: down 1.5s forwards;
+}
+
+.animSlide {
+    @apply duration-700 fadeIn;
+    animation: slide 1.2s forwards;
+}
+
+.animSlideUp {
+    @apply duration-700 fadeIn;
+    animation: slideUp 1.2s forwards;
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(90%);
+    }
+}
+
+.fadeIn {
+    @apply duration-700;
+    animation: fadeIn 1.2s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes up {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes down {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(-90%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.spin {
+    animation: spin 0.7s linear;
+}
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}

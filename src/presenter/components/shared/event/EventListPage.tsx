@@ -149,7 +149,7 @@ export default function EventListPage() {
     return (
 
         <main>
-            <div className="sectionHeader ">
+            <div className="sectionHeader">
                 {view === "view_agenda" &&
                     <TabsMenu
                         labels={eventTabs}
@@ -175,17 +175,18 @@ export default function EventListPage() {
                         color="cyan"
                         fill
                         title={view === "view_agenda" ? "voir en mode calendrier" : "voir en mode liste"} />
-                    {(view === "view_agenda" && notif) &&
-                        <NotifDiv
-                            error={error}
-                            notif={notif}
-                            isLoading={isLoading}
-                            refetch={refetch} />
-                    }
+
                 </div>
                 <SubHeader
                     qty={count || 0}
                     type={`évènements ${filterName()} ${EventCategory[category as keyof typeof EventCategory] ?? ''}`} />
+                {(view === "view_agenda" && notif) &&
+                    <NotifDiv
+                        error={error}
+                        notif={notif}
+                        isLoading={isLoading}
+                        refetch={refetch} />
+                }
             </div>
             {view === "view_agenda" &&
                 <>

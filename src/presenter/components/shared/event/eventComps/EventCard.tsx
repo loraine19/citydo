@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardBody, CardFooter, Typography } from "@material-tailwind/react";
+import { Card, CardHeader, CardBody, CardFooter } from "@material-tailwind/react";
 import { AvatarStack } from "./AvatarStack";
 import { useState } from "react";
 import ModifBtnStack from "../../../common/ModifBtnStack";
@@ -20,7 +20,7 @@ type EventCardProps = {
 
 export function EventCard({ event: initialEvent, change, mines, refetch }: EventCardProps) {
     const [event, setEvent] = useState<EventView>(initialEvent);
-    const { id, title, description, participantsMin, start, end, createdAt, image, flagged, pourcent = 0, Igo, label, toogleParticipate, agendaLink, eventDateInfo } = event;
+    const { id, title, participantsMin, start, end, createdAt, image, flagged, pourcent = 0, Igo, label, toogleParticipate, agendaLink, eventDateInfo } = event;
     const disabledDelete = new Date(start).getTime() < Date.now();
     const disabledEdit = new Date(start).getTime() < Date.now();
     const deleteEvent = async (id: number) => await DI.resolve('deleteEventUseCase').execute(id)
@@ -77,9 +77,9 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                     type='evenement'
                     group={event.Group}
                 />
-                <Typography className="description !line-clamp-1">
+                {/* <Typography className="description !line-clamp-1 ">
                     {description}
-                </Typography>
+                </Typography> */}
             </CardBody>
             <CardFooter className="CardFooter">
                 {!mines ? (

@@ -15,7 +15,7 @@ export default function RulesPage() {
     return (
         <>
             <main>
-                <div className="sectionHeader px-4">
+                <div className="sectionHeader ">
                     <SubHeader
                         qty={''}
                         type={`Réglements de vos groupes`}

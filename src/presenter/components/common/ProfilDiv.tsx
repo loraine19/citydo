@@ -20,7 +20,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
 
     return (
         <>
-            <div className={`relative pl-1 min-w-max pb-0.5 truncate z-50 flex items-center px-0 gap-3`}>
+            <div className={`relative pl-1  pb-0.5 w-full  z-50 flex items-center px-0 gap-3`}>
                 <Popover placement="bottom-start">
                     <PopoverTrigger>
                         <div className={`relative mt-0.5 mb-0.5`}>
@@ -98,15 +98,15 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
                         </div>
                     </PopoverContent>
                 </Popover>
-                <div className="flex flex-col gap-1 truncate">
+                <div className="flex flex-col gap-1 truncate ">
                     <Typography variant={textSize}
                         className="border-b pb-1 border-slate-400/50 pr-4  ">
                         {profile?.firstName} {profile?.lastName}
                     </Typography>
-                    <div className={`text-slate-500 !line-clamp-2 pr-4`}>
+                    <div className={`text-slate-500  !line-clamp-2 pr-4`}>
                         {userDiv?.GroupUser?.map((group: GroupUser, index: number) =>
                             <Typography
-                                className={`font-light ${texteSize2} !line-clamp-1`}
+                                className={`font-light ${texteSize2} truncate !line-clamp-1`}
                                 key={index} >
                                 {' ⌖ ' + group.Group?.name.split(':')[0]}
                             </Typography>)}
