@@ -26,9 +26,9 @@
 
 .DetailCardDiv {
     @apply /* pt-8 pb-1 h-screen flex !overflow-auto */
-    max-h-full wRespXL grid pt-8 
-    grid-rows-[100%]
-    md:grid-rows-[100%];
+    max-h-full wRespXL grid pt-8 pb-[3rem]  min-h-full
+    grid-rows-[calc(100%_+_0rem)]
+    md:grid-rows-[calc(100%_+_0rem)];
 }
 
 /**** CARD ****/
@@ -47,11 +47,11 @@
         @apply w-respLarge 
         border !bg-white w-respLarge rounded-xl w-full mx-auto 
     !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md
-    h-full 
+    !h-full !min-h-full
 
     grid 
-    grid-rows-[minmax(50vw,1fr),minmax(min-content,calc(100vh-30rem)),auto]
-    lg:grid-rows-[minmax(400px,1fr),minmax(min-content,calc(100vh-30rem)),auto];
+    grid-rows-[minmax(50vw,1fr),minmax(min-content,calc(100%-0rem)),auto]
+    lg:grid-rows-[minmax(400px,1fr),minmax(min-content,100%),auto];
     }
 
     .CardDetailGridNoImage {
@@ -60,7 +60,7 @@
     !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md
     h-full 
     grid 
-    grid-rows-[auto,minmax(min-content,calc(100vh-16rem)),auto];
+    grid-rows-[auto,minmax(min-content,calc(100vh-20rem)),auto];
     }
 
     .FixCardNoImage {
