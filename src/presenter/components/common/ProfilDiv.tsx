@@ -17,13 +17,14 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
     const textSize = size === "xl" && "h6" || size === "lg" && "h6" || "h6"
     const texteSize2 = size === "xl" && "text-sm" || size === "lg" && "text-sm" || "!hidden"
     const user = useUserStore(state => state.user)
+    const width = size === 'xl' ? '!min-w-[5.5rem]' : size === 'lg' ? '!min-w-[3.5rem]' : '!min-w-[2.5rem]'
 
     return (
         <>
-            <div className={`relative pl-1  pb-0.5 w-full  z-50 flex items-center px-0 gap-3`}>
+            <div className={`relative pl-1 pb-0.5 w-full z-50 flex items-center px-0 gap-2`}>
                 <Popover placement="bottom-start">
                     <PopoverTrigger>
-                        <div className={`relative mt-0.5 mb-0.5`}>
+                        <div className={`relative p-1 mt-0.5 mb-0.5  ${width} w-full`}>
                             <AvatarUser
                                 avatarStyle=""
                                 Profile={profile}
@@ -32,7 +33,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
                                 id={profile?.userId} />
                         </div>
                     </PopoverTrigger>
-                    <PopoverContent className=" w-auto !p-6 z-50 ">
+                    <PopoverContent className=" w-auto max-w-[calc(100vw-1rem)] !p-6 z-50 ">
                         <div className="flex gap-6  pb-2 ">
                             <div className="relative gap-4 ">
                                 <Icon

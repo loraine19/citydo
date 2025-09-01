@@ -49,10 +49,9 @@ export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
                     close={() => setOpen(false)}
                     vote={pool}
                     refetch={update} />}
-            <Card className={`FixCardNoImage `}>
-                <CardHeader className={"FixCardHeaderNoImage"}
-                    floated={false}>
-                    <div className={`ChipDivNoImage flex-wrap`}>
+            <Card className={`FixCardNoImage`}>
+                <CardHeader className={"FixCardHeaderNoImage"}>
+                    <div className={` ChipDivNoImage `}>
                         <button onClick={(e: any) => change(e)}>
                             <Chip
                                 size='sm'
@@ -67,8 +66,8 @@ export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
                             prefix="finis dans" />
                     </div>
                 </CardHeader>
-                <CardBody className="FixCardBody">
-                    <div className="py-1 ">
+                <CardBody className="FixCardBody !overflow-hidden">
+                    <div className="py-1 flex flex-col ">
                         <ProfileDiv
                             profile={pool?.UserBenef || {} as Partial<User>}
                             size={'xl'} />
@@ -83,21 +82,23 @@ export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
                     </Typography>
                 </CardBody>
                 <CardFooter
-                    className="CardFooter items-center gap-6">
+                    className="CardFooter w-full items-center gap-x-6 !flex-wrap flex-row !max-w-full">
                     {!mines ?
-                        <ProgressBar
-                            value={pool.pourcent}
-                            label="votes pour"
-                            needed={pool.needed}
-                            size="md"
-                            status={pool.status}
-                        />
+                        <div className="flex-1">
+                            <ProgressBar
+                                value={pool.pourcent}
+                                label="votes pour"
+                                needed={pool.needed}
+                                size="md"
+                                status={pool.status}
+                            />
+                        </div>
                         :
                         <ModifBtnStack
                             disabled2={disabledEditCTA}
                             actions={actions}
                             update={update} />}
-                    <div className="flex items-center justify-between ">
+                    <div className="flex items-center justify-between gap-2">
                         <button
                             disabled={pool?.status !== PoolSurveyStatus.PENDING}
                             onClick={() => setOpen(true)}>

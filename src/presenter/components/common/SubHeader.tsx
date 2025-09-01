@@ -31,24 +31,24 @@ export default function SubHeader({ type, qty, place, closeBtn, link }: SubHeade
                     </span>
 
                 </Typography>
-                <hr className={` !border-${color}-500 border-b-[0.5px] border-t-0 w-full `}></hr>
+                <hr className={` !border-${color}-500 border-b-[1px] border-t-0 w-full `}></hr>
             </div>
             {hideNavBottom &&
                 <Icon
                     style="scale-90 mt-1 ml-1"
-                    icon="arrow_upward"
+                    icon="arrow_circle_up"
                     color={color ?? 'gray'}
-                    size="sm"
-                    bg
+                    size="2xl"
+                    fill
                     onClick={() => scrollToTop()}
                     title="retour" />}
             {closeBtn &&
                 <Icon
                     style="scale-90 mt-1 ml-1"
-                    icon="close"
+                    icon="cancel"
                     color={color ?? 'gray'}
-                    size="sm"
-                    bg
+                    size="2xl"
+                    fill
                     link={goBack}
                     title={"retour " + goBack?.replace("/", "")}
                 />}

@@ -36,16 +36,17 @@ export function ProgressBar({ value, label, needed, status, size = 'md' }: Progr
 
     return (
         < div className={`h-max w-full flex  flex-col px-2 pb-3 gap-1 -ml-2 ${size === "lg" && "mb-2"}`}>
-            <div className=" flex  w-full items-center justify-between gap-1 px-1">
+            <div className=" flex truncate items-center justify-between gap-1 px-1">
                 <Typography
                     as='i'
-                    className="!p-0 !-mb-1 truncate"
+                    className="!p-0 !-mb-1 truncate max-w-[90%] "
                 // variant={textSize as TypographyProps['variant']}
                 >
                     {labelTexte}
                 </Typography>
             </div>
             <Progress
+                className="!min-w-4"
                 value={value}
                 size={size} >
                 <ProgressBarMT

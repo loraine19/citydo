@@ -95,13 +95,15 @@ export function SurveyCard({ survey, change, mines, update }: SurveyCardProps) {
                     </Typography>
                 </CardBody>
                 <CardFooter
-                    className="CardFooter items-center gap-6">
+                    className="CardFooter w-full items-center gap-x-6 !flex-wrap flex-row !max-w-full">
                     {!mines ?
-                        <ProgressBar
-                            value={survey?.pourcent}
-                            label="vote pour"
-                            needed={survey?.needed}
-                            status={survey?.status} />
+                        <div className="flex-1">
+                            <ProgressBar
+                                value={survey?.pourcent}
+                                label="vote pour"
+                                needed={survey?.needed}
+                                status={survey?.status} />
+                        </div>
                         :
                         <ModifBtnStack
                             disabled2={ended}
