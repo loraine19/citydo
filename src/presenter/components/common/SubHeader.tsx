@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom"
 import { Icon } from "./IconComp"
-import { Typography } from "@material-tailwind/react"
 import { useUxStore } from "../../../application/stores/ux.store"
 
 type SubHeaderProps = { type: string, qty?: (number | string), place?: any, closeBtn?: boolean, link?: string }
@@ -22,15 +21,13 @@ export default function SubHeader({ type, qty, place, closeBtn, link }: SubHeade
     return (
         <div className={`flex w-full h-full `}>
             <div className={`flex flex-col w-full  h-full pt-2 gap-x-2 justify-end lg:justify-between`}>
-                <Typography
-                    as="h2"
-                    className={`!line-clamp-1  flex capitalize text-[1.2rem] pl-2 flex-1 gap-2 w-full  `}>
-                    {qty} {type}
-                    <span className="hidden sm:inline-block flex-1 !font-thin opacity-75 ">
-                        &nbsp;{place ?? "dans vos groupes"}
+                <h2
+                    className={`!line-clamp-1 flex text-[1.2rem] pl-2 flex-1  w-full  `}>
+                    <span className={`capitalize`}>{qty} {type}</span>
+                    <span className="hidden sm:inline-block flex-1 !lowercase !font-thin opacity-75">
+                        {place ?? "dans vos groupes"}
                     </span>
-
-                </Typography>
+                </h2>
                 <hr className={` !border-${color}-500 border-b-[1px] border-t-0 w-full `}></hr>
             </div>
             {hideNavBottom &&

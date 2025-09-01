@@ -35,7 +35,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
     type NotifBadgeProps = { count: number, notifs: NotifView[], color: string, icon: string, link: string }
 
     const badgeMapGenerator = () => [
-        { count: countMsg, notifs: notifsMsg, color: 'cyan', icon: 'chat', link: '/chat' },
+        { count: countMsg, notifs: notifsMsg, color: 'teal', icon: 'chat', link: '/chat' },
         { count: countOther, notifs: notifsOther, color: 'orange', icon: 'notifications', link: '/notification' }
     ];
     const [badgeMap, setBadgeMap] = useState<NotifBadgeProps[]>(badgeMapGenerator());

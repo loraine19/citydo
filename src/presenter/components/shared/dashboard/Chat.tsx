@@ -90,11 +90,11 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
     const [openEmoji, setOpenEmoji] = useState(false);
 
     return (
-        <Card className='FixCardNoImage !flex !border-white !border-8 p-1'>
-            <CardHeader className='FixCardHeaderNoImage !bg-slate-200 w-full px-3 !h-max pt-2 '>
+        <Card className='FixCardNoImage !flex-col !flex !border-white !border-8 p-1'>
+            <CardHeader className='FixCardHeaderNoImage !bg-slate-200 w-full px-3 !h-max pt-2 !relative'>
                 {newConv &&
                     <ProfileDiv profile={userRec} />}
-                <div className='h-full w-full !flex !justify-start border opacity-30 -ml-[calc(50%-8rem)] py-1.5 '>
+                <div className=' !w-[22rem] !flex  !justify-end border opacity-30 absolute  -translate-y-10 right-2'>
                     <NotifDiv
                         notif={notif}
                         error={error}

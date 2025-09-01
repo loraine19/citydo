@@ -19,12 +19,12 @@ const NotifDiv: React.FC<NotifDivProps> = ({ notif, isLoading, refetch, error })
     }, [notif, error]);
 
     return (
-        <div className={`absolute top-[100%] left-0 notif min-w-max pt-6 min-h-max !justify-start !text-${color}-500 `}>
+        <div className={`absolute top-[100%] h-fit !w-[22rem] left-0 notif min-w-max pt-4 min-h-max !justify-start !text-${color}-500 `}>
             {error ? 'Une erreur est survenue : ' : ''}
             {notif !== error && notif}
             <span
                 style={{ display: 'inline-block', transition: 'transform 0.5s' }}
-                className={''}
+                className={'wrapper'}
                 onClick={e => {
                     e.stopPropagation();
                     const el = e.currentTarget;

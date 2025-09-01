@@ -81,7 +81,7 @@
     @apply !bg-slate-500 inv;
 }
 .tealStyle {
-    @apply !text-teal-500 bg-teal-200  style;
+    @apply !text-teal-500 bg-teal-200/70  style;
 }
 .tealStyleInv {
     @apply !bg-teal-500 inv;
@@ -99,7 +99,7 @@
     @apply !bg-rose-500 inv;
 }
 .yellowStyle {
-    @apply !text-yellow-500 !bg-yellow-200  style;
+    @apply !text-yellow-500 !bg-yellow-200/70  style;
 }
 .yellowStyleInv {
     @apply !bg-yellow-500 inv;

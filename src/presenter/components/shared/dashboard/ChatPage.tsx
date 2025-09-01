@@ -131,7 +131,7 @@ export default function ChatPage() {
                 <div className='sectionHeader '>
                     <SubHeader
                         qty={open ? messages?.length : countConv}
-                        type={open ? 'messages' : 'conversation'}
+                        type={open ? 'messages ' : 'conversation '}
                         place={' avec ' + (userRec?.Profile?.firstName ?? 'des membres')}
                         closeBtn
                         link='/' />
@@ -145,7 +145,7 @@ export default function ChatPage() {
                             onClick={() => connexion()} />}
 
                 </div>
-                <section className='flex !px-0 pb-4 pt-8'>
+                <section className='flex !px-0 pb-4 !pt-7'>
                     {notifConv &&
                         <NotifDiv
                             notif={notifConv}
@@ -156,10 +156,10 @@ export default function ChatPage() {
                     {isLoadingConv ?
                         <Skeleton className=' m-auto !h-full !rounded-3xl' /> :
                         <Card className='FixCardNoImage !flex !pb-0 !px-0 h-full'>
-                            <CardBody className=' !p-0  h-full'>
+                            <CardBody className=' !p-1  h-full'>
                                 <div className='flex flex-1 h-full  '>
-                                    <div className='flex-1  overflow-y-auto overflow-x-hidden'>
-                                        <List className='flex-1 border-8 gap-1 border-white'>
+                                    <div className='flex-1 overflow-y-auto overflow-x-hidden'>
+                                        <List className='flex-1 !border-8 gap-1 border-white'>
                                             {conversations &&
                                                 conversations.map((message: MessageView, index: number) =>
                                                     <div key={index + 'div'}>
@@ -229,8 +229,7 @@ export default function ChatPage() {
                                                 error={error}
                                             />
                                             <Icon
-                                                style='absolute -top-5 !right-1'
-                                                color='slate'
+                                                style='absolute z-[999] -top-5 !right-1'
                                                 size='md'
                                                 bg clear
                                                 icon='close'
