@@ -87,7 +87,7 @@
     @apply !bg-teal-500 inv;
 }
 .amberStyle {
-    @apply !text-amber-500 bg-amber-200  style;
+    @apply !text-amber-500 bg-amber-200/70  style;
 }
 .amberStyleInv {
     @apply !bg-amber-500 inv;

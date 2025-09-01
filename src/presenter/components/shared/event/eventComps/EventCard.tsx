@@ -83,7 +83,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
             </CardBody>
             <CardFooter className="CardFooter">
                 {!mines ? (
-                    <div className="flex relative pl-5 overflow-auto items-center gap-2">
+                    <div className="flex relative pl-5 flex-1 overflow-auto items-center gap-2">
                         <Icon
                             icon='calendar_add_on'
                             link={agendaLink}

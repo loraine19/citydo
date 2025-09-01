@@ -10,13 +10,13 @@ export const GroupLink: React.FC<GroupDivProps> = ({ group }) => {
     const category: string = groupCategories.find(cat => cat.value === group?.category)?.label ?? 'Autre'
 
     return (
-        <div className={`flex items-center pb-0.5 `}>
+        <div className={`pb-0.5 `}>
             <Popover
                 offset={0}
                 placement="bottom-start">
-                <PopoverTrigger>
-                    <i className={' !truncate  '}>
-                        ⌖ {group?.name}
+                <PopoverTrigger className="w-full flex">
+                    <i className={' !truncate '}>
+                        ⌖ {group?.name}...
                     </i>
                 </PopoverTrigger>
 

@@ -73,8 +73,7 @@ export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
                             size={'xl'} />
                         <Title
                             title={pool.title}
-                            group={pool.Group}
-                        />
+                            group={pool.Group} />
                     </div>
                     <Typography
                         className="description line-clamp-1">
@@ -82,23 +81,21 @@ export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
                     </Typography>
                 </CardBody>
                 <CardFooter
-                    className="CardFooter w-full items-center gap-x-6 !flex-wrap flex-row !max-w-full">
+                    className="CardFooter ">
                     {!mines ?
                         <div className="flex-1">
                             <ProgressBar
-                                value={pool.pourcent}
-                                label="votes pour"
-                                needed={pool.needed}
-                                size="md"
-                                status={pool.status}
-                            />
+                                value={pool?.pourcent}
+                                label="vote pour"
+                                needed={pool?.needed}
+                                status={pool?.status} />
                         </div>
                         :
                         <ModifBtnStack
                             disabled2={disabledEditCTA}
                             actions={actions}
                             update={update} />}
-                    <div className="flex items-center justify-between gap-2">
+                    <div className="flex  items-center justify-between gap-2">
                         <button
                             disabled={pool?.status !== PoolSurveyStatus.PENDING}
                             onClick={() => setOpen(true)}>

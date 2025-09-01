@@ -17,6 +17,8 @@ export const serviceViewModel = () => {
       = useInfiniteQuery({
         queryKey: ['services', params],
         staleTime: 600000,
+        retry: 2,
+
         queryFn: async ({ pageParam = 1 }) => await getServices.execute(pageParam, params) || [],
         initialPageParam: 1,
         getNextPageParam: (lastPage, pages) => lastPage?.services?.length ? pages.length + 1 : undefined

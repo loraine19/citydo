@@ -6,7 +6,7 @@
     grid-cols-[minmax(calc(50%-1rem),1fr)]  
     lg:grid-cols-[minmax(calc(50%-1rem),1fr),minmax(calc(50%-1rem),1fr)] 
   lg:auto-rows-[minmax(310px,40vh)] 
-  auto-rows-[minmax(fit-content,40vh)];
+  auto-rows-[minmax(fit-content,20vh)];
 }
 
 .Grid2 {
@@ -29,16 +29,16 @@
     /* CARD  */
 
     .card {
-        @apply border !bg-white  rounded-xl
-       w-full mx-auto 
+        @apply border !bg-white  rounded-xl w-full mx-auto 
     !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md
     h-full 
     grid;
     }
+
     .FixCard {
         @apply card w-respLarge
     lg:grid-rows-[minmax(48%,1fr),auto,auto] 
-    grid-rows-[minmax(52%,1fr),minmax(min-content,1fr),auto];
+    grid-rows-[minmax(20px,200px),minmax(min-content,auto),auto];
     }
 
     .FixCardNoImage {
@@ -48,7 +48,8 @@
 
     /* CARD HEADER */
     .FixCardHeader {
-        @apply !flex h-[calc(100%+1.4rem)] !rounded-xl !relative !z-[999] -mt-6 max-w-[calc(100%-1.8rem)] m-auto !shadow-md fadeIn border;
+        @apply md:max-w-[calc(100%-1.8rem)] max-w-[calc(100vw-4rem)]
+        !flex h-[calc(100%+1.4rem)] !rounded-xl !relative !z-[999] -mt-6  m-4 !shadow-md fadeIn border;
     }
 
     .FixCardHeaderSmall {
@@ -88,7 +89,8 @@
 
     /*FOOTER */
     .CardFooter {
-        @apply flex bottom-0 justify-between pt-0 px-5 !py-3 !my-0 max-h-min  min-h-min;
+        @apply flex bottom-0 justify-between pt-0 px-4 !py-3 !my-0 max-h-min 
+        min-h-fit w-full items-center gap-x-4 !flex-wrap flex-row !max-w-full;
     }
 
     /* DETAILD CARD  */

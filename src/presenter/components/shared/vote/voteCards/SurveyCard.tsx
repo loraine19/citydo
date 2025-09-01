@@ -95,9 +95,9 @@ export function SurveyCard({ survey, change, mines, update }: SurveyCardProps) {
                     </Typography>
                 </CardBody>
                 <CardFooter
-                    className="CardFooter w-full items-center gap-x-6 !flex-wrap flex-row !max-w-full">
+                    className="CardFooter ">
                     {!mines ?
-                        <div className="flex-1">
+                        <div className="flex-1 w-full">
                             <ProgressBar
                                 value={survey?.pourcent}
                                 label="vote pour"
@@ -109,7 +109,7 @@ export function SurveyCard({ survey, change, mines, update }: SurveyCardProps) {
                             disabled2={ended}
                             actions={actions}
                             update={update} />}
-                    <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center justify-between gap-2 ">
                         <button
                             disabled={survey?.status !== PoolSurveyStatus.PENDING}
                             onClick={() => { setOpen(true) }}>

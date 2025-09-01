@@ -20,7 +20,7 @@ export function Title(props: { title: string, flagged?: boolean, id?: number, Cr
     const { flagged, id, CreatedAt, subTitle, type, group, title } = props
 
     return (
-        <div className="min-h-max  relative pt-1 gap-1 flex flex-col">
+        <div className="min-h-max relative pt-1 gap-1 flex flex-col ">
             <div className="flex items-center w-full justify-between gap-2">
                 <div className="flex flex-1 pt-1 items-center gap-4 w-full">
                     <h4

@@ -60,7 +60,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
             </CardBody>
             <CardFooter className="CardFooter  ">
                 {!mines ?
-                    <div className=" w-full truncate pl-2 -ml-2 ">
+                    <div className=" w-full flex-1 truncate pl-2 -ml-2 ">
                         <ProfileDiv
                             profile={User} />
                     </div> :

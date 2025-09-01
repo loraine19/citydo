@@ -35,7 +35,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
     type NotifBadgeProps = { count: number, notifs: NotifView[], color: string, icon: string, link: string }
 
     const badgeMapGenerator = () => [
-        { count: countMsg, notifs: notifsMsg, color: 'teal', icon: 'chat', link: '/chat' },
+        { count: countMsg, notifs: notifsMsg, color: 'cyan', icon: 'chat', link: '/chat' },
         { count: countOther, notifs: notifsOther, color: 'orange', icon: 'notifications', link: '/notification' }
     ];
     const [badgeMap, setBadgeMap] = useState<NotifBadgeProps[]>(badgeMapGenerator());
@@ -55,7 +55,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                         ref={divRef}>
                         <Menu placement="bottom-end" >
                             <MenuTrigger title="Notifications">
-                                <span className={`${!list.count || list.count === 0 ? 'hidden' : `text-white absolute flex font-medium items-center justify-center w-[1.4rem] h-[1.4rem] text-[0.75rem] !min-w-max pt-[0.3rem] pb-1 bg-${list.color}-500 rounded-full bottom-0 -left-2.5 shadow z-50`}`}>
+                                <span className={`${!list.count || list.count === 0 ? 'hidden' : ` absolute flex font-medium items-center justify-center w-[1.4rem] h-[1.4rem] text-[0.75rem] !min-w-max pt-[0.3rem] pb-1 ${list.color}StyleInv rounded-full bottom-0 -left-2.5 shadow z-50`}`}>
                                     {list.count >= 99 ? '⁺99 ' :
                                         (list.count ? list.count.toString() : '0')}
                                 </span>

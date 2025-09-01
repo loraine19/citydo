@@ -19,15 +19,15 @@ export function ProgressBar({ value, label, needed, status, size = 'md' }: Progr
     switch (true) {
         case status === PoolSurveyStatus.REJECTED:
             color = 'bg-gray-300'
-            labelTexte = 'vote cloturé, n\'a pas été approuvé'
+            labelTexte = 'finis et non approuvé'
             break;
         case (status === PoolSurveyStatus.VALIDATED):
             color = 'bg-green-500'
-            labelTexte = 'vote cloturé et approuvé'
+            labelTexte = 'cloturé et approuvé'
             break;
         case (status === PoolSurveyStatus.PENDING && value === 0):
             color = 'bg-gray-200'
-            labelTexte = `Pas encore de ${label}`
+            labelTexte = `Pas de ${label}`
             break;
         default:
             color = 'bg-orange-500'
@@ -35,18 +35,18 @@ export function ProgressBar({ value, label, needed, status, size = 'md' }: Progr
     }
 
     return (
-        < div className={`h-max w-full flex  flex-col px-2 pb-3 gap-1 -ml-2 ${size === "lg" && "mb-2"}`}>
+        < div className={`h-max w-full flex  flex-col pl-2 pb-3 gap-1 -ml-2 ${size === "lg" && "mb-2"}`}>
             <div className=" flex truncate items-center justify-between gap-1 px-1">
                 <Typography
                     as='i'
-                    className="!p-0 !-mb-1 truncate max-w-[90%] "
+                    className="!p-0 !-mb-1 truncate "
                 // variant={textSize as TypographyProps['variant']}
                 >
                     {labelTexte}
                 </Typography>
             </div>
             <Progress
-                className="!min-w-4"
+                className="w-full"
                 value={value}
                 size={size} >
                 <ProgressBarMT
