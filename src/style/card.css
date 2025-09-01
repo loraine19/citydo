@@ -24,13 +24,6 @@
     @apply pt-6 max-w-[calc(100vw-1rem)] mx-1.5;
 }
 
-.DetailCardDiv {
-    @apply /* pt-8 pb-1 h-screen flex !overflow-auto */
-    max-h-full wRespXL grid pt-8 pb-[3rem]  min-h-full
-    grid-rows-[calc(100%_+_0rem)]
-    md:grid-rows-[calc(100%_+_0rem)];
-}
-
 /**** CARD ****/
 @layer components {
     /* CARD  */
@@ -43,26 +36,6 @@
     grid-rows-[minmax(52%,1fr),minmax(min-content,1fr),auto];
     }
 
-    .CardDetailGrid {
-        @apply w-respLarge 
-        border !bg-white w-respLarge rounded-xl w-full mx-auto 
-    !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md
-    !h-full !min-h-full
-
-    grid 
-    grid-rows-[minmax(50vw,1fr),minmax(min-content,calc(100%-0rem)),auto]
-    lg:grid-rows-[minmax(400px,1fr),minmax(min-content,100%),auto];
-    }
-
-    .CardDetailGridNoImage {
-        @apply w-respLarge 
-        border !bg-white w-respLarge rounded-xl w-full mx-auto 
-    !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md
-    h-full 
-    grid 
-    grid-rows-[auto,minmax(min-content,calc(100vh-20rem)),auto];
-    }
-
     .FixCardNoImage {
         @apply !bg-white w-full grid rounded-xl my-0 mx-auto !h-[calc(100%+1.5rem)] !-mt-6 !p-0 anim
   grid-rows-[auto_1fr_auto] !flex-col border border-slate-200 shadow-md;
@@ -70,7 +43,7 @@
 
     /* CARD HEADER */
     .FixCardHeader {
-        @apply !flex h-[calc(100%+1.5rem)] !rounded-xl !relative !z-[999] -mt-6 max-w-[calc(100%-1.8rem)] m-auto !shadow-md fadeIn border;
+        @apply !flex h-[calc(100%+1.4rem)] !rounded-xl !relative !z-[999] -mt-6 max-w-[calc(100%-1.8rem)] m-auto !shadow-md fadeIn border;
     }
 
     .FixCardHeaderSmall {
@@ -100,8 +73,8 @@
 
     /* CARDBODY */
     .FixCardBody {
-        @apply flex  relative flex-col px-5 !py-0 
-    max-h-full h-full min-h-full;
+        @apply flex  relative flex-col px-5 !py-0      
+    !max-h-full !h-full;
     }
 
     .CardOverFlow {
@@ -111,5 +84,35 @@
     /*FOOTER */
     .CardFooter {
         @apply flex bottom-0 justify-between pt-0 px-5 !py-3 !my-0 max-h-min  min-h-min;
+    }
+
+    /* DETAILD CARD  */
+    .DetailCardDiv {
+        @apply overflow-auto !h-full max-h-full  wRespXL grid pt-7 min-h-[fit-content]
+     pb-[3rem] sm:pb-0
+    grid-rows-[calc(100%_-_0rem)]
+    sm:grid-rows-[calc(100%_-_3rem)];
+    }
+
+    .CardDetailGrid {
+        @apply w-respLarge !overflow-visible bg-clip-content border !bg-white rounded-xl w-full mx-auto 
+    !relative !p-0 anim z-50 border-slate-200 shadow-md
+    !min-h-fit !justify-items-center !grid 
+    grid-rows-[minmax(200px,200px),minmax(min-content,1fr),auto]
+    sm:grid-rows-[minmax(250px,250px),minmax(min-content,100%),auto]
+    md:grid-rows-[minmax(35vh,35vh),minmax(min-content,100%),auto]
+    lg:grid-rows-[minmax(200px,200px),minmax(min-content,1fr),auto];
+    }
+
+    .CardDetailGridNoImage {
+        @apply w-respLarge 
+        border !bg-white w-respLarge rounded-xl w-full mx-auto 
+    !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md
+    h-full 
+    grid grid-rows-[auto,minmax(min-content,calc(100vh-20rem)),auto];
+    }
+
+    .DetailCardFooter {
+        @apply flex justify-between items-center max-h-fit w-full pt-4 h-[4rem];
     }
 }

@@ -96,6 +96,8 @@ header {
 .sectionHeader {
     @apply flex flex-col gap-0 relative;
 }
+
+/* TEXT */
 h2 {
     @apply font-bold !text-[1.5rem] !text-slate-700/95;
 }
@@ -116,7 +118,7 @@ p {
 }
 
 i {
-    @apply italic text-[0.95rem] font-normal !text-slate-400 !font-roboto;
+    @apply italic text-[0.95rem] font-normal !text-slate-500/90 !font-roboto;
 }
 
 .description {
@@ -134,7 +136,7 @@ i {
 }
 
 .CTA {
-    @apply justify-around  pb-2 h-max;
+    @apply pb-2   fixed bottom-0 left-0 h-max w-full !flex items-center justify-center rounded-t-3xl;
 }
 
 /**** INPUT STYLES ****/
@@ -220,13 +222,13 @@ nav li .icon {
 }
 
 .lgBtn:disabled {
-    @apply bg-gray-300 text-gray-600;
+    @apply bg-slate-300 text-slate-600;
 }
 
 /*BUTTONS*/
 
 button:disabled {
-    opacity: 90% !important;
+    opacity: 99% !important;
 }
 
 button {

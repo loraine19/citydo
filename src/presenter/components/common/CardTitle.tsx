@@ -34,7 +34,7 @@ export function Title(props: { title: string, flagged?: boolean, id?: number, Cr
                         </i>}
                 </div>
                 {id &&
-                    <div className="relative flex h-full w-max ">   <FlagIcon
+                    <div className="relative flex h-full w-max pt-1">   <FlagIcon
                         flagged={flagged ? true : false}
                         id={id}
                         type={type ?? ''} />

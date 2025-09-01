@@ -41,9 +41,9 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                     <div className="relative flex items-center justify-center  h-7 w-7">
                         <Icon
                             size='xl'
-                            color={value === option.value ? option.color ?? color : ''}
+                            color={option.color ?? color}
                             fill={value === option.value}
-                            style="relative -left-2 top-0 scale-[1.05]"
+                            style={`${value === option.value ? '' : '!opacity-40'} relative -left-2 top-0 scale-[1.05]`}
                             icon={value === option.value ? 'check_circle' : 'circle'}
                         />
                         <input
@@ -62,8 +62,8 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                         />
 
                     </div>
-                    {/* Replace with your Radio.Indicator and Icon if needed */}
-                    <label htmlFor={option.id} className="text-sm font-normal relative -left-4 text-gray-600 ">
+                    <label htmlFor={option.id}
+                        className={`text-sm font-normal relative -left-4 text-${option.color ?? color}-600 ${value === option.value ? '' : 'opacity-60'}`}>
                         {option.label}
                     </label>
                 </div>

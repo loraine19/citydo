@@ -95,13 +95,13 @@ export default function SignInPage() {
             <footer className="flex flex-col items-center gap-1 pb-[4.5rem] justify-center pt-5">
                 <Link to="/motdepasse_oublie">
                     <Typography
-                        className="text py-2 nowrap text-center underline underline-offset-8 uppercase">
+                        className="text pb-4 nowrap text-center underline underline-offset-8 ">
                         Mot de pass oublié
                     </Typography>
                 </Link>
-                <Typography variant="small" className="flex justify-center">
+                <i className="flex !text-slate-900 justify-center">
                     Pas encore de compte ?
-                </Typography>
+                </i>
                 <Link to="/signup">
                     <Button className="lgBtn ">
                         inscrivez-vous

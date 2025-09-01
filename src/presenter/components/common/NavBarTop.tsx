@@ -31,15 +31,13 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
     const [closeDial, setCloseDial] = useState<boolean>(false)
 
     return (
-        <>  {hideNavBottom &&
-            <div
-                className="w-full  py-2 ">
-
-                <hr
-
-                    className={` !border-${color}-500 border-t-0 !border-b-[1px] opacity-75 `}
-                />
-            </div>}
+        <>
+            {/* SEPARATOR */}
+            {hideNavBottom &&
+                <div className="w-full  py-1 ">
+                    <hr className={` !border-${color}-500 border-t-0 !border-b-[1px] opacity-75 `}
+                    />
+                </div>}
             <header>
 
                 {/*BLUR POP BACKGROUND */}
@@ -58,7 +56,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                         {/* PROFILE MENU  */}
                         <Menu placement="bottom-start">
                             <MenuTrigger
-                                className="relative h-full justify-center max-w-max grid  z-50  items-center !p-0">
+                                className="relative h-full justify-center max-w-max grid z-50  items-center !p-0 !pr-1">
                                 <button onClick={() => setCloseDial(!closeDial)}>
                                     {onBoard ?
                                         <div className='flex w-[48px] flex-1 items-center'>
@@ -105,14 +103,15 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                 ))}
                             </MenuContent>
                         </Menu>
+
                         {/* INFO TEXT LOGO   */}
                         {(!hideNavBottom || !navIcons) &&
-                            <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : 'truncate '} max-w-[calc(100vw-12rem)] lg:max-w-[calc(1000px-14rem)] flex flex-col h-full justify-center w-full  pl-6   pt-1`}>
-                                <h1 className='flex font-comfortaa text-[1.9rem] lg:!text-[2.1rem] !font-extrabold'>
+                            <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : 'truncate '} max-w-[calc(100vw-12rem)] lg:max-w-[calc(1000px-14rem)] flex flex-col h-full justify-center w-full  pl-4 lg:pl-6  pt-1`}>
+                                <h1 className='flex font-comfortaa text-[1.7rem] sm:text-[1.9rem] !font-extrabold'>
                                     City'Do
                                 </h1>
-                                {((!onBoard && (navBottom && !hideNavBottom) || !navIcons)) &&
-                                    <i className='text-[0.9rem] truncate flex !line-clamp-1'>
+                                {(((navBottom && !hideNavBottom) || !navIcons)) &&
+                                    <i className='text-[0.8rem] lg:text-[0.85rem] truncate flex !line-clamp-1'>
                                         {user?.GroupUser?.map((group) => (group.Group?.name.split(':')[0])).join(', ')}
                                     </i>}
                             </div>}
@@ -121,8 +120,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
                     {/* INSERTION NAVLINK TOP  */}
                     {(!navBottom && navIcons && !hideNavBottom) &&
-                        <div
-                            onMouseEnter={() => setCloseDial(false)}
+                        <div onMouseEnter={() => setCloseDial(false)}
                             className="pr-5 pl-1 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
                             <NavBarSection addBtn={addBtn} />
                         </div>

@@ -1,4 +1,4 @@
-import { Card, CardHeader, Button, Typography, CardBody, Input, Textarea } from "@material-tailwind/react";
+import { Card, CardHeader, Button, Typography, CardBody, Input, Textarea, CardFooter } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import SubHeader from "../../../common/SubHeader";
 import { Profile } from "../../../../../domain/entities/Profile";
@@ -47,7 +47,7 @@ export function ServiceForm(props: { formik: any }) {
                         place={formik.values.title}
                         closeBtn
                     />
-                    <div className="w-respLarge flex flex-col grid-cols-[1fr_1fr_1fr] lg:grid grid-rows-1 lg:gap-3 gap-2 pt-2">
+                    <div className="wRespXL flex flex-col grid-cols-[1fr_1fr_1fr] lg:grid grid-rows-1 lg:gap-3 gap-2 pt-2">
                         <RadioGroup
                             name={"type"}
                             orientation="horizontal"
@@ -77,8 +77,8 @@ export function ServiceForm(props: { formik: any }) {
                             disabled={formik.values.statusValue > 0} />
                     </div>
                 </div>
-                <section className={`flex pb-1 flex-1 relative pt-8 overflow-hidden`}>
-                    <Card className={`${haveImage ? "CardDetailGrid " : "FixCardNoImage "} w-respLarge`}>
+                <section className={`flex pb-4 flex-1 relative pt-8 overflow-hidden`}>
+                    <Card className={`${haveImage ? "CardDetailGrid " : "FixCardNoImage "} `}>
                         <CardHeader className={haveImage ?
                             "FixCardHeader" :
                             "FixCardHeaderNoImage pt-16 pb-0"} >
@@ -125,7 +125,7 @@ export function ServiceForm(props: { formik: any }) {
                                 </div>
                                 <div className="flex flex-col justify-center py-3 mt-2 h-max ">
                                     <Typography className='text-xs'>Difficulté du service: </Typography>
-                                    <div className="flex justify-between">
+                                    <div className="flex flex-col gap-y-2 md:flex-row justify-between">
                                         <div>
                                             <Select
                                                 simple
@@ -147,7 +147,7 @@ export function ServiceForm(props: { formik: any }) {
                                         </div>
 
 
-                                        <div className="h-full flex flex-col gap-4 justify-between">
+                                        <div className="h-full flex flex-col gap-4 py-3 md:py-0 justify-between">
                                             <Chip
                                                 size="sm"
                                                 value={`${points} points`}
@@ -167,6 +167,7 @@ export function ServiceForm(props: { formik: any }) {
                                     </div>
                                 </div>
                             </div>
+                            <CardFooter className="DetailCardFooter" />
                         </CardBody>
                     </Card>
                 </section>
@@ -176,7 +177,7 @@ export function ServiceForm(props: { formik: any }) {
                     size='lg'
                     type="submit"
                     disabled={formik.values.statusValue > 0}
-                    className="lgBtn bg-sky-500">
+                    className="lgBtn bg-sky-500 wRespXL">
                     <Icon
                         disabled
                         size='lg'

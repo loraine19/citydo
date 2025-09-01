@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { AuthForm } from './auth.Comps/AuthForm';
 import { AuthHeader } from './auth.Comps/AuthHeader';
-import { Typography, Button } from '@material-tailwind/react';
+import { Button } from '@material-tailwind/react';
 import DI from '../../../../di/ioc';
 import { terms } from '../../../../domain/constants/constants';
 import { AccessDTO } from '../../../../infrastructure/DTOs/AuthDTO';
@@ -65,12 +65,11 @@ export default function SignUpPage() {
                 />
             </main>
 
-            <footer className="flex flex-col items-center gap-1 pb-[4rem] justify-center pt-4">
-                <Typography
-                    variant="small"
-                    className=" flex justify-center">
+            <footer className="flex flex-col items-center gap-1 pb-[2rem] sm:pb-[4rem] justify-center pt-4">
+                <i
+                    className="flex !text-slate-900 justify-center">
                     Vous avez deja un compte?
-                </Typography>
+                </i>
                 <Link to="/signin">
                     <Button
                         className="rounded-full !lgBtn">

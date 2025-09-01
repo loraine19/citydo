@@ -44,9 +44,9 @@ export default function DashboardPage() {
     const { notifsMap, isLoadingMap, refetchMap, countMap } = notifMapViewModelFactory();
 
     //// CLASSES
-    const userClasse = "flex row-span-3 lg:grid pt-14 lg:pt-8 animRev z-50";
+    const userClasse = "flex row-span-3 lg:grid pt-11 animRev z-50  ";
     const eventClasse = "h-full flex !min-h-[15rem] row-span-5 lg:grid overflow-auto";
-    const notifClasse = " row-span-2 lg:pt-8" + (notifs.length > 0 ? " min-h-[8rem]" : " min-h-[5.5rem]")
+    const notifClasse = " row-span-2 lg:pt-11 " + (notifs.length > 0 ? " min-h-[8rem]" : " min-h-[5.5rem]")
     const mapClasse = "flex row-span-6 !min-h-[15rem] lg:min-h-[32%] lg:grid ";
 
 
@@ -87,9 +87,10 @@ export default function DashboardPage() {
     useEffect(() => { (hide !== hideNavBottom) && setHideNavBottom(hide) }, [hide]);
 
     return (
-        <main className={`${(hideNavBottom) ? 'pb-2' : !navBottom ?
-            'lg:!-mt-3 !-mt-7 pb-[1rem] ' :
-            'lg:!-mt-5 -mt-10 pb-[3.5rem] lg:pb-[5rem]'} 
+        <main className={`${(hideNavBottom) ? '-mb-2 pt-0  ' :
+            (!navBottom && !hideNavBottom) ?
+                'lg:!-mt-3 !-mt-5 pb-[1rem] ' :
+                '-mt-7 pb-[3.5rem] lg:pb-[5rem] lg:-mt-4 '} 
                relative flex !overflow-hidden anim `}
             data-cy="dashboard-body" >
             <div ref={divRef}

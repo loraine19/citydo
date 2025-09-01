@@ -14,8 +14,8 @@ export default function PopUp(props: popUpProps) {
                 <PopoverTrigger>
                     <Button variant={variant} color='primary' className={classNames} >{text}</Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-resp max-h-[50%] m-auto overflow-auto p-4">
-                    <div>
+                <PopoverContent className="flex w-resp !max-h-[25vh] !max-w-[90%] mx-[5%]  !p-4">
+                    <div className='flex overflow-auto'>
                         {content}
                     </div>
                 </PopoverContent>

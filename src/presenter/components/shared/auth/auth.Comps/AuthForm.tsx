@@ -67,7 +67,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                     </Typography>
                 </Card>
                 {/* FORM CARD */}
-                <Card className="md:flex-[50%] overflow-auto min-h-38 !h-full !w-full !flex flex-1 FixCardNoImage">
+                <Card className="md:flex-[50%] overflow-auto min-h-38 !h-full FixCardNoImage">
                     <CardHeader
                         className="FixCardHeaderNoImage h-max w-full p-6 !flex flex-col"
                         floated={false}>
@@ -80,8 +80,8 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                             {notif}
                         </Typography>
                     </CardHeader>
-                    <CardBody className='FixCardBody  !flex overflow-auto'>
-                        <div className='flex flex-col gap-[1vh] w-full px-4 pt-2'>
+                    <CardBody className='FixCardBody h-full gap-3 items-center justify-center !flex '>
+                        <div className='flex  flex-col gap-[2vh] w-full overflow-auto px-4 pt-2'>
                             <Input
                                 className={`inputStandart ${formik?.errors.email ? 'error' : ''}`}
                                 placeholder={"Email"}
@@ -120,50 +120,55 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 </Input>
                                 <InputError mt error={formik?.errors.passwordConfirm} />
                             </div>
+                            <div className={`${!checkbox ? "hidden" : "flex flex-col w-full "} `}>
+                                <div className='flex items-center gap-2'>
+                                    <Checkbox
+                                        data-cy="terms-checkbox"
+                                        type="checkbox"
+                                        name="checkbox"
+                                        className={`border-none shadow-none hover:shadow-none data-[checked=true]:bg-transparent`}
+                                        onChange={(e: any) => { formik.values.checkbox = e.target.checked }} >
+                                        <Checkbox.Indicator
+                                            className="relative opacity-100 flex items-center justify-center">
+                                            <Icon style={'opacity-0 group-data-[checked=true]:opacity-100 absolute top-[50%] translate-y-[-50%] -left-1'}
+                                                bg
+                                                size='sm'
+                                                color={formik.errors.checkbox ? 'red' : 'slate'}
+                                                icon={""}
+                                            />
+                                            <Icon style={'opacity-100 group-data-[checked=true]:opacity-0 !absolute top-[50%] translate-y-[-50%] -left-1'}
+                                                bg
+                                                size='sm'
+                                                color={formik.errors.checkbox ? 'red' : 'cyan'}
+                                                icon={"check"}
+                                            />
+                                        </Checkbox.Indicator>
+                                    </Checkbox>
+                                    <div className='!justify-start w-full  -ml-4 flex flex-col'>
+                                        <PopUp
+                                            variant={"ghost"}
+                                            classNames={`${popOverClass} !border-none scale-95 !flex ounded-full !z-[999999]`}
+                                            text={popOverButtonText}
+                                            content={popOverContent} />
+                                    </div>
+                                </div>
+
+                                <InputError error={formik?.errors.checkbox} style=' !py-2' />
+                            </div>
                         </div>
 
-                        <div className={`flex pt-8 min-h-44  px-4 ${hiddeImage()} justify-center `}>
-                            <Card className={`!flex  md:!hidden !min-h-24 FixCardNoImage`} >
+                        <div className={`xs:flex pb-4 flex-1 w-full pt-8 h-full  min-h-44 px-4 ${hiddeImage()} justify-center items-center hidden  md:hidden `}>
+                            <Card className={`!flex w-full md:!hidden FixCardNoImage`} >
                                 <img
                                     src="image/welcome.jpg"
                                     alt="connexion"
-                                    className="absolute inset-0 object-cover w-full h-full rounded-xl  z-0   object-center" />
+                                    className="absolute !min-h-24  inset-0 object-cover w-full h-full rounded-xl  z-0   object-center" />
                             </Card>
                         </div>
+
                     </CardBody>
                     <CardFooter className={`flex flex-col !mt-0 !pt-0 !pb-6`}>
-                        <div className={`${!checkbox ? "hidden" : "flex items-center px-6"} `}>
-                            <Checkbox
-                                data-cy="terms-checkbox"
-                                type="checkbox"
-                                name="checkbox"
-                                className={`border-none shadow-none hover:shadow-none data-[checked=true]:bg-transparent`}
-                                onChange={(e: any) => { formik.values.checkbox = e.target.checked }} >
-                                <Checkbox.Indicator
-                                    className="relative opacity-100 flex items-center justify-center">
-                                    <Icon style={'opacity-0 group-data-[checked=true]:opacity-100 absolute top-[50%] translate-y-[-50%] -left-1'}
-                                        bg
-                                        size='sm'
-                                        color={formik.errors.checkbox ? 'red' : 'slate'}
-                                        icon={""}
-                                    />
-                                    <Icon style={'opacity-100 group-data-[checked=true]:opacity-0 !absolute top-[50%] translate-y-[-50%] -left-1'}
-                                        bg
-                                        size='sm'
-                                        color={formik.errors.checkbox ? 'red' : 'cyan'}
-                                        icon={"check"}
-                                    />
-                                </Checkbox.Indicator>
-                            </Checkbox>
-                            <div className='!justify-start w-full flex flex-col'>
-                                <PopUp
-                                    variant={"ghost"}
-                                    classNames={`${popOverClass} !border-none scale-95 !flex ounded-full`}
-                                    text={popOverButtonText}
-                                    content={popOverContent} />
-                            </div>
-                        </div>
-                        <InputError error={formik?.errors.checkbox} style='pl-6 !py-2' />
+
                         <div className='flex flex-col gap-3 py-2'>
                             <Button
                                 data-cy="submit-button"

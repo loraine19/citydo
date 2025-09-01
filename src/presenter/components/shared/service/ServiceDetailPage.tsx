@@ -213,7 +213,7 @@ export default function ServiceDetailPage() {
     return (
         <>
             <main >
-                <div className="px-4 sectionHeader">
+                <div className="sectionHeader">
                     <SubHeader type={`${typeS ?? ''} de service ${categoryS ?? ''}`} closeBtn />
                 </div>
                 <section className="">

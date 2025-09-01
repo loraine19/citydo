@@ -47,8 +47,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
         <div className="DetailCardDiv ">
             <Card className="CardDetailGrid">
                 <CardHeader
-                    className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
-                    floated={haveImage}>
+                    className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}>
                     <div className={haveImage ? "ChipDiv " : "ChipDivNoImage"}>
                         <div className="ChipSubDiv  ">
                             <Chip
@@ -144,24 +143,25 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                         </div>
                     </div>
                 </CardBody>
-                <CardFooter className="CardFooter">
+                <CardFooter className="DetailCardFooter">
                     {User?.id !== userId &&
                         <ProfileDiv profile={User} />
                     }
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-col w-full items-center gap-2">
                         <Typography
-                            as='h3'
-                            className={`text-end ${points.length > 0 && "w-full"}`} >
-                            {points.length > 0 && points[1] && <span className="!text-[1.2rem] font-light">de </span>}
+                            as='h6'
+                            className={`text-end ${points?.length > 0 && "w-full"}`} >
+                            {points.length > 0 && points[1] &&
+                                <span className="!text-[1.2rem] font-light">de </span>}
                             {points[0]}
-                            {points.length > 0 && <>
+                            {points?.length > 0 && <>
                                 <span className="!text-[1.2rem] font-light"> à </span>
                                 {points[1]}</>}
                             <span className="!text-[1.2rem] font-light"> points</span>
                         </Typography>
                     </div>
                 </CardFooter>
-            </Card >
+            </Card>
         </div>
     )
 }

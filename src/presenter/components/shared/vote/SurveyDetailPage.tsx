@@ -37,8 +37,8 @@ export default function SurveyDetailPage() {
                 close={() => setOpenVote(false)}
                 vote={survey}
                 refetch={refetch} />
-            <main>
-                <div className='sectionHeader'>
+            <main >
+                <div className="sectionHeader">
                     <SubHeader
                         type={`sondage ${survey?.categoryS}`}
                         link='/vote'
@@ -59,7 +59,7 @@ export default function SurveyDetailPage() {
                         <Button
                             disabled={survey?.status !== PoolSurveyStatus.PENDING}
                             size='lg'
-                            className={`bg-${pageColor} lgBtn w-respLarge min-h-max`}
+                            className={`bg-${pageColor} lgBtn wRespXL`}
                             onClick={() => setOpenVote(true)} >
                             <Icon
                                 size='lg'

@@ -107,7 +107,7 @@
 
 /**** CHIP LIGHT COLOR ****/
 .Chip {
-    @apply !min-w-[calc(max-0.1rem)] !px-3 !pb-1 !rounded-2xl !shadow-sm !bg-opacity-95 backdrop-brightness-[20000%]
+    @apply !min-w-[calc(max-0.1rem)] !px-3 !pb-1 !rounded-3xl !shadow-sm !max-h-fit
    !max-w-max;
     background-image: linear-gradient(background-color, background-color);
 }

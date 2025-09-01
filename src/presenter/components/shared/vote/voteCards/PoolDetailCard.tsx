@@ -74,7 +74,6 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
                             <Chip
                                 value={pool.Votes?.length}
                                 variant="ghost"
-                                size='lg'
                                 className="rounded-full px-4 GrayChip"
                                 icon={
                                     <Icon

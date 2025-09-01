@@ -69,7 +69,7 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
                         size={'lg'}
                         needed={needed} />
                 </CardBody>
-                <CardFooter className="CardFooter">
+                <CardFooter className="DetailCardFooter">
                     <ProfileDiv
                         profile={User} />
                     <div className="flex items-center gap-2 ">

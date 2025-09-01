@@ -78,7 +78,7 @@ export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
                         />
                     </div>
                     <Typography
-                        className="description">
+                        className="description line-clamp-1">
                         {pool.description}
                     </Typography>
                 </CardBody>
