@@ -34,7 +34,7 @@
 }
 
 :root {
-    @apply scroll-smooth text-[16px] md:!text-[16px];
+    @apply scroll-smooth text-[16px] md:!text-[16px] lg:!text-[15.5px];
     background-color: #f9fafb;
     color: #334155;
     line-height: 1.2;
@@ -136,7 +136,7 @@ i {
 }
 
 .CTA {
-    @apply pb-2   fixed bottom-0 left-0 h-max w-full !flex items-center justify-center rounded-t-3xl;
+    @apply pb-2  fixed bottom-0 left-0 h-max w-full !flex items-center justify-center rounded-t-3xl;
 }
 
 /**** INPUT STYLES ****/
@@ -241,7 +241,7 @@ button:hover {
 }
 
 .lgBtn {
-    @apply !flex min-h-max min-w-max items-center justify-center rounded-full !w-full !shadow-md px-4 py-2.5 gap-4 !break-words border-hidden;
+    @apply !flex min-h-max min-w-max items-center justify-center rounded-full !w-full !shadow-md px-4 py-2.5 gap-4 !break-words border-hidden wRespXL;
 }
 
 /**** COMP ****/

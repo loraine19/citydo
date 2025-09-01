@@ -50,7 +50,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                             user={user} />
                     </div>
                 </div>
-                <section className={`flex pb-1 flex-1 relative pt-6 overflow-y-hidden`}>
+                <section className={`flex pb-4 flex-1 relative pt-6 overflow-y-hidden`}>
                     <Card className={`${(imgBlob || formik.values.image) ?
                         "FixCard" :
                         "FixCardNoImage"} w-respLarge`}>

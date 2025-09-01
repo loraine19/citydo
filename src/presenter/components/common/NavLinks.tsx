@@ -154,7 +154,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                     open={closeDial}
                     setOpen={setCloseDial}
                     className={`${(!navBottom && !addBtn) ? 'hidden' : ''}
-                        ${!navBottom ? ' hidden xs:flex ' : '-mr-2'} 
+                        ${!navBottom ? ' flex ' : '-mr-2'} 
                          z-[50]  -mr-4`}
                     placement={navBottom ? 'top' : 'bottom'}
                     offset={10}

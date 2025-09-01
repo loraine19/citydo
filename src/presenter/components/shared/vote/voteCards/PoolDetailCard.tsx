@@ -25,7 +25,7 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
         }
     }
     return (
-        <div className="DetailCardDiv">
+        <div className="DetailCardDiv ">
             <Card className="CardDetailGridNoImage" >
                 <CardHeader className={"FixCardHeaderNoImage"}
                     floated={false}>
@@ -64,7 +64,7 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
                         needed={pool?.needed} />
                 </CardBody>
                 <CardFooter
-                    className="CardFooter mb-1">
+                    className="CardFooter ">
                     <ProfileDiv
                         profile={pool?.User || {} as Partial<User>} />
                     <div className="flex items-center gap-2 ">

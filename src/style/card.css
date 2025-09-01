@@ -31,18 +31,19 @@
     .card {
         @apply border !bg-white  rounded-xl w-full mx-auto 
     !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md
-    h-full 
+        
     grid;
     }
 
     .FixCard {
-        @apply card w-respLarge
+        @apply card w-respLarge h-full
     lg:grid-rows-[minmax(48%,1fr),auto,auto] 
     grid-rows-[minmax(20px,200px),minmax(min-content,auto),auto];
     }
 
     .FixCardNoImage {
-        @apply card w-respLarge  my-0  !h-[calc(100%+1.5rem)] !-mt-6 
+        @apply card w-respLarge 
+          my-0  h-[calc(100%+1.5rem)] !-mt-6 
   grid-rows-[auto,minmax(min-content,1fr),auto];
     }
 
@@ -70,7 +71,7 @@
     }
 
     .ChipDivNoImage {
-        @apply flex max-w-[calc(100%-0rem)] w-full gap-2 justify-between overflow-auto flex-wrap  p-2 h-max;
+        @apply flex max-w-[calc(100%-0rem)] w-full gap-2 justify-between overflow-auto flex-wrap pt-3 pb-2 px-3 h-max;
     }
 
     .ChipSubDiv {
@@ -111,11 +112,10 @@
     }
 
     .CardDetailGridNoImage {
-        @apply w-respLarge card
+        @apply w-respLarge card !-mt-6
        w-respLarge rounded-xl w-full mx-auto 
-    !relative !p-0 anim z-50  
-    h-full 
-    grid grid-rows-[auto,minmax(min-content,calc(100vh-20rem)),auto];
+    !relative !p-0 anim z-50  !min-h-fit
+    grid grid-rows-[auto,minmax(min-content,1fr),auto];
     }
 
     .DetailCardFooter {

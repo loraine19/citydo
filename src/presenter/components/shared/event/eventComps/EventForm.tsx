@@ -70,7 +70,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                             user={user} />
                     </div>
                 </div>
-                <section className="flex flex-1 pt-6 relative overflow-hidden">
+                <section className="flex flex-1 pb-4 pt-6 relative overflow-hidden">
                     <Card className="CardDetailGrid">
                         <CardHeader className="FixCardHeader">
                             <div className={`${start ? 'ChipDiv !justify-end' : 'hidden'}`}>
@@ -93,8 +93,8 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                 className={'CardImage'} />
                         </CardHeader>
                         <CardBody className='FixCardBody '>
-                            <div className='h-full overflow-auto !pb-6'>
-                                <div className='gap-2 h-max !flex flex-col '>
+                            <div className='h-full overflow-auto '>
+                                <div className='gap-y-8 h-max !flex flex-col '>
                                     <Input
                                         className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
                                         placeholder={"Titre"}

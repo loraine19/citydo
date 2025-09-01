@@ -158,7 +158,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
                                 style='-mt-0.5'
                                 icon="toll"
                                 title={`Ce service ${service.typeS === ServiceType.GET ? 'vous fais gagner' : 'coute'} ${points.join(' à ')}pts`}
-                                fill={user.Profile?.points > points[0]}
+                                fill={user?.Profile?.points > points[0]}
                                 color={service.typeS === ServiceType.GET ? "green" : "orange"}
                                 size="md" />}>
                         </Chip>

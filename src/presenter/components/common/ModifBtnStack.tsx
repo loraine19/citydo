@@ -33,7 +33,7 @@ export default function ModifBtnStack({ actions, disabled1, disabled2, update, i
 
 
     return (
-        <div className="flex gap-3 items-center w-full">
+        <div className="flex gap-3 items-center w-full flex-1">
 
             <Icon
                 icon={buttons[0].iconImage as string || ''}

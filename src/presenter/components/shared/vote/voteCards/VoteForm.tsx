@@ -78,10 +78,10 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                             user={user} />
                     </div>
                 </div>
-                <section className={`flex pb-1 flex-1 relative pt-6`}>
+                <section className={`flex pb-4 flex-1 relative pt-6`}>
                     <Card className={`${(imgBlob || formik.values.image) ?
                         "CardDetailGrid" :
-                        "FixCardNoImage !flex justify-between "} w-respLarge `}>
+                        "FixCardNoImage "}  `}>
                         <CardHeader
                             className={(imgBlob || formik.values.image) ?
                                 "FixCardHeader !relative " :

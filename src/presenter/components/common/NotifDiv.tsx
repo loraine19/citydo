@@ -19,7 +19,7 @@ const NotifDiv: React.FC<NotifDivProps> = ({ notif, isLoading, refetch, error })
     }, [notif, error]);
 
     return (
-        <div className={`absolute top-[100%] h-fit !w-[22rem] left-0 notif min-w-max pt-4 min-h-max !justify-start !text-${color}-500 `}>
+        <div className={`absolute self-center top-[100%] h-fit !w-[22rem] left-0 notif min-w-max pt-4 min-h-max !justify-start !text-${color}-500 `}>
             {error ? 'Une erreur est survenue : ' : ''}
             {notif !== error && notif}
             <span
