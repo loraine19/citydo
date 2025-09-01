@@ -16,7 +16,7 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
 
 
     return (
-        <Card className={`CardFix grid-rows-[auto_1fr] !h-full  shadow-none !gap-2 border border-gray-200  bg-slate-50 opacity-95 !py-0 mb-1 md:!py-1`}>
+        <Card className={`CardFix !grid-rows-[auto_1fr] !h-full  shadow-none !gap-2 border border-gray-200  bg-slate-50 opacity-95 !py-0 mb-1 md:!py-1`}>
             <CardHeader className="FixCardHeaderNoImage mt-1 px-3 py-2 shadow-none bg-transparent">
                 <div className="flex w-full justify-between items-center ">
                     <div className="flex items-center gap-2 ">

@@ -50,12 +50,11 @@ const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) =
 
     return (
         <>
-            <Card className={` ${haveImage ? "FixCard" : "FixCardNoImage !grid-rows-[auto_23%_1fr] "} ${withMe ? "!border-orange-400 !border-[1px]" : ""} `}>
+            <Card className={` ${haveImage ? "FixCard" : "FixCardNoImage !overflow-visible bg-clip-border "} ${withMe ? "!border-orange-400 !border-[1px]" : ""} `}>
                 <CardHeader
-                    className={haveImage ? "h-full  lg:!max-h-[16vh] !max-h-[14vh] !mb-0" : "FixCardHeaderNoImage "}
-                    floated={haveImage}>
-                    <div className={haveImage ? "ChipDiv" : "ChipDivNoImage"}>
-                        <div className="flex items-start gap-2 ">
+                    className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage "}>
+                    <div className={haveImage ? "ChipDiv" : "ChipDivNoImage !flex-wrap"}>
+                        <div className="flex items-start  gap-2 ">
                             <button
                                 onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                                     const cat = e.currentTarget.innerText.toLowerCase();
@@ -79,18 +78,19 @@ const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) =
                             title="image de concialtion"
                             src={image as any}
                             alt={Service.title}
-                            className="ImageCard"
-                        />
+                            className="CardImage flex " />
                     }
                 </CardHeader>
                 <CardBody className={` FixCardBody`}>
-                    <div className="relative flex items-center justify-between">
+                    <div className="relative flex-1 flex items-center justify-between">
                         <div className="flex flex-col md:gap-4 lg:gap-0 justify-between w-full mr-8">
                             <Typography
                                 as="h6">
                                 Probleme :
                             </Typography>
-                            <GroupLink group={Service.Group} />
+                            <div className="grid">
+                                <GroupLink group={Service.Group} />
+                            </div>
                         </div>
                         <Icon
                             icon="arrow_circle_right"
@@ -100,12 +100,12 @@ const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) =
                             style="absolute -top-2 -right-3"
                             fill />
                     </div>
-                    <Typography className="description ">
+                    <Typography className="description line-clamp-1 ">
                         {description}
                     </Typography>
                 </CardBody>
 
-                <CardFooter className="CardFooter  flex-col flex-1  pb-4 ">
+                <CardFooter className="CardFooter !overflow-auto ">
                     <ServiceIssueCard service={Service} clamp={true} />
                     <div
                         className="flex items-center justify-between">

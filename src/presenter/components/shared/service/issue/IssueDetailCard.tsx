@@ -20,7 +20,7 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, mo
 
     return (
         <>
-            <section className={`flex pt-6`}>
+            <section className={`flex `}>
                 <Card className={`${issue.image ? " FixCard !grid-rows-[auto_35%_1fr]" : "FixCardNoImage !grid-rows-[auto_30%_1fr]"} w-respLarge `}>
                     <CardHeader className={"FixCardHeaderNoImage px-4 min-h-max pt-3 gap-3 justify-between lg:items-center shadow-none flex !mt-0 flex-col lg:flex-row"}
                         floated={false}>

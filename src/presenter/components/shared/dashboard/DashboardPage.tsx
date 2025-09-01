@@ -47,7 +47,7 @@ export default function DashboardPage() {
     const userClasse = "flex row-span-3 lg:grid pt-12 animRev z-50  ";
     const eventClasse = "h-full flex !min-h-[15rem] row-span-5 lg:grid overflow-auto";
     const notifClasse = " row-span-2 lg:pt-11 " + (notifs.length > 0 ? " min-h-[8rem]" : " min-h-[5.5rem]")
-    const mapClasse = "flex row-span-6 !min-h-[15rem] lg:min-h-[32%] lg:grid ";
+    const mapClasse = "flex row-span-6  !min-h-[15rem] lg:min-h-[32%] lg:grid ";
 
 
     //// HANDLE SCROLL NOTIFICATIONS
@@ -95,7 +95,9 @@ export default function DashboardPage() {
             data-cy="dashboard-body" >
             <div ref={divRef}
                 onScroll={() => handleHideCallback()}
-                className={" px-[1%] flex-1 h-full flex flex-col lg:grid grid-cols-2 grid-rows-[auto_auto_auto_1fr_1fr_2fr_auto_auto] w-full gap-y-2 lg:gap-y-3 lg:gap-x-4 place-content-start overflow-auto rounded-b-[1.5rem] "}>
+                className={" px-[1%] flex-1 h-full flex flex-col lg:grid grid-cols-2 grid-rows-[auto_auto_auto_1fr_1fr_2fr_auto_auto] w-full gap-y-2 lg:gap-y-3 lg:gap-x-4 pb-2 place-content-start overflow-auto rounded-b-[1.5rem] "}>
+
+                {/* USER CARD  */}
                 <div className={`${userClasse}`}>
                     <Card className="FixCard lg:h-full p-0 mt-6 lg:!mt-0 !flex-col rounded-xl bg-white flex-1 !flex anim !overflow-visible ">
                         <CardHeader className="-mt-6 flex flex-col items-center justify-center  bg-transparent shadow-none">
@@ -151,6 +153,8 @@ export default function DashboardPage() {
                         </CardBody>
                     </Card>
                 </div>
+
+                {/* NOTIF CARD  */}
                 <div className={`hidden lg:${notifClasse} grid-cols-1 h-full  lg:grid`}>
                     <Card className="!flex orangeBG anim FixCard">
                         <CardBody className="h-full flex flex-col pt-2.5 pb-0 px-4 ">
@@ -227,6 +231,7 @@ export default function DashboardPage() {
                         </CardBody>
                     </Card>
                 </div>
+                {/* MAPCARD  */}
                 <div className={mapClasse}>
                     <Card className="h-full !flex flex-1 gray100 anim FixCard">
                         <CardBody className="h-full min-h-[20vh] lg!min-h-[100%] flex flex-col !pt-3 p-4">
@@ -280,6 +285,7 @@ export default function DashboardPage() {
                         </CardBody>
                     </Card>
                 </div>
+                {/* CALENDARD CARD  */}
                 <div className={eventClasse}>
                     <Card className="h-full !flex cyanBG anim FixCard">
                         <CardBody className="h-full flex flex-col !pt-0 p-4 ">
@@ -287,6 +293,7 @@ export default function DashboardPage() {
                         </CardBody>
                     </Card>
                 </div>
+
                 <div className={`
                     ${(!hideNavBottom && navBottom) ? 'lg:hidden -mb-4 min-h-5' : !navBottom ? 'hidden' : ' -mb-5 min-h-1'} `}>
                 </div>
