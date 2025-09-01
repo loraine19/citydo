@@ -34,14 +34,11 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                         closeBtn
                     />
                     <div className="w-respLarge flex flex-col lg:flex-row lg:gap-4 pb-2 pt-2 gap-2">
-
                         <Select
-
                             options={postCategories}
                             placeholder="Choisir la catégorie"
                             formik={formik}
                             name="category"
-
                         />
                         <GroupSelect
                             groupId={groupId?.toString()}

@@ -83,14 +83,14 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
             </CardBody>
             <CardFooter className="CardFooter">
                 {!mines ? (
-                    <div className="flex relative pl-5 flex-1 overflow-auto items-center gap-2">
+                    <div className="flex relative pl-5 flex-1 overflow-hidden  items-center gap-2">
                         <Icon
                             icon='calendar_add_on'
                             link={agendaLink}
                             title={`ajouter a mon agenda  : ${title}`}
                             bg={true}
                             size='lg'
-                            style={`${Igo ? "!bg-cyan-200 saturate-[0.7] brightness-[1.05]" : "!bg-gray-300"} !scale-[0.99] top-1 bg-opacity-90 !outline outline-white  left-0 absolute hover:z-50`}
+                            style={`${Igo ? "!bg-cyan-200 saturate-[0.7] brightness-[1.05]" : "!bg-gray-300"} !scale-[0.92] top-0.5 bg-opacity-90 !outline outline-white  left-0 absolute hover:z-50`}
                             color={Igo ? "cyan" : "gray"} />
                         <AvatarStack avatarDatas={event.Participants} />
                     </div>

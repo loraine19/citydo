@@ -49,19 +49,22 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
                         CreatedAt={pool?.createdAt}
                         group={pool?.Group}
                     />
-                    <div className="CardOverFlow w-full bg-slate-100  flex h-full justify-between !pb-8 flex-col">
-                        <Typography>
+                    <div className=" flex h-full flex-1  justify-between !pb-8 flex-col">
+                        <Typography className="description">
                             {pool?.description}
                         </Typography>
-                        <ProfileDiv
-                            profile={pool?.UserBenef || {} as Partial<User>}
-                            size={'lg'} />
+                        <div className="grid">
+                            <ProfileDiv
+                                profile={pool?.UserBenef || {} as Partial<User>}
+                                size={'lg'} />
+                        </div>
                     </div>
-                    <ProgressBar
+                    <div className="flex "> <ProgressBar
                         value={pool?.pourcent}
                         label="votes pour "
                         size={'lg'}
                         needed={pool?.needed} />
+                    </div>
                 </CardBody>
                 <CardFooter
                     className="CardFooter ">

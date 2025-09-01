@@ -122,7 +122,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                     {/* INSERTION NAVLINK TOP  */}
                     {(!navBottom && navIcons && !hideNavBottom) &&
                         <div onMouseEnter={() => setCloseDial(false)}
-                            className="pr-5 pl-1 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
+                            className="pr-4 pl-1 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
                             <NavBarSection addBtn={addBtn} />
                         </div>
                     }

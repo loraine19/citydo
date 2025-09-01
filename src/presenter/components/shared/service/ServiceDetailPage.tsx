@@ -84,22 +84,7 @@ export default function ServiceDetailPage() {
             case (service.mine && service.isResp):
                 actions = [
                     ...myAction,
-                    {
-                        color: 'green',
-                        iconImage: 'check',
-                        icon: 'Valider ',
-                        title: `Accepter la reponse de ${service.UserResp?.Profile.firstName}`,
-                        body: `${service?.title} <br> Nous envoyerons un message à ${service.UserResp?.email} - ${service.UserResp?.Profile.phone} , ${service?.points} points seront débités de votre compte, et crédités à ${service.UserResp?.Profile.firstName} après validation de la fin du service`,
-                        function: async () => {
-                            try {
-                                const data = await validRespService(service.id);
-                                if (data.error || !data) handleApiError(data.error)
-                                else updateService();
-                            } catch (error) {
-                                handleApiError(error ?? "Erreur lors de la validation de la réponse");
-                            }
-                        },
-                    },
+
                     {
                         color: 'orange',
                         iconImage: 'close',
@@ -113,6 +98,21 @@ export default function ServiceDetailPage() {
                                 else updateService();
                             } catch (error) {
                                 handleApiError(error ?? "Erreur lors de l'annulation de la réponse");
+                            }
+                        },
+                    }, {
+                        color: 'green',
+                        iconImage: 'check',
+                        icon: 'Valider ',
+                        title: `Accepter la reponse de ${service.UserResp?.Profile.firstName}`,
+                        body: `${service?.title} <br> Nous envoyerons un message à ${service.UserResp?.email} - ${service.UserResp?.Profile.phone} , ${service?.points} points seront débités de votre compte, et crédités à ${service.UserResp?.Profile.firstName} après validation de la fin du service`,
+                        function: async () => {
+                            try {
+                                const data = await validRespService(service.id);
+                                if (data.error || !data) handleApiError(data.error)
+                                else updateService();
+                            } catch (error) {
+                                handleApiError(error ?? "Erreur lors de la validation de la réponse");
                             }
                         },
                     },

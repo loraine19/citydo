@@ -67,7 +67,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                                 <Link
                                     to={agendaLink as string}
                                     target="_blank" rel="noopener noreferrer"
-                                    className={`${Igo ? 'GreenChip' : 'GrayChip px-3 '} w-max !rounded-full mb-1 py-1 text-xs font-medium flex items-center gap-1`}
+                                    className={`${Igo ? 'GreenChip' : 'GrayChip px-3 '} w-max !rounded-full mb-1.5 py-1 text-xs font-medium flex items-center gap-1`}
                                     title="ajouter a mon agenda">
                                     <Icon
                                         color={Igo ? "green" : "gray"}
@@ -76,11 +76,11 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                                     ajouter a mon agenda
                                 </Link>
                                 <Typography
-                                    className="leading-[1.3rem] h-full min-h-max break-normal">
+                                    className="leading-[1.2rem] py-1 h-full min-h-max break-normal">
                                     {description}
                                 </Typography>
                             </div>
-                            <div className="flex flex-col min-h-[60%]  !w-full h-full  flex-1 ">
+                            <div className="flex flex-col min-h-[58%]  !w-full h-full  flex-1 ">
                                 {Address ?
                                     <AddressMapOpen
                                         address={Address}

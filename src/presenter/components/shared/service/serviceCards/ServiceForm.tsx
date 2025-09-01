@@ -167,8 +167,8 @@ export function ServiceForm(props: { formik: any }) {
                                     </div>
                                 </div>
                             </div>
-                            <CardFooter className="DetailCardFooter" />
                         </CardBody>
+                        <CardFooter className="DetailCardFooter" />
                     </Card>
                 </section>
             </main >

@@ -21,7 +21,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
 
     return (
         <>
-            <div className={`relative pl-1 pb-0.5 z-50 flex items-center px-0 gap-2`}>
+            <div className={`relative pl-1 pb-0.5 z-50 truncate flex items-center px-0 gap-2`}>
                 <Popover placement="bottom-start">
                     <PopoverTrigger>
                         <div className={`relative p-1 mt-0.5 mb-0.5  ${width} w-full`}>

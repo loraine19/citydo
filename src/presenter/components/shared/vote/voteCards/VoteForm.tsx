@@ -31,9 +31,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
 
     useEffect(() => {
         refetch();
-        alert(formik.values.groupId);
         setUsers(fetchedUsers.map((user: Partial<User>) => ({ value: user?.id, label: user?.Profile?.firstName })));
-        console.log(fetchedUsers)
     }, [isLoading, formik.values.groupId, type]);
 
     return (
@@ -99,17 +97,15 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                     "!absolute z-40 !h-max top-3 !left-3 " : "hidden"}
                                 formik={formik}
                                 setImgBlob={setImgBlob} />
-                            {haveImage &&
-                                <img
-                                    onError={(e) => e.currentTarget.src = '/images/placeholder.jpg'}
-                                    src={imgBlob || formik.values.image || null}
-                                    alt={formik.values.title || 'image'}
-                                    width={100}
-                                    height={100}
-                                    className={(imgBlob || formik.values.image) ?
-                                        "CardImage" : "hidden"}
-                                />
-                            }
+                            <img
+                                onError={(e) => e.currentTarget.src = "/images/placeholder.jpg"}
+                                src={(imgBlob || formik.values.image) ?? null}
+                                alt={formik.values.title || 'image'}
+                                width={100}
+                                height={100}
+                                className={(imgBlob || formik.values.image) ?
+                                    "CardImage" : "hidden"}
+                            />
                             {formik.values?.UserBenef && formik.values?.typeS === VoteTarget.POOL &&
                                 <ProfileDiv
                                     profile={formik.values?.UserBenef} />

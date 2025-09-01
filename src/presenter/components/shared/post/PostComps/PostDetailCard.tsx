@@ -22,11 +22,10 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
     const ILike: boolean = post?.Likes?.find((like: Like) => like.userId === userId) ? true : false
 
     return (
-        <div className="DetailCardDiv">
-            <Card className="FixCard w-respLarge" >
+        <div className="DetailCardDiv ">
+            <Card className="CardDetailGrid">
                 <CardHeader
-                    className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
-                    floated={haveImage}>
+                    className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}>
                     <div className={haveImage ? "ChipDiv " : "ChipDivNoImage"}>
                         <Chip
                             size='sm'
@@ -44,7 +43,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                             alt={title}
                             className="CardImage" />}
                 </CardHeader>
-                <CardBody className="FixCardBody">
+                <CardBody className="FixCardBody  ">
                     <Title
                         title={title}
                         flagged={flagged}
@@ -57,7 +56,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                         {description}
                     </Typography>
                 </CardBody>
-                <CardFooter className="CardFooter flex gap-4 mb-2">
+                <CardFooter className="CardFooter">
                     <ProfileDiv profile={Author} />
                     <div className="flex items-center gap-2 ">
                         <button

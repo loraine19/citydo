@@ -21,7 +21,13 @@ export const voteViewModel = () => {
         queryKey: ['poolsSurveys', params],
         queryFn: async ({ pageParam = 1 }) => await getPoolsSurveys.execute(pageParam, params) || [],
         initialPageParam: 1,
-        retry: 2,
+        retry: (failureCount) => {
+          if (failureCount < 2) {
+            return true;
+          }
+          return false;
+        },
+        refetchOnMount: true,
         getNextPageParam: (lastPage, pages) => lastPage?.poolsSurveys?.length ? pages.length + 1 : undefined
       })
 
@@ -46,7 +52,7 @@ export const poolIdViewModel = () => {
 
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
-      refetchOnWindowFocus: false,
+      refetchOnWindowFocus: true,
       staleTime: 600000, // 10 minutes,
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
