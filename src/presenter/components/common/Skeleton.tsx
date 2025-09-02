@@ -8,10 +8,10 @@ export function Skeleton(props: { className?: string }) {
     const { color } = useUxStore()
     return (
         <div className={`h-full  pb-1.5 w-full flex items-center justify-center ${className ?? ''}`}>
-            <Card className={style + 'fixCard w-full h-full  !flex flex-col'}>
-                <CardHeader className={`${color}BG bg-slate-300 mx-4 FixCardHeader animate-pulse !flex h-full  w-[calc(100%-1rem)] border-slate-300 lg:min-h-[220px] md:min-h-[150px] min-h-[180px]`}>
+            <Card className={style + 'fixCard w-full h-full gap-2 !flex flex-col'}>
+                <CardHeader className={`${color}BG bg-slate-300 mx-4 FixCardHeader animate-pulse !flex h-full flex-1 w-[calc(100%-1rem)] border-slate-300 lg:min-h-[220px] md:min-h-[150px] min-h-[200px]`}>
                 </CardHeader>
-                <CardBody className="FixCardBody !flex gap-2">
+                <CardBody className="FixCardBody flex-1 !py-4 !flex gap-2">
                     <div className="h-6 bg-slate-300 rounded-2xl  animate-pulse"></div>
                     <div className="h-4 bg-slate-300 rounded-2xl w-3/4 animate-pulse"></div>
 

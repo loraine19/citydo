@@ -73,12 +73,14 @@ export function SurveyCard({ survey, change, mines, update }: SurveyCardProps) {
                             prefix="finis dans" />
                     </div>
                     {survey?.image &&
-                        <img
-                            onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
-                            src={survey?.image as any}
-                            alt={survey?.title}
-                            className="CardImage"
-                        />}
+                        <div className="CardImageDiv">
+                            <img
+                                onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
+                                src={survey?.image as any}
+                                alt={survey?.title}
+                                className="CardImage"
+                            />
+                        </div>}
                 </CardHeader>
                 <CardBody
                     className={` FixCardBody`}>

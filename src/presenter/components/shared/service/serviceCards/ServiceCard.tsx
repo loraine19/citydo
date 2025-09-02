@@ -111,12 +111,13 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
                             prefix="le" />
                     </div>
                     {image &&
-                        <img
-                            onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
-                            src={image as any}
-                            alt={title}
-                            className=" CardImage "
-                        />
+                        <div className="CardImageDiv">
+                            <img
+                                onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
+                                src={image as any}
+                                alt={title}
+                                className=" CardImage "
+                            /></div>
                     }
                 </CardHeader>
                 <CardBody className={` FixCardBody !overflow-auto`}>

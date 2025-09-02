@@ -200,7 +200,7 @@ export default function ServicesPage() {
                 <SubHeader
                     qty={count}
                     type={`services ${filterName()} ${categoryName()}`} />
-                {notif &&
+                {(notif || error) &&
                     <NotifDiv
                         error={error}
                         notif={notif}

@@ -60,11 +60,12 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                     />
                 </div>
                 {image && (
-                    <img
+                    <div className="CardImageDiv"> <img
                         src={image as string || '/image/placeholder.jpg'}
                         onError={(e) => { e.currentTarget.src = '/image/placeholder.jpg' }}
                         alt={title}
-                        className="CardImage flex " />
+                        className="CardImage" />
+                    </div>
                 )}
             </CardHeader>
             <CardBody className="FixCardBody">

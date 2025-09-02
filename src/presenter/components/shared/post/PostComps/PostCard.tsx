@@ -37,12 +37,14 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                         prefix=" " />
                 </div>
                 {image &&
-                    <img
-                        onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
-                        src={image as any ?? null}
-                        alt={title}
-                        className={haveImage ? "CardImage" : "hidden"}
-                    />}
+                    <div className="CardImageDiv">
+                        <img
+                            onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
+                            src={image as any ?? null}
+                            alt={title}
+                            className={haveImage ? "CardImage" : "hidden"}
+                        />
+                    </div>}
             </CardHeader>
             <CardBody className={` FixCardBody !flex-1 ${short ? '' : 'gap-2'}`}>
                 <Title

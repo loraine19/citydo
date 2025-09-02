@@ -28,8 +28,7 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
     return (
         <Card className={haveImage ? "CardDetailGrid" : "CardDetailGridNoImage"}>
             <CardHeader
-                className={haveImage ? "DetailCardHeader" : "FixCardHeaderNoImage"}
-                floated={haveImage}>
+                className={haveImage ? "DetailCardHeader" : "FixCardHeaderNoImage"}>
                 <div className={haveImage ? "ChipDiv flex-wrap" : "ChipDivNoImage flex-wrap"}>
                     <Chip
                         size='sm'
@@ -42,12 +41,13 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
                         end={end}
                         prefix="finis dans" />
                 </div>
-                {image &&
-                    <img
-                        onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
-                        src={image as string}
-                        alt={title}
-                        className="h-full w-full object-cover CardImage" />}
+                {image && <img
+                    onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
+                    src={image as string}
+                    alt={title}
+                    className="CardImage" />
+                }
+
             </CardHeader>
             <CardBody className="DetailCardBody  justify-between">
                 <div>   <Title
