@@ -91,7 +91,7 @@ export default function DashboardPage() {
             (!navBottom && !hideNavBottom) ?
                 'lg:!-mt-3 !-mt-5 pb-[1rem] ' :
                 '-mt-7 pb-[3.5rem] lg:pb-[5rem] lg:-mt-4 '} 
-               relative flex !overflow-hidden anim pb-2`}
+               relative flex !overflow-hidden anim pb-2 ` }
             data-cy="dashboard-body" >
             <div ref={divRef}
                 onScroll={() => handleHideCallback()}
@@ -295,7 +295,7 @@ export default function DashboardPage() {
                 </div>
 
                 <div className={`
-                    ${(!hideNavBottom && navBottom) ? 'lg:hidden -mb-4 min-h-5' : !navBottom ? 'hidden' : ' -mb-5 min-h-1'} `}>
+                    ${(!hideNavBottom && navBottom) ? 'lg:hidden -mb-6 min-h-6' : !navBottom ? 'hidden' : ' -mb-5 min-h-1'} `}>
                 </div>
             </div>
         </main>
