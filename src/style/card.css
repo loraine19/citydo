@@ -30,9 +30,7 @@
 
     .card {
         @apply border !bg-white  rounded-xl w-full mx-auto 
-    !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md
-        
-    grid;
+    !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md grid;
     }
 
     .FixCard {
@@ -52,8 +50,8 @@
     /* CARD HEADER */
     .FixCardHeader {
         @apply md:max-w-[calc(100%-1.5rem)] max-w-[calc(100vw-1.5rem)] mx-auto w-full
-        !flex !flex-1   !rounded-xl !relative !z-[99] -mt-6  !shadow-md fadeIn border !border-slate-300
-          h-[calc(100%+1rem)];
+        !flex !flex-1 !rounded-xl !relative !z-[99] -mt-6 !shadow-md fadeIn border !border-slate-300
+        h-[calc(100%+1rem)];
     }
 
     .FixCardHeaderSmall {
@@ -65,15 +63,15 @@
     }
 
     .CardImage {
-        @apply h-full w-full  !rounded-xl object-cover !shadow-lg bg-slate-300;
+        @apply h-full w-full !rounded-xl object-cover !shadow-lg bg-slate-300;
     }
     .CardImageDiv {
-        @apply h-full w-full  flex flex-1;
+        @apply h-full w-full flex flex-1;
     }
 
     /* CHIP */
     .ChipDiv {
-        @apply flex  w-full gap-2 justify-between flex-wrap overflow-auto  absolute p-2;
+        @apply flex w-full gap-2 justify-between flex-wrap overflow-auto absolute p-2;
     }
 
     .ChipDivNoImage {
@@ -81,16 +79,16 @@
     }
 
     .ChipSubDiv {
-        @apply w-full flex max-w-max  flex-wrap overflow-auto gap-2 items-start;
+        @apply w-full flex max-w-max flex-wrap overflow-auto gap-2 items-start;
     }
 
     /* CARDBODY */
     .FixCardBody {
-        @apply flex  relative flex-col px-5 !py-0  !h-full place-self-start;
+        @apply flex relative flex-col px-5 !py-0 !h-full place-self-start;
     }
 
     .CardOverFlow {
-        @apply min-h-max  overflow-auto py-4 px-0;
+        @apply min-h-max overflow-auto py-4 px-0;
     }
 
     /*FOOTER */
@@ -102,36 +100,32 @@
     /***/
     /* DETAILD CARD  */
     .DetailCardDiv {
-        @apply h-full wRespXL grid pt-8 min-h-[fit-content] px-0.5 
-        grid-rows-[minmax(min-content,calc(100vh_-_11.5rem))]
+        @apply h-full wRespXL grid pt-8 min-h-[min-content] px-0.5 
+        grid-rows-[minmax(calc(100%_-_12rem),calc(100vh_-_12rem))]
         lg:grid-rows-[minmax(min-content,calc(100vh_-_12rem))];
     }
 
     .CardDetailGrid {
         @apply w-respLarge card
         !min-h-fit  !grid h-[calc(100%-0rem)] max-h-[calc(100vh-8.5rem)] lg:max-h-[calc(100vh-11.5rem)] 
-        grid-rows-[minmax(60px,34vh),minmax(max-content,1fr),auto]
-        sm:grid-rows-[minmax(60px,36vh),minmax(max-content,1fr),auto]
+        grid-rows-[minmax(50px,38vh),minmax(max-content,1fr),auto]
+        sm:grid-rows-[minmax(60px,38vh),minmax(max-content,1fr),auto]
         md:grid-rows-[minmax(200px,40vh),minmax(max-content,1fr),auto]
-        lg:grid-rows-[minmax(150px,30vh),minmax(max-content,1fr),auto];
+        lg:grid-rows-[minmax(150px,38vh),minmax(max-content,1fr),auto];
     }
 
     .CardDetailGridNoImage {
-        @apply w-respLarge card !-mt-6
-       w-respLarge rounded-xl w-full mx-auto 
-    !relative !p-0 anim z-50  !min-h-fit
-    grid grid-rows-[auto,minmax(min-content,1fr),auto];
+        @apply w-respLarge card !-mt-6 rounded-xl w-full mx-auto !relative !p-0 anim z-50 !min-h-fit
+        grid grid-rows-[auto,minmax(min-content,1fr),auto];
     }
 
     .DetailCardHeader {
         @apply md:max-w-[calc(100%-0rem)] max-w-[calc(100vw-0rem)] mx-auto
-        !flex flex-1  !rounded-xl !relative !z-[99] -mt-6  !shadow-md fadeIn border
-       h-[calc(100%+1rem)];
+        !flex flex-1 !rounded-xl !relative !z-[99] -mt-6 !shadow-md fadeIn border h-[calc(100%+1rem)];
     }
 
     .DetailCardBody {
-        @apply flex place-self-start relative flex-col px-5 !py-0 
-    !max-h-full !h-full;
+        @apply flex place-self-start relative flex-col px-5 !py-0 !max-h-full !h-full;
     }
     .DetailCardFooter {
         @apply flex justify-between sticky bottom-0 place-self-end items-center max-h-fit w-full pt-4 h-[4rem] min-h-fit;
