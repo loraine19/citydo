@@ -101,7 +101,7 @@
     /* DETAILD CARD  */
     .DetailCardDiv {
         @apply h-full wRespXL grid pt-8 min-h-[min-content] px-0.5 
-        grid-rows-[minmax(calc(100dvh_-_12rem),calc(100vh_-_12rem))]
+        grid-rows-[minmax(calc(100dvh_-_12rem),calc(100dvh_-_12rem))]
         lg:grid-rows-[minmax(min-content,calc(100vh_-_12rem))];
     }
 
