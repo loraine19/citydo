@@ -21,103 +21,108 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
     const { id, title, description, label, image, participantsMin, pourcent, Participants, Igo, User, Address, flagged, end, start, toogleParticipate, agendaLink, eventDateInfo, status, isPast, Group } = EventLoad;
 
     return (
-        <div className="DetailCardDiv">
-            <Card className="CardDetailGrid">
-                <CardHeader className="FixCardHeader">
-                    <div className="ChipDiv flex-col justify-between !h-full">
-                        <div className="flex w-full flex-wrap items-center justify-between gap-2">
-                            <Chip
-                                value={label}
-                                className="CyanChip rounded-full h-max shadow"
-                                size='sm'>
-                            </Chip>
-                            <DateChip
-                                start={start}
-                                end={end}
-                                ended={new Date(end).getTime() < Date.now()}
-                                prefix={'commence dans '} />
-                        </div>
-                        <ProgressBarBlur
-                            isPast={isPast}
-                            label='participants'
-                            value={pourcent || 0}
-                            status={status as string}
-                            size="lg"
-                            needed={participantsMin - (Participants?.length || 0)} />
-                    </div>
-                    < img
-                        onError={(e) => e.currentTarget.src = '/image/placeholder.jpg'}
-                        src={image as string}
-                        alt={title}
-                        className='CardImage' />
-                </CardHeader>
-                <CardBody className="FixCardBody">
-                    <Title
-                        title={title}
-                        flagged={flagged}
-                        id={id}
-                        CreatedAt={start}
-                        subTitle={eventDateInfo}
-                        type='evenement'
-                        group={Group}
-                    />
-                    <div className="overflow-auto flex-1">
-                        <div className="flex flex-1 gap-x-3 py-1.5 flex-col  sm:!justify-evenly sm:!flex-row h-full">
-                            <div className="relative h-max flex flex-col w-full sm:flex-1 sm:min-w-[50%] lg:min-w-[60%]">
-                                <Link
-                                    to={agendaLink as string}
-                                    target="_blank" rel="noopener noreferrer"
-                                    className={`${Igo ? 'GreenChip' : 'GrayChip px-3 '} w-max !rounded-full mb-1.5 py-1 text-xs font-medium flex items-center gap-1`}
-                                    title="ajouter a mon agenda">
-                                    <Icon
-                                        color={Igo ? "green" : "gray"}
-                                        icon="calendar_add_on"
-                                        size="lg" />
-                                    ajouter a mon agenda
-                                </Link>
-                                <Typography
-                                    className="leading-[1.2rem] py-1 h-full min-h-max break-normal">
-                                    {description}
-                                </Typography>
-                            </div>
-                            <div className="flex flex-col min-h-[58%]  !w-full h-full  flex-1 ">
-                                {Address ?
-                                    <AddressMapOpen
-                                        address={Address}
-                                        message={`${Address.address}, ${Address.zipcode} ${Address.city}`} /> :
-                                    <Skeleton />}
-                            </div>
-                        </div>
-                    </div>
-                </CardBody>
-                <CardFooter className="DetailCardFooter">
-                    <ProfileDiv profile={User} />
-                    <div className="flex items-center gap-2 overflow-auto">
-                        <AvatarStack avatarDatas={Participants} />
-                        <button
-                            data-cy='btn-participate'
-                            onClick={async () => {
-                                toogleParticipate && await toogleParticipate();
-                                refetch && await refetch()
-                            }}>
-                            <Chip
-                                value={participantsMin}
-                                variant="ghost"
-                                className="rounded-full GrayChip h-max flex items-center px-4 "
-                                icon={
-                                    <Icon
-                                        icon="person"
-                                        size="md"
-                                        fill={Igo}
-                                        color={Igo ? "cyan" : "gray"}
-                                        style=" hover:text-cyan-800 "
-                                        title={Igo ? "Je n'y vais plus" : "j'y vais"} />}>
 
-                            </Chip>
-                        </button>
+        <Card className="CardDetailGrid">
+            <CardHeader className="FixCardHeader">
+                <div className="ChipDiv flex-col justify-between !h-full">
+                    <div className="flex w-full flex-wrap items-center justify-between gap-2">
+                        <Chip
+                            value={label}
+                            className="CyanChip rounded-full h-max shadow"
+                            size='sm'>
+                        </Chip>
+                        <DateChip
+                            start={start}
+                            end={end}
+                            ended={new Date(end).getTime() < Date.now()}
+                            prefix={'commence dans '} />
                     </div>
-                </CardFooter>
-            </Card>
-        </div>
+                    <ProgressBarBlur
+                        isPast={isPast}
+                        label='participants'
+                        value={pourcent || 0}
+                        status={status as string}
+                        size="lg"
+                        needed={participantsMin - (Participants?.length || 0)} />
+                </div>
+                < img
+                    onError={(e) => e.currentTarget.src = '/image/placeholder.jpg'}
+                    src={image as string}
+                    alt={title}
+                    className='CardImage' />
+            </CardHeader>
+
+            {/* BODY */}
+            <CardBody className="DetailCardBody">
+                <Title
+                    title={title}
+                    flagged={flagged}
+                    id={id}
+                    CreatedAt={start}
+                    type='evenement'
+                    group={Group}
+                />
+                <div className="flex flex-1 gap-x-3 py-1 flex-col  sm:!justify-evenly sm:!flex-row h-full">
+                    <div className="relative h-max flex flex-col w-full flex-1 ">
+                        <h6>{eventDateInfo}</h6>
+                        <Link
+                            to={agendaLink as string}
+                            target="_blank" rel="noopener noreferrer"
+                            className={`${Igo ? 'GreenChip' : 'GrayChip px-3 '} w-max !rounded-full mb-1 py-1 text-xs font-medium flex items-center gap-1`}
+                            title="ajouter a mon agenda">
+                            <Icon
+                                color={Igo ? "green" : "gray"}
+                                icon="calendar_add_on"
+                                size="lg" />
+                            ajouter a mon agenda
+                        </Link>
+                        <div>
+                            <h6>Description</h6>
+                            <Typography
+                                className="description">
+                                {description}
+                            </Typography>
+                        </div>
+                    </div>
+                    <div className="flex flex-col  !w-full h-full  flex-1 ">
+                        <h6>Lieu</h6>
+                        {Address ?
+                            <AddressMapOpen
+                                address={Address}
+                                message={`${Address.address}, ${Address.zipcode} ${Address.city}`} /> :
+                            <Skeleton />}
+                    </div>
+                </div>
+            </CardBody>
+
+            {/* FOOTER */}
+            <CardFooter className="DetailCardFooter">
+                <ProfileDiv profile={User} />
+                <div className="flex items-center gap-2 overflow-auto">
+                    <AvatarStack avatarDatas={Participants} />
+                    <button
+                        data-cy='btn-participate'
+                        onClick={async () => {
+                            toogleParticipate && await toogleParticipate();
+                            refetch && await refetch()
+                        }}>
+                        <Chip
+                            value={participantsMin}
+                            variant="ghost"
+                            className="rounded-full GrayChip h-max flex items-center px-4 "
+                            icon={
+                                <Icon
+                                    icon="person"
+                                    size="md"
+                                    fill={Igo}
+                                    color={Igo ? "cyan" : "gray"}
+                                    style=" hover:text-cyan-800 "
+                                    title={Igo ? "Je n'y vais plus" : "j'y vais"} />}>
+
+                        </Chip>
+                    </button>
+                </div>
+            </CardFooter>
+        </Card>
     );
 }

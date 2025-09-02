@@ -44,124 +44,122 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
         }
     }
     return (
-        <div className="DetailCardDiv ">
-            <Card className="CardDetailGrid">
-                <CardHeader
-                    className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}>
-                    <div className={haveImage ? "ChipDiv " : "ChipDivNoImage"}>
-                        <div className="ChipSubDiv  ">
+        <Card className="CardDetailGrid">
+            <CardHeader
+                className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}>
+                <div className={haveImage ? "ChipDiv " : "ChipDivNoImage"}>
+                    <div className="ChipSubDiv  ">
+                        <Chip
+                            size="sm"
+                            value={`${categoryS}`}
+                            className="CyanChip">
+                        </Chip>
+                        <Chip
+                            size="sm"
+                            value={typeS}
+                            className={`${typeS === "demande" ? "OrangeChip" : "GreenChip"} shadow rounded-full  h-max flex items-center gap-2 font-medium `}>
+                        </Chip>
+                        <button onClick={() => { statusS === ServiceStep.STEP_4 && navigate(`/conciliation/${id}`) }}>
                             <Chip
-                                size="sm"
-                                value={`${categoryS}`}
-                                className="CyanChip">
+                                size="sm" value={statusS}
+                                className={`${statusValues(statusS as ServiceStep).color} shadow rounded-full h-max flex items-center gap-2 font-medium `}>
                             </Chip>
-                            <Chip
-                                size="sm"
-                                value={typeS}
-                                className={`${typeS === "demande" ? "OrangeChip" : "GreenChip"} shadow rounded-full  h-max flex items-center gap-2 font-medium `}>
-                            </Chip>
-                            <button onClick={() => { statusS === ServiceStep.STEP_4 && navigate(`/conciliation/${id}`) }}>
-                                <Chip
-                                    size="sm" value={statusS}
-                                    className={`${statusValues(statusS as ServiceStep).color} shadow rounded-full h-max flex items-center gap-2 font-medium `}>
-                                </Chip>
-                            </button>
-                        </div>
-                        <DateChip
-                            start={createdAt}
-                            prefix="publié le " />
+                        </button>
                     </div>
-                    {image &&
-                        <img
-                            onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
-                            src={image as any}
-                            alt={title}
-                            className="CardImage"
-                        />
-                    }
-                </CardHeader>
-                <CardBody className="FixCardBody">
-                    <Title
-                        title={title}
-                        flagged={flagged}
-                        id={id}
-                        type='service'
-                        group={service.Group}
+                    <DateChip
+                        start={createdAt}
+                        prefix="publié le " />
+                </div>
+                {image &&
+                    <img
+                        onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
+                        src={image as any}
+                        alt={title}
+                        className="CardImage"
                     />
-                    <div className="overflow-auto flex flex-col h-full ">
-                        <div className="flex justify-between items-end pt-2 ">
-                            <div className="flex  items-center gap-2 mb-1">
-                                <Chip
+                }
+            </CardHeader>
+            <CardBody className="DetailCardBody">
+                <Title
+                    title={title}
+                    flagged={flagged}
+                    id={id}
+                    type='service'
+                    group={service.Group}
+                />
+                <div className="flex flex-col h-fit">
+                    <div className="flex justify-between items-end pt-2 ">
+                        <div className="flex  items-center gap-2 mb-1">
+                            <Chip
+                                size="sm"
+                                value={SkillLevel[skill as unknown as keyof typeof SkillLevel]}
+                                className=" GrayChip "
+                                icon={<Icon
+                                    disabled
                                     size="sm"
-                                    value={SkillLevel[skill as unknown as keyof typeof SkillLevel]}
-                                    className=" GrayChip "
-                                    icon={<Icon
-                                        disabled
-                                        size="sm"
-                                        icon="design_services"
-                                        style=" pointer-events-none"
-                                        title="Compétence" />}>
-                                </Chip>
-                                <Chip
+                                    icon="design_services"
+                                    style=" pointer-events-none"
+                                    title="Compétence" />}>
+                            </Chip>
+                            <Chip
+                                size="sm"
+                                value={HardLevel[hard as unknown as keyof typeof HardLevel]}
+                                className="GrayChip "
+                                icon={<Icon
+                                    disabled
                                     size="sm"
-                                    value={HardLevel[hard as unknown as keyof typeof HardLevel]}
-                                    className="GrayChip "
-                                    icon={<Icon
-                                        disabled
-                                        size="sm"
-                                        icon="signal_cellular_alt"
-                                        style="pointer-events-none"
-                                        title="Difficulté" />}>
-                                </Chip>
-                            </div>
-                        </div>
-                        <div className="flex h-full flex-1 flex-col lg:flex-row gap-2    gap-y-[5vh] lg:gap-4">
-                            <Typography
-                                className="pr-4 max-h-full  description overflow-y-auto">
-                                {description}
-                            </Typography>
-
-                            <div className="flex border min-w-[33%] border-slate-200  p-2 bg-slate-50 rounded-2xl h-max flex-col gap-1 lg:gap-2 lg:items-end">
-                                <Typography
-                                    className="text-left lg:text-right"
-                                    as="h6">
-                                    {statusValues(statusS as ServiceStep).text}
-                                </Typography>
-                                <div className="flex lg:flex-col flex-row-reverse lg:items-end self-start lg:self-end ">
-                                    {UserResp ?
-                                        <ProfileDiv profile={UserResp} size="md" /> :
-                                        <ProfileDiv profile={new Profile({
-                                            firstName: "Mr",
-                                            lastName: "?",
-                                            userId: 0,
-                                            userIdSp: 0,
-                                            addressId: 0,
-                                        } as Partial<Profile>)} size="md" />}
-
-                                </div>
-                            </div>
+                                    icon="signal_cellular_alt"
+                                    style="pointer-events-none"
+                                    title="Difficulté" />}>
+                            </Chip>
                         </div>
                     </div>
-                </CardBody>
-                <CardFooter className="DetailCardFooter">
-                    {User?.id !== userId &&
-                        <ProfileDiv profile={User} />
-                    }
-                    <div className="flex flex-col w-full items-center gap-2">
+                    <div className="flex h-full flex-1 flex-col lg:flex-row gap-2 gap-y-4 lg:gap-4">
                         <Typography
-                            as='h6'
-                            className={`text-end ${points?.length > 0 && "w-full"}`} >
-                            {points.length > 0 && points[1] &&
-                                <span className="!text-[1.2rem] font-light">de </span>}
-                            {points[0]}
-                            {points?.length > 0 && <>
-                                <span className="!text-[1.2rem] font-light"> à </span>
-                                {points[1]}</>}
-                            <span className="!text-[1.2rem] font-light"> points</span>
+                            className="pr-4 max-h-full  description ">
+                            {description}
                         </Typography>
+
+                        <div className="flex border min-w-[33%] border-slate-200 px-4 py-1 bg-slate-50 rounded-2xl h-max flex-col gap-1 lg:gap-2 lg:items-end">
+                            <Typography
+                                className="text-left lg:text-right"
+                                as="h6">
+                                {statusValues(statusS as ServiceStep).text}
+                            </Typography>
+                            <div className="flex lg:flex-col flex-row-reverse lg:items-end self-start lg:self-end  ">
+                                {UserResp ?
+                                    <ProfileDiv profile={UserResp} size="md" /> :
+                                    <ProfileDiv profile={new Profile({
+                                        firstName: "Mr",
+                                        lastName: "?",
+                                        userId: 0,
+                                        userIdSp: 0,
+                                        addressId: 0,
+                                    } as Partial<Profile>)} size="md" />}
+
+                            </div>
+                        </div>
                     </div>
-                </CardFooter>
-            </Card>
-        </div>
+                </div>
+            </CardBody>
+            <CardFooter className="DetailCardFooter">
+                {User?.id !== userId &&
+                    <ProfileDiv profile={User} />
+                }
+                <div className="flex flex-col w-full items-center gap-2">
+                    <Typography
+                        as='h6'
+                        className={`text-end ${points?.length > 0 && "w-full"}`} >
+                        {points.length > 0 && points[1] &&
+                            <span className="!text-[1.2rem] font-light">de </span>}
+                        {points[0]}
+                        {points?.length > 0 && <>
+                            <span className="!text-[1.2rem] font-light"> à </span>
+                            {points[1]}</>}
+                        <span className="!text-[1.2rem] font-light"> points</span>
+                    </Typography>
+                </div>
+            </CardFooter>
+        </Card>
     )
 }

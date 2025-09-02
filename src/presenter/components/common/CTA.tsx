@@ -49,7 +49,8 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                                 className={`${action?.color ?? defColor}StyleInv !min-w-full lgBtn`}
                                 size="lg"
                                 onClick={() => { setOpen(true); setIndex(i); }}
-                                disabled={i === 0 ? disabled1 : i === 1 ? disabled2 : undefined}
+                                disabled={action?.disabled ?? i === 0 ? disabled1 : i === 1 ? disabled2 : undefined
+                                }
                             >
                                 {action?.iconImage && (
                                     <Icon

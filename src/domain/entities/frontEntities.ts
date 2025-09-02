@@ -10,6 +10,7 @@ export class Action {
     body?: string | Element | JSX.Element | Element[] | JSX.Element[];
     function: () => void = () => { };
     color?: string;
+    disabled?: boolean;
 }
 export class Label {
     label: string = '';

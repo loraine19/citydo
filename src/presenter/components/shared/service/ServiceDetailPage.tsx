@@ -5,18 +5,20 @@ import SubHeader from '../../common/SubHeader';
 import ServiceDetailComp from './serviceCards/ServiceDetailCard';
 import { Action } from '../../../../domain/entities/frontEntities';
 import DI from '../../../../di/ioc';
-import { Skeleton } from '../../common/Skeleton';
+import { Skeleton, SkeletonGrid } from '../../common/Skeleton';
 import { generateContact, GenereMyActions, getEnumVal, isLate } from '../../../views/viewsEntities/utilsService';
 import { ContactDiv } from '../../common/ContactDiv';
 import { User } from '../../../../domain/entities/User';
 import { useAlertStore } from '../../../../application/stores/alert.store';
 import { ServiceView } from '../../../views/viewsEntities/serviceViewEntity';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { HandleHideParams } from '../../../../application/useCases/utils.useCase';
+import NotifDiv from '../../common/NotifDiv';
 
 export default function ServiceDetailPage() {
 
-    //// TODO 
-    // notif div refetch
+
+    const [notif, setNotif] = useState<string>('');
 
     //// PARAMS
     const { id } = useParams();
@@ -28,7 +30,7 @@ export default function ServiceDetailPage() {
 
     //// VIEW MODEL
     const serviceIdViewModelFactory = DI.resolve('serviceIdViewModel');
-    const { service, isLoading, error, update } = serviceIdViewModelFactory(idS);
+    const { service, isLoading, error, update, refetch } = serviceIdViewModelFactory(idS);
 
     //// ACTIONS
     const deleteService = async (id: number) => await DI.resolve('deleteServiceUseCase').execute(id);
@@ -199,10 +201,10 @@ export default function ServiceDetailPage() {
 
     useEffect(() => {
         if (!isLoading && !error && service) {
+            error ? setNotif(error.message) : setNotif('');
             const updatedActions = generateActions(service);
             setActions([...updatedActions]);
         }
-        console.log(actions, service, isLoading)
     }, [isLoading, error])
 
     const updateService = async () => {
@@ -210,23 +212,67 @@ export default function ServiceDetailPage() {
         setActions(generateActions(data));
     }
 
+    //// HANDLE SCROLL
+    const utils = DI.resolve('utils')
+    const divRef = useRef(null);
+    const onScroll = useCallback(() => {
+    }, [divRef]);
+    //// HANDLE HIDE  
+    const handleHide = (params: HandleHideParams) => utils.handleHide(params)
+    const handleHideCallback = useCallback(() => {
+        const params: HandleHideParams = { divRef, setHide }
+        handleHide(params)
+    }, [divRef]);
+    const [hide, setHide] = useState<boolean>(false);
+
     return (
         <>
             <main >
                 <div className="sectionHeader">
-                    <SubHeader type={`${typeS ?? ''} de service ${categoryS ?? ''}`} closeBtn />
-                </div>
-                <section className="">
-                    {isLoading || error || !service ?
-                        <Skeleton />
-                        :
-                        <ServiceDetailComp
-                            service={service}
-                            mines={mine}
+                    <SubHeader
+                        hideImage={!hide}
+                        image={service?.image}
+                        type={`${typeS ?? ''} de service ${categoryS ?? ''}`}
+                        closeBtn />
+                    {notif &&
+                        <NotifDiv
+                            isLoading={isLoading}
+                            refetch={refetch}
+                            notif={notif}
                         />}
+
+                </div>
+                <section
+                    ref={divRef}
+                    onScroll={() => {
+                        onScroll()
+                        handleHideCallback()
+                    }}>
+                    <div className="DetailCardDiv">
+                        {isLoading || error || !service ?
+                            <Skeleton />
+                            :
+
+                            <ServiceDetailComp
+                                service={service}
+                                mines={mine}
+                            />
+                        }
+
+                    </div>
+
+
+                    {/* ARTICLES */}
+                    <article className='grid grid-rows-[auto,1fr] py-5 lg:-ml-5'>
+                        <SubHeader
+                            type="Autres services"
+                            place={'dans ce groupe '} />
+                        <SkeletonGrid count={3} />
+                    </article>
+
                 </section>
             </main>
-            <footer>
+            <footer className={`footer ${hide ? 'hidden' : ''}`} >
                 {!isLoading && !error && service &&
                     <CTAMines
                         actions={actions}

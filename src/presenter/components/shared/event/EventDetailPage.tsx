@@ -70,6 +70,7 @@ export default function EventDetailPage() {
     const divRef = useRef(null);
     const onScroll = useCallback(() => {
     }, [divRef]);
+
     //// HANDLE HIDE  
     const handleHide = (params: HandleHideParams) => utils.handleHide(params)
     const handleHideCallback = useCallback(() => {
@@ -83,9 +84,10 @@ export default function EventDetailPage() {
             <main data-cy="event-details-page">
                 <div className="sectionHeader">
                     <SubHeader
-                        image={hide ? event?.image : undefined}
-                        type={`évenement ${event?.label ?? ''} `}
-                        place={` ${event?.Address?.address ?? ''} ${event?.Address?.city ?? ''}`}
+                        image={event?.image}
+                        hideImage={!hide}
+                        type={`évenement ${event?.label ?? ''}`}
+                        place={`${event?.Address?.address ?? ''} ${event?.Address?.city ?? ''}`}
                         closeBtn />
 
                     {notif &&
@@ -102,18 +104,23 @@ export default function EventDetailPage() {
                         onScroll()
                         handleHideCallback()
                     }}>
-                    {!isLoading && event ?
-                        <EventDetailCard
-                            EventLoad={event}
-                            refetch={async () => await updateEvent()} /> :
-                        <Skeleton />}
+                    <div className="DetailCardDiv ">
+                        {!isLoading && event ?
+                            <EventDetailCard
+                                EventLoad={event}
+                                refetch={async () => await updateEvent()} />
+                            :
+                            <Skeleton />}
+                    </div>
 
-                    <article className='grid grid-rows-[auto,1fr] py-5 lg:-ml-5'>
+                    {/* ARTICLES */}
+                    <article className='grid grid-rows-[auto,1fr] py-5  lg:-ml-5'>
                         <SubHeader
-                            type="Autres événements "
+                            type="Autres événements"
                             place={'dans ce groupe '} />
                         <SkeletonGrid count={3} />
                     </article>
+
                 </section>
             </main>
             <footer className={`footer ${hide ? 'hidden' : ''}`} >

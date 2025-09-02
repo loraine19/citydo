@@ -22,66 +22,64 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
     const ILike: boolean = post?.Likes?.find((like: Like) => like.userId === userId) ? true : false
 
     return (
-        <div className="DetailCardDiv ">
-            <Card className="CardDetailGrid">
-                <CardHeader
-                    className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}>
-                    <div className={haveImage ? "ChipDiv " : "ChipDivNoImage"}>
+        <Card className={haveImage ? "CardDetailGrid" : "CardDetailGridNoImage"}>
+            <CardHeader
+                className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}>
+                <div className={haveImage ? "ChipDiv " : "ChipDivNoImage"}>
+                    <Chip
+                        size='sm'
+                        value={categoryS}
+                        className={'CyanChip'}>
+                    </Chip>
+                    <DateChip
+                        start={createdAt}
+                        prefix="publié le " />
+                </div>
+                {image &&
+                    <img
+                        onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
+                        src={image as any}
+                        alt={title}
+                        className="CardImage" />}
+            </CardHeader>
+            <CardBody className="DetailCardBody  ">
+                <Title
+                    title={title}
+                    flagged={flagged}
+                    id={id}
+                    type="annonce"
+                    group={post.Group}
+                />
+                <Typography
+                    className="description">
+                    {description}
+                </Typography>
+            </CardBody>
+            <CardFooter className="DetailCardFooter">
+                <ProfileDiv profile={Author} />
+                <div className="flex items-center gap-2 ">
+                    <button
+                        onClick={async () => {
+                            const data = await toogleLike()
+                            data && setPost(data)
+                        }}>
                         <Chip
-                            size='sm'
-                            value={categoryS}
-                            className={'CyanChip'}>
+                            value={`${Likes?.length}`}
+                            variant="ghost"
+                            className="!h-max !px-4 rounded-full GrayChip flex items-center "
+                            icon={
+                                <Icon
+                                    icon="thumb_up"
+                                    size="md"
+                                    fill={ILike}
+                                    color={ILike ? "rose" : "gray"}
+                                    style=" hover:text-cyan-800 "
+                                    title={ILike ? "Je n'aime plus" : "J'aime ce post"} />}>
                         </Chip>
-                        <DateChip
-                            start={createdAt}
-                            prefix="publié le " />
-                    </div>
-                    {image &&
-                        <img
-                            onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
-                            src={image as any}
-                            alt={title}
-                            className="CardImage" />}
-                </CardHeader>
-                <CardBody className="FixCardBody  ">
-                    <Title
-                        title={title}
-                        flagged={flagged}
-                        id={id}
-                        type="annonce"
-                        group={post.Group}
-                    />
-                    <Typography
-                        className="description">
-                        {description}
-                    </Typography>
-                </CardBody>
-                <CardFooter className="CardFooter">
-                    <ProfileDiv profile={Author} />
-                    <div className="flex items-center gap-2 ">
-                        <button
-                            onClick={async () => {
-                                const data = await toogleLike()
-                                data && setPost(data)
-                            }}>
-                            <Chip
-                                value={`${Likes?.length}`}
-                                variant="ghost"
-                                className="!h-max !px-4 rounded-full GrayChip flex items-center "
-                                icon={
-                                    <Icon
-                                        icon="thumb_up"
-                                        size="md"
-                                        fill={ILike}
-                                        color={ILike ? "rose" : "gray"}
-                                        style=" hover:text-cyan-800 "
-                                        title={ILike ? "Je n'aime plus" : "J'aime ce post"} />}>
-                            </Chip>
-                        </button>
-                    </div>
-                </CardFooter>
-            </Card>
-        </div>
+                    </button>
+                </div>
+            </CardFooter>
+        </Card>
     )
 }
 

@@ -5,8 +5,10 @@ import PostDetailCard from './PostComps/PostDetailCard';
 import { Action } from '../../../../domain/entities/frontEntities';
 import { GenereMyActions, } from '../../../views/viewsEntities/utilsService';
 import DI from '../../../../di/ioc';
-import { Skeleton } from '../../common/Skeleton';
+import { Skeleton, SkeletonGrid } from '../../common/Skeleton';
 import { useAlertStore } from '../../../../application/stores/alert.store';
+import { useRef, useCallback, useState } from 'react';
+import { HandleHideParams } from '../../../../application/useCases/utils.useCase';
 
 export default function PostDetailPage() {
     //// PARAMS
@@ -21,7 +23,22 @@ export default function PostDetailPage() {
     const { setOpen, open } = useAlertStore(state => state);
     const handleOpen = () => setOpen(!open)
     const myActions = post && GenereMyActions(post, "annonce", deletePost)
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+
+
+    //// HANDLE SCROLL
+    const utils = DI.resolve('utils')
+    const divRef = useRef(null);
+    const onScroll = useCallback(() => {
+    }, [divRef]);
+
+    //// HANDLE HIDE  
+    const handleHide = (params: HandleHideParams) => utils.handleHide(params)
+    const handleHideCallback = useCallback(() => {
+        const params: HandleHideParams = { divRef, setHide }
+        handleHide(params)
+    }, [divRef]);
+    const [hide, setHide] = useState<boolean>(false);
 
     //// CONTACT ACTIONS
     const ContactActions: Action[] = !post ? [] : [
@@ -52,18 +69,37 @@ export default function PostDetailPage() {
         <>
             <main>
                 <div className="sectionHeader ">
-                    <SubHeader type={`annonce ${post?.categoryS ?? ""}`} closeBtn />
+                    <SubHeader
+                        hideImage={!hide}
+                        image={post?.image ?? ""}
+                        type={`annonce ${post?.categoryS ?? ""}`}
+                        closeBtn />
                 </div>
-                <section>
-                    {!isLoading && !error && post ?
-                        <PostDetailCard
-                            post={post}
-                            mines={post?.isMine}
-                            change={() => { }} /> :
-                        <Skeleton />}
+                <section
+                    ref={divRef}
+                    onScroll={() => {
+                        onScroll()
+                        handleHideCallback()
+                    }}>
+                    <div className="DetailCardDiv ">
+                        {!isLoading && !error && post ?
+                            <PostDetailCard
+                                post={post}
+                                mines={post?.isMine}
+                                change={() => { }} /> :
+                            <Skeleton />}
+                    </div>
+
+                    {/* ARTICLES */}
+                    <article className='grid grid-rows-[auto,1fr] py-5  lg:-ml-5'>
+                        <SubHeader
+                            type="Autres annonces "
+                            place={'dans ce groupe '} />
+                        <SkeletonGrid count={3} />
+                    </article>
                 </section>
             </main>
-            <footer>
+            <footer className={`footer ${hide ? 'hidden' : ''}`} >
                 {(!isLoading && !error && post) &&
                     <>
                         {post?.isMine ?

@@ -25,72 +25,70 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
         }
     }
     return (
-        <div className="DetailCardDiv ">
-            <Card className="CardDetailGridNoImage" >
-                <CardHeader className={"FixCardHeaderNoImage"}
-                    floated={false}>
-                    <div className={`ChipDivNoImage flex-wrap`}>
+        <Card className="CardDetailGridNoImage" >
+            <CardHeader className={"FixCardHeaderNoImage"}
+                floated={false}>
+                <div className={`ChipDivNoImage flex-wrap`}>
+                    <Chip
+                        value={'Cagnotte'}
+                        size='sm'
+                        className="CyanChip">
+                    </Chip>
+                    <DateChip
+                        start={pool?.createdAt}
+                        ended={ended}
+                        end={end}
+                        prefix="finis dans" />
+                </div>
+            </CardHeader>
+            <CardBody
+                className="DetailCardBody ">
+                <Title
+                    title={pool?.title}
+                    CreatedAt={pool?.createdAt}
+                    group={pool?.Group}
+                />
+                <div className=" flex h-full flex-1  justify-between !pb-8 flex-col">
+                    <Typography className="description">
+                        {pool?.description}
+                    </Typography>
+                    <div className="grid">
+                        <ProfileDiv
+                            profile={pool?.UserBenef || {} as Partial<User>}
+                            size={'lg'} />
+                    </div>
+                </div>
+                <div className="flex "> <ProgressBar
+                    value={pool?.pourcent}
+                    label="votes pour "
+                    size={'lg'}
+                    needed={pool?.needed} />
+                </div>
+            </CardBody>
+            <CardFooter
+                className="DetailCardFooter ">
+                <ProfileDiv
+                    profile={pool?.User || {} as Partial<User>} />
+                <div className="flex items-center gap-2 ">
+                    <button
+                        disabled={pool?.status !== PoolSurveyStatus.PENDING}
+                        onClick={() => { setOpen(true) }}>
                         <Chip
-                            value={'Cagnotte'}
-                            size='sm'
-                            className="CyanChip">
+                            value={pool.Votes?.length}
+                            variant="ghost"
+                            className="rounded-full px-4 GrayChip"
+                            icon={
+                                <Icon
+                                    icon="smart_card_reader"
+                                    fill={pool?.IVoted}
+                                    color={color()}
+                                    size="md"
+                                    title={`${pool.Votes?.length} personnes ${pool?.IVoted ? `dont vous ` : ''} ont voté`} />}>
                         </Chip>
-                        <DateChip
-                            start={pool?.createdAt}
-                            ended={ended}
-                            end={end}
-                            prefix="finis dans" />
-                    </div>
-                </CardHeader>
-                <CardBody
-                    className="FixCardBody ">
-                    <Title
-                        title={pool?.title}
-                        CreatedAt={pool?.createdAt}
-                        group={pool?.Group}
-                    />
-                    <div className=" flex h-full flex-1  justify-between !pb-8 flex-col">
-                        <Typography className="description">
-                            {pool?.description}
-                        </Typography>
-                        <div className="grid">
-                            <ProfileDiv
-                                profile={pool?.UserBenef || {} as Partial<User>}
-                                size={'lg'} />
-                        </div>
-                    </div>
-                    <div className="flex "> <ProgressBar
-                        value={pool?.pourcent}
-                        label="votes pour "
-                        size={'lg'}
-                        needed={pool?.needed} />
-                    </div>
-                </CardBody>
-                <CardFooter
-                    className="CardFooter ">
-                    <ProfileDiv
-                        profile={pool?.User || {} as Partial<User>} />
-                    <div className="flex items-center gap-2 ">
-                        <button
-                            disabled={pool?.status !== PoolSurveyStatus.PENDING}
-                            onClick={() => { setOpen(true) }}>
-                            <Chip
-                                value={pool.Votes?.length}
-                                variant="ghost"
-                                className="rounded-full px-4 GrayChip"
-                                icon={
-                                    <Icon
-                                        icon="smart_card_reader"
-                                        fill={pool?.IVoted}
-                                        color={color()}
-                                        size="md"
-                                        title={`${pool.Votes?.length} personnes ${pool?.IVoted ? `dont vous ` : ''} ont voté`} />}>
-                            </Chip>
-                        </button>
-                    </div>
-                </CardFooter>
-            </Card>
-        </div>
+                    </button>
+                </div>
+            </CardFooter>
+        </Card>
     )
 }
 

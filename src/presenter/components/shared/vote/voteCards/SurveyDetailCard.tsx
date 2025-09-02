@@ -26,73 +26,71 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
     }
 
     return (
-        <div className="DetailCardDiv">
-            <Card className="CardDetailGrid">
-                <CardHeader
-                    className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
-                    floated={haveImage}>
-                    <div className={haveImage ? "ChipDiv flex-wrap" : "ChipDivNoImage flex-wrap"}>
+        <Card className={haveImage ? "CardDetailGrid" : "CardDetailGridNoImage"}>
+            <CardHeader
+                className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
+                floated={haveImage}>
+                <div className={haveImage ? "ChipDiv flex-wrap" : "ChipDivNoImage flex-wrap"}>
+                    <Chip
+                        size='sm'
+                        value={categoryS}
+                        className="CyanChip">
+                    </Chip>
+                    <DateChip
+                        start={createdAt}
+                        ended={status !== PoolSurveyStatus.PENDING}
+                        end={end}
+                        prefix="finis dans" />
+                </div>
+                {image &&
+                    <img
+                        onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
+                        src={image as string}
+                        alt={title}
+                        className="h-full w-full object-cover CardImage" />}
+            </CardHeader>
+            <CardBody className="DetailCardBody  justify-between">
+                <div>   <Title
+                    title={title}
+                    flagged={flagged}
+                    id={id}
+                    CreatedAt={createdAt}
+                    type='sondage' />
+                    <div className="CardOverFlow ">
+                        <Typography
+                            className="description">
+                            {description}
+                        </Typography>
+                    </div></div>
+                <ProgressBar
+                    value={pourcent}
+                    label="votes pour"
+                    size={'lg'}
+                    needed={needed} />
+            </CardBody>
+            <CardFooter className="DetailCardFooter">
+                <ProfileDiv
+                    profile={User} />
+                <div className="flex items-center gap-2 ">
+                    <button
+                        disabled={status !== PoolSurveyStatus.PENDING}
+                        onClick={() => setOpen(true)}>
                         <Chip
+                            value={Votes?.length}
+                            variant="ghost"
                             size='sm'
-                            value={categoryS}
-                            className="CyanChip">
+                            className="rounded-full GrayChip !px-4"
+                            icon={<Icon
+                                icon="smart_card_reader"
+                                fill={IVoted}
+                                color={color()}
+                                size="md"
+                                title={`${Votes?.length} personnes ${IVoted && `dont vous `} ont voté`} />}>
                         </Chip>
-                        <DateChip
-                            start={createdAt}
-                            ended={status !== PoolSurveyStatus.PENDING}
-                            end={end}
-                            prefix="finis dans" />
-                    </div>
-                    {image &&
-                        <img
-                            onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
-                            src={image as string}
-                            alt={title}
-                            className="h-full w-full object-cover CardImage" />}
-                </CardHeader>
-                <CardBody className="FixCardBody  justify-between">
-                    <div>   <Title
-                        title={title}
-                        flagged={flagged}
-                        id={id}
-                        CreatedAt={createdAt}
-                        type='sondage' />
-                        <div className="CardOverFlow ">
-                            <Typography
-                                className="description">
-                                {description}
-                            </Typography>
-                        </div></div>
-                    <ProgressBar
-                        value={pourcent}
-                        label="votes pour"
-                        size={'lg'}
-                        needed={needed} />
-                </CardBody>
-                <CardFooter className="DetailCardFooter">
-                    <ProfileDiv
-                        profile={User} />
-                    <div className="flex items-center gap-2 ">
-                        <button
-                            disabled={status !== PoolSurveyStatus.PENDING}
-                            onClick={() => setOpen(true)}>
-                            <Chip
-                                value={Votes?.length}
-                                variant="ghost"
-                                size='sm'
-                                className="rounded-full GrayChip !px-4"
-                                icon={<Icon
-                                    icon="smart_card_reader"
-                                    fill={IVoted}
-                                    color={color()}
-                                    size="md"
-                                    title={`${Votes?.length} personnes ${IVoted && `dont vous `} ont voté`} />}>
-                            </Chip>
-                        </button>
-                    </div>
-                </CardFooter>
-            </Card>
-        </div>
+                    </button>
+                </div>
+            </CardFooter>
+        </Card>
     )
 }
 

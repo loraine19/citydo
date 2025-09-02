@@ -36,7 +36,7 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                             }
                         </div>
                     </CardBody>
-                    <CardFooter className="justify-end FixCardFooter max-w-full flex flex-wrap gap-8 py-6">
+                    <CardFooter className="justify-end FixCardFooter max-w-full flex flex-wrap gap-y-4 gap-x-8 py-6">
                         {button2 &&
                             <Button
                                 className={`rounded-full text-white lgBtn max-w-max`}

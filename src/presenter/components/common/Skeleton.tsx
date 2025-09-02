@@ -9,7 +9,7 @@ export function Skeleton(props: { className?: string }) {
     return (
         <div className={`h-full  pb-1.5 w-full flex items-center justify-center ${className ?? ''}`}>
             <Card className={style + 'fixCard w-full h-full  !flex flex-col'}>
-                <CardHeader className={`${color}BG bg-slate-100 FixCardHeader animate-pulse !flex h-full  w-[100%] lg:min-h-[220px] md:min-h-[150px] min-h-[180px]`}>
+                <CardHeader className={`${color}BG bg-${color}-500 mx-4 FixCardHeader animate-pulse !flex h-full  w-[calc(100%-1rem)] !opacity-70 lg:min-h-[220px] md:min-h-[150px] min-h-[180px]`}>
                 </CardHeader>
                 <CardBody className="FixCardBody !flex gap-2">
                     <div className="h-6 bg-gray-200 rounded-2xl  animate-pulse"></div>

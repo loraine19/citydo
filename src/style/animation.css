@@ -15,17 +15,29 @@
     animation: slide 1.2s forwards;
 }
 
+.animSlideRev {
+    @apply duration-700;
+    animation: slideOut 1.2s forwards;
+}
+
 .animSlideUp {
     @apply duration-700 fadeIn;
     animation: slideUp 1.2s forwards;
 }
-
-@keyframes slideOut {
+@keyframes slide {
     from {
-        transform: translateX(0);
+        transform: translateX(-90%);
     }
     to {
-        transform: translateX(90%);
+        transform: translateX(0);
+    }
+}
+@keyframes slideOut {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-90%);
     }
 }
 
@@ -58,15 +70,6 @@
     }
     to {
         transform: translateY(0);
-    }
-}
-
-@keyframes slide {
-    from {
-        transform: translateX(-90%);
-    }
-    to {
-        transform: translateX(0);
     }
 }
 

@@ -111,7 +111,7 @@ h5 {
     @apply text-lg text-[0.95rem] font-normal !text-slate-700 !font-roboto;
 }
 h6 {
-    @apply font-normal  !text-slate-700 !font-roboto;
+    @apply font-normal pt-2 !text-slate-700 !font-roboto;
 }
 p {
     @apply text-base font-light text-slate-600 !font-roboto;
@@ -136,7 +136,7 @@ i {
 }
 
 .CTA {
-    @apply pb-2 px-1 fixed bottom-0 left-0 h-max w-full !flex items-center justify-center rounded-t-3xl;
+    @apply pb-2 px-1  anim fixed bottom-0 left-0 h-max w-full !flex items-center justify-center rounded-t-3xl;
 }
 
 /**** INPUT STYLES ****/
