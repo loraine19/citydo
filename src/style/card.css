@@ -101,7 +101,7 @@
     /* DETAILD CARD  */
     .DetailCardDiv {
         @apply h-full wRespXL grid pt-8 min-h-[min-content] px-0.5 
-        grid-rows-[minmax(calc(100%_-_12rem),calc(100vh_-_12rem))]
+        grid-rows-[minmax(calc(100dvh_-_12rem),calc(100vh_-_12rem))]
         lg:grid-rows-[minmax(min-content,calc(100vh_-_12rem))];
     }
 
@@ -128,6 +128,6 @@
         @apply flex place-self-start relative flex-col px-5 !py-0 !max-h-full !h-full;
     }
     .DetailCardFooter {
-        @apply flex justify-between sticky bottom-0 place-self-end items-center max-h-fit w-full pt-4 h-[4rem] min-h-fit;
+        @apply flex justify-between sticky bottom-0 place-self-end items-center max-h-fit w-full pt-6  min-h-fit;
     }
 }

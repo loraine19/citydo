@@ -97,11 +97,16 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
             </CardBody>
 
             {/* FOOTER */}
-            <CardFooter className="DetailCardFooter">
-                <div>  <ProfileDiv profile={User} /></div>
-                <div className="flex items-center gap-2 overflow-auto">
-                    <AvatarStack avatarDatas={Participants} />
+            <CardFooter className="DetailCardFooter overflow-hidden">
+                <div className="flex flex-1 items-center">
+                    <ProfileDiv profile={User} />
+                </div>
+                <div className="flex flex-1 items-center gap-2">
+                    <div className="flex flex-1 items-center overflow-auto">
+                        <AvatarStack avatarDatas={Participants} />
+                    </div>
                     <button
+                        className="flex flex-1 items-center gap-2"
                         data-cy='btn-participate'
                         onClick={async () => {
                             toogleParticipate && await toogleParticipate();

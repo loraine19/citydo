@@ -34,13 +34,13 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
                 <div
                     className={`
                             relative z-[99]
-                            ${hideImage ? '!w-0 !h-0 animRev ' : 'anim min-w-[5rem] w-[35%] h-4 '}
+                            ${hideImage ? '!w-0 !h-0 animRev ' : 'anim min-w-[8rem] w-[50%] lg:w-[30%] h-8 '}
                         `}
                 >
                     <img
                         src={image ?? '/image/placeholder.jpg'}
                         alt={type}
-                        className='absolute left-0 -top-1.5 h-[5rem] w-full object-cover rounded-2xl shadow-xl'
+                        className='absolute left-0 -top-1.5 h-[7rem] w-full object-cover rounded-2xl shadow-xl'
                     />
                 </div>
 

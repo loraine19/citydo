@@ -9,7 +9,7 @@ export function AvatarStack(props: AvatarStackProps) {
     const { avatarDatas } = props;
 
     return (
-        <div className="flex items-center -space-x-2 overflow-y-auto  w-max max-w-full rounded-full pr-3">
+        <div className="flex flex-1 items-center -space-x-2 overflow-y-auto rounded-full pr-3">
             {avatarDatas?.map((Participant: Participant, index) =>
                 <Popover key={index} >
                     <PopoverTrigger className="relative !h-[2.6rem]  max-w-16 w-[100%]  flex flex-1 min-w-8  hover:!z-50">
