@@ -109,12 +109,7 @@ export default function GroupPage() {
     return (
         <main>
             <div className="sectionHeader ">
-                {notif &&
-                    <NotifDiv
-                        error={error}
-                        notif={notif}
-                        isLoading={isLoading}
-                        refetch={refetch} />}
+
                 <div className={` flex flex-col items-center justify-center `}>
                     <TabsMenu
                         labels={Tabs}
@@ -135,7 +130,12 @@ export default function GroupPage() {
                     place={`${filterName() ?? 'proche de chez vous'}`}
                 />
 
-                <div className={notif && "w-full flex justify-center p-8"}>{notif}</div>
+                {notif &&
+                    <NotifDiv
+                        error={error}
+                        notif={notif}
+                        isLoading={isLoading}
+                        refetch={refetch} />}
             </div>
             {isLoading || error ?
                 <SkeletonGrid />

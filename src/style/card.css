@@ -15,7 +15,7 @@
 }
 
 .GridSmall {
-    @apply !max-h-full grid grid-cols-[minmax(calc(50%-1rem),_1fr)] gap-y-3 gap-x-1 pb-4 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)];
+    @apply !max-h-full grid grid-cols-[minmax(calc(50%-1rem),_1fr)] gap-y-3 gap-x-1 pb-4 pt-2 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)];
     grid-auto-rows: max-content;
 }
 
@@ -37,10 +37,10 @@
 
     .FixCard {
         @apply card w-respLarge h-full
-    lg:grid-rows-[minmax(100px,20vh),minmax(min-content,1fr),auto]
-    md:grid-rows-[minmax(100px,20vh),minmax(min-content,1fr),auto]
-    sm:grid-rows-[minmax(100px,20vh),minmax(min-content,1fr),auto]
-    grid-rows-[minmax(100px,22vh),minmax(min-content,1fr),auto];
+    lg:grid-rows-[minmax(100px,22vh),minmax(min-content,1fr),auto]
+    md:grid-rows-[minmax(100px,22vh),minmax(min-content,1fr),auto]
+    sm:grid-rows-[minmax(100px,23vh),minmax(min-content,1fr),auto]
+    grid-rows-[minmax(100px,23vh),minmax(min-content,1fr),auto];
     }
 
     .FixCardNoImage {
@@ -52,7 +52,7 @@
     /* CARD HEADER */
     .FixCardHeader {
         @apply md:max-w-[calc(100%-1.5rem)] max-w-[calc(100vw-1.5rem)] mx-auto w-full
-        !flex !flex-1   !rounded-xl !relative !z-[99] -mt-6  !shadow-md fadeIn border
+        !flex !flex-1   !rounded-xl !relative !z-[99] -mt-6  !shadow-md fadeIn border !border-slate-300
           h-[calc(100%+1rem)];
     }
 
@@ -65,7 +65,7 @@
     }
 
     .CardImage {
-        @apply h-full w-full  !rounded-xl object-cover !shadow-lg;
+        @apply h-full w-full  !rounded-xl object-cover !shadow-lg bg-slate-300;
     }
     .CardImageDiv {
         @apply h-full w-full  flex flex-1;
@@ -102,18 +102,18 @@
     /***/
     /* DETAILD CARD  */
     .DetailCardDiv {
-        @apply !h-full wRespXL grid pt-7 min-h-[fit-content] px-0.5 
+        @apply h-full wRespXL grid pt-8 min-h-[fit-content] px-0.5 
         grid-rows-[minmax(min-content,calc(100vh_-_11.5rem))]
         lg:grid-rows-[minmax(min-content,calc(100vh_-_12rem))];
     }
 
     .CardDetailGrid {
         @apply w-respLarge card
-        !min-h-fit  !grid h-[calc(100%-0rem)] lg:h-full 
-        grid-rows-[minmax(100px,36vh),minmax(max-content,1fr),auto]
-        sm:grid-rows-[minmax(200px,40vh),minmax(max-content,1fr),auto]
-        md:grid-rows-[minmax(200px,50vh),minmax(max-content,1fr),auto]
-        lg:grid-rows-[minmax(200px,40vh),minmax(max-content,1fr),auto];
+        !min-h-fit  !grid h-[calc(100%-0rem)] max-h-[calc(100vh-8.5rem)] lg:max-h-[calc(100vh-11.5rem)] 
+        grid-rows-[minmax(60px,34vh),minmax(max-content,1fr),auto]
+        sm:grid-rows-[minmax(60px,36vh),minmax(max-content,1fr),auto]
+        md:grid-rows-[minmax(200px,40vh),minmax(max-content,1fr),auto]
+        lg:grid-rows-[minmax(150px,30vh),minmax(max-content,1fr),auto];
     }
 
     .CardDetailGridNoImage {

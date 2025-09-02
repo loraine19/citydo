@@ -110,12 +110,14 @@ export default function FlagCreatePage() {
                     </div>
 
                     <section>
-                        {loading ?
-                            <Skeleton
-                                className='w-respLarge m-auto !h-full !rounded-3xl' /> :
-                            <FlagDetailComp
-                                flag={new FlagView(flag)}
-                                label={targetKey} />}
+                        <div className='h-[calc(100vh_-_15rem)] pt-6 flex '>
+                            {loading ?
+                                <Skeleton
+                                    className='w-respLarge m-auto !h-full !rounded-3xl' /> :
+                                <FlagDetailComp
+                                    flag={new FlagView(flag)}
+                                    label={targetKey} />}
+                        </div>
                     </section>
                 </main>
                 <footer className="CTA ">

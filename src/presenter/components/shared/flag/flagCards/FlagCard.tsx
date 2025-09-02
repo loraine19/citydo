@@ -1,4 +1,4 @@
-import { Card, CardBody, CardFooter, Typography, CardHeader } from "@material-tailwind/react";
+import { Card, CardBody, CardFooter, CardHeader } from "@material-tailwind/react";
 import { Icon } from "../../../common/IconComp";
 import { useNavigate } from "react-router-dom";
 import ModifBtnStack from "../../../common/ModifBtnStack";
@@ -33,12 +33,11 @@ export function FlagCard(props: { flag: FlagView, update: () => void }) {
     ];
 
     return (
-        <Card className="FixCardNoImage w-resp !flex  !justify-start">
+        <Card className="FixCardNoImage w-resp !flex !flex-col !justify-start">
             <CardHeader
-                className="FixCardHeaderNoImage "
-                floated={false}>
+                className="FixCardHeaderNoImage ">
                 <div className="ChipDivNoImage justify-between ">
-                    <div className="flex  items-center gap-2 w-full">
+                    <div className="flex flex-1 items-center gap-2 w-full">
                         <Chip
                             size='sm'
                             value={targetS}
@@ -47,7 +46,7 @@ export function FlagCard(props: { flag: FlagView, update: () => void }) {
                         <Chip
                             size='sm'
                             value={reasonS}
-                            className={`OrangeChip truncate overflow-auto max-w-[30vw]`}>
+                            className={`RedChip truncate overflow-auto max-w-[30vw]`}>
                         </Chip>
                     </div>
                     <div>
@@ -57,10 +56,9 @@ export function FlagCard(props: { flag: FlagView, update: () => void }) {
                 </div>
             </CardHeader>
             <CardBody className="FixCardBody max-h-max !py-2">
-                <Typography
-                    className="font-normal truncate ">
+                <h6 className="truncate ">
                     {element?.title}
-                </Typography>
+                </h6>
             </CardBody>
             <CardFooter className="CardFooter items-center !px-4">
                 <Chip

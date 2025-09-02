@@ -188,15 +188,16 @@ export default function PostListPage() {
                         style=" hidden md:flex"
                     />
                 </div>
+
+                <SubHeader
+                    qty={count}
+                    type={`annonces ${filterName() ?? ''} ${PostCategory[category as keyof typeof PostCategory] ?? ''}`} />
                 {notif &&
                     <NotifDiv
                         error={error}
                         notif={notif}
                         isLoading={isLoading}
                         refetch={refetch} />}
-                <SubHeader
-                    qty={count}
-                    type={`annonces ${filterName()} ${PostCategory[category as keyof typeof PostCategory] ?? ''}`} />
             </div>
             <section
                 ref={divRef}

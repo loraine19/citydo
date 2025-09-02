@@ -84,19 +84,24 @@ export default function SurveyDetailPage() {
 
                 <footer className={`footer ${hideNavBottom ? 'hidden' : ''}`} >
                     {survey?.mine ?
-                        <CTAMines actions={myActions} /> :
-                        <CTAMines actions={[{
-                            disabled: survey?.status !== PoolSurveyStatus.PENDING,
-                            function: () => setOpenVote(true),
-                            icon: survey?.IVoted ? 'Modifier mon vote' :
-                                survey?.status !== PoolSurveyStatus.PENDING ?
-                                    'Ce sondage est terminé' : 'Voter'
-                            ,
-                            iconImage: survey.IVoted ? 'edit' : 'smart_card_reader',
+                        <CTAMines
+                            disabled2={survey?.status !== PoolSurveyStatus.PENDING}
+                            actions={myActions} /> :
+                        <CTAMines
+                            disabled1={true}
+                            actions={[{
+
+                                disabled: survey?.status !== PoolSurveyStatus.PENDING,
+                                function: () => setOpenVote(true),
+                                icon: survey?.IVoted ? 'Modifier mon vote' :
+                                    survey?.status !== PoolSurveyStatus.PENDING ?
+                                        'Ce sondage est terminé' : 'Voter'
+                                ,
+                                iconImage: survey.IVoted ? 'edit' : 'smart_card_reader',
 
 
-                        }
-                        ]} />
+                            }
+                            ]} />
 
                     }
                 </footer>

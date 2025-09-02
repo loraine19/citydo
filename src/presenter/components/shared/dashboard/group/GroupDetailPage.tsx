@@ -4,9 +4,12 @@ import SubHeader from '../../../common/SubHeader';
 import { Action } from '../../../../../domain/entities/frontEntities';
 import { GenereMyActions, } from '../../../../views/viewsEntities/utilsService';
 import DI from '../../../../../di/ioc';
-import { Skeleton } from '../../../common/Skeleton';
+import { Skeleton, SkeletonGrid } from '../../../common/Skeleton';
 import { useAlertStore } from '../../../../../application/stores/alert.store';
 import GroupDetailCard from './GroupDetailCard';
+import { useRef, useCallback } from 'react';
+import { useUxStore } from '../../../../../application/stores/ux.store';
+import { HandleHideParams } from '../../../../../application/useCases/utils.useCase';
 
 export default function GroupDetailPage() {
     const { id } = useParams();
@@ -47,6 +50,18 @@ export default function GroupDetailPage() {
             color: group.ImIn ? 'red' : 'cyan'
         }
     ]
+    //// HANDLE SCROLL
+    const utils = DI.resolve('utils')
+    const divRef = useRef(null);
+
+    //// HANDLE HIDE 
+    const { hideNavBottom, setHideNavBottom } = useUxStore()
+    const handleHide = (params: HandleHideParams) => utils.handleHide(params)
+    const handleHideCallback = useCallback(() => {
+        const params: HandleHideParams = { divRef, setHide: setHideNavBottom }
+        handleHide(params)
+    }, [divRef]);
+
 
     return (
         <>
@@ -55,16 +70,30 @@ export default function GroupDetailPage() {
                     <SubHeader
                         type={`Groupes ${group?.categoryS ?? ""}`} closeBtn />
                 </div>
-                <section>
-                    {!isLoading && !error && group ?
-                        <GroupDetailCard
-                            actions={myActions}
-                            refetch={refetch}
-                            group={group} /> :
-                        <Skeleton />}
-                </section></main>
-            {(!isLoading && !error && group) ?
-                <>
+                <section
+                    ref={divRef}
+                    onScroll={() => {
+                        handleHideCallback()
+                    }}>
+                    <div className="DetailCardDiv">
+                        {!isLoading && !error && group ?
+                            <GroupDetailCard
+                                actions={myActions}
+                                refetch={refetch}
+                                group={group} /> :
+                            <Skeleton />}
+                    </div>
+                    {/* ARTICLES */}
+                    <article className='grid grid-rows-[auto,1fr] py-5  lg:-ml-5'>
+                        <SubHeader
+                            type="Autres Groupes"
+                            place={'à découvrir'} />
+                        <SkeletonGrid count={3} />
+                    </article>
+                </section>
+            </main>
+            {(!isLoading && !error && group) &&
+                <footer className={` ${hideNavBottom ? 'hidden' : 'bg-yellow-400'}`}>
                     {group?.ImModo ?
                         <CTAMines
                             actions={myActions} /> :
@@ -72,8 +101,6 @@ export default function GroupDetailPage() {
                             actions={MemberShipActions}
                         />
                     }
-                </> :
-                <footer className={`CTA`}>
                 </footer>}
 
         </>

@@ -95,20 +95,21 @@ export default function NotificationPage() {
     return (
 
         <main>
-            <div className="sectionHeader">
-                <SubHeader
-                    qty={count}
-                    type={"Notifications " + `${PathElement[filter as keyof typeof PathElement] ?? ""} `}
-                    closeBtn
-                    link={'/'} />
-                <div className="relative justify-center  flex pr-4 ">
-                    <div className="justify-center overflow-auto flex pr-6 rounded-full">
+            <div className="sectionHeader gap-1">
+                <div className="relative justify-center flex pr-4 ">
+                    <div className="justify-center overflow-auto py-1 flex pr-6 rounded-full">
                         <TabsMenu
                             labels={notifTabs} />
                     </div>
                     <ReadAllButton
                         update={refetch} />
                 </div>
+                <SubHeader
+                    qty={count}
+                    type={"Notifications" + ` ${PathElement[filter as keyof typeof PathElement] ?? ""}`}
+                    closeBtn
+                    link={'/'} />
+
                 {notifFind &&
                     <NotifDiv
                         notif={notifFind}

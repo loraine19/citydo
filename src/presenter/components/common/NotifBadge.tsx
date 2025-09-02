@@ -54,13 +54,15 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                         key={index + '1'}
                         ref={divRef}>
                         <Menu placement="bottom-end" >
-                            <MenuTrigger title="Notifications">
-                                <span className={`${!list.count || list.count === 0 ? 'hidden' : ` absolute flex font-medium items-center justify-center w-[1.4rem] h-[1.4rem] text-[0.75rem] !min-w-max pt-[0.3rem] pb-1 ${list.color}StyleInv rounded-full bottom-0 -left-2.5 shadow z-50`}`}>
+                            <MenuTrigger
+                                className="relative h-full w-full flex-1"
+                                title="Notifications">
+                                <span className={`${!list.count || list.count === 0 ? 'hidden' : ` absolute flex font-medium items-center justify-center w-[1.4rem] h-[1.4rem] text-[0.75rem] !min-w-max pt-[0.3rem] pb-1 ${list.color}StyleInv rounded-full px-1 top-0 -left-2.5 shadow z-50`}`}>
                                     {list.count >= 99 ? '⁺99 ' :
                                         (list.count ? list.count.toString() : '0')}
                                 </span>
                             </MenuTrigger>
-                            <MenuContent className="flex flex-col max-h-[calc(100vh-9rem)] !w-[450px] !max-w-[calc(100vw-2rem)] ml-1 rounded-2xl backdropBlur !border border-slate-100">
+                            <MenuContent className="flex flex-col max-h-[calc(100vh-9rem)] w-[80vw] !max-w-[calc(100vw-2rem)] !-mr-[10rem] rounded-2xl backdropBlur !border border-slate-100">
                                 <div onScroll={handleScroll}
                                     className="relative overflow-auto !border-none hover:!border-none flex flex-col gap-1">
                                     {list.count === 0 ? (
@@ -123,7 +125,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                         link={list.link}
                         icon={list.icon}
                         color={list.color}
-                        fill bg
+                        bg fill
                         size="xl"
                         title={'ouvrir la page'}
                         style={` z-40 relative 

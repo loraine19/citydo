@@ -1,4 +1,4 @@
-import { Card, CardBody, CardFooter, Typography, CardHeader } from "@material-tailwind/react";
+import { Card, CardBody, CardFooter, CardHeader } from "@material-tailwind/react";
 import { Icon } from "../../common/IconComp";
 import { NotifView } from "../../../views/viewsEntities/notifViewEntity";
 import Chip from "../../common/adaptatersComps/Chip";
@@ -12,8 +12,8 @@ export function NotifCard(props: notifCardProps) {
 
 
     return (
-        <Card className={`${!read ? 'FixCardNoImage w-resp w-full !flex  !justify-start' : 'hidden'}`}>
-            <CardHeader className={"FixCardHeaderNoImage !flex !w-full  !my-0 "} floated={false}>
+        <Card className={`${!read ? 'FixCardNoImage w-resp w-full !flex !flex-col  !justify-start' : 'hidden'}`}>
+            <CardHeader className={"FixCardHeaderNoImage !flex !w-full  !my-0 "} >
                 <div className="ChipDivNoImage w-full ">
                     <Chip
                         size='sm'
@@ -30,22 +30,20 @@ export function NotifCard(props: notifCardProps) {
                 </div>
             </CardHeader>
             <CardBody className="FixCardBody max-h-max !-mt-3 !py-0">
-                <Typography
+                <h5
                     className="font-normal truncate ">
                     {notif.title}
-                </Typography>
-                <Typography
-                    variant="small"
+                </h5>
+                <i
                     className="font-normal truncate ">
                     {notif.description}
-                </Typography>
+                </i>
             </CardBody>
-            <CardFooter className="CardFooter items-center  !pt-0  !px-4">
-                <Typography
-                    variant="small"
+            <CardFooter className="CardFooter items-center  !py-0  !px-4">
+                <h6
                     className="font-normal truncate">
                     {update}
-                </Typography>
+                </h6>
                 {notif.link &&
                     <Icon
                         icon="arrow_circle_right"

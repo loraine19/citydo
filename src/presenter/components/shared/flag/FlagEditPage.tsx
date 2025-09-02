@@ -87,12 +87,14 @@ export default function FlagEditPage() {
                         </div>
                     </div>
 
-                    <section className='flex pb-2'>
-                        {isLoading ?
-                            <Skeleton
-                                className='w-respLarge m-auto !h-full !rounded-3xl' /> :
-                            <FlagDetailComp
-                                flag={flag} />}
+                    <section>
+                        <div className='h-[calc(100vh_-_15rem)] pt-6 flex '>
+                            {isLoading ?
+                                <Skeleton
+                                    className='w-respLarge m-auto !h-full !rounded-3xl' /> :
+                                <FlagDetailComp
+                                    flag={flag} />}
+                        </div>
                     </section>
                 </main>
                 <footer className="CTA ">

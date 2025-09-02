@@ -63,8 +63,8 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                     type='evenement'
                     group={Group}
                 />
-                <div className="flex flex-1 gap-x-3 flex-col  sm:!justify-evenly sm:!flex-row h-full">
-                    <div className="relative h-max flex  w-full flex-1 ">
+                <div className="flex flex-1 gap-x-8 flex-col lg:-mt-2 sm:!justify-evenly sm:!flex-row h-full">
+                    <div className="relative h-max flex w-full flex-1 ">
 
                         <div>
                             <div className="flex items-center gap-2 py-0.5 justify-between ">
@@ -85,7 +85,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                             </Typography>
                         </div>
                     </div>
-                    <div className="flex flex-col gap-1 !w-full h-full  flex-1 ">
+                    <div className="flex flex-col gap-1 !w-full h-full min-h-[55%] flex-1 ">
                         <h6>Lieu</h6>
                         {Address ?
                             <AddressMapOpen

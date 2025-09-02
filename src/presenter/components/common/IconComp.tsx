@@ -127,7 +127,7 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
     ${textColor(color) as string} ${bg()}  
     ${props.bg ? classRounded : textSize} ${style ?? ''} `
 
-    const classActive = `hover:scale-[1.05] transition-all duration-200 ease-in-out `
+    const classActive = `hover:scale-[1.02] transition-all duration-200 ease-in-out `
 
     return (
         <div className={`${(props.bg && !clear) ? 'max-h-max max-w-max bg-white' : ''} rounded-full  `}>
@@ -140,7 +140,14 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
                     title={!disabled ? title : title + ' est desactivée'}
                     className={`${classIcon(color)} ${!disabled && classActive} `}
                     disabled={disabled}>
-                    {searchIcon(icon, fill)}
+                    <div>
+                        <span className={`${fill ? '' : 'group-hover:flex'} hidden `}>
+                            {searchIcon(icon, true)}
+                        </span>
+                        <span className="flex  group-hover:hidden">
+                            {searchIcon(icon, fill)}
+                        </span>
+                    </div>
                 </button>
                 : link ? <Link
                     style={{ fontSize: `${num}px` }}
@@ -150,14 +157,26 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
                     target={link.startsWith('http') ? "_blank" : ""}
                     rel="noopener noreferrer"
                     className={`${classIcon(color)} ${classActive}`}>
-                    {searchIcon(icon, fill)}
+                    <div>
+                        <span className={`${fill ? '' : 'group-hover:flex'} hidden `}>
+                            {searchIcon(icon, true)}
+                        </span>
+                        <span className="flex  group-hover:hidden">
+                            {searchIcon(icon, fill)}
+                        </span>
+                    </div>
                 </Link> :
                     <span
                         style={{ fontSize: `${num}px` }}
                         data-cy={icon}
                         title={title}
-                        className={`${classIcon(color)} `}>
-                        <span>{searchIcon(icon, fill)}</span>
+                        className={`group ${classIcon(color)} `}>
+                        <span className={`${fill ? '' : 'group-hover:flex'} hidden `}>
+                            {searchIcon(icon, true)}
+                        </span>
+                        <span className="flex  group-hover:hidden">
+                            {searchIcon(icon, fill)}
+                        </span>
                     </span>
             }
         </div>)

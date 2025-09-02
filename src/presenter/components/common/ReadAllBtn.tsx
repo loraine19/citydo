@@ -6,11 +6,11 @@ export const ReadAllButton = ({ update }: { update?: any }) => {
     const { fetchNotif, setUnReadNotif } = useNotificationStore();
     const readAll = () => DI.resolve('readAllNotifUseCase').execute();
     return <Icon
-        bg
+        bg fill
         color='red'
         icon="delete"
-        size="sm"
-        style="absolute !shadow-md right-2 top-1 z-30 bg-opacity-90 !bg-red-100 hover:!bg-red-200 hover:!bg-opacity-90"
+        size="md"
+        style="absolute !shadow-md right-2 top-0.5 z-30 "
         onClick={
             async () => {
                 const notifs = await readAll();

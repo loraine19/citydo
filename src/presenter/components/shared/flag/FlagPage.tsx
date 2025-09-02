@@ -64,8 +64,8 @@ export default function FlagPage() {
         <main>
             <div className="sectionHeader">
                 <SubHeader
-                    qty={count || 'aucun'}
-                    type={"Signalement "}
+                    qty={count}
+                    type={"Signalement"}
                     closeBtn={true} link="/" />
                 {(notif && !isLoading) &&
                     <NotifDiv

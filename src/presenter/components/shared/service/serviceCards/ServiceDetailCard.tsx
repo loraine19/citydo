@@ -146,7 +146,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
             </CardBody>
             <CardFooter className="DetailCardFooter">
                 {User?.id !== userId &&
-                    <ProfileDiv profile={User} />
+                    <div><ProfileDiv profile={User} /></div>
                 }
                 <div className="flex flex-col w-full items-center gap-2">
                     <Typography

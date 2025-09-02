@@ -67,133 +67,134 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
     }
 
     return (
-        <div className="DetailCardDiv">
-            <Card className="FixCard w-respLarge" >
-                <CardHeader
-                    className={"FixCardHeader"}
-                    floated={true}>
-                    <div className={"ChipDiv"}>
+
+        <Card className="CardDetailGrid" >
+            <CardHeader
+                className={"DetailCardHeader"}
+                floated={true}>
+                <div className={"ChipDiv"}>
+                    <Chip
+                        size='sm'
+                        value={categoryS}
+                        className={'CyanChip'}>
+                    </Chip>
+                    <DateChip
+                        start={createdAt}
+                        prefix="publié le " />
+                </div>
+                {!Address ?
+                    <img
+                        src={'image/placeholder.jpg'}
+                        onError={(e) => { e.currentTarget.src = '/image/placeholder.jpg'; }}
+                        alt={name}
+                        className="CardImage flex" /> :
+                    <AddressMapOpen
+                        color='#0092b8'
+                        aera={group?.area}
+                        address={Address} />}
+            </CardHeader>
+            <CardBody className="DetailCardBody">
+                <Title
+                    title={name ?? ''}
+                    type='groupe'
+                    subTitle={`⌖ ${group?.fullAddress}  - ${group?.area} mètres`}
+                />
+                <div className='h-full w-full grid grid-cols-1 gap-x-4 grid-rows-1 overflow-x-hidden'>
+                    <div className='flex overflow-x-auto scrollbar-hide snap-x snap-mandatory'>
+                        {infos.map((info: Label, index: number) => (
+                            <div key={index}
+                                className='gap-1 flex w-full h-full flex-col pt-2 snap-center shrink-0'>
+                                <h6>
+                                    {info.label} :
+                                </h6>
+                                <div className="overflow-auto">
+                                    <Typography
+                                        className=" leading-[1.3rem]   ">
+                                        {info.value}
+                                    </Typography>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className='flex justify-center gap-3 py-1'>
+                        {infos.map((_, index) => (
+                            <div
+                                title={`Voir ${infos[index].label}`}
+                                onClick={() => {
+                                    const scrollContainer = document.querySelector('.scrollbar-hide');
+                                    if (scrollContainer) {
+                                        const scrollAmount = scrollContainer.clientWidth * index;
+                                        scrollContainer.scrollTo({
+                                            left: scrollAmount, behavior: 'smooth'
+                                        })
+                                        setDot(index);
+                                    }
+                                }}
+                                key={index}
+                                className={`h-3 w-3 rounded-full cursor-pointer transition-all duration-300 ${dot === index ? 'bg-cyan-700 scale-125' : 'bg-cyan-400 hover:scale-110'}`}>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </CardBody>
+            <CardFooter className="DetailCardFooter">
+                {!mines ? (
+                    <div className="flex w-full items-center gap-2 ">
                         <Chip
                             size='sm'
-                            value={categoryS}
-                            className={'CyanChip'}>
+                            value={group?.categoryS}
+                            className="CyanChip text-ellipsis  " >
                         </Chip>
-                        <DateChip
-                            start={createdAt}
-                            prefix="publié le " />
                     </div>
-                    {!Address ?
-                        <img
-                            src={'image/placeholder.jpg'}
-                            onError={(e) => { e.currentTarget.src = '/image/placeholder.jpg'; }}
-                            alt={name}
-                            className="CardImage flex" /> :
-                        <AddressMapOpen
-                            color='#0092b8'
-                            aera={group?.area}
-                            address={Address} />}
-                </CardHeader>
-                <CardBody className="FixCardBody">
-                    <Title
-                        title={name ?? ''}
-                        type='groupe'
-                        subTitle={`⌖ ${group?.fullAddress}  - ${group?.area} mètres`}
-                    />
-                    <div className='h-full w-full grid grid-cols-1 gap-x-4 grid-rows-1 overflow-x-hidden'>
-                        <div className='flex overflow-x-auto scrollbar-hide snap-x snap-mandatory'>
-                            {infos.map((info: Label, index: number) => (
-                                <div key={index}
-                                    className='gap-1 flex w-full h-full flex-col pt-2 snap-center shrink-0'>
-                                    <Typography variant='h6'>
-                                        {info.label} :
-                                    </Typography>
-                                    <div className="overflow-auto">
-                                        <Typography
-                                            className=" leading-[1.3rem]   ">
-                                            {info.value}
-                                        </Typography>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                        <div className='flex justify-center gap-3 py-1.5'>
-                            {infos.map((_, index) => (
-                                <div
-                                    title={`Voir ${infos[index].label}`}
-                                    onClick={() => {
-                                        const scrollContainer = document.querySelector('.scrollbar-hide');
-                                        if (scrollContainer) {
-                                            const scrollAmount = scrollContainer.clientWidth * index;
-                                            scrollContainer.scrollTo({
-                                                left: scrollAmount, behavior: 'smooth'
-                                            })
-                                            setDot(index);
-                                        }
-                                    }}
-                                    key={index}
-                                    className={`h-3 w-3 rounded-full cursor-pointer transition-all duration-300 ${dot === index ? 'bg-cyan-700 scale-125' : 'bg-cyan-400 hover:scale-110'}`}>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </CardBody>
-                <CardFooter className="CardFooter">
-                    {!mines ? (
-                        <div className="flex w-full items-center gap-2">
-                            <Chip
-                                size='sm'
-                                value={group?.categoryS}
-                                className="CyanChip text-ellipsis  " >
-                            </Chip>
-                        </div>
-                    ) : (
-                        <ModifBtnStack
-                            disabled1={false}
-                            disabled2={false}
-                            actions={actions}
-                            update={refetch} />
-                    )}
-                    <div className="flex items-center gap-2">
-                        <button
-                            onClick={() => {
-                                setOpen(true);
-                                setAlertValues(toogleModoValues)
-                            }}>
-                            <Chip
-                                value={group?.ImModo ? '⠀✓' : '⠀'}
-                                variant="ghost"
-                                className="rounded-full h-max  GrayChip flex items-center  !min-w-max "
-                                icon={
-                                    <Icon
-                                        size="md"
-                                        icon="diversity_3"
-                                        fill={group?.ImModo}
-                                        color={group?.ImModo ? "orange" : "gray"}
-                                        title={group?.ImModo ? "Je suis conciliateur" : "Je ne suis pas conciliateur"} />}
-                            />
-                        </button>
-                        <button
-                            onClick={() => {
-                                setOpen(true);
-                                setAlertValues(toogleMemberValues)
-                            }}>
-                            <Chip
-                                value={group?.GroupUser?.length}
-                                variant="ghost"
-                                className="rounded-full GrayChip h-max flex items-center pl-6 !min-w-max "
-                                icon={
-                                    <Icon
-                                        size="md"
-                                        icon="groups"
-                                        fill={group?.ImIn}
-                                        color={group?.ImIn ? "cyan" : "gray"}
-                                        title={group?.ImIn ? "Je suis membre" : "Je ne suis pas membre"} />}
-                            />
-                        </button>
-                    </div>
-                </CardFooter>
-            </Card>
-        </div>
+                ) : (
+                    <ModifBtnStack
+                        disabled1={false}
+                        disabled2={false}
+                        actions={actions}
+                        update={refetch} />
+                )}
+                <div className="flex items-center gap-2">
+                    <button
+                        onClick={() => {
+                            setOpen(true);
+                            setAlertValues(toogleModoValues)
+                        }}>
+                        <Chip
+                            size='sm'
+                            value={group?.ImModo ? '⠀✓' : '⠀'}
+                            variant="ghost"
+                            className="rounded-full h-max  GrayChip flex items-center  !min-w-max "
+                            icon={
+                                <Icon
+                                    size="md"
+                                    icon="diversity_3"
+                                    fill={group?.ImModo}
+                                    color={group?.ImModo ? "orange" : "gray"}
+                                    title={group?.ImModo ? "Je suis conciliateur" : "Je ne suis pas conciliateur"} />}
+                        />
+                    </button>
+                    <button
+                        onClick={() => {
+                            setOpen(true);
+                            setAlertValues(toogleMemberValues)
+                        }}>
+                        <Chip
+                            size='sm'
+                            value={group?.GroupUser?.length}
+                            variant="ghost"
+                            className="rounded-full GrayChip h-max flex items-center pl-6 !min-w-max "
+                            icon={
+                                <Icon
+                                    size="md"
+                                    icon="groups"
+                                    fill={group?.ImIn}
+                                    color={group?.ImIn ? "cyan" : "gray"}
+                                    title={group?.ImIn ? "Je suis membre" : "Je ne suis pas membre"} />}
+                        />
+                    </button>
+                </div>
+            </CardFooter>
+        </Card>
     )
 }
 
