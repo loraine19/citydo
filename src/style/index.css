@@ -53,10 +53,10 @@
 
 /* MAIN SECTIONS */
 #root {
-    @apply flex flex-col h-[100dvh] w-screen;
+    @apply flex flex-col h-screen w-screen;
 }
 body {
-    @apply h-[100dvh] w-screen  flex flex-col;
+    @apply h-screen w-screen  flex flex-col;
 }
 
 .App {
