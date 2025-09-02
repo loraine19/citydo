@@ -23,7 +23,7 @@ export default function DashboardPage() {
 
     //// USER & AUTORISATION
     const { user, fetchUser, setIsLoggedIn, } = useUserStore((state) => state);
-    const { setHideNavBottom, navBottom, hideNavBottom } = useUxStore((state) => state);
+    const { setHideNavBottom, hideNavBottom } = useUxStore((state) => state);
     const modo = user?.GroupUser?.map(g => g.role).includes(Role.MODO) || false;
     useEffect(() => {
         !user ? setIsLoggedIn(false) : setIsLoggedIn(true);
@@ -44,9 +44,9 @@ export default function DashboardPage() {
     const { notifsMap, isLoadingMap, refetchMap, countMap } = notifMapViewModelFactory();
 
     //// CLASSES
-    const userClasse = "flex row-span-3 lg:grid pt-12 animRev z-50  ";
+    const userClasse = "flex row-span-3 lg:grid  animRev z-50  ";
     const eventClasse = "h-full flex !min-h-[15rem] row-span-5 lg:grid overflow-auto";
-    const notifClasse = " row-span-2 lg:pt-11 " + (notifs.length > 0 ? " min-h-[8rem]" : " min-h-[5.5rem]")
+    const notifClasse = " row-span-2  " + (notifs.length > 0 ? " min-h-[8rem]" : " min-h-[5.5rem]")
     const mapClasse = "flex row-span-6  !min-h-[15rem] lg:min-h-[32%] lg:grid ";
 
 
@@ -87,21 +87,17 @@ export default function DashboardPage() {
     useEffect(() => { (hide !== hideNavBottom) && setHideNavBottom(hide) }, [hide]);
 
     return (
-        <main className={`${(hideNavBottom) ? '-mb-2 pt-0  ' :
-            (!navBottom && !hideNavBottom) ?
-                'lg:!-mt-3 !-mt-5 pb-[1rem] ' :
-                '-mt-7 pb-[3.5rem] lg:pb-[5rem] lg:-mt-4 '} 
-               relative flex !overflow-hidden anim pb-2 ` }
+        <main className={`${hideNavBottom ? ' -mb-4 pb-2' : ' !max-h-[calc(100dvh_-_6rem)] lg:!max-h-[calc(100dvh_-_9rem)] !-mt-6 '} lg:!-mt-1 `}
             data-cy="dashboard-body" >
             <div ref={divRef}
                 onScroll={() => handleHideCallback()}
-                className={" px-[1%] flex-1 h-full flex flex-col lg:grid grid-cols-2 grid-rows-[auto_auto_auto_1fr_1fr_2fr_auto_auto] w-full gap-y-2 lg:gap-y-3 lg:gap-x-4 pb-2 place-content-start overflow-auto rounded-b-[1.5rem] "}>
+                className={" px-[1%] flex-1 h-[calc(100dvh+4rem)] flex flex-col lg:grid grid-cols-2 grid-rows-[auto_auto_auto_1fr_1fr_2fr_auto_auto] w-full gap-y-2 lg:gap-y-3 lg:gap-x-4  place-content-start pt-11 lg:pt-6 rounded-b-[1rem] pb-4 !overflow-auto  sticky bottom-0 "}>
 
                 {/* USER CARD  */}
                 <div className={`${userClasse}`}>
                     <Card className="FixCard lg:h-full p-0 mt-6 lg:!mt-0 !flex-col rounded-xl bg-white flex-1 !flex anim !overflow-visible ">
                         <CardHeader className="-mt-6 flex flex-col items-center justify-center  bg-transparent shadow-none">
-                            <div className="relative space-x-1 ">
+                            <div className="relative !z-40 space-x-1 ">
                                 <AvatarUser
                                     avatarSize="lg"
                                     avatarStyle="!shadow-md -mb-0.5 border border-gray-300  w-16 h-16 lg:w-[4.5rem] lg:h-[4.5rem] "
@@ -292,10 +288,6 @@ export default function DashboardPage() {
                             <CalendarComp logo={true} />
                         </CardBody>
                     </Card>
-                </div>
-
-                <div className={`
-                    ${(!hideNavBottom && navBottom) ? 'lg:hidden -mb-6 min-h-6' : !navBottom ? 'hidden' : ' -mb-5 min-h-1'} `}>
                 </div>
             </div>
         </main>

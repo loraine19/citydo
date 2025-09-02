@@ -148,7 +148,7 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                                 {week.map((day: any, index: number) =>
                                     <div className={`flex flex-col text-center h-full  border-r border-slate-100/50  `}
                                         key={index}>
-                                        <p className={`${new Date(day.date).toDateString() === new Date().toDateString() && '!text-orange-500  underline underline-offset-4 text-font-bold'} 'w-full !text-xs pt-0.5  min-h-4 sticky top-0 text-center bg-slate-100`}>
+                                        <p className={`${new Date(day.date).toDateString() === new Date().toDateString() && '!text-orange-500  underline underline-offset-4 text-font-bold'} 'w-full !text-xs pt-0  min-h-4 sticky top-0 text-center bg-slate-100`}>
                                             {day.date.toLocaleDateString('fr-FR', { weekday: 'narrow', month: 'numeric', day: 'numeric' })}
                                         </p>
                                         <div className='min-h-4 h-full flex flex-col w-full items-center gap-0.5' key={index}>
