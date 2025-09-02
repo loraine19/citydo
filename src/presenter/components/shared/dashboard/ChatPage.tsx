@@ -10,6 +10,7 @@ import { Icon } from '../../common/IconComp';
 import { useSearchParams } from 'react-router-dom';
 import { AvatarUser } from '../../common/AvatarUser';
 import NotifDiv from '../../common/NotifDiv';
+import { useUxStore } from '../../../../application/stores/ux.store';
 
 
 export default function ChatPage() {
@@ -25,6 +26,7 @@ export default function ChatPage() {
     const conversationViewModelFactory = DI.resolve('conversationViewModel')
     const { messages, isLoading, refetch, fetchNextPage, hasNextPage, error } = conversationViewModelFactory(userIdRec)
     const getUserById = async (id: number) => await DI.resolve('getUserByIdUseCase').execute(id);
+    const { setColor } = useUxStore()
 
 
     //// OPEN CHAT
@@ -63,6 +65,7 @@ export default function ChatPage() {
         if (!connected) {
             connexion();
             up();
+            setColor(connected ? 'cyan' : 'slate')
         }
         socketService.onConnectError((error: Error) => {
             console.error("Connection Error:", error);
@@ -156,7 +159,7 @@ export default function ChatPage() {
                     {isLoadingConv ?
                         <Skeleton className=' m-auto !h-full !rounded-3xl' /> :
                         <Card className='FixCardNoImage !flex !pb-0 !px-0 h-full'>
-                            <CardBody className=' !p-1  h-full'>
+                            <CardBody className=' !p-0.5  h-full'>
                                 <div className='flex flex-1 h-full  '>
                                     <div className='flex-1 overflow-y-auto overflow-x-hidden'>
                                         <List className='flex-1 !border-8 gap-1 border-white'>
@@ -191,7 +194,7 @@ export default function ChatPage() {
                                                                         {message.isWith?.Profile?.firstName}
                                                                     </Typography>
                                                                     <span
-                                                                        className='px-4 !text-xs text-gray-300'>
+                                                                        className='px-4 !text-xs text-slate-400'>
                                                                         {message.formatedDate}
                                                                     </span>
                                                                 </div>
@@ -199,7 +202,7 @@ export default function ChatPage() {
                                                                     variant="small"
                                                                     className="font-normal !line-clamp-1">
                                                                     {message.IWrite &&
-                                                                        <span className='text-gray-500'>
+                                                                        <span className='text-slate-400'>
                                                                             {message.read && '🗸'}
                                                                             {' vous : '}
                                                                         </span>}
@@ -207,7 +210,7 @@ export default function ChatPage() {
                                                                 </Typography>
                                                             </div>
                                                         </List.Item>
-                                                        <hr className='h-[0px] mx-3 bg-slate-900'></hr>
+                                                        <hr className='border-b-[1px] border-t-0 !border-slate-400/90'></hr>
                                                     </div>
                                                 )}
                                         </List>
