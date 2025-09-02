@@ -44,11 +44,13 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                         size="lg"
                         needed={participantsMin - (Participants?.length || 0)} />
                 </div>
-                < img
-                    onError={(e) => e.currentTarget.src = '/image/placeholder.jpg'}
-                    src={image as string}
-                    alt={title}
-                    className='CardImage' />
+                <div className="CardImageDiv">
+                    <img
+                        onError={(e) => e.currentTarget.src = '/image/placeholder.jpg'}
+                        src={image as string}
+                        alt={title}
+                        className='CardImage' />
+                </div>
             </CardHeader>
 
             {/* BODY */}
@@ -65,7 +67,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                     <div className="relative h-max flex  w-full flex-1 ">
 
                         <div>
-                            <div className="flex items-center -mb-2 justify-between pr-4">
+                            <div className="flex items-center gap-2 py-0.5 justify-between ">
                                 <h6>{eventDateInfo}</h6>
 
                                 <Icon
@@ -96,7 +98,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
 
             {/* FOOTER */}
             <CardFooter className="DetailCardFooter">
-                <ProfileDiv profile={User} />
+                <div>  <ProfileDiv profile={User} /></div>
                 <div className="flex items-center gap-2 overflow-auto">
                     <AvatarStack avatarDatas={Participants} />
                     <button

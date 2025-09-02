@@ -71,12 +71,14 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                         prefix="publié le " />
                 </div>
                 {image &&
-                    <img
-                        onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
-                        src={image as any}
-                        alt={title}
-                        className="CardImage"
-                    />
+                    <div className="CardImageDiv">
+                        <img
+                            onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
+                            src={image as any}
+                            alt={title}
+                            className="CardImage"
+                        />
+                    </div>
                 }
             </CardHeader>
             <CardBody className="DetailCardBody">

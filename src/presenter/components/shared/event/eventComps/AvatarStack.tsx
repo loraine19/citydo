@@ -9,15 +9,15 @@ export function AvatarStack(props: AvatarStackProps) {
     const { avatarDatas } = props;
 
     return (
-        <div className="flex items-center -space-x-2 overflow-y-auto  rounded-full">
+        <div className="flex items-center -space-x-2 overflow-y-auto  w-max max-w-full rounded-full pr-3">
             {avatarDatas?.map((Participant: Participant, index) =>
                 <Popover key={index} >
-                    <PopoverTrigger>
-                        <div className="relative hover:!z-10">
+                    <PopoverTrigger className="relative !h-[2.6rem]  max-w-16 w-[100%]  flex flex-1 min-w-8  hover:!z-50">
+                        <div className="absolute hover:!z-50 flex flex-1 top-0 left-0 h-[2.6rem] ">
                             <AvatarUser
                                 Profile={Participant?.User?.Profile}
                                 avatarSize={'sm'}
-                                avatarStyle="border-2 !h-[2.6rem] !w-[2.6rem] !border-white !hover:z-10 !focus:z-10" />
+                                avatarStyle="border-2 !h-[2.6rem]  !min-w-10 !border-white !hover:z-50 !focus:z-50  top-0 left-0 " />
                         </div>
                     </PopoverTrigger>
                     <PopoverContent className="!z-[1000]  !ml-24 !py-2">

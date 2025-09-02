@@ -36,11 +36,12 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                         prefix="publié le " />
                 </div>
                 {image &&
-                    <img
+                    <div className="CardImageDiv"> <img
                         onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
                         src={image as any}
                         alt={title}
-                        className="CardImage" />}
+                        className="CardImage" />
+                    </div>}
             </CardHeader>
             <CardBody className="DetailCardBody  ">
                 <Title

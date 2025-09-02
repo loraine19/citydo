@@ -51,14 +51,17 @@ export const AvatarUser = ({ Profile, avatarSize = '', avatarStyle = '', style =
                     alt={Profile?.firstName || 'user'}
                     src={Profile?.image as string}
                 /> :
-                <Icon
-                    bg
-                    fill
-                    style={`${avatarStyle} ${classicStyle} ${style} leading-[1] pt-[10%] flex z-auto min-w-max font-comfortaa font-bold `}
-                    color={userColor}
-                    size={iconSize()}
-                    icon={Profile?.firstName?.charAt(0).toUpperCase() || '?'}
-                />}
+
+                <div className='min-w-full hover:z-50 h-full flex '>
+                    <Icon
+                        bg
+                        fill
+                        style={`${avatarStyle} ${classicStyle} ${style} leading-[1] pt-[10%] flex z-auto  font-comfortaa !min-w-full font-bold hover:z-50`}
+                        color={userColor}
+                        size={iconSize()}
+                        icon={Profile?.firstName?.charAt(0).toUpperCase() || '?'}
+                    />
+                </div>}
         </>
     );
 };

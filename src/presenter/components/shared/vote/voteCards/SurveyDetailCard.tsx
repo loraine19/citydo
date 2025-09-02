@@ -41,11 +41,12 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
                         end={end}
                         prefix="finis dans" />
                 </div>
-                {image && <img
-                    onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
-                    src={image as string}
-                    alt={title}
-                    className="CardImage" />
+                {image && <div className="CardImageDiv">
+                    <img
+                        onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
+                        src={image as string}
+                        alt={title}
+                        className="CardImage" /></div>
                 }
 
             </CardHeader>

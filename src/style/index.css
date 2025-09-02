@@ -111,7 +111,7 @@ h5 {
     @apply text-lg text-[0.95rem] font-normal !text-slate-700 !font-roboto;
 }
 h6 {
-    @apply font-medium !text-slate-700 !font-roboto;
+    @apply font-medium !text-slate-700 pt-2 !font-roboto;
 }
 p {
     @apply text-base font-light text-slate-600 !font-roboto;

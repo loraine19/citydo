@@ -40,13 +40,13 @@
     lg:grid-rows-[minmax(100px,20vh),minmax(min-content,1fr),auto]
     md:grid-rows-[minmax(100px,20vh),minmax(min-content,1fr),auto]
     sm:grid-rows-[minmax(100px,20vh),minmax(min-content,1fr),auto]
-    grid-rows-[minmax(100px,26vh),minmax(min-content,1fr),auto];
+    grid-rows-[minmax(100px,22vh),minmax(min-content,1fr),auto];
     }
 
     .FixCardNoImage {
         @apply card w-respLarge 
-          my-0  h-[calc(100%+1.5rem)] !-mt-6 
-  grid-rows-[auto,minmax(min-content,1fr),auto];
+        my-0  h-[calc(100%+1.5rem)] !-mt-6 
+        grid-rows-[auto,minmax(min-content,1fr),auto];
     }
 
     /* CARD HEADER */
@@ -110,7 +110,7 @@
     .CardDetailGrid {
         @apply w-respLarge card
         !min-h-fit  !grid h-[calc(100%-0rem)] lg:h-full 
-      grid-rows-[minmax(100px,40vh),minmax(max-content,1fr),auto]
+        grid-rows-[minmax(100px,36vh),minmax(max-content,1fr),auto]
         sm:grid-rows-[minmax(200px,40vh),minmax(max-content,1fr),auto]
         md:grid-rows-[minmax(200px,50vh),minmax(max-content,1fr),auto]
         lg:grid-rows-[minmax(200px,40vh),minmax(max-content,1fr),auto];
@@ -124,7 +124,7 @@
     }
 
     .DetailCardHeader {
-        @apply md:max-w-[calc(100%-1.5rem)] max-w-[calc(100vw-1.5rem)] mx-auto
+        @apply md:max-w-[calc(100%-0rem)] max-w-[calc(100vw-0rem)] mx-auto
         !flex flex-1  !rounded-xl !relative !z-[99] -mt-6  !shadow-md fadeIn border
        h-[calc(100%+1rem)];
     }
