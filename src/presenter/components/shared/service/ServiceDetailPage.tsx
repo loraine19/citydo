@@ -14,6 +14,7 @@ import { ServiceView } from '../../../views/viewsEntities/serviceViewEntity';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { HandleHideParams } from '../../../../application/useCases/utils.useCase';
 import NotifDiv from '../../common/NotifDiv';
+import { useUxStore } from '../../../../application/stores/ux.store';
 
 export default function ServiceDetailPage() {
 
@@ -215,22 +216,21 @@ export default function ServiceDetailPage() {
     //// HANDLE SCROLL
     const utils = DI.resolve('utils')
     const divRef = useRef(null);
-    const onScroll = useCallback(() => {
-    }, [divRef]);
-    //// HANDLE HIDE  
+
+    //// HANDLE HIDE 
+    const { hideNavBottom, setHideNavBottom } = useUxStore()
     const handleHide = (params: HandleHideParams) => utils.handleHide(params)
     const handleHideCallback = useCallback(() => {
-        const params: HandleHideParams = { divRef, setHide }
+        const params: HandleHideParams = { divRef, setHide: setHideNavBottom }
         handleHide(params)
     }, [divRef]);
-    const [hide, setHide] = useState<boolean>(false);
 
     return (
         <>
             <main >
                 <div className="sectionHeader">
                     <SubHeader
-                        hideImage={!hide}
+                        hideImage={!hideNavBottom || !service?.image}
                         image={service?.image}
                         type={`${typeS ?? ''} de service ${categoryS ?? ''}`}
                         closeBtn />
@@ -244,10 +244,8 @@ export default function ServiceDetailPage() {
                 </div>
                 <section
                     ref={divRef}
-                    onScroll={() => {
-                        onScroll()
-                        handleHideCallback()
-                    }}>
+                    onScroll={() =>
+                        handleHideCallback()}>
                     <div className="DetailCardDiv">
                         {isLoading || error || !service ?
                             <Skeleton />
@@ -272,7 +270,7 @@ export default function ServiceDetailPage() {
 
                 </section>
             </main>
-            <footer className={`footer ${hide ? 'hidden' : ''}`} >
+            <footer className={`footer ${hideNavBottom ? 'hidden' : ''}`} >
                 {!isLoading && !error && service &&
                     <CTAMines
                         actions={actions}

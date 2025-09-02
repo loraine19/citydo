@@ -46,7 +46,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
     return (
         <Card className="CardDetailGrid">
             <CardHeader
-                className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}>
+                className={haveImage ? "DetailCardHeader" : "FixCardHeaderNoImage"}>
                 <div className={haveImage ? "ChipDiv " : "ChipDivNoImage"}>
                     <div className="ChipSubDiv  ">
                         <Chip

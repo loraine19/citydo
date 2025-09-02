@@ -24,7 +24,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
     return (
         <Card className={haveImage ? "CardDetailGrid" : "CardDetailGridNoImage"}>
             <CardHeader
-                className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}>
+                className={haveImage ? "DetailCardHeader" : "FixCardHeaderNoImage"}>
                 <div className={haveImage ? "ChipDiv " : "ChipDivNoImage"}>
                     <Chip
                         size='sm'

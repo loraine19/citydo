@@ -37,7 +37,7 @@
 
     .FixCard {
         @apply card w-respLarge h-full
-    lg:grid-rows-[minmax(150px,220px),minmax(min-content,auto),auto]
+    lg:grid-rows-[minmax(150px,200px),minmax(min-content,auto),auto]
     md:grid-rows-[minmax(150px,150px),minmax(min-content,auto),auto] 
     grid-rows-[minmax(150px,180px),minmax(min-content,auto),auto];
     }
@@ -51,7 +51,8 @@
     /* CARD HEADER */
     .FixCardHeader {
         @apply md:max-w-[calc(100%-1.5rem)] max-w-[calc(100vw-1.5rem)] mx-auto
-        !flex h-[calc(100%+1.4rem)] !rounded-xl !relative !z-[99] -mt-6  m-4 !shadow-md fadeIn border;
+        !flex  !rounded-xl !relative !z-[99] -mt-6  !shadow-md fadeIn border
+        max-h-[calc(100%+1rem)];
     }
 
     .FixCardHeaderSmall {
@@ -63,7 +64,7 @@
     }
 
     .CardImage {
-        @apply h-full max-h-[60vh] w-full !rounded-xl object-cover !shadow-lg !bg-white;
+        @apply max-h-fit w-full !rounded-xl object-cover !shadow-lg !bg-white;
     }
 
     /* CHIP */
@@ -106,11 +107,10 @@
     .CardDetailGrid {
         @apply w-respLarge card
         !min-h-fit  !grid h-[calc(100%-0rem)] lg:h-full
-        sm:!bg-orange-300
         grid-rows-[minmax(200px,1fr),minmax(fit-content,1fr),auto]
-        sm:grid-rows-[minmax(250px,1fr),minmax(fit-content,1fr),auto]
-        md:grid-rows-[minmax(35vh,1fr),minmax(fit-content,1fr),auto]
-        lg:grid-rows-[minmax(200px,1fr),minmax(fit-content,1fr),auto];
+        sm:grid-rows-[minmax(250px,30vh),minmax(fit-content,1fr),auto]
+        md:grid-rows-[minmax(200px,40vh),minmax(fit-content,1fr),auto]
+        lg:!grid-rows-[minmax(100px,100px),minmax(fit-content,1fr),auto];
     }
 
     .CardDetailGridNoImage {
@@ -120,11 +120,17 @@
     grid grid-rows-[auto,minmax(min-content,1fr),auto];
     }
 
+    .DetailCardHeader {
+        @apply md:max-w-[calc(100%-1.5rem)] max-w-[calc(100vw-1.5rem)] mx-auto
+        !flex  !rounded-xl !relative !z-[99] -mt-6  !shadow-md fadeIn border
+       h-[calc(100%+1rem)] !max-h-[40vh] sm:!max-h-[45vw] md:!max-h-[38vh];
+    }
+
     .DetailCardBody {
         @apply flex  relative flex-col px-5 !py-0 
     !max-h-full !h-full;
     }
     .DetailCardFooter {
-        @apply flex justify-between self-end items-center max-h-fit w-full pt-4 h-[4rem]  min-h-fit;
+        @apply flex justify-between sticky bottom-0 place-self-end items-center max-h-fit w-full pt-4 h-[4rem] min-h-fit;
     }
 }

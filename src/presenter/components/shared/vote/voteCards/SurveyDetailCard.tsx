@@ -28,7 +28,7 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
     return (
         <Card className={haveImage ? "CardDetailGrid" : "CardDetailGridNoImage"}>
             <CardHeader
-                className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
+                className={haveImage ? "DetailCardHeader" : "FixCardHeaderNoImage"}
                 floated={haveImage}>
                 <div className={haveImage ? "ChipDiv flex-wrap" : "ChipDivNoImage flex-wrap"}>
                     <Chip

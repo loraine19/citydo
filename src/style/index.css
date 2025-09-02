@@ -111,7 +111,7 @@ h5 {
     @apply text-lg text-[0.95rem] font-normal !text-slate-700 !font-roboto;
 }
 h6 {
-    @apply font-normal pt-2 !text-slate-700 !font-roboto;
+    @apply font-medium !text-slate-700 !font-roboto;
 }
 p {
     @apply text-base font-light text-slate-600 !font-roboto;
@@ -336,7 +336,7 @@ button span {
 .iconLg {
     @apply flex items-center justify-center rounded-full;
     font-size: 22px;
-    width: 40px;
+    width: 38px;
     height: 38px;
 }
 .iconXl {

@@ -26,7 +26,7 @@ export default function ChatPage() {
     const conversationViewModelFactory = DI.resolve('conversationViewModel')
     const { messages, isLoading, refetch, fetchNextPage, hasNextPage, error } = conversationViewModelFactory(userIdRec)
     const getUserById = async (id: number) => await DI.resolve('getUserByIdUseCase').execute(id);
-    const { setColor } = useUxStore()
+    const { getColor } = useUxStore()
 
 
     //// OPEN CHAT
@@ -65,7 +65,7 @@ export default function ChatPage() {
         if (!connected) {
             connexion();
             up();
-            setColor(connected ? 'cyan' : 'slate')
+            getColor();
         }
         socketService.onConnectError((error: Error) => {
             console.error("Connection Error:", error);

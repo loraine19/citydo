@@ -8,13 +8,11 @@ import { GenereMyActions } from '../../../views/viewsEntities/utilsService';
 import DI from '../../../../di/ioc';
 import { Skeleton, SkeletonGrid } from '../../common/Skeleton';
 import { VoteCard } from './voteCards/VoteCard';
-import { Button } from '@material-tailwind/react';
-import { Icon } from '../../common/IconComp';
 import { PoolSurveyStatus } from '../../../../domain/entities/PoolSurvey';
 import { HandleHideParams } from '../../../../application/useCases/utils.useCase';
+import { useUxStore } from '../../../../application/stores/ux.store';
 
 export default function PoolDetailPage() {
-    const pageColor = 'orange'
 
     //// PARAMS
     const { id } = useParams();
@@ -29,19 +27,17 @@ export default function PoolDetailPage() {
     const myActions: Action[] = pool && GenereMyActions(pool, "vote/cagnotte", deletePool)
     const [openVote, setOpenVote] = useState(false);
 
-    ////// HANDLE SCROLL
+    //// HANDLE SCROLL
     const utils = DI.resolve('utils')
     const divRef = useRef(null);
-    const onScroll = useCallback(() => {
-    }, [divRef]);
 
-    ////// HANDLE HIDE  
+    //// HANDLE HIDE 
+    const { hideNavBottom, setHideNavBottom } = useUxStore()
     const handleHide = (params: HandleHideParams) => utils.handleHide(params)
     const handleHideCallback = useCallback(() => {
-        const params: HandleHideParams = { divRef, setHide }
+        const params: HandleHideParams = { divRef, setHide: setHideNavBottom }
         handleHide(params)
     }, [divRef]);
-    const [hide, setHide] = useState<boolean>(false);
 
     return (<>
         {openVote &&
@@ -60,7 +56,6 @@ export default function PoolDetailPage() {
             <section
                 ref={divRef}
                 onScroll={() => {
-                    onScroll()
                     handleHideCallback()
                 }}>
                 <div className="DetailCardDiv ">
@@ -81,24 +76,21 @@ export default function PoolDetailPage() {
                 </article>
 
             </section>
-            <footer className={`footer ${hide ? 'hidden' : ''}`} >
+            <footer className={`footer ${hideNavBottom ? 'hidden' : ''}`} >
                 {pool?.mine ?
                     <CTAMines actions={myActions} /> :
                     <footer className={`CTA`}>
-                        <Button
-                            disabled={pool?.status !== PoolSurveyStatus.PENDING}
-                            size='md'
-                            className={` bg-${pageColor} lgBtn`}
-                            onClick={() => setOpenVote(true)}>
-                            <Icon
-                                size='lg'
-                                fill
-                                icon='smart_card_reader'
-                                color='white' />
-                            {pool.IVoted ? 'Modifier mon vote' :
-                                pool.status === PoolSurveyStatus.PENDING ?
-                                    'Voter' : 'Cette cagnotte est terminé'}
-                        </Button>
+                        <CTAMines actions={[{
+                            disabled: pool?.status !== PoolSurveyStatus.PENDING,
+                            function: () => setOpenVote(true),
+                            icon: pool.IVoted ? 'Modifier mon vote' :
+                                pool.status !== PoolSurveyStatus.PENDING ?
+                                    'Cette cagnotte est terminé' : 'Voter'
+                            ,
+                            iconImage: pool.IVoted ? 'edit' : 'smart_card_reader',
+
+                        }]} />
+
                     </footer>
                 }
             </footer>

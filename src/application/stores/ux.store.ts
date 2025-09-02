@@ -47,7 +47,7 @@ export const useUxStore = create<UxStore, [['zustand/persist', UxStore]]>(
               color = 'orange';
               break;
             case 'chat':
-              color = 'teal';
+              color = 'cyan';
               break;
             case 'notification':
             case 'sign':

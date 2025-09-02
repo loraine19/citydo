@@ -13,6 +13,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import NotifDiv from '../../common/NotifDiv';
 import { EventView } from '../../../views/viewsEntities/eventViewEntities';
 import { HandleHideParams } from '../../../../application/useCases/utils.useCase';
+import { useUxStore } from '../../../../application/stores/ux.store';
 
 
 export default function EventDetailPage() {
@@ -68,16 +69,14 @@ export default function EventDetailPage() {
     //// HANDLE SCROLL
     const utils = DI.resolve('utils')
     const divRef = useRef(null);
-    const onScroll = useCallback(() => {
-    }, [divRef]);
 
-    //// HANDLE HIDE  
+    //// HANDLE HIDE 
+    const { hideNavBottom, setHideNavBottom } = useUxStore()
     const handleHide = (params: HandleHideParams) => utils.handleHide(params)
     const handleHideCallback = useCallback(() => {
-        const params: HandleHideParams = { divRef, setHide }
+        const params: HandleHideParams = { divRef, setHide: setHideNavBottom }
         handleHide(params)
     }, [divRef]);
-    const [hide, setHide] = useState<boolean>(false);
 
     return (
         <>
@@ -85,7 +84,7 @@ export default function EventDetailPage() {
                 <div className="sectionHeader">
                     <SubHeader
                         image={event?.image}
-                        hideImage={!hide}
+                        hideImage={!hideNavBottom || !event?.image}
                         type={`évenement ${event?.label ?? ''}`}
                         place={`${event?.Address?.address ?? ''} ${event?.Address?.city ?? ''}`}
                         closeBtn />
@@ -101,7 +100,6 @@ export default function EventDetailPage() {
                 <section
                     ref={divRef}
                     onScroll={() => {
-                        onScroll()
                         handleHideCallback()
                     }}>
                     <div className="DetailCardDiv ">
@@ -123,7 +121,7 @@ export default function EventDetailPage() {
 
                 </section>
             </main>
-            <footer className={`footer ${hide ? 'hidden' : ''}`} >
+            <footer className={`footer ${hideNavBottom ? 'hidden' : ''}`} >
                 {(!isLoading && event && !error) && <>
                     {event?.mine && !isLoading ?
                         <CTAMines

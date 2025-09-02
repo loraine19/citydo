@@ -10,6 +10,7 @@ import DI from '../../../../di/ioc';
 import { VoteCard } from './voteCards/VoteCard';
 import { PoolSurveyStatus } from '../../../../domain/entities/PoolSurvey';
 import { HandleHideParams } from '../../../../application/useCases/utils.useCase';
+import { useUxStore } from '../../../../application/stores/ux.store';
 
 
 export default function SurveyDetailPage() {
@@ -30,16 +31,14 @@ export default function SurveyDetailPage() {
     //// HANDLE SCROLL
     const utils = DI.resolve('utils')
     const divRef = useRef(null);
-    const onScroll = useCallback(() => {
-    }, [divRef]);
 
-    //// HANDLE HIDE  
+    //// HANDLE HIDE 
+    const { hideNavBottom, setHideNavBottom } = useUxStore()
     const handleHide = (params: HandleHideParams) => utils.handleHide(params)
     const handleHideCallback = useCallback(() => {
-        const params: HandleHideParams = { divRef, setHide }
+        const params: HandleHideParams = { divRef, setHide: setHideNavBottom }
         handleHide(params)
     }, [divRef]);
-    const [hide, setHide] = useState<boolean>(false);
 
 
     return (
@@ -52,7 +51,7 @@ export default function SurveyDetailPage() {
             <main >
                 <div className="sectionHeader">
                     <SubHeader
-                        hideImage={!hide || !survey?.image}
+                        hideImage={!hideNavBottom || !survey?.image}
                         image={survey?.image}
                         type={`sondage ${survey?.categoryS}`}
                         link='/vote'
@@ -61,7 +60,6 @@ export default function SurveyDetailPage() {
                 <section
                     ref={divRef}
                     onScroll={() => {
-                        onScroll()
                         handleHideCallback()
                     }}>
                     <div className="DetailCardDiv ">
@@ -84,7 +82,7 @@ export default function SurveyDetailPage() {
 
                 </section>
 
-                <footer className={`footer ${hide ? 'hidden' : ''}`} >
+                <footer className={`footer ${hideNavBottom ? 'hidden' : ''}`} >
                     {survey?.mine ?
                         <CTAMines actions={myActions} /> :
                         <CTAMines actions={[{

@@ -3,7 +3,6 @@ import { AvatarStack } from "./AvatarStack";
 import AddressMapOpen from "../../../common/mapComps/AddressMapOpen";
 import { Icon } from "../../../common/IconComp";
 import { DateChip } from "../../../common/ChipDate";
-import { Link } from "react-router-dom";
 import { Skeleton } from "../../../common/Skeleton";
 import { EventView } from "../../../../views/viewsEntities/eventViewEntities";
 import { Title } from "../../../common/CardTitle";
@@ -23,7 +22,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
     return (
 
         <Card className="CardDetailGrid">
-            <CardHeader className="FixCardHeader">
+            <CardHeader className="DetailCardHeader">
                 <div className="ChipDiv flex-col justify-between !h-full">
                     <div className="flex w-full flex-wrap items-center justify-between gap-2">
                         <Chip
@@ -62,21 +61,21 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                     type='evenement'
                     group={Group}
                 />
-                <div className="flex flex-1 gap-x-3 py-1 flex-col  sm:!justify-evenly sm:!flex-row h-full">
-                    <div className="relative h-max flex flex-col w-full flex-1 ">
-                        <h6>{eventDateInfo}</h6>
-                        <Link
-                            to={agendaLink as string}
-                            target="_blank" rel="noopener noreferrer"
-                            className={`${Igo ? 'GreenChip' : 'GrayChip px-3 '} w-max !rounded-full mb-1 py-1 text-xs font-medium flex items-center gap-1`}
-                            title="ajouter a mon agenda">
-                            <Icon
-                                color={Igo ? "green" : "gray"}
-                                icon="calendar_add_on"
-                                size="lg" />
-                            ajouter a mon agenda
-                        </Link>
+                <div className="flex flex-1 gap-x-3 flex-col  sm:!justify-evenly sm:!flex-row h-full">
+                    <div className="relative h-max flex  w-full flex-1 ">
+
                         <div>
+                            <div className="flex items-center -mb-2 justify-between pr-4">
+                                <h6>{eventDateInfo}</h6>
+
+                                <Icon
+                                    bg fill
+                                    title="ajouter a mon agenda"
+                                    link={agendaLink as string}
+                                    color={Igo ? "green" : "gray"}
+                                    icon="calendar_add_on"
+                                    size="lg" />
+                            </div>
                             <h6>Description</h6>
                             <Typography
                                 className="description">
@@ -84,7 +83,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                             </Typography>
                         </div>
                     </div>
-                    <div className="flex flex-col  !w-full h-full  flex-1 ">
+                    <div className="flex flex-col gap-1 !w-full h-full  flex-1 ">
                         <h6>Lieu</h6>
                         {Address ?
                             <AddressMapOpen
