@@ -5,13 +5,14 @@ import SubHeader from '../../common/SubHeader';
 import { EventDetailCard } from './eventComps/EventDetailCard';
 import { Action } from '../../../../domain/entities/frontEntities';
 import DI from '../../../../di/ioc';
-import { Skeleton } from '../../common/Skeleton';
+import { Skeleton, SkeletonGrid } from '../../common/Skeleton';
 import { GenereMyActions } from '../../../views/viewsEntities/utilsService';
 import { useAlertStore } from '../../../../application/stores/alert.store';
 import { EventStatus } from '../../../../domain/entities/Event';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import NotifDiv from '../../common/NotifDiv';
 import { EventView } from '../../../views/viewsEntities/eventViewEntities';
+import { HandleHideParams } from '../../../../application/useCases/utils.useCase';
 
 
 export default function EventDetailPage() {
@@ -29,8 +30,10 @@ export default function EventDetailPage() {
     const { handleApiError } = useAlertStore(state => state);
     const [notif, setNotif] = useState<string>('');
 
+    //// NOTIFICATION
     useEffect(() => {
         if (error) setNotif(error.message)
+        else setNotif('');
         event && setButtons(buttonsGenerator(event));
     }, [isLoading, error]);
 
@@ -62,31 +65,58 @@ export default function EventDetailPage() {
     ]
     const [buttons, setButtons] = useState<Action[]>(buttonsGenerator(event as EventView))
 
+    //// HANDLE SCROLL
+    const utils = DI.resolve('utils')
+    const divRef = useRef(null);
+    const onScroll = useCallback(() => {
+    }, [divRef]);
+    //// HANDLE HIDE  
+    const handleHide = (params: HandleHideParams) => utils.handleHide(params)
+    const handleHideCallback = useCallback(() => {
+        const params: HandleHideParams = { divRef, setHide }
+        handleHide(params)
+    }, [divRef]);
+    const [hide, setHide] = useState<boolean>(false);
+
     return (
         <>
             <main data-cy="event-details-page">
                 <div className="sectionHeader">
                     <SubHeader
-                        type={`évenement ${event?.label ?? ''}`}
+                        image={hide ? event?.image : undefined}
+                        type={`évenement ${event?.label ?? ''} `}
                         place={` ${event?.Address?.address ?? ''} ${event?.Address?.city ?? ''}`}
                         closeBtn />
 
-                </div>
-                <section>
-                    {!isLoading && event ?
-                        <EventDetailCard
-                            EventLoad={event}
-                            refetch={async () => await updateEvent()} /> :
-                        <Skeleton />}
                     {notif &&
                         <NotifDiv
                             isLoading={isLoading}
                             refetch={refetch}
                             notif={notif}
                         />}
+
+                </div>
+                <section
+                    ref={divRef}
+                    onScroll={() => {
+                        onScroll()
+                        handleHideCallback()
+                    }}>
+                    {!isLoading && event ?
+                        <EventDetailCard
+                            EventLoad={event}
+                            refetch={async () => await updateEvent()} /> :
+                        <Skeleton />}
+
+                    <article className='grid grid-rows-[auto,1fr] py-5 lg:-ml-5'>
+                        <SubHeader
+                            type="Autres événements "
+                            place={'dans ce groupe '} />
+                        <SkeletonGrid count={3} />
+                    </article>
                 </section>
             </main>
-            <footer >
+            <footer className={`footer ${hide ? 'hidden' : ''}`} >
                 {(!isLoading && event && !error) && <>
                     {event?.mine && !isLoading ?
                         <CTAMines

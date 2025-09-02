@@ -12,8 +12,8 @@ import { AvatarUser } from "./AvatarUser"
 
 type ProfileDivProps = { profile: Partial<User>, size?: string }
 export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props }) => {
-    const profile = new ProfileView(props.profile?.Profile as Profile)
-    const userDiv = props.profile as User
+    const profile = new ProfileView(props?.profile?.Profile as Profile)
+    const userDiv = props?.profile as User
     const textSize = size === "xl" && "h6" || size === "lg" && "h6" || "h6"
     const texteSize2 = size === "xl" && "text-sm" || size === "lg" && "text-sm" || "!hidden"
     const user = useUserStore(state => state.user)
@@ -83,8 +83,8 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
                                             message={<DistanceCalculator
                                                 lat1={Number(profile?.Address?.lat)}
                                                 lon1={Number(profile?.Address?.lng)}
-                                                lat2={Number(user.Profile?.Address?.lat)}
-                                                lon2={Number(user.Profile?.Address?.lng)} /> as any}
+                                                lat2={Number(user?.Profile?.Address?.lat)}
+                                                lon2={Number(user?.Profile?.Address?.lng)} /> as any}
                                             address={profile?.Address} />
                                     </div>
                                 }
@@ -92,8 +92,8 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
                             <DistanceCalculator
                                 lat1={Number(profile?.Address?.lat)}
                                 lon1={Number(profile?.Address?.lng)}
-                                lat2={Number(user.Profile?.Address?.lat)}
-                                lon2={Number(user.Profile?.Address?.lng)} />
+                                lat2={Number(user?.Profile?.Address?.lat)}
+                                lon2={Number(user?.Profile?.Address?.lng)} />
                             <br></br>
                             {profile?.Address?.city}, {profile?.Address?.zipcode}
                         </div>
@@ -109,7 +109,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
                             <Typography
                                 className={`font-light ${texteSize2} truncate !line-clamp-1`}
                                 key={index} >
-                                {' ⌖ ' + group.Group?.name.split(':')[0]}
+                                {' ⌖ ' + group?.Group?.name.split(':')[0]}
                             </Typography>)}
                     </div>
                 </div>

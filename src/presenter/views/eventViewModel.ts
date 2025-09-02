@@ -22,6 +22,7 @@ export const eventViewModel = () => {
       = useInfiniteQuery({
         queryKey: ['events', params],
         staleTime: 600000,
+        retry: 2,
         queryFn: async ({ pageParam = 1 }) => await getEvents.execute(pageParam, params) || { events: [], count: 0 },
         initialPageParam: 1,
         getNextPageParam: (lastPage, pages) => lastPage.events?.length ? pages.length + 1 : undefined

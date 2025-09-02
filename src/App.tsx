@@ -111,7 +111,6 @@ function App() {
                                     <Route path="/notification" element={<NotificationPage />} />
                                     <Route path="/reglement" element={<RulesPage />} />
 
-                                    <Route path="/conciliation" element={<ConciliationListPage />} />
                                     <Route path="/flag" element={<FlagPage />} />
                                 </Route>
 

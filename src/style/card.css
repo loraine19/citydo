@@ -98,7 +98,7 @@
     /* DETAILD CARD  */
     .DetailCardDiv {
         @apply overflow-auto !h-full max-h-full  wRespXL grid pt-7 min-h-[fit-content]
-     pb-[3rem] sm:pb-0
+     pb-[3rem] sm:pb-0 px-0.5
     grid-rows-[calc(100%_-_0rem)]
     sm:grid-rows-[calc(100%_-_3rem)];
     }
@@ -120,6 +120,6 @@
     }
 
     .DetailCardFooter {
-        @apply flex justify-between items-center max-h-fit w-full pt-4 h-[4rem];
+        @apply flex justify-between items-center max-h-fit w-full pt-4 h-[4rem]  min-h-fit;
     }
 }

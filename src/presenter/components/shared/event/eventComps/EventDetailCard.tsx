@@ -90,7 +90,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                         </div>
                     </div>
                 </CardBody>
-                <CardFooter className="CardFooter flex justify-between items-center mb-2">
+                <CardFooter className="DetailCardFooter">
                     <ProfileDiv profile={User} />
                     <div className="flex items-center gap-2 overflow-auto">
                         <AvatarStack avatarDatas={Participants} />

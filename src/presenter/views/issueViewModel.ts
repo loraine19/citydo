@@ -14,11 +14,12 @@ export const issueViewModel = () => {
 
     const getIssues = DI.resolve('getIssuesUseCase')
     const userId = user?.id || 0
-
     const { data, isLoading, error, fetchNextPage, hasNextPage, refetch }
       = useInfiniteQuery({
         queryKey: ['issues', filter],
+        refetchOnWindowFocus: false,
         //  staleTime: 600000,
+        retry: 2,
         queryFn: async ({ pageParam = 1 }) => await getIssues.execute(pageParam, filter) || [],
         initialPageParam: 1,
         getNextPageParam: (lastPage, pages) => lastPage?.issues?.length ? pages.length + 1 : undefined
@@ -27,8 +28,6 @@ export const issueViewModel = () => {
     const count = isLoading ? 0 : (data?.pages[data?.pages.length - 1].count)
     const flat = (isLoading || !data) ? [] : data?.pages.flat().map(page => page.issues).flat()
     const issues = userLoading || isLoading ? [] : flat?.map((issue: Issue) => new IssueView(issue, userId))
-
-    console.log(issues)
 
     return {
       count,

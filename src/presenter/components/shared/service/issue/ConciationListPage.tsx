@@ -102,16 +102,14 @@ export default function ConciationListPage() {
 
     //// RENDER
     return (
-
         <main>
             <div className="sectionHeader">
+                <TabsMenu labels={serviceTabs} />
                 <SubHeader
                     closeBtn
                     qty={count}
                     link="/"
                     type={`${count > 0 ? 'conciliations' : 'aucune conciliation'} ${filterName()}`} />
-
-                <TabsMenu labels={serviceTabs} />
                 {notif &&
                     <div className={'notif'}>
                         {notif}
@@ -125,16 +123,18 @@ export default function ConciationListPage() {
                 <SkeletonGrid />
                 : <section
                     ref={divRef}
-                    onScroll={() => { onScroll(); handleHideCallback() }}
+                    onScroll={() => {
+                        onScroll();
+                        handleHideCallback()
+                    }}
                     className="Grid">
-                    {
-                        issues && issues?.map((issue: IssueView, index: number) => (
-                            <div className="SubGrid" key={index}>
-                                <IssueCard
-                                    issue={issue}
-                                    change={search}
-                                    update={refetch} />
-                            </div>))}
+                    {issues && issues?.map((issue: IssueView, index: number) => (
+                        <div className="SubGrid" key={index}>
+                            <IssueCard
+                                issue={issue}
+                                change={search}
+                                update={refetch} />
+                        </div>))}
                     <LoadMoreButton
                         isBottom={isBottom}
                         hasNextPage={hasNextPage}
