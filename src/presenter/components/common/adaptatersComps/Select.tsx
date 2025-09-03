@@ -16,7 +16,7 @@ interface SelectProps {
 export function Select({ formik, setValue, value, name, placeholder, disabled, options, simple }: SelectProps) {
 
     const { color } = useUxStore(state => state)
-    const find = options.filter(option => option?.value === formik?.values[name ?? '']?.toString() || option?.value === value?.toString())
+    const find = options?.filter(option => option?.value === formik?.values[name ?? '']?.toString() || option?.value === value?.toString())
     const place = (formik?.errors[name ?? ''] && !simple) && formik.errors[name ?? ''] || find?.[0]?.label || placeholder
 
     const className =

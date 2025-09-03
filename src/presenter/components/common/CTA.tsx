@@ -20,17 +20,19 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
     const { setAlertValues, setOpen, } = useAlertStore(state => state)
 
     useEffect(() => {
-        setAlertValues({
-            handleConfirm: () => {
-                if (typeof actions[index]?.function === 'function') actions[index].function();
-                setOpen(false)
-            },
-            title: actions[index]?.title as string,
-            element: actions[index]?.body as string,
-            disableConfirm: false,
-            confirmString: 'Confirmer',
-            notif: '',
-        })
+        if (index < actions.length && actions[index]) {
+            setAlertValues({
+                handleConfirm: () => {
+                    if (typeof actions[index]?.function === 'function') actions[index].function();
+                    setOpen(false)
+                },
+                title: actions[index]?.title as string,
+                element: actions[index]?.body as string,
+                disableConfirm: false,
+                confirmString: 'Confirmer',
+                notif: '',
+            });
+        }
     }, [index, actions]);
 
 

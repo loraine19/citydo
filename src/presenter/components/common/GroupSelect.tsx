@@ -1,7 +1,6 @@
 import { User } from "../../../domain/entities/User"
 import { Select } from "./adaptatersComps/Select";
 
-
 interface GroupSelectProps {
     formik: any;
     user: User;
@@ -9,10 +8,8 @@ interface GroupSelectProps {
     groupId?: string;
     disabled?: boolean;
 }
+
 export default function GroupSelect({ formik, user, groupId, disabled }: GroupSelectProps) {
-
-    // const selectedGroup = user?.GroupUser?.filter((gu: GroupUser) => gu?.Group?.id.toString() === formik.values.groupId?.toString())?.[0]?.Group.name;
-
 
     return (
         <Select

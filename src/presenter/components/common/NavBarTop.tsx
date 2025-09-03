@@ -7,7 +7,7 @@ import { OnlineDot } from "./onlineDot";
 import { AvatarUser } from "./AvatarUser";
 import { useUxStore } from "../../../application/stores/ux.store";
 import { NavBarSection } from "./NavLinks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navIcons?: boolean }) {
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
         { icon: "toll", text: `${user?.Profile?.points} points`, onClick: null, color: 'white', style: 'hover:!bg-white' },
         { icon: navBottom ? 'move_up' : 'move_down', text: "Déplacer la barre", onClick: () => { setNavBottom(!navBottom) }, color: 'white', style: `${!hideNavBottom ? '' : 'hidden'} !-mt-2 !mb-2 border-b !border-slate-400 ` },
         // { icon: "forum", text: `Messagerie (${unReadMsgNotif ?? ''})`, onClick: () => navigate('/chat'), color: 'cyan' },
-        { icon: 'groups', text: "Groupes", onClick: () => { navigate('/groupe'); getColor() }, color: "teal" },
+        { icon: 'groups', text: "Groupes", onClick: () => navigate('/groupe'), color: "teal" },
         { icon: "person_edit", text: "Modifier mon profil", onClick: () => navigate('/myprofile'), color: "yellow" },
         { icon: 'diversity_3', text: "Conciliation", onClick: () => navigate('/conciliation'), color: 'orange' },
         { icon: "exit_to_app", text: "Déconnexion", onClick: () => navigate('/signin'), style: "!text-red-500 !mt-2 !pt-3 border-t !border-slate-400", color: "red" },
@@ -30,6 +30,8 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
 
     const [closeDial, setCloseDial] = useState<boolean>(false)
+
+    useEffect(() => { getColor(window.location.pathname) }, [window.location.pathname])
 
     return (
         <>

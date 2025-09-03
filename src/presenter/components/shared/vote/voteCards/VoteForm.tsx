@@ -1,6 +1,6 @@
 import { Card, CardHeader, CardBody, Input, Textarea } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { Label } from "../../../../../domain/entities/frontEntities";
+import { Action, Label } from "../../../../../domain/entities/frontEntities";
 import SubHeader from "../../../common/SubHeader";
 import { ImageBtn } from "../../../common/ImageBtn";
 import { DateChip } from "../../../common/ChipDate";
@@ -33,6 +33,18 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
         refetch();
         setUsers(fetchedUsers.map((user: Partial<User>) => ({ value: user?.id, label: user?.Profile?.firstName })));
     }, [isLoading, formik.values.groupId, type]);
+
+    const actions: Action[] = [
+        {
+            title: 'Enregistrer',
+            iconImage: 'add',
+            icon: formik.values?.pourcent > 1 ?
+                'Non modifiable votes en cours  ' + formik.values.pourcent + '%' : `Enregistrer`,
+            type: "submit",
+            disabled: formik.values?.pourcent > 1,
+            function: () => { }
+        }
+    ]
 
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full">
@@ -143,16 +155,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                 </section>
             </main>
 
-            <CTAMines actions={[
-                {
-                    iconImage: 'add',
-                    icon: formik.values.pourcent > 1 ?
-                        'Non modifiable votes en cours  ' + formik.values.pourcent + '%' : `Enregistrer`,
-                    type: "submit",
-                    disabled: formik.values.pourcent > 1,
-                    function: () => { }
-                }
-            ]} />
+            {actions && <CTAMines actions={actions} />}
         </form>
     )
 }
