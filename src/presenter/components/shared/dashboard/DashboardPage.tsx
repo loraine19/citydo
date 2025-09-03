@@ -88,7 +88,7 @@ export default function DashboardPage() {
 
     return (
         <main className={`
-            ${(hideNavBottom || !navBottom) ? ' -mb-4 pb-2' : ' !max-h-[calc(100dvh_-_6rem)] lg:!max-h-[calc(100dvh_-_9rem)] '}
+            ${(hideNavBottom || !navBottom) ? ' -mb-4 pb-2 !max-h-[calc(100dvh_-_1rem)] lg:!max-h-[calc(100dvh_-_4rem)] ' : '!max-h-[calc(100dvh_-_6rem)] lg:!max-h-[calc(100dvh_-_9rem)] '}
             ${navBottom ? '!-mt-6 ' : '!-mt-7 pb-4 '} lg:!mt-1 `}
             data-cy="dashboard-body" >
             <div ref={divRef}
