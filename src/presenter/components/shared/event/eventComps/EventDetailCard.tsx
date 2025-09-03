@@ -96,7 +96,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                     <ProfileDiv profile={User} />
                 </div>
 
-                <div className="flex flex-1 overflow-auto flex-col px-6 justify-center ">
+                <div className="flex flex-1 overflow-auto h-full flex-col px-6 justify-center ">
                     <h6>Participants</h6>
                     <AvatarStack avatarDatas={Participants} />
                 </div>

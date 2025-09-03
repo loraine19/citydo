@@ -101,6 +101,7 @@
     /* DETAILD CARD  */
     .DetailCardDiv {
         @apply h-full wRespXL grid pt-8 min-h-[min-content] px-0.5
+        grid-rows-[minmax(calc(100dvh_-_12rem),calc(100dvh_-_12rem))]
        sm:grid-rows-[minmax(calc(100dvh_-_12rem),calc(100dvh_-_12rem))]
         lg:grid-rows-[minmax(min-content,calc(100vh_-_12rem))];
     }
@@ -113,8 +114,8 @@
 
     .CardDetailGrid {
         @apply w-respLarge card 
-        !min-h-fit  !grid h-[calc(100%-0rem)] max-h-[calc(100vh-8.5rem)] lg:max-h-[calc(100vh-11.5rem)] 
-        grid-rows-[minmax(80px,25vh),minmax(max-content,1fr),auto]
+        !min-h-fit !grid h-[calc(100%-0rem)] max-h-[calc(100dvh-8.5rem)] lg:max-h-[calc(100dvh-11.5rem)] 
+        grid-rows-[minmax(80px,30vh),minmax(max-content,1fr),auto]
         sm:grid-rows-[minmax(100px,38vh),minmax(max-content,1fr),auto]
         md:grid-rows-[minmax(100px,40vh),minmax(max-content,1fr),auto]
         lg:grid-rows-[minmax(150px,30vh),minmax(max-content,1fr),auto];
