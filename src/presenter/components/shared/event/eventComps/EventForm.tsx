@@ -95,8 +95,8 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                     height={100}
                                     className={'CardImage'} />
                             </CardHeader>
-                            <CardBody className='FixCardBody !flex !flex-col !h-full'>
-                                <div className='gap-y-8 h-max !flex flex-col '>
+                            <CardBody className='DetailCardBody'>
+                                <div className='gap-y-3 md:gap-y-8 h-full flex-1 pb-8 !flex flex-col '>
                                     <Input
                                         className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
                                         placeholder={"Titre"}
@@ -104,7 +104,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         onChange={formik.handleChange}
                                         defaultValue={title} />
                                     <InputError error={formik.errors.title} />
-                                    <div className='flex flex-col lg:flex-row gap-5 h-full'>
+                                    <div className='flex flex-col lg:flex-row gap-3 md:gap-4 h-full'>
                                         <div className='flex flex-col flex-1'>
                                             <Textarea
                                                 isError={!!formik.errors.description}
@@ -116,7 +116,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                                 onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                                                     formik.handleChange(e);
                                                     const textarea = e.target as HTMLTextAreaElement;
-                                                    textarea.style.height = '2.5rem';
+                                                    textarea.style.height = '3rem';
                                                     textarea.style.height = textarea.scrollHeight + 'px';
                                                 }}
                                                 defaultValue={description}

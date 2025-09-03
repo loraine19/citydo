@@ -55,8 +55,8 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                             disabled={disabled}
                             onChange={() => {
                                 onChange(option.value);
-                                formik.setFieldValue('typeS', option.value);
-                                formik.setFieldTouched('typeS', true);
+                                formik.setFieldValue(name, option.value);
+                                formik.setFieldTouched(name, true);
                             }}
                             className={` !opacity-0 -left-8 relative !scale-[1.9]`}
                         />

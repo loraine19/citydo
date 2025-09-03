@@ -20,9 +20,9 @@ export default function EventCreatePage() {
 
     const formSchema = object({
         title: string().required("Le titre est obligatoire").min(5, "minmum 5 lettres"),
-        start: date().required("Date est obligatoire").max(ref('end'), "la date de debut doit etre avant a la date de fin"),
-        end: date().required("Date est obligatoire").min(ref('start'), "la date de fin doit etre aprés a la date de debut"),
-        participantsMin: number().required("Participants est obligatoire").min(1, "minmum 1 personne"),
+        start: date().required("Début obligatoire").max(ref('end'), "la date de debut doit etre avant a la date de fin"),
+        end: date().required("Fin obligatoire").min(ref('start'), "la date de fin doit etre aprés a la date de debut"),
+        participantsMin: number().required("obligatoire").min(1, "minmum 1 personne"),
         description: string().required("Description est obligatoire").min(2, "minmum 2 lettres").max(TextLength.MAX_LONGTEXT, "le texte est trop long"),
         category: string().required("Catégorie est obligatoire"),
         Address: object({

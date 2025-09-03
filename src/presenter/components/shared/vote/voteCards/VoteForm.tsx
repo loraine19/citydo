@@ -59,7 +59,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                         <RadioGroup
                             formik={formik}
                             value={formik.values.typeS ?? type}
-                            onChange={setType}
+                            onChange={(value) => setType(value)}
                             options={
                                 [
                                     { value: VoteTarget.SURVEY, label: "Sondage", id: 'sondage-radio' },
@@ -70,17 +70,17 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                         <div>
                             {(type === VoteTarget.POOL) ?
                                 <Select
+                                    value={formik.values.beneficiary}
                                     options={users}
                                     placeholder="Choisir un bénéficiaire"
                                     name={"beneficiary"}
-                                    formik={formik}
-                                    value={formik.values.beneficiary} />
+                                    formik={formik} />
                                 : <Select
+                                    value={formik.values.category}
                                     options={surveyCategories}
                                     placeholder="Choisir une catégorie"
                                     name={"category"}
-                                    formik={formik}
-                                    value={formik.values.category} />
+                                    formik={formik} />
                             }
                         </div>
                         <GroupSelect
@@ -88,7 +88,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                             user={user} />
                     </div>
                 </div>
-                <section className="pb-10">
+                <section className="pb-6">
                     <div className={`FormCardDiv `}>
                         <Card className={`${haveImage ? "FormDetailGrid " : "FixCardNoImage "} `}>
                             <CardHeader className={haveImage ?
@@ -154,8 +154,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                     </div>
                 </section>
             </main>
-
-            {actions && <CTAMines actions={actions} />}
+            <CTAMines actions={actions} />
         </form>
     )
 }

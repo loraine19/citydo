@@ -67,7 +67,6 @@ export function ServiceForm(props: { formik: any }) {
                             value={formik.values.category}
                             placeholder="Choisir une catégorie"
                             formik={formik}
-
                         />
                         <GroupSelect
                             groupId={groupId}
@@ -77,7 +76,7 @@ export function ServiceForm(props: { formik: any }) {
                             disabled={formik.values.statusValue > 0} />
                     </div>
                 </div>
-                <section className="pb-10">
+                <section className="pb-6">
                     <div className={`FormCardDiv `}>
                         <Card className={`${haveImage ? "FormDetailGrid " : "FixCardNoImage "} `}>
                             <CardHeader className={haveImage ?
@@ -102,7 +101,7 @@ export function ServiceForm(props: { formik: any }) {
                                 />
                             </CardHeader>
                             <CardBody className='FixCardBody '>
-                                <div className='overflow-auto py-2 h-full -mt-2 '>
+                                <div className='py-2 h-full -mt-2 '>
                                     <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
                                         placeholder={"Titre"}
                                         name="title"
@@ -116,7 +115,7 @@ export function ServiceForm(props: { formik: any }) {
                                                 isError={!!formik.errors.description}
                                                 className={`inputStandart`}
                                                 placeholder='Description'
-                                                rows={4}
+                                                rows={3}
                                                 resize={true}
                                                 name="description"
                                                 onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -132,7 +131,7 @@ export function ServiceForm(props: { formik: any }) {
                                     </div>
                                     <div className="flex flex-col justify-center py-3 mt-2 h-max ">
                                         <Typography className='text-xs'>Difficulté du service: </Typography>
-                                        <div className="flex flex-col gap-y-2 md:flex-row justify-between">
+                                        <div className="flex  gap-y-2 md:flex-row justify-between">
                                             <div>
                                                 <Select
                                                     simple
@@ -140,12 +139,12 @@ export function ServiceForm(props: { formik: any }) {
                                                     formik={formik}
                                                     value={formik.values.skill?.toString()}
                                                     options={skillLevels}
-                                                    placeholder="Niveau de compétence"
+                                                    placeholder="Compétence"
                                                 />
                                             </div>
                                             <div>
                                                 <Select
-                                                    placeholder="Niveau de difficulté"
+                                                    placeholder="Pénibilité"
                                                     simple
                                                     name={'hard'}
                                                     formik={formik}
@@ -154,11 +153,11 @@ export function ServiceForm(props: { formik: any }) {
                                             </div>
 
 
-                                            <div className="h-full flex flex-col gap-4 py-3 md:py-0 justify-between">
+                                            <div className="-mt-3 flex items-end flex-col gap-4 py-3 md:py-0">
                                                 <Chip
                                                     size="sm"
-                                                    value={`${points} points`}
-                                                    className="flex-1 GrayChip lowercase !font-medium rounded-full max-h-max flex items-center justify-center gap-2 max-w-max px-5"
+                                                    value={`${points} pts`}
+                                                    className="GrayChip -mr-2 "
                                                     icon={
                                                         <Icon
                                                             color={formik.values.type === "do" ?
@@ -169,7 +168,7 @@ export function ServiceForm(props: { formik: any }) {
                                                             fill={userProfile?.points > parseInt(points[0])}
                                                         />}
                                                 />
-                                                <InputError tips={'Nombres de points'} />
+                                                <InputError tips={'Coûts'} />
                                             </div>
                                         </div>
                                     </div>
