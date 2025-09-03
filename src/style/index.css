@@ -152,14 +152,14 @@ input {
 }
 
 input[type="datetime-local"] {
-    @apply !opacity-95 !font-roboto !text-[0.8rem] inputStandart pt-1 placeholder:bg-red-200;
+    @apply !opacity-95 !font-roboto !text-[0.8rem] max-w-max inputStandart pt-1 !flex;
     &::-webkit-calendar-picker-indicator {
-        @apply !text-slate-300 !opacity-50 !font-roboto rounded-full p-1 ml-1;
+        @apply !text-slate-300 !opacity-50 !font-roboto rounded-full p-1 !flex -ml-10;
     }
 }
 
 input[type="number"] {
-    @apply !opacity-95 !font-roboto focus:!outline-none pt-1;
+    @apply !opacity-95 !font-roboto focus:!outline-none pt-1 !max-w-max !flex;
 }
 
 [role="option"] {

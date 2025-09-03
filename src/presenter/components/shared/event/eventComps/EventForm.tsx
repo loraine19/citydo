@@ -135,10 +135,10 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='flex justify-between gap-[4%]'>
-                                        <div className='flex flex-col flex-1  !max-w-[48%] '>
+                                    <div className='flex justify-between gap-2 py-2'>
+                                        <div className='flex flex-col flex-1 '>
                                             <input
-                                                className={`inputStandart !max-w-[85%] ${formik.errors.start ? 'error' : ''}`}
+                                                className={`inputStandart ${formik.errors.start ? 'error' : ''}`}
                                                 type='datetime-local'
                                                 placeholder={"date de debut"}
                                                 name="start"
@@ -147,9 +147,9 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                                 defaultValue={start && formatDateForDB(start)} />
                                             <InputError error={formik.errors.start} tips={'Date de début'} mt />
                                         </div>
-                                        <div className='flex flex-col flex-1 !max-w-[48%] '>
+                                        <div className='flex flex-col flex-1 '>
                                             <input
-                                                className={`inputStandart max-w-[85%] ${formik.errors.end ? 'error' : ''}`}
+                                                className={`inputStandart  ${formik.errors.end ? 'error' : ''}`}
                                                 type="datetime-local"
                                                 min={today}
                                                 defaultValue={end && formatDateForDB(end)}
@@ -159,10 +159,10 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                             <InputError mt error={formik.errors.end} tips={'Date de fin'} />
                                         </div>
                                     </div>
-                                    <div className='flex w-full gap-[4%] justify-between'>
-                                        <div className='flex flex-col !max-w-[48%] w-full '>
+                                    <div className='flex w-full gap-4 justify-between'>
+                                        <div className='flex flex-col  '>
                                             <input
-                                                className={`inputStandart max-w-[85%] ${formik.errors.participantsMin ? 'error' : ''}`}
+                                                className={`inputStandart ${formik.errors.participantsMin ? 'error' : ''}`}
                                                 type='number'
                                                 placeholder={"Participants minimum"}
                                                 name="participantsMin"
