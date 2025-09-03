@@ -9,6 +9,7 @@ import { Title } from "../../../common/CardTitle";
 import { ProgressBarBlur } from "../../../common/ProgressBar";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import Chip from "../../../common/adaptatersComps/Chip";
+import EventCalAddBtn from "./EventCalAddBtn";
 
 type EventCardProps = {
     EventLoad: EventView,
@@ -17,7 +18,7 @@ type EventCardProps = {
 }
 
 export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
-    const { id, title, description, label, image, participantsMin, pourcent, Participants, Igo, User, Address, flagged, end, start, toogleParticipate, agendaLink, eventDateInfo, status, isPast, Group } = EventLoad;
+    const { id, title, description, label, image, participantsMin, pourcent, Participants, Igo, User, Address, flagged, end, start, toogleParticipate, eventDateInfo, status, isPast, Group } = EventLoad;
 
     return (
 
@@ -69,13 +70,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                         <h6>Description</h6>
                         <div className="flex items-center gap-2 justify-between border-b border-slate-400">
                             <i>{eventDateInfo}</i>
-                            <Icon
-                                fill
-                                title="ajouter a mon agenda"
-                                link={agendaLink as string}
-                                color={Igo ? "green" : "gray"}
-                                icon="calendar_add_on"
-                                size="lg" />
+                            <EventCalAddBtn event={EventLoad} className="-mb-1" />
                         </div>
                         <Typography
                             className="description">
@@ -116,6 +111,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                             refetch && await refetch()
                         }}>
                         <Chip
+                            size='sm'
                             value={participantsMin}
                             variant="ghost"
                             className="rounded-full GrayChip h-max flex items-center px-4 "

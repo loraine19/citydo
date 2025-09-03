@@ -11,7 +11,7 @@ export class Action {
     function?: () => void = () => { };
     color?: string;
     disabled?: boolean;
-    directFunction?: () => void = () => { };
+    direct?: boolean = false;
     type?: 'button' | 'submit' | 'reset' = 'button';
 }
 export class Label {

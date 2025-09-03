@@ -38,7 +38,13 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
     //// ADD BUTTON ITEM
     const addBtnItem = type ? [{
         to: `/${type}/create`,
-        icon: { service: "partner_exchange", evenement: "event", annonce: "dashboard", vote: "ballot", groupe: "groups" }[type] || "add",
+        icon: {
+            service: "partner_exchange",
+            evenement: "event",
+            annonce: "dashboard",
+            vote: "ballot",
+            groupe: "groups"
+        }[type] || "add",
         label: `Ajouter un ${type}`,
         color: {
             border: `"!border-${color}-500"`,

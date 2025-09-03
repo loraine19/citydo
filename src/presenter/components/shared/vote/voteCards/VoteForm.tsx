@@ -76,68 +76,70 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                             user={user} />
                     </div>
                 </div>
-                <section className={`DetailCardDiv`}>
-                    <Card className={`${(imgBlob || formik.values.image) ?
-                        "CardDetailGrid" :
-                        "FixCardNoImage "}  `}>
-                        <CardHeader
-                            className={(imgBlob || formik.values.image) ?
-                                "FixCardHeader !relative " :
-                                "FixCardHeaderNoImage !grid-rows-[auto_1fr] pt-16 "}
-                            floated={imgBlob || formik.values.image ?
-                                true : false} >
-                            <div className={`${start ? 'ChipDiv !justify-end right-3 top-3' : 'invisible'}`}>
-                                <DateChip
-                                    prefix="publié le"
-                                    start={start} />
-                            </div>
-
-                            <ImageBtn
-                                className={type === VoteTarget.SURVEY ?
-                                    "!absolute z-40 !h-max top-3 !left-3 " : "hidden"}
-                                formik={formik}
-                                setImgBlob={setImgBlob} />
-                            <img
-                                onError={(e) => e.currentTarget.src = "/images/placeholder.jpg"}
-                                src={(imgBlob || formik.values.image) ?? null}
-                                alt={formik.values.title || 'image'}
-                                width={100}
-                                height={100}
-                                className={(imgBlob || formik.values.image) ?
-                                    "CardImage" : "hidden"}
-                            />
-                            {formik.values?.UserBenef && formik.values?.typeS === VoteTarget.POOL &&
-                                <ProfileDiv
-                                    profile={formik.values?.UserBenef} />
-                            }
-                        </CardHeader>
-                        <CardBody className={`${haveImage ? ' max-h-max' : ' h-full '} FixCardBody `}>
-                            <div className='overflow-auto h-full  pt-2 justify-between  gap-4'>
-                                <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
-                                    placeholder={"Titre"}
-                                    name="title"
-                                    onChange={formik.handleChange}
-                                    value={formik.values.title}
-                                />
-                                <InputError mt error={formik.errors.title} />
-                                <div className='flex flex-col lg:flex-row gap-4  '>
-                                    <div className='flex flex-col flex-1 pt-1 '>
-                                        <Textarea
-                                            className={`inputStandart min-h-max ${formik.errors.description ? 'error' : ''}`}
-                                            placeholder='Description'
-                                            rows={3}
-                                            resize={true}
-                                            name="description"
-                                            onChange={formik.handleChange}
-                                            defaultValue={formik.values.description}
-                                        />
-                                        <InputError mt error={formik.errors.description} />
-                                    </div>
+                <section className="pb-10">
+                    <div className={`FormCardDiv `}>
+                        <Card className={`${haveImage ? "FormDetailGrid " : "FixCardNoImage "} `}>
+                            <CardHeader className={haveImage ?
+                                "FixCardHeader" :
+                                "FixCardHeaderNoImage pt-16 pb-0"} >
+                                <div className={`${start ? 'ChipDiv !justify-end right-3 top-3' : 'invisible'}`}>
+                                    <DateChip
+                                        prefix="publié le"
+                                        start={start} />
                                 </div>
 
-                            </div>
-                        </CardBody>
-                    </Card>
+                                <ImageBtn
+                                    className={type === VoteTarget.SURVEY ?
+                                        "!absolute z-40 !h-max top-3 !left-3 " : "hidden"}
+                                    formik={formik}
+                                    setImgBlob={setImgBlob} />
+                                <img
+                                    onError={(e) => e.currentTarget.src = "/images/placeholder.jpg"}
+                                    src={(imgBlob || formik.values.image) ?? null}
+                                    alt={formik.values.title || 'image'}
+                                    width={100}
+                                    height={100}
+                                    className={(imgBlob || formik.values.image) ?
+                                        "CardImage" : "hidden"}
+                                />
+                                {formik.values?.UserBenef && formik.values?.typeS === VoteTarget.POOL &&
+                                    <ProfileDiv
+                                        profile={formik.values?.UserBenef} />
+                                }
+                            </CardHeader>
+                            <CardBody className={`${haveImage ? ' max-h-max' : ' h-full '} FixCardBody `}>
+                                <div className='overflow-auto h-full  pt-2 justify-between  gap-4'>
+                                    <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
+                                        placeholder={"Titre"}
+                                        name="title"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.title}
+                                    />
+                                    <InputError mt error={formik.errors.title} />
+                                    <div className='flex flex-col lg:flex-row gap-4  '>
+                                        <div className='flex flex-col flex-1 pt-1 '>
+                                            <Textarea
+                                                isError={!!formik.errors.description}
+                                                className={`inputStandart`}
+                                                placeholder='Description'
+                                                rows={4}
+                                                resize={true}
+                                                name="description"
+                                                onChange={e => {
+                                                    formik.handleChange(e);
+                                                    const textarea = e.target as HTMLTextAreaElement;
+                                                    textarea.style.height = '2.5rem';
+                                                    textarea.style.height = textarea.scrollHeight + 'px';
+                                                }}
+                                                defaultValue={formik.values.description}
+                                            />
+                                            <InputError mt error={formik.errors.description} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </CardBody>
+                        </Card>
+                    </div>
                 </section>
             </main>
 

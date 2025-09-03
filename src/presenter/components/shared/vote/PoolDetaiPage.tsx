@@ -81,8 +81,8 @@ export default function PoolDetailPage() {
 
                     <CTAMines actions={[{
                         disabled: pool?.close,
-                        function: () => { },
-                        directFunction: () => handleVote(),
+                        direct: true,
+                        function: () => handleVote(),
                         icon: pool?.IVoted ? 'Modifier mon vote' :
                             pool?.status !== PoolSurveyStatus.PENDING ?
                                 'Cette cagnotte est terminé' : 'Voter'

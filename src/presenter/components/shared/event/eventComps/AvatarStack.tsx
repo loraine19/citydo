@@ -1,8 +1,9 @@
-import { Popover, Typography, PopoverContent, PopoverTrigger } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 import { Participant } from "../../../../../domain/entities/Participant";
 import { Icon } from "../../../common/IconComp";
 import { OnlineDot } from "../../../common/onlineDot";
 import { AvatarUser } from "../../../common/AvatarUser";
+import PopOver from "../../../common/adaptatersComps/PopOver";
 
 type AvatarStackProps = { avatarDatas: Participant[] };
 export function AvatarStack(props: AvatarStackProps) {
@@ -11,22 +12,23 @@ export function AvatarStack(props: AvatarStackProps) {
     return (
         <div className="flex flex-1 items-center -space-x-3 overflow-x-auto overflow-y-hidden rounded-full pr-3 ">
             {avatarDatas?.map((Participant: Participant, index) =>
-                <Popover key={index} >
-                    <PopoverTrigger className="relative !h-[2.6rem] !w-[2.6rem] flex hover:!z-50">
-                        <div className="absolute hover:!z-50 flex flex-1 top-0 left-0 h-[2.6rem] !w-[2.6rem] ">
+                <PopOver
+                    key={index}
+                    trigger={<div className="relative !h-[2.65rem] !w-[2.65rem] flex hover:!z-50">
+                        <div className="absolute hover:!z-50 flex flex-1 top-0 left-0 h-[2.65rem] !w-[2.65rem] ">
                             <AvatarUser
                                 Profile={Participant?.User?.Profile}
                                 avatarSize={'sm'}
-                                avatarStyle="border-2 !h-[2.6rem]  !w-[2.6rem] !border-white !hover:z-50 !focus:z-50  top-0 left-0 " />
+                                avatarStyle="border-2 !h-[2.65rem]  !w-[2.65rem] !border-white !hover:z-50 !focus:z-50  top-0 left-0 " />
                         </div>
-                    </PopoverTrigger>
-                    <PopoverContent className="!z-[1000]  !ml-24 !py-2">
-                        <div className="p-2 w-auto flex items-center gap-4 ">
+                    </div>}
+                    children={<div className="!z-[1000] card  !ml-2 !py-2">
+                        <div className="p-4 w-auto flex gap-4 ">
                             <div className=" relative pt-2  pr-2">
                                 <Icon
                                     color='orange'
                                     fill
-                                    style="absolute !bg-orange-100 top-1 -right-1  z-50  "
+                                    style="absolute !bg-orange-100 top-1 -right-3  z-50  "
                                     size='sm'
                                     link={`/chat?with=${Participant?.userId}`}
                                     bg
@@ -55,9 +57,8 @@ export function AvatarStack(props: AvatarStackProps) {
                                 </Typography>
                             </div>
                         </div>
-                    </PopoverContent>
-                </Popover>
-
+                    </div>}
+                />
             )
             }
         </div >

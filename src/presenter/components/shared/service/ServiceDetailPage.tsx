@@ -18,7 +18,6 @@ import { useUxStore } from '../../../../application/stores/ux.store';
 
 export default function ServiceDetailPage() {
 
-
     const [notif, setNotif] = useState<string>('');
 
     //// PARAMS
@@ -45,6 +44,20 @@ export default function ServiceDetailPage() {
     const isLateValue = (isLate(service.createdAt, 15) && statusInt < 1)
     const { typeS, categoryS, mine } = service
 
+    //// UPDATE FUNCTION 
+    const updateService = async () => {
+        alert('up')
+        try {
+            const data = await update();
+            const actions = generateActions(data);
+            refetch();
+            setActions([...actions]);
+
+        } catch (error) {
+            handleApiError(error);
+        }
+    }
+
     //// ACTIONS
     const myAction: Action[] = GenereMyActions(service, "service", deleteService, isLateValue);
     const generateActions = (service: ServiceView): Action[] => {
@@ -60,12 +73,15 @@ export default function ServiceDetailPage() {
                         function: service.isNew ?
                             async () => {
                                 try {
-                                    const data = await respService(service.id)
-                                    if (data) updateService();
-
+                                    if (!service.isResp) {
+                                        const data = await respService(service.id)
+                                        if (data.error) handleApiError(data.error);
+                                        else updateService();
+                                    }
                                 } catch (error) {
-                                    handleApiError(error ?? "Erreur lors de la réponse au service");
+                                    handleApiError(error ?? "Erreur lors de l'annulation de la réponse");
                                 }
+
                             } :
                             () => { alert('Service déjà répondu'); },
                     },
@@ -149,6 +165,7 @@ export default function ServiceDetailPage() {
                             } catch (error) {
                                 handleApiError(error ?? "Erreur lors de la finalisation du service");
                             }
+
                         }
                     },
                 ];
@@ -208,10 +225,7 @@ export default function ServiceDetailPage() {
         }
     }, [isLoading, error])
 
-    const updateService = async () => {
-        const data = await update();
-        setActions(generateActions(data));
-    }
+
 
     //// HANDLE SCROLL
     const utils = DI.resolve('utils')

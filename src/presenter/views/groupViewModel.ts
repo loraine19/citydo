@@ -28,6 +28,8 @@ export const groupViewModel = () => {
     const flat = data?.pages.flat().map(page => page.groups).flat()
     const groups = (userLoading || isLoading || !data) ? [] : flat?.map(group => group && new GroupView(group, userId))
 
+    console.log(data, groups, error)
+
     return {
       count,
       groups,

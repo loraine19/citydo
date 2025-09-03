@@ -16,7 +16,8 @@ interface SelectProps {
 export function Select({ formik, setValue, value, name, placeholder, disabled, options, simple }: SelectProps) {
 
     const { color } = useUxStore(state => state)
-    const place = (formik?.errors[name ?? ''] && !simple) ? formik.errors[name ?? ''] : placeholder || options?.find((option: { label: string, value: string }) => option?.value === value)?.label || placeholder
+    const find = options.filter(option => option?.value === formik?.values[name ?? '']?.toString() || option?.value === value?.toString())
+    const place = (formik?.errors[name ?? ''] && !simple) && formik.errors[name ?? ''] || find?.[0]?.label || placeholder
 
     const className =
         simple ? `capitaliz inputStandart ${formik?.errors[name ?? ''] ? 'error ' : ``} ` :
@@ -24,7 +25,6 @@ export function Select({ formik, setValue, value, name, placeholder, disabled, o
 
     return (
         <>
-
             <SelectMT
                 isError={!!formik?.errors[name ?? '']}
                 defaultValue={value}

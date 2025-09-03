@@ -3,8 +3,8 @@ import PostCard from "./PostCard";
 
 export default function PostGridComp(props: { line: PostView[], mines?: boolean, change: (e: any) => void, update?: () => void, view?: string, }) {
     const { line, mines, change, update } = props
-    const short = "pt-6 row-span-5 h-full  h-[33vh] lg:h-[44vh]";
-    const long = "pt-6 row-span-6 h-full  h-[38vh] lg:!h-[48vh]";
+    const short = "pt-6 row-span-5 h-full  h-[33vh] lg:h-[48vh]";
+    const long = "pt-6 row-span-6 h-full  h-[38vh] lg:!h-[53vh]";
 
 
     return (

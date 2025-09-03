@@ -81,7 +81,7 @@ export default function PostDetailPage() {
                         onScroll()
                         handleHideCallback()
                     }}>
-                    <div className="DetailCardDiv ">
+                    <div className="DetailCardDiv">
                         {!isLoading && post ?
                             <PostDetailCard
                                 post={post}

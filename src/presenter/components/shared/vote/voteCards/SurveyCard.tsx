@@ -113,7 +113,7 @@ export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardPr
                                 value={survey?.Votes?.length}
                                 size='sm'
                                 variant="ghost"
-                                className="rounded-full GrayChip h-max flex items-center  "
+                                className="pt-1 GrayChip"
                                 icon={
                                     <Icon
                                         icon="smart_card_reader"

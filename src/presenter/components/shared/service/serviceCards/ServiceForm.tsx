@@ -1,4 +1,4 @@
-import { Card, CardHeader, Button, Typography, CardBody, Input, Textarea, CardFooter } from "@material-tailwind/react";
+import { Card, CardHeader, Typography, CardBody, Input, Textarea, CardFooter } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import SubHeader from "../../../common/SubHeader";
 import { Profile } from "../../../../../domain/entities/Profile";
@@ -13,6 +13,7 @@ import { InputError } from "../../../common/adaptatersComps/input";
 import Chip from "../../../common/adaptatersComps/Chip";
 import { RadioGroup } from "../../../common/adaptatersComps/RadioGroup";
 import { Select } from "../../../common/adaptatersComps/Select";
+import CTAMines from "../../../common/CTA";
 
 export function ServiceForm(props: { formik: any }) {
     const { formik } = props;
@@ -30,7 +31,6 @@ export function ServiceForm(props: { formik: any }) {
 
     const userProfile: Profile = user.Profile;
     const start = formik.values.createdAt || new Date()
-    //const end = new Date(new Date().getTime() + (1 * dayMS)).toLocaleDateString('fr-FR')
     const haveImage = formik.values.image ? true : false;
     const [imgBlob, setImgBlob] = useState<string | undefined>(formik.values.image);
     const [groupId, setGroupId] = useState<string | undefined>(formik.values.groupId);
@@ -77,117 +77,119 @@ export function ServiceForm(props: { formik: any }) {
                             disabled={formik.values.statusValue > 0} />
                     </div>
                 </div>
-                <section className={`flex pb-4 flex-1 relative pt-8 overflow-hidden`}>
-                    <Card className={`${haveImage ? "CardDetailGrid " : "FixCardNoImage "} `}>
-                        <CardHeader className={haveImage ?
-                            "FixCardHeader" :
-                            "FixCardHeaderNoImage pt-16 pb-0"} >
-                            <div className={`${start ? 'ChipDiv !justify-end top-3 right-3' : 'invisible'}`}>
-                                <DateChip
-                                    prefix="publié le"
-                                    start={start} />
-                            </div>
-                            <ImageBtn
-                                className="!absolute z-40 !h-max !left-3  top-3"
-                                formik={formik}
-                                setImgBlob={setImgBlob} />
-                            <img
-                                onError={(e) => e.currentTarget.src = '/images/placeholder.jpg'}
-                                src={imgBlob || formik.values.image || null}
-                                alt={formik.values.title || 'image'}
-                                width={100}
-                                height={100}
-                                className={haveImage ? "CardImage" : "hidden"}
-                            />
-                        </CardHeader>
-                        <CardBody className='FixCardBody '>
-                            <div className='overflow-auto py-2 h-full -mt-2 '>
-                                <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
-                                    placeholder={"Titre"}
-                                    name="title"
-                                    onChange={formik.handleChange}
-                                    value={formik.values.title}
+                <section className="pb-10">
+                    <div className={`FormCardDiv `}>
+                        <Card className={`${haveImage ? "FormDetailGrid " : "FixCardNoImage "} `}>
+                            <CardHeader className={haveImage ?
+                                "FixCardHeader" :
+                                "FixCardHeaderNoImage pt-16 pb-0"} >
+                                <div className={`${start ? 'ChipDiv !justify-end top-3 right-3' : 'invisible'}`}>
+                                    <DateChip
+                                        prefix="publié le"
+                                        start={start} />
+                                </div>
+                                <ImageBtn
+                                    className="!absolute z-40 !h-max !left-3  top-3"
+                                    formik={formik}
+                                    setImgBlob={setImgBlob} />
+                                <img
+                                    onError={(e) => e.currentTarget.src = '/images/placeholder.jpg'}
+                                    src={imgBlob || formik.values.image || null}
+                                    alt={formik.values.title || 'image'}
+                                    width={100}
+                                    height={100}
+                                    className={haveImage ? "CardImage" : "hidden"}
                                 />
-                                <InputError mt error={formik.errors.title} />
-                                <div className='flex flex-col h-max gap-5 pt-2 min-h-max '>
-                                    <div className=' relative flex flex-col flex-1 gap-3 '>
-                                        <Textarea
-                                            className={`inputStandart min-h-full ${formik.errors.description ? 'error' : ''}`}
-                                            placeholder='Description'
-                                            rows={3}
-                                            resize={true}
-                                            name="description"
-                                            onChange={formik.handleChange}
-                                            defaultValue={formik.values.description}
-                                        />
-                                        <InputError error={formik.errors.description} />
-                                    </div>
-                                </div>
-                                <div className="flex flex-col justify-center py-3 mt-2 h-max ">
-                                    <Typography className='text-xs'>Difficulté du service: </Typography>
-                                    <div className="flex flex-col gap-y-2 md:flex-row justify-between">
-                                        <div>
-                                            <Select
-                                                simple
-                                                name={'skill'}
-                                                formik={formik}
-                                                value={formik.values.skill?.toString()}
-                                                options={skillLevels}
-                                                placeholder="Niveau de compétence"
+                            </CardHeader>
+                            <CardBody className='FixCardBody '>
+                                <div className='overflow-auto py-2 h-full -mt-2 '>
+                                    <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
+                                        placeholder={"Titre"}
+                                        name="title"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.title}
+                                    />
+                                    <InputError mt error={formik.errors.title} />
+                                    <div className='flex flex-col h-max gap-5 pt-2 min-h-max '>
+                                        <div className=' relative flex flex-col flex-1 gap-3 '>
+                                            <Textarea
+                                                isError={!!formik.errors.description}
+                                                className={`inputStandart`}
+                                                placeholder='Description'
+                                                rows={4}
+                                                resize={true}
+                                                name="description"
+                                                onChange={e => {
+                                                    formik.handleChange(e);
+                                                    const textarea = e.target as HTMLTextAreaElement;
+                                                    textarea.style.height = '2.5rem';
+                                                    textarea.style.height = textarea.scrollHeight + 'px';
+                                                }}
+                                                defaultValue={formik.values.description}
                                             />
-                                        </div>
-                                        <div>
-                                            <Select
-                                                placeholder="Niveau de difficulté"
-                                                simple
-                                                name={'hard'}
-                                                formik={formik}
-                                                value={formik.values.hard?.toString()}
-                                                options={hardLevels} />
-                                        </div>
-
-
-                                        <div className="h-full flex flex-col gap-4 py-3 md:py-0 justify-between">
-                                            <Chip
-                                                size="sm"
-                                                value={`${points} points`}
-                                                className="flex-1 GrayChip lowercase !font-medium rounded-full max-h-max flex items-center justify-center gap-2 max-w-max px-5"
-                                                icon={
-                                                    <Icon
-                                                        color={formik.values.type === "do" ?
-                                                            "green" : "orange"}
-                                                        icon="toll"
-                                                        size="sm"
-                                                        style=" ml-0.5"
-                                                        fill={userProfile?.points > parseInt(points[0])}
-                                                    />}
-                                            />
-                                            <InputError tips={'Nombres de points'} />
+                                            <InputError mt error={formik.errors.description} />
                                         </div>
                                     </div>
+                                    <div className="flex flex-col justify-center py-3 mt-2 h-max ">
+                                        <Typography className='text-xs'>Difficulté du service: </Typography>
+                                        <div className="flex flex-col gap-y-2 md:flex-row justify-between">
+                                            <div>
+                                                <Select
+                                                    simple
+                                                    name={'skill'}
+                                                    formik={formik}
+                                                    value={formik.values.skill?.toString()}
+                                                    options={skillLevels}
+                                                    placeholder="Niveau de compétence"
+                                                />
+                                            </div>
+                                            <div>
+                                                <Select
+                                                    placeholder="Niveau de difficulté"
+                                                    simple
+                                                    name={'hard'}
+                                                    formik={formik}
+                                                    value={formik.values.hard?.toString()}
+                                                    options={hardLevels} />
+                                            </div>
+
+
+                                            <div className="h-full flex flex-col gap-4 py-3 md:py-0 justify-between">
+                                                <Chip
+                                                    size="sm"
+                                                    value={`${points} points`}
+                                                    className="flex-1 GrayChip lowercase !font-medium rounded-full max-h-max flex items-center justify-center gap-2 max-w-max px-5"
+                                                    icon={
+                                                        <Icon
+                                                            color={formik.values.type === "do" ?
+                                                                "green" : "orange"}
+                                                            icon="toll"
+                                                            size="sm"
+                                                            style=" ml-0.5"
+                                                            fill={userProfile?.points > parseInt(points[0])}
+                                                        />}
+                                                />
+                                                <InputError tips={'Nombres de points'} />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </CardBody>
-                        <CardFooter className="DetailCardFooter" />
-                    </Card>
+                            </CardBody>
+                            <CardFooter className="DetailCardFooter" />
+                        </Card>
+                    </div>
                 </section>
             </main >
-            <footer className="CTA">
-                <Button
-                    size='lg'
-                    type="submit"
-                    disabled={formik.values.statusValue > 0}
-                    className="lgBtn bg-sky-500 wRespXL">
-                    <Icon
-                        disabled
-                        size='lg'
-                        color="white"
-                        icon={formik.values.statusValue <= 0 ? 'save' : 'block'}
-                    />
-                    {formik.values.statusValue > 0 ? 'Non modifiable : ' + formik.values.statusS : `enregistrer`}
-                </Button>
 
-            </footer>
+            <CTAMines
+                actions={[
+                    {
+                        disabled: formik.values.statusValue > 0,
+                        type: 'submit',
+                        icon: formik.values.statusValue > 0 ? 'Non modifiable : ' + formik.values.statusS : `enregistrer`,
+                        iconImage: formik.values?.id ? "save_as" : "save",
+                    }
+                ]} />
         </form >
     )
 }

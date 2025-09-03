@@ -11,6 +11,7 @@ import { Title } from "../../../common/CardTitle";
 import { EventStatus } from "../../../../../domain/entities/Event";
 import { ProgressBarBlur } from "../../../common/ProgressBar";
 import Chip from "../../../common/adaptatersComps/Chip";
+import EventCalAddBtn from "./EventCalAddBtn";
 
 type EventCardProps = {
     event: EventView, refetch?: () => void,
@@ -20,7 +21,7 @@ type EventCardProps = {
 
 export function EventCard({ event: initialEvent, change, mines, refetch }: EventCardProps) {
     const [event, setEvent] = useState<EventView>(initialEvent);
-    const { id, title, participantsMin, start, end, createdAt, image, flagged, pourcent = 0, Igo, label, toogleParticipate, agendaLink, eventDateInfo } = event;
+    const { id, title, participantsMin, start, end, createdAt, image, flagged, pourcent = 0, label, toogleParticipate, eventDateInfo } = event;
     const disabledDelete = new Date(start).getTime() < Date.now();
     const disabledEdit = new Date(start).getTime() < Date.now();
     const deleteEvent = async (id: number) => await DI.resolve('deleteEventUseCase').execute(id)
@@ -81,15 +82,8 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
             </CardBody>
             <CardFooter className="CardFooter">
                 {!mines ? (
-                    <div className="flex relative pl-5 flex-1 overflow-hidden  items-center gap-2">
-                        <Icon
-                            icon='calendar_add_on'
-                            link={agendaLink}
-                            title={`ajouter a mon agenda  : ${title}`}
-                            bg={true} fill
-                            size='lg'
-                            style={`${Igo ? " brightness-[1.05]" : "!bg-gray-300"} scale-[0.95]  top-0 bg-opacity-90 !outline outline-white left-0.5 absolute hover:z-50`}
-                            color={Igo ? "cyan" : "gray"} />
+                    <div className="flex relative flex-1 overflow-hidden  items-center gap-2">
+                        <EventCalAddBtn event={event} className="-mr-5" iconClass={`${'  top-0 !outline outline-white left-0.5 absolute hover:z-50  '}`} />
                         <AvatarStack avatarDatas={event.Participants} />
                     </div>
                 ) : (
@@ -111,7 +105,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                             size="sm"
                             value={participantsMin}
                             variant="ghost"
-                            className="rounded-full GrayChip h-max flex items-center  "
+                            className="rounded-full pt-1 GrayChip h-max flex items-center  "
                             icon={
                                 <Icon
                                     disabled={event?.status === EventStatus.REJECTED || event?.isPast}

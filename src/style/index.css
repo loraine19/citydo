@@ -164,7 +164,7 @@ input {
 }
 
 .inputDiv {
-    @apply rounded-full h-7 flex items-center !shadow-none bg-opacity-0 border-t px-4 !border capitalize font-normal;
+    @apply rounded-full h-8 flex items-center !shadow-none bg-opacity-0 border-t px-4 !border capitalize font-normal;
 }
 .notif {
     @apply -bottom-full pt-9 items-center flex-col gap-4 absolute w-full h-full flex justify-center anim;
@@ -341,7 +341,7 @@ button span {
     @apply flex items-center justify-center rounded-full;
     font-size: 22px;
     width: 38px;
-    height: 38px;
+    height: 37px;
 }
 .iconXl {
     @apply flex items-center justify-center rounded-full;

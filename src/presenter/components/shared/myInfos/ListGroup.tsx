@@ -15,24 +15,30 @@ import { InputError } from "../../common/adaptatersComps/input";
 //kk
 type ListGroupProps = {
   groups: GroupView[];
+  error?: string | null;
+  isLoading?: boolean;
 }
 
-export const ListGroup = ({ groups }: ListGroupProps) => {
+export const ListGroup = ({ groups, error, isLoading }: ListGroupProps) => {
   const navigate = useNavigate();
   const haveAGroup: GroupView[] = groups.filter((group: GroupView) => group.ImIn || group.ImModo)
   const [open, setOpen] = useState<boolean>(false);
 
-  const [notif] = useState<string>(groups.length === 0 || !groups ? ' Enregistrez votre adresse pour voir les groupes à proximité' : haveAGroup.length === 0 ? 'Vous n\'êtes pas membre d\'un groupe' : '');
+  const [notif] = useState<string>(isLoading ? 'Chargement...' : error ?? (groups.length === 0 || !groups) ? ' Enregistrez votre adresse pour voir les groupes à proximité' : haveAGroup.length === 0 ? 'Vous n\'êtes pas membre d\'un groupe' : '');
 
+  console.log(groups)
   return (
     <div
-      className="relative w-respLarge">
-      <Menu open={open} placement="bottom-start">
+      className="relative w-respLarge ">
+      <Menu
+        open={open}
+        placement="bottom-start">
         <MenuTrigger
+          type="button"
           className={`relative flex justify-between h-max w-full z-50  items-center cursor-pointer ${open ? '!border-b-[0px] !border-slate-500' : '!border-b-[1px] border-slate-300'} mt-1.5 pb-2`}>
           <div
             className="relative flex justify-between h-max w-full">
-            <div
+            <button type='button'
               onClick={() => groups.length > 0 && setOpen(!open)}
               className={"flex flex-col gap-2"}>
 
@@ -45,11 +51,12 @@ export const ListGroup = ({ groups }: ListGroupProps) => {
                 </span>
 
               </Typography>
-            </div>
-            <div onClick={() => groups.length > 0 && setOpen(!open)}
+            </button>
+            <button type='button'
+              onClick={() => groups.length > 0 && setOpen(!open)}
               className={"h-[18px] w-[18px] opacity-70" + (open ? 'rotate-180' : '')}>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor" className="h-[1em] w-[1em] translate-x-0 stroke-[1.2]"><path d="M17 8L12 3L7 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17 16L12 21L7 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-            </div>
+            </button>
           </div>
         </MenuTrigger>
         <InputError mt
@@ -66,7 +73,7 @@ export const ListGroup = ({ groups }: ListGroupProps) => {
                 <GroupLink group={group} />
                 <div className="flex items-center gap-2">
                   <Chip
-                    value={'⠀'}
+                    value={group?.ImModo ? '✓' : ''}
                     variant="ghost"
                     className="rounded-full h-max GrayChip flex items-center  !min-w-max "
                     icon={
@@ -79,7 +86,7 @@ export const ListGroup = ({ groups }: ListGroupProps) => {
                   />
 
                   <Chip
-                    value={'⠀'}
+                    value={group?.ImIn ? '✓' : ''}
                     variant="ghost"
                     className="rounded-full  h-max GrayChip flex items-center  !min-w-max "
                     icon={

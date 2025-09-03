@@ -29,7 +29,8 @@
 
 /**** COMBINED STYLES ****/
 .style {
-    @apply bg-opacity-80 !border-opacity-50 border-current;
+    @apply bg-opacity-80  border-current border-opacity-50;
+    --tw-border-opacity: 0 !important;
 }
 
 .inv {
@@ -50,7 +51,7 @@
     @apply !bg-orange-500 inv;
 }
 .redStyle {
-    @apply !text-red-500 bg-red-200  style;
+    @apply !text-red-500 !bg-red-200  style;
 }
 .redStyleInv {
     @apply !bg-red-500 inv;
@@ -69,13 +70,13 @@
 }
 
 .grayStyle {
-    @apply !text-gray-500 bg-gray-200 !border-gray-400 style;
+    @apply !text-gray-500 bg-gray-200 border-gray-400 style;
 }
 .grayStyleInv {
     @apply !bg-gray-500 inv;
 }
 .slateStyle {
-    @apply !text-slate-500 bg-slate-200 !border-slate-400 style;
+    @apply !text-slate-500 bg-slate-200 border-slate-600 style;
 }
 .slateStyleInv {
     @apply !bg-slate-500 inv;

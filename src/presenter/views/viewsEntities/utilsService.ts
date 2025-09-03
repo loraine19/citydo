@@ -71,10 +71,7 @@ export const GenereMyActions = (element: Post | EventView | Service | Survey | I
             icon: 'Modifier',
             title: "Confirmer la modification",
             body: "Vous serez rediriger vers la page de modification de " + title,
-            directFunction: () => {
-                navigate(`/${type}/edit/${id}`);
-                setOpen(false);
-            },
+            direct: true,
             function: () => {
                 navigate(`/${type}/edit/${id}`);
                 setOpen(false);
@@ -87,9 +84,8 @@ export const GenereMyActions = (element: Post | EventView | Service | Survey | I
         icon: 'Relancer',
         title: "Relancer " + title,
         body: "Relancer " + title,
-        /// TODO : add function to relancer
+        direct: false,
         function: () => { console.log(`Voulez-vous relancer ${title}?`) },
-        directFunction: () => { console.log(`Voulez-vous relancer ${title}?`) }
     })
     return actions
 }

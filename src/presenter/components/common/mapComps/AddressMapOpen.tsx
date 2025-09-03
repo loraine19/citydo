@@ -133,7 +133,15 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
         ]);
     }, [address]);
     const googleMapsLink = `https://www.google.com/maps/dir/?api=1&destination=${address?.lat},${address?.lng}`;
-    const zoom = (aera && (aera / 100) > 5) ? (21 - (aera / 100)) : 14;
+    // Calculate zoom based on area: smaller area = higher zoom, larger area = lower zoom
+    const getZoomFromArea = (area?: number) => {
+        if (!area) return 14;
+        const minZoom = 12;
+        const maxZoom = 18;
+        const zoom = Math.round(17 - Math.log2(area / 54));
+        return Math.max(minZoom, Math.min(maxZoom, zoom));
+    };
+    const zoom = getZoomFromArea(aera);
 
     const IntenaryChip = () => (
         <div style={{ position: 'absolute', bottom: '10px', right: '10px', zIndex: 1000 }}>
@@ -179,6 +187,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
 
     const [fly, setFly] = useState(false);
 
+    //// AREA CIRCLE
     const circleOptions: Partial<CircleOptions> = {
         color,
         fillColor: color,

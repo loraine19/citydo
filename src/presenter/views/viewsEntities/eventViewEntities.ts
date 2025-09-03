@@ -16,6 +16,7 @@ export class EventView extends Event {
     mine: boolean;
     isValidate: boolean;
     agendaLink: string;
+    agendaICalLink: string;
     eventDateInfo: string;
     toogleParticipate: () => Promise<EventView | any>;
     image: string = '';
@@ -34,6 +35,7 @@ export class EventView extends Event {
         this.pourcent = Math.floor((event?.Participants?.length || 0) / event?.participantsMin * 100);
         this.flagged = event?.Flags ? event?.Flags?.some((flag: Flag) => flag.userId === userId) : false;
         this.agendaLink = this.generateCalendarLink(event);
+        this.agendaICalLink = this.generateICalLink(event);
         this.eventDateInfo = this.eventdateInfo(event);
         this.isValidate = this.status === EventStatus.VALIDATED || event?.Participants?.length >= event.participantsMin;
         this.toogleParticipate = async () => {
@@ -61,6 +63,28 @@ export class EventView extends Event {
         const details = encodeURIComponent(event.description || "");
         return `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}`;
     }
+
+    // Generates a link for native calendar apps (iCal format)
+    public generateICalLink(event: Event): string {
+        const dtStart = new Date(event?.start).toISOString().replace(/-|:|\.\d\d\d/g, "");
+        const dtEnd = new Date(event?.end).toISOString().replace(/-|:|\.\d\d\d/g, "");
+        const title = event.title;
+        const location = `${event.Address.address} , ${event.Address.zipcode} ${event.Address.city}` || "";
+        const description = event.description || "";
+        const icsContent =
+            `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:${title}
+DTSTART:${dtStart}
+DTEND:${dtEnd}
+DESCRIPTION:${description}
+LOCATION:${location}
+END:VEVENT
+END:VCALENDAR`;
+        return `data:text/calendar;charset=utf8,${encodeURIComponent(icsContent)}`;
+    }
+
 
 
     private getDays(event: Event): Date[] {

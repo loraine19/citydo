@@ -24,6 +24,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
         <>
             <div className={`relative pl-1 pb-0.5 z-50 truncate flex items-center px-0 gap-2`}>
                 <PopOver
+                    key={profile?.userId}
                     trigger={
                         <div className={`relative p-1 mt-0.5 mb-0.5  ${width} w-full`}>
                             <AvatarUser

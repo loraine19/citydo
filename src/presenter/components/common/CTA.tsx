@@ -32,7 +32,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
             confirmString: 'Confirmer',
             notif: '',
         })
-    }, [index]);
+    }, [index, actions]);
 
 
 
@@ -52,8 +52,8 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                                 size="lg"
                                 onClick={() => {
                                     setOpen(true);
-                                    if (action?.directFunction) {
-                                        action.directFunction();
+                                    if (action?.direct) {
+                                        action.function && action.function();
                                     } else {
                                         setIndex(i);
                                     }

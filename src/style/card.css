@@ -71,11 +71,11 @@
 
     /* CHIP */
     .ChipDiv {
-        @apply flex w-full h-max  gap-2 justify-between flex-wrap overflow-auto absolute p-2;
+        @apply flex w-full h-max  gap-2 justify-between flex-wrap overflow-auto absolute p-3;
     }
 
     .ChipDivNoImage {
-        @apply flex max-w-[calc(100%-0rem)] w-full gap-2 justify-between overflow-auto flex-wrap pt-3 pb-2 px-3 h-max;
+        @apply flex max-w-[calc(100%-0rem)] w-full gap-2 justify-between overflow-auto flex-wrap p-4 h-max;
     }
 
     .ChipSubDiv {
@@ -105,13 +105,25 @@
         lg:grid-rows-[minmax(min-content,calc(100vh_-_12rem))];
     }
 
+    .FormCardDiv {
+        @apply h-full wRespXL grid pt-8 min-h-[min-content] px-0.5
+       sm:grid-rows-[minmax(calc(100dvh_-_14rem),calc(100dvh_-_14rem))]
+        lg:grid-rows-[minmax(min-content,calc(100vh_-_12rem))];
+    }
+
     .CardDetailGrid {
         @apply w-respLarge card 
         !min-h-fit  !grid h-[calc(100%-0rem)] max-h-[calc(100vh-8.5rem)] lg:max-h-[calc(100vh-11.5rem)] 
-        grid-rows-[minmax(80px,35vh),minmax(max-content,1fr),auto]
+        grid-rows-[minmax(80px,25vh),minmax(max-content,1fr),auto]
         sm:grid-rows-[minmax(100px,38vh),minmax(max-content,1fr),auto]
-        md:grid-rows-[minmax(200px,40vh),minmax(max-content,1fr),auto]
-        lg:grid-rows-[minmax(150px,38vh),minmax(max-content,1fr),auto];
+        md:grid-rows-[minmax(100px,40vh),minmax(max-content,1fr),auto]
+        lg:grid-rows-[minmax(150px,30vh),minmax(max-content,1fr),auto];
+    }
+    .FormDetailGrid {
+        @apply w-respLarge card 
+        !min-h-fit  !grid h-[calc(100%-0rem)] max-h-[calc(100vh-8.5rem)] lg:max-h-[calc(100vh-11.5rem)] 
+        grid-rows-[minmax(80px,20vh),minmax(min-content,1fr)]
+        lg:grid-rows-[minmax(150px,38vh),minmax(max-content,1fr)];
     }
 
     .CardDetailGridNoImage {
@@ -128,6 +140,6 @@
         @apply flex place-self-start relative flex-col px-5 !py-0 !max-h-full !h-full min-h-fit;
     }
     .DetailCardFooter {
-        @apply flex justify-between place-self-end items-center h-max w-full pt-1 mt-4  px-4 border-t  min-h-fit;
+        @apply flex justify-between place-self-end items-center h-max w-full pt-2 pb-4 mt-3 px-4 border-t   !min-h-fit;
     }
 }

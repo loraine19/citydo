@@ -93,23 +93,22 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
                         aera={group?.area}
                         address={Address} />}
             </CardHeader>
-            <CardBody className="DetailCardBody">
+            <CardBody className="DetailCardBody max-h-full">
                 <Title
                     title={name ?? ''}
                     type='groupe'
                     subTitle={`⌖ ${group?.fullAddress}  - ${group?.area} mètres`}
                 />
-                <div className='h-full w-full grid grid-cols-1 gap-x-4 grid-rows-1 overflow-x-hidden'>
-                    <div className='flex overflow-x-auto scrollbar-hide snap-x snap-mandatory'>
+                <div className=' w-full grid grid-cols-1 gap-x-4 grid-rows-1 overflow-x-hidden'>
+                    <div className='flex overflow-x-auto scrollbar-hide snap-x snap-mandatory py-2'>
                         {infos.map((info: Label, index: number) => (
-                            <div key={index}
-                                className='gap-1 flex w-full h-full flex-col pt-2 snap-center shrink-0'>
+                            <div key={index} className='gap-1 flex w-full flex-col pt-2 snap-center shrink-0 '>
                                 <h6>
                                     {info.label} :
                                 </h6>
-                                <div className="overflow-auto">
+                                <div className="overflow-auto ">
                                     <Typography
-                                        className=" leading-[1.3rem]   ">
+                                        className=" leading-[1.3rem] ">
                                         {info.value}
                                     </Typography>
                                 </div>

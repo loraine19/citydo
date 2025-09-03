@@ -86,13 +86,13 @@ export default function SurveyDetailPage() {
 
                             actions={[{
                                 disabled: survey?.close,
-                                directFunction: () => {
+                                direct: true,
+                                function: () => {
                                     console.log(voteValues)
                                     setAlertValues(voteValues)
                                     setOpen(true)
 
                                 },
-                                function: () => { },
                                 icon: survey?.IVoted ? 'Modifier mon vote' :
                                     survey?.close ?
                                         'Ce sondage est terminé' : 'Voter'

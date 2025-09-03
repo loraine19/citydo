@@ -101,7 +101,7 @@ export function PoolCard({ pool, change, mines, update, vote }: PoolCardProps) {
                                 key={pool.id}
                                 value={pool.Votes?.length}
                                 variant="ghost"
-                                className="rounded-full GrayChip h-max flex items-center  "
+                                className="GrayChip pt-1  "
                                 icon={
                                     <Icon
                                         icon="smart_card_reader"
