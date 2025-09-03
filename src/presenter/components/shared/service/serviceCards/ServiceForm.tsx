@@ -119,7 +119,7 @@ export function ServiceForm(props: { formik: any }) {
                                                 rows={4}
                                                 resize={true}
                                                 name="description"
-                                                onChange={e => {
+                                                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                                                     formik.handleChange(e);
                                                     const textarea = e.target as HTMLTextAreaElement;
                                                     textarea.style.height = '2.5rem';
@@ -188,6 +188,7 @@ export function ServiceForm(props: { formik: any }) {
                         type: 'submit',
                         icon: formik.values.statusValue > 0 ? 'Non modifiable : ' + formik.values.statusS : `enregistrer`,
                         iconImage: formik.values?.id ? "save_as" : "save",
+                        function: () => { }
                     }
                 ]} />
         </form >

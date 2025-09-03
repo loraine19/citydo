@@ -194,7 +194,8 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                         icon: 'Modifier mon profil',
                         direct: true,
                         type: 'submit',
-                        iconImage: 'save_as'
+                        iconImage: 'save_as',
+                        function: formik.handleSubmit()
 
                     }]
                 } />

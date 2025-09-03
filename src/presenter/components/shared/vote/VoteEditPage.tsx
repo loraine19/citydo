@@ -104,11 +104,13 @@ export default function VoteEditPage() {
                                 survey={new PoolSurveyView({ ...values, image: values?.blob || values?.image }, user)}
                                 change={() => { }}
                                 update={() => { }}
+                                vote={() => { }}
                             /> :
                             <PoolCard
                                 pool={new PoolSurveyView({ ...values }, user)}
                                 change={() => { }}
                                 update={() => { }}
+                                vote={() => { }}
                             />}
                     </div>
                 )

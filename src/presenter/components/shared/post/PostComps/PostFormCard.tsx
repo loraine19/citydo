@@ -93,7 +93,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                                 rows={4}
                                                 resize={true}
                                                 name="description"
-                                                onChange={e => {
+                                                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                                                     formik.handleChange(e);
                                                     const textarea = e.target as HTMLTextAreaElement;
                                                     textarea.style.height = '2.5rem';
@@ -189,6 +189,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                         type: 'submit',
                         icon: formik.values?.id ? "Modifier l'annonce" : "Créer l'annonce",
                         iconImage: formik.values?.id ? "save_as" : "save",
+                        function: formik.handleSubmit()
                     }
                 ]} />
         </form>

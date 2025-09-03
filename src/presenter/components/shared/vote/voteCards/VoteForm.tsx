@@ -125,7 +125,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                                 rows={4}
                                                 resize={true}
                                                 name="description"
-                                                onChange={e => {
+                                                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                                                     formik.handleChange(e);
                                                     const textarea = e.target as HTMLTextAreaElement;
                                                     textarea.style.height = '2.5rem';
@@ -150,6 +150,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                         'Non modifiable votes en cours  ' + formik.values.pourcent + '%' : `Enregistrer`,
                     type: "submit",
                     disabled: formik.values.pourcent > 1,
+                    function: () => { }
                 }
             ]} />
         </form>

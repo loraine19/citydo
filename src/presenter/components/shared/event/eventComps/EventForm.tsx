@@ -113,7 +113,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                                 rows={1}
                                                 resize={true}
                                                 name="description"
-                                                onChange={e => {
+                                                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                                                     formik.handleChange(e);
                                                     const textarea = e.target as HTMLTextAreaElement;
                                                     textarea.style.height = '2.5rem';

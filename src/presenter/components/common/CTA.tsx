@@ -22,7 +22,6 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
     useEffect(() => {
         setAlertValues({
             handleConfirm: () => {
-                console.log('actions', actions, index, actions[index])
                 if (typeof actions[index]?.function === 'function') actions[index].function();
                 setOpen(false)
             },

@@ -83,11 +83,15 @@ export default function VoteCreatePage() {
                             <SurveyCard
                                 survey={new PoolSurveyView({ ...values, Votes: [], image: values?.blob || values?.image }, user)}
                                 change={() => { }}
-                                update={() => { }} /> :
+                                update={() => { }}
+                                vote={() => { }}
+                            /> :
                             <PoolCard
                                 pool={new PoolSurveyView({ ...values, Votes: [] }, user)}
                                 change={() => { }}
-                                update={() => { }} />}
+                                update={() => { }}
+                                vote={() => { }}
+                            />}
                     </div>
                 )
             })
