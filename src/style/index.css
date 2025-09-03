@@ -148,7 +148,18 @@ i {
 }
 
 input {
-    @apply !text-slate-600 !opacity-95 !font-roboto;
+    @apply !text-slate-500 !opacity-95 !font-roboto;
+}
+
+input[type="datetime-local"] {
+    @apply !opacity-95 !font-roboto !text-[0.8rem] inputStandart pt-1 placeholder:bg-red-200;
+    &::-webkit-calendar-picker-indicator {
+        @apply !text-slate-300 !opacity-50 !font-roboto rounded-full p-1 ml-1;
+    }
+}
+
+input[type="number"] {
+    @apply !opacity-95 !font-roboto focus:!outline-none pt-1;
 }
 
 [role="option"] {

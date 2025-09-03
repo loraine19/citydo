@@ -96,7 +96,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                     className={'CardImage'} />
                             </CardHeader>
                             <CardBody className='DetailCardBody'>
-                                <div className='gap-y-3 md:gap-y-8 h-full flex-1 pb-8 !flex flex-col '>
+                                <div className='gap-y-3 md:gap-y-6 h-full flex-1 pb-8 !flex flex-col '>
                                     <Input
                                         className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
                                         placeholder={"Titre"}
@@ -137,9 +137,9 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                     </div>
                                     <div className='flex justify-between gap-[4%]'>
                                         <div className='flex flex-col flex-1  !max-w-[48%] '>
-                                            <Input
+                                            <input
                                                 className={`inputStandart !max-w-[85%] ${formik.errors.start ? 'error' : ''}`}
-                                                type="datetime-local"
+                                                type='datetime-local'
                                                 placeholder={"date de debut"}
                                                 name="start"
                                                 onChange={formik.handleChange}
@@ -148,7 +148,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                             <InputError error={formik.errors.start} tips={'Date de début'} mt />
                                         </div>
                                         <div className='flex flex-col flex-1 !max-w-[48%] '>
-                                            <Input
+                                            <input
                                                 className={`inputStandart max-w-[85%] ${formik.errors.end ? 'error' : ''}`}
                                                 type="datetime-local"
                                                 min={today}
@@ -161,7 +161,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                     </div>
                                     <div className='flex w-full gap-[4%] justify-between'>
                                         <div className='flex flex-col !max-w-[48%] w-full '>
-                                            <Input
+                                            <input
                                                 className={`inputStandart max-w-[85%] ${formik.errors.participantsMin ? 'error' : ''}`}
                                                 type='number'
                                                 placeholder={"Participants minimum"}
@@ -172,11 +172,12 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         </div>
                                         <div className={"flex items-center max-w-[48%]  gap-1 flex-col justify-center w-full"}>
                                             <div className="mb-2 flex w-full items-center justify-between gap-4">
-                                                <Typography
-                                                    variant="small">
-                                                    {pourcentParticipants > 0 && `Inscrits` ||
-                                                        pourcentParticipants >= 100 && `validé` || `aucun inscrit`}
-                                                </Typography>
+                                                <InputError
+                                                    tips={
+                                                        pourcentParticipants > 0 && `Inscrits` ||
+                                                        pourcentParticipants >= 100 && `validé` || `aucun inscrit`
+                                                    }
+                                                />
                                                 <Typography
                                                     variant="small"
                                                     className={pourcentParticipants <= 0 || pourcentParticipants >= 100 ? 'hidden' : ''}>

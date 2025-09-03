@@ -83,7 +83,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                         onChange={formik.handleChange}
                                         value={formik.values.title}
                                     />
-                                    <InputError error={formik.errors.title} />
+                                    <InputError mt error={formik.errors.title} />
                                     <div className='flex flex-col min-h-max  pt-1 '>
                                         <div className='flex flex-col '>
                                             <Textarea
@@ -189,7 +189,8 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                         type: 'submit',
                         icon: formik.values?.id ? "Modifier l'annonce" : "Créer l'annonce",
                         iconImage: formik.values?.id ? "save_as" : "save",
-                        function: formik.handleSubmit()
+                        direct: true,
+                        function: formik.handleSubmit
                     }
                 ]} />
         </form>
