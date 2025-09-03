@@ -105,7 +105,7 @@ h3 {
     @apply font-semibold text-[1.3rem] !text-slate-600 !font-roboto;
 }
 h4 {
-    @apply font-semibold text-[1.05rem] !text-slate-800 !font-roboto;
+    @apply font-bold text-[1.1rem] !text-slate-800 !font-roboto;
 }
 h5 {
     @apply text-lg text-[0.95rem] font-normal !text-slate-700 !font-roboto;
@@ -222,13 +222,17 @@ nav li .icon {
 }
 
 .lgBtn:disabled {
-    @apply !bg-slate-300 !text-slate-600;
+    @apply !bg-slate-200  !text-slate-500 italic
+    outline outline-1 outline-slate-300/80;
 }
 
 /*BUTTONS*/
 
 button:disabled {
     opacity: 99% !important;
+}
+button:disabled:hover {
+    @apply !bg-opacity-90 !brightness-[1] !saturate-[1];
 }
 
 button {

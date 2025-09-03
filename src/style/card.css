@@ -71,7 +71,7 @@
 
     /* CHIP */
     .ChipDiv {
-        @apply flex w-full gap-2 justify-between flex-wrap overflow-auto absolute p-2;
+        @apply flex w-full h-max  gap-2 justify-between flex-wrap overflow-auto absolute p-2;
     }
 
     .ChipDivNoImage {
@@ -100,16 +100,16 @@
     /***/
     /* DETAILD CARD  */
     .DetailCardDiv {
-        @apply h-full wRespXL grid pt-8 min-h-[min-content] px-0.5 
-        grid-rows-[minmax(calc(100dvh_-_12rem),calc(100dvh_-_12rem))]
+        @apply h-full wRespXL grid pt-8 min-h-[min-content] px-0.5
+       sm:grid-rows-[minmax(calc(100dvh_-_12rem),calc(100dvh_-_12rem))]
         lg:grid-rows-[minmax(min-content,calc(100vh_-_12rem))];
     }
 
     .CardDetailGrid {
-        @apply w-respLarge card
+        @apply w-respLarge card 
         !min-h-fit  !grid h-[calc(100%-0rem)] max-h-[calc(100vh-8.5rem)] lg:max-h-[calc(100vh-11.5rem)] 
-        grid-rows-[minmax(50px,38vh),minmax(max-content,1fr),auto]
-        sm:grid-rows-[minmax(60px,38vh),minmax(max-content,1fr),auto]
+        grid-rows-[minmax(80px,35vh),minmax(max-content,1fr),auto]
+        sm:grid-rows-[minmax(100px,38vh),minmax(max-content,1fr),auto]
         md:grid-rows-[minmax(200px,40vh),minmax(max-content,1fr),auto]
         lg:grid-rows-[minmax(150px,38vh),minmax(max-content,1fr),auto];
     }
@@ -120,14 +120,14 @@
     }
 
     .DetailCardHeader {
-        @apply md:max-w-[calc(100%-0rem)] max-w-[calc(100vw-0rem)] mx-auto
+        @apply min-w-full mx-auto
         !flex flex-1 !rounded-xl !relative !z-[99] -mt-6 !shadow-md fadeIn border h-[calc(100%+1rem)];
     }
 
     .DetailCardBody {
-        @apply flex place-self-start relative flex-col px-5 !py-0 !max-h-full !h-full;
+        @apply flex place-self-start relative flex-col px-5 !py-0 !max-h-full !h-full min-h-fit;
     }
     .DetailCardFooter {
-        @apply flex justify-between sticky bottom-0 place-self-end items-center max-h-fit w-full pt-6  min-h-fit;
+        @apply flex justify-between place-self-end items-center h-max w-full pt-1 mt-4  px-4 border-t  min-h-fit;
     }
 }

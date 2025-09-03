@@ -6,22 +6,23 @@ import { dayMS, GenereMyActions } from "../../../../views/viewsEntities/utilsSer
 import { DateChip } from "../../../common/ChipDate";
 import { ProgressBar } from "../../../common/ProgressBar";
 import DI from "../../../../../di/ioc";
-import { VoteCard } from "./VoteCard";
-import { useState } from "react";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { Title } from "../../../common/CardTitle";
 import { User } from "../../../../../domain/entities/User";
 import { PoolSurveyStatus } from "../../../../../domain/entities/PoolSurvey";
 import Chip from "../../../common/adaptatersComps/Chip";
+import { AlertValues } from "../../../../../domain/entities/Error";
+import { VoteValues } from "./VoteCard";
 
 type PoolCardProps = {
     pool: any,
     change: (e: any) => void,
     mines?: boolean,
     update: () => void,
+    vote: (target: AlertValues) => void
 }
 
-export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
+export function PoolCard({ pool, change, mines, update, vote }: PoolCardProps) {
     const ended: boolean = pool.pourcent < 100 || pool.status !== PoolSurveyStatus.PENDING
     const end: Date = new Date(new Date(pool.createdAt).getTime() + 15 * dayMS)
     const disabledEditCTA: boolean = pool?.status !== PoolSurveyStatus.PENDING
@@ -29,7 +30,6 @@ export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
     //// FUNCTIONS
     const deletePool = async (id: number) => await DI.resolve('deletePoolUseCase').execute(id)
     const actions: Action[] = GenereMyActions(pool, "vote/cagnotte", deletePool)
-    const [open, setOpen] = useState(false)
 
     const color = (): string => {
         switch (pool?.myOpinion) {
@@ -41,14 +41,11 @@ export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
     }
 
 
+    const values = VoteValues(pool, update);
+
     return (
         <>
-            {open &&
-                <VoteCard
-                    open={open}
-                    close={() => setOpen(false)}
-                    vote={pool}
-                    refetch={update} />}
+
             <Card className={`FixCardNoImage`}>
                 <CardHeader className={"FixCardHeaderNoImage"}>
                     <div className={` ChipDivNoImage `}>
@@ -98,7 +95,7 @@ export function PoolCard({ pool, change, mines, update }: PoolCardProps) {
                     <div className="flex  items-center justify-between gap-2">
                         <button
                             disabled={pool?.status !== PoolSurveyStatus.PENDING}
-                            onClick={() => setOpen(true)}>
+                            onClick={() => vote(values)}>
                             <Chip
                                 size='sm'
                                 key={pool.id}

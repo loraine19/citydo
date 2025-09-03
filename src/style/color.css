@@ -75,7 +75,7 @@
     @apply !bg-gray-500 inv;
 }
 .slateStyle {
-    @apply !text-slate-500 bg-slate-200 style;
+    @apply !text-slate-500 bg-slate-200 !border-slate-400 style;
 }
 .slateStyleInv {
     @apply !bg-slate-500 inv;
@@ -107,7 +107,7 @@
 
 /**** CHIP LIGHT COLOR ****/
 .Chip {
-    @apply !min-w-[calc(max-0.1rem)] !px-3 !pb-1 !rounded-3xl !shadow-sm !max-h-fit
+    @apply !min-w-[calc(max-0.1rem)] !px-3 !pb-1 !rounded-full !shadow-sm !max-h-fit
    !max-w-max;
     background-image: linear-gradient(background-color, background-color);
 }
@@ -132,7 +132,7 @@
         @apply Chip greenStyle;
     }
     .GrayChip {
-        @apply Chip grayStyle;
+        @apply Chip slateStyle;
     }
     .RedChip {
         @apply Chip redStyle;

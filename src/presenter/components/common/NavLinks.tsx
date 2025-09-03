@@ -25,6 +25,8 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
         label: string;
         color: { border: string, background: string, text: string, col: string } | any
     }
+
+    //// NAV ITEMS
     const navItems: NavItem[] = [
         { to: "/", icon: "home", label: "Home", color: { border: "!border-slate-500/20", background: "!bg-slate-500", text: "!text-slate-500", col: 'slate' } },
         { to: "/service", icon: "partner_exchange", label: "Service", color: { border: "!border-sky-500/20", background: "!bg-sky-500", text: "!text-sky-500", col: 'sky' } },
@@ -33,6 +35,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
         { to: "/vote", icon: "ballot", label: `${addBtn ? "Vote⠀" : 'Votes⠀⠀'}`, color: { border: "!border-orange-500/20", background: "!bg-orange-500", text: "!text-orange-500", col: 'orange' } },
     ]
 
+    //// ADD BUTTON ITEM
     const addBtnItem = type ? [{
         to: `/${type}/create`,
         icon: { service: "partner_exchange", evenement: "event", annonce: "dashboard", vote: "ballot", groupe: "groups" }[type] || "add",
@@ -105,7 +108,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                 <Navbar className={`
                     ${navBottom ? 'ml-2 lg:ml-0 border-[1px] rounded-full !shadow-md bg-white border-slate-200 !flex-1 !max-w-max sm:!max-w-[100%] ' :
                         ` !pt-1  shadow-none border-none bg-transparent w-full `}
-                    flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden hover:!shadow-none `}>
+                    flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden  `}>
                     <ul className={`${navBottom ?
                         ' gap-0 justify-between flex-1 !w-full !px-0' : 'md:gap-0 gap-1 justify-around '} 
                             flex  xs:pr-0 !max-w-[calc(100vw-5.5rem)] flex-row  rounded-full h-full  w-full  `}>

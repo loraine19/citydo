@@ -82,7 +82,7 @@ export default function PostDetailPage() {
                         handleHideCallback()
                     }}>
                     <div className="DetailCardDiv ">
-                        {!isLoading && !error && post ?
+                        {!isLoading && post ?
                             <PostDetailCard
                                 post={post}
                                 mines={post?.isMine}

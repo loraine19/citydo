@@ -6,28 +6,28 @@ import { dayMS } from "../../../../../domain/entities/frontEntities";
 import { DateChip } from "../../../common/ChipDate";
 import { PoolSurveyView } from "../../../../views/viewsEntities/poolSurveyViewEntity";
 import { ProgressBar } from "../../../common/ProgressBar";
-import DI from "../../../../../di/ioc";
-import { useState } from "react";
-import { VoteCard } from "./VoteCard";
+import DI from "../../../../../di/ioc"
 import { Title } from "../../../common/CardTitle";
 import { PoolSurveyStatus } from "../../../../../domain/entities/PoolSurvey";
 import Chip from "../../../common/adaptatersComps/Chip";
+import { VoteValues } from "./VoteCard";
+import { AlertValues } from "../../../../../domain/entities/Error";
 
 
 type SurveyCardProps = {
     survey: PoolSurveyView,
     change: () => void,
     mines?: boolean,
-    update: () => void
+    update: () => void,
+    vote: (target: AlertValues) => void
 }
 
-export function SurveyCard({ survey, change, mines, update }: SurveyCardProps) {
+export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardProps) {
     const end = new Date(new Date(survey?.createdAt).getTime() + 15 * dayMS)
     const ended: boolean = survey?.status !== PoolSurveyStatus.PENDING
     const deleteSurvey = async (id: number) => await DI.resolve('deleteSurveyUseCase').execute(id)
     const actions = GenereMyActions(survey, "vote/sondage", deleteSurvey)
     const haveImage = survey?.image ? true : false
-    const [open, setOpen] = useState(false);
     const color = (): string => {
         switch (survey.myOpinion) {
             case 'OK': return 'green';
@@ -36,16 +36,10 @@ export function SurveyCard({ survey, change, mines, update }: SurveyCardProps) {
             default: return 'slate';
         }
     }
-
+    const values = VoteValues(survey, update);
 
     return (
         <>
-            {open &&
-                <VoteCard
-                    open={open}
-                    close={() => setOpen(false)}
-                    vote={survey}
-                    refetch={update} />}
             <Card className={haveImage ? "FixCard " : "FixCardNoImage  "}>
                 <CardHeader
                     className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
@@ -114,7 +108,7 @@ export function SurveyCard({ survey, change, mines, update }: SurveyCardProps) {
                     <div className="flex items-center justify-between gap-2 ">
                         <button
                             disabled={survey?.status !== PoolSurveyStatus.PENDING}
-                            onClick={() => { setOpen(true) }}>
+                            onClick={() => { vote(values) }}>
                             <Chip
                                 value={survey?.Votes?.length}
                                 size='sm'

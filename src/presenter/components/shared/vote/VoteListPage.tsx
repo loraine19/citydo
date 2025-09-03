@@ -17,6 +17,8 @@ import { useUxStore } from "../../../../application/stores/ux.store";
 import { HandleHideParams, HandleScrollParams } from "../../../../application/useCases/utils.useCase";
 import SelectSearch from "../../common/SelectSearch";
 import { surveyCategories } from "../../../constants";
+import { useAlertStore } from "../../../../application/stores/alert.store";
+import { AlertValues } from "../../../../domain/entities/Error";
 
 export default function VoteListPage() {
 
@@ -155,7 +157,13 @@ export default function VoteListPage() {
     const [hide, setHide] = useState<boolean>(false);
     useEffect(() => { (hide !== hideNavBottom) && setHideNavBottom(hide) }, [hide]);
 
+    //// HANDLE VOTE
+    const { setAlertValues, setOpen } = useAlertStore(state => state)
 
+    const handleVote = (values: AlertValues) => {
+        setAlertValues(values);
+        setOpen(true);
+    }
 
 
     //// RENDER
@@ -217,6 +225,7 @@ export default function VoteListPage() {
                                         Tab && Tab.click();
                                     }}
                                     mines={mine}
+                                    vote={(target) => handleVote(target)}
                                     update={refetch} />
                             </div> :
                             <div className="SubGrid "
@@ -228,6 +237,7 @@ export default function VoteListPage() {
                                         const Tab: HTMLElement | null = document.querySelector(`li[data-value="pools"]`);
                                         Tab && Tab.click();
                                     }}
+                                    vote={(target) => handleVote(target)}
                                     mines={mine}
                                     update={refetch} />
                             </div>)}

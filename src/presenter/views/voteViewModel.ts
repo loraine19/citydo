@@ -64,7 +64,7 @@ export const poolIdViewModel = () => {
       queryFn: async () => await getPoolById.execute(id),
     })
 
-    const pool = (!userLoading && data && !error && !isLoading) ? new PoolSurveyView(data, user) : {} as PoolSurveyView;
+    const pool = (!userLoading && data && !isLoading) ? new PoolSurveyView(data, user) : {} as PoolSurveyView;
 
     const update = async (): Promise<PoolSurveyView | null> => {
       const { data: freshData, isSuccess } = await refetch();

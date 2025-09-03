@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import CTAMines from '../../common/CTA';
 import SubHeader from '../../common/SubHeader';
@@ -7,10 +7,10 @@ import { Action } from '../../../../domain/entities/frontEntities';
 import { Skeleton, SkeletonGrid } from '../../common/Skeleton';
 import { GenereMyActions, } from '../../../views/viewsEntities/utilsService';
 import DI from '../../../../di/ioc';
-import { VoteCard } from './voteCards/VoteCard';
-import { PoolSurveyStatus } from '../../../../domain/entities/PoolSurvey';
+import { VoteValues } from './voteCards/VoteCard';
 import { HandleHideParams } from '../../../../application/useCases/utils.useCase';
 import { useUxStore } from '../../../../application/stores/ux.store';
+import { useAlertStore } from '../../../../application/stores/alert.store';
 
 
 export default function SurveyDetailPage() {
@@ -26,7 +26,7 @@ export default function SurveyDetailPage() {
 
     //// FUNCTIONS
     const myActions: Action[] = GenereMyActions(survey, "vote/sondage", deleteSurvey)
-    const [openVote, setOpenVote] = useState(false)
+    const { setAlertValues, setOpen } = useAlertStore()
 
     //// HANDLE SCROLL
     const utils = DI.resolve('utils')
@@ -40,14 +40,11 @@ export default function SurveyDetailPage() {
         handleHide(params)
     }, [divRef]);
 
+    //// VOTE VALUES
+    const voteValues = VoteValues(survey, refetch);
 
     return (
         <>
-            <VoteCard
-                open={openVote}
-                close={() => setOpenVote(false)}
-                vote={survey}
-                refetch={refetch} />
             <main >
                 <div className="sectionHeader">
                     <SubHeader
@@ -67,7 +64,7 @@ export default function SurveyDetailPage() {
                             <Skeleton
                                 className='!rounded-2xl flex pt-8 pb-1 h-full' /> :
                             <SurveyDetailCard
-                                setOpen={setOpenVote}
+                                setOpen={setOpen}
                                 survey={survey} />
                         }
                     </div>
@@ -83,23 +80,24 @@ export default function SurveyDetailPage() {
                 </section>
 
                 <footer className={`footer ${hideNavBottom ? 'hidden' : ''}`} >
-                    {survey?.mine ?
+                    {(survey?.mine && !survey?.close) ?
+                        <CTAMines actions={myActions} /> :
                         <CTAMines
-                            disabled2={survey?.status !== PoolSurveyStatus.PENDING}
-                            actions={myActions} /> :
-                        <CTAMines
-                            disabled1={true}
-                            actions={[{
 
-                                disabled: survey?.status !== PoolSurveyStatus.PENDING,
-                                function: () => setOpenVote(true),
+                            actions={[{
+                                disabled: survey?.close,
+                                directFunction: () => {
+                                    console.log(voteValues)
+                                    setAlertValues(voteValues)
+                                    setOpen(true)
+
+                                },
+                                function: () => { },
                                 icon: survey?.IVoted ? 'Modifier mon vote' :
-                                    survey?.status !== PoolSurveyStatus.PENDING ?
+                                    survey?.close ?
                                         'Ce sondage est terminé' : 'Voter'
                                 ,
                                 iconImage: survey.IVoted ? 'edit' : 'smart_card_reader',
-
-
                             }
                             ]} />
 

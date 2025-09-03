@@ -87,7 +87,7 @@ export default function DashboardPage() {
     useEffect(() => { (hide !== hideNavBottom) && setHideNavBottom(hide) }, [hide]);
 
     return (
-        <main className={`${hideNavBottom ? ' -mb-4 pb-2' : ' !max-h-[calc(100dvh_-_6rem)] lg:!max-h-[calc(100dvh_-_9rem)] !-mt-6 '} lg:!-mt-1 `}
+        <main className={`${hideNavBottom ? ' -mb-4 pb-2' : ' !max-h-[calc(100dvh_-_6rem)] lg:!max-h-[calc(100dvh_-_9rem)] !-mt-6 '} lg:!mt-1 `}
             data-cy="dashboard-body" >
             <div ref={divRef}
                 onScroll={() => handleHideCallback()}

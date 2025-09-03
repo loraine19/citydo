@@ -78,9 +78,6 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                     type='evenement'
                     group={event.Group}
                 />
-                {/* <Typography className="description !line-clamp-1 ">
-                    {description}
-                </Typography> */}
             </CardBody>
             <CardFooter className="CardFooter">
                 {!mines ? (
@@ -89,9 +86,9 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                             icon='calendar_add_on'
                             link={agendaLink}
                             title={`ajouter a mon agenda  : ${title}`}
-                            bg={true}
+                            bg={true} fill
                             size='lg'
-                            style={`${Igo ? " brightness-[1.05]" : "!bg-gray-300"} scale-[1.01]  top-0.5 bg-opacity-90 !outline outline-white left-0.5 absolute hover:z-50`}
+                            style={`${Igo ? " brightness-[1.05]" : "!bg-gray-300"} scale-[0.95]  top-0 bg-opacity-90 !outline outline-white left-0.5 absolute hover:z-50`}
                             color={Igo ? "cyan" : "gray"} />
                         <AvatarStack avatarDatas={event.Participants} />
                     </div>
@@ -117,10 +114,11 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                             className="rounded-full GrayChip h-max flex items-center  "
                             icon={
                                 <Icon
+                                    disabled={event?.status === EventStatus.REJECTED || event?.isPast}
                                     size="md"
-                                    icon="person"
+                                    icon={event?.status === EventStatus.REJECTED || event?.isPast || event?.Igo ? "person" : "person_add"}
                                     fill={event?.Igo}
-                                    color={(event?.Igo && event?.status !== EventStatus.REJECTED) ? "cyan" : "gray"}
+                                    color={(event?.status === EventStatus.REJECTED || event?.isPast || !event?.Igo) ? "slate" : "cyan"}
                                     title={event?.Igo ? "Je n'y vais plus" : "Je participe"} />}
                         />
                     </button>

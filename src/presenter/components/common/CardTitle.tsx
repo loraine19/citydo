@@ -16,8 +16,8 @@ export function FlagIcon(props: { flagged: boolean, id: number, type: string }) 
             style="hover:!bg-red-500/30 hover:text-red-700 bg-white " />
     )
 }
-export function Title(props: { title: string, flagged?: boolean, id?: number, CreatedAt?: string | Date, subTitle?: string, type?: string, group?: Group, }) {
-    const { flagged, id, CreatedAt, subTitle, type, group, title } = props
+export function Title(props: { title: string, flagged?: boolean, id?: number, CreatedAt?: string | Date, subTitle?: string, type?: string, group?: Group, large?: boolean }) {
+    const { flagged, id, CreatedAt, subTitle, type, group, title, large } = props
 
     return (
         <div className="min-h-max relative gap-1 flex flex-col ">
@@ -25,7 +25,7 @@ export function Title(props: { title: string, flagged?: boolean, id?: number, Cr
                 <div className="flex flex-1 items-center gap-4 w-full">
                     <h4
                         id={title}
-                        className="w-full flex !line-clamp-1 "
+                        className={"w-full flex  " + (large ? "!line-clamp-2" : "!line-clamp-1")}
                         title={title}>
                         {title}
                     </h4>

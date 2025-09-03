@@ -12,16 +12,16 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
     const { color } = useUxStore(state => state)
 
     if (isOpen || open) return (
-        <div className={`!absolute top-0 left-0 h-screen px-[3rem] py-[10vh] lg:py-[20vh] w-screen z-[1500] !flex flex-1 justify-center items-center backdropBlur `} >
+        <div key={title ?? 'alert-modal'}
+            className={`!absolute top-0 left-0 h-screen px-[3rem] py-[10vh] lg:py-[20vh] w-screen z-[1500] !flex flex-1 justify-center items-center backdropBlur   `} >
             <div>
                 <Card className="relative FixCardNoImage min-h-min !p-4 w-resp m-auto flex max-h-[400px] ">
                     <CardHeader
-                        className="FixCardHeaderNoImage flex items-center justify-between p-4 text-center text-xl">
-                        <h4>{title}
-                        </h4>
+                        className="FixCardHeaderNoImage flex justify-between p-4 text-center text-xl gap-6">
+                        <h4>{title ?? 'Alerte'}</h4>
                         {!disableConfirm &&
                             <Icon
-                                onClick={() => { close && close() || setOpen(false) }}
+                                onClick={() => { close && close(); setOpen(false) }}
                                 icon="cancel"
                                 size="xl"
                                 color="red" />}
@@ -45,6 +45,7 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                                 size='lg'
                                 onClick={() => {
                                     button2.onClick()
+                                    close && close() || setOpen(false)
                                 }}>
                                 {button2.text ?? '-'}
                             </Button>}
@@ -56,7 +57,7 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                             className={`rounded-full text-white lgBtn max-w-max ${color}StyleInv`}
                             onClick={() => {
                                 values.handleConfirm && values.handleConfirm();
-                                // close && close() || setOpen(false)
+                                close && close() || setOpen(false)
                             }
                             }>
                             {confirmString || 'OK'}

@@ -63,27 +63,24 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                     type='evenement'
                     group={Group}
                 />
-                <div className="flex flex-1 gap-x-8 flex-col lg:-mt-2 sm:!justify-evenly sm:!flex-row h-full">
-                    <div className="relative h-max flex w-full flex-1 ">
+                <div className="flex flex-1 gap-x-8 flex-col  sm:!justify-evenly sm:!flex-row h-full">
+                    <div className="relative h-max flex w-full flex-col flex-1 ">
 
-                        <div>
-                            <div className="flex items-center gap-2 py-0.5 justify-between ">
-                                <h6>{eventDateInfo}</h6>
-
-                                <Icon
-                                    bg fill
-                                    title="ajouter a mon agenda"
-                                    link={agendaLink as string}
-                                    color={Igo ? "green" : "gray"}
-                                    icon="calendar_add_on"
-                                    size="lg" />
-                            </div>
-                            <h6>Description</h6>
-                            <Typography
-                                className="description">
-                                {description}
-                            </Typography>
+                        <h6>Description</h6>
+                        <div className="flex items-center gap-2 justify-between border-b border-slate-400">
+                            <i>{eventDateInfo}</i>
+                            <Icon
+                                fill
+                                title="ajouter a mon agenda"
+                                link={agendaLink as string}
+                                color={Igo ? "green" : "gray"}
+                                icon="calendar_add_on"
+                                size="lg" />
                         </div>
+                        <Typography
+                            className="description">
+                            {description}
+                        </Typography>
                     </div>
                     <div className="flex flex-col gap-1 !w-full h-full min-h-[55%] flex-1 ">
                         <h6>Lieu</h6>
@@ -98,13 +95,19 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
 
             {/* FOOTER */}
             <CardFooter className="DetailCardFooter overflow-hidden">
-                <div className="flex flex-1 items-center">
+
+                <div className="flex flex-col w-max justify-center">
+                    <h6>Organisateur</h6>
                     <ProfileDiv profile={User} />
                 </div>
-                <div className="flex flex-1 items-center gap-2">
-                    <div className="flex flex-1 items-center overflow-auto">
-                        <AvatarStack avatarDatas={Participants} />
-                    </div>
+
+                <div className="flex flex-1 overflow-auto flex-col px-6 justify-center ">
+                    <h6>Participants</h6>
+                    <AvatarStack avatarDatas={Participants} />
+                </div>
+
+                <div className="flex flex-col  items-end gap-2">
+                    <h6>Min.</h6>
                     <button
                         className="flex flex-1 items-center gap-2"
                         data-cy='btn-participate'
@@ -129,6 +132,6 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                     </button>
                 </div>
             </CardFooter>
-        </Card>
+        </Card >
     );
 }

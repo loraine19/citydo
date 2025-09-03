@@ -8,9 +8,11 @@ export class Action {
     iconImage?: string;
     title?: string;
     body?: string | Element | JSX.Element | Element[] | JSX.Element[];
-    function: () => void = () => { };
+    function?: () => void = () => { };
     color?: string;
     disabled?: boolean;
+    directFunction?: () => void = () => { };
+    type?: 'button' | 'submit' | 'reset' = 'button';
 }
 export class Label {
     label: string = '';

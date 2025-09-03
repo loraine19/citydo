@@ -8,13 +8,14 @@ import { Title } from "../../../common/CardTitle";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { PoolSurveyStatus } from "../../../../../domain/entities/PoolSurvey";
 import Chip from "../../../common/adaptatersComps/Chip";
+import { User } from "../../../../../domain/entities/User";
 
 type Props = { survey: PoolSurveyView, setOpen: (open: boolean) => void }
 
 export default function SurveyDetailCard({ survey, setOpen }: Props) {
     const haveImage: boolean = survey.image ? true : false
     const end = new Date(new Date(survey.createdAt).getTime() + 15 * dayMS)
-    const { title, description, categoryS, createdAt, pourcent, status, myOpinion, IVoted, image, flagged, id, Votes, User, needed } = survey
+    const { title, categoryS, createdAt, status, myOpinion, image, flagged, id } = survey
 
     const color = (): string => {
         switch (myOpinion) {
@@ -51,42 +52,55 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
 
             </CardHeader>
             <CardBody className="DetailCardBody  justify-between">
-                <div>   <Title
+                <Title
                     title={title}
                     flagged={flagged}
                     id={id}
                     CreatedAt={createdAt}
                     type='sondage' />
-                    <div className="CardOverFlow ">
-                        <Typography
-                            className="description">
-                            {description}
+                <div className=" flex h-full  flex-1  flex-col gap-[10%] justify-between">
+                    <div className=" flex h-full  flex-1  flex-col">
+
+                        <h6>Description</h6>
+                        <Typography className="description">
+                            {survey?.description}
                         </Typography>
-                    </div></div>
-                <ProgressBar
-                    value={pourcent}
-                    label="votes pour"
-                    size={'lg'}
-                    needed={needed} />
+
+                    </div>
+                    <div className="flex flex-col">
+                        <h6>Progression des Votes</h6>
+                        <ProgressBar
+                            value={survey?.pourcent}
+                            label="votes pour "
+                            size={'lg'}
+                            needed={survey?.needed} />
+                    </div>
+                </div>
             </CardBody>
-            <CardFooter className="DetailCardFooter">
-                <ProfileDiv
-                    profile={User} />
-                <div className="flex items-center gap-2 ">
+            <CardFooter className="DetailCardFooter ">
+                <div>
+                    <h6>Créé par</h6>
+                    <ProfileDiv
+                        profile={survey?.User || {} as Partial<User>} />
+                </div>
+                <div className="flex flex-col gap-2 items-end">
+                    <h6>Votes &nbsp; </h6>
                     <button
-                        disabled={status !== PoolSurveyStatus.PENDING}
-                        onClick={() => setOpen(true)}>
+                        disabled={survey?.close}
+                        onClick={() => { setOpen(true) }}>
                         <Chip
-                            value={Votes?.length}
-                            variant="ghost"
                             size='sm'
-                            className="rounded-full GrayChip !px-4"
-                            icon={<Icon
-                                icon="smart_card_reader"
-                                fill={IVoted}
-                                color={color()}
-                                size="md"
-                                title={`${Votes?.length} personnes ${IVoted && `dont vous `} ont voté`} />}>
+                            value={survey?.Votes?.length}
+                            variant="ghost"
+                            className="rounded-full px-4 GrayChip"
+                            icon={
+                                <Icon
+                                    disabled={survey?.close}
+                                    icon="smart_card_reader"
+                                    fill={survey?.IVoted}
+                                    color={color()}
+                                    size="md"
+                                    title={`${survey?.Votes?.length} personnes ${survey?.IVoted ? `dont vous ` : ''} ont voté`} />}>
                         </Chip>
                     </button>
                 </div>

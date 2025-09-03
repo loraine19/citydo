@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { Action } from '../../../../domain/entities/frontEntities';
 import CTAMines from '../../common/CTA';
@@ -7,10 +7,11 @@ import PoolDetailCard from './voteCards/PoolDetailCard';
 import { GenereMyActions } from '../../../views/viewsEntities/utilsService';
 import DI from '../../../../di/ioc';
 import { Skeleton, SkeletonGrid } from '../../common/Skeleton';
-import { VoteCard } from './voteCards/VoteCard';
 import { PoolSurveyStatus } from '../../../../domain/entities/PoolSurvey';
 import { HandleHideParams } from '../../../../application/useCases/utils.useCase';
 import { useUxStore } from '../../../../application/stores/ux.store';
+import { VoteValues } from './voteCards/VoteCard';
+import { useAlertStore } from '../../../../application/stores/alert.store';
 
 export default function PoolDetailPage() {
 
@@ -25,7 +26,6 @@ export default function PoolDetailPage() {
     //// FUNCTIONS
     const deletePool = async (id: number) => await DI.resolve('deletePoolUseCase').execute(id)
     const myActions: Action[] = pool && GenereMyActions(pool, "vote/cagnotte", deletePool)
-    const [openVote, setOpenVote] = useState(false);
 
     //// HANDLE SCROLL
     const utils = DI.resolve('utils')
@@ -39,13 +39,12 @@ export default function PoolDetailPage() {
         handleHide(params)
     }, [divRef]);
 
+    //// HANDLE VOTE
+    const { setAlertValues } = useAlertStore(state => state)
+    const handleVote = () => setAlertValues(VoteValues(pool, refetch))
+
     return (<>
-        {openVote &&
-            <VoteCard
-                open={openVote}
-                close={() => setOpenVote(false)}
-                vote={pool}
-                refetch={refetch} />}
+
         <main>
             <div className='sectionHeader'>
                 <SubHeader
@@ -62,8 +61,8 @@ export default function PoolDetailPage() {
                     {isLoading || !pool || error ?
                         <Skeleton /> :
                         <PoolDetailCard
-                            pool={pool}
-                            setOpen={setOpenVote} />
+                            setOpen={handleVote}
+                            pool={pool} />
                     }
                 </div>
 
@@ -77,21 +76,21 @@ export default function PoolDetailPage() {
 
             </section>
             <footer className={`footer ${hideNavBottom ? 'hidden' : ''}`} >
-                {pool?.mine ?
+                {(pool?.mine && !pool?.close) ?
                     <CTAMines actions={myActions} /> :
-                    <footer className={`CTA`}>
-                        <CTAMines actions={[{
-                            disabled: pool?.status !== PoolSurveyStatus.PENDING,
-                            function: () => setOpenVote(true),
-                            icon: pool.IVoted ? 'Modifier mon vote' :
-                                pool.status !== PoolSurveyStatus.PENDING ?
-                                    'Cette cagnotte est terminé' : 'Voter'
-                            ,
-                            iconImage: pool.IVoted ? 'edit' : 'smart_card_reader',
 
-                        }]} />
+                    <CTAMines actions={[{
+                        disabled: pool?.close,
+                        function: () => { },
+                        directFunction: () => handleVote(),
+                        icon: pool?.IVoted ? 'Modifier mon vote' :
+                            pool?.status !== PoolSurveyStatus.PENDING ?
+                                'Cette cagnotte est terminé' : 'Voter'
+                        ,
+                        iconImage: pool?.close ? 'block' : pool.IVoted ? 'edit' : 'smart_card_reader',
 
-                    </footer>
+                    }]} />
+
                 }
             </footer>
         </main>

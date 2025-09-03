@@ -168,7 +168,9 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
             return (
                 <body className={`app ${this.props.color ?? 'slate'}BG `}>
-                    <AlertModal values={!errorMessage ? alertValues : errorAlertValues} />
+                    <AlertModal
+                        key={errorMessage}
+                        values={!errorMessage ? alertValues : errorAlertValues} />
                     <header className="h-[7rem] flex-col flex items-center justify-center pt-6 relative">
                         <div className="flex items-center justify-center gap-2">
                         </div>

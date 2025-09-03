@@ -34,6 +34,7 @@ export class PoolSurveyView {
     status?: PoolSurveyStatus = PoolSurveyStatus.PENDING;
     toogleVote!: (opinion: VoteOpinion) => Promise<PoolSurveyView>;
     Group: Group = {} as Group;
+    close: boolean = false;
 
     constructor
         (base: Pool | Survey, user: User) {
@@ -70,6 +71,7 @@ export class PoolSurveyView {
         this.IVoted = base?.Votes?.some(vote => vote.userId === user?.id);
         this.myOpinion = base?.Votes?.find(vote => vote.userId === user?.id)?.opinion || null;
         this.status = base.status;
+        this.close = base?.status !== PoolSurveyStatus.PENDING;
     }
 
 }

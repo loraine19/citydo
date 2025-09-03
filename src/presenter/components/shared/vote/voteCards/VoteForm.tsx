@@ -1,4 +1,4 @@
-import { Card, CardHeader, Button, CardBody, Input, Textarea } from "@material-tailwind/react";
+import { Card, CardHeader, CardBody, Input, Textarea } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { Label } from "../../../../../domain/entities/frontEntities";
 import SubHeader from "../../../common/SubHeader";
@@ -9,12 +9,12 @@ import { VoteTarget } from "../../../../../domain/entities/Vote";
 import DI from "../../../../../di/ioc";
 import { User } from "../../../../../domain/entities/User";
 import { ProfileDiv } from "../../../common/ProfilDiv";
-import { Icon } from "../../../common/IconComp";
 import { useUserStore } from "../../../../../application/stores/user.store";
 import GroupSelect from "../../../common/GroupSelect";
 import { InputError } from "../../../common/adaptatersComps/input";
 import { RadioGroup } from "../../../common/adaptatersComps/RadioGroup";
 import { Select } from "../../../common/adaptatersComps/Select";
+import CTAMines from "../../../common/CTA";
 
 type PoolSurveyFormProps = {
     formik: any;
@@ -76,7 +76,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                             user={user} />
                     </div>
                 </div>
-                <section className={`flex pb-4 flex-1 relative pt-6`}>
+                <section className={`DetailCardDiv`}>
                     <Card className={`${(imgBlob || formik.values.image) ?
                         "CardDetailGrid" :
                         "FixCardNoImage "}  `}>
@@ -140,20 +140,16 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                     </Card>
                 </section>
             </main>
-            <footer className="CTA">
-                <Button
-                    size='lg'
-                    type="submit"
-                    disabled={formik.values.pourcent > 1}
-                    className="lgBtn bg-orange-500">
-                    <Icon
-                        size='lg'
-                        color="white"
-                        icon="add" />
-                    {formik.values.pourcent > 1 ?
-                        'Non modifiable votes en cours  ' + formik.values.pourcent + '%' : `Enregistrer`}
-                </Button>
-            </footer>
+
+            <CTAMines actions={[
+                {
+                    iconImage: 'add',
+                    icon: formik.values.pourcent > 1 ?
+                        'Non modifiable votes en cours  ' + formik.values.pourcent + '%' : `Enregistrer`,
+                    type: "submit",
+                    disabled: formik.values.pourcent > 1,
+                }
+            ]} />
         </form>
     )
 }

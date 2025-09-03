@@ -51,33 +51,44 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                     type="annonce"
                     group={post.Group}
                 />
-                <Typography
-                    className="description">
-                    {description}
-                </Typography>
+                <div className="CardOverFlow pt-1">
+                    <h6>Desciption</h6>
+                    <Typography
+                        className="description">
+                        {description}
+                    </Typography>
+                </div>
+
             </CardBody>
-            <CardFooter className="DetailCardFooter">
-                <ProfileDiv profile={Author} />
-                <div className="flex items-center gap-2 ">
-                    <button
-                        onClick={async () => {
-                            const data = await toogleLike()
-                            data && setPost(data)
-                        }}>
-                        <Chip
-                            value={`${Likes?.length}`}
-                            variant="ghost"
-                            className="!h-max !px-4 rounded-full GrayChip flex items-center "
-                            icon={
-                                <Icon
-                                    icon="thumb_up"
-                                    size="md"
-                                    fill={ILike}
-                                    color={ILike ? "rose" : "gray"}
-                                    style=" hover:text-cyan-800 "
-                                    title={ILike ? "Je n'aime plus" : "J'aime ce post"} />}>
-                        </Chip>
-                    </button>
+            <CardFooter className="DetailCardFooter !flex ">
+                <div className="flex justify-between w-full">
+                    <div className="flex flex-col">
+                        <h6>Auteur</h6>
+                        <ProfileDiv profile={Author} />
+                    </div>
+                    <div className="flex flex-col items-end gap-2">
+                        <h6>Likes &nbsp;</h6>
+                        <button
+                            onClick={async () => {
+                                const data = await toogleLike()
+                                data && setPost(data)
+                            }}>
+                            <Chip
+                                size="sm"
+                                value={`${Likes?.length}`}
+                                variant="ghost"
+                                className="!h-max !px-4 rounded-full GrayChip flex items-center "
+                                icon={
+                                    <Icon
+                                        icon="thumb_up"
+                                        size="md"
+                                        fill={ILike}
+                                        color={ILike ? "rose" : "gray"}
+                                        style=" hover:text-cyan-800 "
+                                        title={ILike ? "Je n'aime plus" : "J'aime ce post"} />}>
+                            </Chip>
+                        </button>
+                    </div>
                 </div>
             </CardFooter>
         </Card>

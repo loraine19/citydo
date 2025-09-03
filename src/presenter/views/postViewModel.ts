@@ -63,7 +63,7 @@ export const postIdViewModel = () => {
       queryFn: async () => await getPostById.execute(id),
     })
 
-    const post = (!data || userLoading || isLoading || error) ? {} as PostView : new PostView(data, userId)
+    const post = (!data || userLoading || isLoading) ? {} as PostView : new PostView(data, userId)
     return { post, isLoading, error, refetch }
   }
 

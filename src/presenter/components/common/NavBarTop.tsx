@@ -10,11 +10,12 @@ import { NavBarSection } from "./NavLinks";
 import { useState } from "react";
 
 export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navIcons?: boolean }) {
-    // const { unReadMsgNotif } = useNotificationStore((state) => state);
     const navigate = useNavigate();
     const { user } = useUserStore((state) => state);
     const { hideNavBottom, navBottom, setNavBottom, color } = useUxStore((state) => state);
     const onBoard = window.location.pathname === '/'
+
+    ///// MENU ITEMS
     const menuItems = [
         { icon: "toll", text: `${user?.Profile?.points} points`, onClick: null, color: 'white', style: 'hover:!bg-white' },
         { icon: navBottom ? 'move_up' : 'move_down', text: "Déplacer la barre", onClick: () => { setNavBottom(!navBottom) }, color: 'white', style: `${!hideNavBottom ? '' : 'hidden'} !-mt-2 !mb-2 border-b !border-slate-400 ` },

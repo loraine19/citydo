@@ -10,7 +10,7 @@ import { User } from "../../../../../domain/entities/User";
 import { PoolSurveyStatus } from "../../../../../domain/entities/PoolSurvey";
 import Chip from "../../../common/adaptatersComps/Chip";
 
-type PoolDetailCardProps = { pool: PoolSurveyView, setOpen: (open: boolean) => void }
+type PoolDetailCardProps = { pool: PoolSurveyView, setOpen: () => void }
 
 export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
     const end = new Date(new Date(pool?.createdAt).getTime() + 15 * dayMS)
@@ -48,37 +48,48 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
                     CreatedAt={pool?.createdAt}
                     group={pool?.Group}
                 />
-                <div className=" flex h-full flex-1  justify-between !pb-8 flex-col">
-                    <Typography className="description">
-                        {pool?.description}
-                    </Typography>
-                    <div className="grid">
+                <div className=" flex h-full flex-1 gap-[10%] flex-col lg:flex-row">
+                    <div>
+                        <h6>Description</h6>
+                        <Typography className="description">
+                            {pool?.description}
+                        </Typography>
+                    </div>
+                    <div className="">
+                        <h6>Beneficiaire</h6>
                         <ProfileDiv
                             profile={pool?.UserBenef || {} as Partial<User>}
                             size={'lg'} />
                     </div>
                 </div>
-                <div className="flex "> <ProgressBar
-                    value={pool?.pourcent}
-                    label="votes pour "
-                    size={'lg'}
-                    needed={pool?.needed} />
+                <div className="flex flex-col">
+                    <h6>Progression des Votes</h6>
+                    <ProgressBar
+                        value={pool?.pourcent}
+                        label="votes pour "
+                        size={'lg'}
+                        needed={pool?.needed} />
                 </div>
             </CardBody>
-            <CardFooter
-                className="DetailCardFooter ">
-                <ProfileDiv
-                    profile={pool?.User || {} as Partial<User>} />
-                <div className="flex items-center gap-2 ">
+            <CardFooter className="DetailCardFooter ">
+                <div>
+                    <h6>Créé par</h6>
+                    <ProfileDiv
+                        profile={pool?.User || {} as Partial<User>} />
+                </div>
+                <div className="flex flex-col gap-2 items-end">
+                    <h6>Votes &nbsp; </h6>
                     <button
-                        disabled={pool?.status !== PoolSurveyStatus.PENDING}
-                        onClick={() => { setOpen(true) }}>
+                        disabled={pool?.close}
+                        onClick={() => { setOpen() }}>
                         <Chip
+                            size='sm'
                             value={pool.Votes?.length}
                             variant="ghost"
                             className="rounded-full px-4 GrayChip"
                             icon={
                                 <Icon
+                                    disabled={pool?.close}
                                     icon="smart_card_reader"
                                     fill={pool?.IVoted}
                                     color={color()}

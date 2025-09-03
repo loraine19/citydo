@@ -20,31 +20,27 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
 
     return (
         <div className={`grid grid-cols-[1fr,auto] grid-rows-1 w-full h-full`}>
-            <div className={`flex w-full  h-full pt-2 gap-x-2 justify-end lg:justify-between`}>
-                <div className={`flex flex-col flex-1 w-full`}>
-                    <h2 className={`!line-clamp-1 flex text-[1.2rem] pl-2 `}>
+            {/* TITLE DIV  */}
+            <div className={`flex w-full h-full flex-col  flex-1  pt-2 gap-x-2 justify-end lg:justify-between`}>
+                <div className={`flex flex-1 h-full w-full ${hideImage ? '' : 'bg-white shadow-xl rounded-2xl p-2 animRev mb-2'}`}>
+                    <h2 className={`!line-clamp-1 flex flex-1 text-[1.2rem] pl-2 `}>
                         <span className={`capitalize `}>{qty} {type}</span>
                         <span className="hidden  sm:inline-block !lowercase !font-thin opacity-75">
-                            &nbsp;   {place ?? "dans vos groupes"}
+                            &nbsp;{place ?? "dans vos groupes"}
                         </span>
                     </h2>
-                    <hr className={` !border-${color}-500 border-b-[1px] border-t-0 w-full pb-0.5`}></hr>
+                    {image &&
+                        <div className={`${hideImage ? 'hidden' : 'min-w-[8rem] flex-1 w-full h-full'} `} >
+                            <img src={image ?? '/image/placeholder.jpg'}
+                                alt={type}
+                                className=' h-[7rem] w-full object-cover rounded-2xl shadow-xl'
+                            />
+                        </div>}
                 </div>
-
-                <div
-                    className={`
-                            relative z-[99]
-                            ${hideImage ? '!w-0 !h-0 animRev ' : 'anim min-w-[8rem] w-[50%] lg:w-[30%] h-8 '}
-                        `}
-                >
-                    <img
-                        src={image ?? '/image/placeholder.jpg'}
-                        alt={type}
-                        className='absolute left-0 -top-1.5 h-[7rem] w-full object-cover rounded-2xl shadow-xl'
-                    />
-                </div>
-
+                <hr className={` !border-${color}-500 border-b-[1px] border-t-0 w-full pb-0.5`}></hr>
             </div>
+
+            {/* BUTTON DIV  */}
             <div className="flex w-full">
                 {hideNavBottom &&
                     <Icon
