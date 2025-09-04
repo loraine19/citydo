@@ -1,157 +1,169 @@
 {
-  "hash": "20cd1a70",
+  "hash": "ec289bcc",
   "configHash": "2dde7a21",
-  "lockfileHash": "2163be65",
-  "browserHash": "ef59d83c",
+  "lockfileHash": "1a7a0caf",
+  "browserHash": "e11ced8e",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "3cdeb46c",
+      "fileHash": "5fa4d11b",
       "needsInterop": true
     },
     "react-dom": {
       "src": "../../node_modules/react-dom/index.js",
       "file": "react-dom.js",
-      "fileHash": "d052258e",
+      "fileHash": "6840c38c",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "8a20f855",
+      "fileHash": "75cdef1b",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "990779fa",
+      "fileHash": "8bb7b24a",
       "needsInterop": true
     },
     "@material-tailwind/react": {
       "src": "../../node_modules/@material-tailwind/react/dist/index.js",
       "file": "@material-tailwind_react.js",
-      "fileHash": "0b92da35",
+      "fileHash": "2e626604",
       "needsInterop": false
     },
-    "@project-lary/react-material-symbols-300-rounded": {
-      "src": "../../node_modules/@project-lary/react-material-symbols-300-rounded/dist/index.js",
-      "file": "@project-lary_react-material-symbols-300-rounded.js",
-      "fileHash": "4458b499",
+    "@project-lary/react-material-symbols-200-rounded": {
+      "src": "../../node_modules/@project-lary/react-material-symbols-200-rounded/dist/index.js",
+      "file": "@project-lary_react-material-symbols-200-rounded.js",
+      "fileHash": "3461c6a1",
       "needsInterop": false
     },
     "@tanstack/react-query": {
       "src": "../../node_modules/@tanstack/react-query/build/modern/index.js",
       "file": "@tanstack_react-query.js",
-      "fileHash": "ec1bba35",
+      "fileHash": "2c23739c",
       "needsInterop": false
     },
     "@tanstack/react-query-devtools": {
       "src": "../../node_modules/@tanstack/react-query-devtools/build/modern/index.js",
       "file": "@tanstack_react-query-devtools.js",
-      "fileHash": "e1809777",
+      "fileHash": "1a589a9b",
       "needsInterop": false
     },
     "awilix": {
       "src": "../../node_modules/awilix/lib/awilix.browser.mjs",
       "file": "awilix.js",
-      "fileHash": "533899b4",
+      "fileHash": "21573510",
       "needsInterop": false
     },
     "axios": {
       "src": "../../node_modules/axios/index.js",
       "file": "axios.js",
-      "fileHash": "d0d386c4",
+      "fileHash": "d22414f4",
       "needsInterop": false
     },
     "crypto-js": {
       "src": "../../node_modules/crypto-js/index.js",
       "file": "crypto-js.js",
-      "fileHash": "80325b56",
+      "fileHash": "d0e5e631",
       "needsInterop": true
     },
     "emoji-picker-react": {
       "src": "../../node_modules/emoji-picker-react/dist/emoji-picker-react.esm.js",
       "file": "emoji-picker-react.js",
-      "fileHash": "a9af5976",
+      "fileHash": "31d81c39",
       "needsInterop": false
     },
     "formik": {
       "src": "../../node_modules/formik/dist/formik.esm.js",
       "file": "formik.js",
-      "fileHash": "8d1e3f6b",
+      "fileHash": "5c86981b",
       "needsInterop": false
     },
     "html-react-parser": {
       "src": "../../node_modules/html-react-parser/esm/index.mjs",
       "file": "html-react-parser.js",
-      "fileHash": "b968c78b",
+      "fileHash": "e49d2bea",
       "needsInterop": false
     },
     "js-cookie": {
       "src": "../../node_modules/js-cookie/dist/js.cookie.mjs",
       "file": "js-cookie.js",
-      "fileHash": "fe97e0ab",
+      "fileHash": "4342d62e",
       "needsInterop": false
     },
     "jwt-decode": {
       "src": "../../node_modules/jwt-decode/build/esm/index.js",
       "file": "jwt-decode.js",
-      "fileHash": "e0364faa",
+      "fileHash": "0d678f7f",
       "needsInterop": false
     },
     "leaflet": {
       "src": "../../node_modules/leaflet/dist/leaflet-src.js",
       "file": "leaflet.js",
-      "fileHash": "7ee51793",
+      "fileHash": "09c9ead3",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "790055bd",
+      "fileHash": "1af05293",
       "needsInterop": true
     },
     "react-leaflet": {
       "src": "../../node_modules/react-leaflet/lib/index.js",
       "file": "react-leaflet.js",
-      "fileHash": "116bc3ab",
+      "fileHash": "d2efd11e",
       "needsInterop": false
     },
     "react-router": {
       "src": "../../node_modules/react-router/dist/index.js",
       "file": "react-router.js",
-      "fileHash": "eb03f55e",
+      "fileHash": "cc057b7e",
       "needsInterop": false
     },
     "react-router-dom": {
       "src": "../../node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
-      "fileHash": "1f0ebee5",
+      "fileHash": "24cece2e",
       "needsInterop": false
     },
     "socket.io-client": {
       "src": "../../node_modules/socket.io-client/build/esm/index.js",
       "file": "socket__io-client.js",
-      "fileHash": "a32b91da",
+      "fileHash": "2d0bbd79",
       "needsInterop": false
     },
     "yup": {
       "src": "../../node_modules/yup/index.esm.js",
       "file": "yup.js",
-      "fileHash": "0f3a6adb",
+      "fileHash": "4b46c560",
       "needsInterop": false
     },
     "zustand": {
       "src": "../../node_modules/zustand/esm/index.mjs",
       "file": "zustand.js",
-      "fileHash": "a0004a41",
+      "fileHash": "a6644c63",
       "needsInterop": false
     },
     "zustand/middleware": {
       "src": "../../node_modules/zustand/esm/middleware.mjs",
       "file": "zustand_middleware.js",
-      "fileHash": "bbe629de",
+      "fileHash": "d61639d9",
+      "needsInterop": false
+    },
+    "@project-lary/react-material-symbols-400-rounded": {
+      "src": "../../node_modules/@project-lary/react-material-symbols-400-rounded/dist/index.js",
+      "file": "@project-lary_react-material-symbols-400-rounded.js",
+      "fileHash": "e77d38d5",
+      "needsInterop": false
+    },
+    "@project-lary/react-material-symbols-300-rounded": {
+      "src": "../../node_modules/@project-lary/react-material-symbols-300-rounded/dist/index.js",
+      "file": "@project-lary_react-material-symbols-300-rounded.js",
+      "fileHash": "6f688aa5",
       "needsInterop": false
     }
   },
@@ -171,14 +183,14 @@
     "chunk-EWRAASFD": {
       "file": "chunk-EWRAASFD.js"
     },
-    "chunk-6JBW5ATH": {
-      "file": "chunk-6JBW5ATH.js"
-    },
     "chunk-XUYCH2BJ": {
       "file": "chunk-XUYCH2BJ.js"
     },
     "chunk-H7YU46OT": {
       "file": "chunk-H7YU46OT.js"
+    },
+    "chunk-6JBW5ATH": {
+      "file": "chunk-6JBW5ATH.js"
     },
     "chunk-P5EAQRRD": {
       "file": "chunk-P5EAQRRD.js"

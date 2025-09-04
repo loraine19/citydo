@@ -21,9 +21,9 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
     return (
         <div className={`grid grid-cols-[1fr,auto] grid-rows-1 w-full h-full`}>
             {/* TITLE DIV  */}
-            <div className={`flex w-full h-full flex-col  flex-1  pt-2 gap-x-2 justify-end lg:justify-between`}>
-                <div className={`flex flex-1 h-full w-full ${hideImage ? '' : 'bg-white shadow-xl rounded-2xl p-2 animRev mb-2'}`}>
-                    <h2 className={`!line-clamp-1 flex flex-1 text-[1.2rem] pl-2 `}>
+            <div className={`flex w-full h-full flex-col flex-1 pt-2 gap-x-2 justify-end lg:justify-between`}>
+                <div className={`flex flex-1 h-full w-full ${hideImage ? '' : 'bg-white shadow-md rounded-2xl  animRev mb-1 p-4 border border-slate-400/40'}`}>
+                    <h2 className={`!line-clamp-1 flex flex-1  !pl-4 `}>
                         <span className={`capitalize `}>{qty} {type}</span>
                         <span className="hidden  sm:inline-block !lowercase !font-thin opacity-75">
                             &nbsp;{place ?? "dans vos groupes"}
@@ -33,15 +33,15 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
                         <div className={`${hideImage ? 'hidden' : 'min-w-[8rem] flex-1 w-full h-full'} `} >
                             <img src={image ?? '/image/placeholder.jpg'}
                                 alt={type}
-                                className=' h-[7rem] w-full object-cover rounded-2xl shadow-xl'
+                                className='border border-slate-400/60 !max-h-[7rem] w-full object-cover rounded-2xl shadow'
                             />
                         </div>}
                 </div>
-                <hr className={` !border-${color}-500 border-b-[1px] border-t-0 w-full pb-0.5`}></hr>
+                <hr className={`${!hideImage ? 'hidden' : 'pb-0.5'} !border-${color}-500 border-b-[1px] border-t-0 w-full `}></hr>
             </div>
 
             {/* BUTTON DIV  */}
-            <div className="flex w-full">
+            <div className="flex flex-col  w-full">
                 {hideNavBottom &&
                     <Icon
                         style="scale-90 mt-1 ml-1"

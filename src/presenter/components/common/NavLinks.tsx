@@ -176,10 +176,11 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                             style={` ${closeDial ? 'rotate-45 transition-transform ' : ''} hover:!transition-transform hover:!rotate-45 !border-0 !text-[2.2rem] !text-white ${color}StyleInv ${navBottom ? `!shadow-md` : ''}`} />
                     }
                     Content={
-                        <div className={`${!navBottom ? ' items-end' : ''} flex gap-2 flex-col `}>
+                        <div className={`${!navBottom ? ' items-end  mr-2' : ''} flex gap-2 flex-col `}>
                             {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
                                 <div key={index}
-                                    className={`-mr-2 bg-white rounded-full shadow-md flex hover:scale-[1.1] p-[8px] gap-6  !justify-center items-center border"`}
+                                    className={`-mr-2 bg-white rounded-full shadow-md flex hover:scale-[1.1]  gap-6  !justify-center items-center border 
+                                     ${navBottom ? ` p-[8px] ` : 'p-[6px] '}   `}
                                     title={label}>
                                     <div>
                                         <Icon

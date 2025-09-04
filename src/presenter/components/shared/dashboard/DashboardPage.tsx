@@ -117,36 +117,28 @@ export default function DashboardPage() {
                             </div>
                         </CardHeader>
                         <CardBody className="flex flex-col items-center justify-center px-4 py-0">
-                            <div className="flex gap-2  pb-4 justify-center items-center ">
-                                <Icon
+                            <div className="flex gap-1.5 border rounded-full mb-4 justify-center items-center p-1.5 bg-slate-200 border-slate-300">
+                                <Icon bg style={'!border-slate-300'}
                                     link="/myprofile"
                                     icon="person_edit"
-                                    color="cyan"
-                                    fill bg
-                                    size="md"
+                                    size="lg"
                                     title="ouvrir la page profil" />
-                                <Icon
+                                <Icon bg style={'!border-slate-300'}
                                     link="/groupe"
                                     icon="groups"
-                                    color='green'
-                                    fill bg
-                                    size="md"
+                                    size="lg"
                                     title="ouvrir la page des groupes" />
-                                <Icon
+                                <Icon bg style={'!border-slate-300'}
                                     link={modo ? '/conciliation' : ''}
                                     icon="diversity_3"
-                                    color={modo ? 'orange' : 'slate'}
-                                    fill bg
-                                    size="md"
-                                    title={modo ? "ouvrir la page conciliation" : "vous devez être concialiateur dans un groupe"} />
-                                <Icon
+                                    size="lg"
+                                    title={modo ? "ouvrir la page conciliation" : "vous devez être conciliateur dans un groupe"} />
+                                <Icon bg style={'!border-slate-300 !text-[1.1rem] pt-[4px] !font-extrabold'}
                                     icon={(user?.Profile?.points.toString() ?? '0')}
-                                    color="amber"
-                                    size="md"
-                                    fill bg
-                                    style="!text-[1.1rem] pt-[4px] !font-extrabold"
+                                    size="lg"
                                     title={` vous avez ${user?.Profile?.points} pts`} />
-                                <LogOutButton size="md" />
+                                <LogOutButton
+                                    style={'!border-slate-300'} size="lg" />
                             </div>
                         </CardBody>
                     </Card>
@@ -261,7 +253,7 @@ export default function DashboardPage() {
                             <div className="flex-1 flex">
                                 {user?.Profile?.Address && notifsMap ?
                                     <AddressMapOpen
-                                        message=" 📍 Vous êtes ici "
+                                        message=" Vous êtes ici "
                                         address={user?.Profile?.Address}
                                         notifs={notifsMap} /> : <>
 

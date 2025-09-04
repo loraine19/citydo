@@ -33,76 +33,76 @@
 }
 
 .inv {
-    @apply !border-hidden  !text-white bg-opacity-90 text-opacity-95;
+    @apply !border-hidden !text-white bg-opacity-85 text-opacity-80;
 }
 
 .cyanStyle {
-    @apply !text-cyan-600/80 !bg-cyan-200  style;
+    @apply !text-cyan-500/95  !bg-cyan-200  style;
 }
 .cyanStyleInv {
-    @apply !bg-cyan-600 inv;
+    @apply !bg-cyan-500 inv;
 }
 
 .orangeStyle {
-    @apply !text-orange-600/80 !bg-orange-200  style;
+    @apply !text-orange-500/95 !bg-orange-200  style;
 }
 .orangeStyleInv {
-    @apply !bg-orange-600 inv;
+    @apply !bg-orange-500 inv;
 }
 .redStyle {
-    @apply !text-red-600/80 !bg-red-200  style;
+    @apply !text-red-500/95 !bg-red-200  style;
 }
 .redStyleInv {
-    @apply !bg-red-600 inv;
+    @apply !bg-red-500 inv;
 }
 .skyStyle {
-    @apply !text-sky-600/80 !bg-sky-200 style;
+    @apply !text-sky-500/95 !bg-sky-200 style;
 }
 .skyStyleInv {
-    @apply !bg-sky-600 inv;
+    @apply !bg-sky-500 inv;
 }
 .greenStyle {
-    @apply !text-green-600 bg-green-200 style;
+    @apply !text-green-500 bg-green-200 style;
 }
 .greenStyleInv {
-    @apply !bg-green-600 inv;
+    @apply !bg-green-500 inv;
 }
 
 .grayStyle {
-    @apply !text-slate-500/90 bg-slate-200 border-slate-400 style;
+    @apply !text-slate-500/90 bg-slate-200 !border-slate-400/70;
 }
 .grayStyleInv {
-    @apply !bg-gray-600 inv;
+    @apply !bg-gray-500 inv;
 }
 .slateStyle {
-    @apply !text-slate-500/90 bg-slate-200 !border-slate-400 style;
+    @apply !text-slate-500/90 bg-slate-200 !border-slate-400/70 style;
 }
 .slateStyleInv {
-    @apply !bg-slate-600 inv;
+    @apply !bg-slate-500 inv;
 }
 .tealStyle {
-    @apply !text-teal-600 bg-teal-200/70  style;
+    @apply !text-teal-500 bg-teal-200/70  style;
 }
 .tealStyleInv {
-    @apply !bg-teal-600 inv;
+    @apply !bg-teal-500 inv;
 }
 .amberStyle {
-    @apply !text-amber-600 bg-amber-200/70  style;
+    @apply !text-amber-500 bg-amber-200/70  style;
 }
 .amberStyleInv {
-    @apply !bg-amber-600 inv;
+    @apply !bg-amber-500 inv;
 }
 .roseStyle {
-    @apply !text-rose-600/80 !bg-rose-200 style;
+    @apply !text-rose-500/95 !bg-rose-200 style;
 }
 .roseStyleInv {
-    @apply !bg-rose-600 inv;
+    @apply !bg-rose-500 inv;
 }
 .yellowStyle {
-    @apply !text-yellow-600/80 !bg-yellow-200/70  style;
+    @apply !text-yellow-500/95 !bg-yellow-200/70  style;
 }
 .yellowStyleInv {
-    @apply !bg-yellow-600 inv;
+    @apply !bg-yellow-500 inv;
 }
 
 .outlineStyle {
@@ -137,7 +137,7 @@
     }
     .grayChip,
     .slateChip {
-        @apply Chip slateStyle;
+        @apply Chip slateStyle !border-slate-300;
     }
     .redChip {
         @apply Chip redStyle;

@@ -107,7 +107,7 @@ header {
 
 /* TEXT */
 h2 {
-    @apply font-bold !text-[1.5rem] !text-slate-700/95;
+    @apply font-bold !text-[1.45rem] !text-slate-700/95 font-roboto;
 }
 h3 {
     @apply font-semibold text-[1.3rem] !text-slate-600 !font-roboto;

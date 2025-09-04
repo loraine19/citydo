@@ -159,10 +159,10 @@ export default function ChatPage() {
                     {isLoadingConv ?
                         <Skeleton className=' m-auto !h-full ' /> :
                         <Card className='FixCardNoImage !flex !pb-0 !px-0 h-full'>
-                            <CardBody className=' !p-0.5  h-full'>
-                                <div className='flex flex-1 h-full  '>
+                            <CardBody className=' !p-0.5 h-full'>
+                                <div className='flex flex-1 h-full '>
                                     <div className='flex-1 overflow-y-auto overflow-x-hidden'>
-                                        <List className='flex-1 !border-8  rounded-xl pl-1 border-slate-50'>
+                                        <List className='flex-1 !border-8 rounded-xl pl-1 border-slate-50'>
                                             {conversations &&
                                                 conversations.map((message: MessageView, index: number) =>
                                                     <div key={index + 'div'}>
@@ -184,7 +184,7 @@ export default function ChatPage() {
                                                                 {(online.length > 0 &&
                                                                     online.includes(message.isWith.id)) &&
                                                                     <span className='absolute top-0 -right-2 bg-green-500 rounded-full
-                                                                border-4  p-1.5 border-slate-50'>
+                                border-4 p-1.5 border-slate-50'>
                                                                     </span>
                                                                 }
                                                             </List.ItemStart>
@@ -210,14 +210,14 @@ export default function ChatPage() {
                                                                 </Typography>
                                                             </div>
                                                         </List.Item>
-                                                        <hr className='border-b-[1px] border-t-0 !border-slate-400/90'></hr>
+                                                        <hr className='border-b-[1px] border-t-0 !border-slate-400/40'></hr>
                                                     </div>
                                                 )}
                                         </List>
                                     </div>
-                                    {/* CONVERSATION DIV  */}
+                                    {/* CONVERSATION DIV */}
                                     {open &&
-                                        <div className='relative mt-6 !w-[calc(100%-4.5rem)] rounded-xl  '>
+                                        <div className='relative mt-6 !w-[calc(100%-4.4rem)] rounded-xl '>
                                             <Chat
                                                 refetch={refetch}
                                                 setNewConv={setNewConv}

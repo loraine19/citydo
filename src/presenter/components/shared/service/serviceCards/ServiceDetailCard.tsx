@@ -52,7 +52,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                         <Chip
                             size="sm"
                             value={`${categoryS}`}
-                            className="CyanChip">
+                            className="cyanChip">
                         </Chip>
                         <Chip
                             size="sm"
@@ -94,14 +94,14 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                     <div>
                         <h6>Description</h6>
                         <Typography
-                            className=" description ">
+                            className="description ">
                             {description}
                         </Typography>
                     </div>
                     <div className="w-full h-full flex flex-1 justify-between ">
                         <div>
                             <h6>Difficulté</h6>
-                            <div className="flex flex-col xs:flex-row gap-2">
+                            <div className="flex flex-col pt-1 xs:flex-row gap-2">
                                 <Chip
                                     size="sm"
                                     value={SkillLevel[skill as unknown as keyof typeof SkillLevel]}
@@ -127,22 +127,19 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                             </div>
                         </div>
                         <div>
-                            <h6 className="text-left " >
+                            <h6 className="text-right pt-1" >
                                 {statusValues(statusS as ServiceStep).text}
                             </h6>
-                            <div className="flex border min-w-fit max-w-max grayChip rounded-full h-max flex-col lg:items-end lg:place-self-end ">
-                                <div className="flex lg:flex-col flex-row-reverse lg:pr-6 -ml-1 pt-1 lg:items-end self-start w-full ">
-                                    {UserResp ?
-                                        <ProfileDiv profile={UserResp} size="md" /> :
-                                        <ProfileDiv profile={new Profile({
-                                            firstName: "Mr",
-                                            lastName: "?",
-                                            userId: 0,
-                                            userIdSp: 0,
-                                            addressId: 0,
-                                        } as Partial<Profile>)} size="md" />}
-
-                                </div>
+                            <div className="flex  min-w-fit max-w-max h-max flex-col lg:items-end lg:place-self-end ">
+                                {UserResp ?
+                                    <ProfileDiv profile={UserResp} size="md" /> :
+                                    <ProfileDiv profile={new Profile({
+                                        firstName: "Mr",
+                                        lastName: "?",
+                                        userId: 0,
+                                        userIdSp: 0,
+                                        addressId: 0,
+                                    } as Partial<Profile>)} size="md" />}
                             </div>
                         </div>
                     </div>

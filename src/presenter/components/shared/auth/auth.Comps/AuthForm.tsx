@@ -69,8 +69,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                 {/* FORM CARD */}
                 <Card className="md:flex-[50%] overflow-auto min-h-38 !h-full FixCardNoImage">
                     <CardHeader
-                        className="FixCardHeaderNoImage h-max w-full p-6 !flex flex-col"
-                        floated={false}>
+                        className="FixCardHeaderNoImage h-max w-full p-6 !flex flex-col">
                         <h3>
                             {lead}
                         </h3>

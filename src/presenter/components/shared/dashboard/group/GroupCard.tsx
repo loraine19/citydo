@@ -36,7 +36,7 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
                             <Chip
                                 size='sm'
                                 value={'label'}
-                                className="rounded-full h-max CyanChip shadow" />
+                                className="rounded-full h-max cyanChip shadow" />
                         </button>
                         <DateChip
                             start={createdAt}
@@ -70,7 +70,7 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
                         <Chip
                             size='sm'
                             value={group?.categoryS}
-                            className="CyanChip text-ellipsis  " >
+                            className="cyanChip text-ellipsis  " >
                         </Chip>
                     </div>
                 ) : (

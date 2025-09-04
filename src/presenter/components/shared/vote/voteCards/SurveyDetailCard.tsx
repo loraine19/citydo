@@ -34,7 +34,7 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
                     <Chip
                         size='sm'
                         value={categoryS}
-                        className="CyanChip">
+                        className="cyanChip">
                     </Chip>
                     <DateChip
                         start={createdAt}

@@ -32,7 +32,7 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
                     <Chip
                         value={'Cagnotte'}
                         size='sm'
-                        className="CyanChip">
+                        className="cyanChip">
                     </Chip>
                     <DateChip
                         start={pool?.createdAt}

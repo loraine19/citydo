@@ -23,7 +23,7 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
                         <Chip
                             size='sm'
                             value={categoryS}
-                            className="CyanChip lowercase" >
+                            className="cyanChip lowercase" >
                         </Chip>
                         <Chip
                             size='sm'

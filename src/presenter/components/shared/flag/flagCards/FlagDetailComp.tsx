@@ -15,7 +15,7 @@ export default function FlagDetailComp(props: { flag: FlagView, element?: any, l
         <Card className="CardDetailGridNoImage" >
             <CardHeader className="FixCardHeaderNoImage">
                 <div className="ChipDivNoImage">
-                    <Chip className="CyanChip">
+                    <Chip className="cyanChip">
                         <ChipLabel>{FlagTarget[flag.target as unknown as keyof typeof FlagTarget]
                             || FlagTarget[props.label as unknown as keyof typeof FlagTarget]}
                         </ChipLabel>

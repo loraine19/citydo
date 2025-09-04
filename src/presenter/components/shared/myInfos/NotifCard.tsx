@@ -18,7 +18,7 @@ export function NotifCard(props: notifCardProps) {
                     <Chip
                         size='sm'
                         value={typeS}
-                        className="CyanChip text-ellipsis  " >
+                        className="cyanChip text-ellipsis  " >
                     </Chip>
                     <Icon
                         icon="close"

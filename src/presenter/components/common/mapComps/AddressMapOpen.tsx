@@ -19,23 +19,21 @@ function ZoomControls() {
     const handleZoomOut = () => map.zoomOut()
 
     return (
-        <div className='flex flex-col lg:flex-row  gap-[1px] absolute top-[10px] left-[10px] z-[1000]'>
-            <Icon
-                style='!border-opacity-50 shadow-md'
-                bg
-                title='Zoomer'
-                onClick={handleZoomIn}
-                icon="add_circle"
-                size="md"
-            />
-            <Icon
-                style='!border-opacity-50 shadow-md'
-                bg
-                title='Dézoomer'
-                onClick={handleZoomOut}
-                icon="do_not_disturb_on"
-                size="md"
-            />
+        <div className='flex p-1  absolute top-[8px] left-[8px] z-[1000]'>
+            <div className='border grayStyle rounded-full shadow-xl p-2 flex flex-col gap-2'>
+                <Icon
+                    title='Zoomer'
+                    onClick={handleZoomIn}
+                    icon="add_circle"
+                    size="md"
+                />
+                <Icon
+                    title='Dézoomer'
+                    onClick={handleZoomOut}
+                    icon="do_not_disturb_on"
+                    size="md"
+                />
+            </div>
         </div>
     );
 }
@@ -237,7 +235,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
 
     return (
         <>
-            <div className='border border-slate-200 relative flex flex-1 min-h-[7.8rem] lg:min-h-[7rem] !h-[100%] !rounded-[0.8rem] w-full shadow-md mb-2  lg:mb-0'>
+            <div className='border border-slate-300 relative flex flex-1 min-h-[7.8rem] lg:min-h-[7rem] !h-[100%] !rounded-[0.8rem] w-full shadow mb-2  lg:mb-0'>
                 <MapDiv />
 
                 <Dialog>

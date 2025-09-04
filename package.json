@@ -17,6 +17,7 @@
   "dependencies": {
     "@material-tailwind/react": "^3.0.0-beta.24",
     "@project-lary/react-material-symbols": "^0.28.0",
+    "@project-lary/react-material-symbols-200-rounded": "^0.29.0",
     "@project-lary/react-material-symbols-300-rounded": "^0.28.0",
     "@project-lary/react-material-symbols-400-rounded": "^0.28.0",
     "@tanstack/react-query": "^5.85.5",

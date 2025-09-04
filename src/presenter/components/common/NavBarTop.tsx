@@ -1,4 +1,4 @@
-import { Menu, MenuTrigger, MenuItem, MenuContent, Typography } from "@material-tailwind/react";
+import { Menu, MenuTrigger, MenuItem, MenuContent } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "./IconComp";
 import { NotifBadge } from "./NotifBadge";
@@ -17,13 +17,13 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
     ///// MENU ITEMS
     const menuItems = [
-        { icon: "toll", text: `${user?.Profile?.points} points`, onClick: null, color: 'white', style: 'hover:!bg-white' },
-        { icon: navBottom ? 'move_up' : 'move_down', text: "Déplacer la barre", onClick: () => { setNavBottom(!navBottom) }, color: 'white', style: `${!hideNavBottom ? '' : 'hidden'} !-mt-2 !mb-2 border-b !border-slate-400 ` },
+        { icon: "toll", text: `vous avez ${user?.Profile?.points} points`, color: 'white', style: 'hover:!pointer-event-none' },
+        { icon: navBottom ? 'move_up' : 'move_down', text: "Déplacer la barre", onClick: () => { setNavBottom(!navBottom) }, color: 'white', style: `${!hideNavBottom ? '' : 'hidden'} !mb-2 ` },
         // { icon: "forum", text: `Messagerie (${unReadMsgNotif ?? ''})`, onClick: () => navigate('/chat'), color: 'cyan' },
         { icon: 'groups', text: "Groupes", onClick: () => navigate('/groupe'), color: "teal" },
         { icon: "person_edit", text: "Modifier mon profil", onClick: () => navigate('/myprofile'), color: "yellow" },
         { icon: 'diversity_3', text: "Conciliation", onClick: () => navigate('/conciliation'), color: 'orange' },
-        { icon: "exit_to_app", text: "Déconnexion", onClick: () => navigate('/signin'), style: "!text-red-500 !mt-2 !pt-3 border-t !border-slate-400", color: "red" },
+        { icon: "exit_to_app", text: "Déconnexion", onClick: () => navigate('/signin'), style: "!text-red-500 !mt-2 ", color: "red" },
     ]
 
     if (!onBoard && !navIcons) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate" })
@@ -60,7 +60,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                         <Menu placement="bottom-start">
                             <MenuTrigger
                                 className="relative h-full justify-center max-w-max grid z-50  items-center !p-0 !pr-1">
-                                <button onClick={() => setCloseDial(!closeDial)}>
+                                <div onClick={() => setCloseDial(!closeDial)}>
                                     {onBoard ?
                                         <div className='flex w-[48px] flex-1 items-center'>
                                             <img className="!w-[48px] !h-[48px] object-cover object-center"
@@ -74,34 +74,32 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                                 avatarSize={'sm'}
                                                 Profile={user?.Profile} />
                                             <OnlineDot
-                                                className='relative -bottom-[15px] !-left-[10px]'
+                                                className='relative -bottom-[18px] !-left-[5px]'
                                                 id={user?.id} />
                                         </div>}
-                                </button>
+                                </div>
                             </MenuTrigger>
                             <MenuContent
-                                className='flex z-40 flex-1 flex-col !rounded-xl !shadow-xl -ml-1'>
+                                className='flex py-2 gap-0.5 px-2 z-40 flex-1 flex-col !rounded-2xl !shadow-xl -ml-1'>
                                 {menuItems.map((item, index) => (
                                     <MenuItem
                                         key={index}
-                                        className={`flex !flex-1 !min-w-60 pr-[10vw] items-center gap-2.5 pl-2 hover:bg-slate-100/40  ${item.style || ''}`}
+                                        className={`flex !flex-1 !min-w-60 pr-[10vw] items-center gap-2 pl-1.5 ${item.onClick ? `hover:bg-slate-400/40` : 'hover:bg-slate-200'} bg-slate-200 rounded-full  ${item.style || ''}`}
                                         onClick={() => {
                                             item.onClick && item.onClick()
                                             setCloseDial(false);
                                         }}
                                     >
                                         <Icon
+                                            disabled={!item.onClick}
                                             bg
-                                            size='lg'
-                                            color={item.color ?? 'slate'}
+                                            size='xl'
+                                            color={'slate'}
                                             icon={item.icon}
                                         />
-                                        <Typography
-                                            variant="small"
-                                            className="font-medium"
-                                        >
+                                        <i>
                                             {item.text}
-                                        </Typography>
+                                        </i>
                                     </MenuItem>
                                 ))}
                             </MenuContent>

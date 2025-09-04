@@ -171,7 +171,7 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
                         data-cy={icon}
                         title={title}
                         className={`group ${classIcon(color)} relative `}>
-                        <span className={`${(!fill && !disabled) ? 'group-hover:opacity-0 group-focus:opacity-0' : ''} opacity-100 `}>
+                        <span className={`${(!fill && !disabled) ? 'group-hover:opacity-0 group-focus:opacity-0' : ''} opacity-100  `}>
                             {searchIcon(icon, fill)}
                         </span>
                         {(!disabled || !fill) &&

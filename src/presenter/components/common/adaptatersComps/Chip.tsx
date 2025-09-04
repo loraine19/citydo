@@ -24,13 +24,13 @@ const Chip: React.FC<ChipProps> = ({
         <div className="Chip !p-0 !bg-slate-100">
             <ChipMt
                 size={size}
-                className={`flex  items-center justify-center !max-h-max !rounded-full ${className}`}
+                className={`flex !shadow-none items-center justify-center !max-h-max h-full !rounded-full ${className}`}
                 variant={variant} >
-                <ChipMt.Label className="pt-[0.2em] !font-semibold px-0">
+                <ChipMt.Label className="pt-[0.2em] drop-shadow-sm !font-semibold text-[0.78rem] !stroke-black !stroke-1 font-roboto px-0">
                     {value}
                 </ChipMt.Label>
                 {icon &&
-                    <ChipMt.Icon className=" w-max mr-2 -ml-1 ">
+                    <ChipMt.Icon className="stroke w-max mr-2 -ml-1 ">
                         {icon}
                     </ChipMt.Icon>}
             </ChipMt>

@@ -16,7 +16,7 @@ export const PrivateRoute = () => {
             fetchUser().catch((error) => {
                 console.error('Error fetching user:', error);
             });
-        if (isLoggedIn || user.id) {
+        if (isLoggedIn || user?.id) {
             if (window.location.pathname === '/signin' || window.location.pathname === '/signup') {
                 navigate('/');
             }

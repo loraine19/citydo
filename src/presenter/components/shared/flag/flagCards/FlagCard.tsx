@@ -40,7 +40,7 @@ export function FlagCard(props: { flag: FlagView, update: () => void }) {
                         <Chip
                             size='sm'
                             value={targetS}
-                            className="CyanChip">
+                            className="cyanChip">
                         </Chip>
                         <Chip
                             size='sm'
