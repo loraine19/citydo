@@ -87,7 +87,7 @@ export function ProgressBarBlur({ value, label, needed, status, size = 'md', isP
         <div className={` w-full !rounded-full backdropBlur bg-white/10 flex items-center gap-2 p-2 h-max `}>
             {(value === 0 && status === EventStatus.PENDING || status === EventStatus.REJECTED || status === EventStatus.VALIDATED) &&
                 (
-                    <div className={`"flex flex-1 ${color} !line-clamp-1 px-2  rounded-full h-max items-center justify-center"`}>
+                    <div className={` !flex !flex-1 ${color} !line-clamp-1 px-2 h-6 w-full rounded-full  items-center justify-center `}>
                         <Typography
                             className="mb-0 text-white text-center text-sm drop-shadow font-normal italic">
                             {labelTexte}
@@ -98,16 +98,16 @@ export function ProgressBarBlur({ value, label, needed, status, size = 'md', isP
             {status === EventStatus.PENDING && value !== 0 &&
                 (
                     <Progress
-                        className="h-8 flex items-start bg-slate-500/80 !shadow"
+                        className="h-6 flex items-start bg-slate-500/80 !shadow"
                         value={(status === EventStatus.PENDING) ? value : 100}
                         size={size}>
                         <ProgressBarMT
                             value={(status === EventStatus.PENDING) ? value : 100}
                             className={`!min-w-[2.7rem] text-center !line-clamp-1 whitespace-nowrap truncate flex items-center ${size === "lg" ? ' px-3 py-0.5' : 'px-2 '} !bg-orange-500 `}
                         >
-                            <div className="absolute h-8 flex items-center">  <Typography className="text-sm gap-[10%] flex text-white drop-shadow">
-                                <span className="font-semibold pr-2">{value} %</span>
-                                <span className="font-normal italic">{` ${needed} ${label} manquant`}</span>
+                            <div className="absolute h-6 flex items-center">  <Typography className="text-sm gap-[10%] flex text-white ">
+                                <span className="font-semibold opacity-70 pr-2">{value} %</span>
+                                <span className="font-normal drop-shadow italic">{` ${needed} ${label} manquant`}</span>
                             </Typography></div>
                         </ProgressBarMT>
                     </Progress>

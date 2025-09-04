@@ -29,7 +29,7 @@
 
 /**** COMBINED STYLES ****/
 .style {
-    @apply bg-opacity-80  border-current !border-opacity-50 text-opacity-95;
+    @apply bg-opacity-80  border-current;
 }
 
 .inv {
@@ -69,13 +69,13 @@
 }
 
 .grayStyle {
-    @apply !text-gray-600 bg-gray-200 border-gray-400 style;
+    @apply !text-slate-500/90 bg-slate-200 border-slate-400 style;
 }
 .grayStyleInv {
     @apply !bg-gray-600 inv;
 }
 .slateStyle {
-    @apply !text-slate-500 bg-slate-200 !border-slate-500 style;
+    @apply !text-slate-500/90 bg-slate-200 !border-slate-400 style;
 }
 .slateStyleInv {
     @apply !bg-slate-600 inv;
@@ -111,7 +111,7 @@
 
 /**** CHIP LIGHT COLOR ****/
 .Chip {
-    @apply !min-w-[calc(max-0.1rem)] !min-h-8 !px-3 !pb-1 !rounded-full !shadow-sm !max-h-fit
+    @apply !min-w-[calc(max-0.1rem)] !min-h-7 !px-3 !pb-1 !rounded-full !shadow-sm !max-h-fit
    !max-w-max;
     background-image: linear-gradient(background-color, background-color);
 }
@@ -135,7 +135,8 @@
     .greenChip {
         @apply Chip greenStyle;
     }
-    .grayChip {
+    .grayChip,
+    .slateChip {
         @apply Chip slateStyle;
     }
     .redChip {

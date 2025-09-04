@@ -36,7 +36,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
     type NotifBadgeProps = { count: number, notifs: NotifView[], color: string, icon: string, link: string }
 
     const badgeMapGenerator = () => [
-        { count: countMsg, notifs: notifsMsg, color: 'cyan', icon: 'chat', link: '/chat' },
+        { count: countMsg, notifs: notifsMsg, color: 'cyan', icon: 'forum', link: '/chat' },
         { count: countOther, notifs: notifsOther, color: 'orange', icon: 'notifications', link: '/notification' }
     ];
     const [badgeMap, setBadgeMap] = useState<NotifBadgeProps[]>(badgeMapGenerator());
@@ -47,7 +47,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
 
 
     return (
-        <div className={` gap-2 flex h-full -mr-2`}>
+        <div className={` gap-2 flex h-full lg:-mr-2`}>
             {badgeMap.map((list: NotifBadgeProps, index: number) =>
                 <div key={index}
                     className={`relative  w-full flex items-center justify-center ${onBoard ? 'lg:hidden' : ''}`}>
@@ -66,14 +66,15 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                                 (list.count ? list.count.toString() : '0')}
                             </div>
                         </Dialog.Trigger>
-                        <Dialog.Content className="h-[calc(100dvh-3rem)] top-[3rem] translate-y-[0%] !w-screen mx-auto flex flex-1 backdropBlur bg-transparent border-none px-[10%]">
+                        <Dialog.Content className="h-[calc(100dvh-3rem)] top-[3rem] translate-y-[0%] !w-screen mx-auto flex-1 backdropBlur bg-transparent border-none px-[10%] !flex">
 
-                            <Card className="w-respLarge h-full card p-6 ">
-                                <div id='notifList'
+                            <Card className="wRespXL  bg-slate-50 overflow-hidden w-full h-full !flex card p-8 ">
+                                <div className="flex flex-1 py-4 w-full h-full"
+                                    id='notifList'
                                     key={index + '1'}
                                     ref={divRef}>
                                     <div onScroll={handleScroll}
-                                        className="relative overflow-auto !border-none hover:!border-none flex flex-col gap-1">
+                                        className="relative overflow-auto !border-none hover:!border-none flex flex-1 divide-y !divide-slate-300 p-4 w-full h-full flex-col">
                                         <NotifDiv
                                             isLoading={isLoading}
                                             refetch={refetch}
@@ -85,25 +86,28 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                                                 </i>
                                             </div>)
                                             : (list.notifs.map((notif: NotifView, index2: number) => notif?.read === false &&
-                                                <MenuItem className="flex flex-col w-full  flex-1 bg-slate-800 "
+                                                <MenuItem className="flex flex-col  flex-1  "
                                                     key={index2 + list.color}>
-                                                    <div className="flex w-full justify-between">
+                                                    <div className="flex w-full py-1 gap-4">
                                                         <Chip
                                                             value={notif.typeS}
-                                                            className={`${list.color}Chip pb-1 `}
+                                                            className={`${list.color}Chip`}
                                                             size='sm'>
                                                         </Chip>
-                                                        <small className="">
-                                                            {notif.update}
-                                                        </small>
+                                                        <Chip
+                                                            value={notif.update}
+                                                            className={`slateChip`}
+                                                            size='sm'>
+                                                        </Chip>
                                                     </div>
-                                                    <div className="flex items-center w-full justify-between gap-1">
-                                                        <i
-                                                            className="max-w-[calc(100%-2rem)] truncate">
+                                                    <div className="flex items-center w-full justify-between gap-1 pt-1">
+                                                        <i className="max-w-[calc(100%-2rem)] truncate">
                                                             {notif.description}
                                                         </i>
                                                         {notif.link &&
                                                             <Icon
+                                                                style={'-mt-6'}
+                                                                bg
                                                                 icon="chevron_right"
                                                                 fill
                                                                 onClick={
@@ -113,8 +117,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                                                                         setUnReadNotif(list.notifs.length - 1);
                                                                         notif.link && navigate(notif.link)
                                                                     }}
-                                                                size="xl"
-                                                                style="bg-white"
+                                                                size="lg"
                                                             />}
                                                     </div>
                                                 </MenuItem>)
