@@ -107,7 +107,7 @@
     }
 
     .FormCardDiv {
-        @apply h-full wRespXL grid pt-7  px-0.5  hideCTA
+        @apply h-full wRespXL grid pt-7  px-0.5  hideCTAForm
        /* sm:grid-rows-[minmax(min-content,calc(100dvh_-_13rem))]
         lg:grid-rows-[minmax(min-content,calc(100dvh_-_2rem))]; */;
     }
@@ -121,7 +121,7 @@
         lg:grid-rows-[minmax(150px,30vh),minmax(max-content,1fr),auto];
     }
     .FormDetailGrid {
-        @apply w-respLarge card overflow-hidden pb-4 lg:pb-10
+        @apply w-respLarge card overflow-hidden pb-8 lg:pb-10
         !min-h-fit  !grid h-[calc(100%-1rem)] max-h-[calc(100vh-8.5rem)] lg:max-h-[calc(100vh-11.5rem)]
         grid-rows-[minmax(80px,22vh),minmax(max-content,1fr)]
         lg:grid-rows-[minmax(150px,32vh),minmax(max-content,1fr)];
@@ -146,10 +146,14 @@
     /* 1CTA 11REM */
     .hideCTA {
         @apply !max-h-[100dvh]  h-full
-        grid-rows-[minmax(100px,calc(100dvh-12rem))];
+        grid-rows-[minmax(min-content,calc(100dvh-12rem))];
     }
     .hideCTA2 {
         @apply !max-h-[100dvh]  h-full
-        grid-rows-[minmax(100px,calc(100dvh-14rem))];
+        grid-rows-[minmax(min-content,calc(100dvh-14rem))];
+    }
+    .hideCTAForm {
+        @apply !max-h-[100dvh]  h-full
+        grid-rows-[minmax(min-content,calc(100dvh-16rem))];
     }
 }

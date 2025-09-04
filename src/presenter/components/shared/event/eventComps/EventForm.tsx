@@ -206,7 +206,6 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
             </main>
 
             <CTAMines
-
                 actions={[{
                     type: 'submit',
                     iconImage: id ? 'edit' : 'add',

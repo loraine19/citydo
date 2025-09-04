@@ -79,10 +79,10 @@ export const AlertNotif = () => {
     return (
         <div className={`h-max w-full z-[1000] absolute left-0 top-0 flex justify-center `}>
             <div className="relative z-50 w-[90%] max-w-[600px] mx-auto justify-center items-center">
-                <Card className={`w-full rounded-2xl h-max  shadow-lg transition-all duration-1000 ease-in-out transform bg-opacity-95 py-9 px-6 mt-2
+                <Card className={`w-full rounded-2xl h-max  shadow-lg transition-all duration-1000 ease-in-out transform bg-opacity-95 py-9 px-6 mt-2 animRev
                  ${notif ?
-                        'scale-100 opacity-100 top-4 slide absolutme' :
-                        'scale-80 opacity-0 top-0'} `}>
+                        'scale-100 opacity-100 top-0 slide ' :
+                        'scale-80 opacity-90 -top-48 absolute '} `}>
                     <Typography
                         className="underline underline-offset-8  decoration-gray-300"
                         as="a"
