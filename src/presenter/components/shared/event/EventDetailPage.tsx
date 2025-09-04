@@ -102,7 +102,7 @@ export default function EventDetailPage() {
                     onScroll={() => {
                         handleHideCallback()
                     }}>
-                    <div className="DetailCardDiv ">
+                    <div className={`DetailCardDiv ${!hideNavBottom ? "hideCTA" : ""}`}>
                         {!isLoading && event ?
                             <EventDetailCard
                                 EventLoad={event}
@@ -120,7 +120,7 @@ export default function EventDetailPage() {
                     </article>
 
                 </section>
-            </main>
+            </main >
             <footer className={`footer ${hideNavBottom ? 'hidden' : ''}`} >
                 {(!isLoading && event && !error) && <>
                     {event?.mine && !isLoading ?

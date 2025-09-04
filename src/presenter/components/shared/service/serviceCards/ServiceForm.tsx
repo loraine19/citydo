@@ -1,4 +1,4 @@
-import { Card, CardHeader, Typography, CardBody, Input, Textarea, CardFooter } from "@material-tailwind/react";
+import { Card, CardHeader, Typography, CardBody, Input, Textarea } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import SubHeader from "../../../common/SubHeader";
 import { Profile } from "../../../../../domain/entities/Profile";
@@ -41,7 +41,7 @@ export function ServiceForm(props: { formik: any }) {
             onSubmit={formik.handleSubmit}
             className="flex flex-col h-full overflow-hidden">
             <main>
-                <div className="sectionHeader">
+                <div className="sectionHeader pb-1">
                     <SubHeader
                         type={formik.values.id ? `Modifier votre service ` : "Créer votre service "}
                         place={formik.values.title}
@@ -76,7 +76,7 @@ export function ServiceForm(props: { formik: any }) {
                             disabled={formik.values.statusValue > 0} />
                     </div>
                 </div>
-                <section className="pb-6">
+                <section className="pb-12">
                     <div className={`FormCardDiv `}>
                         <Card className={`${haveImage ? "FormDetailGrid " : "FixCardNoImage "} `}>
                             <CardHeader className={haveImage ?
@@ -110,21 +110,23 @@ export function ServiceForm(props: { formik: any }) {
                                     />
                                     <InputError mt error={formik.errors.title} />
                                     <div className='flex flex-col h-max gap-5 pt-2 min-h-max '>
-                                        <div className=' relative flex flex-col flex-1 gap-3 '>
+                                        <div className=' relative flex flex-col flex-1 '>
                                             <Textarea
-                                                isError={!!formik.errors.description}
-                                                className={`inputStandart`}
-                                                placeholder='Description'
                                                 rows={3}
+                                                aria-rowcount={3}
+                                                isError={!!formik.errors.description}
+                                                className={`inputStandart max-h-fit min-h-full`}
+                                                placeholder='Description'
                                                 resize={true}
                                                 name="description"
                                                 onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                                                     formik.handleChange(e);
                                                     const textarea = e.target as HTMLTextAreaElement;
-                                                    textarea.style.height = '2.5rem';
+                                                    textarea.style.height = 'fit-content';
+
                                                     textarea.style.height = textarea.scrollHeight + 'px';
                                                 }}
-                                                defaultValue={formik.values.description}
+                                                defaultValue={formik.values?.description}
                                             />
                                             <InputError mt error={formik.errors.description} />
                                         </div>
@@ -174,7 +176,6 @@ export function ServiceForm(props: { formik: any }) {
                                     </div>
                                 </div>
                             </CardBody>
-                            <CardFooter className="DetailCardFooter" />
                         </Card>
                     </div>
                 </section>

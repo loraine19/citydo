@@ -145,17 +145,17 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                     </div>
                 </div>
             </CardBody>
-            <CardFooter className="DetailCardFooter">
+            <CardFooter className={`DetailCardFooter `}>
                 {User?.id !== userId &&
                     <div>
                         <h6>Proposition de</h6>
                         <ProfileDiv profile={User} />
                     </div>
                 }
-                <div className="flex flex-col w-full gap-2">
+                <div className="flex flex-row-reverse sm:flex-col w-full items-end  gap-2 pb-4">
                     <h6 className="text-end ">Points</h6>
                     <h4
-                        className={`text-end ${points?.length > 0 && "w-full"}`} >
+                        className={`text-end ${points?.length > 0 && "sm:w-full"}`} >
                         {points.length > 0 && points[1] &&
                             <span className="!text-[1.2rem] font-light">de </span>}
                         {points[0]}

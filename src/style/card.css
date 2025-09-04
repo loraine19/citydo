@@ -100,31 +100,31 @@
     /***************/
     /* DETAILD CARD  */
     .DetailCardDiv {
-        @apply h-full wRespXL grid pt-8 min-h-[min-content] px-0.5
-        grid-rows-[minmax(calc(100dvh_-_12rem),calc(100dvh_-_12rem))]
-       sm:grid-rows-[minmax(calc(100dvh_-_12rem),calc(100dvh_-_12rem))]
+        @apply h-full wRespXL grid pt-8  px-0.5 
+    /*    grid-rows-[minmax(calc(100dvh_-_12rem),calc(100dvh_-_10rem))]*/
+       sm:grid-rows-[minmax(calc(100dvh_-_6rem),calc(100dvh_-_13rem))]
         lg:grid-rows-[minmax(min-content,calc(100vh_-_12rem))];
     }
 
     .FormCardDiv {
-        @apply h-full wRespXL grid pt-8 min-h-fit px-0.5 pb-2
-       sm:grid-rows-[minmax(calc(100dvh_-_14rem),calc(100dvh_-_14rem))]
-        lg:grid-rows-[minmax(min-content,calc(100vh_-_12rem))];
+        @apply h-full wRespXL grid pt-7  px-0.5  hideCTA
+       /* sm:grid-rows-[minmax(min-content,calc(100dvh_-_13rem))]
+        lg:grid-rows-[minmax(min-content,calc(100dvh_-_2rem))]; */;
     }
 
     .CardDetailGrid {
         @apply w-respLarge card 
-        !min-h-fit !grid h-[calc(100%-0rem)] max-h-[calc(100dvh-8.5rem)] lg:max-h-[calc(100dvh-11.5rem)] 
+        !min-h-fit !grid h-[calc(100%-0rem)] 
         grid-rows-[minmax(80px,30vh),minmax(max-content,1fr),auto]
         sm:grid-rows-[minmax(100px,38vh),minmax(max-content,1fr),auto]
         md:grid-rows-[minmax(100px,40vh),minmax(max-content,1fr),auto]
         lg:grid-rows-[minmax(150px,30vh),minmax(max-content,1fr),auto];
     }
     .FormDetailGrid {
-        @apply w-respLarge card overflow-hidden pb-4
+        @apply w-respLarge card overflow-hidden pb-4 lg:pb-10
         !min-h-fit  !grid h-[calc(100%-1rem)] max-h-[calc(100vh-8.5rem)] lg:max-h-[calc(100vh-11.5rem)]
-        grid-rows-[minmax(80px,20vh),minmax(min-content,1fr)]
-        lg:grid-rows-[minmax(150px,38vh),minmax(max-content,1fr)];
+        grid-rows-[minmax(80px,22vh),minmax(max-content,1fr)]
+        lg:grid-rows-[minmax(150px,32vh),minmax(max-content,1fr)];
     }
 
     .CardDetailGridNoImage {
@@ -141,6 +141,15 @@
         @apply flex place-self-start relative flex-col px-5 pt-0  pb-8  !max-h-full !h-full min-h-fit;
     }
     .DetailCardFooter {
-        @apply flex justify-between place-self-end items-center h-max w-full pt-2 pb-4 mt-3 px-4 border-t   !min-h-fit;
+        @apply flex justify-between place-self-end items-center h-max w-full pt-3 pb-6 mt-1 px-4 border-t   !min-h-fit;
+    }
+    /* 1CTA 11REM */
+    .hideCTA {
+        @apply !max-h-[100dvh]  h-full
+        grid-rows-[minmax(100px,calc(100dvh-11rem))];
+    }
+    .hideCTA2 {
+        @apply !max-h-[100dvh]  h-full
+        grid-rows-[minmax(100px,calc(100dvh-13.5rem))];
     }
 }

@@ -55,7 +55,7 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
                             {pool?.description}
                         </Typography>
                     </div>
-                    <div className="">
+                    <div className="grid ">
                         <h6>Beneficiaire</h6>
                         <ProfileDiv
                             profile={pool?.UserBenef || {} as Partial<User>}

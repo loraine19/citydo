@@ -40,18 +40,17 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
     const { color } = useUxStore((state) => state);
     return (
         <footer className={`CTA ${color}BG backdropBlur`}>
-            <div className="flex gap-x-5 gap-y-3 flex-row flex-wrap items-center justify-center w-full wRespXL px-1 pt-1 ">
+            <div className="flex gap-x-3 lg:gap-4 gap-y-3 flex-row flex-wrap items-center justify-center w-full wRespL  pt-0.5 ">
                 {[...actions]
                     .sort((a, b) => (a.NoPrimary === b.NoPrimary ? 0 : a.NoPrimary ? -1 : 1))
                     .map((action, i) =>
                         action?.icon && action?.icon !== '' && (
-                            <div
-                                key={i}
-                                className={`!flex flex-1 w-full items-center justify-center`}
+                            <div key={i}
+                                className={` ${(i === actions.length - 1 && (actions.length > 2 || actions.length === 1)) ? 'flex-1 w-[500px] min-w-full' : (actions.length === 2) ? 'flex-1' : 'w-max'} !flex`}
                             >
                                 <Button
                                     type={action?.type ?? "button"}
-                                    className={`${action?.color ?? defColor}${action?.NoPrimary ? 'Style' : 'StyleInv'} !min-w-full lgBtn`}
+                                    className={`${action?.color ?? defColor}${(action?.NoPrimary || i !== actions.length - 1) ? 'Style' : 'StyleInv'} !min-w-max w-full lgBtn flex-1 flex `}
                                     size="lg"
                                     onClick={() => {
                                         if (action?.direct) {
@@ -66,8 +65,8 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                                 >
                                     {action?.iconImage && (
                                         <Icon
-                                            style={action.disabled ? '' : 'border-0'}
-                                            reverse={action?.NoPrimary}
+                                            style={(action.disabled || action?.NoPrimary || i !== actions.length - 1) ? '' : 'border-0'}
+                                            // reverse={action?.NoPrimary}
                                             color={action.disabled ? 'red' : action?.color ?? defColor}
                                             icon={action?.disabled ? 'block'
                                                 : (i === 0 && disabled1) ? 'block'

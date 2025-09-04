@@ -89,16 +89,16 @@ export default function ServiceDetailPage() {
                 break;
             case (service.mine && service.isNew):
                 actions = [...myAction];
-                if (isLateValue && !service.isResp) {
-                    actions.push({
-                        NoPrimary: true,
-                        icon: 'Relancer',
-                        title: 'Relancer le service - ',
-                        body: 'Relancer le service',
-                        //// TODO: add function to relancer
-                        function: () => { console.log('Relancer le service'); },
-                    });
-                }
+                // if (isLateValue && !service.isResp) {
+                //     actions.push({
+                //         NoPrimary: true,
+                //         icon: 'Relancer',
+                //         title: 'Relancer le service - ',
+                //         body: 'Relancer le service',
+                //         //// TODO: add function to relancer
+                //         function: () => { console.log('Relancer le service'); },
+                //     });
+                // }
                 break;
             case (service.mine && service.isResp):
                 actions = [
@@ -120,7 +120,7 @@ export default function ServiceDetailPage() {
                             }
                         },
                     }, {
-                        color: 'green',
+
                         iconImage: 'check',
                         icon: 'Valider ',
                         title: `Accepter la reponse de ${service.UserResp?.Profile.firstName}`,
@@ -259,7 +259,7 @@ export default function ServiceDetailPage() {
                     ref={divRef}
                     onScroll={() =>
                         handleHideCallback()}>
-                    <div className="DetailCardDiv">
+                    <div className={`DetailCardDiv ${!hideNavBottom ? actions.length > 1 ? "hideCTA2" : "hideCTA" : ""}`}>
                         {isLoading || error || !service ?
                             <Skeleton />
                             :

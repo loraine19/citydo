@@ -7,8 +7,9 @@ import { GenereMyActions, } from '../../../views/viewsEntities/utilsService';
 import DI from '../../../../di/ioc';
 import { Skeleton, SkeletonGrid } from '../../common/Skeleton';
 import { useAlertStore } from '../../../../application/stores/alert.store';
-import { useRef, useCallback, useState } from 'react';
+import { useRef, useCallback } from 'react';
 import { HandleHideParams } from '../../../../application/useCases/utils.useCase';
+import { useUxStore } from '../../../../application/stores/ux.store';
 
 export default function PostDetailPage() {
     //// PARAMS
@@ -29,16 +30,14 @@ export default function PostDetailPage() {
     //// HANDLE SCROLL
     const utils = DI.resolve('utils')
     const divRef = useRef(null);
-    const onScroll = useCallback(() => {
-    }, [divRef]);
 
-    //// HANDLE HIDE  
+    //// HANDLE HIDE 
+    const { hideNavBottom, setHideNavBottom } = useUxStore()
     const handleHide = (params: HandleHideParams) => utils.handleHide(params)
     const handleHideCallback = useCallback(() => {
-        const params: HandleHideParams = { divRef, setHide }
+        const params: HandleHideParams = { divRef, setHide: setHideNavBottom }
         handleHide(params)
     }, [divRef]);
-    const [hide, setHide] = useState<boolean>(false);
 
     //// CONTACT ACTIONS
     const ContactActions: Action[] = !post ? [] : [
@@ -70,7 +69,8 @@ export default function PostDetailPage() {
             <main>
                 <div className="sectionHeader ">
                     <SubHeader
-                        hideImage={!hide}
+
+                        hideImage={!hideNavBottom || !post?.image}
                         image={post?.image ?? ""}
                         type={`annonce ${post?.categoryS ?? ""}`}
                         closeBtn />
@@ -78,10 +78,10 @@ export default function PostDetailPage() {
                 <section
                     ref={divRef}
                     onScroll={() => {
-                        onScroll()
                         handleHideCallback()
                     }}>
-                    <div className="DetailCardDiv">
+
+                    <div className={`DetailCardDiv ${!hideNavBottom ? post?.isMine ? "hideCTA" : "hideCTA2" : ""}`}>
                         {!isLoading && post ?
                             <PostDetailCard
                                 post={post}
@@ -99,7 +99,7 @@ export default function PostDetailPage() {
                     </article>
                 </section>
             </main>
-            <footer className={`footer ${hide ? 'hidden' : ''}`} >
+            <footer className={`footer ${hideNavBottom ? 'hidden' : ''}`} >
                 {(!isLoading && !error && post) &&
                     <>
                         {post?.isMine ?

@@ -138,7 +138,9 @@ i {
 .wRespXL {
     @apply w-full my-0 mx-auto max-w-[1000px];
 }
-
+.wRespL {
+    @apply w-full my-0 mx-auto lg:max-w-[58rem] md:max-w-[calc(100vw-1rem)];
+}
 .w-respTopNav {
     @apply w-full my-0 mx-auto max-w-[calc(1000px+2rem)] lg:pl-4;
 }
@@ -268,7 +270,7 @@ button:hover {
 }
 
 .lgBtn {
-    @apply !flex  min-w-max items-center rounded-full !w-full !shadow-md p-1.5 !pr-5 lg:p-1.5 gap-4 !break-words font-roboto justify-center w-respLarge lg:text-[1rem] text-[0.8rem] !min-h-12;
+    @apply !flex items-center rounded-full !w-full !shadow-md p-1 !pr-5 lg:p-1.5 gap-5  !break-words font-roboto justify-center wRespL lg:text-[1rem] text-[0.78rem] min-h-10 md:!min-h-12;
 }
 
 /**** COMP ****/
