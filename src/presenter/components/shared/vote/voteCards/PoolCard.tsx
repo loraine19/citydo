@@ -104,6 +104,7 @@ export function PoolCard({ pool, change, mines, update, vote }: PoolCardProps) {
                                 className="grayChip pt-1  "
                                 icon={
                                     <Icon
+                                        disabled={pool?.status !== PoolSurveyStatus.PENDING}
                                         icon="smart_card_reader"
                                         fill={pool?.IVoted}
                                         color={color()}

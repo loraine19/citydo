@@ -137,6 +137,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                     {({ isActive }) => (
                                         <>
                                             <Icon
+                                                disabled={isActive}
                                                 style={
                                                     `${(isActive && !navBottom) ? `` : ''} min-h-[48px]`
                                                 }

@@ -116,6 +116,7 @@ export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardPr
                                 className="pt-1 grayChip"
                                 icon={
                                     <Icon
+                                        disabled={survey?.status !== PoolSurveyStatus.PENDING}
                                         icon="smart_card_reader"
                                         fill={survey?.IVoted}
                                         color={color()}

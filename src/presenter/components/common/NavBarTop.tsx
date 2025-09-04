@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navIcons?: boolean }) {
     const navigate = useNavigate();
     const { user } = useUserStore((state) => state);
-    const { hideNavBottom, navBottom, setNavBottom, color, getColor } = useUxStore((state) => state);
+    const { hideNavBottom, setHideNavBottom, navBottom, setNavBottom, color, getColor } = useUxStore((state) => state);
     const onBoard = window.location.pathname === '/'
 
     ///// MENU ITEMS
@@ -31,7 +31,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
     const [closeDial, setCloseDial] = useState<boolean>(false)
 
-    useEffect(() => { getColor(window.location.pathname) }, [window.location.pathname])
+    useEffect(() => { getColor(window.location.pathname), setHideNavBottom(false) }, [window.location.pathname])
 
     return (
         <>
@@ -74,7 +74,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                                 avatarSize={'sm'}
                                                 Profile={user?.Profile} />
                                             <OnlineDot
-                                                className='relative -bottom-[18px] !-left-[5px]'
+                                                className='relative -bottom-[18px] !-left-[15px]'
                                                 id={user?.id} />
                                         </div>}
                                 </div>

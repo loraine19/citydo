@@ -11,6 +11,9 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
     const { open, setOpen } = useAlertStore(state => state)
     const { color } = useUxStore(state => state)
 
+    const { reset } = useAlertStore(state => state)
+
+
     if (isOpen || open) return (
         <div key={title ?? 'alert-modal'}
             className={`!absolute top-0 left-0 h-screen px-[3rem] py-[10vh] lg:py-[20vh] w-screen z-[1500] !flex flex-1 justify-center items-center backdropBlur   `} >
@@ -21,7 +24,11 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                         <h4>{title ?? 'Alerte'}</h4>
                         {!disableConfirm &&
                             <Icon
-                                onClick={() => { close && close(); setOpen(false) }}
+                                onClick={() => {
+                                    close && close();
+                                    setOpen(false);
+                                    reset();
+                                }}
                                 icon="cancel"
                                 size="xl"
                                 color="red" />}
@@ -45,7 +52,8 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                                 size='lg'
                                 onClick={() => {
                                     button2.onClick()
-                                    close && close() || setOpen(false)
+                                    close && close() || setOpen(false);
+                                    reset();
                                 }}>
                                 {button2.text ?? '-'}
                             </Button>}
@@ -54,10 +62,11 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                             color="primary"
                             disabled={notif ? true : false}
                             size='lg'
-                            className={`rounded-full text-white lgBtn max-w-max ${color}StyleInv`}
+                            className={`rounded-full !px-6 text-white lgBtn max-w-max ${color}StyleInv`}
                             onClick={() => {
                                 values.handleConfirm && values.handleConfirm();
-                                close && close() || setOpen(false)
+                                close && close() || setOpen(false);
+                                reset();
                             }
                             }>
                             {confirmString || 'OK'}

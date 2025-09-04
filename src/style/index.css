@@ -268,7 +268,7 @@ button:hover {
 }
 
 .lgBtn {
-    @apply !flex min-h-max min-w-max items-center justify-center rounded-full !w-full !shadow-md px-4 py-2.5 gap-4 !break-words border-hidden wRespXL;
+    @apply !flex  min-w-max items-center rounded-full !w-full !shadow-md p-1.5 !pr-5 lg:p-1.5 gap-4 !break-words font-roboto justify-center w-respLarge lg:text-[1rem] text-[0.8rem] !min-h-12;
 }
 
 /**** COMP ****/
@@ -348,6 +348,13 @@ button span {
 }
 
 /**** ICON ROUND ****/
+
+.iconXs {
+    @apply flex items-center justify-center rounded-full;
+    font-size: 12px;
+    width: 22px;
+    height: 22px;
+}
 .iconSm {
     @apply flex items-center justify-center rounded-full;
     font-size: 14px;

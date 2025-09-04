@@ -102,11 +102,13 @@ type IconProps = {
     link?: string,
     disabled?: boolean
     clear?: boolean,
+    reverse?: boolean
 }
 
-export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size = "2xl", style, link, fill, clear, ...props }) => {
+export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size = "2xl", style, link, fill, clear, reverse, ...props }) => {
 
     const sizeMap: any = {
+        'xs': { text: '11', class: 'iconXs' },
         'sm': { text: '14', class: 'iconSm' },
         'md': { text: '18', class: 'iconMd' },
         'lg': { text: '22', class: 'iconLg' },
@@ -120,7 +122,7 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
     const classRounded = sizeMap[size as keyof typeof sizeMap]?.class ?? 'icon2xl';
     const textSize = ` text-[${num}px]  `;
     const color = props.color ?? 'gray'
-    const textColor = (color: string) => props.color ? `${color}Style` : `grayStyle`;
+    const textColor = (color: string) => props.color ? reverse ? `${color}StyleInv` : `${color}Style` : `grayStyle`;
     const bg = () => (props.bg && !clear) ?
         `border` : '!bg-transparent'
 

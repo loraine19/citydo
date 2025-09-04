@@ -51,7 +51,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
 
 
     return (
-        <div className={` lg:gap-2 flex h-full `}>
+        <div className={`${!navBottom ? 'lg:gap-2' : 'lg:pr-2 lg:gap-1'} flex h-full `}>
             {badgeMap.map((list: NotifBadgeProps, index: number) =>
                 <div key={index}
                     className={`relative  w-full flex items-center justify-center ${onBoard ? 'lg:hidden' : ''}`}>
@@ -67,14 +67,22 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
 
                     <Dialog >
                         <Dialog.Trigger
-                            className={` ${list.count > 0 ? '' : 'invisible'} h-max w-full -ml-3 -mt-7 bg-white rounded-full relative p-[1.5px] shadow flex`}>
-                            <div className={`${navBottom ? `${list.color}Style` : `${list.color}Style`} border font-medium justify-center w-[1.4rem] h-[1.4rem] text-[0.75rem] !min-w-[1.4rem] pt-[0.3rem] pb-1 rounded-full px-1 shadow z-[9999]`}> {list.count >= 99 ? '⁺99 ' :
-                                (list.count ? list.count.toString() : '0')}
-                            </div>
+                            className={` ${list.count > 0 ? '' : 'invisible'} 
+                            ${navBottom ? '-ml-4 pr-2' : '-ml-3 '} h-max w-full -mt-6  relative  flex`}>
+                            <Icon
+                                title={'ouvrir le popup'}
+                                style={(!navBottom ? 'outline-[2px] ' : 'outline-[1px]') + ' !font-semibold  !pt-[1px] outline '}
+                                bg
+                                reverse={!navBottom}
+                                icon={list.count >= 99 ? '⁺99 ' :
+                                    (list.count ? list.count.toString() : '0')}
+                                color={list.color}
+                                fill={!navBottom}
+                                size={'xs'} />
                         </Dialog.Trigger>
-                        <Dialog.Content className="h-[calc(100dvh-8rem)] top-[3rem] translate-y-[0%] !w-screen mx-auto flex-1 backdropBlur bg-transparent border-none px-4 !flex">
+                        <Dialog.Content className="h-[calc(100dvh-8rem)] top-[calc(50vh-1rem)] !w-screen mx-auto flex-1 backdropBlur !bg-transparent border-none px-4 !flex">
 
-                            <Card className="wRespXL  bg-slate-50 overflow-hidden w-full h-full !flex card p-8 ">
+                            <Card className="wRespXL bg-slate-50 overflow-hidden w-full h-full !flex card p-8 ">
                                 <div className="flex flex-1 py-4 w-full h-full"
                                     id='notifList'
                                     key={index + '1'}

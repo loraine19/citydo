@@ -13,6 +13,7 @@ export class Action {
     disabled?: boolean;
     direct?: boolean = false;
     type?: 'button' | 'submit' | 'reset' = 'button';
+    NoPrimary?: boolean = true
 }
 export class Label {
     label: string = '';

@@ -8,6 +8,7 @@ interface alertStore {
     setAlertValues: (alertValues: Partial<AlertValues>) => void;
     handleApiError: (error: any, returnFunction?: () => void) => void;
     handleError: (error: any, returnFunction?: () => void) => void;
+    reset: () => void;
 }
 
 
@@ -51,6 +52,9 @@ export const useAlertStore = create<alertStore>((set) => {
             }
             else throw new Error('test error')
 
+        },
+        reset: () => {
+            set({ alertValues: new AlertValues() });
         }
     };
 });

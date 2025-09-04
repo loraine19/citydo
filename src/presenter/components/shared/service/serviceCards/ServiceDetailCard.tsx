@@ -52,7 +52,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                         <Chip
                             size="sm"
                             value={`${categoryS}`}
-                            className="cyanChip">
+                            className="skyChip">
                         </Chip>
                         <Chip
                             size="sm"
@@ -130,7 +130,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                             <h6 className="text-right pt-1" >
                                 {statusValues(statusS as ServiceStep).text}
                             </h6>
-                            <div className="flex  min-w-fit max-w-max h-max flex-col lg:items-end lg:place-self-end ">
+                            <div className="flex  min-w-fit max-w-max h-max flex-col xs:items-end xs:place-self-end ">
                                 {UserResp ?
                                     <ProfileDiv profile={UserResp} size="md" /> :
                                     <ProfileDiv profile={new Profile({

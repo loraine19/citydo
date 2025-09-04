@@ -14,7 +14,7 @@ interface EventCalAddBtnProps {
 }
 
 const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconClass }) => {
-    const { id, title, agendaLink, agendaICalLink, Igo } = event;
+    const { id, title, agendaLink, agendaICalLink } = event;
 
     return (
         <PopOver
@@ -25,10 +25,8 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
                     icon="calendar_add_on"
                     title={`ajouter a mon agenda  : ${title}`}
                     bg={true}
-                    fill
                     size="lg"
                     style={iconClass}
-                    color={Igo ? "cyan" : "gray"}
                 />
             }
             children={

@@ -91,7 +91,7 @@ export default function ServiceDetailPage() {
                 actions = [...myAction];
                 if (isLateValue && !service.isResp) {
                     actions.push({
-                        color: 'cyan',
+                        NoPrimary: true,
                         icon: 'Relancer',
                         title: 'Relancer le service - ',
                         body: 'Relancer le service',
@@ -105,7 +105,7 @@ export default function ServiceDetailPage() {
                     ...myAction,
 
                     {
-                        color: 'orange',
+                        NoPrimary: true,
                         iconImage: 'close',
                         icon: 'Refuser ',
                         title: `Refuser la reponse de ${service.UserResp?.Profile.firstName}`,
@@ -140,7 +140,7 @@ export default function ServiceDetailPage() {
             case (service.mine && service.isValidated):
                 actions = [
                     {
-                        color: 'cyan',
+                        NoPrimary: true,
                         iconImage: 'diversity_3',
                         icon: 'Besoin d\'aide ?',
                         title: 'Ouvrir une demande de conciliation',
@@ -152,7 +152,6 @@ export default function ServiceDetailPage() {
                         function: () => navigate(`/conciliation/create/${service.id}`),
                     },
                     {
-                        color: 'green',
                         iconImage: 'check',
                         icon: 'terminer',
                         title: 'Terminer le service',
@@ -173,7 +172,7 @@ export default function ServiceDetailPage() {
             case (service.IResp && !service.isFinish && !service.inIssue):
                 actions = [
                     {
-                        color: service.isResp ? 'orange' : 'red',
+                        color: service.isResp ? undefined : 'red',
                         iconImage: 'close',
                         icon: service.isResp ? 'Annuler votre réponse' : service.isValidated ? "Besoin d'aide ?" : '142',
                         title: service.isResp ? 'Annuler votre réponse' : service.isValidated ? "Ouvrir une demande de conciliation?" : '143',
@@ -182,7 +181,7 @@ export default function ServiceDetailPage() {
                             try {
                                 if (service.isResp) {
                                     const data = await cancelRespService(service.id);
-                                    if (data.error) handleApiError(data.error);
+                                    if (!data) handleApiError(data?.error ?? "Erreur lors de l'annulation de la réponse");
                                     else updateService();
                                 }
                                 else if (service.isValidated) navigate(`/conciliation/create/${service.id}`);
@@ -197,7 +196,7 @@ export default function ServiceDetailPage() {
             case (service.inIssue && (service.mine || service.IResp)):
                 actions = [
                     {
-                        color: 'red',
+                        NoPrimary: true,
                         iconImage: 'expand_content',
                         icon: 'Voir le litige',
                         title: 'Voir le litige',

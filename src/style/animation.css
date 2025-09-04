@@ -5,14 +5,14 @@
     animation: up 2s forwards;
 }
 .anim {
-    @apply duration-700;
+    @apply duration-1000;
 
-    animation: up 2s forwards, fadeIn 3s forwards;
+    animation: up 2s forwards, fadeIn 2s forwards;
 }
 
 .animRev {
     @apply duration-700;
-    animation: down 2s forwards, fadeIn 3s forwards;
+    animation: down 2s forwards, fadeIn 2s forwards;
 }
 
 .animSlide {
