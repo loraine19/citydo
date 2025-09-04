@@ -39,7 +39,7 @@ export default function DashboardPage() {
     //// NOTIFICATIONS
     const readNotif = async (id: number) => await DI.resolve('readNotifUseCase').execute(id);
     const notifViewModelFactory = DI.resolve('notifViewModel');
-    const { notifs, notifsMsg, notifsOther, refetch, count, fetchNextPage, hasNextPage, isLoading } = notifViewModelFactory();
+    const { notifs, notifsMsg, notifsOther, refetch, count, fetchNextPage, hasNextPage, isLoading, error } = notifViewModelFactory();
     const notifMapViewModelFactory = DI.resolve('notifMapViewModel');
     const { notifsMap, isLoadingMap, refetchMap, countMap } = notifMapViewModelFactory();
 
@@ -102,7 +102,7 @@ export default function DashboardPage() {
                             <div className="relative !z-40 space-x-1 ">
                                 <AvatarUser
                                     avatarSize="lg"
-                                    avatarStyle="!shadow-md -mb-0.5 border border-gray-300  w-16 h-16 lg:w-[4.5rem] lg:h-[4.5rem] "
+                                    avatarStyle="!shadow-md -mb-0.5  w-16 h-16 lg:w-[4.5rem] lg:h-[4.5rem] "
                                     Profile={user?.Profile} />
                                 <OnlineDot
                                     id={user?.id} />
@@ -155,7 +155,7 @@ export default function DashboardPage() {
                 {/* NOTIF CARD  */}
                 <div className={`hidden lg:${notifClasse} grid-cols-1 h-full  lg:grid`}>
                     <Card className="!flex orangeBG anim FixCard">
-                        <CardBody className="h-full flex flex-col pt-2.5 pb-0 px-4 ">
+                        <CardBody className="h-full flex flex-col py-2.5 px-4 ">
                             <div className="flex gap-2.5 py-1 items-center">
                                 <div className="relative">
                                     <Icon
@@ -181,43 +181,50 @@ export default function DashboardPage() {
                                     <>{count} {count > 1 ? 'notifications' : 'notification'} </> :
                                     'Vous n\'avez pas de notifications'}
                                 </Typography>
+                                <NotifDiv
+                                    isLoading={isLoading}
+                                    refetch={refetch}
+                                    notif={error} />
                             </div>
                             <div className="relative flex flex-col max-h-14 mb-1 w-full overflow-y-auto"
                                 onScroll={() => handleScroll()}
                                 ref={divRef}>
-                                {!isLoading && (notifs.map((notif: NotifView, index: number) => notif?.read === false &&
-                                    <div key={index + 'div'}
-                                        className="flex w-full justify-between h-full gap-4 p-0.5">
+                                <div className="relative overflow-auto !border-none hover:!border-none flex flex-col gap-1">
 
-                                        <div key={index}
-                                            className={`${notif?.type !== ElementNotif.MESSAGE ? 'hover:bg-orange-500' : 'hover:bg-cyan-500'} px-4 font-light text-sm flex  items-center break-words pl-2 justify-between hover:cursor-pointer hover:bg-opacity-20 rounded-full py-0.5  flex-0 relative `}
-                                            onClick={async () => {
-                                                await readNotif(notif?.id);
-                                                await refetch();
-                                                notif?.link && navigate(notif?.link)
-                                            }}>
-                                            <p className="!line-clamp-1 ">
-                                                <span
-                                                    className={`mr-1 capitalize font-normal ${notif?.typeS === 'message' ? 'text-cyan-600' : 'text-orange-600'}`}>
-                                                    {notif?.typeS} :&nbsp;
-                                                </span>
-                                                <span className="w-full">
-                                                    {notif?.description}
-                                                </span>
-                                            </p>
+                                    {!isLoading && (notifs.map((notif: NotifView, index: number) => notif?.read === false &&
+                                        <div key={index + 'div'}
+                                            className="flex w-full justify-between h-full gap-4 -ml-1">
 
-                                        </div>
-                                        <Icon
-                                            fill
-                                            icon={"close"}
-                                            onClick={async () => {
-                                                await readNotif(notif?.id);
-                                                await refetch();
-                                            }}
-                                            size="md"
-                                            style="hover:cursor-pointer absolute right-0 !z-50"
-                                            title={"fermer " + notif?.title} />
-                                    </div>))}
+                                            <div key={index}
+                                                className={`${notif?.type !== ElementNotif.MESSAGE ? 'hover:bg-orange-500' : 'hover:bg-cyan-500'} px-4 font-light text-sm flex  items-center break-words pl-2 justify-between hover:cursor-pointer hover:bg-opacity-20 rounded-full py-0.5  flex-0 relative `}
+                                                onClick={async () => {
+                                                    await readNotif(notif?.id);
+                                                    await refetch();
+                                                    notif?.link && navigate(notif?.link)
+                                                }}>
+                                                <p className="!line-clamp-1 ">
+                                                    <span
+                                                        className={` capitalize font-normal ${notif?.typeS === 'message' ? 'text-cyan-600' : 'text-orange-600'}`}>
+                                                        {notif?.typeS} :&nbsp;
+                                                    </span>
+                                                    <span className="w-full">
+                                                        {notif?.description}
+                                                    </span>
+                                                </p>
+
+                                            </div>
+                                            <Icon
+                                                fill
+                                                icon={"close"}
+                                                onClick={async () => {
+                                                    await readNotif(notif?.id);
+                                                    await refetch();
+                                                }}
+                                                size="md"
+                                                style="hover:cursor-pointer absolute right-0 !z-50"
+                                                title={"fermer " + notif?.title} />
+                                        </div>))}
+                                </div>
                             </div>
                             <LoadMoreButton
                                 style="-mb-8"

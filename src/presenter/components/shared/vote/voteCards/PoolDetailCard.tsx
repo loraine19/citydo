@@ -86,7 +86,7 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
                             size='sm'
                             value={pool.Votes?.length}
                             variant="ghost"
-                            className="rounded-full px-4 GrayChip"
+                            className="rounded-full px-4 grayChip"
                             icon={
                                 <Icon
                                     disabled={pool?.close}

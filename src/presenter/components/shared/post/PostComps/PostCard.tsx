@@ -29,7 +29,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                         <Chip
                             size="sm"
                             value={`${categoryS}`}
-                            className={'CyanChip'}>
+                            className={'cyanChip'}>
                         </Chip>
                     </button>
                     <DateChip
@@ -77,7 +77,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                             size="sm"
                             value={`${Likes?.length}`}
                             variant="ghost"
-                            className=" pt-1 rounded-full h-full GrayChip flex items-center"
+                            className=" pt-1 rounded-full h-full grayChip flex items-center"
                             icon={<Icon
                                 icon="thumb_up"
                                 size="md"

@@ -29,7 +29,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                     <Chip
                         size='sm'
                         value={categoryS}
-                        className={'CyanChip'}>
+                        className={'cyanChip'}>
                     </Chip>
                     <DateChip
                         start={createdAt}
@@ -77,7 +77,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                                 size="sm"
                                 value={`${Likes?.length}`}
                                 variant="ghost"
-                                className="!h-max !px-4 rounded-full GrayChip flex items-center "
+                                className="!h-max !px-4 rounded-full grayChip flex items-center "
                                 icon={
                                     <Icon
                                         icon="thumb_up"

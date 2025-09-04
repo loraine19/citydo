@@ -19,7 +19,11 @@ export default {
       screens: {
         'xxs': '320px',
         'xs': '390px',
-      }
+      },
+      colors: {
+        'bg-surface': 'var(--color-bg-surface)',
+      },
+      darkMode: 'class',
     },
   },
   plugins: [mtConfig],

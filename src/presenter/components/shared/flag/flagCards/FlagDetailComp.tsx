@@ -20,7 +20,7 @@ export default function FlagDetailComp(props: { flag: FlagView, element?: any, l
                             || FlagTarget[props.label as unknown as keyof typeof FlagTarget]}
                         </ChipLabel>
                     </Chip>
-                    <Chip className={`rounded-full GrayChip h-max flex items-center gap-2 shadow font-medium `}>
+                    <Chip className={`rounded-full grayChip h-max flex items-center gap-2 shadow font-medium `}>
                         <ChipLabel>
                             {(new Date(createdAt ? createdAt : now)).toLocaleDateString('fr-FR')}
                         </ChipLabel>

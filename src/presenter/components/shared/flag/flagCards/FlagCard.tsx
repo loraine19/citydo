@@ -1,6 +1,5 @@
 import { Card, CardBody, CardFooter, CardHeader } from "@material-tailwind/react";
 import { Icon } from "../../../common/IconComp";
-import { useNavigate } from "react-router-dom";
 import ModifBtnStack from "../../../common/ModifBtnStack";
 import { FlagView } from "../../../../views/viewsEntities/flagViewEntities";
 import { FlagTarget } from "../../../../../domain/entities/Flag";
@@ -11,7 +10,7 @@ import Chip from "../../../common/adaptatersComps/Chip";
 export function FlagCard(props: { flag: FlagView, update: () => void }) {
     const { targetId, createdAt, target, targetS, element, reasonS } = props.flag
     const { update } = props
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const deleteFlag = (targetId: number, target: FlagTarget) => DI.resolve('deleteFlagUseCase').execute(targetId, target)
 
     const MyActions: Action[] = [
@@ -23,13 +22,13 @@ export function FlagCard(props: { flag: FlagView, update: () => void }) {
                 await deleteFlag(targetId, target);
                 update()
             },
-        },
-        {
-            iconImage: 'edit',
-            title: "Confirmer la modification",
-            body: `Confirmer la modification du signalement ${element?.title}, pour le motif ${reasonS}`,
-            function: () => { navigate(`/flag/edit/${targetS}/${targetId}`) },
-        },
+        }
+        // {
+        //     iconImage: 'edit',
+        //     title: "Confirmer la modification",
+        //     body: `Confirmer la modification du signalement ${element?.title}, pour le motif ${reasonS}`,
+        //     function: () => { navigate(`/flag/edit/${targetS}/${targetId}`) },
+        // },
     ];
 
     return (
@@ -46,7 +45,7 @@ export function FlagCard(props: { flag: FlagView, update: () => void }) {
                         <Chip
                             size='sm'
                             value={reasonS}
-                            className={`RedChip truncate overflow-auto max-w-[30vw]`}>
+                            className={`redChip truncate overflow-auto max-w-[30vw]`}>
                         </Chip>
                     </div>
                     <div>
@@ -64,7 +63,7 @@ export function FlagCard(props: { flag: FlagView, update: () => void }) {
                 <Chip
                     size='sm'
                     value={'signalé le ' + new Date(createdAt).toLocaleDateString('fr-FR')}
-                    className={`rounded-full GrayChip h-max flex items-center gap-2  `}>
+                    className={`rounded-full grayChip h-max flex items-center gap-2  `}>
                 </Chip>
                 <Icon
                     fill icon="arrow_circle_right"

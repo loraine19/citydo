@@ -141,13 +141,14 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
                     title={!disabled ? title : title + ' est desactivée'}
                     className={`group ${classIcon(color)} ${!disabled && classActive} `}
                     disabled={disabled}>
-                    <span className={`${!fill ? 'group-hover:opacity-20 group-focus:opacity-20' : ''} opacity-100 `}>
+                    <span className={`${(!fill && !disabled) ? 'group-hover:opacity-0 group-focus:opacity-0' : ''} opacity-100 `}>
                         {searchIcon(icon, fill)}
                     </span>
                     {(!disabled || !fill) &&
-                        <span className={`${!fill ? 'group-hover:opacity-90 group-focus:opacity-90 ' : ''}  absolute opacity-0`}>
+                        <span className={`${!fill ? 'group-hover:opacity-90 group-focus:opacity-90 ' : ''}  absolute opacity-0 ${disabled ? 'hidden' : ''}`}>
                             {searchIcon(icon, true)}
                         </span>}
+
                 </button>
                 : link ? <Link
                     style={{ fontSize: `${num}px` }}
@@ -157,28 +158,26 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
                     target={link.startsWith('http') ? "_blank" : ""}
                     rel="noopener noreferrer"
                     className={`group ${classIcon(color)} ${!disabled && classActive}`}>
-                    <span className={`${!fill ? 'group-hover:opacity-20 group-focus:opacity-20' : ''} opacity-100 `}>
+                    <span className={`${(!fill && !disabled) ? 'group-hover:opacity-0 group-focus:opacity-0' : ''} opacity-100 `}>
                         {searchIcon(icon, fill)}
                     </span>
                     {(!disabled || !fill) &&
-                        <span className={`${!fill ? 'group-hover:opacity-90 group-focus:opacity-90 ' : ''}  absolute opacity-0`}>
+                        <span className={`${!fill ? 'group-hover:opacity-90 group-focus:opacity-90 ' : ''}  absolute opacity-0 ${disabled ? 'hidden' : ''}`}>
                             {searchIcon(icon, true)}
                         </span>}
-
                 </Link> :
                     <span
                         style={{ fontSize: `${num}px` }}
                         data-cy={icon}
                         title={title}
                         className={`group ${classIcon(color)} relative `}>
-                        <span className={`${!fill ? 'group-hover:opacity-20 group-focus:opacity-20' : ''} opacity-100 `}>
+                        <span className={`${(!fill && !disabled) ? 'group-hover:opacity-0 group-focus:opacity-0' : ''} opacity-100 `}>
                             {searchIcon(icon, fill)}
                         </span>
                         {(!disabled || !fill) &&
-                            <span className={`${!fill ? 'group-hover:opacity-90 group-focus:opacity-90 ' : ''}  absolute opacity-0`}>
+                            <span className={`${!fill ? 'group-hover:opacity-90 group-focus:opacity-90 ' : ''}  absolute opacity-0 ${disabled ? 'hidden' : ''}`}>
                                 {searchIcon(icon, true)}
                             </span>}
-
                     </span>
             }
         </div>)

@@ -34,7 +34,7 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
                             key={index}
                             value={value}
                             className={` !capitalize !flex-1 whitespace-nowrap rounded-full shadow !h-8 !px-3 
-                                ${index !== indexSelected ? `inputDiv !bg-white ${color}Style !border-opacity-30 ` : ` ${color}StyleInv animSlide`} `}
+                                ${index !== indexSelected ? `inputDiv  ${color}Style !border-opacity-30 ` : ` ${color}StyleInv animSlide`} `}
                             onClick={() => { setIndex(index); result() }}>
                             {label}
                         </Tabs.Trigger>

@@ -8,13 +8,11 @@ import { ThemeProvider } from '@material-tailwind/react';
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
-
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider value={{}}>
+      <ThemeProvider value={{ theme: { theme: 'dark' } }}>
         <App />
       </ThemeProvider>
     </QueryClientProvider>
   </StrictMode>
-
 )

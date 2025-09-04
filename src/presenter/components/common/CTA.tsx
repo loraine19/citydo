@@ -52,10 +52,11 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                                 className={`${action?.color ?? defColor}StyleInv !min-w-full lgBtn`}
                                 size="lg"
                                 onClick={() => {
-                                    setOpen(true);
+
                                     if (action?.direct) {
                                         action.function && action.function();
                                     } else {
+                                        setOpen(true);
                                         setIndex(i);
                                     }
                                 }}

@@ -9,13 +9,13 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
     const dateClass = (() => {
         switch (true) {
             case endDays >= 14:
-                return "GreenChip";
+                return "greenChip";
             case endDays >= 4 && endDays <= 7:
-                return "OrangeChip";
+                return "orangeChip";
             case endDays <= 4 && endDays >= 1:
-                return "RedChip";
+                return "redChip";
             default:
-                return "GrayChip";
+                return "grayChip";
         }
     })();
     const value = (() => {

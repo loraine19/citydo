@@ -89,7 +89,7 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
                             size='sm'
                             value={group?.ImModo ? '⠀✓' : '⠀'}
                             variant="ghost"
-                            className="GrayChip gap-2"
+                            className="grayChip gap-2"
                             icon={
                                 <Icon
                                     size="md"
@@ -107,7 +107,7 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
                             size='sm'
                             value={group?.GroupUser?.length}
                             variant="ghost"
-                            className="GrayChip gap-2"
+                            className="grayChip gap-2"
                             icon={
                                 <Icon
                                     size="md"

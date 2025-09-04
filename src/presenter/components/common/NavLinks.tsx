@@ -98,7 +98,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
         <>
             {/*BLUR POP BACKGROUND */}
             <div className={`
-            ${(!closeDial) ? 'hidden' : ''} 
+            ${(!closeDial) ? 'hidden animRev' : ''} 
             ${navBottom ? `bottom-[4rem] left-0 w-screen anim h-[calc(100vh-4rem)]` :
                     'top-[4rem] left-0 w-screen animRev h-[calc(100vh-4rem)]'}
                    backdropBlur  absolute `}>
@@ -112,7 +112,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                 ` flex z-30 w-full `
             }>
                 <Navbar className={`
-                    ${navBottom ? 'ml-2 lg:ml-0 border-[1px] rounded-full !shadow-md bg-white border-slate-200 !flex-1 !max-w-max sm:!max-w-[100%] ' :
+                    ${navBottom ? 'ml-2 lg:ml-0 border-[1px] rounded-full !shadow-md bg-white border-slate-200 !flex-1 !max-w-max sm:!max-w-[100%] dark:!bg-red-300 ' :
                         ` !pt-1  shadow-none border-none bg-transparent w-full `}
                     flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden  `}>
                     <ul className={`${navBottom ?
@@ -190,7 +190,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                             icon={icon}
                                             color={type ? color.col : color.col} />
                                     </div>
-                                    <div className={`${navBottom ? '' : 'text-[14px] '} py-2 px-4 right-[5rem] rounded-full ${color.text} absolute bg-white text-sm shadow-xl whitespace-nowrap !border !border-gray-200`}>
+                                    <div className={`${navBottom ? '' : 'text-[14px] '} py-2 px-4 right-[5rem] rounded-full ${color.col}Style outlineStyle absolute bg-white text-sm shadow-xl whitespace-nowrap !border !border-gray-200`}>
                                         {label}
                                     </div>
                                 </div>)}

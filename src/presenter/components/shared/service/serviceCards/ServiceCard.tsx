@@ -28,10 +28,10 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
 
     const statusColor = (step: ServiceStep): { color: string } => {
         switch (step) {
-            case ServiceStep.STEP_1: return { color: "OrangeChip" };
-            case ServiceStep.STEP_2: return { color: "GreenChip" };
-            case ServiceStep.STEP_3: return { color: "GrayChip" };
-            case ServiceStep.STEP_4: return { color: "RedChip" };
+            case ServiceStep.STEP_1: return { color: "orangeChip" };
+            case ServiceStep.STEP_2: return { color: "greenChip" };
+            case ServiceStep.STEP_3: return { color: "grayChip" };
+            case ServiceStep.STEP_4: return { color: "redChip" };
             default: return { color: "Chip" };
         }
     }
@@ -86,7 +86,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
                                 <Chip
                                     size="sm"
                                     value={`${categoryS}`}
-                                    className="CyanChip">
+                                    className="cyanChip">
                                 </Chip>
                             </button>
                             <button
@@ -97,7 +97,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
                                 <Chip
                                     size="sm"
                                     value={typeS}
-                                    className={`${typeS === ServiceType.GET ? "OrangeChip" : "GreenChip"}`}>
+                                    className={`${typeS === ServiceType.GET ? "orangeChip" : "greenChip"}`}>
                                 </Chip>
                             </button>
                             <Chip
@@ -153,7 +153,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
                         <Chip
                             size="sm"
                             value={`${points.join(' à ')}   pts`}
-                            className={`py-1 flex GrayChip ${mines && 'hidden md:flex'}`}
+                            className={`py-1 flex grayChip ${mines && 'hidden md:flex'}`}
                             icon=
                             {<Icon
                                 style="-mt-1"

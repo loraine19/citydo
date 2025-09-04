@@ -148,7 +148,7 @@ export default function ChatPage() {
                             onClick={() => connexion()} />}
 
                 </div>
-                <section className='flex !px-0 pb-4 !pt-7 !max-h-[calc(100dvh_-_7rem)] '>
+                <section className='flex !px-0 pb-4 !pt-7 !max-h-[calc(100dvh_-_6.5rem)] '>
                     {notifConv &&
                         <NotifDiv
                             notif={notifConv}
@@ -157,17 +157,17 @@ export default function ChatPage() {
                             refetch={refetchConv}
                         />}
                     {isLoadingConv ?
-                        <Skeleton className=' m-auto !h-full !rounded-3xl' /> :
+                        <Skeleton className=' m-auto !h-full ' /> :
                         <Card className='FixCardNoImage !flex !pb-0 !px-0 h-full'>
                             <CardBody className=' !p-0.5  h-full'>
                                 <div className='flex flex-1 h-full  '>
                                     <div className='flex-1 overflow-y-auto overflow-x-hidden'>
-                                        <List className='flex-1 !border-8 gap-1 border-white'>
+                                        <List className='flex-1 !border-8  rounded-xl pl-1 border-slate-50'>
                                             {conversations &&
                                                 conversations.map((message: MessageView, index: number) =>
                                                     <div key={index + 'div'}>
                                                         <List.Item
-                                                            className={`p-1 gap-1 ${(userIdRec === message?.isWith.id) ? '!bg-slate-200 !border-white !border-8 shadow-md -mt-1 -ml-2' : 'bg-white '}`}
+                                                            className={`p-1 gap-1 ${(userIdRec === message?.isWith.id) ? '!bg-slate-200 !border-slate-50 !border-8 shadow-md -mt-2 -ml-3 rounded-xl' : 'bg-slate-50 '}`}
                                                             key={index}
                                                             onClick={() => {
                                                                 setOpen(true)
@@ -184,7 +184,7 @@ export default function ChatPage() {
                                                                 {(online.length > 0 &&
                                                                     online.includes(message.isWith.id)) &&
                                                                     <span className='absolute top-0 -right-2 bg-green-500 rounded-full
-                                                                border-4  p-1.5 border-white'>
+                                                                border-4  p-1.5 border-slate-50'>
                                                                     </span>
                                                                 }
                                                             </List.ItemStart>
@@ -215,8 +215,9 @@ export default function ChatPage() {
                                                 )}
                                         </List>
                                     </div>
+                                    {/* CONVERSATION DIV  */}
                                     {open &&
-                                        <div className='relative mt-6 !w-[calc(100%-4rem)]'>
+                                        <div className='relative mt-6 !w-[calc(100%-4.5rem)] rounded-xl  '>
                                             <Chat
                                                 refetch={refetch}
                                                 setNewConv={setNewConv}

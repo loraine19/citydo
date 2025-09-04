@@ -92,7 +92,7 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
                             size='sm'
                             value={survey?.Votes?.length}
                             variant="ghost"
-                            className="rounded-full px-4 GrayChip"
+                            className="rounded-full px-4 grayChip"
                             icon={
                                 <Icon
                                     disabled={survey?.close}

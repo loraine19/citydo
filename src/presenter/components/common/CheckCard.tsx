@@ -27,8 +27,6 @@ export default function CheckCard(props: checkCardProps) {
         setBoxSelected(updatedBoxSelected);
     };
     const { color } = useUxStore((state) => state);
-    const colorShade = (color: string): string => `${color}-500 `;
-    const colorShadeDark = (color: string): string => `${color}-500 `;
 
     return (
         <div className={`flex w-full  ${style} `}>
@@ -37,14 +35,12 @@ export default function CheckCard(props: checkCardProps) {
                     {categoriesArray.map((category, index) => (
                         <List.Item className="px-0.5 h-full w-full min-w-max hover:!bg-transparent" key={index}>
                             <label htmlFor={category} className="flex flex-1">
-                                <List.ItemStart className={`bg-slate-400 h-7 relative w-full !px-0 py-0.5 !m-0 flex items-center justify-center rounded-full !shadow-sm border-[1px] border-${color}-500 shadow-sm ${checkedState[index] ?
-                                    ` ${color}Style  ` :
-                                    ` bg-transparent !text-${color}-500  border-current opacity-70`}`}>
+                                <List.ItemStart className={` h-8 relative w-full !px-0 py-0.5 !m-0 flex items-center justify-center rounded-full !shadow-sm border-[1px] ${` ${color}Style  `} ${checkedState[index] ? `` : `!bg-transparent `}`}>
                                     <Checkbox
                                         checked={checkedState[index]}
                                         id={category}
                                         value={category}
-                                        className="absolute !flex !justify-start !shadow-none rounded-full w-full h-full !bg-transparent border-none"
+                                        className="absolute !flex !justify-start !shadow-none rounded-full w-full h-full !bg-transparent flex-1 border-none"
                                         onChange={(e: any) => handleCheckboxChange(index, e.target.checked)}
                                     >
 
@@ -52,8 +48,9 @@ export default function CheckCard(props: checkCardProps) {
                                     <Typography
                                         as="label"
                                         htmlFor="default-checkbox"
-                                        className={`${checkedState[index] ? `text-${colorShadeDark(color)} ` : `text-${colorShade(color)} text-opacity-90`} whitespace-nowrap text-sm font-normal !min-w-max  px-4`}
-                                    >{category}</Typography>
+                                        className={` whitespace-nowrap text-sm font-normal !min-w-max  rounded-2xl text-center w-full px-4`}
+                                    >{category}
+                                    </Typography>
                                 </List.ItemStart>
 
                             </label>
@@ -61,27 +58,28 @@ export default function CheckCard(props: checkCardProps) {
                     ))}
                 </List>
             </div>
-            <div className="flex opacity-95 items-center px-0.5 rounded-full">
+            <div className="flex items-center px-0.5 rounded-full">
                 <Icon
+                    disabled={checkedState.some(Boolean) ? false : true}
                     icon="cancel"
                     size="lg"
                     fill={checkedState.some(Boolean)}
-                    style='opacity-70'
                     color={color ?? 'slate'}
                     onClick={() => {
                         setBoxSelected([]);
-                        setCheckedState(new Array(categoriesArray.length).fill(false));
+                        setCheckedState([...new Array(categoriesArray.length).fill(false)]);
                     }}
                 ></Icon>
                 <Icon
-                    fill={!checkedState.every(Boolean)}
-                    style='opacity-70'
+                    disabled={checkedState.every(Boolean) ? true : false}
+                    fill={checkedState.every(Boolean) ? false : true}
                     icon="check_circle"
                     size="lg"
                     color={color ?? 'slate'}
                     onClick={() => {
-                        setBoxSelected(categoriesArray);
-                        setCheckedState(new Array(categoriesArray.length).fill(true));
+                        setBoxSelected([...categoriesArray]);
+                        setCheckedState([...new Array(categoriesArray.length).fill(true)]);
+
                     }} />
             </div>
 

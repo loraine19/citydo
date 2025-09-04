@@ -8,7 +8,7 @@
 }
 
 .slateBG {
-    background-image: linear-gradient(#f9fafb00, #90a1b9);
+    background-image: linear-gradient(#f9fafb00, #64748b);
 }
 
 .roseBG {
@@ -29,113 +29,116 @@
 
 /**** COMBINED STYLES ****/
 .style {
-    @apply bg-opacity-80  border-current border-opacity-50;
-    --tw-border-opacity: 0 !important;
+    @apply bg-opacity-80  border-current !border-opacity-50 text-opacity-95;
 }
 
 .inv {
-    @apply !border-hidden !text-white;
+    @apply !border-hidden  !text-white bg-opacity-90 text-opacity-95;
 }
 
 .cyanStyle {
-    @apply !text-cyan-500 !bg-cyan-200  style;
+    @apply !text-cyan-600/80 !bg-cyan-200  style;
 }
 .cyanStyleInv {
-    @apply !bg-cyan-500 inv;
+    @apply !bg-cyan-600 inv;
 }
 
 .orangeStyle {
-    @apply !text-orange-500 !bg-orange-200  style;
+    @apply !text-orange-600/80 !bg-orange-200  style;
 }
 .orangeStyleInv {
-    @apply !bg-orange-500 inv;
+    @apply !bg-orange-600 inv;
 }
 .redStyle {
-    @apply !text-red-500 !bg-red-200  style;
+    @apply !text-red-600/80 !bg-red-200  style;
 }
 .redStyleInv {
-    @apply !bg-red-500 inv;
+    @apply !bg-red-600 inv;
 }
 .skyStyle {
-    @apply !text-sky-500 !bg-sky-200 style;
+    @apply !text-sky-600/80 !bg-sky-200 style;
 }
 .skyStyleInv {
-    @apply !bg-sky-500 inv;
+    @apply !bg-sky-600 inv;
 }
 .greenStyle {
-    @apply !text-green-500 bg-green-200 style;
+    @apply !text-green-600 bg-green-200 style;
 }
 .greenStyleInv {
-    @apply !bg-green-500 inv;
+    @apply !bg-green-600 inv;
 }
 
 .grayStyle {
-    @apply !text-gray-500 bg-gray-200 border-gray-400 style;
+    @apply !text-gray-600 bg-gray-200 border-gray-400 style;
 }
 .grayStyleInv {
-    @apply !bg-gray-500 inv;
+    @apply !bg-gray-600 inv;
 }
 .slateStyle {
-    @apply !text-slate-500 bg-slate-200 border-slate-600 style;
+    @apply !text-slate-500 bg-slate-200 !border-slate-500 style;
 }
 .slateStyleInv {
-    @apply !bg-slate-500 inv;
+    @apply !bg-slate-600 inv;
 }
 .tealStyle {
-    @apply !text-teal-500 bg-teal-200/70  style;
+    @apply !text-teal-600 bg-teal-200/70  style;
 }
 .tealStyleInv {
-    @apply !bg-teal-500 inv;
+    @apply !bg-teal-600 inv;
 }
 .amberStyle {
-    @apply !text-amber-500 bg-amber-200/70  style;
+    @apply !text-amber-600 bg-amber-200/70  style;
 }
 .amberStyleInv {
-    @apply !bg-amber-500 inv;
+    @apply !bg-amber-600 inv;
 }
 .roseStyle {
-    @apply !text-rose-500 !bg-rose-200 style;
+    @apply !text-rose-600/80 !bg-rose-200 style;
 }
 .roseStyleInv {
-    @apply !bg-rose-500 inv;
+    @apply !bg-rose-600 inv;
 }
 .yellowStyle {
-    @apply !text-yellow-500 !bg-yellow-200/70  style;
+    @apply !text-yellow-600/80 !bg-yellow-200/70  style;
 }
 .yellowStyleInv {
-    @apply !bg-yellow-500 inv;
+    @apply !bg-yellow-600 inv;
+}
+
+.outlineStyle {
+    @apply !bg-white !border-[1px] !border-current;
 }
 
 /**** CHIP LIGHT COLOR ****/
 .Chip {
-    @apply !min-w-[calc(max-0.1rem)] !px-3 !pb-1 !rounded-full !shadow-sm !max-h-fit
+    @apply !min-w-[calc(max-0.1rem)] !min-h-8 !px-3 !pb-1 !rounded-full !shadow-sm !max-h-fit
    !max-w-max;
     background-image: linear-gradient(background-color, background-color);
 }
 
 @layer components {
-    .OrangeChip {
+    .orangeChip {
         @apply Chip orangeStyle;
     }
-    .SkyChip {
+    .skyChip {
         @apply Chip skyStyle;
     }
-    .CyanChip {
+    .cyanChip {
         @apply Chip cyanStyle;
     }
-    .TealChip {
+    .tealChip {
         @apply Chip tealStyle;
     }
-    .AmberChip {
+    .amberChip {
         @apply Chip amberStyle;
     }
-    .GreenChip {
+    .greenChip {
         @apply Chip greenStyle;
     }
-    .GrayChip {
+    .grayChip {
         @apply Chip slateStyle;
     }
-    .RedChip {
+    .redChip {
         @apply Chip redStyle;
     }
 }

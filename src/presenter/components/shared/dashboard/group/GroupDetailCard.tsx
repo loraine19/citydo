@@ -76,7 +76,7 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
                     <Chip
                         size='sm'
                         value={categoryS}
-                        className={'CyanChip'}>
+                        className={'cyanChip'}>
                     </Chip>
                     <DateChip
                         start={createdAt}
@@ -142,7 +142,7 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
                         <Chip
                             size='sm'
                             value={group?.categoryS}
-                            className="CyanChip text-ellipsis  " >
+                            className="cyanChip text-ellipsis  " >
                         </Chip>
                     </div>
                 ) : (
@@ -162,7 +162,7 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
                             size='sm'
                             value={group?.ImModo ? '⠀✓' : '⠀'}
                             variant="ghost"
-                            className="rounded-full h-max  GrayChip flex items-center  !min-w-max "
+                            className="rounded-full h-max  grayChip flex items-center  !min-w-max "
                             icon={
                                 <Icon
                                     size="md"
@@ -181,7 +181,7 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
                             size='sm'
                             value={group?.GroupUser?.length}
                             variant="ghost"
-                            className="rounded-full GrayChip h-max flex items-center pl-6 !min-w-max "
+                            className="rounded-full grayChip h-max flex items-center pl-6 !min-w-max "
                             icon={
                                 <Icon
                                     size="md"

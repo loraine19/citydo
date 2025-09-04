@@ -21,29 +21,28 @@ export function NotifCard(props: notifCardProps) {
                         className="CyanChip text-ellipsis  " >
                     </Chip>
                     <Icon
-                        icon="cancel"
+                        icon="close"
                         onClick={() => handleClick(notif)}
                         color="red"
                         title="fermer la notification"
-                        size="2xl"
-                        style="" />
+                        size="xl" />
                 </div>
             </CardHeader>
             <CardBody className="FixCardBody max-h-max !-mt-3 !py-0">
-                <h5
-                    className="font-normal truncate ">
-                    {notif.title}
-                </h5>
-                <i
-                    className="font-normal truncate ">
-                    {notif.description}
-                </i>
-            </CardBody>
-            <CardFooter className="CardFooter items-center  !py-0  !px-4">
                 <h6
+                    className=" truncate ">
+                    {notif.title}
+                </h6>
+                <p
+                    className="description">
+                    {notif.description}
+                </p>
+            </CardBody>
+            <CardFooter className="justify-between  !flex !max-h-max items-center !my-0 !py-0  ">
+                <i
                     className="font-normal truncate">
                     {update}
-                </h6>
+                </i>
                 {notif.link &&
                     <Icon
                         icon="arrow_circle_right"

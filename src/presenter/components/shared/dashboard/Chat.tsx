@@ -90,8 +90,8 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
     const [openEmoji, setOpenEmoji] = useState(false);
 
     return (
-        <Card className='FixCardNoImage !flex-col !flex !border-white !border-8 '>
-            <CardHeader className='FixCardHeaderNoImage bg-slate-200 !rounded-b-none w-full px-3 !h-max pt-1 !relative'>
+        <Card className='FixCardNoImage !flex-col rounded-xl bg-transparent !flex !border-slate-50 !border-8 '>
+            <CardHeader className='FixCardHeaderNoImage h-6 !bg-slate-200  !rounded-b-none w-full px-3  pt-1 !relative !min-h-4'>
                 {newConv &&
                     <ProfileDiv profile={userRec} />}
                 <div className=' !w-[22rem] !flex  !justify-end border opacity-80 absolute   -translate-y-9 -translate-x-[50%] left-[50%]'>
@@ -138,7 +138,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                     hasNextPage={hasNextPage}
                     handleScroll={handleScroll} />
             </CardBody >
-            <CardFooter className='bg-slate-200 !border-t-0 !p-0'>
+            <CardFooter className='bg-slate-200 !rounded-t-none !p-0'>
                 <div
                     onMouseLeave={() => { setImTyping(false) }}
                     onMouseEnter={() => { setImTyping(true) }}

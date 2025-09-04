@@ -53,7 +53,7 @@ export function PoolCard({ pool, change, mines, update, vote }: PoolCardProps) {
                             <Chip
                                 size='sm'
                                 value='Cagnotte'
-                                className="GreenChip" >
+                                className="greenChip" >
                             </Chip>
                         </button>
                         <DateChip
@@ -101,7 +101,7 @@ export function PoolCard({ pool, change, mines, update, vote }: PoolCardProps) {
                                 key={pool.id}
                                 value={pool.Votes?.length}
                                 variant="ghost"
-                                className="GrayChip pt-1  "
+                                className="grayChip pt-1  "
                                 icon={
                                     <Icon
                                         icon="smart_card_reader"

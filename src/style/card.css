@@ -29,7 +29,7 @@
     /* CARD  */
 
     .card {
-        @apply border !bg-white  rounded-xl w-full mx-auto 
+        @apply border !bg-slate-50  rounded-xl w-full mx-auto 
     !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-200 shadow-md grid;
     }
 

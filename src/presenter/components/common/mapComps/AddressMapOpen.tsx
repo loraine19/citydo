@@ -94,7 +94,7 @@ const MarkerList = ({ notifsMap }: { notifsMap: NotifView[] }) => {
                             <Chip
                                 size='sm'
                                 value={notif.typeS}
-                                className='CyanChip text-ellipsis rounded-full max-w-max ' />
+                                className='cyanChip text-ellipsis rounded-full max-w-max ' />
                         </div>
                         <div className='flex max-h-16 justify-between items-center w-full'>
                             <Typography
@@ -237,7 +237,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
 
     return (
         <>
-            <div className='border border-slate-200 relative flex flex-1 min-h-[8.5rem] lg:min-h-[7rem] !h-[100%] !rounded-[0.8rem] w-full shadow-md mb-2  lg:mb-0'>
+            <div className='border border-slate-200 relative flex flex-1 min-h-[7.8rem] lg:min-h-[7rem] !h-[100%] !rounded-[0.8rem] w-full shadow-md mb-2  lg:mb-0'>
                 <MapDiv />
 
                 <Dialog>

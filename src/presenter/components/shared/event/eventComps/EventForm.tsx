@@ -97,31 +97,38 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                             </CardHeader>
                             <CardBody className='DetailCardBody'>
                                 <div className='gap-y-3 md:gap-y-6 h-full flex-1 pb-8 !flex flex-col '>
-                                    <Input
-                                        className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
-                                        placeholder={"Titre"}
-                                        name="title"
-                                        onChange={formik.handleChange}
-                                        defaultValue={title} />
-                                    <InputError error={formik.errors.title} />
+
                                     <div className='flex flex-col lg:flex-row gap-3 md:gap-4 h-full'>
-                                        <div className='flex flex-col flex-1'>
-                                            <Textarea
-                                                isError={!!formik.errors.description}
-                                                className={`inputStandart`}
-                                                placeholder='Description'
-                                                rows={1}
-                                                resize={true}
-                                                name="description"
-                                                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                                                    formik.handleChange(e);
-                                                    const textarea = e.target as HTMLTextAreaElement;
-                                                    textarea.style.height = '3rem';
-                                                    textarea.style.height = textarea.scrollHeight + 'px';
-                                                }}
-                                                defaultValue={description}
-                                            />
-                                            <InputError mt error={formik.errors.description} />
+                                        <div className="flex flex-1 flex-col h-full ">
+                                            <div>
+                                                <Input
+                                                    className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
+                                                    placeholder={"Titre"}
+                                                    name="title"
+                                                    onChange={formik.handleChange}
+                                                    defaultValue={title} />
+                                                <InputError error={formik.errors.title} />
+                                            </div>
+                                            <div className='flex flex-col flex-1'>
+                                                <Textarea
+                                                    rows={3}
+                                                    aria-rowcount={3}
+                                                    isError={!!formik.errors.description}
+                                                    className={`inputStandart max-h-fit min-h-full`}
+                                                    placeholder='Description'
+                                                    resize={true}
+                                                    name="description"
+                                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                                                        formik.handleChange(e);
+                                                        const textarea = e.target as HTMLTextAreaElement;
+                                                        textarea.style.height = 'fit-content';
+
+                                                        textarea.style.height = textarea.scrollHeight + 'px';
+                                                    }}
+                                                    defaultValue={description}
+                                                />
+                                                <InputError mt error={formik.errors.description} />
+                                            </div>
                                         </div>
                                         <div className="flex flex-1 flex-col lg:pt-2 ">
                                             {((Address?.lat && Address?.lng)) ?

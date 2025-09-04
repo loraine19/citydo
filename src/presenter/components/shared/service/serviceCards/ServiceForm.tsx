@@ -157,7 +157,7 @@ export function ServiceForm(props: { formik: any }) {
                                                 <Chip
                                                     size="sm"
                                                     value={`${points} pts`}
-                                                    className="GrayChip -mr-2 "
+                                                    className="grayChip -mr-2 "
                                                     icon={
                                                         <Icon
                                                             color={formik.values.type === "do" ?

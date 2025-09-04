@@ -22,19 +22,19 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
     const statusValues = (step: ServiceStep): { color: string, text: string } => {
         switch (step) {
             case ServiceStep.STEP_1: return {
-                color: "OrangeChip",
+                color: "orangeChip",
                 text: IResp ? "Vous avez répondu à ce service" : 'à eté répondu par'
             };
             case ServiceStep.STEP_2: return {
-                color: "GreenChip",
+                color: "greenChip",
                 text: `Le service est en cours par ${IResp ? '(vous)' : ':'} `
             }; break
             case ServiceStep.STEP_3: return {
-                color: "GrayChip",
+                color: "grayChip",
                 text: `A été réalisé par ${IResp ? '(vous)' : ':'} `
             };
             case ServiceStep.STEP_4: return {
-                color: "RedChip",
+                color: "redChip",
                 text: "Ce service est en litige"
             };
             default: return {
@@ -57,7 +57,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                         <Chip
                             size="sm"
                             value={typeS}
-                            className={`${typeS === "demande" ? "OrangeChip" : "GreenChip"} shadow rounded-full  h-max flex items-center gap-2 font-medium `}>
+                            className={`${typeS === "demande" ? "orangeChip" : "greenChip"} shadow rounded-full  h-max flex items-center gap-2 font-medium `}>
                         </Chip>
                         <button onClick={() => { statusS === ServiceStep.STEP_4 && navigate(`/conciliation/${id}`) }}>
                             <Chip
@@ -105,7 +105,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                                 <Chip
                                     size="sm"
                                     value={SkillLevel[skill as unknown as keyof typeof SkillLevel]}
-                                    className=" GrayChip "
+                                    className=" grayChip "
                                     icon={<Icon
                                         disabled
                                         size="sm"
@@ -116,7 +116,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                                 <Chip
                                     size="sm"
                                     value={HardLevel[hard as unknown as keyof typeof HardLevel]}
-                                    className="GrayChip "
+                                    className="grayChip "
                                     icon={<Icon
                                         disabled
                                         size="sm"
@@ -130,7 +130,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                             <h6 className="text-left " >
                                 {statusValues(statusS as ServiceStep).text}
                             </h6>
-                            <div className="flex border min-w-fit max-w-max GrayChip rounded-full h-max flex-col lg:items-end lg:place-self-end ">
+                            <div className="flex border min-w-fit max-w-max grayChip rounded-full h-max flex-col lg:items-end lg:place-self-end ">
                                 <div className="flex lg:flex-col flex-row-reverse lg:pr-6 -ml-1 pt-1 lg:items-end self-start w-full ">
                                     {UserResp ?
                                         <ProfileDiv profile={UserResp} size="md" /> :

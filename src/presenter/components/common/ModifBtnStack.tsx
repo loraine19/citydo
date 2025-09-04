@@ -34,32 +34,28 @@ export default function ModifBtnStack({ actions, disabled1, disabled2, update, i
 
     return (
         <div className="flex gap-3 items-center w-full flex-1">
-
-            <Icon
-                icon={buttons[0].iconImage as string || ''}
-                color={disabled1 ? 'gray' : 'red'}
-                onClick={() => { setOpen(true), setIndex(0) }}
-                bg size="md"
-                disabled={disabled1}
-                title={buttons[0].title as string} />
-
-            <Icon
-                icon={buttons[1].iconImage as string || ''}
-                color={disabled2 ? 'gray' : 'orange'}
-                onClick={() => { setOpen(true), setIndex(1) }}
-                bg size="md"
-                disabled={disabled2}
-                title={buttons[1].title as string} />
-
-
-            {icon3 &&
-                <Icon
-                    icon={buttons[2].iconImage as string || ''}
-                    color={'cyan'}
-                    onClick={() => { setOpen(true), setIndex(2) }}
-                    bg size="md"
-                    title={buttons[2].title as string} />
-            }
+            {buttons.map((btn, i) => {
+                // Only render the third icon if icon3 is true, otherwise skip index 2
+                if (i === 2 && !icon3) return null;
+                const disabled = i === 0 ? disabled1 : i === 1 ? disabled2 : false;
+                const color = i === 0
+                    ? (disabled1 ? 'gray' : 'red')
+                    : i === 1
+                        ? (disabled2 ? 'gray' : 'orange')
+                        : 'cyan';
+                return (
+                    <Icon
+                        key={i}
+                        icon={btn.iconImage as string || ''}
+                        color={color}
+                        onClick={() => { setOpen(true); setIndex(i); }}
+                        bg
+                        size="md"
+                        disabled={disabled}
+                        title={btn.title as string}
+                    />
+                );
+            })}
         </div>
     );
 }

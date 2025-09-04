@@ -75,7 +75,7 @@ export const ListGroup = ({ groups, error, isLoading }: ListGroupProps) => {
                   <Chip
                     value={group?.ImModo ? '✓' : ''}
                     variant="ghost"
-                    className="rounded-full h-max GrayChip flex items-center  !min-w-max "
+                    className="rounded-full h-max grayChip flex items-center  !min-w-max "
                     icon={
                       <Icon
                         size="md"
@@ -88,7 +88,7 @@ export const ListGroup = ({ groups, error, isLoading }: ListGroupProps) => {
                   <Chip
                     value={group?.ImIn ? '✓' : ''}
                     variant="ghost"
-                    className="rounded-full  h-max GrayChip flex items-center  !min-w-max "
+                    className="rounded-full  h-max grayChip flex items-center  !min-w-max "
                     icon={
                       <Icon
                         size="md"

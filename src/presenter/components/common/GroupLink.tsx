@@ -40,7 +40,7 @@ export const GroupLink: React.FC<GroupDivProps> = ({ group }) => {
                                 key={category}
                                 value={category}
                                 size='sm'
-                                className="GrayChip text-ellipsis scale-[0.8]" >
+                                className="grayChip text-ellipsis scale-[0.8]" >
                             </Chip>
                         </CardBody>
                     </Card>

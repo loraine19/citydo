@@ -51,13 +51,13 @@ export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardPr
                                 <Chip
                                     value='Sondage'
                                     size="sm"
-                                    className="!px-3 min-w-max rounded-full h-max OrangeChip" >
+                                    className="!px-3 min-w-max rounded-full h-max orangeChip" >
                                 </Chip>
                             </button>
                             <Chip
                                 value={survey?.categoryS}
                                 size="sm"
-                                className="CyanChip">
+                                className="cyanChip">
                             </Chip>
                         </div>
                         <DateChip
@@ -113,7 +113,7 @@ export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardPr
                                 value={survey?.Votes?.length}
                                 size='sm'
                                 variant="ghost"
-                                className="pt-1 GrayChip"
+                                className="pt-1 grayChip"
                                 icon={
                                     <Icon
                                         icon="smart_card_reader"

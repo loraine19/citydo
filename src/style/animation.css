@@ -1,13 +1,18 @@
 /**** ANIMATIONS ****/
 
-.anim {
+.anim2 {
     @apply duration-700 fadeIn;
     animation: up 2s forwards;
+}
+.anim {
+    @apply duration-700;
+
+    animation: up 2s forwards, fadeIn 3s forwards;
 }
 
 .animRev {
     @apply duration-700;
-    animation: down 1.5s forwards;
+    animation: down 2s forwards, fadeIn 3s forwards;
 }
 
 .animSlide {
@@ -52,6 +57,15 @@
     }
     to {
         opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
 

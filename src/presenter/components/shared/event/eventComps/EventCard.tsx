@@ -43,13 +43,13 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                                 data-cy={`chip-${label}`}
                                 size='sm'
                                 value={label}
-                                className="rounded-full h-max CyanChip shadow" />
+                                className="rounded-full h-max cyanChip shadow" />
                         </button>
                         <DateChip
                             start={start}
                             end={end}
                             ended={new Date(end).getTime() < Date.now()}
-                            prefix="commence dans" />
+                            prefix="dans" />
                     </div>
                     {event.isPast}
                     <ProgressBarBlur
@@ -105,7 +105,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                             size="sm"
                             value={participantsMin}
                             variant="ghost"
-                            className="rounded-full pt-1 GrayChip h-max flex items-center  "
+                            className="rounded-full pt-1 grayChip h-max flex items-center  "
                             icon={
                                 <Icon
                                     disabled={event?.status === EventStatus.REJECTED || event?.isPast}

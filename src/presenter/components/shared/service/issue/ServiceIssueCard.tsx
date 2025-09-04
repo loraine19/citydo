@@ -28,14 +28,14 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
                         <Chip
                             size='sm'
                             value={typeS}
-                            className={`${type === ServiceType.GET ? "OrangeChip lowercase" : "GreenChip lowercase"}`}>
+                            className={`${type === ServiceType.GET ? "orangeChip lowercase" : "greenChip lowercase"}`}>
                         </Chip>
                     </div>
                     <div className="flex items-center gap-2">
                         <Chip
                             size='sm'
                             value={(new Date(createdAt)).toLocaleDateString('fr-FR')}
-                            className="GrayChip lowercase">
+                            className="grayChip lowercase">
                         </Chip>
                     </div>
                 </div>
