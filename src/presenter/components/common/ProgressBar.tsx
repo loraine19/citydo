@@ -22,15 +22,15 @@ export function ProgressBar({ value, label, needed, status, size = 'md' }: Progr
             labelTexte = 'finis et non approuvé'
             break;
         case (status === PoolSurveyStatus.VALIDATED):
-            color = 'bg-green-600'
+            color = 'bg-green-300/90'
             labelTexte = 'cloturé et approuvé'
             break;
         case (status === PoolSurveyStatus.PENDING && value === 0):
-            color = 'bg-slate-500/80'
+            color = 'bg-slate-400/80'
             labelTexte = `Pas de ${label}`
             break;
         default:
-            color = 'bg-orange-500'
+            color = 'bg-orange-300'
             labelTexte = `il manque ${needed} ${label}`
     }
 
@@ -61,23 +61,23 @@ export function ProgressBarBlur({ value, label, needed, status, size = 'md', isP
     let labelTexte = ''
     switch (true) {
         case (status === EventStatus.REJECTED && isPast):
-            color = 'bg-slate-500/80'
+            color = 'bg-slate-600/80'
             labelTexte = 'n\'a pas eu lieu manque de participants'
             break;
         case (status === EventStatus.REJECTED && !isPast):
-            color = 'bg-slate-500/80'
+            color = 'bg-slate-600/80'
             labelTexte = 'n\'aura pas lieu manque de participants'
             break;
         case (status === EventStatus.VALIDATED && !isPast):
-            color = 'bg-green-600'
+            color = 'bg-green-500/80'
             labelTexte = 'a été validé'
             break;
         case (status === EventStatus.VALIDATED && isPast):
-            color = 'bg-cyan-600'
+            color = 'bg-cyan-500/80'
             labelTexte = 'a eu lieu'
             break;
         case (status === EventStatus.PENDING && value === 0):
-            color = 'bg-gray-500/80'
+            color = 'bg-slate-400/80'
             labelTexte = `pas encore de ${label}`
             break;
     }
@@ -98,12 +98,12 @@ export function ProgressBarBlur({ value, label, needed, status, size = 'md', isP
             {status === EventStatus.PENDING && value !== 0 &&
                 (
                     <Progress
-                        className="h-6 flex items-start bg-slate-500/80 !shadow"
+                        className="h-6 flex items-start bg-slate-600/80 !shadow"
                         value={(status === EventStatus.PENDING) ? value : 100}
                         size={size}>
                         <ProgressBarMT
                             value={(status === EventStatus.PENDING) ? value : 100}
-                            className={`!min-w-[2.7rem] text-center !line-clamp-1 whitespace-nowrap truncate flex items-center ${size === "lg" ? ' px-3 py-0.5' : 'px-2 '} !bg-orange-500 `}
+                            className={`!min-w-[2.7rem] text-center !line-clamp-1 whitespace-nowrap truncate flex items-center ${size === "lg" ? ' px-3 py-0.5' : 'px-2 '} !bg-orange-400/80 `}
                         >
                             <div className="absolute h-6 flex items-center">  <Typography className="text-sm gap-[10%] flex text-white ">
                                 <span className="font-semibold opacity-70 pr-2">{value} %</span>

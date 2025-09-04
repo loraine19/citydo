@@ -70,6 +70,7 @@ export default function ServiceDetailPage() {
                         icon: service.isNew ? 'Répondre au service' : service.isFinish ? 'ce service est terminé' : service.statusS,
                         title: service.isNew ? 'Nous envoyerons un message à ' + service.User?.email + ' pour le premier contact' : '55',
                         body: service?.title,
+                        disabled: !service.isNew || service.isFinish,
                         function: service.isNew ?
                             async () => {
                                 try {

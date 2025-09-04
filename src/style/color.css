@@ -1,22 +1,23 @@
 /**** COLORS ****/
 .cyanBG {
-    background-image: linear-gradient(#f9fafb00, #a5f3fc);
+    background-image: linear-gradient(#f9fafb00, #a5f3fc90);
 }
 
 .skyBG {
-    background-image: linear-gradient(#f9fafb00, #bae6fd);
+    background-image: linear-gradient(#f9fafb00, #bae6fd90);
 }
 
-.slateBG {
+.slateBG,
+.grayBG {
     background-image: linear-gradient(#f9fafb00, #64748b);
 }
 
 .roseBG {
-    background-image: linear-gradient(#f9fafb00, #fecdd3);
+    background-image: linear-gradient(#f9fafb00, #fecdd390);
 }
 
 .gray100 {
-    background-image: linear-gradient(#f9fafb00, #e2e8f0);
+    background-image: linear-gradient(#f9fafb00, #e2e8f090);
 }
 
 .orangeBG {

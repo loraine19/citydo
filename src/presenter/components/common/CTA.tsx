@@ -46,11 +46,11 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                     .map((action, i) =>
                         action?.icon && action?.icon !== '' && (
                             <div key={i}
-                                className={` ${(i === actions.length - 1 && (actions.length > 2 || actions.length === 1)) ? 'flex-1 w-[500px] min-w-full' : (actions.length === 2) ? 'flex-1' : 'w-max'} !flex`}
+                                className={` ${(i === actions.length - 1 && (actions.length > 2 || actions.length === 1)) ? 'flex-1 w-[500px] min-w-full' : (actions.length === 2) ? 'flex-1' : 'w-max'} !flex `}
                             >
                                 <Button
                                     type={action?.type ?? "button"}
-                                    className={`${action?.color ?? defColor}${(action?.NoPrimary || i !== actions.length - 1) ? 'Style' : 'StyleInv'} !min-w-max w-full lgBtn flex-1 flex `}
+                                    className={`${action?.color ?? defColor}${(action?.NoPrimary || i !== actions.length - 1 || actions.length > 1) ? 'Style' : 'StyleInv'} !min-w-max w-full lgBtn flex-1 flex !pl-1.5`}
                                     size="lg"
                                     onClick={() => {
                                         if (action?.direct) {
@@ -74,7 +74,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                                                         : action?.iconImage
                                             }
                                             bg fill
-                                            size="lg"
+                                            size="xl"
                                         />
                                     )}
                                     <span className="w-full flex-1 -ml-3">{action?.icon}</span>

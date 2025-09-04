@@ -107,7 +107,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                                     name="title"
                                                     onChange={formik.handleChange}
                                                     defaultValue={title} />
-                                                <InputError error={formik.errors.title} />
+                                                <InputError mt error={formik.errors.title} />
                                             </div>
                                             <div className='flex flex-col flex-1'>
                                                 <Textarea

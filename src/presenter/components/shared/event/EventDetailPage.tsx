@@ -49,7 +49,7 @@ export default function EventDetailPage() {
     const buttonsGenerator = (eventUp: EventView): Action[] => [
         {
             NoPrimary: eventUp?.Igo,
-            iconImage: eventUp?.Igo ? 'cancel' : 'person',
+            iconImage: eventUp?.Igo ? 'close' : 'person',
             icon: eventUp?.Igo ? 'Annuler votre participation' : 'Participer',
             title: eventUp?.Igo ? `Annuler votre participation ` : `Participer à l'évenement`,
             body: eventUp?.Igo ? `Voulez-vous vraiment annuler votre participation à ${eventUp?.title}` :

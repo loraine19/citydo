@@ -107,12 +107,12 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim rounded-t-3xl ${color}BG backdropBlur wRespXL justify-center gap-4 lg:gap-6 pb-2 pr-5  lg:!px-0 ` :
+                    `items-center opacity-100 anim rounded-t-3xl backdropBlur wRespXL ${color}BG  justify-center gap-4 lg:gap-6 pb-2 pr-5  lg:!px-0 ` :
                     'z-0 md:gap-4 gap-4 ') +
                 ` flex z-30 w-full `
             }>
                 <Navbar className={`
-                    ${navBottom ? 'ml-2 lg:ml-0 border-[1px] rounded-full !shadow-md bg-white border-slate-200 !flex-1 !max-w-max sm:!max-w-[100%] dark:!bg-red-300 ' :
+                    ${navBottom ? 'ml-2 lg:ml-0 border-[1px] rounded-full !shadow-md bg-white border-slate-200 !flex-1 !max-w-max sm:!max-w-[100%]  ' :
                         ` !pt-1  shadow-none border-none bg-transparent w-full `}
                     flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden  `}>
                     <ul className={`${navBottom ?

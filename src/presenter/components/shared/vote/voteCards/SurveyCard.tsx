@@ -42,8 +42,16 @@ export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardPr
         <>
             <Card className={haveImage ? "FixCard " : "FixCardNoImage  "}>
                 <CardHeader
-                    className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
-                    floated={haveImage}>
+                    className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}>
+                    {survey?.image &&
+                        <div className="CardImageDiv">
+                            <img
+                                onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
+                                src={survey?.image as any}
+                                alt={survey?.title}
+                                className="CardImage "
+                            />
+                        </div>}
                     <div className={haveImage ? "ChipDiv" : "ChipDivNoImage"}>
                         <div className="ChipSubDiv ">
                             <button
@@ -66,15 +74,7 @@ export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardPr
                             end={end}
                             prefix="finis dans" />
                     </div>
-                    {survey?.image &&
-                        <div className="CardImageDiv">
-                            <img
-                                onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
-                                src={survey?.image as any}
-                                alt={survey?.title}
-                                className="CardImage"
-                            />
-                        </div>}
+
                 </CardHeader>
                 <CardBody
                     className={` FixCardBody`}>

@@ -79,18 +79,20 @@ export const AlertNotif = () => {
     return (
         <div className={`h-max w-full z-[1000] absolute left-0 top-0 flex justify-center `}>
             <div className="relative z-50 w-[90%] max-w-[600px] mx-auto justify-center items-center">
-                <Card className={`w-full rounded-2xl h-max px-4 py-3 shadow-lg transition-all duration-1000 ease-in-out transform bg-opacity-95 
+                <Card className={`w-full rounded-2xl h-max  shadow-lg transition-all duration-1000 ease-in-out transform bg-opacity-95 py-9 px-6 mt-2
                  ${notif ?
-                        'scale-100 opacity-100 top-3 slide absolutme' :
+                        'scale-100 opacity-100 top-4 slide absolutme' :
                         'scale-80 opacity-0 top-0'} `}>
                     <Typography
-                        className="underline underline-offset-8 decoration-gray-300"
+                        className="underline underline-offset-8  decoration-gray-300"
                         as="a"
                         href={link ?? '/'}
-                    >{notif}</Typography>
+                    >{notif}
+                    </Typography>
                     <Icon
                         bg
-                        style='absolute right-4 top-1 opacity-70'
+
+                        style='absolute right-3 top-3 '
                         icon='close'
                         size='sm'
                         onClick={() => setNotif(null)}
