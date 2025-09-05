@@ -47,7 +47,10 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
             <header>
 
                 {/*BLUR POP BACKGROUND */}
-                <div onClick={() => setCloseDial(!true)}
+                <div onClick={() => {
+                    setCloseDial(!true);
+                    setOpenBlur(false)
+                }}
                     className={` ${(!closeDial && !openBlur) ? 'hidden' :
                         ' h-screen w-screen -left-0 top-0  backdropBlur  absolute slide'}`}>
                 </div>

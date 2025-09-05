@@ -170,7 +170,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                                 color={color ?? 'slate'}
                                 style={'!text-white/80 border-0'}
                                 reverse
-                                onClick={() => setOpenBlur(!openBlur)}
+                                onClick={() => setOpenBlur(false)}
                                 icon="edit"
                                 bg
                                 clear={navBottom}

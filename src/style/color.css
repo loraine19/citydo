@@ -13,7 +13,7 @@
 }
 
 .roseBG {
-    @apply bg-gradient-to-b from-rose-100/20 to-rose-300/20;
+    @apply bg-gradient-to-b from-rose-100/10 to-rose-300/30;
 }
 
 .gray100 {
@@ -98,7 +98,7 @@
     @apply !bg-amber-500 inv;
 }
 .roseStyle {
-    @apply !text-rose-500 !bg-rose-300/50 style;
+    @apply !text-rose-500 !bg-rose-200/80 style;
 }
 .roseStyleInv {
     @apply !bg-rose-500 inv;
