@@ -16,7 +16,7 @@ export const GroupLink: React.FC<GroupDivProps> = ({ group }) => {
                 placement="bottom-start">
                 <PopoverTrigger className="w-full flex">
                     <i className={' !truncate '}>
-                        ⌖ {group?.name}
+                        • {group?.name}
                     </i>
                 </PopoverTrigger>
 

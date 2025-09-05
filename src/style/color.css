@@ -34,7 +34,7 @@
 }
 
 .style {
-    @apply bg-opacity-100 !border-slate-900/5 !brightness-95  !font-roboto;
+    @apply bg-opacity-100 !border-slate-900/5 !brightness-95  font-roboto;
 }
 
 .inv {
@@ -98,7 +98,7 @@
     @apply !bg-amber-500 inv;
 }
 .roseStyle {
-    @apply !text-rose-500 bg-rose-300/40 style;
+    @apply !text-rose-500 !bg-rose-300/40 style;
 }
 .roseStyleInv {
     @apply !bg-rose-500 inv;

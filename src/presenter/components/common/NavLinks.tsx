@@ -105,7 +105,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                 ` flex z-30 w-full `
             }>
                 <Navbar className={`
-                    ${navBottom ? 'ml-2 lg:ml-0 border-[1px] rounded-full !shadow-md bg-slate-50 border-slate-300 !flex-1 !max-w-max sm:!max-w-[100%] !p-8 ' :
+                    ${navBottom ? 'ml-2 lg:ml-0 border-[1px] rounded-full !shadow bg-slate-50 border-slate-300 !flex-1 !max-w-max sm:!max-w-[100%] !p-8 ' :
                         ` !pt-1  shadow-none border-none bg-transparent w-full `}
                     flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden  `}>
                     <ul className={`${navBottom ?
@@ -142,7 +142,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                                                 color={color.col}
                                             />
                                             {/* LABEL LINK */}
-                                            <span className={`font-bold font-comfortaa drop-shadow hidden pr-2
+                                            <span className={`font-bold font-comfortaa drop-shadow-sm hidden pr-2
                                             ${navBottom ? 'lg:pr-8 md:block md:!text-[0.85rem] ' : 'md:block md:!text-[0.80rem]'} 
                                             ${(isActive && !navBottom) && 'underline underline-offset-8'}`}>
                                                 {label}
@@ -165,7 +165,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                     placement={navBottom ? 'top' : 'bottom'}
                     offset={10}
                     Handler={
-                        <div className={` rounded-full   hover:!transition-transform hover:!rotate-45  !text-[2.2rem] ${color}StyleInv ${navBottom ? `!shadow-md p-2 w-full h-full border border-slate-900/5 ` : ' shadow !p-0'}`}>
+                        <div className={` rounded-full   hover:!transition-transform hover:!rotate-45  !text-[2.2rem] ${color}StyleInv ${navBottom ? `!shadow-md p-2 w-full h-full border border-slate-900/5 ` : ' !shadSm !p-0'}`}>
                             <Icon
                                 color={color ?? 'slate'}
                                 style={'!text-white/80 border-0'}
@@ -181,19 +181,20 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                         <div className={`${!navBottom ? ' items-end  mr-2' : ''} flex gap-2 flex-col `}>
                             {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
                                 <div key={index}
-                                    className={`-mr-2 bg-white rounded-full shadow-md flex hover:scale-[1.1]  gap-6  !justify-center items-center border 
-                                     ${navBottom ? ` p-[8px] ` : 'p-[6px] '}   `}
+                                    className={`-mr-2 flex  gap-6  !justify-center items-center 
+                                   `}
                                     title={label}>
                                     <div>
                                         <Icon
+                                            reverse
+                                            style={'shadow-sm !border-slate-900/10 '}
                                             bg
-                                            fill={type ? true : false}
                                             link={to}
-                                            size={navBottom ? '3xl' : 'xl'}
+                                            size={navBottom ? '6xl' : '2xl'}
                                             icon={icon}
                                             color={type ? color.col : color.col} />
                                     </div>
-                                    <div className={`${navBottom ? '' : 'text-[14px] '} py-2 px-4 right-[5rem] rounded-full ${color.col}Style outlineStyle absolute bg-white text-sm shadow-xl whitespace-nowrap !border !border-gray-200`}>
+                                    <div className={`${navBottom ? '' : 'text-[14px] '} py-2 px-4 right-[5rem] rounded-full ${color.col}Style outlineStyle absolute bg-white text-sm shadow whitespace-nowrap !border !border-gray-200`}>
                                         {label}
                                     </div>
                                 </div>)}

@@ -128,7 +128,7 @@ export const AddressInputOpen = (props: {
             {inputValue.length > 1 && inputLoading && (
                 <div className='z-50 absolute px-0.5 w-full'
                     ref={(el) => { if (el) el.scrollIntoView({ behavior: 'smooth', block: 'end' }); }}>
-                    <List className='bg-white rounded-xl border border-gray-300 overflow-auto w-full shadow-lg max-h-[7.5rem] '>
+                    <List className='bg-white rounded-2xl border border-gray-300 overflow-auto w-full shadow max-h-[7.5rem] '>
                         {suggestions.length > 0 ? (
                             suggestions.map((suggestion, index) => (
                                 suggestion.label !== suggestions[index - 1]?.label &&

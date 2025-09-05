@@ -20,7 +20,7 @@ function ZoomControls() {
 
     return (
         <div className='flex absolute top-[9px] left-[9px] z-[1000]'>
-            <div className='border bg-slate-50 border-slate-300 rounded-full shadow-xl p-[5px] flex flex-col gap-[1px]'>
+            <div className='border bg-slate-50 border-slate-300 rounded-full shadow p-[5px] flex flex-col gap-[1px]'>
                 <Icon
                     style={'!text-slate-400/80 hover:!text-slate-600'}
                     title='Zoomer'
@@ -203,7 +203,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
             zoomControl={false}
             attributionControl={false}
             scrollWheelZoom={false}
-            className='!z-10 flex flex-1 items-center justify-center !rounded-xl ' >
+            className='!z-10 flex flex-1 items-center justify-center !rounded-3xl ' >
             <TileLayer
                 url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}" />
             <ZoomControls />
@@ -213,7 +213,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
                 <Marker
                     position={position}
                     icon={L.icon({
-                        className: 'drop-shadow-lg  !pt-5',
+                        className: 'drop-shadow  !pt-5',
                         iconUrl: '/image/marker_orange.svg',
                         iconSize: [80, 80],
                         iconAnchor: [40, 75],
@@ -246,7 +246,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
                     </Dialog.Trigger>
                     <Dialog.Overlay className='backdropBlur !bg-transparent'>
                         <Dialog.Content className='flex flex-1 h-[calc(100%-6rem)] w-full border-0 shadow-none !bg-transparent -mt-[2rem]'>
-                            <div className='w-full h-full flex flex-1 rounded-3xl shadow-xl border border-slate-400'>
+                            <div className='w-full h-full flex flex-1 rounded-3xl shadow border border-slate-400'>
                                 <MapDiv />
                             </div>
                             <Dialog.DismissTrigger className='z-[600] absolute top-5 right-5'>

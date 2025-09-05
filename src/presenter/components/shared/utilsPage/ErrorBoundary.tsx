@@ -179,7 +179,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                     <main
                         className="flex items-center gap-8 h-full p-20">
                         <Card className="hidden md:flex  FixCardNoImage !p-8 welcome " >
-                            <div className="absolute rounded-xl inset-0 bg-black/10  z-0" />
+                            <div className="absolute rounded-2xl inset-0 bg-black/10  z-0" />
                             <Typography
                                 className="py-6 px-8 !text-white !leading-[1] text-[2.5rem] font-bold !text-center font-comfortaa relative z-10"
                                 style={{ textShadow: "0px 1px 4px #000000" }} >

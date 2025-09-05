@@ -90,7 +90,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
     const [openEmoji, setOpenEmoji] = useState(false);
 
     return (
-        <Card className='FixCardNoImage !flex-col rounded-xl bg-transparent !flex !border-slate-50 !border-8 '>
+        <Card className='FixCardNoImage !flex-col rounded-2xl bg-transparent !flex !border-slate-50 !border-8 '>
             <CardHeader className='FixCardHeaderNoImage h-6 !bg-slate-200  !rounded-b-none w-full px-3  pt-1 !relative !min-h-fit'>
                 {newConv &&
                     <ProfileDiv profile={userRec} />}

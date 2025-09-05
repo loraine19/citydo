@@ -50,7 +50,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                             user={user} />
                     </div>
                 </div>
-                <section className="pb-10">
+                <section >
                     <div className={`FormCardDiv `}>
                         <Card className={`${haveImage ? "FormDetailGrid " : "FixCardNoImage "} `}>
                             <CardHeader className={haveImage ?

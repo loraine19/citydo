@@ -63,7 +63,7 @@ export const ListGroup = ({ groups, error, isLoading }: ListGroupProps) => {
           error={groups.length === 0 || !groups ? ' Enregistrez votre adresse pour voir les groupes à proximité' : haveAGroup.length === 0 ? 'Vous n\'êtes pas membre d\'un groupe' : ''}
           tips={notif ?? haveAGroup?.length > 1 ? 'Vos groupes' : 'Votre groupe'} />
         <MenuContent className="w-respLarge border-[1px] !-mt-3  bg-transparent !-ml-6 shadow-none border-none ">
-          <div className="bg-white divide-y-[1px] p-2 shadow-lg rounded-lg mx-2 border-[1px] border-slate-200">
+          <div className="bg-white divide-y-[1px] p-2 shadow rounded-lg mx-2 border-[1px] border-slate-200">
             {groups.length > 0 && groups.map((group: GroupView) =>
               <ListItem
                 onClick={() => navigate(`/groupe/${group.id}`)}

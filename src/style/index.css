@@ -107,13 +107,13 @@ header {
 
 /* TEXT */
 h2 {
-    @apply font-bold !text-[1.45rem] !text-slate-700/95 font-roboto;
+    @apply font-bold !text-[1.35rem] !text-slate-700/95 font-roboto;
 }
 h3 {
     @apply font-semibold text-[1.3rem] !text-slate-600 !font-roboto;
 }
 h4 {
-    @apply font-bold text-[1.1rem] !text-slate-800 !font-roboto;
+    @apply font-semibold text-[1.08rem] !text-slate-800 !font-roboto;
 }
 h5 {
     @apply text-lg text-[0.95rem] font-normal !text-slate-700 !font-roboto;
@@ -151,10 +151,10 @@ i {
 
 /**** INPUT STYLES ****/
 .inputStandart {
-    @apply !rounded-none border-b !border-slate-400 ring-0 focus:!border-b-slate-800  !border-t-0 !border-x-0 hover:!border-t-0 placeholder:!opacity-90 placeholder:!text-slate-600 !pl-0  focus:placeholder:!opacity-50 before:content-none after:content-none gap-4 font-normal  text-sm  !text-slate-500 !font-roboto;
+    @apply !rounded-none border-b !border-slate-400 ring-0 focus:!border-b-slate-800  !border-t-0 !border-x-0 hover:!border-t-0 placeholder:!opacity-90  !pl-0  focus:placeholder:!opacity-50 before:content-none after:content-none gap-4 font-normal  text-sm  !text-slate-500 !font-roboto;
 }
 .inputStandart::placeholder {
-    @apply !text-slate-600 !opacity-90 !font-roboto;
+    @apply !text-slate-600 !opacity-90 !font-roboto !px-4;
 }
 
 input {
@@ -263,18 +263,15 @@ button:disabled:hover {
 
 button {
     text-transform: none !important;
-    @apply whitespace-nowrap font-bold !border-current !border-opacity-30;
-}
-
-button:hover {
-    @apply !bg-opacity-90 !brightness-95 !saturate-[1.2];
+    @apply whitespace-nowrap font-bold  !border-slate-900/10;
 }
 
 .lgBtn {
     @apply !flex items-center rounded-full  !shadow-md !py-1.5  lg:p-2 gap-5  !break-words font-roboto justify-center px-5  pl-5 pr-5 !min-h-[3.2rem]   !border-slate-900/10;
 }
-.lgbtn {
-    @apply text-pretty;
+
+.btn {
+    @apply !flex items-center rounded-full  !shadow-md !py-1.5  lg:p-2 gap-5  !break-words font-roboto justify-center !px-5   !min-h-[3.2rem]   border-slate-900/10;
 }
 
 /**** COMP ****/
@@ -324,7 +321,7 @@ button:hover {
 }
 
 .SimpleInput {
-    @apply rounded-none border-0 border-b border-gray-400 pr-0.5 shadow-none ring-0 hover:border-gray-900 focus:border-gray-900 data-[icon-placement=start]:!pl-[26px] dark:border-gray-600 dark:hover:border-gray-50 dark:focus:border-gray-50 focus:outline-none;
+    @apply rounded-none border-0 border-b border-gray-400 pr-0.5 shadow-none ring-0 hover:border-gray-900 focus:border-gray-900 data-[icon-placement=start]:!pl-[26px] dark:border-gray-600 dark:hover:border-gray-50 dark:focus:border-gray-50 focus:outline-none placeholder:!pr-4;
 }
 
 /* SCROLL BARE */
@@ -338,12 +335,12 @@ button:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply bg-white/80 border rounded-3xl h-1;
+    @apply bg-white/50 border rounded-3xl h-1;
     cursor: pointer;
 }
 ::-webkit-scrollbar-thumb:hover,
 ::-webkit-scrollbar-thumb:active {
-    @apply bg-white;
+    @apply bg-white/80;
 }
 button span {
     @apply !truncate max-w-full min-h-max;
@@ -367,12 +364,20 @@ button span {
     width: 26px;
     height: 26px;
 }
+
+.iconMs {
+    @apply flex items-center justify-center rounded-full;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+}
 .iconMd {
     @apply flex items-center justify-center rounded-full;
     font-size: 18px;
     width: 34px;
     height: 34px;
 }
+
 .iconLg {
     @apply flex items-center justify-center rounded-full;
     font-size: 22px;
@@ -408,4 +413,11 @@ button span {
     font-size: 42px;
     width: 58px;
     height: 58px;
+}
+
+.icon6xl {
+    @apply flex items-center justify-center rounded-full;
+    font-size: 46px;
+    width: 62px;
+    height: 62px;
 }

@@ -56,10 +56,10 @@ export const AuthForm: React.FC<AuthFormProps> = ({
             <div className='flex md:flex-row  flex-1 items-center h-full gap-8 wRespXL px-[2%] pt-8 pb-2 w-full'>
                 {/* IMAGE CARD */}
                 <Card className={`border-slate-200 !hidden md:!flex flex-[50%] FixCardNoImage !p-8`} >
-                    <div className="absolute rounded-xl inset-0 bg-black/10   z-0" />
+                    <div className="absolute rounded-2xl inset-0 bg-black/10   z-0" />
                     <img src="image/welcome.jpg"
                         alt="connexion"
-                        className="absolute inset-0 object-cover object-center w-full h-full rounded-xl opacity-90 brightness-90 z-0" />
+                        className="absolute inset-0 object-cover object-center w-full h-full rounded-2xl opacity-90 brightness-90 z-0" />
                     <Typography
                         className="py-6 px-8 !leading-[1] text-[2.8rem] font-bold !text-center !font-comfortaa relative z-10 !text-white"
                         style={{ textShadow: "0px 1px 4px #00000080" }} >
@@ -80,7 +80,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                         </Typography>
                     </CardHeader>
                     <CardBody className='FixCardBody h-full gap-3 items-center justify-center !flex '>
-                        <div className='flex  flex-col gap-[2vh] w-full overflow-auto px-4 pt-2'>
+                        <div className='flex  flex-col gap-[2vh] w-full overflow-auto px-4 '>
                             <Input
                                 className={`inputStandart ${formik?.errors.email ? 'error' : ''}`}
                                 placeholder={"Email"}
@@ -161,25 +161,25 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 <img
                                     src="image/welcome.jpg"
                                     alt="connexion"
-                                    className="absolute !min-h-24  inset-0 object-cover w-full h-full rounded-xl  z-0   object-center" />
+                                    className="absolute !min-h-24  inset-0 object-cover w-full h-full rounded-2xl  z-0   object-center" />
                             </Card>
                         </div>
 
                     </CardBody>
                     <CardFooter className={`flex flex-col !mt-0 !pt-0 !pb-12`}>
 
-                        <div className='flex flex-col gap-3 py-2'>
+                        <div className='flex gap-3 pt-4 items-center justify-center flex-wrap'>
                             <Button
                                 data-cy="submit-button"
                                 type="submit"
                                 size="md"
-                                className=" w-[90%] bg-cyan-500 m-auto rounded-full">
+                                className=" bg-cyan-500 btn m-auto">
                                 {submitText}
                             </Button>
                             <Button
                                 size="md"
                                 variant="outline"
-                                className=" !relative flex max-h-10 px-4 items-center justify-center rounded-full w-[90%] m-auto "
+                                className=" !relative flex  m-auto btn "
                                 onClick={async () => {
                                     setIsLoggedIn(true)
                                     await googleAuth()
@@ -187,7 +187,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 <img
                                     src="image/google.svg"
                                     alt="metamask"
-                                    className="h-6 w-6 !absolute left-2" />
+                                    className="h-6 w-6 -ml-2" />
                                 {submitText} avec Google
                             </Button>
                         </div>

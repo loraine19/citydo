@@ -34,7 +34,7 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
                         </div>
                     </MenuTrigger>
                     <MenuContent className="backdropBlur overflow-hidden bg-transparent m-auto !border-none shadow-none gap-2 flex rounded-3xl justify-end h-[calc(100%-110px)] wRespXL ">
-                        <div className="p-4 h-max bg-white gap-2 shadow-lg rounded-3xl border relative right-0 flex flex-col justify-start">
+                        <div className="p-4 h-max bg-white gap-2 shadow rounded-3xl border relative right-0 flex flex-col justify-start">
                             {sortList.map((item: SortLabel, index: number) =>
                                 <div
                                     key={index}

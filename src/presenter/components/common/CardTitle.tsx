@@ -34,16 +34,17 @@ export function Title(props: { title: string, flagged?: boolean, id?: number, Cr
                         </i>}
                 </div>
                 {id &&
-                    <div className="relative flex h-full w-max pt-1.5 pl-1">   <FlagIcon
-                        flagged={flagged ? true : false}
-                        id={id}
-                        type={type ?? ''} />
+                    <div className="relative flex h-full w-max pt-1 pl-1">
+                        <FlagIcon
+                            flagged={flagged ? true : false}
+                            id={id}
+                            type={type ?? ''} />
                     </div>}
             </div>
             {(group || subTitle) &&
-                <div className="grid flex-col   justify-between gap-1 ">
+                <div className="grid flex-col   justify-between  ">
                     {subTitle &&
-                        <i className="truncate -mt-1  !text-base">
+                        <i className="truncate   !text-base">
                             {subTitle}
                         </i>}
                     {group &&

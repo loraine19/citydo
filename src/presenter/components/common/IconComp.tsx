@@ -111,6 +111,7 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
     const sizeMap: any = {
         'xs': { text: '11', class: 'iconXs' },
         'sm': { text: '14', class: 'iconSm' },
+        'ms': { text: '16', class: 'iconMs' },
         'md': { text: '18', class: 'iconMd' },
         'lg': { text: '22', class: 'iconLg' },
         'xl': { text: '26', class: 'iconXl' },
@@ -118,6 +119,7 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
         '3xl': { text: '34', class: 'icon3xl' },
         '4xl': { text: '38', class: 'icon4xl' },
         '5xl': { text: '42', class: 'icon5xl' },
+        '6xl': { text: '46', class: 'icon6xl' },
     };
     const num = sizeMap[size as keyof typeof sizeMap]?.text ?? '30';
     const classRounded = sizeMap[size as keyof typeof sizeMap]?.class ?? 'icon2xl';
@@ -131,7 +133,7 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
     ${textColor(color) as string} ${bg()}  
     ${props.bg ? classRounded : textSize} ${style ?? ''} `
 
-    const classActive = `hover:brightness-[0.9] active:brightness-[0.8]`
+    const classActive = `hover:brightness-[0.95] active:brightness-[0.9] hover:scale-[1.03] `
 
     return (
         <div className={`${(props.bg && !clear) ? 'max-h-max max-w-max bg-white ' : ''} rounded-full  `}>

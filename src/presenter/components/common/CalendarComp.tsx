@@ -130,7 +130,7 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                                     <div className='flex flex-col h-full w-full items-center gap-3'>
                                         {[...Array(numberOfwweks)].map((_, eventIndex) => (
                                             <div key={eventIndex}
-                                                className='w-full rounded-xl bg-gray-300 h-7 animate-pulse'>
+                                                className='w-full rounded-2xl bg-gray-300 h-7 animate-pulse'>
                                             </div>
                                         ))}
                                     </div>
@@ -143,7 +143,7 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                         {weeks && weeks.map((week: any, key: number) => (
                             <div
                                 key={key}
-                                className={`grid rounded-xl h-full overflow-auto pb-3 !border border-slate-200 !bg-slate-200/50
+                                className={`grid rounded-2xl h-full overflow-auto pb-3 !border border-slate-200 !bg-slate-200/50
                                 ${colClass[col - 1]}`}>
                                 {week.map((day: any, index: number) =>
                                     <div className={`flex flex-col text-center h-full  border-r border-slate-100/50  `}
@@ -156,20 +156,21 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                                                 const eventDays = event.days.map((d: any) => new Date(d).toDateString());
                                                 const currentDay = new Date(new Date(day.date).getTime()).toDateString();
                                                 return (
-                                                    <div key={indexEvent} className='w-full rounded-xl  '>
+                                                    <div key={indexEvent} className='w-full rounded-2xl  '>
                                                         <Popover
                                                             open={open && popId === event.id + day.date} >
                                                             <button
                                                                 data-cy='event-handler'
                                                                 title={'Voir événement' + ' ' + event.title}
-                                                                className=' w-full rounded-xl'
+                                                                className=' w-full rounded-2xl'
                                                                 onClick={() => { setOpen(true); setPopId(event.id + day.date) }}>
                                                                 <PopoverTrigger className='w-full'>
                                                                     <div
                                                                         className=
                                                                         {`${!event.actif && 'invisible'} 
                                                                              ${event.status !== EventStatus.VALIDATED ? `!bg-slate-400/80` : `bg-cyan-500`} shadow-md px-[0.5rem] mb-[0.2rem]  text-white h-5 truncate flex items-center justify-center font-normal z-50 
-                                                        ${(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) && 'rounded-l-2xl !justify-start !z-50 pl-4 !font-medium'}
+                                                        text-[0.80rem]
+                                                        ${(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) ? 'rounded-l-2xl !justify-start !z-50 pl-4 !font-medium capitalize' : 'italic text-opacity-70'}
                                                         ${(eventDays[eventDays.length - 1] === currentDay || new Date(day.date).getDay() === 0) && 'rounded-r-2xl '}
                                                     `}>
                                                                         {(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) ? getLabel(event.category, eventCategories) + '...' : `Jour ${eventDays.indexOf(currentDay) + 1}`}

@@ -75,7 +75,7 @@ export default function GroupDetailPage() {
                     onScroll={() => {
                         handleHideCallback()
                     }}>
-                    <div className="DetailCardDiv">
+                    <div className={`DetailCardDiv ${!hideNavBottom ? "hideCTA" : ""}`}>
                         {!isLoading && !error && group ?
                             <GroupDetailCard
                                 actions={myActions}

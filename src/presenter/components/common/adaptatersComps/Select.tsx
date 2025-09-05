@@ -20,8 +20,8 @@ export function Select({ formik, setValue, value, name, placeholder, disabled, o
 
 
     const className =
-        simple ? `capitaliz inputStandart ${formik?.errors[name ?? ''] ? 'error ' : ``} ` :
-            `inputDiv ${formik?.errors[name ?? ''] ? 'error !bg-red-100' : `${color}Style`} `
+        simple ? `capitaliz inputStandart !shadow-none ${formik?.errors[name ?? ''] ? 'error ' : ``} ` :
+            `  inputDiv ${formik?.errors[name ?? ''] ? 'error !bg-red-100' : ` ${color}Style `} `
 
     const find = (value: string, formik: any): string => { return options?.filter(option => option?.value === formik?.values[name ?? '']?.toString() || option?.value === value?.toString())[0]?.label }
     const place = (value: string, formik: any): string => (formik?.errors[name ?? ''] && !simple) && formik.errors[name ?? ''] || find(value, formik) || placeholder
@@ -44,9 +44,10 @@ export function Select({ formik, setValue, value, name, placeholder, disabled, o
                     value={value ?? ''}
                     placeholder={place(value ?? '', formik)}
                     className={className} />
-                <SelectMT.List>
+                <SelectMT.List className={` rounded-3xl gap-1 px-4 py-3 !shadow`}>
                     {options?.map((option: { label: string, value: string }) => (
                         <SelectMT.Option
+                            className="!capitalize rounded-full"
                             key={option.value}
                             value={option.value}>
                             {option.label}

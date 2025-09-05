@@ -88,7 +88,7 @@ export default function DashboardPage() {
     return (
         <main className={`
             ${(hideNavBottom || !navBottom) ? ' -mb-4 pb-2 !max-h-[calc(100dvh_-_1rem)] lg:!max-h-[calc(100dvh_-_4rem)] ' : '!max-h-[calc(100dvh_-_6rem)] lg:!max-h-[calc(100dvh_-_9rem)] '}
-            ${navBottom ? '!-mt-6 ' : '!-mt-7 pb-4 '} lg:!mt-1 `}
+            ${navBottom ? '!-mt-6 ' : '!-mt-7 pb-4 '} lg:!mt-0 `}
             data-cy="dashboard-body" >
             <div ref={divRef}
                 onScroll={() => handleHideCallback()}
@@ -96,7 +96,7 @@ export default function DashboardPage() {
 
                 {/* USER CARD  */}
                 <div className={`${userClasse}`}>
-                    <Card className="FixCard lg:h-full p-0 mt-6 lg:!mt-0 !flex-col rounded-xl bg-white flex-1 !flex anim !overflow-visible ">
+                    <Card className="FixCard lg:h-full p-0 mt-6 lg:!mt-0 !flex-col rounded-2xl bg-white flex-1 !flex anim !overflow-visible ">
                         <CardHeader className="-mt-6 flex flex-col items-center justify-center  bg-transparent shadow-none">
                             <div className="relative !z-40 space-x-1 ">
                                 <AvatarUser
@@ -116,28 +116,28 @@ export default function DashboardPage() {
                             </div>
                         </CardHeader>
                         <CardBody className="flex flex-col items-center justify-center px-4 py-0">
-                            <div className="flex gap-1.5 border rounded-full mb-4 justify-center items-center p-1.5 bg-slate-200 border-slate-300">
-                                <Icon bg style={'!border-slate-300'}
+                            <div className="flex gap-1 border rounded-full mb-4 justify-center items-center py-1 px-2 flex-1 bg-slate-200 border-slate-300">
+
+                                <Icon bg clear
                                     link="/myprofile"
                                     icon="person_edit"
                                     size="lg"
                                     title="ouvrir la page profil" />
-                                <Icon bg style={'!border-slate-300'}
+                                <hr className="bg-slate-400/40 h-3/4 w-[1px]" />
+                                <Icon bg clear
                                     link="/groupe"
                                     icon="groups"
                                     size="lg"
                                     title="ouvrir la page des groupes" />
-                                <Icon bg style={'!border-slate-300'}
+                                <hr className="bg-slate-400/40 h-3/4 w-[1px]" />
+                                <Icon bg clear
                                     link={modo ? '/conciliation' : ''}
                                     icon="diversity_3"
                                     size="lg"
                                     title={modo ? "ouvrir la page conciliation" : "vous devez être conciliateur dans un groupe"} />
-                                <Icon bg style={'!border-slate-300 !text-[1.1rem] pt-[4px] !font-extrabold'}
-                                    icon={(user?.Profile?.points.toString() ?? '0')}
-                                    size="lg"
-                                    title={` vous avez ${user?.Profile?.points} pts`} />
+                                <hr className="bg-slate-400/40 h-3/4 w-[1px]" />
                                 <LogOutButton
-                                    style={'!border-slate-300'} size="lg" />
+                                    style={'!border-0'} size="lg" />
                             </div>
                         </CardBody>
                     </Card>

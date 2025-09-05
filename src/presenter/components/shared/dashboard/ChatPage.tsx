@@ -162,12 +162,12 @@ export default function ChatPage() {
                             <CardBody className=' !p-0.5 h-full'>
                                 <div className='flex flex-1 h-full '>
                                     <div className='flex-1 overflow-y-auto overflow-x-hidden'>
-                                        <List className='flex-1 !border-8 rounded-xl pl-1 border-slate-50'>
+                                        <List className='flex-1 !border-8 rounded-2xl pl-1 border-slate-50'>
                                             {conversations &&
                                                 conversations.map((message: MessageView, index: number) =>
                                                     <div key={index + 'div'}>
                                                         <List.Item
-                                                            className={`p-1 gap-1 ${(userIdRec === message?.isWith.id) ? '!bg-slate-200 !border-slate-50 !border-8 shadow-md -mt-2 -ml-3 rounded-xl' : 'bg-slate-50 '}`}
+                                                            className={`p-1 gap-1 ${(userIdRec === message?.isWith.id) ? '!bg-slate-200 !border-slate-50 !border-8 shadow-md -mt-2 -ml-3 rounded-2xl' : 'bg-slate-50 '}`}
                                                             key={index}
                                                             onClick={() => {
                                                                 setOpen(true)
@@ -217,7 +217,7 @@ export default function ChatPage() {
                                     </div>
                                     {/* CONVERSATION DIV */}
                                     {open &&
-                                        <div className='relative mt-6 !w-[calc(100%-4.4rem)] rounded-xl '>
+                                        <div className='relative mt-6 !w-[calc(100%-4.4rem)] rounded-2xl '>
                                             <Chat
                                                 refetch={refetch}
                                                 setNewConv={setNewConv}

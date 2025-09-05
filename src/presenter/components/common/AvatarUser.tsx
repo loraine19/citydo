@@ -31,13 +31,15 @@ export const AvatarUser = ({ Profile, avatarSize = '', avatarStyle = '', style =
                 return '3xl';
             case 'md':
                 return '2xl';
+            case 'ms':
+                return 'ms';
             case 'sm':
                 return 'md';
             default:
                 return 'md';
         }
     }
-    const classicStyle = '!flex !shadow cursor-pointer min-w-max hover:!shadow-lg hover:!scale-[1.02] hover:!saturate-[1.1] transition-all duration-200 ease-in-out'
+    const classicStyle = '!flex !shadow cursor-pointer min-w-max hover:!shadow hover:!scale-[1.02] hover:!saturate-[1.1] transition-all duration-200 ease-in-out'
 
     const [inError, setInError] = useState<boolean>(false);
     return (
@@ -46,8 +48,8 @@ export const AvatarUser = ({ Profile, avatarSize = '', avatarStyle = '', style =
                 <Avatar
                     onError={() => setInError(true)}
                     referrerPolicy="unsafe-url"
-                    size={avatarSize as any ?? 'sm'}
-                    className={`${classicStyle} ${avatarStyle} bg-${userColor}-100 text-white text-xs  fadeIn rounded-full`}
+                    size={avatarStyle === 'ms' ? 'sm' : avatarSize as any ?? 'sm'}
+                    className={`${classicStyle} ${avatarStyle} bg-${userColor}-100 text-white text-xs  fadeIn rounded-full ${avatarSize === 'ms' ? '!w-[37px] !h-[37px]' : ''}`}
                     alt={Profile?.firstName || 'user'}
                     src={Profile?.image as string}
                 /> :

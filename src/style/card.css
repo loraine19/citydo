@@ -29,7 +29,7 @@
     /* CARD  */
 
     .card {
-        @apply border !bg-slate-50  rounded-xl w-full mx-auto 
+        @apply border !bg-slate-50  rounded-2xl w-full mx-auto 
     !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-300   grid;
         box-shadow: 0 1px 1px 0 #00000010;
     }
@@ -51,7 +51,7 @@
     /* CARD HEADER */
     .FixCardHeader {
         @apply min-w-[calc(100%-4rem)]  mx-auto 
-        !flex !flex-1 !rounded-xl !relative !z-[99] -mt-6  fadeIn border !border-slate-300
+        !flex !flex-1 !rounded-2xl !relative !z-[99] -mt-6  fadeIn border !border-slate-300
         h-[calc(100%+1rem)];
     }
 
@@ -64,7 +64,7 @@
     }
 
     .CardImage {
-        @apply h-full w-full !rounded-xl object-cover  bg-slate-300;
+        @apply h-full w-full !rounded-2xl object-cover  bg-slate-300  saturate-[90%];
 
         box-shadow: 0 2px 2px 0 #00000030 !important;
     }
@@ -125,20 +125,20 @@
     }
 
     .CardDetailGridNoImage {
-        @apply w-respLarge card !-mt-6 rounded-xl w-full mx-auto !relative !p-0 anim z-50 !min-h-fit
+        @apply w-respLarge card !-mt-6 rounded-2xl w-full mx-auto !relative !p-0 anim z-50 !min-h-fit
         grid grid-rows-[auto,minmax(min-content,1fr),auto];
     }
 
     .DetailCardHeader {
         @apply min-w-[calc(100%-4rem)] mx-auto
-        !flex flex-1 !rounded-xl !relative !z-[99] -mt-6 !shadow-md fadeIn border border-slate-400/60 h-[calc(100%+1rem)];
+        !flex flex-1 !rounded-2xl !relative !z-[99] -mt-6 !shadow-md fadeIn border border-slate-400/60 h-[calc(100%+1rem)];
     }
 
     .DetailCardBody {
         @apply flex place-self-start relative flex-col px-5 pt-0 !m-0  !max-h-full !h-full min-h-fit;
     }
     .DetailCardFooter {
-        @apply flex justify-between place-self-end items-center h-max w-full pb-4 !pt-0 px-4 border-t   !min-h-fit;
+        @apply flex justify-between place-self-end items-center h-max w-full pb-4 !pt-3 px-4 border-t   !min-h-fit;
     }
     /* 1CTA 11REM */
     .hideCTA {
@@ -151,7 +151,7 @@
     }
 
     .hideCTAForm {
-        @apply !max-h-[100dvh]  h-full
-        grid-rows-[minmax(calc(100dvh-16rem),calc(100dvh-16rem))];
+        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_15.5rem)]
+        grid-rows-[minmax(calc(100dvh-15rem),calc(100dvh-15.5rem))];
     }
 }
