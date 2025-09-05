@@ -38,7 +38,7 @@
 }
 
 .inv {
-    @apply !text-white bg-opacity-100 text-opacity-70 drop-shadow;
+    @apply !text-white bg-opacity-100 text-opacity-80 drop-shadow;
 }
 
 .cyanStyle {

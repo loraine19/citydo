@@ -124,7 +124,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                     {/* INSERTION NAVLINK TOP  */}
                     {(!navBottom && navIcons && !hideNavBottom) &&
                         <div onMouseEnter={() => setCloseDial(false)}
-                            className="pr-4 pl-1 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
+                            className="pr-4 pl-1.5 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
                             <NavBarSection
                                 setOpenBlur={setOpenBlur}
                                 openBlur={openBlur}
@@ -133,7 +133,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                     }
 
                     {/* NOTIF BAGDES  */}
-                    <div className={`justify-end items-center flex h-full w-full !flex-1 pl-0.5 md:pl-2
+                    <div className={`justify-end items-center flex h-full w-full !flex-1  md:pl-2
                     ${hideNavBottom ? 'hidden' : ''} 
                     ${navBottom ? ' w-full' : ''}`} >
                         <NotifBadge />

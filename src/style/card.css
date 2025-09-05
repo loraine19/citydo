@@ -103,7 +103,7 @@
     /***************/
     /* DETAILD CARD  */
     .DetailCardDiv {
-        @apply wRespXL grid pt-8  px-0.5;
+        @apply wRespXL grid pt-8  px-0.5 max-h-[calc(100dvh_-_15.5rem)];
     }
 
     .FormCardDiv {
@@ -147,7 +147,7 @@
     }
     .hideCTA2 {
         @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_15.5rem)]
-        grid-rows-[minmax(calc(100dvh-14.5rem),calc(100dvh-14.5rem))];
+        grid-rows-[minmax(calc(100dvh-15rem),calc(100dvh-15.5rem))];
     }
 
     .hideCTAForm {

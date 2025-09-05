@@ -271,7 +271,7 @@ button:hover {
 }
 
 .lgBtn {
-    @apply !flex items-center rounded-full  !shadow-md py-1.5  lg:p-2 gap-5  !break-words font-roboto justify-center px-5  pl-5 pr-5 !min-h-[3.2rem]   !border-slate-900/10;
+    @apply !flex items-center rounded-full  !shadow-md !py-1.5  lg:p-2 gap-5  !break-words font-roboto justify-center px-5  pl-5 pr-5 !min-h-[3.2rem]   !border-slate-900/10;
 }
 .lgbtn {
     @apply text-pretty;

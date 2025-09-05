@@ -51,12 +51,12 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
 
 
     return (
-        <div className={`${!navBottom ? 'lg:gap-2' : 'lg:pr-2 lg:gap-1'} flex h-full `}>
+        <div className={`${!navBottom ? 'lg:gap-2 -md:mr-1' : 'lg:pr-2 lg:gap-1'} flex h-full `}>
             {badgeMap.map((list: NotifBadgeProps, index: number) =>
                 <div key={index}
                     className={`relative  w-full flex items-center justify-center ${onBoard ? 'lg:hidden' : ''}`}>
                     <Icon
-                        style={`${navBottom ? `${list.color}Style drop-shadow-sm !brightness-[1.05] ` : ` shadow `}`}
+                        style={`${navBottom ? `${list.color}Style drop-shadow-sm !brightness-[1.05]  ` : ` shadow !border-0 `}`}
                         reverse={!navBottom}
                         link={list.link}
                         icon={list.icon}
@@ -72,7 +72,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                             ${navBottom ? '-ml-4 pr-2' : '-ml-3 '} h-max w-full -mt-6  relative  flex`}>
                             <Icon
                                 title={'ouvrir le popup'}
-                                style={(!navBottom ? 'outline-[2px] ' : 'outline-[0.5px]') + ' !font-semibold  !pt-[1px] outline '}
+                                style={(!navBottom ? `  outline-[0.5px]  ` : ' outline-[0.5px]') + ' !font-semibold  !pt-[1px]  outline '}
                                 bg
                                 reverse={!navBottom}
                                 icon={list.count >= 99 ? '⁺99 ' :
@@ -116,7 +116,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                                                     {notif.link &&
                                                         <Icon
                                                             style={'-mt-6'}
-                                                            icon="arrow_circle_right"
+                                                            icon="keyboard_arrow_right"
                                                             fill
                                                             onClick={
                                                                 async () => {
