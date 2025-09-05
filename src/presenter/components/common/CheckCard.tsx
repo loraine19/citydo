@@ -30,8 +30,8 @@ export default function CheckCard(props: checkCardProps) {
 
     return (
         <div className={`flex w-full  ${style} `}>
-            <div className="w-full !m-0 h-full !max-w-[calc(100vw)] overflow-auto pl-2 !flex items-center rounded-xl">
-                <List className="flex-row h-full flex w-full !min-w-max justify-evenly items-center !p-0  ">
+            <div className="w-full !m-0 h-full !max-w-[calc(100vw)] overflow-auto !flex items-center rounded-xl">
+                <List className="flex-row h-full flex w-full !min-w-max justify-evenly items-center  !p-0  ">
                     {categoriesArray.map((category, index) => (
                         <List.Item className="px-0.5 h-full w-full min-w-max hover:!bg-transparent" key={index}>
                             <label htmlFor={category} className="flex flex-1">

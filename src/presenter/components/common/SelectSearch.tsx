@@ -28,14 +28,14 @@ export default function SelectSearch(props: selectSearchProps) {
                                 size='2xl' />
                         </div>
                     </MenuTrigger>
-                    <MenuContent className="flex bg-white  flex-col">
+                    <MenuContent className="flex bg-white !rounded-3xl gap-2 p-4 flex-col">
                         {category.map((label: any, index: number) => {
                             return (
                                 <MenuItem
                                     data-cy={label.value}
                                     key={index}
                                     value={label.value}
-                                    className="flex items-center gap-2 !capitalize font-medium hover:bg-slate-50 px-4 "
+                                    className="flex items-center gap-2 !capitalize hover:font-medium hover:bg-slate-200 px-4 !rounded-full InputDiv font-normal font-roboto "
                                     onClick={() => {
                                         setSearchCat(label);
                                         search(label)

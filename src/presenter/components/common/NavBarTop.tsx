@@ -17,10 +17,11 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
     ///// MENU ITEMS
     const menuItems = [
-        { icon: "toll", text: `${user?.Profile?.firstName}, vous avez ${user?.Profile?.points} points`, color: 'white', style: 'hover:!pointer-event-nones mb-3' },
-        { icon: navBottom ? 'move_up' : 'move_down', text: "Déplacer la barre", onClick: () => { setNavBottom(!navBottom) }, color: 'cyan', },
+        { icon: "toll", text: ` ${user?.Profile?.points} points`, color: 'sky', style: 'hover:!pointer-event-nones !mb-3' },
+        { icon: "person_edit", text: "Modifier mon profil", onClick: () => navigate('/myprofile'), color: "cyan" },
+        { icon: navBottom ? 'move_up' : 'move_down', text: "Déplacer la barre", onClick: () => { setNavBottom(!navBottom) }, color: 'cyan', style: ` !mb-3 ` },
         // { icon: "forum", text: `Messagerie (${unReadMsgNotif ?? ''})`, onClick: () => navigate('/chat'), color: 'cyan' },
-        { icon: "person_edit", text: "Modifier mon profil", onClick: () => navigate('/myprofile'), color: "cyan", style: ` !mb-3 ` },
+
         { icon: 'groups', text: "Groupes", onClick: () => navigate('/groupe'), color: "orange" },
 
         { icon: 'diversity_3', text: "Conciliation", onClick: () => navigate('/conciliation'), color: 'orange' },
@@ -61,11 +62,11 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                         {/* PROFILE MENU  */}
                         <Menu placement="bottom-start">
                             <MenuTrigger
-                                className="relative h-full justify-center max-w-max grid z-50  items-center !p-0 !pr-1">
+                                className="relative h-full justify-center max-w-max grid z-50  items-center !p-0">
                                 <div onClick={() => setCloseDial(!closeDial)}>
-                                    {onBoard ?
+                                    {(onBoard || !onBoard) ?
                                         <div className='flex w-[48px] flex-1 items-center'>
-                                            <img className="!w-[48px] !h-[48px] object-cover object-center"
+                                            <img className="!w-[48px] !h-[48px]  object-cover object-center"
                                                 src="/image/logo.svg"
                                                 alt="logo" />
                                         </div> :
@@ -83,6 +84,20 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                             </MenuTrigger>
                             <MenuContent
                                 className='flex py-3 gap-1 px-2 z-40 flex-1 flex-col !rounded-3xl !shadow-xl -ml-1'>
+                                {/* USER ITEM */}
+                                <div className="flex items-center gap-3 px-2 py-2 mb-2 rounded-full bg-slate-100">
+                                    <AvatarUser
+                                        style='!shadow-none'
+                                        avatarStyle='!w-10 !h-10 !text-lg'
+                                        avatarSize='sm'
+                                        Profile={user?.Profile}
+                                    />
+                                    <div className="flex flex-col">
+                                        <span className="font-semibold text-slate-800">{user?.Profile?.firstName} {user?.Profile?.lastName}</span>
+                                        <span className="text-xs text-slate-500">{user?.email}</span>
+                                    </div>
+                                </div>
+
                                 {menuItems.map((item, index) => (
                                     <MenuItem
                                         key={index}
@@ -109,12 +124,13 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
                         {/* INFO TEXT LOGO   */}
                         {(!hideNavBottom || !navIcons) &&
-                            <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : 'truncate '} max-w-[calc(100vw-12rem)] lg:max-w-[calc(1000px-14rem)] flex flex-col h-full justify-center w-full  pl-4 lg:pl-6  pt-1`}>
-                                <h1 className='flex font-comfortaa text-[1.7rem] sm:text-[1.9rem] !font-extrabold'>
+                            <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : 'truncate '} max-w-[calc(100vw-12rem)] lg:max-w-[calc(1000px-14rem)] flex flex-col h-full w-full lg:pl-6 pl-2 pt-1`}>
+                                <h1 className={` ${color}Style !bg-transparent flex !font-comfortaa text-[1.7rem] sm:text-[2rem] stroke-current !font-[900] ${!navIcons && 'pl-0'} underline underline-offset-[5px]`}>
                                     City'Do
                                 </h1>
-                                {(((navBottom && !hideNavBottom) || !navIcons)) &&
-                                    <i className='text-[0.8rem] lg:text-[0.85rem] truncate flex !line-clamp-1'>
+                                {(((navBottom && !hideNavBottom && navIcons))) &&
+                                    <i className='text-[0.8rem] pt-0.5 lg:text-[0.85rem] truncate flex !line-clamp-1 '>
+
                                         {user?.GroupUser?.map((group) => (group.Group?.name.split(':')[0])).join(', ')}
                                     </i>}
                             </div>}

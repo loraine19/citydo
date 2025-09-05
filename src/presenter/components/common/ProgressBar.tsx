@@ -103,7 +103,7 @@ export function ProgressBarBlur({ value, label, needed, status, size = 'md', isP
                         size={size}>
                         <ProgressBarMT
                             value={(status === EventStatus.PENDING) ? value : 100}
-                            className={`!min-w-[2.7rem] text-center !line-clamp-1 whitespace-nowrap truncate flex items-center ${size === "lg" ? ' px-3 py-0.5' : 'px-2 '} !bg-cyan-500 border rounded-full border-slate-900/20`}
+                            className={`!min-w-[2.7rem] text-center !line-clamp-1 whitespace-nowrap truncate flex items-center ${size === "lg" ? ' px-3 py-0.5' : 'px-2 '} !bg-cyan-500 border rounded-full border-slate-900/10`}
                         >
                             <div className="absolute flex items-center">  <Typography className="text-sm gap-[10%] flex text-white drop-shadow  ">
                                 <span className="font-semibold opacity-80 pr-2">{value} %</span>

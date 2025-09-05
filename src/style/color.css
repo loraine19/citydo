@@ -21,7 +21,7 @@
 }
 
 .orangeBG {
-    @apply bg-gradient-to-b from-orange-100/20 to-orange-300/20;
+    @apply bg-gradient-to-b from-orange-100/30 to-orange-300/20;
 }
 
 .tealBG {
@@ -80,7 +80,7 @@
     @apply !bg-gray-500 inv;
 }
 .slateStyle {
-    @apply !text-slate-500/90 bg-slate-200  style;
+    @apply !text-slate-600/90 bg-slate-200  style;
 }
 .slateStyleInv {
     @apply !bg-slate-500 inv;

@@ -13,7 +13,7 @@ export function FlagIcon(props: { flagged: boolean, id: number, type: string }) 
             color={flagged ? 'red' : 'gray'}
             fill={flagged} size="md"
             title={"signaler " + type}
-            style="hover:!bg-red-500/30 hover:text-red-700 bg-white " />
+            style="hover:!text-red-500 bg-white " />
     )
 }
 export function Title(props: { title: string, flagged?: boolean, id?: number, CreatedAt?: string | Date, subTitle?: string, type?: string, group?: Group, large?: boolean }) {

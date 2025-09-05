@@ -112,7 +112,7 @@
 
     .CardDetailGrid {
         @apply w-respLarge card    !min-h-fit !grid 
-        grid-rows-[minmax(80px,30vh),minmax(max-content,1fr),auto]
+        grid-rows-[minmax(90px,30vh),minmax(max-content,1fr),auto]
         sm:grid-rows-[minmax(100px,38vh),minmax(max-content,1fr),auto]
         md:grid-rows-[minmax(100px,1fr),minmax(max-content,1fr),auto]
         lg:grid-rows-[minmax(100px,1fr),minmax(max-content,1fr),auto];
