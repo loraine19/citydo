@@ -71,7 +71,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                             ${navBottom ? '-ml-4 pr-2' : '-ml-3 '} h-max w-full -mt-6  relative  flex`}>
                             <Icon
                                 title={'ouvrir le popup'}
-                                style={(!navBottom ? 'outline-[2px] ' : 'outline-[1px]') + ' !font-semibold  !pt-[1px] outline '}
+                                style={(!navBottom ? 'outline-[2px] ' : 'outline-[0.5px]') + ' !font-semibold  !pt-[1px] outline '}
                                 bg
                                 reverse={!navBottom}
                                 icon={list.count >= 99 ? '⁺99 ' :

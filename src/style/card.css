@@ -146,14 +146,14 @@
     /* 1CTA 11REM */
     .hideCTA {
         @apply !max-h-[100dvh]  h-full
-        grid-rows-[minmax(min-content,calc(100dvh-12rem))];
+        grid-rows-[minmax(calc(100dvh-12rem),calc(100dvh-12rem))];
     }
     .hideCTA2 {
         @apply !max-h-[100dvh]  h-full
-        grid-rows-[minmax(min-content,calc(100dvh-14rem))];
+        grid-rows-[minmax(calc(100dvh-14rem),calc(100dvh-14rem))];
     }
     .hideCTAForm {
         @apply !max-h-[100dvh]  h-full
-        grid-rows-[minmax(min-content,calc(100dvh-16rem))];
+        grid-rows-[minmax(calc(100dvh-16rem),calc(100dvh-16rem))];
     }
 }
