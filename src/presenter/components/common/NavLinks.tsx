@@ -178,7 +178,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                         </div>
                     }
                     Content={
-                        <div className={`${!navBottom ? ' items-end  mr-2' : ''} flex gap-2 flex-col `}>
+                        <div className={`${!navBottom ? ' items-end  mr-3' : ''} flex gap-2 flex-col mr-2 `}>
                             {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
                                 <div key={index}
                                     className={`-mr-2 flex  gap-6  !justify-center items-center 

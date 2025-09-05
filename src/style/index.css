@@ -162,14 +162,14 @@ input {
 }
 
 input[type="datetime-local"] {
-    @apply !opacity-95 !font-roboto !text-[0.8rem] max-w-max inputStandart pt-1  !flex;
+    @apply !opacity-95 !font-roboto !text-[0.8rem] min-w-12 max-w-max inputStandart pt-1  !flex;
     &::-webkit-calendar-picker-indicator {
         @apply !text-slate-300 !opacity-50 !font-roboto rounded-full p-1 !flex -ml-8 md:-ml-2;
     }
 }
 
 input[type="number"] {
-    @apply !opacity-95 !font-roboto !text-[0.8rem] focus:!outline-none pt-1 !max-w-max inputStandart !flex;
+    @apply !opacity-95 !font-roboto !text-[0.8rem] min-w-12 focus:!outline-none pt-1 !max-w-max inputStandart !flex;
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
         @apply !flex pr-1 !rounded-full !opacity-70 !font-roboto -ml-8 md:-ml-2;
@@ -267,7 +267,7 @@ button {
 }
 
 .lgBtn {
-    @apply !flex items-center rounded-full  !shadow-md !py-1.5  lg:p-2 gap-5  !break-words font-roboto justify-center px-5  pl-5 pr-5 !min-h-[3.2rem]   !border-slate-900/10;
+    @apply !flex items-center rounded-full  !shadow-md !py-1.5  lg:p-2 gap-5  !break-words font-roboto justify-center px-5  pl-5 pr-5 !min-h-[3.2rem] max-w-[80vw] m-auto  !border-slate-900/10;
 }
 
 .btn {

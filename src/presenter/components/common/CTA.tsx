@@ -45,7 +45,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                     .map((action, i) =>
                         action?.icon && action?.icon !== '' && (
                             <div key={i}
-                                className={` ${(i === actions.length - 1 && (actions.length > 2 || actions.length === 1)) ? 'flex-1 w-[500px] min-w-full' :
+                                className={` ${(i === actions.length - 1 && (actions.length > 2 || actions.length === 1)) ? 'flex-1 w-[90%] min-w-full' :
                                     (actions.length === 2) ? 'flex-1' : 'w-max'} !flex `} >
                                 <div className={`flex flex-1 bg-slate-100 rounded-full  `}>
                                     <button

@@ -67,7 +67,7 @@
     @apply !bg-sky-600/90 inv;
 }
 .greenStyle {
-    @apply !text-green-600/90 bg-green-200 style;
+    @apply !text-green-600/90 bg-green-300/40 style;
 }
 .greenStyleInv {
     @apply !bg-green-500 inv;
@@ -98,7 +98,7 @@
     @apply !bg-amber-500 inv;
 }
 .roseStyle {
-    @apply !text-rose-500 !bg-rose-300/40 style;
+    @apply !text-rose-500 !bg-rose-300/50 style;
 }
 .roseStyleInv {
     @apply !bg-rose-500 inv;
