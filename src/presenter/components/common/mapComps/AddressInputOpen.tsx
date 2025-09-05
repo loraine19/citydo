@@ -133,7 +133,7 @@ export const AddressInputOpen = (props: {
                             suggestions.map((suggestion, index) => (
                                 suggestion.label !== suggestions[index - 1]?.label &&
                                 <ListItem
-                                    className="cursor-pointer hover:bg-gray-200 min-h-max text-sm py-1.5 rounded-2xl"
+                                    className="cursor-pointer hover:bg-gray-200 min-h-max text-sm py-1.5 rounded-3xl"
                                     title='choisir cette adresse'
                                     key={index}
                                     onClick={() => {

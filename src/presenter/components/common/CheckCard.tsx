@@ -35,7 +35,7 @@ export default function CheckCard(props: checkCardProps) {
                     {categoriesArray.map((category, index) => (
                         <List.Item className="px-0.5 h-full w-full min-w-max hover:!bg-transparent" key={index}>
                             <label htmlFor={category} className="flex flex-1">
-                                <List.ItemStart className={` h-8 relative w-full !px-0 py-0.5 !m-0 flex items-center justify-center rounded-full border-[1px] ${` ${color}Style  `} ${checkedState[index] ? ` !border-${color}-500 !border-opacity-30` : `!bg-transparent `}`}>
+                                <List.ItemStart className={` h-[2.2rem] relative w-full !px-0 py-0.5 !m-0 flex items-center justify-center rounded-full border-[1px] ${` ${color}Style  `} ${checkedState[index] ? ` ` : `!bg-transparent `}`}>
                                     <Checkbox
                                         checked={checkedState[index]}
                                         id={category}
@@ -48,8 +48,12 @@ export default function CheckCard(props: checkCardProps) {
                                     <Typography
                                         as="label"
                                         htmlFor="default-checkbox"
-                                        className={` whitespace-nowrap text-sm font-normal !min-w-max  rounded-2xl text-center w-full px-4`}
-                                    >{category}
+                                        className={` flex items-center justify-center whitespace-nowrap text-sm font-roboto !min-w-max  rounded-3xl  text-center w-full  lg:gap-2 gap-0.5 ${checkedState[index] ? 'pr-4 pl-2 font-medium' : 'px-4'} `}
+                                    >
+                                        <Icon
+                                            color={color ?? 'slate'}
+                                            size={"sm"}
+                                            icon={checkedState[index] ? 'check' : ''} />{category}
                                     </Typography>
                                 </List.ItemStart>
 

@@ -48,7 +48,7 @@ export default function ServiceCreatePage() {
                 confirmString: "Enregistrer ",
                 title: "Confimrer la modification",
                 element: (
-                    <div className='flex flex-col gap-8 max-h-[80vh] bg-gray-100 rounded-2xl pt-12 p-5'>
+                    <div className='flex flex-col gap-8 max-h-[80vh] bg-gray-100 rounded-3xl pt-12 p-5'>
                         <ServiceCard
                             service={new ServiceView({ ...values, image: values?.blob || values?.image } as ServiceView, {} as User)}
                             change={() => { }}

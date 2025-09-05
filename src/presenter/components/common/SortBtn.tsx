@@ -33,12 +33,12 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
                             />
                         </div>
                     </MenuTrigger>
-                    <MenuContent className="backdropBlur overflow-hidden bg-transparent m-auto !border-none shadow-none  flex rounded-2xl justify-end h-[calc(100%-110px)] wRespXL ">
-                        <div className="p-4 h-max bg-white shadow-lg rounded-2xl border relative right-0 flex flex-col justify-start">
+                    <MenuContent className="backdropBlur overflow-hidden bg-transparent m-auto !border-none shadow-none  flex rounded-3xl justify-end h-[calc(100%-110px)] wRespXL ">
+                        <div className="p-4 h-max bg-white shadow-lg rounded-3xl border relative right-0 flex flex-col justify-start">
                             {sortList.map((item: SortLabel, index: number) =>
                                 <div
                                     key={index}
-                                    className="rounded-2xl pl-3 py-0 flex items-center font-normal justify-between gap-4 hover:!bg-white hover:!text-underline" >
+                                    className="rounded-3xl pl-3 py-0 flex items-center font-normal justify-between gap-4 hover:!bg-white hover:!text-underline" >
                                     {item.label}
                                     <div className="flex items-center">
                                         {(selectedSort === (item.key ?? item.label)) &&

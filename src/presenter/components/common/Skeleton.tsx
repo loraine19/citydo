@@ -12,13 +12,13 @@ export function Skeleton(props: { className?: string, grid?: boolean }) {
                 <CardHeader className={`${color}BG bg-slate-200 mx-4 FixCardHeader animate-pulse !flex h-full flex-1 w-[calc(100%-1rem)] border-slate-300 lg:min-h-[220px] md:min-h-[150px] min-h-[200px]`}>
                 </CardHeader>
                 <CardBody className="FixCardBody flex-1 !py-3  !flex gap-[15%]">
-                    <div className="h-6 bg-slate-200 rounded-2xl  animate-pulse"></div>
-                    <div className="h-[45%] min-h-4 bg-slate-200 rounded-2xl w-3/4 animate-pulse"></div>
+                    <div className="h-6 bg-slate-200 rounded-3xl  animate-pulse"></div>
+                    <div className="h-[45%] min-h-4 bg-slate-200 rounded-3xl w-3/4 animate-pulse"></div>
 
                 </CardBody>
                 <CardFooter className="FixCardFooter !flex gap-2 !my-[2%] px-5 justify-between items-center">
-                    <div className="h-8 bg-slate-200 rounded-2xl w-1/2 animate-pulse"></div>
-                    <div className="h-8 bg-slate-200 rounded-2xl w-8 animate-pulse"></div>
+                    <div className="h-8 bg-slate-200 rounded-3xl w-1/2 animate-pulse"></div>
+                    <div className="h-8 bg-slate-200 rounded-3xl w-8 animate-pulse"></div>
                 </CardFooter>
             </Card>
             {/* {!grid &&

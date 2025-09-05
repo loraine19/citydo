@@ -40,7 +40,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
     const { color } = useUxStore((state) => state);
     return (
         <footer className={`CTA ${color}Footer `}>
-            <div className={`flex gap-x-3 lg:gap-4 gap-y-3 flex-row flex-wrap items-center justify-center w-full wRespL   pt-0.5 `}>
+            <div className={`flex gap-x-3 gap-y-2 md:gap-x-6 md:gap-y-3 flex-row flex-wrap items-center justify-center w-full wRespL   pt-0.5 `}>
                 {[...actions]
                     .sort((a, b) => (a.NoPrimary === b.NoPrimary ? 0 : a.NoPrimary ? -1 : 1))
                     .map((action, i) =>
@@ -48,10 +48,9 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                             <div key={i}
                                 className={` ${(i === actions.length - 1 && (actions.length > 2 || actions.length === 1)) ? 'flex-1 w-[500px] min-w-full' : (actions.length === 2) ? 'flex-1' : 'w-max'} !flex `}
                             >
-                                <Button
+                                <button
                                     type={action?.type ?? "button"}
-                                    className={`${action?.color ?? defColor}${(action?.NoPrimary || i !== actions.length - 1 || actions.length > 1) ? 'Style' : 'StyleInv'} !min-w-max w-full lgBtn flex-1 flex !pl-1.5 `}
-                                    size="lg"
+                                    className={`${action?.color ?? defColor}${(action?.NoPrimary || i !== actions.length - 1) ? 'Style' : 'StyleInv'} !min-w-max w-full lgBtn flex-1 flex md:!pr-6 !pr-4 !pl-1.5 `}
                                     onClick={() => {
                                         if (action?.direct) {
                                             action.function && action.function();
@@ -64,9 +63,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                                     }
                                 >
                                     {action?.iconImage && (
-                                        <Icon
-                                            style={(action.disabled || action?.NoPrimary || i !== actions.length - 1) ? '' : 'border-0'}
-                                            // reverse={action?.NoPrimary}
+                                        <Icon clear={action?.NoPrimary || i !== actions.length - 1 ? true : false}
                                             color={action.disabled ? 'red' : action?.color ?? defColor}
                                             icon={action?.disabled ? 'block'
                                                 : (i === 0 && disabled1) ? 'block'
@@ -74,11 +71,11 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                                                         : action?.iconImage
                                             }
                                             bg fill
-                                            size="xl"
+                                            size="lg"
                                         />
                                     )}
                                     <span className="w-full flex-1 -ml-3">{action?.icon}</span>
-                                </Button>
+                                </button>
                             </div>
                         )
                     )

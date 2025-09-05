@@ -162,7 +162,7 @@ export default function IssueDetailPage() {
                         closeBtn />
                 </div>
                 {isLoading || !issue || error ?
-                    <Skeleton className="w-respLarge !rounded-2xl h-full shadow m-auto" /> :
+                    <Skeleton className="w-respLarge !rounded-3xl h-full shadow m-auto" /> :
                     <IssueForm
                         modos={modos}
                         issue={issue} />

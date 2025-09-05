@@ -103,25 +103,19 @@
     /***************/
     /* DETAILD CARD  */
     .DetailCardDiv {
-        @apply h-full wRespXL grid pt-8  px-0.5 
-    /*    grid-rows-[minmax(calc(100dvh_-_12rem),calc(100dvh_-_10rem))]*/
-       sm:grid-rows-[minmax(calc(100dvh_-_6rem),calc(100dvh_-_13rem))]
-        lg:grid-rows-[minmax(min-content,calc(100vh_-_12rem))];
+        @apply wRespXL grid pt-8  px-0.5;
     }
 
     .FormCardDiv {
-        @apply h-full wRespXL grid pt-7  px-0.5  hideCTAForm
-       /* sm:grid-rows-[minmax(min-content,calc(100dvh_-_13rem))]
-        lg:grid-rows-[minmax(min-content,calc(100dvh_-_2rem))]; */;
+        @apply h-full wRespXL grid pt-7  px-0.5  hideCTAForm;
     }
 
     .CardDetailGrid {
-        @apply w-respLarge card 
-        !min-h-fit !grid h-[calc(100%-0rem)] 
+        @apply w-respLarge card    !min-h-fit !grid 
         grid-rows-[minmax(80px,30vh),minmax(max-content,1fr),auto]
         sm:grid-rows-[minmax(100px,38vh),minmax(max-content,1fr),auto]
-        md:grid-rows-[minmax(100px,40vh),minmax(max-content,1fr),auto]
-        lg:grid-rows-[minmax(150px,30vh),minmax(max-content,1fr),auto];
+        md:grid-rows-[minmax(100px,1fr),minmax(max-content,1fr),auto]
+        lg:grid-rows-[minmax(100px,1fr),minmax(max-content,1fr),auto];
     }
     .FormDetailGrid {
         @apply w-respLarge card overflow-hidden pb-8 lg:pb-10
@@ -141,20 +135,21 @@
     }
 
     .DetailCardBody {
-        @apply flex place-self-start relative flex-col px-5 pt-0  pb-8  !max-h-full !h-full min-h-fit;
+        @apply flex place-self-start relative flex-col px-5 pt-0 !m-0  !max-h-full !h-full min-h-fit;
     }
     .DetailCardFooter {
-        @apply flex justify-between place-self-end items-center h-max w-full pt-3 pb-6 mt-1 px-4 border-t   !min-h-fit;
+        @apply flex justify-between place-self-end items-center h-max w-full pb-4 !pt-0 px-4 border-t   !min-h-fit;
     }
     /* 1CTA 11REM */
     .hideCTA {
-        @apply !max-h-[100dvh]  h-full
+        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_15.5rem)]
         grid-rows-[minmax(calc(100dvh-12rem),calc(100dvh-12rem))];
     }
     .hideCTA2 {
-        @apply !max-h-[100dvh]  h-full
-        grid-rows-[minmax(calc(100dvh-14rem),calc(100dvh-14rem))];
+        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_15.5rem)]
+        grid-rows-[minmax(calc(100dvh-14.5rem),calc(100dvh-14.5rem))];
     }
+
     .hideCTAForm {
         @apply !max-h-[100dvh]  h-full
         grid-rows-[minmax(calc(100dvh-16rem),calc(100dvh-16rem))];

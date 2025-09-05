@@ -63,7 +63,7 @@ export default function SurveyDetailPage() {
                     <div className={`DetailCardDiv ${!hideNavBottom ? survey.isMine ? "hideCTA" : "hideCTA" : ""}`}>
                         {isLoading || !survey || error ?
                             <Skeleton
-                                className='!rounded-2xl flex pt-8 pb-1 h-full' /> :
+                                className='!rounded-3xl flex pt-8 pb-1 h-full' /> :
                             <SurveyDetailCard
                                 setOpen={setOpen}
                                 survey={survey} />

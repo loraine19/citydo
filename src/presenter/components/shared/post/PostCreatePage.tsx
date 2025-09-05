@@ -37,7 +37,7 @@ export default function PostCreatePage() {
                 confirmString: "Enregistrer les modifications",
                 title: "Confimrer la modification",
                 element: (
-                    <div className='flex flex-col gap-8 max-h-[80vh] bg-gray-100 rounded-2xl p-5'>
+                    <div className='flex flex-col gap-8 max-h-[80vh] bg-gray-100 rounded-3xl p-5'>
                         <Typography variant='h6'>
                             annonce : {formik.values?.title}
                         </Typography>

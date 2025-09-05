@@ -64,7 +64,7 @@ export default function IssueEditPage() {
                 confirmString: "Enregistrer les modifications",
                 title: "Confimrer la modification",
                 element: (
-                    <div className='flex flex-col gap-8 max-h-[80vh] bg-gray-100 rounded-2xl p-5'>
+                    <div className='flex flex-col gap-8 max-h-[80vh] bg-gray-100 rounded-3xl p-5'>
                         <Typography variant='h6'>
                             litige
                         </Typography>
@@ -106,7 +106,7 @@ export default function IssueEditPage() {
                     <SubHeader type={"Conciliation"} place={` sur ${service?.type === ServiceType.GET ? "une demande" : "une offre"} de service  ${userId === service?.userId ? "que j'ai créé" : "à laquelle j'ai repondu"}`} closeBtn />
                 </div>
                 {isLoading ?
-                    <Skeleton className="w-respLarge !rounded-2xl !h-[calc(100vh-16rem)] shadow m-auto" /> :
+                    <Skeleton className="w-respLarge !rounded-3xl !h-[calc(100vh-16rem)] shadow m-auto" /> :
                     <IssueForm
                         modos={modos}
                         issue={issue as IssueView}

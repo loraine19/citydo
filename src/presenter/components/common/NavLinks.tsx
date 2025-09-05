@@ -109,7 +109,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                         ` !pt-1  shadow-none border-none bg-transparent w-full `}
                     flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden  `}>
                     <ul className={`${navBottom ?
-                        ' gap-0 justify-between flex-1 !w-full p-2' : 'md:gap-0 gap-1 justify-around '} 
+                        ' gap-0 justify-between flex-1 !w-full p-1.5' : 'md:gap-0 gap-1 justify-around '} 
                             flex  !max-w-[calc(100vw-5.5rem)] flex-row  rounded-full h-full  w-full  `}>
                         {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                             <Typography
@@ -121,7 +121,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                                     to={to}
                                     className={({ isActive }) =>
                                         `flex gap-2 lg:gap-3 justify-center lg:justify-start items-center w-full h-full rounded-full 
-                                            ${navBottom ? ` px-[4.5px] py-[4px] ` : 'opacity-90'}
+                                            ${navBottom ? ` px-[5px] py-[4px] ` : 'opacity-90'}
                                             ${(isActive && navBottom) ? `z-50 ${color.col}StyleInv animSlide  ` :
                                             (isActive && !navBottom) ? ` border-b-[1px] px-1 md:border-none rounded-none !border-current !opacity-100 ` :
                                                 isActive ? `  ` : '!shadow-none '}`
@@ -160,7 +160,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                     open={openBlur}
                     setOpen={setOpenBlur}
                     className={`${(!navBottom && !addBtn) ? 'hidden' : ''}
-                        ${!navBottom ? ' flex ' : '-mr-2'} 
+                        ${!navBottom ? ' flex ' : '-mr-2 -mt-2'} 
                          z-[50]  -mr-4`}
                     placement={navBottom ? 'top' : 'bottom'}
                     offset={10}

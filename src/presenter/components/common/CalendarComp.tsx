@@ -120,7 +120,7 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
             {/* CALENDAR */}
             <div className='relative max-h-full w-full flex flex-1 '>
                 {loadingEvents || errorEvents ? (
-                    <div className='absolute flex flex-col flex-1 h-full p-2 gap-2 w-full rounded-2xl bg-white shadow '>
+                    <div className='absolute flex flex-col flex-1 h-full p-2 gap-2 w-full rounded-3xl bg-white shadow '>
                         <div className={`grid grid-cols-${num} rounded-lg h-full overflow-auto pb-3 bg-slate-50 divide-x divide-cyan-500 divide-opacity-20`}>
                             {[...Array(num)].map((_, index) => (
                                 <div key={index} className='text-xs w-full flex flex-col text-center h-full'>
@@ -139,7 +139,7 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                         </div>
                     </div>
                 ) :
-                    (<div className='!border !border-slate-300/80 absolute flex flex-col flex-1 h-full p-2 gap-2  w-full rounded-2xl bg-white shadow-md '>
+                    (<div className='!border !border-slate-300/80 absolute flex flex-col flex-1 h-full p-2 gap-2  w-full rounded-3xl bg-white shadow-md '>
                         {weeks && weeks.map((week: any, key: number) => (
                             <div
                                 key={key}

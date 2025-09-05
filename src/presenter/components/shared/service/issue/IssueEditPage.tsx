@@ -94,7 +94,7 @@ export default function IssueEditPage() {
                         closeBtn />
                 </div>
                 {isLoading || error ?
-                    <Skeleton className="w-respLarge !rounded-2xl !h-[calc(100vh-16rem)] shadow m-auto" /> :
+                    <Skeleton className="w-respLarge !rounded-3xl !h-[calc(100vh-16rem)] shadow m-auto" /> :
                     <IssueForm
                         modos={[]}
                         issue={issue}

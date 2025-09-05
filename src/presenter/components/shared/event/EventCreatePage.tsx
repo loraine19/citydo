@@ -62,7 +62,7 @@ export default function EventCreatePage() {
                 confirmString: "Enregistrer la création de l'événement",
                 title: "Confimrer la création de l'événement",
                 element: (
-                    <div className='flex flex-col gap-8 max-h-[80vh] bg-gray-100 rounded-2xl px-5 py-4'>
+                    <div className='flex flex-col gap-8 max-h-[80vh] bg-gray-100 rounded-3xl px-5 py-4'>
                         <Typography variant='h6'>
                             Évenement au : {values?.Address?.address} le {new Date(values?.start).toLocaleDateString('fr-FR')}
                         </Typography>

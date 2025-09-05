@@ -73,15 +73,15 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, mo
                                 <InputError error={formik?.errors?.description} />
                             </div>
                             <div className={imgBlob ? 'flex h-[calc(100%_+_1rem)] -mt-2 p-1 relative items-center justify-center' : ``}>
-                                <div className={imgBlob ? 'flex flex-col h-full overflow-hidden rounded-2xl justify-center' : `hidden`}>
+                                <div className={imgBlob ? 'flex flex-col h-full overflow-hidden rounded-3xl justify-center' : `hidden`}>
                                     <PopOver
-                                        trigger={<div className="flex rounded-2xl flex-1  overflow-hidden items-center justify-center">
+                                        trigger={<div className="flex rounded-3xl flex-1  overflow-hidden items-center justify-center">
                                             <img
                                                 onError={(e) => e.currentTarget.src = '/image/placeholder.jpg'}
                                                 src={imgBlob ?? issue.image ?? '/image/placeholder.jpg'}
                                                 alt='image'
                                                 title='cliquez pour agrandir'
-                                                className="max-h-[300px] max-w-full object-contain rounded-2xl shadow-sm"
+                                                className="max-h-[300px] max-w-full object-contain rounded-3xl shadow-sm"
                                                 style={{ flex: 1, maxHeight: '300px' }}
                                             />
                                         </div>}
@@ -92,7 +92,7 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, mo
                                                     title='cliquez pour fermer'
                                                     src={imgBlob}
                                                     alt='image'
-                                                    className="rounded-2xl object-cover shadow-2xl max-h-[80vh] max-w-full"
+                                                    className="rounded-3xl object-cover shadow-2xl max-h-[80vh] max-w-full"
                                                 />
                                             </div>}
                                     />

@@ -120,7 +120,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
                             /></div>
                     }
                 </CardHeader>
-                <CardBody className={` FixCardBody !overflow-auto`}>
+                <CardBody className={` FixCardBody  !overflow-auto`}>
                     <Title
                         title={title}
                         flagged={flagged} id={id}

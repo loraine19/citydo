@@ -67,7 +67,7 @@ export default function PostEditPage() {
                 confirmString: "Enregistrer ",
                 title: "Confimrer la modification",
                 element: (
-                    <div className='flex flex-col gap-8 max-h-[80vh]  bg-gray-200 rounded-2xl pt-10 p-5'>
+                    <div className='flex flex-col gap-8 max-h-[80vh]  bg-gray-200 rounded-3xl pt-10 p-5'>
                         <PostCard
                             post={new PostView({ ...formik.values, image: formik.values?.blob || formik.values?.image }, post.userId ?? 0)}
                             change={() => { }}

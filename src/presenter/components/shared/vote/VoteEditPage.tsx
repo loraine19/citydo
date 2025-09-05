@@ -95,7 +95,7 @@ export default function VoteEditPage() {
                 confirmString: "Enregistrer ",
                 title: "Confimrer la modification",
                 element: (
-                    <div className='flex flex-col gap-8 max-h-[70vh] bg-gray-200 rounded-2xl p-5'>
+                    <div className='flex flex-col gap-8 max-h-[70vh] bg-gray-200 rounded-3xl p-5'>
                         <Typography variant='h6'>
                             {type === VoteTarget.SURVEY ? 'Sondage' : 'Cagnotte'}
                         </Typography>

@@ -82,26 +82,29 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                 }
             </CardHeader>
             <CardBody className="DetailCardBody">
-                <Title
-                    large
-                    title={title}
-                    flagged={flagged}
-                    id={id}
-                    type='service'
-                    group={service.Group}
-                />
-                <div className="flex h-full w-full min-h-fit justify-between flex-1 flex-col xs:gap-2 sm:gap-y-4 lg:gap-4">
-                    <div>
-                        <h6>Description</h6>
-                        <Typography
-                            className="description ">
-                            {description}
-                        </Typography>
-                    </div>
-                    <div className="w-full h-full flex flex-1 justify-between ">
+
+                <div className="flex w-full  justify-between flex-1 flex-col lg:flex-row xs:gap-2 sm:gap-y-4 lg:gap-4">
+                    <div className="flex flex-1 flex-col gap-2">
+                        <Title
+                            large
+                            title={title}
+                            flagged={flagged}
+                            id={id}
+                            type='service'
+                            group={service.Group}
+                        />
                         <div>
-                            <h6>Difficulté</h6>
-                            <div className="flex flex-col pt-1 xs:flex-row gap-2">
+                            <h6>Description</h6>
+                            <Typography
+                                className="description ">
+                                {description}
+                            </Typography>
+                        </div>
+                    </div>
+                    <div className="w-full flex flex-1 lg:flex-col justify-between lg:items-end lg:justify-start lg:gap-y-2 ">
+                        <div className="flex flex-col flex-1">
+                            <h6 className="lg:text-right">Difficulté</h6>
+                            <div className="flex flex-col lg:flex-row pt-1 xs:flex-row gap-2">
                                 <Chip
                                     size="sm"
                                     value={SkillLevel[skill as unknown as keyof typeof SkillLevel]}
@@ -126,20 +129,18 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                                 </Chip>
                             </div>
                         </div>
-                        <div>
-                            <h6 className="text-right pt-1" >
+                        <div className="flex flex-col flex-1">
+                            <i className="text-right  pt-1" >
                                 {statusValues(statusS as ServiceStep).text}
-                            </h6>
-                            <div className="flex  min-w-fit max-w-max h-max flex-col xs:items-end xs:place-self-end ">
-                                {UserResp ?
-                                    <ProfileDiv profile={UserResp} size="md" /> :
-                                    <ProfileDiv profile={new Profile({
-                                        firstName: "Mr",
-                                        lastName: "?",
-                                        userId: 0,
-                                        userIdSp: 0,
-                                        addressId: 0,
-                                    } as Partial<Profile>)} size="md" />}
+                            </i>
+                            <div className="flex min-w-fit max-w-max h-max flex-col xs:items-end xs:place-self-end ">
+                                <ProfileDiv profile={UserResp ?? new Profile({
+                                    firstName: "Mr",
+                                    lastName: "?",
+                                    userId: 0,
+                                    userIdSp: 0,
+                                    addressId: 0,
+                                } as Partial<Profile>)} size="sm" />
                             </div>
                         </div>
                     </div>
@@ -152,7 +153,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                         <ProfileDiv profile={User} />
                     </div>
                 }
-                <div className="flex flex-row-reverse sm:flex-col w-full items-end  gap-2 pb-4">
+                <div className="flex flex-row-reverse sm:flex-col w-full items-end  gap-x-2 ">
                     <h6 className="text-end ">Points</h6>
                     <h4
                         className={`text-end ${points?.length > 0 && "sm:w-full"}`} >

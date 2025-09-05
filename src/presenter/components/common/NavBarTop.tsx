@@ -82,7 +82,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                 </div>
                             </MenuTrigger>
                             <MenuContent
-                                className='flex py-3 gap-1 px-2 z-40 flex-1 flex-col !rounded-2xl !shadow-xl -ml-1'>
+                                className='flex py-3 gap-1 px-2 z-40 flex-1 flex-col !rounded-3xl !shadow-xl -ml-1'>
                                 {menuItems.map((item, index) => (
                                     <MenuItem
                                         key={index}

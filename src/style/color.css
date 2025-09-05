@@ -34,7 +34,7 @@
 }
 
 .style {
-    @apply bg-opacity-100 !border-slate-900/5 !brightness-95;
+    @apply bg-opacity-100 !border-slate-900/5 !brightness-95  !font-roboto;
 }
 
 .inv {

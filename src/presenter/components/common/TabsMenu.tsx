@@ -24,11 +24,11 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
     const { color } = useUxStore((state) => state);
     const [indexSelected, setIndex] = useState<number>(0);
     return (
-        <div className="!relative w-full flex items-center pb-1 justify-between gap-x-1 " style={{ zIndex: 0 }}>
+        <div className="!relative w-full flex items-center justify-between gap-x-1 " style={{ zIndex: 0 }}>
             <Tabs value={defaultTab as string || labels[0].value}
                 className="w-full !z-10  max-w-[100vw] ">
                 <Tabs.List
-                    className="w-full !flex flex-1 !gap-2 !px-0 to !bg-transparent ">
+                    className="w-full !flex flex-1 !gap-1 !px-0 to !bg-transparent ">
                     {labels.map(({ label, value, result }, index: number) => (
                         <Tabs.Trigger
                             key={index}

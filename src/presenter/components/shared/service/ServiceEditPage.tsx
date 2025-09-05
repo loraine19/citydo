@@ -55,7 +55,7 @@ export default function ServiceEditPage() {
                 confirmString: "Enregistrer ",
                 title: "Confimrer la modification",
                 element: (
-                    <div className=' !pt-10 max-h-[70vh]   bg-gray-200 border px-4 rounded-2xl pb-4'>
+                    <div className=' !pt-10 max-h-[70vh]   bg-gray-200 border px-4 rounded-3xl pb-4'>
                         <ServiceCard
                             service={new ServiceView({ ...formik.values, image: formik.values?.blob || formik.values?.image }, {} as User)}
                             change={() => { }}

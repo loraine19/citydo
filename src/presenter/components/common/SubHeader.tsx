@@ -23,7 +23,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
             {/* TITLE DIV  */}
             <div className={`flex w-full h-full flex-col flex-1  gap-x-2 justify-end lg:justify-between`}>
                 <div className={`flex flex-1 h-full w-full 
-                    ${hideImage ? '' : 'bg-white shadow-md rounded-2xl animRev mb-1 p-1 gap-2 items-center  justify-center border border-slate-400/40'}`}>
+                    ${hideImage ? '' : 'bg-white shadow-md rounded-3xl animRev mb-1 p-1 gap-2 items-center  justify-center border border-slate-400/40'}`}>
                     <h2 className={`${hideImage ? '!line-clamp-1 pt-1' : '!line-clamp-3'} flex flex-1 !pl-4 `}>
                         <span className={`capitalize `}>{qty} {type}</span>
                         <span className="hidden  sm:inline-block !lowercase !font-thin opacity-75">
