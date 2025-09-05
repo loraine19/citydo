@@ -1,5 +1,5 @@
 import { Navbar, Typography } from "@material-tailwind/react";
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Icon } from "./IconComp";
 import { useNotificationStore } from "../../../application/stores/notification.store";
 import { useUxStore } from "../../../application/stores/ux.store";
@@ -18,6 +18,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
     const type = new URLSearchParams(location.pathname.split("/")[1]).toString().replace("=", '');
     const { } = useNotificationStore((state) => state);
     const { navBottom, setColor, color } = useUxStore((state) => state);
+    const navigate = useNavigate()
 
     type NavItem = {
         to: string;
@@ -170,7 +171,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                                 color={color ?? 'slate'}
                                 style={'!text-white/80 border-0'}
                                 reverse
-                                onClick={() => setOpenBlur(false)}
+                                onClick={() => setOpenBlur(!openBlur)}
                                 icon="edit"
                                 bg
                                 clear={navBottom}
@@ -189,7 +190,10 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                                             reverse
                                             style={'shadow-sm !border-slate-900/10 '}
                                             bg
-                                            link={to}
+                                            onClick={() => {
+                                                setOpenBlur(false);
+                                                navigate(to);
+                                            }}
                                             size={navBottom ? '6xl' : '2xl'}
                                             icon={icon}
                                             color={type ? color.col : color.col} />

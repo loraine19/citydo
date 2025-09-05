@@ -51,8 +51,9 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                     setCloseDial(!true);
                     setOpenBlur(false)
                 }}
-                    className={` ${(!closeDial && !openBlur) ? 'hidden' :
-                        ' h-screen w-screen -left-0 top-0  backdropBlur  absolute slide'}`}>
+                    className={` ${(closeDial || openBlur) ? ' h-screen w-screen -left-0 top-0  backdropBlur  absolute slide' : 'hidden'
+                        }`}>
+
                 </div>
 
                 {/* CONTAINER */}
