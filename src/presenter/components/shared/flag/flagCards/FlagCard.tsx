@@ -66,10 +66,10 @@ export function FlagCard(props: { flag: FlagView, update: () => void }) {
                     className={`rounded-full grayChip h-max flex items-center gap-2  `}>
                 </Chip>
                 <Icon
-                    fill icon="arrow_circle_right"
+                    icon="keyboard_arrow_right"
                     link={`/${targetS}/${targetId}`}
                     title={`voir les details de ${element?.title}`}
-                    bg clear />
+                />
             </CardFooter>
         </Card>
 

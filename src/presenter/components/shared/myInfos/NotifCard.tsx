@@ -45,7 +45,7 @@ export function NotifCard(props: notifCardProps) {
                 </i>
                 {notif.link &&
                     <Icon
-                        icon="arrow_circle_right"
+                        icon="keyboard_arrow_right"
                         link={notif.link}
                         title={`voir les details de ${notif.title}`}
                         bg clear

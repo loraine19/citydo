@@ -19,7 +19,7 @@ export default function SelectSearch(props: selectSearchProps) {
             <div className={`"flex inputDiv ${color}Style `} >
                 <Menu placement="bottom-start">
                     <MenuTrigger
-                        className={category.length > 0 ? 'px-2' : 'invisible'}>
+                        className={category.length > 0 ? 'px-2' : 'invisible w-0'}>
                         <div className="flex">
                             <Icon
                                 clear color={color ?? 'slate'}
@@ -54,7 +54,7 @@ export default function SelectSearch(props: selectSearchProps) {
                     data-cy="input-search"
                     type="search"
                     placeholder="Rechercher"
-                    className={` !text-${color}-600 bg-none border-none hover:ring-0 hover:shadow-none focus:bg-slate-200 pb-0 pt-0.5 rounded-full focus:shadow-none focus:ring-0 shadow-none `}
+                    className={`${color}Style !bg-transparent border-none hover:ring-0 hover:shadow-none focus:backdrop-brightness-90  pb-0 pt-0.5 rounded-full focus:shadow-none focus:ring-0 shadow-none `}
                     key={searchCat.value}
                     value={searchCat.label}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

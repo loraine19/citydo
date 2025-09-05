@@ -56,12 +56,13 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                 <div key={index}
                     className={`relative  w-full flex items-center justify-center ${onBoard ? 'lg:hidden' : ''}`}>
                     <Icon
-                        style={`${navBottom ? `${list.color}Style` : `${list.color}StyleInv`} `}
+                        style={`${navBottom ? `${list.color}Style drop-shadow-sm !brightness-[1.05] ` : ` shadow `}`}
+                        reverse={!navBottom}
                         link={list.link}
                         icon={list.icon}
                         color={list.color}
                         bg={navBottom ? false : true}
-                        fill={(navBottom && list.count > 0) ? true : false}
+                        fill={(navBottom) ? true : false}
                         size={navBottom ? '3xl' : 'xl'}
                         title={'ouvrir la page'} />
 

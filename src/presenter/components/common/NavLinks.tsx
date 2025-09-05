@@ -1,5 +1,4 @@
 import { Navbar, Typography } from "@material-tailwind/react";
-import { useState } from "react";
 import { NavLink, useLocation } from 'react-router-dom';
 import { Icon } from "./IconComp";
 import { useNotificationStore } from "../../../application/stores/notification.store";
@@ -10,12 +9,13 @@ interface NavBarProps {
     handleClick?: () => void;
     addBtn?: boolean;
     color?: string;
+    openBlur?: boolean;
+    setOpenBlur: (open: boolean) => void;
 }
 
-export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
+export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpenBlur }) => {
     const location = useLocation()
     const type = new URLSearchParams(location.pathname.split("/")[1]).toString().replace("=", '');
-    const [closeDial, setCloseDial] = useState<boolean>(false)
     const { } = useNotificationStore((state) => state);
     const { navBottom, setColor, color } = useUxStore((state) => state);
 
@@ -96,28 +96,21 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
 
     return (
         <>
-            {/*BLUR POP BACKGROUND */}
-            <div className={`
-            ${(!closeDial) ? 'hidden animRev' : ''} 
-            ${navBottom ? `bottom-[4rem] left-0 w-screen anim h-[calc(100vh-4rem)]` :
-                    'top-[4rem] left-0 w-screen animRev h-[calc(100vh-4rem)]'}
-                   backdropBlur  absolute `}>
-            </div>
 
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim rounded-t-3xl backdropBlur wRespXL ${color}BG  justify-center gap-4 lg:gap-6 pb-2 pr-5  lg:!px-0 ` :
+                    `items-center opacity-100 anim rounded-t-full bg-opacity-90 wRespXL   justify-center gap-4 lg:gap-6 pb-2 pr-6  lg:!px-0 ` :
                     'z-0 md:gap-4 gap-4 ') +
                 ` flex z-30 w-full `
             }>
                 <Navbar className={`
-                    ${navBottom ? 'ml-2 lg:ml-0 border-[1px] rounded-full !shadow-md bg-white border-slate-200 !flex-1 !max-w-max sm:!max-w-[100%]  ' :
+                    ${navBottom ? 'ml-2 lg:ml-0 border-[1px] rounded-full !shadow-md bg-slate-50 border-slate-300 !flex-1 !max-w-max sm:!max-w-[100%] !p-8 ' :
                         ` !pt-1  shadow-none border-none bg-transparent w-full `}
                     flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden  `}>
                     <ul className={`${navBottom ?
-                        ' gap-0 justify-between flex-1 !w-full !px-0' : 'md:gap-0 gap-1 justify-around '} 
-                            flex  xs:pr-0 !max-w-[calc(100vw-5.5rem)] flex-row  rounded-full h-full  w-full  `}>
+                        ' gap-0 justify-between flex-1 !w-full p-2' : 'md:gap-0 gap-1 justify-around '} 
+                            flex  !max-w-[calc(100vw-5.5rem)] flex-row  rounded-full h-full  w-full  `}>
                         {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                             <Typography
                                 onClick={() => { setColor(color.col) }}
@@ -127,28 +120,31 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                 <NavLink
                                     to={to}
                                     className={({ isActive }) =>
-                                        `flex gap-2 lg:gap-3 justify-center lg:justify-start items-center w-full h-full rounded-full
-                                            ${navBottom ? ` px-[8.5px] py-[8px] shadow-sm transition duration-200 
-                                            hover:shadow-sm` : 'opacity-90'}
-                                            ${(isActive && navBottom) ? `border-[1px] shadowMid shadow-sm  z-50 ` :
+                                        `flex gap-2 lg:gap-3 justify-center lg:justify-start items-center w-full h-full rounded-full 
+                                            ${navBottom ? ` px-[4.5px] py-[4px] ` : 'opacity-90'}
+                                            ${(isActive && navBottom) ? `z-50 ${color.col}StyleInv animSlide  ` :
                                             (isActive && !navBottom) ? ` border-b-[1px] px-1 md:border-none rounded-none !border-current !opacity-100 ` :
-                                                isActive ? ` animSlide ` : ''}`
+                                                isActive ? `  ` : '!shadow-none '}`
                                     }>
                                     {({ isActive }) => (
                                         <>
                                             <Icon
+                                                reverse={isActive && navBottom ? true : false}
                                                 disabled={isActive}
                                                 style={
-                                                    `${(isActive && !navBottom) ? `` : ''} min-h-[48px]`
+                                                    `${(isActive && !navBottom) ? `` : ''} min-h-[48px] `
                                                 }
+                                                clear={isActive && navBottom ? true : false}
                                                 bg={(navBottom) ? true : false}
                                                 size={navBottom ? '3xl' : 'xl'}
                                                 icon={icon}
                                                 fill={isActive ? true : false}
                                                 color={color.col}
                                             />
-                                            <span className={`${navBottom ? 'lg:pr-8 md:block md:!text-[0.85rem] ' : 'md:block md:!text-[0.75rem]'} text-[0.95rem] font-bold font-comfortaa hidden  pr-2
-                                                ${(isActive && !navBottom) ? 'underline underline-offset-8' : ''}`}>
+                                            {/* LABEL LINK */}
+                                            <span className={`font-bold font-comfortaa drop-shadow hidden pr-2
+                                            ${navBottom ? 'lg:pr-8 md:block md:!text-[0.85rem] ' : 'md:block md:!text-[0.80rem]'} 
+                                            ${(isActive && !navBottom) && 'underline underline-offset-8'}`}>
                                                 {label}
                                             </span>
                                         </>
@@ -161,20 +157,24 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
 
                 {/* ACTION BUTTON  */}
                 <SpeedDial
-                    open={closeDial}
-                    setOpen={setCloseDial}
+                    open={openBlur}
+                    setOpen={setOpenBlur}
                     className={`${(!navBottom && !addBtn) ? 'hidden' : ''}
                         ${!navBottom ? ' flex ' : '-mr-2'} 
                          z-[50]  -mr-4`}
                     placement={navBottom ? 'top' : 'bottom'}
                     offset={10}
                     Handler={
-                        <Icon
-                            onClick={() => setCloseDial(!closeDial)}
-                            icon="add"
-                            bg
-                            size={navBottom ? '5xl' : 'xl'}
-                            style={` ${closeDial ? 'rotate-45 transition-transform ' : ''} hover:!transition-transform hover:!rotate-45 !border-0 !text-[2.2rem] !text-white ${color}StyleInv ${navBottom ? `!shadow-md` : ''}`} />
+                        <div className={` rounded-full  ${openBlur ? 'rotate-45 transition-transform ' : ''} hover:!transition-transform hover:!rotate-45  !text-[2.2rem] ${color}StyleInv ${navBottom ? `!shadow-md p-2 w-full h-full border border-slate-900/5 ` : ' shadow !p-0'}`}>
+                            <Icon
+                                style={'!text-white'}
+                                reverse
+                                onClick={() => setOpenBlur(!openBlur)}
+                                icon="edit"
+                                bg
+                                clear={navBottom}
+                                size={navBottom ? '2xl' : 'xl'} />
+                        </div>
                     }
                     Content={
                         <div className={`${!navBottom ? ' items-end  mr-2' : ''} flex gap-2 flex-col `}>

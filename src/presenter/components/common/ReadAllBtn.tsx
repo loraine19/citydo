@@ -5,20 +5,26 @@ import { useNotificationStore } from "../../../application/stores/notification.s
 export const ReadAllButton = ({ update }: { update?: any }) => {
     const { fetchNotif, setUnReadNotif } = useNotificationStore();
     const readAll = () => DI.resolve('readAllNotifUseCase').execute();
-    return <Icon
-        bg fill
-        color='red'
-        icon="delete"
-        size="md"
-        style="absolute !shadow-md right-2 top-0.5 z-30 "
-        onClick={
-            async () => {
-                const notifs = await readAll();
-                if (notifs) {
-                    //// TODO verifier 
-                    fetchNotif();
-                    update();
-                }
-                setUnReadNotif(0);
-            }} title="marquer tout comme lu , vous ne verrez plus de notifications" />
+    return (
+        <div className="absolute top-0 right-0 z-10 rounded-full m-1 shadow-md">
+            <Icon
+                reverse
+                bg
+                color='red'
+                icon="delete"
+                size="lg"
+                onClick={
+                    async () => {
+                        const notifs = await readAll();
+                        if (notifs) {
+                            //// TODO verifier 
+                            fetchNotif();
+                            update();
+                        }
+                        setUnReadNotif(0);
+                    }}
+                title="marquer tout comme lu , vous ne verrez plus de notifications"
+            />
+        </div>
+    );
 }

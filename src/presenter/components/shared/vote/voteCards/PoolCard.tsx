@@ -114,11 +114,10 @@ export function PoolCard({ pool, change, mines, update, vote }: PoolCardProps) {
                             </Chip>
                         </button>
                         <Icon
-                            icon="arrow_circle_right"
+                            icon="keyboard_arrow_right"
                             title={`voir les details de ${pool.title}`}
                             link={`/cagnotte/${pool.id}`}
-                            fill
-                            bg clear />
+                            fill clear />
                     </div>
                 </CardFooter >
             </Card >

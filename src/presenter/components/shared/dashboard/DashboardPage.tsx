@@ -3,7 +3,6 @@ import AddressMapOpen from "../../common/mapComps/AddressMapOpen";
 import { Icon } from "../../common/IconComp";
 import CalendarComp from "../../common/CalendarComp";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Skeleton } from "../../common/Skeleton";
 import { useUserStore } from "../../../../application/stores/user.store";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { LogOutButton } from "../../common/LogOutBtn";
@@ -251,33 +250,33 @@ export default function DashboardPage() {
                                 </div>
                             </div>
                             <div className="flex-1 flex">
-                                {user?.Profile?.Address && notifsMap ?
+                                {(user?.Profile?.Address && notifsMap && !isLoadingMap) ?
                                     <AddressMapOpen
                                         message=" Vous êtes ici "
                                         address={user?.Profile?.Address}
-                                        notifs={notifsMap} /> : <>
+                                        notifs={notifsMap} /> :
+                                    <>
+                                        <Card className="FixCard h-full w-full !flex  !flex-col flex-1 justify-center items-center bg-gray-50">
+                                            <Typography
+                                                variant="small" className="px-8 py-4">
+                                                {user?.Profile?.Address ? 'pas de nouveautés à proximité , essayer de modifier de rafraichir' : 'Veuillez renseigner votre adresse pour voir les services à proximité'}
+                                            </Typography>
+                                            {user?.Profile?.Address ?
+                                                <NotifDiv
+                                                    notif={
+                                                        isLoadingMap ? 'Chargement...' : 'impossible de charger la carte, veuillez réessayer'}
+                                                    isLoading={isLoadingMap}
+                                                    refetch={refetchMap} />
+                                                : <Icon
+                                                    icon="add"
+                                                    fill bg
+                                                    color="orange"
+                                                    title="ajouter votre adresse"
+                                                    onClick={() => navigate('/myprofile#address')} />
+                                            }
+                                        </Card>
 
-                                        {isLoadingMap ?
-                                            <Skeleton /> :
-                                            <Card className="FixCard h-full w-full !flex  !flex-col flex-1 justify-center items-center bg-gray-50">
-                                                <Typography
-                                                    variant="small" className="px-8 py-4">
-                                                    {user?.Profile?.Address ? 'pas de nouveautés à proximité , essayer de modifier de rafraichir' : 'Veuillez renseigner votre adresse pour voir les services à proximité'}
-                                                </Typography>
-                                                {user?.Profile?.Address ?
-                                                    <NotifDiv
-                                                        notif={'impossible de charger la carte, veuillez réessayer'}
-                                                        isLoading={isLoadingMap}
-                                                        refetch={refetchMap} />
-                                                    : <Icon
-                                                        icon="add"
-                                                        fill bg
-                                                        color="orange"
-                                                        title="ajouter votre adresse"
-                                                        onClick={() => navigate('/myprofile#address')} />
-                                                }
-                                            </Card>
-                                        }</>}
+                                    </>}
                             </div>
                         </CardBody>
                     </Card>

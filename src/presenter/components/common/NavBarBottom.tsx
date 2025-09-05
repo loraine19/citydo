@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNotificationStore } from "../../../application/stores/notification.store";
 import { useUxStore } from "../../../application/stores/ux.store";
 import { NavBarSection } from "./NavLinks";
@@ -10,19 +11,24 @@ interface NavBarBottomProps {
 
 export const NavBarBottom: React.FC<NavBarBottomProps> = ({ addBtn }) => {
     const { } = useNotificationStore((state) => state);
-    const { setNavBottom, navBottom, hideNavBottom } = useUxStore((state) => state)
+    const { setNavBottom, navBottom, hideNavBottom, color } = useUxStore((state) => state)
+    const [openBlur, setOpenBlur] = useState(false)
 
     if (navBottom && !hideNavBottom) return (
-        <footer className="!left-0 fixed bottom-0 "
+        <>
+            {openBlur &&
+                <div className="w-full h-screen absolute z-50 top-0 backdrop-blur-md transition-all duration-700"> </div>}
 
-            onDoubleClick={() => setNavBottom(!navBottom)}
-            onDoubleClickCapture={(e) => {
-                e.stopPropagation(); e.preventDefault()
-                setNavBottom(!navBottom)
-            }}>
+            <footer className={`!left-0 fixed bottom-0 ${color}Footer `}
+                onDragCapture={() => setNavBottom(!navBottom)}
+                onDoubleClick={() => setNavBottom(!navBottom)}
+                onDoubleClickCapture={(e) => {
+                    e.stopPropagation(); e.preventDefault()
+                    setNavBottom(!navBottom)
+                }}>
 
-            <NavBarSection addBtn={addBtn} />
-        </footer>
+                <NavBarSection addBtn={addBtn} openBlur={openBlur} setOpenBlur={setOpenBlur} />
+            </footer></>
     );
 
 

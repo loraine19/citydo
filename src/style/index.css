@@ -40,11 +40,11 @@
 * {
     box-sizing: border-box;
 }
-
+.baseBG {
+    @apply bg-slate-300/50 dark:bg-slate-700 text-slate-700 dark:text-slate-300;
+}
 :root {
-    @apply scroll-smooth text-[16px] md:!text-[16px] lg:!text-[15px] 
-    bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300;
-
+    @apply scroll-smooth text-[16px] md:!text-[16px] lg:!text-[15px] baseBG;
     line-height: 1.2;
     font-weight: 400;
     display: flex;
@@ -189,8 +189,9 @@ input[type="number"] {
 }
 
 .inputDiv {
-    @apply rounded-full h-8 flex items-center !shadow-none bg-opacity-0 border-t px-4 !border capitalize font-normal;
+    @apply rounded-full h-[2.2rem] flex items-center bg-opacity-0 border-t px-4 !border capitalize font-normal placeholder:!text-red-600;
 }
+
 .notif {
     @apply -bottom-full pt-9 items-center flex-col gap-4 absolute w-full h-full flex justify-center anim;
 }
@@ -270,7 +271,7 @@ button:hover {
 }
 
 .lgBtn {
-    @apply !flex items-center rounded-full !w-full !shadow-md py-1.5 !pr-5 lg:p-1.5 gap-5  !break-words font-roboto justify-center wRespL  px-5 min-h-10 md:!min-h-12;
+    @apply !flex items-center rounded-full  !shadow-md py-1.5  lg:p-1.5 gap-5  !break-words font-roboto justify-center  px-5 min-h-10 md:!min-h-12 !border-slate-900/10;
 }
 
 /**** COMP ****/
@@ -327,19 +328,19 @@ button:hover {
 ::-webkit-scrollbar {
     width: 4px;
     height: 2px;
-    @apply bg-slate-300/20 rounded-2xl;
+    @apply bg-slate-400/5 rounded-2xl;
 }
 ::-webkit-scrollbar:hover {
-    @apply bg-slate-300/30 h-4;
-    cursor: pointer;
+    @apply bg-slate-400/10 border h-4;
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply bg-slate-300/30 rounded-2xl h-1;
+    @apply bg-white/80 border rounded-2xl h-1;
+    cursor: pointer;
 }
 ::-webkit-scrollbar-thumb:hover,
 ::-webkit-scrollbar-thumb:active {
-    @apply bg-slate-300/50;
+    @apply bg-white;
 }
 button span {
     @apply !truncate max-w-full min-h-max;

@@ -43,11 +43,10 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                             }
                         </div>
                     </CardBody>
-                    <CardFooter className="justify-end FixCardFooter max-w-full flex flex-wrap gap-y-4 gap-x-8 py-6">
+                    <CardFooter className="justify-end FixCardFooter  max-w-full flex flex-wrap gap-y-4 gap-x-8 py-6">
                         {button2 &&
                             <Button
-                                className={`rounded-full text-white lgBtn max-w-max`}
-                                color="error"
+                                className={`lgBtn ${'redStyle'}`}
                                 type="button"
                                 size='lg'
                                 onClick={() => {
@@ -59,10 +58,9 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                             </Button>}
                         {<Button
                             type="button"
-                            color="primary"
                             disabled={notif ? true : false}
                             size='lg'
-                            className={`rounded-full !px-6 text-white lgBtn max-w-max ${color}StyleInv`}
+                            className={`lgBtn ${color ?? 'slate'}StyleInv`}
                             onClick={() => {
                                 values.handleConfirm && values.handleConfirm();
                                 close && close() || setOpen(false);

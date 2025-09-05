@@ -164,8 +164,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
                                 size="lg" />}>
                         </Chip>
                         <Icon
-                            bg clear
-                            icon="arrow_circle_right"
+                            icon="keyboard_arrow_right"
                             link={`/service/${id}`}
                             title={`voir les details de service  ${title}`}
                             fill />

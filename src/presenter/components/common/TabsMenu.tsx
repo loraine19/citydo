@@ -33,8 +33,10 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
                         <Tabs.Trigger
                             key={index}
                             value={value}
-                            className={` !capitalize !flex-1 whitespace-nowrap rounded-full shadow !h-8 !px-3 
-                                ${index !== indexSelected ? `inputDiv  ${color}Style !border-opacity-30 ` : ` ${color}StyleInv animSlide`} `}
+                            className={` font-roboto !capitalize !flex-1 whitespace-nowrap rounded-full  !h-[2.2rem] !px-3 
+                                ${index !== indexSelected ?
+                                    ` InputDiv ${color}Style border` :
+                                    ` ${color}StyleInv animSlide shadSm `} `}
                             onClick={() => { setIndex(index); result() }}>
                             {label}
                         </Tabs.Trigger>

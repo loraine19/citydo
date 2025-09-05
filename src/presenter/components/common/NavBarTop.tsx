@@ -17,19 +17,21 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
     ///// MENU ITEMS
     const menuItems = [
-        { icon: "toll", text: `vous avez ${user?.Profile?.points} points`, color: 'white', style: 'hover:!pointer-event-none' },
-        { icon: navBottom ? 'move_up' : 'move_down', text: "Déplacer la barre", onClick: () => { setNavBottom(!navBottom) }, color: 'white', style: `${!hideNavBottom ? '' : 'hidden'} !mb-2 ` },
+        { icon: "toll", text: `${user?.Profile?.firstName}, vous avez ${user?.Profile?.points} points`, color: 'white', style: 'hover:!pointer-event-nones mb-3' },
+        { icon: navBottom ? 'move_up' : 'move_down', text: "Déplacer la barre", onClick: () => { setNavBottom(!navBottom) }, color: 'cyan', },
         // { icon: "forum", text: `Messagerie (${unReadMsgNotif ?? ''})`, onClick: () => navigate('/chat'), color: 'cyan' },
-        { icon: 'groups', text: "Groupes", onClick: () => navigate('/groupe'), color: "teal" },
-        { icon: "person_edit", text: "Modifier mon profil", onClick: () => navigate('/myprofile'), color: "yellow" },
+        { icon: "person_edit", text: "Modifier mon profil", onClick: () => navigate('/myprofile'), color: "cyan", style: ` !mb-3 ` },
+        { icon: 'groups', text: "Groupes", onClick: () => navigate('/groupe'), color: "orange" },
+
         { icon: 'diversity_3', text: "Conciliation", onClick: () => navigate('/conciliation'), color: 'orange' },
-        { icon: "exit_to_app", text: "Déconnexion", onClick: () => navigate('/signin'), style: "!text-red-500 !mt-2 ", color: "red" },
+        { icon: "exit_to_app", text: "Déconnexion", onClick: () => navigate('/signin'), style: "!text-red-500 !mt-3 ", color: "red" },
     ]
 
-    if (!onBoard && !navIcons) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate" })
+    if (!onBoard && !navIcons) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate", style: "!mb-3" })
 
 
     const [closeDial, setCloseDial] = useState<boolean>(false)
+    const [openBlur, setOpenBlur] = useState<boolean>(false)
 
     useEffect(() => { getColor(window.location.pathname), setHideNavBottom(false) }, [window.location.pathname])
 
@@ -45,7 +47,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
                 {/*BLUR POP BACKGROUND */}
                 <div onClick={() => setCloseDial(!true)}
-                    className={` ${(!closeDial) ? 'hidden' :
+                    className={` ${(!closeDial && !openBlur) ? 'hidden' :
                         ' h-screen w-screen -left-0 top-0  backdropBlur  absolute slide'}`}>
                 </div>
 
@@ -80,11 +82,11 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                 </div>
                             </MenuTrigger>
                             <MenuContent
-                                className='flex py-2 gap-0.5 px-2 z-40 flex-1 flex-col !rounded-2xl !shadow-xl -ml-1'>
+                                className='flex py-3 gap-1 px-2 z-40 flex-1 flex-col !rounded-2xl !shadow-xl -ml-1'>
                                 {menuItems.map((item, index) => (
                                     <MenuItem
                                         key={index}
-                                        className={`flex !flex-1 !min-w-60 pr-[10vw] items-center gap-2 pl-1.5 ${item.onClick ? `hover:bg-slate-400/40` : 'hover:bg-slate-200'} bg-slate-200 rounded-full  ${item.style || ''}`}
+                                        className={`flex !flex-1 !min-w-60 pr-[10vw] items-center gap-2 p-2 ${item.onClick ? `hover:bg-slate-400/40` : 'hover:bg-slate-200'} bg-slate-200 rounded-full  ${item.style || ''}`}
                                         onClick={() => {
                                             item.onClick && item.onClick()
                                             setCloseDial(false);
@@ -92,12 +94,12 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                     >
                                         <Icon
                                             disabled={!item.onClick}
-                                            bg
-                                            size='xl'
-                                            color={'slate'}
+                                            bg fill
+                                            size='lg'
+                                            color={item.color ?? color}
                                             icon={item.icon}
                                         />
-                                        <i>
+                                        <i className="pr-6">
                                             {item.text}
                                         </i>
                                     </MenuItem>
@@ -123,7 +125,10 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                     {(!navBottom && navIcons && !hideNavBottom) &&
                         <div onMouseEnter={() => setCloseDial(false)}
                             className="pr-4 pl-1 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
-                            <NavBarSection addBtn={addBtn} />
+                            <NavBarSection
+                                setOpenBlur={setOpenBlur}
+                                openBlur={openBlur}
+                                addBtn={addBtn} />
                         </div>
                     }
 

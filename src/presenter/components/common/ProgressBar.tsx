@@ -57,23 +57,23 @@ export function ProgressBar({ value, label, needed, status, size = 'md' }: Progr
 
 
 export function ProgressBarBlur({ value, label, needed, status, size = 'md', isPast }: ProgressBarProps) {
-    let color = 'bg-gray-600'
+    let color = 'bg-slate-600'
     let labelTexte = ''
     switch (true) {
         case (status === EventStatus.REJECTED && isPast):
-            color = 'bg-slate-600/80'
+            color = 'bg-slate-600'
             labelTexte = 'n\'a pas eu lieu manque de participants'
             break;
         case (status === EventStatus.REJECTED && !isPast):
-            color = 'bg-slate-600/80'
+            color = 'bg-slate-600'
             labelTexte = 'n\'aura pas lieu manque de participants'
             break;
         case (status === EventStatus.VALIDATED && !isPast):
-            color = 'bg-green-500/80'
+            color = 'bg-cyan-500'
             labelTexte = 'a été validé'
             break;
         case (status === EventStatus.VALIDATED && isPast):
-            color = 'bg-cyan-500/80'
+            color = 'bg-cyan-500'
             labelTexte = 'a eu lieu'
             break;
         case (status === EventStatus.PENDING && value === 0):
@@ -87,7 +87,7 @@ export function ProgressBarBlur({ value, label, needed, status, size = 'md', isP
         <div className={` w-full !rounded-full backdropBlur bg-white/10 flex items-center gap-2 p-2 h-max `}>
             {(value === 0 && status === EventStatus.PENDING || status === EventStatus.REJECTED || status === EventStatus.VALIDATED) &&
                 (
-                    <div className={` !flex !flex-1 ${color} !line-clamp-1 px-2 h-6 w-full rounded-full  items-center justify-center `}>
+                    <div className={` !flex !flex-1 ${color} !line-clamp-1 px-2 h-6 w-full rounded-full  items-center justify-center border  border-slate-900/20 `}>
                         <Typography
                             className="mb-0 text-white text-center text-sm drop-shadow font-normal italic">
                             {labelTexte}
@@ -103,7 +103,7 @@ export function ProgressBarBlur({ value, label, needed, status, size = 'md', isP
                         size={size}>
                         <ProgressBarMT
                             value={(status === EventStatus.PENDING) ? value : 100}
-                            className={`!min-w-[2.7rem] text-center !line-clamp-1 whitespace-nowrap truncate flex items-center ${size === "lg" ? ' px-3 py-0.5' : 'px-2 '} !bg-orange-400/80 `}
+                            className={`!min-w-[2.7rem] text-center !line-clamp-1 whitespace-nowrap truncate flex items-center ${size === "lg" ? ' px-3 py-0.5' : 'px-2 '} !bg-cyan-500 border rounded-full border-slate-900/20`}
                         >
                             <div className="absolute h-6 flex items-center">  <Typography className="text-sm gap-[10%] flex text-white ">
                                 <span className="font-semibold opacity-70 pr-2">{value} %</span>

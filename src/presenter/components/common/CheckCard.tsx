@@ -35,7 +35,7 @@ export default function CheckCard(props: checkCardProps) {
                     {categoriesArray.map((category, index) => (
                         <List.Item className="px-0.5 h-full w-full min-w-max hover:!bg-transparent" key={index}>
                             <label htmlFor={category} className="flex flex-1">
-                                <List.ItemStart className={` h-8 relative w-full !px-0 py-0.5 !m-0 flex items-center justify-center rounded-full !shadow-sm border-[1px] ${` ${color}Style  `} ${checkedState[index] ? `` : `!bg-transparent `}`}>
+                                <List.ItemStart className={` h-8 relative w-full !px-0 py-0.5 !m-0 flex items-center justify-center rounded-full border-[1px] ${` ${color}Style  `} ${checkedState[index] ? ` !border-${color}-500 !border-opacity-30` : `!bg-transparent `}`}>
                                     <Checkbox
                                         checked={checkedState[index]}
                                         id={category}

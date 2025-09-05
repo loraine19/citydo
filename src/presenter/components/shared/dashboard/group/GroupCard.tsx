@@ -117,7 +117,7 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
                                     title={group?.ImIn ? "Je suis membre" : "Je ne suis pas membre"} />} />
                     </button>
                     <Icon
-                        icon="arrow_circle_right"
+                        icon="keyboard_arrow_right"
                         link={`/groupe/${id}`}
                         title={`voir les details de ${name}`}
                         bg clear

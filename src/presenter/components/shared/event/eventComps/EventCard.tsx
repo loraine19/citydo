@@ -117,10 +117,9 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                         />
                     </button>
                     <Icon
-                        icon="arrow_circle_right"
+                        icon="keyboard_arrow_right"
                         link={`/evenement/${id}`}
                         title={`voir les details de ${title}`}
-                        bg clear
                         fill />
                 </div>
             </CardFooter>

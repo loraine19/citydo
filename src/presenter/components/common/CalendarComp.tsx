@@ -139,7 +139,7 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                         </div>
                     </div>
                 ) :
-                    (<div className='!border !border-slate-200 absolute flex flex-col flex-1 h-full p-2 gap-2  w-full rounded-2xl bg-white shadow-md '>
+                    (<div className='!border !border-slate-300/80 absolute flex flex-col flex-1 h-full p-2 gap-2  w-full rounded-2xl bg-white shadow-md '>
                         {weeks && weeks.map((week: any, key: number) => (
                             <div
                                 key={key}
@@ -177,15 +177,20 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                                                                 </PopoverTrigger>
                                                             </button>
                                                             <PopoverContent
-                                                                className='bg-transparent shadow-none z-40 border-none p-0 FixedCenter -mt-4 flex-col'>
-                                                                <Icon
-                                                                    fill
-                                                                    title='Fermer'
-                                                                    icon="cancel"
-                                                                    size="3xl"
-                                                                    onClick={() => setOpen(false)}
-                                                                    style='absolute top-4 right-8' />
-                                                                <EventCard event={event} change={() => { }} />
+                                                                className='bg-transparent backdrop-blur 
+                                                                h-[calc(100vh-8rem)] w-screen flex items-center justify-center
+                                                                !absolute  shadow-none z-40 border-none p-0 !top-[4rem] !-translate-x-[0%]  flex-col'>
+                                                                <div className=' p-4 flex flex-col gap-6 items-end'>
+                                                                    <Icon
+                                                                        fill
+                                                                        title='Fermer'
+                                                                        icon="cancel"
+                                                                        size="3xl"
+                                                                        onClick={() => setOpen(false)}
+                                                                        style='' />
+                                                                    <EventCard event={event} change={() => { }} />
+
+                                                                </div>
                                                             </PopoverContent>
                                                         </Popover>
                                                     </div>

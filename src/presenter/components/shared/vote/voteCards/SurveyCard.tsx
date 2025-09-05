@@ -125,11 +125,10 @@ export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardPr
                             </Chip>
                         </button>
                         <Icon
-                            icon="arrow_circle_right"
+                            icon="keyboard_arrow_right"
                             title={`voir les details de ${survey?.title}`}
                             link={`/sondage/${survey?.id}`}
-                            fill
-                            bg clear />
+                            fill />
                     </div>
                 </CardFooter >
             </Card >

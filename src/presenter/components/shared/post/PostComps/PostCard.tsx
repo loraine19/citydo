@@ -88,7 +88,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                         </Chip>
                     </button>
                     <Icon
-                        icon="arrow_circle_right"
+                        icon="keyboard_arrow_right"
                         link={`/annonce/${id}`}
                         title={`voir les details de l'annonce  ${title}`}
                         size="4xl"
