@@ -166,7 +166,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                         </div>
 
                     </CardBody>
-                    <CardFooter className={`flex flex-col !mt-0 !pt-0 !pb-6`}>
+                    <CardFooter className={`flex flex-col !mt-0 !pt-0 !pb-12`}>
 
                         <div className='flex flex-col gap-3 py-2'>
                             <Button

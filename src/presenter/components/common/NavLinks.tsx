@@ -165,7 +165,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                     placement={navBottom ? 'top' : 'bottom'}
                     offset={10}
                     Handler={
-                        <div className={` rounded-full  ${openBlur ? 'rotate-45 transition-transform ' : ''} hover:!transition-transform hover:!rotate-45  !text-[2.2rem] ${color}StyleInv ${navBottom ? `!shadow-md p-2 w-full h-full border border-slate-900/5 ` : ' shadow !p-0'}`}>
+                        <div className={` rounded-full   hover:!transition-transform hover:!rotate-45  !text-[2.2rem] ${color}StyleInv ${navBottom ? `!shadow-md p-2 w-full h-full border border-slate-900/5 ` : ' shadow !p-0'}`}>
                             <Icon
                                 color={color ?? 'slate'}
                                 style={'!text-white/80 border-0'}

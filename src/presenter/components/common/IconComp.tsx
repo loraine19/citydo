@@ -131,7 +131,7 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
     ${textColor(color) as string} ${bg()}  
     ${props.bg ? classRounded : textSize} ${style ?? ''} `
 
-    const classActive = `hover:scale-[1.02] transition-all duration-200 ease-in-out `
+    const classActive = `hover:brightness-[0.9] active:brightness-[0.8]`
 
     return (
         <div className={`${(props.bg && !clear) ? 'max-h-max max-w-max bg-white ' : ''} rounded-full  `}>

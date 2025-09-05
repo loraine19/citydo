@@ -25,7 +25,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
         { icon: 'groups', text: "Groupes", onClick: () => navigate('/groupe'), color: "orange" },
 
         { icon: 'diversity_3', text: "Conciliation", onClick: () => navigate('/conciliation'), color: 'orange' },
-        { icon: "exit_to_app", text: "Déconnexion", onClick: () => navigate('/signin'), style: "!text-red-500 !mt-3 ", color: "red" },
+        { icon: "exit_to_app", text: "Déconnexion", onClick: () => navigate('/signin'), style: "!text-red-500 !mt-4 ", color: "red" },
     ]
 
     if (!onBoard && !navIcons) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate", style: "!mb-3" })
@@ -55,7 +55,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                 {/* CONTAINER */}
                 <div className={`wRespXL slide h-full justify-between items-end 
             ${navBottom ? 'flex ' : 'grid grid-cols-[auto_1fr_auto] gap-3 '}
-                ${hideNavBottom ? ' flex animRev !py-0' : ' flex animRev pt-2 pb-3 lg:pb-1'}`} >
+                ${hideNavBottom ? ' flex animRev !py-0' : ' flex animRev pt-2 pb-2'}`} >
 
                     <div className={`flex h-full ${hideNavBottom ? 'hidden' : ''}`}>
 
@@ -66,7 +66,7 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                                 <div onClick={() => setCloseDial(!closeDial)}>
                                     {(onBoard || !onBoard) ?
                                         <div className='flex w-[48px] flex-1 items-center'>
-                                            <img className="!w-[48px] !h-[48px]  object-cover object-center"
+                                            <img className="!w-[48px] !h-[48px] drop-shadow-sm  object-cover object-center"
                                                 src="/image/logo.svg"
                                                 alt="logo" />
                                         </div> :
@@ -85,19 +85,20 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
                             <MenuContent
                                 className='flex py-3 gap-1 px-2 z-40 flex-1 flex-col !rounded-3xl !shadow-xl -ml-1'>
                                 {/* USER ITEM */}
-                                <div className="flex items-center gap-3 px-2 py-2 mb-2 rounded-full bg-slate-100">
+                                <MenuItem
+                                    className={`flex !flex-1 !min-w-60 pr-[10vw] items-center gap-2 p-2 ${'hover:bg-slate-200'} bg-slate-200 rounded-full `}
+                                    onClick={() => { }}>
                                     <AvatarUser
                                         style='!shadow-none'
-                                        avatarStyle='!w-10 !h-10 !text-lg'
-                                        avatarSize='sm'
+                                        avatarSize='md'
                                         Profile={user?.Profile}
                                     />
                                     <div className="flex flex-col">
-                                        <span className="font-semibold text-slate-800">{user?.Profile?.firstName} {user?.Profile?.lastName}</span>
-                                        <span className="text-xs text-slate-500">{user?.email}</span>
+                                        <span className="font-semibold">{user?.Profile?.firstName} {user?.Profile?.lastName}</span>
+                                        <i className="text-xs text-slate-500">{user?.email}</i>
                                     </div>
-                                </div>
-
+                                </MenuItem>
+                                {/* LIST ITEM */}
                                 {menuItems.map((item, index) => (
                                     <MenuItem
                                         key={index}
@@ -124,11 +125,11 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
                         {/* INFO TEXT LOGO   */}
                         {(!hideNavBottom || !navIcons) &&
-                            <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : 'truncate '} max-w-[calc(100vw-12rem)] lg:max-w-[calc(1000px-14rem)] flex flex-col h-full w-full lg:pl-6 pl-2 pt-1`}>
-                                <h1 className={` ${color}Style !bg-transparent flex !font-comfortaa text-[1.7rem] sm:text-[2rem] stroke-current !font-[900] ${!navIcons && 'pl-0'} underline underline-offset-[5px]`}>
-                                    City'Do
+                            <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : 'truncate '} max-w-[calc(100vw-12rem)] lg:max-w-[calc(1000px-14rem)] flex flex-col h-full w-full  pt-1 !-ml-1.5`}>
+                                <h1 className={`drop-shadow-sm flex !font-comfortaa text-[2.2rem]  ${!navIcons ? 'pl-0  ' : ''} text-cyan-500 brightness-[0.95] font-[900] underline decoration-slate-900/10   underline-offset-[0.35rem]`}>
+                                    &nbsp;City'Do&nbsp;&nbsp;
                                 </h1>
-                                {(((navBottom && !hideNavBottom && navIcons))) &&
+                                {(((navBottom && !hideNavBottom && navIcons && onBoard))) &&
                                     <i className='text-[0.8rem] pt-0.5 lg:text-[0.85rem] truncate flex !line-clamp-1 '>
 
                                         {user?.GroupUser?.map((group) => (group.Group?.name.split(':')[0])).join(', ')}
