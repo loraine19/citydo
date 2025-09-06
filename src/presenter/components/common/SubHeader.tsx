@@ -25,7 +25,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
                 {!hideNavBottom && <div className={`flex flex-1 h-full w-full 
                     ${hideImage ? '' : 'bg-white shadow-md rounded-3xl animRev mb-1 p-1 gap-2 items-center  justify-center border border-slate-400/40'}`}>
                     <h2 className={`${hideImage ? '!line-clamp-1 pt-1' : '!line-clamp-3'}
-                        ${closeBtn ? 'text-right pr-4' : ''} flex flex-1 !pl-2 `}>
+                        ${closeBtn ? 'text-center pr-4' : ''} flex flex-1 !pl-2 `}>
                         <span className={`capitalize font-roboto font-medium `}>{qty} {type}</span>
                         <span className="hidden sm:inline-block !lowercase !font-light opacity-75">
                             &nbsp;{place ?? "dans vos groupes"}
@@ -42,26 +42,27 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
 
                 {/* BUTTON DIV  */}
                 {hideNavBottom &&
-                    <div className="flex flex-1 fixed z-[9999] bottom-[3rem]   ">  <Icon
+                    <div className="flex flex-1 absolute z-[9999] -right-0.5 -top-1">  <Icon
                         key='scrollTop'
-                        style={'!shadow-xl'}
+                        style={'!shadow-lg'}
                         reverse
                         icon="arrow_upward_alt"
                         color={color ?? 'gray'}
-                        size="3xl"
+                        size="4xl"
                         fill bg
                         onClick={() => scrollToTop()}
                         title="retour en haut" />
                     </div>}
                 {closeBtn &&
-                    <div className="flex flex-1 absolute z-[9999] -top-1 left-1.5  ">
+                    <div className="flex flex-1 absolute z-[9999] -top-1 -left-0.5  ">
                         <Icon
-                            style={hideNavBottom ? '!shadow-xl border' : ''}
                             reverse={hideNavBottom}
+                            style={hideNavBottom ? '!shadow-lg border-slate-900/10 ' : ''}
                             bg={hideNavBottom}
                             icon={hideNavBottom ? "close" : "arrow_back"}
-                            color={color ?? 'gray'}
-                            size="3xl"
+                            color={color ?? 'gray'
+                            }
+                            size="4xl"
                             fill
                             link={goBack}
                             title={"retour " + goBack?.replace("/", "")}

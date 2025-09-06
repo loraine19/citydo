@@ -65,7 +65,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                 {/* CONTAINER */}
                 <div className={`wRespXL pl-2 !pb-1 pt-2  lg:px-0 slide h-full justify-between items-end 
 
-            ${(navBottom || navIcons) ? 'flex ' : 'grid grid-cols-[1fr_1fr_auto] gap-2 '}
+            ${(!navBottom || !navIcons) ? 'flex ' : 'grid grid-cols-[1fr_1fr_auto] gap-2 '}
            
                 ${hideNavBottom ? ' flex animRev !py-0' : ' flex animRev pt-2 pb-2'}`} >
 
