@@ -147,7 +147,7 @@ i {
 }
 
 .CTA {
-    @apply lg:pb-3 px-1 pb-1 anim fixed bottom-0 left-0 h-max w-full !flex items-center justify-center rounded-t-3xl;
+    @apply anim fixed bottom-0 left-0 h-max w-full !flex items-center justify-center rounded-t-3xl;
 }
 
 /**** INPUT STYLES ****/
@@ -403,8 +403,8 @@ button span {
 .icon3xl {
     @apply flex items-center justify-center rounded-full;
     font-size: 34px;
-    width: 50px;
-    height: 50px;
+    width: 53px;
+    height: 52px;
 }
 .icon4xl {
     @apply flex items-center justify-center rounded-full;

@@ -47,6 +47,7 @@ export const SpeedDial: React.FC<SpeedDialProps> = ({ placement = 'top', Handler
 
                 className={' slide !relative !z-[99999]' + ` ${className}`}>
                 <Popover
+                    placement={placement}
                     onOpenChange={(value) => setOpen(typeof value === 'function' ? value(open!) : value)}
                     open={open} >
                     <Popover.Trigger className=''>
@@ -55,7 +56,8 @@ export const SpeedDial: React.FC<SpeedDialProps> = ({ placement = 'top', Handler
                     <Popover.Content
                         onMouseLeave={() => setOpen && setOpen(false)}
                         className='flex flex-1 backdropBlur !z-[99999] !bg-transparent  border-0 shadow-none h-max w-max'>
-                        <div className={`${placement !== 'top' ? 'top-0' : 'bottom-0'} !absolute !z-[99999] -mr-2 -right-[50%] slide `}>
+                        <div className={`${placement !== 'top' ? 'top-0' :
+                            'bottom-0'} !absolute !z-[99999] -mr-2 -right-[50%] slide `}>
                             {Content}
                         </div>
                     </Popover.Content >

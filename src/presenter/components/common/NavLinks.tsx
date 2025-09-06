@@ -101,28 +101,29 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim rounded-t-full bg-opacity-90 wRespXL justify-center gap-4 lg:gap-6  pr-6  lg:!px-0 ` :
+                    `items-center opacity-100 anim rounded-t-full bg-opacity-90 wRespXL justify-center pb-1 lg:!px-0 relative px-2` :
                     'z-0 md:gap-4 gap-3 pr-2 ') +
                 ` flex z-30 w-full `
             }>
                 <Navbar className={`
-                    ${navBottom ? 'ml-2 lg:ml-0 border-[1px] rounded-full !shadow bg-slate-50 border-slate-300 !flex-1 !max-w-max sm:!max-w-[100%] !p-8 ' :
+                    ${navBottom ? ' lg:ml-0 border-[1px] rounded-full !shadow bg-slate-50 border-slate-300 !flex-1 justify-between  ' :
                         ` !pt-1  shadow-none border-none bg-transparent w-full `}
                     flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden  `}>
                     <ul className={`${navBottom ?
-                        ' gap-1 justify-between flex-1 !w-full p-1.5' : 'md:gap-0 gap-1 justify-around '} 
-                            flex  !max-w-[calc(100vw-5.5rem)] flex-row  rounded-full h-full  w-full  `}>
+                        ' gap-1 justify-between flex-1 !w-full ' :
+                        'md:gap-0 gap-1 justify-around '} 
+                            flex  flex-row p-1 rounded-full h-full  w-full  `}>
                         {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                             <Typography
                                 onClick={() => { setColor(color.col) }}
                                 key={index}
                                 as="li"
-                                className={` ${color.text} flex rounded-full h-full items-center font-medium`}>
+                                className={` ${color.text}  flex rounded-full h-full items-center font-medium`}>
                                 <NavLink
                                     to={to}
                                     className={({ isActive }) =>
-                                        `flex gap-2 lg:gap-3 justify-center lg:justify-start items-center w-full h-full rounded-full 
-                                            ${navBottom ? ` px-[5px] py-[4px] ` : 'opacity-90'}
+                                        `flex gap-2 lg:gap-3 justify-center lg:justify-start items-center w-full h-full rounded-full !p-1.5
+                                            ${navBottom ? `  ` : 'opacity-90'}
                                             ${(isActive && navBottom) ? `z-50 ${color.col}StyleInv animSlide   mx-0.5` :
                                             (isActive && !navBottom) ? ` border-b-[1px] px-1 md:border-none rounded-none !border-current !opacity-100 ` :
                                                 isActive ? `  ` : '!shadow-none '}`
@@ -157,53 +158,57 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                 </Navbar>
 
                 {/* ACTION BUTTON  */}
-                <SpeedDial
-                    open={openBlur}
-                    setOpen={setOpenBlur}
-                    className={`${(!navBottom && !addBtn) ? 'hidden' : ''}
-                        ${!navBottom ? ' flex -mr-3.5 ' : '-mr-2 -mt-2'} 
-                         z-[50]  `}
-                    placement={navBottom ? 'top' : 'bottom'}
-                    offset={10}
-                    Handler={
-                        <div className={` rounded-full !text-[2.2rem] ${color}StyleInv ${navBottom ? `!shadow-md p-2.5 w-full h-full border border-slate-900/5 -mb-2.5 lg:-mb-2  ` : ' !shadSm !p-0'}`}>
-                            <Icon
-                                color={color ?? 'slate'}
-                                style={'!text-white/80 border-0'}
-                                reverse
-                                onClick={() => setOpenBlur(!openBlur)}
-                                icon={openBlur ? 'close' : 'edit'}
-                                bg
-                                clear={navBottom}
-                                size={navBottom ? '2xl' : 'xl'} />
-                        </div>
-                    }
-                    Content={
-                        <div className={`${!navBottom ? ' items-end justify-end ' : 'items-end justify-end'} flex gap-3 py-3 flex-col  `}>
-                            {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
+                <div className={`${(!navBottom && !addBtn) ? 'hidden' : ''}
+                        ${!navBottom ?
+                        ' flex -mr-3.5 ' :
+                        '-mr-2 -mt-2 absolute -top-[100%]  right-4'} 
+                         z-[50]  `}>
+                    <SpeedDial
+                        open={openBlur}
+                        setOpen={setOpenBlur}
+                        className={`${(!navBottom && !addBtn) ? 'hidden' : ''}
+                        ${!navBottom ? ' flex -mr-3.5 ' : 'relative'}   `}
+                        placement={navBottom ? 'top' : 'bottom'}
+                        offset={10}
+                        Handler={
+                            <div className={` rounded-full !text-[2.2rem] ${color}StyleInv ${navBottom ? `!shadow-md p-2.5 w-full h-full border border-slate-900/5 lg:-mb2.5 -mb-2  ` : ' !shadSm !p-0'}`}>
+                                <Icon
+                                    color={color ?? 'slate'}
+                                    style={'!text-white/80 border-0'}
+                                    reverse
+                                    onClick={() => setOpenBlur(!openBlur)}
+                                    icon={openBlur ? 'close' : 'edit'}
+                                    bg
+                                    clear={navBottom}
+                                    size={navBottom ? '2xl' : 'xl'} />
+                            </div>
+                        }
+                        Content={
+                            <div className={`${!navBottom ? ' items-end justify-end ' : 'items-end justify-end'} flex gap-3 py-3 flex-col `}>
+                                {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
 
-                                <button onClick={() => {
-                                    setOpenBlur(false);
-                                    navigate(to);
-                                }}
-                                    key={index} className={` shadow-md 
+                                    <button onClick={() => {
+                                        setOpenBlur(false);
+                                        navigate(to);
+                                    }}
+                                        key={index} className={` shadow-md 
                                      rounded-full bg-slate-50 flex items-center max-w-max hover:!bg-slate-100  `}>
-                                    <div key={index} className={
-                                        `${navBottom ? 'p-1' : 'p-0.5'}
+                                        <div key={index} className={
+                                            `${navBottom ? 'p-1' : 'p-0.5'}
                                      rounded-full ${color.col}${type ? 'StyleInv' : 'Style'} px-3 flex gap-1 items-center border border-slate-900/10 `}>
-                                        <Icon style={'!border-slate-900/10 '}
-                                            bg clear
-                                            reverse={!!type}
-                                            size={navBottom ? '2xl' : 'xl'}
-                                            icon={icon}
-                                            color={type ? color.col : color.col} />
-                                        <div className={`${navBottom ? '' : 'text-[14px] '} whitespace-nowrap pr-5`}>
-                                            {label}
+                                            <Icon style={'!border-slate-900/10 '}
+                                                bg clear
+                                                reverse={!!type}
+                                                size={navBottom ? '2xl' : 'xl'}
+                                                icon={icon}
+                                                color={type ? color.col : color.col} />
+                                            <div className={`${navBottom ? '' : 'text-[14px] '} whitespace-nowrap pr-5`}>
+                                                {label}
+                                            </div>
                                         </div>
-                                    </div>
-                                </button>)}
-                        </div>}
-                />
+                                    </button>)}
+                            </div>}
+                    /></div>
             </div>
 
         </>
