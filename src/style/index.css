@@ -95,7 +95,7 @@ footer {
 }
 
 header {
-    @apply w-full mx-auto px-2 relative pt-[0.1rem];
+    @apply w-full mx-auto px-2 relative pt-[0.1rem] pb-1.5;
     width: 100%;
     margin: 0 auto;
     flex-shrink: 0;
@@ -108,7 +108,7 @@ header {
 
 /* TEXT */
 h2 {
-    @apply font-bold !text-[1.35rem] !text-slate-700/95 font-roboto;
+    @apply font-bold !text-[1.3rem] !text-slate-600 font-roboto;
 }
 h3 {
     @apply font-semibold text-[1.3rem] !text-slate-600 !font-roboto;

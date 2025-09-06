@@ -64,7 +64,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
 
 
             </div>
-            <hr className={`${!hideImage ? 'hidden' : 'pb-0.5'} !border-${color}-500 border-b-[1px] border-t-0 w-full !opacity-50 `}></hr>
+            <hr className={`${!hideImage ? 'hidden' : 'pb-0.5'} !border-${color}-500 border-b-[1px] border-t-0 w-full !opacity-20 `} />
         </div>
     )
 }

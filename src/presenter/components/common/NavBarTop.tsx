@@ -46,8 +46,8 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
         <>
             {/* SEPARATOR */}
             {hideNavBottom &&
-                <div className="w-full  py-1 ">
-                    <hr className={` !border-${color}-500 border-t-0 !border-b-[1px] opacity-75 `}
+                <div className="w-full ">
+                    <hr className={` !border-${color}-500 border-t-0 !border-b-[0px] opacity-75 `}
                     />
                 </div>}
             <header>
@@ -63,12 +63,12 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                 </div>
 
                 {/* CONTAINER */}
-                <div className={`wRespXL px-2 pt-1 lg:px-0 slide h-full justify-between items-end 
+                <div className={`wRespXL px-2 !py-0  lg:px-0 slide h-full justify-between items-end border-b !border-${color}-500 !border-opacity-20 border-b-[1px]
 
-            ${navBottom ? 'flex ' : 'grid grid-cols-[auto_1fr_auto] gap-2 '}
+            ${(navBottom || navIcons) ? 'flex ' : 'grid grid-cols-[1fr_1fr_auto] gap-2 '}
                 ${hideNavBottom ? ' flex animRev !py-0' : ' flex animRev pt-2 pb-2'}`} >
 
-                    <div className={`flex h-full ${hideNavBottom ? 'hidden' : ''} `}>
+                    <div className={`flex h-full ${!navBottom && navIcons ? ' ' : 'w-full'} ${hideNavBottom ? 'hidden' : ''} `}>
 
                         {/* PROFILE MENU  */}
                         <Menu placement="bottom-start">
@@ -129,15 +129,10 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
                         {/* INFO TEXT LOGO   */}
                         {(!hideNavBottom || !navIcons) &&
-                            <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : 'truncate '} max-w-[calc(100vw-12rem)] lg:max-w-[calc(1000px-14rem)] flex flex-col h-full w-full  pt-1 !-ml-1.5`}>
-                                <h1 className={`drop-shadow-sm flex !font-comfortaa text-[2.2rem]  ${!navIcons ? 'pl-0  ' : ''} text-cyan-500 brightness-[0.95] font-[900] underline decoration-slate-900/10 !decoration-[1px] underline-offset-[0.35rem]`}>
-                                    &nbsp;City'Do&nbsp;&nbsp;
+                            <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : ' w-full !flex-1 justify-center -mr-8'}  items-center  flex h-full  pt-1 pl-4 `}>
+                                <h1 className={`drop-shadow-sm flex !font-comfortaa text-[2.1rem]  ${!navIcons ? 'pl-0  ' : ''} !text-slate-500/90 font-[900] `}>
+                                    City'Do
                                 </h1>
-                                {(((navBottom && !hideNavBottom && navIcons && onBoard))) &&
-                                    <i className='text-[0.75rem] pl-2 -pt-0.5 lg:text-[0.85rem] truncate flex !line-clamp-1 '>
-
-                                        {user?.GroupUser?.map((group) => (group.Group?.name.split(':')[0])).join(', ')}
-                                    </i>}
                             </div>}
 
                     </div>
@@ -145,7 +140,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                     {/* INSERTION NAVLINK TOP  */}
                     {(!navBottom && navIcons && !hideNavBottom) &&
                         <div onMouseEnter={() => setCloseDial(false)}
-                            className="pr-3 pl-1.5 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
+                            className="lg:pr-6 pr-4 pl-1.5 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
                             <NavBarSection
                                 setOpenBlur={setOpenBlur}
                                 openBlur={openBlur}
@@ -154,9 +149,9 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                     }
 
                     {/* NOTIF BAGDES  */}
-                    <div className={`justify-end items-center  flex h-full w-full !flex-1  
+                    <div className={`justify-end items-center flex h-full pl-1
                     ${hideNavBottom ? 'hidden' : ''} 
-                    ${navBottom ? ' w-full' : ''}`} >
+                    ${navBottom ? ' w-max' : ''}`} >
                         <NotifBadge />
                     </div>
 
