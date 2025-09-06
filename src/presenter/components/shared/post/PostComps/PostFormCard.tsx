@@ -55,11 +55,6 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                             <CardHeader className={formik.values.image ?
                                 "FixCardHeader" :
                                 "FixCardHeaderNoImage pt-16 pb-0"} >
-                                <div className={`${start ? 'ChipDiv !justify-end absolute top-3' : 'invisible'}`}>
-                                    <DateChip
-                                        prefix="publié le"
-                                        start={start} />
-                                </div>
                                 <ImageBtn
                                     className="!absolute z-40 !h-max top-4 !left-3 mb-1"
                                     formik={formik}
@@ -73,6 +68,11 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                     className={(imgBlob || formik.values.image) ?
                                         "CardImage" : "hidden"}
                                 />
+                                <div className={`${start ? 'ChipDiv !justify-end absolute top-3' : 'invisible'}`}>
+                                    <DateChip
+                                        prefix="publié le"
+                                        start={start} />
+                                </div>
                             </CardHeader>
                             <CardBody className={`${(imgBlob || formik.values.image) ? ' max-h-full' : ' h-max '} FixCardBody `}>
                                 <div className="overflow-auto h-full pt-2">

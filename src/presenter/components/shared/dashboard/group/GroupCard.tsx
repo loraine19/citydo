@@ -27,8 +27,17 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
     return (
         <Card className="FixCard w-respLarge">
             <CardHeader
-                className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
-                floated={haveImage}>
+                className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}>
+                {!Address ?
+                    <img
+                        src={'image/placeholder.jpg'}
+                        onError={(e) => { e.currentTarget.src = '/image/placeholder.jpg'; }}
+                        alt={name}
+                        className="CardImage flex " /> :
+                    <AddressMapOpen
+                        color='#0092b8'
+                        aera={group?.area}
+                        address={Address} />}
                 <div
                     className={`${haveImage ? "ChipDiv flex-col justify-between !h-full " : "ChipDivNoImage"}`}>
                     <div className="flex w-full justify-between items-center gap-2">
@@ -44,16 +53,6 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
                     </div>
 
                 </div>
-                {!Address ?
-                    <img
-                        src={'image/placeholder.jpg'}
-                        onError={(e) => { e.currentTarget.src = '/image/placeholder.jpg'; }}
-                        alt={name}
-                        className="CardImage flex " /> :
-                    <AddressMapOpen
-                        color='#0092b8'
-                        aera={group?.area}
-                        address={Address} />}
             </CardHeader>
             <CardBody className="FixCardBody">
                 <Title title={name ?? ''}

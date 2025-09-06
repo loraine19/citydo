@@ -47,7 +47,18 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
         <Card className="CardDetailGrid">
             <CardHeader
                 className={haveImage ? "DetailCardHeader" : "FixCardHeaderNoImage"}>
+                {image &&
+                    <div className="CardImageDiv">
+                        <img
+                            onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
+                            src={image as any}
+                            alt={title}
+                            className="CardImage"
+                        />
+                    </div>
+                }
                 <div className={haveImage ? "ChipDiv " : "ChipDivNoImage"}>
+
                     <div className="ChipSubDiv  ">
                         <Chip
                             size="sm"
@@ -70,16 +81,6 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                         start={createdAt}
                         prefix="publié le " />
                 </div>
-                {image &&
-                    <div className="CardImageDiv">
-                        <img
-                            onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
-                            src={image as any}
-                            alt={title}
-                            className="CardImage"
-                        />
-                    </div>
-                }
             </CardHeader>
             <CardBody className="DetailCardBody">
 

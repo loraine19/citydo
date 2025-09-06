@@ -43,7 +43,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                             size='xl'
                             color={option.color ?? color}
                             fill={value === option.value}
-                            style={`${value === option.value ? '' : '!opacity-40'} relative -left-1.5 top-0 scale-[1.05]`}
+                            style={`${value === option.value ? '' : '!opacity-50'} relative -left-1.5 top-0 scale-[1.05]`}
                             icon={value === option.value ? 'check_circle' : 'circle'}
                         />
                         <input
@@ -63,7 +63,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
 
                     </div>
                     <label htmlFor={option.id}
-                        className={`text-sm font-normal relative -left-4 text-${option.color ?? color}-600 ${value === option.value ? '' : 'opacity-60'}`}>
+                        className={`text-sm font-normal relative -left-4 text-${option.color ?? color}-600 ${value === option.value ? '' : 'opacity-80'}`}>
                         {option.label}
                     </label>
                 </div>

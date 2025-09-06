@@ -64,9 +64,9 @@
     }
 
     .CardImage {
-        @apply h-full w-full !rounded-3xl object-cover  bg-slate-300  saturate-[90%];
+        @apply h-full w-full !rounded-3xl object-cover  bg-slate-400 opacity-90;
 
-        box-shadow: 0 2px 2px 0 #00000030 !important;
+        box-shadow: 0 2px 3px 0 #00000010 !important;
     }
     .CardImageDiv {
         @apply h-full w-full flex flex-1;

@@ -24,6 +24,13 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
 
         <Card className="CardDetailGrid">
             <CardHeader className="DetailCardHeader">
+                <div className="CardImageDiv">
+                    <img
+                        onError={(e) => e.currentTarget.src = '/image/placeholder.jpg'}
+                        src={image as string}
+                        alt={title}
+                        className='CardImage' />
+                </div>
                 <div className="ChipDiv flex-col justify-between !h-full">
                     <div className="flex w-full flex-wrap items-center justify-between gap-2">
                         <Chip
@@ -45,13 +52,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                         size="lg"
                         needed={participantsMin - (Participants?.length || 0)} />
                 </div>
-                <div className="CardImageDiv">
-                    <img
-                        onError={(e) => e.currentTarget.src = '/image/placeholder.jpg'}
-                        src={image as string}
-                        alt={title}
-                        className='CardImage' />
-                </div>
+
             </CardHeader>
 
             {/* BODY */}

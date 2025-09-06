@@ -97,12 +97,6 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                             <CardHeader className={(haveImage || formik.values.image) ?
                                 "DetailCardHeader" :
                                 "FixCardHeaderNoImage pt-16 pb-0"} >
-                                <div className={`${start ? 'ChipDiv !justify-end right-3 top-3' : 'invisible'}`}>
-                                    <DateChip
-                                        prefix="publié le"
-                                        start={start} />
-                                </div>
-
                                 <ImageBtn
                                     className={type === VoteTarget.SURVEY ?
                                         "!absolute z-40 !h-max top-3 !left-3 " : "hidden"}
@@ -119,6 +113,13 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                             "CardImage" : "hidden"}
                                     />
                                 </div>
+                                <div className={`${start ? 'ChipDiv !justify-end right-3 top-3' : 'invisible'}`}>
+                                    <DateChip
+                                        prefix="publié le"
+                                        start={start} />
+                                </div>
+
+
                                 {formik.values?.UserBenef && formik.values?.typeS === VoteTarget.POOL &&
                                     <ProfileDiv
                                         profile={formik.values?.UserBenef} />

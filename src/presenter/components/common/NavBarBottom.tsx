@@ -11,15 +11,15 @@ interface NavBarBottomProps {
 
 export const NavBarBottom: React.FC<NavBarBottomProps> = ({ addBtn }) => {
     const { } = useNotificationStore((state) => state);
-    const { setNavBottom, navBottom, hideNavBottom, color } = useUxStore((state) => state)
+    const { setNavBottom, navBottom, hideNavBottom } = useUxStore((state) => state)
     const [openBlur, setOpenBlur] = useState(false)
 
     if (navBottom && !hideNavBottom) return (
         <>
             {openBlur &&
-                <div className="w-full h-screen absolute z-50 top-0 backdrop-blur-md transition-all duration-700"> </div>}
+                <div className="w-full h-screen absolute z-50 top-0 backdropBlur transition-all duration-700"> </div>}
 
-            <footer className={`!left-0 fixed bottom-0 ${color}Footer `}
+            <footer className={`!left-0 fixed bottom-0 slateFooter CTA`}
                 onDragCapture={() => setNavBottom(!navBottom)}
                 onDoubleClick={() => setNavBottom(!navBottom)}
                 onDoubleClickCapture={(e) => {

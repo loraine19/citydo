@@ -76,12 +76,6 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                     <div className={`FormCardDiv`}>
                         <Card className={` FormDetailGrid !-mb-2 !pb-2 `}>
                             <CardHeader className={"FixCardHeader"} >
-                                <div className={`${start ? 'ChipDiv !justify-end' : 'hidden'}`}>
-                                    <DateChip
-                                        start={start}
-                                        end={start}
-                                        prefix={start ? 'Début' : ''} />
-                                </div>
                                 <ImageBtn
                                     className="!absolute z-40 !h-max bottom-0 !left-3 mb-1"
                                     formik={formik}
@@ -94,6 +88,12 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                     width={100}
                                     height={100}
                                     className={'CardImage'} />
+                                <div className={`${start ? 'ChipDiv !justify-end' : 'hidden'}`}>
+                                    <DateChip
+                                        start={start}
+                                        end={start}
+                                        prefix={start ? 'Début' : ''} />
+                                </div>
                             </CardHeader>
                             <CardBody className='DetailCardBody'>
                                 <div className='gap-y-3 md:gap-y-6 h-full flex-1 pb-8 !flex flex-col '>
@@ -143,7 +143,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         </div>
                                     </div>
                                     <div className='flex justify-between gap-2 py-2'>
-                                        <div className='flex flex-col flex-1 '>
+                                        <div className='flex flex-col flex-1 min-w-max '>
                                             <input
                                                 className={`inputStandart ${formik.errors.start ? 'error' : ''}`}
                                                 type='datetime-local'
@@ -167,7 +167,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         </div>
                                     </div>
                                     <div className='flex w-full gap-4 gap-y-6 flex-col md:flex-row justify-between'>
-                                        <div className='flex flex-col  '>
+                                        <div className='flex flex-col flex-1 min-w-fit '>
                                             <input
                                                 className={`inputStandart ${formik.errors.participantsMin ? 'error' : ''}`}
                                                 type='number'

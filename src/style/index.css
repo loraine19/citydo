@@ -41,7 +41,7 @@
     box-sizing: border-box;
 }
 .baseBG {
-    @apply bg-slate-300/50 dark:bg-slate-700 text-slate-700 dark:text-slate-300;
+    @apply bg-slate-300 dark:bg-slate-700 text-slate-700 dark:text-slate-300;
 }
 :root {
     @apply scroll-smooth text-[16px] md:!text-[16px] lg:!text-[15px] baseBG;
@@ -146,7 +146,7 @@ i {
 }
 
 .CTA {
-    @apply pb-2 px-1  anim fixed bottom-0 left-0 h-max w-full !flex items-center justify-center rounded-t-3xl;
+    @apply lg:pb-3 px-1 pb-1 anim fixed bottom-0 left-0 h-max w-full !flex items-center justify-center rounded-t-3xl;
 }
 
 /**** INPUT STYLES ****/
@@ -162,17 +162,17 @@ input {
 }
 
 input[type="datetime-local"] {
-    @apply !opacity-95 !font-roboto !text-[0.8rem] min-w-12 max-w-max inputStandart pt-1  !flex;
+    @apply !opacity-95 !font-roboto !text-[0.8rem] min-w-16 max-w-max inputStandart pt-1  !flex;
     &::-webkit-calendar-picker-indicator {
         @apply !text-slate-300 !opacity-50 !font-roboto rounded-full p-1 !flex -ml-8 md:-ml-2;
     }
 }
 
 input[type="number"] {
-    @apply !opacity-95 !font-roboto !text-[0.8rem] min-w-12 focus:!outline-none pt-1 !max-w-max inputStandart !flex;
+    @apply !opacity-95 !font-roboto !text-[0.8rem] min-w-16 focus:!outline-none pt-1 !max-w-max inputStandart !flex !gap-4 !pr-2;
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
-        @apply !flex pr-1 !rounded-full !opacity-70 !font-roboto -ml-8 md:-ml-2;
+        @apply !flex !rounded-full !opacity-70 !font-roboto pr-5 !min-w-12 -mr-4;
     }
 }
 

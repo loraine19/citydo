@@ -1,31 +1,39 @@
 /**** COLORS ****/
-.cyanBG {
-    @apply bg-gradient-to-b from-cyan-100/0 to-cyan-300/30;
-}
-
-.skyBG {
-    @apply bg-gradient-to-b from-sky-100/0 to-sky-300/30;
-}
-
-.slateBG,
-.grayBG {
-    @apply bg-gradient-to-b from-slate-200/30 to-slate-400/30;
-}
 
 .roseBG {
-    @apply bg-gradient-to-b from-rose-100/10 to-rose-300/30;
+    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-rose-100/30 via-[50%] to-rose-50 to-95%;
+}
+.cyanBG {
+    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-cyan-100/50 via-[50%] to-cyan-50 to-95%;
+}
+.skyBG {
+    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-sky-100/50 via-[50%] to-sky-50 to-95%;
+}
+.slateBG,
+.grayBG {
+    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-slate-300/80 via-[50%] to-slate-200 to-95%;
+}
+.orangeBG {
+    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 from-0% via-orange-100/50 via-[50%] to-orange-50 to-95%;
+}
+.tealBG {
+    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-teal-100/50 via-[50%] to-teal-100/80 to-95%;
+}
+.amberBG {
+    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-amber-100/50 via-[50%] to-amber-100/80 to-95%;
+}
+.greenBG {
+    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-green-100/50 via-[50%] to-green-100/80 to-95%;
+}
+.redBG {
+    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-red-100/50 via-[50%] to-red-100/80 to-95%;
+}
+.yellowBG {
+    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-yellow-100/50 via-[50%] to-yellow-100/80 to-95%;
 }
 
 .gray100 {
     background-image: linear-gradient(#f9fafb00, #e2e8f090);
-}
-
-.orangeBG {
-    @apply bg-gradient-to-b from-orange-100/30 to-orange-300/20;
-}
-
-.tealBG {
-    @apply bg-gradient-to-b from-teal-100/0 to-teal-300/30;
 }
 
 /**** COMBINED STYLES ****/
@@ -117,7 +125,10 @@
 /**** CHIP LIGHT COLOR ****/
 .Chip {
     @apply !min-w-[calc(max-0.1rem)] !min-h-7 !px-3 !pb-1 !rounded-full !max-h-fit
-   !max-w-max;
+   !max-w-max disabled:!opacity-40;
+}
+button:disabled .Chip {
+    @apply !saturate-[80%] opacity-95 pointer-events-none;
 }
 
 @layer components {
@@ -149,34 +160,8 @@
 }
 
 /*****FOOTER *****/
-.roseFooter {
-    @apply bg-gradient-to-b from-transparent to-rose-100 backdrop-blur-sm;
-}
-.cyanFooter {
-    @apply bg-gradient-to-b from-transparent to-cyan-100 backdrop-blur-sm;
-}
-.skyFooter {
-    @apply bg-gradient-to-b from-transparent to-sky-100 backdrop-blur-sm;
-}
+
 .slateFooter,
 .grayFooter {
-    @apply bg-gradient-to-b from-transparent to-slate-200 backdrop-blur-sm;
-}
-.orangeFooter {
-    @apply bg-gradient-to-b from-transparent to-orange-100 backdrop-blur-sm;
-}
-.tealFooter {
-    @apply bg-gradient-to-b from-transparent to-teal-100 backdrop-blur-sm;
-}
-.amberFooter {
-    @apply bg-gradient-to-b from-transparent to-amber-100 backdrop-blur-sm;
-}
-.greenFooter {
-    @apply bg-gradient-to-b from-transparent to-green-100 backdrop-blur-sm;
-}
-.redFooter {
-    @apply bg-gradient-to-b from-transparent to-red-100 backdrop-blur-sm;
-}
-.yellowFooter {
-    @apply bg-gradient-to-b from-transparent to-yellow-100 backdrop-blur-sm;
+    @apply bg-gradient-to-t to-transparent  from-[#dce2eb] from-[1.3rem] backdropBlur;
 }

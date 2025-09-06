@@ -74,8 +74,16 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
         <>
             <Card className={haveImage ? "FixCard " : "FixCardNoImage"}>
                 <CardHeader
-                    className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
-                    floated={haveImage}>
+                    className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}>
+                    {image &&
+                        <div className="CardImageDiv">
+                            <img
+                                onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
+                                src={image as any}
+                                alt={title}
+                                className=" CardImage "
+                            /></div>
+                    }
                     <div className={haveImage ? "ChipDiv" : "ChipDivNoImage"}>
                         <div className="ChipSubDiv ">
                             <button
@@ -110,15 +118,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
                             start={createdAt}
                             prefix="le" />
                     </div>
-                    {image &&
-                        <div className="CardImageDiv">
-                            <img
-                                onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
-                                src={image as any}
-                                alt={title}
-                                className=" CardImage "
-                            /></div>
-                    }
+
                 </CardHeader>
                 <CardBody className={` FixCardBody  !overflow-auto`}>
                     <Title

@@ -22,8 +22,16 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
 
     return (
         <Card className={haveImage ? "FixCard " : "FixCardNoImage  "}>
-            <CardHeader className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
-                floated={haveImage}>
+            <CardHeader className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}>
+                {image &&
+                    <div className="CardImageDiv">
+                        <img
+                            onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
+                            src={image as any ?? null}
+                            alt={title}
+                            className={haveImage ? "CardImage" : "hidden"}
+                        />
+                    </div>}
                 <div className={haveImage ? "ChipDiv" : "ChipDivNoImage"}>
                     <button onClick={(e: any) => change(e)}>
                         <Chip
@@ -36,15 +44,6 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                         start={createdAt}
                         prefix=" " />
                 </div>
-                {image &&
-                    <div className="CardImageDiv">
-                        <img
-                            onError={(e) => e.currentTarget.src = "/image/placeholder2.png"}
-                            src={image as any ?? null}
-                            alt={title}
-                            className={haveImage ? "CardImage" : "hidden"}
-                        />
-                    </div>}
             </CardHeader>
             <CardBody className={` FixCardBody !flex-1 ${short ? '' : 'gap-2'}`}>
                 <Title

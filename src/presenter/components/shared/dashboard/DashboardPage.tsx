@@ -2,7 +2,7 @@ import { Card, CardBody, CardHeader, Typography } from "@material-tailwind/react
 import AddressMapOpen from "../../common/mapComps/AddressMapOpen";
 import { Icon } from "../../common/IconComp";
 import CalendarComp from "../../common/CalendarComp";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useUserStore } from "../../../../application/stores/user.store";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { LogOutButton } from "../../common/LogOutBtn";
@@ -15,14 +15,13 @@ import { useAlertStore } from "../../../../application/stores/alert.store";
 import { AvatarUser } from "../../common/AvatarUser";
 import NotifDiv from "../../common/NotifDiv";
 import { useUxStore } from "../../../../application/stores/ux.store";
-import { HandleHideParams } from "../../../../application/useCases/utils.useCase";
 import { OnlineDot } from "../../common/onlineDot";
 
 export default function DashboardPage() {
 
     //// USER & AUTORISATION
     const { user, fetchUser, setIsLoggedIn, } = useUserStore((state) => state);
-    const { setHideNavBottom, hideNavBottom, navBottom } = useUxStore((state) => state);
+    const { setHideNavBottom, navBottom } = useUxStore((state) => state);
     const modo = user?.GroupUser?.map(g => g.role).includes(Role.MODO) || false;
     useEffect(() => {
         !user ? setIsLoggedIn(false) : setIsLoggedIn(true);
@@ -44,9 +43,9 @@ export default function DashboardPage() {
 
     //// CLASSES
     const userClasse = "flex row-span-3 lg:grid  animRev z-50  ";
-    const eventClasse = "h-full flex !min-h-[15rem] row-span-5 lg:grid overflow-auto";
+    const eventClasse = "h-full flex !min-h-[14rem] row-span-5 pb-0.5 lg:grid overflow-auto";
     const notifClasse = " row-span-2  " + (notifs.length > 0 ? " min-h-[8rem]" : " min-h-[5.5rem]")
-    const mapClasse = "flex row-span-6  !min-h-[15rem] lg:min-h-[32%] lg:grid ";
+    const mapClasse = "flex row-span-6  !min-h-[14rem] lg:min-h-[32%] lg:grid ";
 
 
     //// HANDLE SCROLL NOTIFICATIONS
@@ -73,26 +72,16 @@ export default function DashboardPage() {
             disableConfirm: true,
             confirmString: 'ok',
         });
-    }, [msg]);
+    }, [msg])
 
-    //// HANDLE HIDE  
-    const utils = DI.resolve('utils')
-    const handleHide = (params: HandleHideParams) => utils.handleHide(params)
-    const handleHideCallback = useCallback(() => {
-        const params: HandleHideParams = { divRef, setHide, max: 6 }
-        handleHide(params)
-    }, [divRef]);
-    const [hide, setHide] = useState<boolean>(false);
-    useEffect(() => { (hide !== hideNavBottom) && setHideNavBottom(hide) }, [hide]);
 
     return (
         <main className={`
-            ${(hideNavBottom || !navBottom) ? ' -mb-4 pb-2 !max-h-[calc(100dvh_-_1rem)] lg:!max-h-[calc(100dvh_-_4rem)] ' : '!max-h-[calc(100dvh_-_6rem)] lg:!max-h-[calc(100dvh_-_9rem)] '}
-            ${navBottom ? '!-mt-6 ' : '!-mt-7 pb-4 '} lg:!mt-0 `}
+              !max-h-[calc(100dvh_-_8rem)] lg:!max-h-[calc(100dvh_-_9.5rem)] '}
+            ${navBottom ? '-mt-6 ' : '!-mt-7 '} lg:!mt-0  overflow-hidden `}
             data-cy="dashboard-body" >
             <div ref={divRef}
-                onScroll={() => handleHideCallback()}
-                className={" px-[1%] flex-1 h-[calc(100dvh+4rem)] flex flex-col lg:grid grid-cols-2 grid-rows-[auto_auto_auto_1fr_1fr_2fr_auto_auto] w-full gap-y-2 lg:gap-y-3 lg:gap-x-4  place-content-start pt-11 lg:pt-6 rounded-b-[1rem] pb-4 !overflow-auto  sticky bottom-0 "}>
+                className={" px-[1%] flex-1 max-max overflow-auto  flex flex-col lg:grid grid-cols-2 grid-rows-[auto_auto_auto_1fr_1fr_2fr_auto_auto] w-full gap-y-2 lg:gap-y-3 lg:gap-x-4  place-content-start pt-11 lg:pt-6 rounded-b-[1rem] lg:pb-6  "}>
 
                 {/* USER CARD  */}
                 <div className={`${userClasse}`}>
@@ -145,7 +134,7 @@ export default function DashboardPage() {
 
                 {/* NOTIF CARD  */}
                 <div className={`hidden lg:${notifClasse} grid-cols-1 h-full  lg:grid`}>
-                    <Card className="!flex orangeBG anim FixCard">
+                    <Card className="!flex bg-gradient-to-t from-orange-100 to-orange-50 anim FixCard">
                         <CardBody className="h-full flex flex-col py-2.5 px-4 ">
                             <div className="flex gap-2.5 py-1 items-center">
                                 <div className="relative">
@@ -283,7 +272,7 @@ export default function DashboardPage() {
                 </div>
                 {/* CALENDARD CARD  */}
                 <div className={eventClasse}>
-                    <Card className="h-full !flex cyanBG anim FixCard">
+                    <Card className="h-full !flex bg-gradient-to-t from-cyan-100 to-cyan-50 anim FixCard">
                         <CardBody className="h-full flex flex-col !pt-0 p-4 ">
                             <CalendarComp logo={true} />
                         </CardBody>

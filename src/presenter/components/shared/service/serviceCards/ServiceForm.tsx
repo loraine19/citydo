@@ -68,7 +68,8 @@ export function ServiceForm(props: { formik: any }) {
                                 value={formik.values.category}
                                 placeholder="Catégorie"
                                 formik={formik}
-                            /></div>
+                            />
+                        </div>
                         <GroupSelect
                             groupId={groupId}
                             setGroupId={setGroupId}
@@ -83,11 +84,6 @@ export function ServiceForm(props: { formik: any }) {
                             <CardHeader className={haveImage ?
                                 "FixCardHeader" :
                                 "FixCardHeaderNoImage pt-16 pb-0"} >
-                                <div className={`${start ? 'ChipDiv !justify-end top-3 right-3' : 'invisible'}`}>
-                                    <DateChip
-                                        prefix="publié le"
-                                        start={start} />
-                                </div>
                                 <ImageBtn
                                     className="!absolute z-40 !h-max !left-3  top-3"
                                     formik={formik}
@@ -100,6 +96,12 @@ export function ServiceForm(props: { formik: any }) {
                                     height={100}
                                     className={haveImage ? "CardImage" : "hidden"}
                                 />
+                                <div className={`${start ? 'ChipDiv !justify-end top-3 right-3' : 'invisible'}`}>
+                                    <DateChip
+                                        prefix="publié le"
+                                        start={start} />
+                                </div>
+
                             </CardHeader>
                             <CardBody className='FixCardBody '>
                                 <div className='py-2 h-full -mt-2 '>

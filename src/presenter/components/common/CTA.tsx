@@ -38,7 +38,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
 
     const { color } = useUxStore((state) => state);
     return (
-        <footer className={`CTA ${color}Footer `}>
+        <footer className={`CTA slateFooter `}>
             <div className={`flex gap-x-3 gap-y-2 md:gap-x-6 md:gap-y-3 flex-row flex-wrap items-center justify-center w-full wRespL  pb-1 pt-0.5 `}>
                 {[...actions]
                     .sort((a, b) => (a.NoPrimary === b.NoPrimary ? 0 : a.NoPrimary ? -1 : 1))

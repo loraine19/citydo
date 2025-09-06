@@ -25,6 +25,13 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
         <Card className={haveImage ? "CardDetailGrid" : "CardDetailGridNoImage"}>
             <CardHeader
                 className={haveImage ? "DetailCardHeader" : "FixCardHeaderNoImage"}>
+                {image &&
+                    <div className="CardImageDiv"> <img
+                        onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
+                        src={image as any}
+                        alt={title}
+                        className="CardImage" />
+                    </div>}
                 <div className={haveImage ? "ChipDiv " : "ChipDivNoImage"}>
                     <Chip
                         size='sm'
@@ -35,13 +42,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                         start={createdAt}
                         prefix="publié le " />
                 </div>
-                {image &&
-                    <div className="CardImageDiv"> <img
-                        onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
-                        src={image as any}
-                        alt={title}
-                        className="CardImage" />
-                    </div>}
+
             </CardHeader>
             <CardBody className="DetailCardBody  ">
                 <Title

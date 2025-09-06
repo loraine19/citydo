@@ -32,8 +32,15 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
     return (
         <Card className="FixCard w-respLarge">
             <CardHeader
-                className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}
-                floated={haveImage}>
+                className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}>
+                {image && (
+                    <div className="CardImageDiv"> <img
+                        src={image as string || '/image/placeholder.jpg'}
+                        onError={(e) => { e.currentTarget.src = '/image/placeholder.jpg' }}
+                        alt={title}
+                        className="CardImage" />
+                    </div>
+                )}
                 <div
                     className={`${haveImage ? "ChipDiv flex-col justify-between !h-full " : "ChipDivNoImage"}`}>
                     <div className="flex w-full flex-wrap justify-between items-center gap-2">
@@ -60,14 +67,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                         needed={participantsMin - (event?.Participants?.length || 0)}
                     />
                 </div>
-                {image && (
-                    <div className="CardImageDiv"> <img
-                        src={image as string || '/image/placeholder.jpg'}
-                        onError={(e) => { e.currentTarget.src = '/image/placeholder.jpg' }}
-                        alt={title}
-                        className="CardImage" />
-                    </div>
-                )}
+
             </CardHeader>
             <CardBody className="FixCardBody">
                 <Title

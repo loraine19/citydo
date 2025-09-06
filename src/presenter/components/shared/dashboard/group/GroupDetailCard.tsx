@@ -69,19 +69,7 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
     return (
 
         <Card className="CardDetailGrid" >
-            <CardHeader
-                className={"DetailCardHeader"}
-                floated={true}>
-                <div className={"ChipDiv"}>
-                    <Chip
-                        size='sm'
-                        value={categoryS}
-                        className={'cyanChip'}>
-                    </Chip>
-                    <DateChip
-                        start={createdAt}
-                        prefix="publié le " />
-                </div>
+            <CardHeader className={"DetailCardHeader"}>
                 {!Address ?
                     <img
                         src={'image/placeholder.jpg'}
@@ -92,6 +80,17 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
                         color='#0092b8'
                         aera={group?.area}
                         address={Address} />}
+                <div className={"ChipDiv"}>
+                    <Chip
+                        size='sm'
+                        value={categoryS}
+                        className={'cyanChip'}>
+                    </Chip>
+                    <DateChip
+                        start={createdAt}
+                        prefix="publié le " />
+                </div>
+
             </CardHeader>
             <CardBody className="DetailCardBody max-h-full">
                 <Title
