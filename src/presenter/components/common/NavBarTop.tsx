@@ -47,7 +47,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
             {/* SEPARATOR */}
             {hideNavBottom &&
                 <div className="w-full ">
-                    <hr className={` !border-${color}-500 border-t-0 !border-b-[0px] opacity-75 `}
+                    <hr className={` !border-${color}-500 border-t-0 !border-b-[1px] opacity-75 `}
                     />
                 </div>}
             <header>
@@ -63,7 +63,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                 </div>
 
                 {/* CONTAINER */}
-                <div className={`wRespXL px-2 !py-0  lg:px-0 slide h-full justify-between items-end border-b !border-${color}-500 !border-opacity-20 border-b-[1px]
+                <div className={`wRespXL px-2 !py-1  lg:px-0 slide h-full justify-between items-end 
 
             ${(navBottom || navIcons) ? 'flex ' : 'grid grid-cols-[1fr_1fr_auto] gap-2 '}
                 ${hideNavBottom ? ' flex animRev !py-0' : ' flex animRev pt-2 pb-2'}`} >

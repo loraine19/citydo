@@ -45,7 +45,7 @@
      bg-slate-300 dark:bg-slate-700 text-slate-700 dark:text-slate-300;
 }
 :root {
-    @apply scroll-smooth text-[16px] md:!text-[16px] lg:!text-[15px] baseBG;
+    @apply scroll-smooth text-[14px] xs:text-[16px] md:!text-[16px] lg:!text-[15px] baseBG;
     line-height: 1.2;
     font-weight: 400;
     display: flex;
@@ -403,8 +403,8 @@ button span {
 .icon3xl {
     @apply flex items-center justify-center rounded-full;
     font-size: 34px;
-    width: 53px;
-    height: 52px;
+    width: 51px;
+    height: 50px;
 }
 .icon4xl {
     @apply flex items-center justify-center rounded-full;
