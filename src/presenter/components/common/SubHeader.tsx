@@ -48,7 +48,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
                         reverse
                         icon="arrow_upward_alt"
                         color={color ?? 'gray'}
-                        size="4xl"
+                        size="2xl"
                         fill bg
                         onClick={() => scrollToTop()}
                         title="retour en haut" />
@@ -62,7 +62,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
                             icon={hideNavBottom ? "close" : "arrow_back"}
                             color={color ?? 'gray'
                             }
-                            size="4xl"
+                            size="2xl"
                             fill
                             link={goBack}
                             title={"retour " + goBack?.replace("/", "")}
