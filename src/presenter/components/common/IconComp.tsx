@@ -109,21 +109,21 @@ type IconProps = {
 export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size = "2xl", style, link, fill, clear, reverse, ...props }) => {
 
     const sizeMap: any = {
-        'xs': { text: '11', class: 'iconXs' },
-        'sm': { text: '14', class: 'iconSm' },
-        'ms': { text: '16', class: 'iconMs' },
-        'md': { text: '18', class: 'iconMd' },
-        'lg': { text: '22', class: 'iconLg' },
-        'xl': { text: '26', class: 'iconXl' },
-        '2xl': { text: '30', class: 'icon2xl' },
-        '3xl': { text: '34', class: 'icon3xl' },
-        '4xl': { text: '38', class: 'icon4xl' },
-        '5xl': { text: '42', class: 'icon5xl' },
-        '6xl': { text: '46', class: 'icon6xl' },
+        'xs': { text: 'text-[0.6875rem]', class: 'iconXs' },   // 11px
+        'sm': { text: 'text-[0.875rem]', class: 'iconSm' },     // 14px
+        'ms': { text: 'text-[1rem]', class: 'iconMs' },         // 16px
+        'md': { text: 'text-[1.125rem]', class: 'iconMd' },     // 18px
+        'lg': { text: 'text-[1.375rem]', class: 'iconLg' },     // 22px
+        'xl': { text: 'text-[1.625rem]', class: 'iconXl' },     // 26px
+        '2xl': { text: 'text-[1.875rem]', class: 'icon2xl' },   // 30px
+        '3xl': { text: 'text-[2.125rem]', class: 'icon3xl' },   // 34px
+        '4xl': { text: 'text-[2.375rem]', class: 'icon4xl' },   // 38px
+        '5xl': { text: 'text-[2.625rem]', class: 'icon5xl' },   // 42px
+        '6xl': { text: 'text-[2.875rem]', class: 'icon6xl' },   // 46px
     };
     const num = sizeMap[size as keyof typeof sizeMap]?.text ?? '30';
     const classRounded = sizeMap[size as keyof typeof sizeMap]?.class ?? 'icon2xl';
-    const textSize = ` text-[${num}px]  `;
+    const textSize = sizeMap[size as keyof typeof sizeMap]?.text ?? 'text-[1.875rem]';
     const color = (props.color) ?? 'slate'
     const textColor = (color: string) => props.color ? reverse ? `${color}StyleInv` : `${color}Style` : reverse ? 'slateStyleInv' : 'slateStyle';
     const bg = () => (props.bg && !clear) ?

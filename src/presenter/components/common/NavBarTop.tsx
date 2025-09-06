@@ -91,7 +91,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                                     <div>
                                         <AvatarUser
                                             style='!shadow-none'
-                                            avatarSize='ms'
+                                            avatarSize='md'
                                             Profile={user?.Profile}
                                         />
                                     </div>
@@ -115,7 +115,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                                         <Icon
                                             disabled={!item.onClick}
                                             bg fill
-                                            size='lg'
+                                            size='xl'
                                             color={item.color ?? color}
                                             icon={item.icon}
                                         />
