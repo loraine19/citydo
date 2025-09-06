@@ -143,14 +143,14 @@
         grid-rows-[minmax(calc(100dvh-12rem),calc(100dvh-12rem))];
     }
     .hideCTA2 {
-        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_5rem)]
-        grid-rows-[minmax(calc(100dvh-5rem),calc(100dvh-5rem))];
+        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_10rem)]
+        grid-rows-[minmax(calc(100dvh-12rem),calc(100dvh-12rem))];
     }
 
     .hideCTAForm {
-        @apply min-h-fit max-h-[calc(100dvh_-_14rem)] 
+        @apply min-h-fit max-h-[calc(100dvh_-_12rem)] 
         lg:max-h-[calc(100dvh_-_11rem)]
-        grid-rows-[minmax(calc(100dvh-19rem),calc(100dvh-15rem))]
+        grid-rows-[minmax(calc(100dvh-16rem),calc(100dvh-14rem))]
        lg:grid-rows-[minmax(calc(100dvh-12rem),calc(100dvh-11rem))];
     }
 }

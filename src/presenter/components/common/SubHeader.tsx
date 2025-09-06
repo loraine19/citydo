@@ -19,12 +19,12 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
     }
 
     return (
-        <div className={`grid grid-cols-[1fr,auto] grid-rows-1 w-full h-full`}>
+        <div className={`flex flex-col w-full h-full`}>
             {/* TITLE DIV  */}
-            <div className={`flex w-full h-full flex-col flex-1  gap-x-2 justify-end lg:justify-between`}>
+            <div className={`flex w-full h-full  flex-1  gap-x-2 justify-end lg:justify-between`}>
                 <div className={`flex flex-1 h-full w-full 
                     ${hideImage ? '' : 'bg-white shadow-md rounded-3xl animRev mb-1 p-1 gap-2 items-center  justify-center border border-slate-400/40'}`}>
-                    <h2 className={`${hideImage ? '!line-clamp-1 pt-1' : '!line-clamp-3'} flex flex-1 !pl-4 `}>
+                    <h2 className={`${hideImage ? '!line-clamp-1 pt-1' : '!line-clamp-3'} flex flex-1 !pl-2 `}>
                         <span className={`capitalize font-roboto font-medium `}>{qty} {type}</span>
                         <span className="hidden sm:inline-block !lowercase !font-light opacity-75">
                             &nbsp;{place ?? "dans vos groupes"}
@@ -38,31 +38,33 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
                             />
                         </div>}
                 </div>
-                <hr className={`${!hideImage ? 'hidden' : 'pb-0.5'} !border-${color}-500 border-b-[1px] border-t-0 w-full !opacity-50 `}></hr>
-            </div>
 
-            {/* BUTTON DIV  */}
-            <div className="flex   w-full">
-                {hideNavBottom &&
-                    <Icon
-                        style="scale-90 mt-1 ml-1"
-                        icon="arrow_circle_up"
-                        color={color ?? 'gray'}
-                        size="2xl"
-                        fill
-                        onClick={() => scrollToTop()}
-                        title="retour" />}
-                {closeBtn &&
-                    <Icon
-                        style="scale-90 mt-1 ml-1"
-                        icon="cancel"
-                        color={color ?? 'gray'}
-                        size="2xl"
-                        fill
-                        link={goBack}
-                        title={"retour " + goBack?.replace("/", "")}
-                    />}
+                {/* BUTTON DIV  */}
+                <div className="flex ">
+                    {hideNavBottom &&
+                        <Icon
+                            style="scale-90 mt-1 ml-1"
+                            icon="arrow_circle_up"
+                            color={color ?? 'gray'}
+                            size="2xl"
+                            fill
+                            onClick={() => scrollToTop()}
+                            title="retour" />}
+                    {closeBtn &&
+                        <Icon
+                            style="scale-90 mt-1 ml-1"
+                            icon="cancel"
+                            color={color ?? 'gray'}
+                            size="2xl"
+                            fill
+                            link={goBack}
+                            title={"retour " + goBack?.replace("/", "")}
+                        />}
+                </div>
+
+
             </div>
+            <hr className={`${!hideImage ? 'hidden' : 'pb-0.5'} !border-${color}-500 border-b-[1px] border-t-0 w-full !opacity-50 `}></hr>
         </div>
     )
 }
