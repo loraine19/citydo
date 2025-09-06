@@ -56,7 +56,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                     <SubHeader
                         type={id ? 'Modifier mon évenement ' : 'Créer mon évenement '}
                         place={category ? label : ''} closeBtn />
-                    <div className="w-respLarge flex flex-col lg:flex-row lg:gap-4 gap-2 pt-2 pb-2">
+                    <div className="w-respLarge h-full flex flex-col lg:flex-row lg:gap-4 gap-2 pt-2 pb-2">
 
                         <Select
                             options={eventCategories}

@@ -103,7 +103,8 @@ export default function SignInPage() {
                     Pas encore de compte ?
                 </i>
                 <Link to="/signup">
-                    <Button className="lgBtn ">
+                    <Button
+                        className="btn slateChip">
                         inscrivez-vous
                     </Button>
                 </Link>

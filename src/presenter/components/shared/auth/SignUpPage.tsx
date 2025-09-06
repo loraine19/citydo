@@ -72,7 +72,7 @@ export default function SignUpPage() {
                 </i>
                 <Link to="/signin">
                     <Button
-                        className="rounded-full !lgBtn">
+                        className="btn slateChip">
                         Connectez-vous
                     </Button>
                 </Link>

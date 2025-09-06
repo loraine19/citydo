@@ -29,7 +29,7 @@
     /* CARD  */
 
     .card {
-        @apply border !bg-slate-50  rounded-2xl w-full mx-auto 
+        @apply border !bg-slate-50  rounded-3xl w-full mx-auto 
     !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-300   grid;
         box-shadow: 0 1px 1px 0 #00000010;
     }
@@ -51,7 +51,7 @@
     /* CARD HEADER */
     .FixCardHeader {
         @apply min-w-[calc(100%-4rem)]  mx-auto 
-        !flex !flex-1 !rounded-2xl !relative !z-[99] -mt-6  fadeIn border !border-slate-300
+        !flex !flex-1 !rounded-3xl !relative !z-[99] -mt-6  fadeIn border !border-slate-300
         h-[calc(100%+1rem)];
     }
 
@@ -64,7 +64,7 @@
     }
 
     .CardImage {
-        @apply h-full w-full !rounded-2xl object-cover  bg-slate-300  saturate-[90%];
+        @apply h-full w-full !rounded-3xl object-cover  bg-slate-300  saturate-[90%];
 
         box-shadow: 0 2px 2px 0 #00000030 !important;
     }
@@ -130,7 +130,7 @@
 
     .DetailCardHeader {
         @apply min-w-[calc(100%-4rem)] mx-auto
-        !flex flex-1 !rounded-2xl !relative !z-[99] -mt-6 !shadow-md fadeIn border border-slate-400/60 h-[calc(100%+1rem)];
+        !flex flex-1 !rounded-3xl !relative !z-[99] -mt-6 !shadow-md fadeIn border border-slate-400/60 h-[calc(100%+1rem)];
     }
 
     .DetailCardBody {

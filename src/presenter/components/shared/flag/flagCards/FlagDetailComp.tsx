@@ -1,8 +1,9 @@
-import { Card, CardHeader, Typography, CardBody, CardFooter, Chip, ChipLabel } from "@material-tailwind/react";
+import { Card, CardHeader, Typography, CardBody, CardFooter, } from "@material-tailwind/react";
 import { Icon } from "../../../common/IconComp";
 import { FlagView } from "../../../../views/viewsEntities/flagViewEntities";
 import { FlagTarget } from "../../../../../domain/entities/Flag";
 import { ProfileDiv } from "../../../common/ProfilDiv";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 export default function FlagDetailComp(props: { flag: FlagView, element?: any, label?: string }) {
     const { flag } = props
@@ -15,16 +16,16 @@ export default function FlagDetailComp(props: { flag: FlagView, element?: any, l
         <Card className="CardDetailGridNoImage" >
             <CardHeader className="FixCardHeaderNoImage">
                 <div className="ChipDivNoImage">
-                    <Chip className="cyanChip">
-                        <ChipLabel>{FlagTarget[flag.target as unknown as keyof typeof FlagTarget]
+                    <Chip className="cyanChip"
+                        value={FlagTarget[flag.target as unknown as keyof typeof FlagTarget]
                             || FlagTarget[props.label as unknown as keyof typeof FlagTarget]}
-                        </ChipLabel>
-                    </Chip>
-                    <Chip className={`rounded-full grayChip h-max flex items-center gap-2 shadow font-medium `}>
-                        <ChipLabel>
-                            {(new Date(createdAt ? createdAt : now)).toLocaleDateString('fr-FR')}
-                        </ChipLabel>
-                    </Chip>
+
+                    />
+
+                    <Chip
+                        value={(new Date(createdAt ? createdAt : now)).toLocaleDateString('fr-FR')}
+                        className={`rounded-full grayChip `}
+                    />
                 </div>
             </CardHeader>
             <CardBody

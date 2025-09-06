@@ -7,7 +7,6 @@ import { ProfileForm } from '../auth/auth.Comps/ProfileForm';
 import { ProfileDTO, } from '../../../../domain/entities/Profile';
 import DI from '../../../../di/ioc';
 import { useUserStore } from '../../../../application/stores/user.store';
-import { Skeleton } from '../../common/Skeleton';
 import { AddressDTO } from '../../../../infrastructure/DTOs/AddressDTO';
 import { LogOutButton } from '../../common/LogOutBtn';
 import { Icon } from '../../common/IconComp';
@@ -17,7 +16,7 @@ import { ProfileDiv } from '../../common/ProfilDiv';
 export default function MyInfosPage() {
     const { setUser, user } = useUserStore()
 
-    const { Profile, isLoading, error, user: userUpdated, refetch } = DI.resolve('meViewModel')();
+    const { Profile, user: userUpdated, refetch } = DI.resolve('meViewModel')();
     const navigate = useNavigate();
     const [assistance, setAssistance] = useState<string | undefined>(Profile?.assistance)
     const [mailSub, setMailSub] = useState<string | undefined>(Profile?.mailSub)
@@ -102,14 +101,13 @@ export default function MyInfosPage() {
                 </div>
                 <AuthHeader />
             </header>
-            {!Profile || isLoading || error ?
-                <main><Skeleton /></main> :
-                <ProfileForm
-                    formik={formik}
-                    setAssistance={setAssistance}
-                    setAddress={setAddress}
-                    setMailSub={setMailSub}
-                />}
+
+            <ProfileForm
+                formik={formik}
+                setAssistance={setAssistance}
+                setAddress={setAddress}
+                setMailSub={setMailSub}
+            />
         </ >
     )
 }

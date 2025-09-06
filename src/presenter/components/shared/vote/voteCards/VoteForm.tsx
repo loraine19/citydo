@@ -85,11 +85,10 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                 }
                             </div>
                         </div>
-                        <div className="flex-1">
-                            <GroupSelect
-                                formik={formik}
-                                user={user} />
-                        </div>
+
+                        <GroupSelect
+                            formik={formik}
+                            user={user} />
                     </div>
                 </div>
                 <section >

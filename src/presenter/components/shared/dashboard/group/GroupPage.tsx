@@ -110,17 +110,17 @@ export default function GroupPage() {
         <main>
             <div className="sectionHeader ">
 
-                <div className={` flex flex-col items-center justify-center `}>
+                <div className={` flex flex-col gap-1 pb-1 flex-1 w-full  items-center justify-center `}>
                     <TabsMenu
                         labels={Tabs}
                         selectedSort={selectedSort}
                         setSelectedSort={setSelectedSort} />
-                    <Select
+                    <div className="flex-1 w-full">  <Select
                         setValue={change}
                         options={groupCategories}
                         placeholder="Choisir une catégorie"
                         name={"category"}
-                        value={category} />
+                        value={category} /></div>
                 </div>
                 <SubHeader
                     closeBtn

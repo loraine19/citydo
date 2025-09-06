@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
-import { Button, Switch, Typography } from '@material-tailwind/react';
+import { Switch, Typography } from '@material-tailwind/react';
 import { Flag, FlagTarget } from '../../../../domain/entities/Flag';
 import { ConfirmModal } from '../../common/ConfirmModal';
 import SubHeader from '../../common/SubHeader';
@@ -12,8 +12,8 @@ import { getLabel } from '../../../views/viewsEntities/utilsService';
 import DI from '../../../../di/ioc';
 import { flagReasons } from '../../../constants';
 import { FlagView } from '../../../views/viewsEntities/flagViewEntities';
-import { Icon } from '../../common/IconComp';
 import { Select } from '../../common/adaptatersComps/Select';
+import CTAMines from '../../common/CTA';
 
 export default function FlagCreatePage() {
     const { id, target } = useParams();
@@ -87,9 +87,10 @@ export default function FlagCreatePage() {
                         <div className='w-respLarge h-full flex flex-col py-2 gap-2'>
                             <div className='flex justify-between items-center px-2'>
                                 <Switch
-                                    className='px-2 bg-cyan-500'
-                                    name="active"
-                                    checked={flag.reason ? true : false} />
+                                    color='error'
+                                    id='active'
+                                    className=''
+                                    name="active" />
                                 <Typography
                                     as="label"
                                     htmlFor="active"
@@ -110,7 +111,7 @@ export default function FlagCreatePage() {
                     </div>
 
                     <section>
-                        <div className='h-[calc(100vh_-_15rem)] pt-6 flex '>
+                        <div className='h-[calc(100vh_-_11rem)] pt-6 flex '>
                             {loading ?
                                 <Skeleton
                                     className='w-respLarge m-auto !h-full !rounded-3xl' /> :
@@ -120,18 +121,13 @@ export default function FlagCreatePage() {
                         </div>
                     </section>
                 </main>
-                <footer className="CTA ">
-                    <Button
-                        type="submit"
-                        className="lgBtn bg-red-500" >
-                        <Icon
-                            fill
-                            size='lg'
-                            color="white"
-                            icon="flag_2" />
-                        Envoyer le signalement
-                    </Button>
-                </footer>
+
+                <CTAMines
+                    actions={[{
+                        color: 'red',
+                        iconImage: 'flag_2',
+                        icon: 'Signaler', title: 'Signaler', function: () => { }, direct: true, type: 'submit',
+                    }]} />
             </form>
         </>
     );

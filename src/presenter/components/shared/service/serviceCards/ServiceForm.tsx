@@ -61,22 +61,20 @@ export function ServiceForm(props: { formik: any }) {
                                     formik.setFieldValue("type", val)}
                                 disabled={formik.values.statusValue > 0}
                             />
-                            <div className="flex-1">  <Select
+                            <Select
                                 options={serviceCategories}
                                 disabled={formik.values.statusValue > 0}
                                 name={"category"}
                                 value={formik.values.category}
                                 placeholder="Catégorie"
                                 formik={formik}
-                            />
-                            </div></div>
-                        <div className="flex-1"> <GroupSelect
+                            /></div>
+                        <GroupSelect
                             groupId={groupId}
                             setGroupId={setGroupId}
                             formik={formik}
                             user={user}
                             disabled={formik.values.statusValue > 0} />
-                        </div>
                     </div>
                 </div>
                 <section>

@@ -86,7 +86,7 @@
     @apply !bg-slate-500 inv;
 }
 .tealStyle {
-    @apply !text-teal-600/90 bg-teal-300/50 style;
+    @apply !text-teal-600/90 !bg-teal-300/50 style;
 }
 .tealStyleInv {
     @apply !bg-teal-500 inv;

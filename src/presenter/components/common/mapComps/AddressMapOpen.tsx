@@ -237,7 +237,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
 
     return (
         <>
-            <div className='border border-slate-300 relative flex flex-1 min-h-[7.8rem] lg:min-h-[7.7rem] !h-[100%] !rounded-[0.8rem] w-full shadow mb-2  lg:mb-0'>
+            <div className='border border-slate-300 relative flex flex-1 min-h-[7.8rem] lg:min-h-[7.7rem] !h-[100%] !rounded-3xl w-full shadow mb-2  lg:mb-0'>
                 <MapDiv />
 
                 <Dialog>

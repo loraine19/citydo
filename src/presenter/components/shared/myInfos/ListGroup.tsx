@@ -26,7 +26,6 @@ export const ListGroup = ({ groups, error, isLoading }: ListGroupProps) => {
 
   const [notif] = useState<string>(isLoading ? 'Chargement...' : error ?? (groups.length === 0 || !groups) ? ' Enregistrez votre adresse pour voir les groupes à proximité' : haveAGroup.length === 0 ? 'Vous n\'êtes pas membre d\'un groupe' : '');
 
-  console.log(groups)
   return (
     <div
       className="relative w-respLarge ">
