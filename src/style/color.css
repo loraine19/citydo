@@ -1,23 +1,23 @@
 /**** COLORS ****/
 
 .roseBG {
-    @apply bg-gradient-to-t from-transparent via-rose-100/30 via-[50%] to-rose-50/50 to-90%;
+    @apply bg-gradient-to-t from-transparent via-rose-100/30 via-[50%] to-rose-50/10 to-90%;
 }
 .cyanBG {
-    @apply bg-gradient-to-t from-transparent via-cyan-100/30 via-[50%] to-cyan-100/50 to-90%;
+    @apply bg-gradient-to-t from-transparent via-cyan-100/30 via-[50%] to-cyan-100/10 to-90%;
 }
 .skyBG {
-    @apply bg-gradient-to-t from-transparent via-sky-100/30 via-[50%] to-sky-100/50 to-90%;
+    @apply bg-gradient-to-t from-transparent via-sky-100/30 via-[50%] to-sky-100/10 to-90%;
 }
 .slateBG,
 .grayBG {
-    @apply bg-gradient-to-t from-transparent via-slate-400/30 via-[50%] to-slate-100/50 to-90%;
+    @apply bg-gradient-to-t from-transparent via-slate-400/30 via-[50%] to-slate-100/10 to-90%;
 }
 .orangeBG {
-    @apply bg-gradient-to-t from-transparent  via-orange-100/30 via-[50%] to-orange-50/50 to-90%;
+    @apply bg-gradient-to-t from-transparent  via-orange-100/30 via-[50%] to-orange-50/10 to-90%;
 }
 .tealBG {
-    @apply bg-gradient-to-t from-transparent via-teal-100/30 via-[50%] to-teal-100/50 to-90%;
+    @apply bg-gradient-to-t from-transparent via-teal-100/30 via-[50%] to-teal-100/10 to-90%;
 }
 .amberBG {
     @apply bg-gradient-to-t from-transparent via-amber-100/30 via-[50%] to-amber-100/80 to-90%;

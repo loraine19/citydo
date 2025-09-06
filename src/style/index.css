@@ -264,7 +264,7 @@ button:disabled:hover {
 
 button {
     text-transform: none !important;
-    @apply whitespace-nowrap font-bold  !border-slate-900/10;
+    @apply whitespace-nowrap font-medium !font-roboto !border-slate-900/10;
 }
 
 .lgBtn {

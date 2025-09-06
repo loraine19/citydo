@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Icon } from "./IconComp";
 import { NotifBadge } from "./NotifBadge";
 import { useUserStore } from "../../../application/stores/user.store";
-import { OnlineDot } from "./onlineDot";
 import { AvatarUser } from "./AvatarUser";
 import { useUxStore } from "../../../application/stores/ux.store";
 import { NavBarSection } from "./NavLinks";
@@ -64,7 +63,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                 </div>
 
                 {/* CONTAINER */}
-                <div className={`wRespXL slide h-full justify-between items-end 
+                <div className={`wRespXL px-2 pt-1 lg:px-0 slide h-full justify-between items-end 
 
             ${navBottom ? 'flex ' : 'grid grid-cols-[auto_1fr_auto] gap-3 '}
                 ${hideNavBottom ? ' flex animRev !py-0' : ' flex animRev pt-2 pb-2'}`} >
@@ -76,22 +75,12 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                             <MenuTrigger
                                 className="relative h-full justify-center max-w-max grid z-50  items-center !p-0">
                                 <div onClick={() => setCloseDial(!closeDial)}>
-                                    {(onBoard || !onBoard) ?
-                                        <div className='flex w-[48px] flex-1 items-center'>
-                                            <img className="!w-[48px] !h-[48px] drop-shadow-sm  object-cover object-center"
-                                                src="/image/logo.svg"
-                                                alt="logo" />
-                                        </div> :
-                                        <div className="flex max-w-[42px] items-center relative">
-                                            <AvatarUser
-                                                style='!shadow-none'
-                                                avatarStyle='!w-[48px] !h-[48px] !text-[26px]'
-                                                avatarSize={'sm'}
-                                                Profile={user?.Profile} />
-                                            <OnlineDot
-                                                className='relative -bottom-[18px] !-left-[15px]'
-                                                id={user?.id} />
-                                        </div>}
+
+                                    <div className='flex w-[52px] flex-1 items-center'>
+                                        <img className="!w-[52px] !h-[52px] drop-shadow-sm  object-cover object-center"
+                                            src="/image/logo.svg"
+                                            alt="logo" />
+                                    </div>
                                 </div>
                             </MenuTrigger>
                             <MenuContent

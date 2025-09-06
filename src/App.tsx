@@ -99,10 +99,13 @@ function App() {
                                     <Route path="/vote/:target/edit/:id" element={<VoteEditPage />} />
                                     <Route path="/flag/:target/:id" element={<FlagCreatePage />} />
                                     <Route path="/reglement" element={<RulesPage />} />
+                                    <Route path="/msg" element={<DashboardPage />} />
+                                    <Route path="/notification" element={<NotificationPage />} />
                                 </Route>
 
                                 <Route element={<WithTopNavPages title />}>
                                     {/* DETAILS PAGES */}
+
 
                                     <Route path="/service/:id" element={<ServiceDetailPage />} />
                                     <Route path="/cagnotte/:id" element={<PoolDetailPage />} />
@@ -118,7 +121,6 @@ function App() {
 
                                     {/* Pages with bottom navigation */}
                                     <Route element={<WithBottomPages addBtn={false} />}>
-                                        <Route path="/msg" element={<DashboardPage />} />
                                         <Route path="/" element={<DashboardPage />} />
                                     </Route>
 
@@ -131,7 +133,6 @@ function App() {
                                         <Route path="/vote" element={<VoteListPage />} />
                                         <Route path="/annonce" element={<PostListPage />} />
                                         <Route path="/conciliation" element={<ConciliationListPage />} />
-                                        <Route path="/notification" element={<NotificationPage />} />
                                     </Route>
                                 </Route>
 
