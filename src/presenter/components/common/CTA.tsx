@@ -39,7 +39,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
     const isDisabled = (i: number) => ((i === 0 && disabled1) || (i === 1 && disabled2) || actions[i]?.disabled)
 
     return (
-        <footer className={`CTA slateFooter `}>
+        <footer className={`CTA slateFooter pb-2`}>
             <div className={`flex gap-x-3 gap-y-2 md:gap-x-6 md:gap-y-3 flex-row flex-wrap items-center justify-center w-full wRespL px-1 lg:px-2 pb-2 lg:pb-0 `}>
                 {[...actions]
                     .sort((a, b) => {

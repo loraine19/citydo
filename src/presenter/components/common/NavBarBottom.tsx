@@ -19,14 +19,13 @@ export const NavBarBottom: React.FC<NavBarBottomProps> = ({ addBtn }) => {
             {openBlur &&
                 <div className="w-full h-screen absolute z-50 top-0 backdropBlur transition-all duration-700"> </div>}
 
-            <footer className={`!left-0 fixed bottom-0 slateFooter CTA `}
+            <footer className={`!left-0 fixed bottom-0 slateFooter CTA pb-1.5`}
                 onDragCapture={() => setNavBottom(!navBottom)}
                 onDoubleClick={() => setNavBottom(!navBottom)}
                 onDoubleClickCapture={(e) => {
                     e.stopPropagation(); e.preventDefault()
                     setNavBottom(!navBottom)
                 }}>
-
 
                 <NavBarSection addBtn={addBtn} openBlur={openBlur} setOpenBlur={setOpenBlur} />
             </footer></>
