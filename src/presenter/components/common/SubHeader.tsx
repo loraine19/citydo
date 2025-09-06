@@ -42,8 +42,8 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
 
                 {/* BUTTON DIV  */}
                 {hideNavBottom &&
-                    <div className="flex flex-1 absolute z-[9999] -right-0.5 -top-1">  <Icon
-                        key='scrollTop'
+                    <div className="flex flex-1 absolute z-[9999] -right-0.5 -bottom-12">  <Icon
+                        key={type + 'top'}
                         style={'!shadow-lg'}
                         reverse
                         icon="arrow_upward_alt"
@@ -54,7 +54,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
                         title="retour en haut" />
                     </div>}
                 {closeBtn &&
-                    <div className="flex flex-1 absolute z-[9999] -top-1 -left-0.5  ">
+                    <div className="flex flex-1 absolute z-[9999] -top-0 -left-0.5  ">
                         <Icon
                             reverse={hideNavBottom}
                             style={hideNavBottom ? '!shadow-lg border-slate-900/10 ' : ''}
