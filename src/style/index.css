@@ -272,7 +272,10 @@ button {
 }
 
 .btn {
-    @apply !flex items-center rounded-full  !shadow-md !py-1.5  lg:p-2 gap-5  !break-words font-roboto justify-center !px-5   !min-h-[3.2rem]   border-slate-900/10;
+    @apply !flex items-center rounded-full  !shadow-md !py-1.5  lg:p-2 gap-5  !break-words font-roboto justify-center !px-6   !min-h-[3.2rem]   !border-slate-900/15;
+}
+.btnIcon {
+    @apply !flex items-center rounded-full  !shadow-md !py-1.5    !break-words font-roboto justify-between !pl-4 !pr-8 gap-6  !min-h-[3.2rem]   border-slate-900/10;
 }
 
 /**** COMP ****/

@@ -51,7 +51,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
 
 
     return (
-        <div className={`${!navBottom ? 'lg:gap-2 -md:mr-1' : 'lg:pr-2 lg:gap-1'} flex h-full `}>
+        <div className={`${!navBottom ? 'lg:gap-2 md:mr-1 ' : 'lg:pr-2 lg:gap-1'}  flex h-full `}>
             {badgeMap.map((list: NotifBadgeProps, index: number) =>
                 <div key={index}
                     className={`relative  w-full flex items-center justify-center ${onBoard ? 'lg:hidden' : ''}`}>

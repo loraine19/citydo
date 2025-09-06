@@ -65,7 +65,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                 {/* CONTAINER */}
                 <div className={`wRespXL px-2 pt-1 lg:px-0 slide h-full justify-between items-end 
 
-            ${navBottom ? 'flex ' : 'grid grid-cols-[auto_1fr_auto] gap-3 '}
+            ${navBottom ? 'flex ' : 'grid grid-cols-[auto_1fr_auto] gap-2 '}
                 ${hideNavBottom ? ' flex animRev !py-0' : ' flex animRev pt-2 pb-2'}`} >
 
                     <div className={`flex h-full ${hideNavBottom ? 'hidden' : ''} `}>
@@ -145,7 +145,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                     {/* INSERTION NAVLINK TOP  */}
                     {(!navBottom && navIcons && !hideNavBottom) &&
                         <div onMouseEnter={() => setCloseDial(false)}
-                            className="pr-4 pl-1.5 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
+                            className="pr-3 pl-1.5 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
                             <NavBarSection
                                 setOpenBlur={setOpenBlur}
                                 openBlur={openBlur}
@@ -154,7 +154,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                     }
 
                     {/* NOTIF BAGDES  */}
-                    <div className={`justify-end items-center flex h-full w-full !flex-1  md:pl-2
+                    <div className={`justify-end items-center  flex h-full w-full !flex-1  
                     ${hideNavBottom ? 'hidden' : ''} 
                     ${navBottom ? ' w-full' : ''}`} >
                         <NotifBadge />

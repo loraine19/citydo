@@ -102,7 +102,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
             <div className={
                 (navBottom ?
                     `items-center opacity-100 anim rounded-t-full bg-opacity-90 wRespXL justify-center gap-4 lg:gap-6  pr-6  lg:!px-0 ` :
-                    'z-0 md:gap-4 gap-4 ') +
+                    'z-0 md:gap-4 gap-3 pr-2 ') +
                 ` flex z-30 w-full `
             }>
                 <Navbar className={`
@@ -190,7 +190,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                                      rounded-full bg-slate-50 flex items-center max-w-max hover:!bg-slate-100  `}>
                                     <div key={index} className={
                                         `${navBottom ? 'p-1' : 'p-0.5'}
-                                     rounded-full ${color.col}Style px-3 flex   items-center border  `}>
+                                     rounded-full ${color.col}Style px-3 flex gap-1 items-center border  `}>
                                         <Icon style={'!border-slate-900/10 '}
                                             bg clear
 
