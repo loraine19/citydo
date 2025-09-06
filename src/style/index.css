@@ -41,7 +41,8 @@
     box-sizing: border-box;
 }
 .baseBG {
-    @apply bg-slate-300 dark:bg-slate-700 text-slate-700 dark:text-slate-300;
+    @apply from-[#cbd5e1] from-[0rem] to-white bg-gradient-to-t 
+     bg-slate-300 dark:bg-slate-700 text-slate-700 dark:text-slate-300;
 }
 :root {
     @apply scroll-smooth text-[16px] md:!text-[16px] lg:!text-[15px] baseBG;

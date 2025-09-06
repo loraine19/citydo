@@ -182,23 +182,23 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                         <div className={`${!navBottom ? ' items-end  mr-3' : ''} flex gap-2 flex-col mr-2 `}>
                             {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
                                 <div key={index}
-                                    className={`-mr-2 flex  gap-6  !justify-center items-center 
+                                    className={`-mr-2.5 flex  gap-6  !justify-center items-center 
                                    `}
                                     title={label}>
-                                    <div>
+                                    <div className={`${navBottom ? 'p-1' : 'p-0.5'} rounded-full ${color.col}StyleInv animSliderelative flex items-center justify-center `}>
                                         <Icon
-                                            reverse
+
                                             style={'shadow-sm !border-slate-900/10 '}
                                             bg
                                             onClick={() => {
                                                 setOpenBlur(false);
                                                 navigate(to);
                                             }}
-                                            size={navBottom ? '6xl' : '2xl'}
+                                            size={navBottom ? '4xl' : 'xl'}
                                             icon={icon}
                                             color={type ? color.col : color.col} />
                                     </div>
-                                    <div className={`${navBottom ? '' : 'text-[14px] '} py-2 px-4 right-[5rem] rounded-full ${color.col}Style outlineStyle absolute bg-white text-sm shadow whitespace-nowrap !border !border-gray-200`}>
+                                    <div className={`${navBottom ? '' : 'text-[14px] '} py-2 px-4 right-[5rem] rounded-full ${color.col}Style outlineStyle absolute bg-white text-sm shadow whitespace-nowrap !border !border-gray-200 font-roboto font-medium`}>
                                         {label}
                                     </div>
                                 </div>)}

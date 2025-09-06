@@ -1,35 +1,35 @@
 /**** COLORS ****/
 
 .roseBG {
-    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-rose-100/30 via-[50%] to-rose-50 to-95%;
+    @apply bg-gradient-to-t from-transparent via-rose-100/30 via-[50%] to-rose-50/50 to-90%;
 }
 .cyanBG {
-    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-cyan-100/50 via-[50%] to-cyan-50 to-95%;
+    @apply bg-gradient-to-t from-transparent via-cyan-100/30 via-[50%] to-cyan-100/50 to-90%;
 }
 .skyBG {
-    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-sky-100/50 via-[50%] to-sky-50 to-95%;
+    @apply bg-gradient-to-t from-transparent via-sky-100/30 via-[50%] to-sky-100/50 to-90%;
 }
 .slateBG,
 .grayBG {
-    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-slate-300/80 via-[50%] to-slate-200 to-95%;
+    @apply bg-gradient-to-t from-transparent via-slate-400/30 via-[50%] to-slate-100/50 to-90%;
 }
 .orangeBG {
-    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 from-0% via-orange-100/50 via-[50%] to-orange-50 to-95%;
+    @apply bg-gradient-to-t from-transparent  via-orange-100/30 via-[50%] to-orange-50/50 to-90%;
 }
 .tealBG {
-    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-teal-100/50 via-[50%] to-teal-100/80 to-95%;
+    @apply bg-gradient-to-t from-transparent via-teal-100/30 via-[50%] to-teal-100/50 to-90%;
 }
 .amberBG {
-    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-amber-100/50 via-[50%] to-amber-100/80 to-95%;
+    @apply bg-gradient-to-t from-transparent via-amber-100/30 via-[50%] to-amber-100/80 to-90%;
 }
 .greenBG {
-    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-green-100/50 via-[50%] to-green-100/80 to-95%;
+    @apply bg-gradient-to-t from-transparent via-green-100/30 via-[50%] to-green-100/80 to-90%;
 }
 .redBG {
-    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-red-100/50 via-[50%] to-red-100/80 to-95%;
+    @apply bg-gradient-to-t from-transparent via-red-100/30 via-[50%] to-red-100/80 to-90%;
 }
 .yellowBG {
-    @apply bg-gradient-to-t bg-slate-200/70 from-slate-200/0 via-yellow-100/50 via-[50%] to-yellow-100/80 to-95%;
+    @apply bg-gradient-to-t from-transparent via-yellow-100/30 via-[50%] to-yellow-100/80 to-90%;
 }
 
 .gray100 {
@@ -46,18 +46,18 @@
 }
 
 .inv {
-    @apply !text-white bg-opacity-100 text-opacity-80 drop-shadow;
+    @apply !text-white bg-opacity-100 text-opacity-90 drop-shadow-sm;
 }
 
 .cyanStyle {
-    @apply !text-cyan-500  !bg-cyan-300/40   style;
+    @apply !text-cyan-500  !bg-cyan-300/50   style;
 }
 .cyanStyleInv {
     @apply !bg-cyan-500 inv;
 }
 
 .orangeStyle {
-    @apply !text-orange-500 !bg-orange-300/40 style;
+    @apply !text-orange-500 !bg-orange-300/50 style;
 }
 .orangeStyleInv {
     @apply !bg-orange-500 inv;
@@ -69,7 +69,7 @@
     @apply !bg-red-600 inv;
 }
 .skyStyle {
-    @apply !text-sky-600/90 !bg-sky-300/40 style;
+    @apply !text-sky-600/90 !bg-sky-300/50 style;
 }
 .skyStyleInv {
     @apply !bg-sky-600/90 inv;
@@ -81,16 +81,12 @@
     @apply !bg-green-500 inv;
 }
 
+.slateStyle,
 .grayStyle {
-    @apply !text-slate-500/90 bg-slate-200;
-}
-.grayStyleInv {
-    @apply !bg-gray-500 inv;
-}
-.slateStyle {
     @apply !text-slate-600/90 bg-slate-200  style;
 }
-.slateStyleInv {
+.slateStyleInv,
+.grayStyleInv {
     @apply !bg-slate-500 inv;
 }
 .tealStyle {
@@ -106,7 +102,7 @@
     @apply !bg-amber-500 inv;
 }
 .roseStyle {
-    @apply !text-rose-500 !bg-rose-200/80 style;
+    @apply !text-rose-500 !bg-rose-300/50 style;
 }
 .roseStyleInv {
     @apply !bg-rose-500 inv;
@@ -163,5 +159,5 @@ button:disabled .Chip {
 
 .slateFooter,
 .grayFooter {
-    @apply bg-gradient-to-t to-transparent  from-[#dce2eb] from-[1.3rem] backdropBlur;
+    @apply bg-gradient-to-t to-transparent  from-[#cbd5e1] from-[1rem] backdropBlur;
 }

@@ -77,8 +77,7 @@ export default function DashboardPage() {
 
     return (
         <main className={`
-              !max-h-[calc(100dvh_-_8rem)] lg:!max-h-[calc(100dvh_-_9.5rem)] '}
-            ${navBottom ? '-mt-6 ' : '!-mt-7 '} lg:!mt-0  overflow-hidden `}
+            ${navBottom ? '-mt-6   !max-h-[calc(100dvh_-_8rem)] lg:!max-h-[calc(100dvh_-_9.5rem)] ' : '!-mt-7 '} lg:!mt-0  overflow-hidden `}
             data-cy="dashboard-body" >
             <div ref={divRef}
                 className={" px-[1%] flex-1 max-max overflow-auto  flex flex-col lg:grid grid-cols-2 grid-rows-[auto_auto_auto_1fr_1fr_2fr_auto_auto] w-full gap-y-2 lg:gap-y-3 lg:gap-x-4  place-content-start pt-11 lg:pt-6 rounded-b-[1rem] lg:pb-6  "}>

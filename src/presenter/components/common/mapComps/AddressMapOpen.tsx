@@ -67,17 +67,9 @@ const MarkerList = ({ notifsMap }: { notifsMap: NotifView[] }) => {
             <Marker
                 key={notif.id}
                 position={[Number(notif?.Address.lat), Number(notif?.Address.lng)]}
-                icon={notif.type === ElementNotif.EVENT ?
+                icon={
                     L.icon({
-                        iconUrl: '/image/marker_l3.svg',
-                        iconSize: [50, 50],
-                        iconAnchor: [(notif.Address?.id && index > 0 && notif.Address.id === notifsMap[index - 1]?.Address?.id) ? 35 : 25, 50],
-                        popupAnchor: [0, -20],
-                        className: 'drop-shadow-md',
-                        pane: 'markerPane',
-                    }) :
-                    L.icon({
-                        iconUrl: '/image/marker_l2.svg',
+                        iconUrl: notif.type === ElementNotif.SERVICE ? '/image/marker_service.svg' : '/image/marker_event.svg',
                         iconSize: [50, 50],
                         iconAnchor: [(notif.Address?.id && index > 0 && notif.Address.id === notifsMap[index - 1]?.Address?.id) ? 35 : 25, 50],
                         popupAnchor: [0, -20],
