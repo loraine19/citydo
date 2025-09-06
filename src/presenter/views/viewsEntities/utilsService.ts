@@ -54,7 +54,7 @@ export const GenereMyActions = (element: Post | EventView | Service | Survey | I
         {
             iconImage: 'close',
             NoPrimary: true,
-            icon: 'Supprimer',
+            icon: 'Supprimer ',
             title: "Confirmer la suppression",
             body: "Voulez-vous vraiment supprimer " + title + " ?",
             function: async () => {

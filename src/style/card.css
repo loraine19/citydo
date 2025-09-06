@@ -96,26 +96,24 @@
 
     /*FOOTER */
     .CardFooter {
-        @apply flex bottom-0 justify-between pt-0 px-4 !py-3 !my-0 max-h-min 
+        @apply flex bottom-0 justify-between px-4 !pt-3 !pb-4 !my-0 max-h-min 
         min-h-fit w-full items-center gap-x-4 !flex-wrap flex-row !max-w-full place-self-end;
     }
 
     /***************/
     /* DETAILD CARD  */
     .DetailCardDiv {
-        @apply wRespXL grid pt-8  px-0.5 max-h-[calc(100dvh_-_5rem)];
-    }
-
-    .FormCardDiv {
-        @apply wRespXL grid pt-6  px-0.5 !max-h-[calc(100dvh_-_4rem)] hideCTAForm;
+        @apply wRespXL grid pt-8  px-0.5 max-h-[calc(100dvh_-_6rem)];
     }
 
     .CardDetailGrid {
-        @apply w-respLarge card    !min-h-fit !grid overflow-hidden
+        @apply w-respLarge card   !min-h-fit !grid overflow-hidden
         grid-rows-[minmax(90px,30vh),minmax(max-content,1fr),auto]
         sm:grid-rows-[minmax(100px,38vh),minmax(max-content,1fr),auto]
-        md:grid-rows-[minmax(100px,1fr),minmax(max-content,1fr),auto]
-        lg:grid-rows-[minmax(100px,1fr),minmax(max-content,1fr),auto];
+        md:grid-rows-[minmax(100px,1fr),minmax(max-content,1fr),auto];
+    }
+    .FormCardDiv {
+        @apply wRespXL grid pt-6  px-0.5 !max-h-[calc(100dvh_-_4rem)] hideCTAForm;
     }
     .FormDetailGrid {
         @apply w-respLarge card  !min-h-fit !grid max-h-fit
@@ -137,11 +135,11 @@
         @apply flex place-self-start relative flex-col px-5 pt-0 !m-0  !max-h-[calc(100%-1rem)] !h-full min-h-fit;
     }
     .DetailCardFooter {
-        @apply flex justify-between place-self-end items-center h-max w-full pb-4 !pt-3 px-4 border-t   !min-h-fit;
+        @apply flex justify-between place-self-end items-center h-max w-full pb-6 !pt-2 px-5 border-t   !min-h-fit;
     }
     /* 1CTA 11REM */
     .hideCTA {
-        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_15.5rem)]
+        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_10rem)]
         grid-rows-[minmax(calc(100dvh-12rem),calc(100dvh-12rem))];
     }
     .hideCTA2 {

@@ -124,8 +124,8 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
     const num = sizeMap[size as keyof typeof sizeMap]?.text ?? '30';
     const classRounded = sizeMap[size as keyof typeof sizeMap]?.class ?? 'icon2xl';
     const textSize = ` text-[${num}px]  `;
-    const color = props.color ?? 'gray'
-    const textColor = (color: string) => props.color ? reverse ? `${color}StyleInv` : `${color}Style` : `grayStyle`;
+    const color = (props.color) ?? 'slate'
+    const textColor = (color: string) => props.color ? reverse ? `${color}StyleInv` : `${color}Style` : reverse ? 'slateStyleInv' : 'slateStyle';
     const bg = () => (props.bg && !clear) ?
         `border` : '!bg-transparent'
 
