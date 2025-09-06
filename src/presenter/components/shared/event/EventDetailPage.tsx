@@ -48,7 +48,7 @@ export default function EventDetailPage() {
     //// ACTIONS
     const buttonsGenerator = (eventUp: EventView): Action[] => [
         {
-            iconImage: eventUp?.Igo ? 'close' : 'person',
+            iconImage: eventUp?.Igo ? 'person_cancel' : 'person_add',
             icon: eventUp?.Igo ? 'Annuler votre participation' : 'Participer',
             title: eventUp?.Igo ? `Annuler votre participation ` : `Participer à l'évenement`,
             body: eventUp?.Igo ? `Voulez-vous vraiment annuler votre participation à ${eventUp?.title}` :
@@ -111,9 +111,7 @@ export default function EventDetailPage() {
 
                     {/* ARTICLES */}
                     <article className='grid grid-rows-[auto,1fr] py-5  lg:-ml-5'>
-                        <SubHeader
-                            type="Autres événements"
-                            place={'dans ce groupe '} />
+                        <h3>Articles</h3>
                         <SkeletonGrid count={3} />
                     </article>
 

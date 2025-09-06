@@ -101,16 +101,16 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim rounded-t-full bg-opacity-90 wRespXL justify-center gap-2 lg:gap-6  pr-4  lg:!px-0 ` :
+                    `items-center opacity-100 anim bg-opacity-90 wRespXL justify-between gap-2 md:gap-6  pr-4  lg:!px-0 ` :
                     'z-0 md:gap-4 gap-3 pr-2 ') +
                 ` flex z-30 w-full `
             }>
                 <Navbar className={`
-                    ${navBottom ? 'ml-2 lg:ml-0 border-[1px] rounded-full !shadow bg-slate-50 border-slate-300 !flex-1 !max-w-max sm:!max-w-[100%] !p-8 ' :
+                    ${navBottom ? 'ml-2 lg:ml-0 border-[1px] rounded-full !shadow bg-slate-50 border-slate-300 !flex-1 !max-w-max md:!max-w-[100%]  ' :
                         ` !pt-1  shadow-none border-none bg-transparent w-full `}
                     flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden  `}>
                     <ul className={`${navBottom ?
-                        ' gap-0 justify-between flex-1 !w-full p-1.5' : 'md:gap-0 gap-1 justify-around '} 
+                        ' gap-[0.5vw] justify-between flex-1 !w-full p-1.5' : 'md:gap-0 gap-1 justify-around '} 
                             flex  !max-w-[calc(100vw-5.5rem)] flex-row  rounded-full h-full  w-full  `}>
                         {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                             <Typography

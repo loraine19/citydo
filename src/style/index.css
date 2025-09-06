@@ -390,7 +390,7 @@ button span {
 .iconXl {
     @apply flex items-center justify-center rounded-full;
     font-size: 1.6rem;
-    width: 2.7rem;
+    width: 2.65rem;
     height: 2.6rem;
 }
 .icon2xl {

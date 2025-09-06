@@ -66,9 +66,11 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                 <div className={`wRespXL pl-2 !pb-1 pt-2  lg:px-0 slide h-full justify-between items-end 
 
             ${(navBottom || navIcons) ? 'flex ' : 'grid grid-cols-[1fr_1fr_auto] gap-2 '}
+           
                 ${hideNavBottom ? ' flex animRev !py-0' : ' flex animRev pt-2 pb-2'}`} >
 
-                    <div className={`flex h-full ${!navBottom && navIcons ? ' ' : 'w-full'} ${hideNavBottom ? 'hidden' : ''} `}>
+                    <div className={`flex h-full ${hideNavBottom ? 'hidden' : ''}
+                         ${!navIcons || navBottom ? ' w-full  ' : ' w-max'} `}>
 
                         {/* PROFILE MENU  */}
                         <Menu placement="bottom-start">
@@ -130,7 +132,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                         {/* INFO TEXT LOGO   */}
                         {(!hideNavBottom || !navIcons) &&
                             <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : ' w-full !flex-1 justify-center -mr-2 lg:-mr-8'}  items-center  flex h-full  pt-1 pl-4 `}>
-                                <h1 className={`drop-shadow-sm flex !font-comfortaa text-[2.1rem]  ${!navIcons ? 'pl-0  ' : ''} !text-slate-500 font-[900] `}>
+                                <h1 className={`drop-shadow-sm flex !font-comfortaa text-[2.1rem]  ${!navIcons ? 'pl-0 ' : ''} !text-slate-500 font-[900] `}>
                                     City'Do
                                 </h1>
                             </div>}
