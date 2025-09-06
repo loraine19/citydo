@@ -24,7 +24,6 @@ export function PostFormCard({ formik }: PostFormCardProps) {
     const [groupId, setGroupId] = useState<number | String | undefined>(formik.values.Group?.id);
     const user = useUserStore((state) => state.user);
 
-    const haveImage = formik.values.image ? true : false;
 
 
     return (
@@ -52,8 +51,8 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                 </div>
                 <section >
                     <div className={`FormCardDiv `}>
-                        <Card className={`${haveImage ? "FormDetailGrid " : "FixCardNoImage "} `}>
-                            <CardHeader className={haveImage ?
+                        <Card className={`${formik.values.image ? " FormDetailGrid " : "FixCardNoImage "}   `}>
+                            <CardHeader className={formik.values.image ?
                                 "FixCardHeader" :
                                 "FixCardHeaderNoImage pt-16 pb-0"} >
                                 <div className={`${start ? 'ChipDiv !justify-end absolute top-3' : 'invisible'}`}>

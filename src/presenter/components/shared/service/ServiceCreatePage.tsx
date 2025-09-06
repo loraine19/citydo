@@ -16,7 +16,7 @@ export default function ServiceCreatePage() {
     const postService = async (data: ServiceDTO) => await DI.resolve('postServiceUseCase').execute(data)
     const navigate = useNavigate();
     const formSchema = object({
-        category: string().required("Catégorie est obligatoire"),
+        category: string().required("Obligatoire"),
         title: string().required("Le titre est obligatoire").min(5, "minmum 5 lettres"),
         description: string().required("Description est obligatoire").min(2, "minmum 2 lettres"),
         groupId: string().required("Groupe est obligatoire").notOneOf(["0"], "Groupe est obligatoire"),

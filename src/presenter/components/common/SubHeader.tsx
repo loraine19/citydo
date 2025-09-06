@@ -42,7 +42,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
             </div>
 
             {/* BUTTON DIV  */}
-            <div className="flex flex-col  w-full">
+            <div className="flex   w-full">
                 {hideNavBottom &&
                     <Icon
                         style="scale-90 mt-1 ml-1"

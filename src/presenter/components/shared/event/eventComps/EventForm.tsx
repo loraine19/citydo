@@ -73,8 +73,8 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                     </div>
                 </div>
                 <section>
-                    <div className={`FormCardDiv `}>
-                        <Card className={` FormDetailGrid  `}>
+                    <div className={`FormCardDiv`}>
+                        <Card className={` FormDetailGrid !-mb-2 !pb-2 `}>
                             <CardHeader className={"FixCardHeader"} >
                                 <div className={`${start ? 'ChipDiv !justify-end' : 'hidden'}`}>
                                     <DateChip
@@ -166,7 +166,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                             <InputError mt error={formik.errors.end} tips={'Date de fin'} />
                                         </div>
                                     </div>
-                                    <div className='flex w-full gap-4 justify-between'>
+                                    <div className='flex w-full gap-4 gap-y-6 flex-col md:flex-row justify-between'>
                                         <div className='flex flex-col  '>
                                             <input
                                                 className={`inputStandart ${formik.errors.participantsMin ? 'error' : ''}`}
@@ -177,7 +177,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                                 defaultValue={participantsMin} />
                                             <InputError mt error={formik.errors.participantsMin} tips={'Participants minimum'} />
                                         </div>
-                                        <div className={"flex items-center max-w-[48%]  gap-1 flex-col justify-center w-full"}>
+                                        <div className={"flex items-center max-w-[48%] pt-2  gap-1 flex-col justify-center w-full"}>
                                             <div className="mb-2 flex w-full items-center justify-between gap-4">
                                                 <InputError
                                                     tips={

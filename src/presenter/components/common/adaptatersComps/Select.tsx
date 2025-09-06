@@ -21,14 +21,17 @@ export function Select({ formik, setValue, value, name, placeholder, disabled, o
 
     const className =
         simple ? `capitaliz inputStandart !shadow-none ${formik?.errors[name ?? ''] ? 'error ' : ``} ` :
-            `  inputDiv ${formik?.errors[name ?? ''] ? 'error !bg-red-100' : ` ${color}Style `} `
+            ` flex-1 !truncate line-clamp-1 !leading-[0.85rem]  !whitespace-break-spaces inputDiv ${formik?.errors[name ?? ''] ? 'error !bg-red-100' : ` ${color}Style `} `
 
     const find = (value: string, formik: any): string => { return options?.filter(option => option?.value === formik?.values[name ?? '']?.toString() || option?.value === value?.toString())[0]?.label }
     const place = (value: string, formik: any): string => (formik?.errors[name ?? ''] && !simple) && formik.errors[name ?? ''] || find(value, formik) || placeholder
 
     return (
         <>
+
             <SelectMT
+                isPill={true}
+                ripple={false}
                 key={name}
                 isError={!!formik?.errors[name ?? '']}
                 defaultValue={value}
@@ -42,18 +45,21 @@ export function Select({ formik, setValue, value, name, placeholder, disabled, o
                 }}>
                 <SelectMT.Trigger
                     value={value ?? ''}
+
                     placeholder={place(value ?? '', formik)}
                     className={className} />
-                <SelectMT.List className={` rounded-3xl gap-1 px-4 py-3 !shadow`}>
-                    {options?.map((option: { label: string, value: string }) => (
-                        <SelectMT.Option
-                            className="!capitalize rounded-full"
-                            key={option.value}
-                            value={option.value}>
-                            {option.label}
-                        </SelectMT.Option>
-                    ))}
-                </SelectMT.List>
+                <div className="flex w-full flex-1 justify-center relative">
+                    <SelectMT.List className="absolute max-w-[90%] z-50 left-0 rounded-3xl gap-1 px-4 py-3 !shadow">
+                        {options?.map((option: { label: string, value: string }) => (
+                            <SelectMT.Option
+                                className="!capitalize rounded-3xl !px-4 text-left !py-2 max-w-full flex items-center !whitespace-break-spaces"
+                                key={option.value}
+                                value={option.value}>
+                                {option.label}
+                            </SelectMT.Option>
+                        ))}
+                    </SelectMT.List>
+                </div>
             </SelectMT>
             {simple &&
                 <InputError mt error={formik?.errors[name ?? '']}

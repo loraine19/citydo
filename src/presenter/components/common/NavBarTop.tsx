@@ -9,7 +9,7 @@ import { useUxStore } from "../../../application/stores/ux.store";
 import { NavBarSection } from "./NavLinks";
 import { useEffect, useState } from "react";
 
-export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navIcons?: boolean }) {
+export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolean, navIcons?: boolean, title?: boolean }) {
     const navigate = useNavigate();
     const { user } = useUserStore((state) => state);
     const { hideNavBottom, setHideNavBottom, navBottom, setNavBottom, color, getColor } = useUxStore((state) => state);
@@ -34,7 +34,14 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
     const [closeDial, setCloseDial] = useState<boolean>(false)
     const [openBlur, setOpenBlur] = useState<boolean>(false)
 
-    useEffect(() => { getColor(window.location.pathname), setHideNavBottom(false) }, [window.location.pathname])
+    useEffect(() => {
+        getColor(window.location.pathname);
+        setHideNavBottom(!navIcons && !title)
+    }, [window.location.pathname])
+
+    useEffect(() => {
+        setHideNavBottom(!navIcons && !title)
+    }, [navIcons, title])
 
     return (
         <>
@@ -58,10 +65,11 @@ export default function NavBarTop({ addBtn, navIcons }: { addBtn?: boolean, navI
 
                 {/* CONTAINER */}
                 <div className={`wRespXL slide h-full justify-between items-end 
+
             ${navBottom ? 'flex ' : 'grid grid-cols-[auto_1fr_auto] gap-3 '}
                 ${hideNavBottom ? ' flex animRev !py-0' : ' flex animRev pt-2 pb-2'}`} >
 
-                    <div className={`flex h-full ${hideNavBottom ? 'hidden' : ''}`}>
+                    <div className={`flex h-full ${hideNavBottom ? 'hidden' : ''} `}>
 
                         {/* PROFILE MENU  */}
                         <Menu placement="bottom-start">

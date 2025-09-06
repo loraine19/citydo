@@ -80,7 +80,6 @@ function App() {
 
                             {/* Private routes */}
                             <Route path="/" element={<PrivateRoute />}>
-
                                 <Route path="/myprofile" element={<MyInfosPage />} />
 
                                 {/* Pages with top navigation */}
@@ -90,7 +89,6 @@ function App() {
                                     <Route path="/service/edit/:id" element={<ServiceEditPage />} />
                                     <Route path="/conciliation/edit/:id" element={<IssueEditPage />} />
                                     <Route path="/conciliation/create/:id" element={<IssueCreatePage />} />
-                                    <Route path="/conciliation/:id" element={<IssueDetailPage />} />
                                     <Route path="/evenement/create" element={<EventCreatePage />} />
                                     <Route path="/evenement/edit/:id" element={<EventEditPage />} />
                                     <Route path="/flag/edit/:target/:id" element={<FlagEditPage />} />
@@ -98,20 +96,22 @@ function App() {
                                     <Route path="/vote/create" element={<VoteCreatePage />} />
                                     <Route path="/annonce/create" element={<PostCreatePage />} />
                                     <Route path="/annonce/edit/:id" element={<PostEditPage />} />
+                                    <Route path="/vote/:target/edit/:id" element={<VoteEditPage />} />
+                                    <Route path="/flag/:target/:id" element={<FlagCreatePage />} />
+                                    <Route path="/reglement" element={<RulesPage />} />
+                                </Route>
+
+                                <Route element={<WithTopNavPages title />}>
+                                    {/* DETAILS PAGES */}
+
+                                    <Route path="/service/:id" element={<ServiceDetailPage />} />
                                     <Route path="/cagnotte/:id" element={<PoolDetailPage />} />
                                     <Route path="/annonce/:id" element={<PostDetailPage />} />
                                     <Route path="/groupe/:id" element={<GroupDetailPage />} />
-                                    <Route path="/service/:id" element={<ServiceDetailPage />} />
-                                    <Route path="/vote/:target/edit/:id" element={<VoteEditPage />} />
+                                    <Route path="/evenement/:id" element={<EventDetailPage />} />
+                                    <Route path="/conciliation/:id" element={<IssueDetailPage />} />
                                     <Route path="/vote/create" element={<VoteCreatePage />} />
                                     <Route path="/sondage/:id" element={<SurveyDetailPage />} />
-                                    <Route path="/flag/:target/:id" element={<FlagCreatePage />} />
-                                    <Route path="/evenement/:id" element={<EventDetailPage />} />
-
-                                    <Route path="/notification" element={<NotificationPage />} />
-                                    <Route path="/reglement" element={<RulesPage />} />
-
-                                    <Route path="/flag" element={<FlagPage />} />
                                 </Route>
 
                                 <Route element={<WithTopNavPages addBtn navIcons />}>
@@ -131,6 +131,7 @@ function App() {
                                         <Route path="/vote" element={<VoteListPage />} />
                                         <Route path="/annonce" element={<PostListPage />} />
                                         <Route path="/conciliation" element={<ConciliationListPage />} />
+                                        <Route path="/notification" element={<NotificationPage />} />
                                     </Route>
                                 </Route>
 

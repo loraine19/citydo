@@ -32,11 +32,11 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
 }) => {
     const { color } = useUxStore(state => state)
     return (
-        <div className={`flex ${orientation === "horizontal" ? "flex-row gap-4" : "flex-col gap-2"} ${className}`}>
+        <div className={`flex ${orientation === "horizontal" ? "flex-row gap-2" : "flex-col gap-2"} ${className}`}>
             {options.map((option) => (
                 <div
                     key={option.value}
-                    className={`${option.color ?? color}Style inputDiv flex items-center flex-1 gap-2`}
+                    className={`${option.color ?? color}Style inputDiv !pr-2 flex items-center flex-1 gap-2`}
                 >
                     <div className="relative flex items-center justify-center  h-7 w-7">
                         <Icon

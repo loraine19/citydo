@@ -148,7 +148,7 @@ export default function ChatPage() {
                             onClick={() => connexion()} />}
 
                 </div>
-                <section className='flex !px-0 pb-4 !pt-7 !max-h-[calc(100dvh_-_6.5rem)] '>
+                <section className='flex !px-0 pb-4 !pt-7 !max-h-[calc(100dvh_-_2rem)] '>
                     {notifConv &&
                         <NotifDiv
                             notif={notifConv}

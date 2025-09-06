@@ -41,43 +41,46 @@ export function ServiceForm(props: { formik: any }) {
             onSubmit={formik.handleSubmit}
             className="flex flex-col h-full overflow-hidden">
             <main>
-                <div className="sectionHeader pb-1">
+                <div className="sectionHeader">
                     <SubHeader
                         type={formik.values.id ? `Modifier votre service ` : "Créer votre service "}
                         place={formik.values.title}
                         closeBtn
                     />
-                    <div className="wRespXL flex flex-col grid-cols-[1fr_1fr_1fr] lg:grid grid-rows-1 lg:gap-3 gap-2 pt-2">
-                        <RadioGroup
-                            name={"type"}
-                            orientation="horizontal"
-                            options={[
-                                { id: "demande-radio", label: "Demande", value: "GET" },
-                                { id: "offre-radio", label: "Offre", value: "DO" },
-                            ]}
-                            value={formik.values.type}
-                            onChange={(val) =>
-                                formik.setFieldValue("type", val)}
-                            disabled={formik.values.statusValue > 0}
-                        />
-                        <Select
-                            options={serviceCategories}
-                            disabled={formik.values.statusValue > 0}
-                            name={"category"}
-                            value={formik.values.category}
-                            placeholder="Choisir une catégorie"
-                            formik={formik}
-                        />
-                        <GroupSelect
+                    <div className="w-respLarge flex flex-col grid-cols-[55%_auto] lg:grid grid-rows-1  gap-2 py-3">
+                        <div className="flex gap-2 flex-1 w-full ">
+                            <RadioGroup
+                                name={"type"}
+                                orientation="horizontal"
+                                options={[
+                                    { id: "demande-radio", label: "Demande", value: "GET" },
+                                    { id: "offre-radio", label: "Offre", value: "DO" },
+                                ]}
+                                value={formik.values.type}
+                                onChange={(val) =>
+                                    formik.setFieldValue("type", val)}
+                                disabled={formik.values.statusValue > 0}
+                            />
+                            <div className="flex-1">  <Select
+                                options={serviceCategories}
+                                disabled={formik.values.statusValue > 0}
+                                name={"category"}
+                                value={formik.values.category}
+                                placeholder="Catégorie"
+                                formik={formik}
+                            />
+                            </div></div>
+                        <div className="flex-1"> <GroupSelect
                             groupId={groupId}
                             setGroupId={setGroupId}
                             formik={formik}
                             user={user}
                             disabled={formik.values.statusValue > 0} />
+                        </div>
                     </div>
                 </div>
-                <section className="pb-12">
-                    <div className={`FormCardDiv `}>
+                <section>
+                    <div className={`FormCardDiv !pb-8 `}>
                         <Card className={`${haveImage ? "FormDetailGrid " : "FixCardNoImage "} `}>
                             <CardHeader className={haveImage ?
                                 "FixCardHeader" :
@@ -133,8 +136,8 @@ export function ServiceForm(props: { formik: any }) {
                                     </div>
                                     <div className="flex flex-col justify-center py-3 mt-2 h-max ">
                                         <Typography className='text-xs'>Difficulté du service: </Typography>
-                                        <div className="flex  gap-y-2 md:flex-row justify-between">
-                                            <div>
+                                        <div className="flex flex-col flex-1 h-full gap-y-3 md:flex-row justify-between">
+                                            <div className="flex gap-2"> <div>
                                                 <Select
                                                     simple
                                                     name={'skill'}
@@ -144,18 +147,18 @@ export function ServiceForm(props: { formik: any }) {
                                                     placeholder="Compétence"
                                                 />
                                             </div>
-                                            <div>
-                                                <Select
-                                                    placeholder="Pénibilité"
-                                                    simple
-                                                    name={'hard'}
-                                                    formik={formik}
-                                                    value={formik.values.hard?.toString()}
-                                                    options={hardLevels} />
+                                                <div>
+                                                    <Select
+                                                        placeholder="Pénibilité"
+                                                        simple
+                                                        name={'hard'}
+                                                        formik={formik}
+                                                        value={formik.values.hard?.toString()}
+                                                        options={hardLevels} />
+                                                </div>
+
                                             </div>
-
-
-                                            <div className="-mt-3 flex items-end flex-col gap-4 py-3 md:py-0">
+                                            <div className="pt-2">
                                                 <Chip
                                                     size="sm"
                                                     value={`${points} pts`}
@@ -170,7 +173,7 @@ export function ServiceForm(props: { formik: any }) {
                                                             fill={userProfile?.points > parseInt(points[0])}
                                                         />}
                                                 />
-                                                <InputError tips={'Coûts'} />
+
                                             </div>
                                         </div>
                                     </div>

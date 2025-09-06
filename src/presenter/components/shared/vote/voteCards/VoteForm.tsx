@@ -47,7 +47,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
     ]
 
     return (
-        <form onSubmit={formik.handleSubmit} className="flex flex-col h-full">
+        <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
             <main>
                 <div className="sectionHeader">
                     <SubHeader
@@ -55,44 +55,48 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                             `Modifier votre ${formik.values.typeS} ` : `Créer votre ${formik.values.typeS === 'POOL' ? 'cagnotte ' : formik.values.typeS === 'SURVEY' ? 'sondage ' : 'vote'}`}
                         closeBtn
                         place={formik.values.id ? formik.values.title : ''} />
-                    <div className="w-respLarge flex flex-col grid-cols-[1fr_1fr_1fr] lg:grid grid-rows-1 lg:gap-4 gap-2 py-3">
-                        <RadioGroup
-                            formik={formik}
-                            value={formik.values.typeS ?? type}
-                            onChange={(value) => setType(value)}
-                            options={
-                                [
-                                    { value: VoteTarget.SURVEY, label: "Sondage", id: 'sondage-radio' },
-                                    { value: VoteTarget.POOL, label: "Cagnotte", id: 'cagnotte-radio' }
-                                ]
-                            }
-                        />
-                        <div>
-                            {(type === VoteTarget.POOL) ?
-                                <Select
-                                    value={formik.values.beneficiary}
-                                    options={users}
-                                    placeholder="Choisir un bénéficiaire"
-                                    name={"beneficiary"}
-                                    formik={formik} />
-                                : <Select
+                    <div className="w-respLarge flex flex-col grid-cols-[55%_auto] lg:grid grid-rows-1  gap-2 py-3">
+                        <div className="flex gap-2 flex-1 w-full ">
+                            <RadioGroup
+                                formik={formik}
+                                value={formik.values.typeS ?? type}
+                                onChange={(value) => { setType(value) }}
+                                options={
+                                    [
+                                        { value: VoteTarget.SURVEY, label: "Sondage", id: 'sondage-radio' },
+                                        { value: VoteTarget.POOL, label: "Cagnotte", id: 'cagnotte-radio' }
+                                    ]
+                                }
+                            />
+                            <div className="flex-1">
+                                {(type === VoteTarget.POOL) &&
+                                    <Select
+                                        value={formik.values.beneficiary}
+                                        options={users}
+                                        placeholder="Bénéficiaire"
+                                        name={"beneficiary"}
+                                        formik={formik} />
+                                } {(type === VoteTarget.SURVEY) && <Select
                                     value={formik.values.category}
                                     options={surveyCategories}
-                                    placeholder="Choisir une catégorie"
+                                    placeholder="Catégorie"
                                     name={"category"}
                                     formik={formik} />
-                            }
+                                }
+                            </div>
                         </div>
-                        <GroupSelect
-                            formik={formik}
-                            user={user} />
+                        <div className="flex-1">
+                            <GroupSelect
+                                formik={formik}
+                                user={user} />
+                        </div>
                     </div>
                 </div>
-                <section className="pb-6">
+                <section >
                     <div className={`FormCardDiv `}>
-                        <Card className={`${haveImage ? "FormDetailGrid " : "FixCardNoImage "} `}>
-                            <CardHeader className={haveImage ?
-                                "FixCardHeader" :
+                        <Card className={`${(haveImage || formik.values.image) ? " FormDetailGrid  " : "FixCardNoImage "} `}>
+                            <CardHeader className={(haveImage || formik.values.image) ?
+                                "DetailCardHeader" :
                                 "FixCardHeaderNoImage pt-16 pb-0"} >
                                 <div className={`${start ? 'ChipDiv !justify-end right-3 top-3' : 'invisible'}`}>
                                     <DateChip
@@ -105,21 +109,23 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                         "!absolute z-40 !h-max top-3 !left-3 " : "hidden"}
                                     formik={formik}
                                     setImgBlob={setImgBlob} />
-                                <img
-                                    onError={(e) => e.currentTarget.src = "/images/placeholder.jpg"}
-                                    src={(imgBlob || formik.values.image) ?? null}
-                                    alt={formik.values.title || 'image'}
-                                    width={100}
-                                    height={100}
-                                    className={(imgBlob || formik.values.image) ?
-                                        "CardImage" : "hidden"}
-                                />
+                                <div className="CardImageDiv">
+                                    <img
+                                        onError={(e) => e.currentTarget.src = "/images/placeholder.jpg"}
+                                        src={(imgBlob || formik.values.image) ?? null}
+                                        alt={formik.values.title || 'image'}
+                                        width={100}
+                                        height={100}
+                                        className={(imgBlob || formik.values.image) ?
+                                            "CardImage" : "hidden"}
+                                    />
+                                </div>
                                 {formik.values?.UserBenef && formik.values?.typeS === VoteTarget.POOL &&
                                     <ProfileDiv
                                         profile={formik.values?.UserBenef} />
                                 }
                             </CardHeader>
-                            <CardBody className={`${haveImage ? ' max-h-max' : ' h-full '} FixCardBody `}>
+                            <CardBody className={`${haveImage ? ' max-h-max' : ' h-full '} DetailCardBody `}>
                                 <div className='overflow-auto h-full  pt-2 justify-between  gap-4'>
                                     <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
                                         placeholder={"Titre"}

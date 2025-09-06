@@ -82,8 +82,7 @@ export default function EventDetailPage() {
             <main data-cy="event-details-page">
                 <div className="sectionHeader">
                     <SubHeader
-                        image={event?.image}
-                        hideImage={!hideNavBottom || !event?.image}
+                        hideImage={true}
                         type={`évenement ${event?.label ?? ''}`}
                         place={`${event?.Address?.address ?? ''} ${event?.Address?.city ?? ''}`}
                         closeBtn />

@@ -48,7 +48,7 @@ export default function EventDetailPage() {
         end: date().required("Date est obligatoire").min(ref('start'), "la date de fin doit etre aprés a la date de debut"),
         participantsMin: number().required("Participants est obligatoire").min(1, "minmum 1 personne"),
         description: string().required("Description est obligatoire").min(2, "minmum 2 lettres").max(TextLength.MAX_LONGTEXT, "le texte est trop long"),
-        category: string().required("Catégorie est obligatoire"),
+        category: string().required("Obligatoire"),
         Address: object({
             city: string().required("Ville est obligatoire"),
             zipcode: string().required("Code postal est obligatoire"),

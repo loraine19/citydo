@@ -29,7 +29,7 @@ export default function ServiceEditPage() {
     //// FORMIK
     const navigate = useNavigate();
     const formSchema = object({
-        category: string().required("Catégorie est obligatoire"),
+        category: string().required("Obligatoire"),
         title: string().required("Le titre est obligatoire").min(5, "minmum 5 lettres"),
         description: string().required("Description est obligatoire").min(2, "minmum 2 lettres"),
         skill: string().required("obligatoire").notOneOf(["0"], "obligatoire"),

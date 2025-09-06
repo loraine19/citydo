@@ -244,8 +244,7 @@ export default function ServiceDetailPage() {
             <main >
                 <div className="sectionHeader">
                     <SubHeader
-                        hideImage={!hideNavBottom || !service?.image}
-                        image={service?.image}
+                        hideImage={true}
                         type={`${typeS ?? ''} de service ${categoryS ?? ''}`}
                         closeBtn />
                     {notif &&
