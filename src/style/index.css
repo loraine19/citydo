@@ -402,7 +402,7 @@ button span {
 .icon3xl {
     @apply flex items-center justify-center rounded-full;
     font-size: 2rem;
-    width: 3.2rem;
+    width: 3.21rem;
     height: 3.125rem;
 }
 .icon4xl {

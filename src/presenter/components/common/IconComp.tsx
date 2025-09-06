@@ -121,8 +121,8 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
         '5xl': { text: 'text-[2.625rem]', class: 'icon5xl' },   // 42px
         '6xl': { text: 'text-[2.875rem]', class: 'icon6xl' },   // 46px
     };
-    const num = sizeMap[size as keyof typeof sizeMap]?.text ?? '30';
-    const classRounded = sizeMap[size as keyof typeof sizeMap]?.class ?? 'icon2xl';
+    const num = sizeMap[size as keyof typeof sizeMap]?.text ?? 'text-[1.875rem]';
+    const classRounded = (sizeMap[size as keyof typeof sizeMap]?.class ?? 'icon2xl') + '';
     const textSize = sizeMap[size as keyof typeof sizeMap]?.text ?? 'text-[1.875rem]';
     const color = (props.color) ?? 'slate'
     const textColor = (color: string) => props.color ? reverse ? `${color}StyleInv` : `${color}Style` : reverse ? 'slateStyleInv' : 'slateStyle';
@@ -136,7 +136,7 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
     const classActive = `hover:brightness-[0.95] active:brightness-[0.9] hover:scale-[1.03] `
 
     return (
-        <div className={`${(props.bg && !clear) ? 'max-h-max max-w-max bg-white ' : ''} rounded-full  `}>
+        <div className={`${(props.bg && !clear) ? `max-h-[40px] max-w-max bg-white ` : ''} rounded-full  `}>
             {onClick ?
                 <button
                     style={{ fontSize: `${num}px` }}

@@ -77,7 +77,7 @@ export default function DashboardPage() {
 
     return (
         <main className={`
-            ${navBottom ? '-mt-6  !max-h-[calc(100dvh_-_8rem)] lg:!max-h-[calc(100dvh_-_8.5rem)] ' : '!-mt-6 !max-h-[calc(100dvh_-_3.5rem)] lg:!max-h-[calc(100dvh_-_2rem)] '} lg:!mt-0  overflow-hidden `}
+            ${navBottom ? '-mt-6  !max-h-[calc(100dvh_-_7.5rem)] lg:!max-h-[calc(100dvh_-_8.5rem)] ' : '!-mt-6 !max-h-[calc(100dvh_-_3.5rem)] lg:!max-h-[calc(100dvh_-_2rem)] '} lg:!mt-0  overflow-hidden `}
             data-cy="dashboard-body" >
             <div ref={divRef}
                 className={" px-[1%] flex-1 max-max overflow-auto  flex flex-col lg:grid grid-cols-2 grid-rows-[auto_auto_auto_1fr_1fr_2fr_auto_auto] w-full gap-y-2 lg:gap-y-3 lg:gap-x-4  place-content-start pt-11 lg:pt-6 rounded-b-[1rem] lg:pb-6  pb-3 "}>
@@ -86,10 +86,10 @@ export default function DashboardPage() {
                 <div className={`${userClasse}`}>
                     <Card className="FixCard lg:h-full p-0 mt-6 lg:!mt-0 !flex-col rounded-2xl bg-white flex-1 !flex anim !overflow-visible ">
                         <CardHeader className="-mt-6 flex flex-col items-center justify-center  bg-transparent shadow-none">
-                            <div className="relative !z-40 space-x-1 ">
+                            <div className="relative !z-40 ">
                                 <AvatarUser
                                     avatarSize="lg"
-                                    avatarStyle="!shadow-md -mb-0.5  w-16 h-16 lg:w-[4.5rem] lg:h-[4.5rem] "
+                                    avatarStyle="!shadow -mt-0.5 border border-slate-900/10 w-[4.5rem] h-[4.5rem] lg:w-[4.5rem] lg:h-[4.5rem] "
                                     Profile={user?.Profile} />
                                 <OnlineDot
                                     id={user?.id} />
@@ -104,26 +104,26 @@ export default function DashboardPage() {
                             </div>
                         </CardHeader>
                         <CardBody className="flex flex-col items-center justify-center px-4 py-0">
-                            <div className="flex gap-1 border rounded-full mb-4 justify-center items-center py-1 px-2 flex-1 bg-slate-200 border-slate-300">
+                            <div className="flex gap-1 border rounded-full mb-4 justify-center items-center py-1 px-1 flex-1 bg-slate-200 border-slate-300 ">
 
                                 <Icon bg clear
                                     link="/myprofile"
                                     icon="person_edit"
                                     size="lg"
                                     title="ouvrir la page profil" />
-                                <hr className="bg-slate-400/40 h-3/4 w-[1px]" />
+                                <hr className="bg-slate-300 h-3/4 w-[1px]" />
                                 <Icon bg clear
                                     link="/groupe"
                                     icon="groups"
                                     size="lg"
                                     title="ouvrir la page des groupes" />
-                                <hr className="bg-slate-400/40 h-3/4 w-[1px]" />
+                                <hr className="bg-slate-300 h-3/4 w-[1px]" />
                                 <Icon bg clear
                                     link={modo ? '/conciliation' : ''}
                                     icon="diversity_3"
                                     size="lg"
                                     title={modo ? "ouvrir la page conciliation" : "vous devez être conciliateur dans un groupe"} />
-                                <hr className="bg-slate-400/40 h-3/4 w-[1px]" />
+                                <hr className="bg-slate-300 h-3/4 w-[1px]" />
                                 <LogOutButton
                                     style={'!border-0'} size="lg" />
                             </div>
