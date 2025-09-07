@@ -203,7 +203,7 @@ export default function ChatPage() {
                                                                     </span>
                                                                 }
                                                             </List.ItemStart>
-                                                            <div className="font-normal w-full flex flex-col">
+                                                            <div className="font-normal overflow-hidden w-full flex flex-col">
                                                                 <div className='flex justify-between items-center flex-1 w-full'>
                                                                     <Typography as="h6" >
                                                                         {message.isWith?.Profile?.firstName}
@@ -215,7 +215,7 @@ export default function ChatPage() {
                                                                 </div>
                                                                 <Typography
                                                                     variant="small"
-                                                                    className="font-normal truncate !pr-4 !line-clamp-1">
+                                                                    className="font-normal  !pr-2 !line-clamp-1">
                                                                     {message.IWrite &&
                                                                         <span className='text-slate-400'>
                                                                             {message.read && '🗸'}
@@ -232,7 +232,7 @@ export default function ChatPage() {
                                     </div>
                                     {/* CONVERSATION DIV */}
                                     {open &&
-                                        <div className='absolute right-0 flex-1 h-full rounded-l-3xl backdrop:opacity-5 pt-[20px] -mr-[2px] -mb-[2px] !w-[calc(100%-4.6rem)] flex  bg-clip-border '>
+                                        <div className='absolute right-0 flex-1 h-full rounded-l-3xl backdrop:opacity-5 pt-[20px] -mr-[1px] -mb-[2px] !w-[calc(100%-4.6rem)] flex  bg-clip-border '>
                                             <Chat
                                                 refetch={refetch}
                                                 setNewConv={setNewConv}
