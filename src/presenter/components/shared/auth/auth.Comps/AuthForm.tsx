@@ -89,7 +89,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 data-cy="email-input" />
                             <InputError error={formik?.errors.email} />
                             <Input
-                                className={`inputStandart !relative`}
+                                className={` inputStandart !relative`}
                                 isError={!!formik?.errors.password}
                                 placeholder={"Mot de passe"}
                                 name="password"
@@ -104,7 +104,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                             </Input>
                             <InputError error={formik?.errors.password} />
                             <div className={!confirm ? "hidden" : ""}>
-                                <Input className={`inputStandart`}
+                                <Input className={` inputStandart `}
                                     isError={!!formik?.errors.passwordConfirm}
                                     placeholder={"Confirmer le mot de passe"}
                                     name="passwordConfirm"

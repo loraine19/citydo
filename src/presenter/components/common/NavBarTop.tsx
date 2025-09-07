@@ -16,18 +16,18 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
     ///// MENU ITEMS
     const menuItems = [
-        { icon: "toll", text: ` ${user?.Profile?.points} points`, color: 'sky', style: 'hover:!pointer-event-nones !mb-3' },
+        { icon: "toll", text: ` ${user?.Profile?.points} points`, color: 'sky', style: 'hover:!pointer-event-nones !mb-2' },
         { icon: "person_edit", text: "Modifier mon profil", onClick: () => navigate('/myprofile'), color: "cyan" },
-        { icon: navBottom ? 'move_up' : 'move_down', text: navBottom ? "Cacher la barre" : "Afficher la barre", onClick: () => { setNavBottom(!navBottom) }, color: 'cyan', style: ` !mb-3 ` },
+        { icon: navBottom ? 'move_up' : 'move_down', text: navBottom ? "Cacher la barre" : "Afficher la barre", onClick: () => { setNavBottom(!navBottom) }, color: 'cyan', style: ` !mb-2 ` },
         // { icon: "forum", text: `Messagerie (${unReadMsgNotif ?? ''})`, onClick: () => navigate('/chat'), color: 'cyan' },
 
         { icon: 'groups', text: "Groupes", onClick: () => navigate('/groupe'), color: "orange" },
 
         { icon: 'diversity_3', text: "Conciliation", onClick: () => navigate('/conciliation'), color: 'orange' },
-        { icon: "exit_to_app", text: "Déconnexion", onClick: () => navigate('/signin'), style: "!text-red-500 !mt-4 ", color: "red" },
+        { icon: "exit_to_app", text: "Déconnexion", onClick: () => navigate('/signin'), style: "!text-red-500 !mt-3 ", color: "red" },
     ]
 
-    if (!onBoard && !navIcons) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate", style: "!mb-3" })
+    if (!onBoard && !navIcons) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate", style: "!mb-2" })
 
 
     const [closeDial, setCloseDial] = useState<boolean>(false)

@@ -111,8 +111,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                             </div>
                                             <div className='flex flex-col flex-1'>
                                                 <Textarea
-                                                    rows={3}
-                                                    aria-rowcount={3}
+                                                    rows={1}
                                                     isError={!!formik.errors.description}
                                                     className={`inputStandart max-h-fit min-h-full`}
                                                     placeholder='Description'
@@ -130,7 +129,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                                 <InputError mt error={formik.errors.description} />
                                             </div>
                                         </div>
-                                        <div className="flex flex-1 flex-col lg:pt-2 ">
+                                        <div className="flex flex-1 flex-col pt-4 ">
                                             {((Address?.lat && Address?.lng)) ?
                                                 <AddressMapOpen address={Address} /> : ''}
 

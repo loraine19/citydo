@@ -85,7 +85,7 @@ export default function DashboardPage() {
                 {/* USER CARD  */}
                 <div className={`${userClasse}`}>
                     <Card className="FixCard lg:h-full p-0 mt-6 lg:!mt-0 !flex-col rounded-2xl bg-white flex-1 !flex anim !overflow-visible ">
-                        <CardHeader className="-mt-6 flex flex-col items-center justify-center  bg-transparent shadow-none">
+                        <CardHeader className="-mt-5 flex flex-col items-center justify-center  bg-transparent shadow-none">
                             <div className="relative !z-40 ">
                                 <AvatarUser
                                     avatarSize="lg"
