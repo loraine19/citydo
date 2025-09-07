@@ -10,7 +10,7 @@
 }
 
 input {
-    @apply !text-slate-500 !opacity-95 !font-roboto;
+    @apply !text-slate-500 !opacity-95 !font-roboto !outline-0 !ring-0 !ring-current;
 }
 
 input[type="datetime-local"] {
@@ -46,4 +46,8 @@ input[type="number"] {
 
 .inputDiv::placeholder {
     @apply truncate;
+}
+
+.SimpleInput {
+    @apply rounded-none !border-0 border-b border-gray-400 pr-0.5 shadow-none ring-0 hover:border-gray-900 focus:border-gray-900 data-[icon-placement=start]:!pl-[26px] dark:border-gray-600 dark:hover:border-gray-50 dark:focus:border-gray-50 focus:!outline-none placeholder:!pr-4;
 }
