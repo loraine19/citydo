@@ -14,17 +14,17 @@ input {
 }
 
 input[type="datetime-local"] {
-    @apply !opacity-95 !font-roboto !text-[0.8rem] min-w-16 max-w-max inputStandart pt-1  !flex;
+    @apply !opacity-95 !font-roboto !text-[0.8rem] min-w-24 max-w-max inputStandart pt-1 min-h-[1rem] !h-full !flex;
     &::-webkit-calendar-picker-indicator {
         @apply !text-slate-300 !opacity-50 !font-roboto rounded-full p-1 !flex -ml-8 md:-ml-2;
     }
 }
 
 input[type="number"] {
-    @apply !opacity-95 !font-roboto !text-[0.8rem] min-w-16 focus:!outline-none pt-1 !min-h-max !max-w-max inputStandart !flex !gap-4 !pr-2;
+    @apply !opacity-95 !font-roboto !text-[0.8rem] min-w-24 min-h-[1rem] focus:!outline-none pt-1 !h-full !max-w-max inputStandart !flex !gap-4 !pr-2;
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
-        @apply !flex  !opacity-60 !font-roboto pr-5 !min-h-min !border-none py-3 !min-w-max ml-2 bg-transparent !scale-110;
+        @apply !flex  !opacity-60 !font-roboto pr-5 !min-h-min !border-none py-4 !min-w-max ml-2 bg-transparent !scale-110;
     }
 }
 
