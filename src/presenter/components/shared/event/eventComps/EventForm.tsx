@@ -171,7 +171,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                             <input
                                                 className={`inputStandart ${formik.errors.participantsMin ? 'error' : ''}`}
                                                 type='number'
-                                                placeholder={"Participants minimum"}
+                                                placeholder={""}
                                                 name="participantsMin"
                                                 onChange={formik.handleChange}
                                                 defaultValue={participantsMin} />

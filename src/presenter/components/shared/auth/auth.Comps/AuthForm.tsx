@@ -132,7 +132,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
                     </CardBody>
                     <CardFooter className={` FixCardFooter !flex pb-8 my-0 !min-h-full !flex-1 items-center `}>
-                        <div className={`${!checkbox ? 'flex-col justify-between  pl-6 gap-5' : 'justify-between'} flex h-full flex-1 gap-2  w-full  px-4 `}>
+                        <div className={`${!checkbox ? 'flex-col justify-between  pl-6 gap-5' : 'justify-between'} flex h-full flex-1 gap-2 pb-1 w-full  px-4 `}>
                             <div className='flex h-full  gap-1 flex-col '>
                                 <i className='text-sm'>{checkbox ? 'acceptez les conditions d\'utilisation' : ''} </i>
 
