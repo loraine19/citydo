@@ -131,7 +131,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                         </div>
 
                     </CardBody>
-                    <CardFooter className={` FixCardFooter !flex pb-8 my-0 !min-h-full !flex-1 items-center `}>
+                    <CardFooter className={` FixCardFooter !flex !pb-8 my-0 !min-h-max !flex-1 items-center `}>
                         <div className={`${!checkbox ? 'flex-col justify-between  pl-6 gap-5' : 'justify-between'} flex h-full flex-1 gap-2 pb-1 w-full  px-4 `}>
                             <div className='flex h-full  gap-1 flex-col '>
                                 <i className='text-sm'>{checkbox ? 'acceptez les conditions d\'utilisation' : ''} </i>
@@ -178,7 +178,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                     <InputError error={formik?.errors.checkbox} style=' !py-2' />
                                 </div>
                             </div>
-                            <div className='flex h-full gap-1  flex-col '>
+                            <div className='flex h-full gap-1 flex-col '>
                                 <i className='text-sm'>Ou {submitText} avec </i>
                                 <Button
                                     size="md"
