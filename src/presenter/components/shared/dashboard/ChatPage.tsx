@@ -215,7 +215,7 @@ export default function ChatPage() {
                                                                 </div>
                                                                 <Typography
                                                                     variant="small"
-                                                                    className="font-normal !pr-4 !line-clamp-1">
+                                                                    className="font-normal truncate !pr-4 !line-clamp-1">
                                                                     {message.IWrite &&
                                                                         <span className='text-slate-400'>
                                                                             {message.read && '🗸'}
