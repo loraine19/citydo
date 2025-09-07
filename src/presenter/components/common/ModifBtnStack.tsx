@@ -33,7 +33,7 @@ export default function ModifBtnStack({ actions, disabled1, disabled2, update, i
 
 
     return (
-        <div className="flex gap-3 items-center w-full flex-1">
+        <div className="flex gap-3 px-1 items-center w-full flex-1">
             {buttons.map((btn, i) => {
                 // Only render the third icon if icon3 is true, otherwise skip index 2
                 if (i === 2 && !icon3) return null;
@@ -45,12 +45,13 @@ export default function ModifBtnStack({ actions, disabled1, disabled2, update, i
                         : 'cyan';
                 return (
                     <Icon
+
                         key={i}
                         icon={btn.iconImage as string || ''}
                         color={color}
                         onClick={() => { setOpen(true); setIndex(i); }}
                         bg
-                        size="md"
+                        size="lg"
                         disabled={disabled}
                         title={btn.title as string}
                     />

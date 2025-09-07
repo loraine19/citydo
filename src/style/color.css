@@ -42,11 +42,11 @@
 }
 
 .style {
-    @apply bg-opacity-100 !border-slate-900/5 !brightness-95  font-roboto;
+    @apply bg-opacity-100 !border-slate-900/5 !brightness-95  stroke-1 stroke-slate-900/90 font-roboto;
 }
 
 .inv {
-    @apply !text-white bg-opacity-100 text-opacity-90 drop-shadow-sm;
+    @apply !text-white bg-opacity-100 text-opacity-90 !stroke-1 !stroke-slate-900/90;
 }
 
 .cyanStyle {
@@ -72,7 +72,7 @@
     @apply !text-sky-600/90 !bg-sky-300/50 style;
 }
 .skyStyleInv {
-    @apply !bg-sky-600/90 inv;
+    @apply !bg-sky-600 inv;
 }
 .greenStyle {
     @apply !text-green-600/90 bg-green-300/40 style;
@@ -102,7 +102,7 @@
     @apply !bg-amber-500 inv;
 }
 .roseStyle {
-    @apply !text-rose-500 !bg-rose-300/50 style;
+    @apply !text-rose-600/90 !bg-rose-300/50 style;
 }
 .roseStyleInv {
     @apply !bg-rose-500 inv;

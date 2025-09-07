@@ -37,7 +37,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
     const actions: Action[] = [
         {
             title: 'Enregistrer',
-            iconImage: 'add',
+            iconImage: formik.values?.id ? "save_as" : "save",
             icon: formik.values?.pourcent > 1 ?
                 'Non modifiable votes en cours  ' + formik.values.pourcent + '%' : `Enregistrer`,
             type: "submit",

@@ -189,7 +189,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                         icon: formik.values?.id ? "Modifier l'annonce" : "Créer l'annonce",
                         iconImage: formik.values?.id ? "save_as" : "save",
                         direct: true,
-                        function: formik.handleSubmit
+                        function: () => { }
                     }
                 ]} />
         </form>

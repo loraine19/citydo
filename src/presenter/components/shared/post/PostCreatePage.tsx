@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import { object, string, array } from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { Share } from '../../../../domain/entities/Post';;
-import { PostFormCard } from './PostComps/PostFormCard';
+import { PostFormCard } from './PostComps/PostForm';
 import { PostDTO } from '../../../../infrastructure/DTOs/PostDTO';
 import { PostView } from '../../../views/viewsEntities/postViewEntities';
 import DI from '../../../../di/ioc';

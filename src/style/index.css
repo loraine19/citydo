@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 @import "./card.css";
+
+@import "./inputs.css";
 @import "./color.css";
 @import "./animation.css";
 
@@ -45,7 +47,7 @@
      bg-slate-300 dark:bg-slate-700 text-slate-700 dark:text-slate-300;
 }
 :root {
-    @apply scroll-smooth text-[14px] xs:text-[16px] md:!text-[16px] lg:!text-[15px] baseBG;
+    @apply scroll-smooth text-[14px] xs:text-[15px] sm:!text-[16px] lg:!text-[15px] baseBG;
     line-height: 1.2;
     font-weight: 400;
     display: flex;
@@ -148,49 +150,6 @@ i {
 
 .CTA {
     @apply anim fixed bottom-0 left-0 h-max w-full !flex items-center justify-center rounded-t-3xl;
-}
-
-/**** INPUT STYLES ****/
-.inputStandart {
-    @apply !rounded-none border-b !border-slate-400 ring-0 focus:!border-b-slate-800  !border-t-0 !border-x-0 hover:!border-t-0 placeholder:!opacity-90  !pl-0  focus:placeholder:!opacity-50 before:content-none after:content-none gap-4 font-normal  text-sm  !text-slate-500 !font-roboto;
-}
-.inputStandart::placeholder {
-    @apply !text-slate-600 !opacity-90 !font-roboto !px-4;
-}
-
-input {
-    @apply !text-slate-500 !opacity-95 !font-roboto;
-}
-
-input[type="datetime-local"] {
-    @apply !opacity-95 !font-roboto !text-[0.8rem] min-w-16 max-w-max inputStandart pt-1  !flex;
-    &::-webkit-calendar-picker-indicator {
-        @apply !text-slate-300 !opacity-50 !font-roboto rounded-full p-1 !flex -ml-8 md:-ml-2;
-    }
-}
-
-input[type="number"] {
-    @apply !opacity-95 !font-roboto !text-[0.8rem] min-w-16 focus:!outline-none pt-1 !max-w-max inputStandart !flex !gap-4 !pr-2;
-    &::-webkit-inner-spin-button,
-    &::-webkit-outer-spin-button {
-        @apply !flex !rounded-full !opacity-70 !font-roboto pr-5 !min-w-12 -mr-4;
-    }
-}
-
-[role="option"] {
-    @apply !text-slate-500 !opacity-95 !font-roboto !font-normal;
-}
-
-.inputStandart span {
-    @apply !left-0;
-}
-
-.inputStandart :last-child {
-    @apply right-0;
-}
-
-.inputDiv {
-    @apply rounded-full h-[2.2rem] flex items-center bg-opacity-0 border-t px-4 !border capitalize font-normal placeholder:!text-red-600;
 }
 
 .notif {

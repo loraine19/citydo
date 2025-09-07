@@ -134,19 +134,20 @@ export function ServiceForm(props: { formik: any }) {
                                             <InputError mt error={formik.errors.description} />
                                         </div>
                                     </div>
-                                    <div className="flex flex-col justify-center py-3 mt-2 h-max ">
+                                    <div className="flex flex-col justify-center py-3 mt-4 h-max ">
                                         <Typography className='text-xs'>Difficulté du service: </Typography>
-                                        <div className="flex flex-col flex-1 h-full gap-y-3 md:flex-row justify-between">
-                                            <div className="flex gap-2"> <div>
-                                                <Select
-                                                    simple
-                                                    name={'skill'}
-                                                    formik={formik}
-                                                    value={formik.values.skill?.toString()}
-                                                    options={skillLevels}
-                                                    placeholder="Compétence"
-                                                />
-                                            </div>
+                                        <div className="flex flex-col flex-1 h-full gap-y-6 md:flex-row justify-between">
+                                            <div className="flex gap-[5vw]">
+                                                <div>
+                                                    <Select
+                                                        simple
+                                                        name={'skill'}
+                                                        formik={formik}
+                                                        value={formik.values.skill?.toString()}
+                                                        options={skillLevels}
+                                                        placeholder="Compétence"
+                                                    />
+                                                </div>
                                                 <div>
                                                     <Select
                                                         placeholder="Pénibilité"
@@ -158,7 +159,8 @@ export function ServiceForm(props: { formik: any }) {
                                                 </div>
 
                                             </div>
-                                            <div className="pt-2">
+                                            <div className=" pr-4">
+                                                <Typography className='text-xs pb-2'>Points </Typography>
                                                 <Chip
                                                     size="sm"
                                                     value={`${points} pts`}

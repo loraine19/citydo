@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolean, navIcons?: boolean, title?: boolean }) {
     const navigate = useNavigate();
     const { user } = useUserStore((state) => state);
-    const { hideNavBottom, setHideNavBottom, navBottom, setNavBottom, color, getColor } = useUxStore((state) => state);
+    const { hideNavBottom, setHideNavBottom, navBottom, setNavBottom, color, getColor, setNavIcons, setHaveTitle } = useUxStore((state) => state);
     const onBoard = window.location.pathname === '/'
 
     ///// MENU ITEMS
@@ -40,6 +40,8 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
     useEffect(() => {
         setHideNavBottom(!navIcons && !title)
+        setNavIcons(navIcons ? true : false)
+        setHaveTitle(title ? true : false)
     }, [navIcons, title])
 
     return (
@@ -79,7 +81,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                                 <div onClick={() => setCloseDial(!closeDial)}>
 
                                     <div className='flex w-[52px] flex-1 items-center'>
-                                        <img className="!w-[52px] !h-[52px] drop-shadow-sm  object-cover object-center"
+                                        <img className="!w-[52px] !h-[52px] object-cover object-center !stroke-2"
                                             src="/image/logo.svg"
                                             alt="logo" />
                                     </div>
@@ -132,7 +134,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                         {/* INFO TEXT LOGO   */}
                         {(!hideNavBottom || !navIcons) &&
                             <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : ' w-full !flex-1 justify-center -mr-2 lg:-mr-8'}  items-center  flex h-full  pt-1 pl-4 `}>
-                                <h1 className={`drop-shadow-sm flex !font-comfortaa text-[2.1rem]  ${!navIcons ? 'pl-0 ' : ''} !text-slate-500 font-[900] `}>
+                                <h1 className={`drop-shadow-sm flex !font-comfortaa text-[2.1rem]  ${!navIcons ? 'pl-0 ' : ''} !text-slate-600 font-[900] `}>
                                     City'Do
                                 </h1>
                             </div>}

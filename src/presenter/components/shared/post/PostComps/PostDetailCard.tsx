@@ -46,6 +46,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
             </CardHeader>
             <CardBody className="DetailCardBody  ">
                 <Title
+                    large
                     title={title}
                     flagged={flagged}
                     id={id}

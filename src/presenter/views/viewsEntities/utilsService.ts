@@ -52,7 +52,7 @@ export const GenereMyActions = (element: Post | EventView | Service | Survey | I
 
     const actions = [
         {
-            iconImage: 'close',
+            iconImage: 'delete',
             NoPrimary: true,
             icon: 'Supprimer ',
             title: "Confirmer la suppression",

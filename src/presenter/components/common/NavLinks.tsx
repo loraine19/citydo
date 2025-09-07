@@ -190,10 +190,9 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                                      rounded-full bg-slate-50 flex items-center max-w-max hover:!bg-slate-100  `}>
                                     <div key={index} className={
                                         `${navBottom ? 'p-1' : 'p-0.5'}
-                                     rounded-full ${color.col}${type ? 'StyleInv' : 'Style'} px-3 flex gap-1 items-center border border-slate-900/10 `}>
+                                     rounded-full ${color.col}${'Style'} px-3 flex gap-1 items-center border border-slate-900/10 `}>
                                         <Icon style={'!border-slate-900/10 '}
                                             bg clear
-                                            reverse={!!type}
                                             size={navBottom ? '2xl' : 'xl'}
                                             icon={icon}
                                             color={type ? color.col : color.col} />

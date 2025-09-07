@@ -58,6 +58,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
             {/* BODY */}
             <CardBody className="DetailCardBody">
                 <Title
+                    large
                     title={title}
                     flagged={flagged}
                     id={id}

@@ -44,6 +44,7 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
             <CardBody
                 className="DetailCardBody ">
                 <Title
+                    large
                     title={pool?.title}
                     CreatedAt={pool?.createdAt}
                     group={pool?.Group}

@@ -52,6 +52,7 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
             </CardHeader>
             <CardBody className="DetailCardBody  justify-between">
                 <Title
+                    large
                     title={title}
                     flagged={flagged}
                     id={id}

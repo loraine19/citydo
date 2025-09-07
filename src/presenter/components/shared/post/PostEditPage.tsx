@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import { object, string, array } from 'yup';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { PostFormCard } from './PostComps/PostFormCard';
+import { PostFormCard } from './PostComps/PostForm';
 import DI from '../../../../di/ioc';
 import { Skeleton } from '../../common/Skeleton';
 import { PostDTO } from '../../../../infrastructure/DTOs/PostDTO';
