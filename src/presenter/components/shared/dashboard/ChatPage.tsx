@@ -135,8 +135,8 @@ export default function ChatPage() {
                     <SubHeader
                         form
                         place={open ? ` - ${messages?.length} messages` : ` - ${conversations?.length} conversations`}
-                        type={open ? `Chat avec ${userRec?.Profile?.firstName ?? ''}` : 'Messagerie '}
-                        closeBtn={!open}
+                        type={open ? `Chat - avec ${userRec?.Profile?.firstName ?? ''}` : 'Chat '}
+                        closeBtn
                         link='/' />
                     {notif}
                     {!connected &&
@@ -146,20 +146,7 @@ export default function ChatPage() {
                             icon='sync_problem'
                             title='actualiser'
                             onClick={() => connexion()} />}
-                    {open && <Icon
-                        style='absolute z-[999] -top-1 !right-1'
-                        color={'cyan'}
-                        size='2xl'
-                        icon='arrow_back'
-                        title='fermer'
-                        onClick={() => {
-                            setParams({ with: '0' })
-                            setUserIdRec(0)
-                            setUserRec({} as User)
-                            setOpen(false)
-                        }}
-                    />
-                    }
+
                 </div>
                 <section className='flex !px-0 pb-3 !pt-8  '>
                     {notifConv &&
@@ -174,14 +161,31 @@ export default function ChatPage() {
                         <Card className='FixCardNoImage !flex !p-0 !px-0 h-full'>
                             <CardBody className='!p-0 h-full !relative'>
                                 <div className='flex flex-1 h-full relative rounded-3xl'>
-                                    <div className='flex-1 p-3 overflow-y-auto overflow-x-hidden rounded-l-3xl !my-1 '>
+                                    {open &&
+                                        <Icon
+                                            reverse
+                                            bg
+                                            style='shadow-lg absolute z-[999] top-2 !right-2 animSlide'
+                                            color={'cyan'}
+                                            size='2xl'
+                                            icon='arrow_back'
+                                            title='fermer'
+                                            onClick={() => {
+                                                setParams({ with: '0' })
+                                                setUserIdRec(0)
+                                                setUserRec({} as User)
+                                                setOpen(false)
+                                            }}
+                                        />
+                                    }
+                                    <div className='flex-1 p-2.5 overflow-y-auto overflow-x-hidden rounded-l-3xl !my-1 '>
                                         <List className='flex-1 gap-1.5 !rounded-3xl'>
                                             {conversations &&
                                                 conversations.map((message: MessageView, index: number) =>
                                                     <div key={index + 'div'}>
                                                         <List.Item
                                                             className={`gap-1 rounded-full overflow-hidden ${(userIdRec === message?.isWith.id) ?
-                                                                '!bg-slate-100 border !border-slate-300 py-2.5 px-2.5 shadow-md my-0.5 -ml-2.5 ' :
+                                                                '!bg-slate-100 border !border-slate-300 py-2.5 px-2.5 shadow-md my-0.5 -ml-2 ' :
                                                                 'bg-slate-200 py-1 '}`}
                                                             key={index}
                                                             onClick={() => {
@@ -232,7 +236,7 @@ export default function ChatPage() {
                                     </div>
                                     {/* CONVERSATION DIV */}
                                     {open &&
-                                        <div className='absolute right-0 flex-1 h-full rounded-l-3xl backdrop:opacity-5 pt-[20px] -mr-[1px] -mb-[2px] !w-[calc(100%-4.6rem)] flex  bg-clip-border '>
+                                        <div className='absolute  right-0 flex-1 h-full rounded-l-3xl backdrop:opacity-5 pt-[20px] -mr-[1px] -mb-[2px] !w-[calc(100%-4.4rem)] flex  bg-clip-border '>
                                             <Chat
                                                 refetch={refetch}
                                                 setNewConv={setNewConv}
