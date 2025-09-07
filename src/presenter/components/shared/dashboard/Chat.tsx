@@ -149,9 +149,9 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                             icon='mood'
                             style={`max-h-max relative`}
                         />
-                        <div className='absolute flex overflow-auto items-end w-full pr-3 -ml-3 z-50 mb-14 bottom-0 '>
+                        <div className='absolute flex overflow-auto items-end w-full pr-3  z-50 mb-14 bottom-0 '>
                             <EmojiPicker
-                                className='!bg-white !font-roboto !overflow-auto !mb-2 !shadow-md !rounded-3xl max-h-[85%] z-40 p-1.5 mx-4 flex flex-1'
+                                className='!bg-white !font-roboto !overflow-auto !mb-2 !shadow-md !rounded-3xl max-h-[85%] z-40 p-1.5 ml-3 flex flex-1'
                                 previewConfig={{ showPreview: false }}
                                 searchPlaceHolder='Rechercher un emoji'
                                 skinTonesDisabled={true}

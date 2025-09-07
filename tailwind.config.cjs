@@ -28,7 +28,6 @@ export default {
     },
   },
   plugins: [mtConfig({
-    radius: "2rem",
     fonts: {
       sans: "Roboto",
       serif: "DM Serif Display"

@@ -161,7 +161,7 @@ export default function ChatPage() {
                     />
                     }
                 </div>
-                <section className='flex !px-0 pb-3 !pt-8 !max-h-[calc(100dvh_-_2rem)] '>
+                <section className='flex !px-0 pb-3 !pt-8  '>
                     {notifConv &&
                         <NotifDiv
                             notif={notifConv}
@@ -175,13 +175,13 @@ export default function ChatPage() {
                             <CardBody className='!p-0 h-full !relative'>
                                 <div className='flex flex-1 h-full relative rounded-3xl'>
                                     <div className='flex-1 p-3 overflow-y-auto overflow-x-hidden rounded-l-3xl !my-1 '>
-                                        <List className='flex-1 gap-2 px-2 !rounded-3xl'>
+                                        <List className='flex-1 gap-1.5 !rounded-3xl'>
                                             {conversations &&
                                                 conversations.map((message: MessageView, index: number) =>
                                                     <div key={index + 'div'}>
                                                         <List.Item
-                                                            className={`gap-1.5 rounded-full  ${(userIdRec === message?.isWith.id) ?
-                                                                '!bg-slate-100 border !border-slate-300  py-3 px-3 shadow-md  -ml-4  ' :
+                                                            className={`gap-1 rounded-full  ${(userIdRec === message?.isWith.id) ?
+                                                                '!bg-slate-100 border !border-slate-300 py-2.5 px-2.5 shadow-md my-0.5 -ml-2.5 ' :
                                                                 'bg-slate-200 py-1 '}`}
                                                             key={index}
                                                             onClick={() => {
@@ -232,7 +232,7 @@ export default function ChatPage() {
                                     </div>
                                     {/* CONVERSATION DIV */}
                                     {open &&
-                                        <div className='absolute right-0 flex-1 h-full rounded-l-3xl backdrop:opacity-5 pt-6 !w-[calc(100%-5.2rem)] flex  bg-clip-border '>
+                                        <div className='absolute right-0 flex-1 h-full rounded-l-3xl backdrop:opacity-5 pt-6 !w-[calc(100%-4.6rem)] flex  bg-clip-border '>
                                             <Chat
                                                 refetch={refetch}
                                                 setNewConv={setNewConv}
