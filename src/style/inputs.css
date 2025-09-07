@@ -21,10 +21,10 @@ input[type="datetime-local"] {
 }
 
 input[type="number"] {
-    @apply !opacity-95 !font-roboto !text-[0.8rem] min-w-24 min-h-[1rem] focus:!outline-none pt-1 !h-full !max-w-max inputStandart !flex !gap-4 !pr-2;
+    @apply !opacity-95 !font-roboto !text-[0.8rem] min-w-24 min-h-[2rem] focus:!outline-none  !h-max !max-w-max inputStandart !flex !gap-4 !pr-2;
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
-        @apply !flex  !opacity-60 !font-roboto pr-5 !min-h-min !border-none py-4 !min-w-max ml-2 bg-transparent !scale-110;
+        @apply !flex !items-center !justify-center !opacity-60 !font-roboto pr-5 !min-h-[calc(0.6rem+6px)] py-0.5 gap-5 flex-col !min-w-max ml-2 bg-transparent;
     }
 }
 

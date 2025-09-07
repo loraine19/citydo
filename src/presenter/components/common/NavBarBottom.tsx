@@ -26,7 +26,6 @@ export const NavBarBottom: React.FC<NavBarBottomProps> = ({ addBtn }) => {
                     e.stopPropagation(); e.preventDefault()
                     setNavBottom(!navBottom)
                 }}>
-
                 <NavBarSection addBtn={addBtn} openBlur={openBlur} setOpenBlur={setOpenBlur} />
             </footer></>
     );
