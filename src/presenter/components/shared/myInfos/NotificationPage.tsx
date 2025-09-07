@@ -105,6 +105,7 @@ export default function NotificationPage() {
                         update={refetch} />
                 </div>
                 <SubHeader
+                    form
                     qty={count}
                     type={"Notifications" + ` ${PathElement[filter as keyof typeof PathElement] ?? ""}`}
                     closeBtn

@@ -85,15 +85,13 @@ export default function GroupDetailPage() {
                     </div>
                     {/* ARTICLES */}
                     <article className='grid grid-rows-[auto,1fr] py-5  lg:-ml-5'>
-                        <SubHeader
-                            type="Autres Groupes"
-                            place={'à découvrir'} />
+                        <h3>Articles</h3>
                         <SkeletonGrid count={3} />
                     </article>
                 </section>
             </main>
             {(!isLoading && !error && group) &&
-                <footer className={` ${hideNavBottom ? 'hidden' : 'bg-yellow-400'}`}>
+                <footer className={` ${hideNavBottom ? 'hidden' : ''}`}>
                     {group?.ImModo ?
                         <CTAMines
                             actions={myActions} /> :

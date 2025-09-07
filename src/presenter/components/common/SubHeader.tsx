@@ -19,7 +19,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
     }
 
     return (
-        <div className={`flex flex-col w-full h-full`}>
+        <div className={`flex flex-col relative w-full h-full`}>
             {/* TITLE DIV  */}
             <div className={`flex w-full h-full  flex-1  gap-x-2 justify-end lg:justify-between`}>
                 {(!hideNavBottom || !navIcons) &&

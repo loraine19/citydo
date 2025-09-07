@@ -80,8 +80,8 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                                 className="relative h-full justify-center max-w-max grid z-50  items-center !p-0">
                                 <div onClick={() => setCloseDial(!closeDial)}>
 
-                                    <div className='flex w-[52px] flex-1 items-center'>
-                                        <img className="!w-[52px] !h-[52px] object-cover object-center !stroke-2"
+                                    <div className='flex w-[3.2rem] flex-1 items-center'>
+                                        <img className="!w-[3.2rem] !h-[3.2rem] object-cover object-center !stroke-2"
                                             src="/image/logo.svg"
                                             alt="logo" />
                                     </div>

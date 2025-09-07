@@ -9,14 +9,6 @@
 @tailwind utilities;
 @tailwind components;
 
-@layer base {
-    /* Cible tous les éléments qui ont la classe 'bg-white'
-     et sont à l'intérieur d'un conteneur avec la classe 'dark' */
-    .dark .bg-white {
-        @apply brightness-100;
-    }
-}
-
 @font-face {
     font-family: "Comfortaa";
     src: url("/fonts/Comfortaa.ttf") format("ttf");
@@ -46,7 +38,7 @@
      bg-slate-300 dark:bg-slate-700 text-slate-700 dark:text-slate-300;
 }
 :root {
-    @apply scroll-smooth text-[14px] xs:text-[15px] sm:!text-[16px] lg:!text-[15px] baseBG;
+    @apply scroll-smooth text-[14px] xs:text-[15px] sm:!text-[16px] lg:!text-[15px] baseBG dark:bg-slate-800 dark:!text-slate-300;
     line-height: 1.2;
     font-weight: 400;
     display: flex;
@@ -70,7 +62,7 @@ body {
 }
 
 .App {
-    @apply flex flex-col w-screen overflow-hidden h-full min-w-[280px] min-h-[550px];
+    @apply flex flex-col w-screen overflow-hidden h-full min-w-[280px] min-h-[400px];
 }
 
 main {

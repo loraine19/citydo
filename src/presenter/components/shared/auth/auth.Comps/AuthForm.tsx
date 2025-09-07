@@ -52,22 +52,28 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
 
     return (
-        <form onSubmit={formik.handleSubmit} className='main h-full'>
-            <div className='flex md:flex-row  flex-1 items-center h-full gap-8 wRespXL px-[2%] pt-8 pb-2 w-full'>
+        <form onSubmit={formik.handleSubmit} className='main'>
+            <div className=' grid grid-cols-[1fr] md:grid-cols-[1fr,1fr] grid-rows-[minmax(20rem,calc(100dvh_-_20rem))] pt-6 items-center  justify-between gap-4 wRespXL px-[2%] w-full'>
                 {/* IMAGE CARD */}
-                <Card className={`border-slate-200 !hidden md:!flex flex-[50%] FixCardNoImage !p-8`} >
-                    <div className="absolute rounded-2xl inset-0 bg-black/10   z-0" />
-                    <img src="image/welcome.jpg"
-                        alt="connexion"
-                        className="absolute inset-0 object-cover object-center w-full h-full rounded-2xl opacity-90 brightness-90 z-0" />
-                    <Typography
-                        className="py-6 px-8 !leading-[1] text-[2.8rem] font-bold !text-center !font-comfortaa relative z-10 !text-white"
-                        style={{ textShadow: "0px 1px 4px #00000080" }} >
-                        Connecter vous à votre Quartier
-                    </Typography>
-                </Card>
+                <div className={` !hidden md:!flex h-full w-full  `}>
+                    <Card className={`border-slate-900/10 FixCardNoImage`} >
+                        <CardBody className="FixCardBody relative !p-0 !flex overflow-hidden !items-center !justify-center ">
+                            <Typography
+                                className="absolute top-4 !leading-[1] text-[2.8rem] font-bold !text-center !font-comfortaa z-10 !text-white"
+                                style={{ textShadow: "0px 1px 4px #00000080" }} >
+                                Connecter vous à votre Quartier
+                            </Typography>
+                            <div className=" grid  overflow-auto max-h-full items-center justify-center bg-slate-700 rounded-3xl  z-0" >
+
+                                <img src="image/welcome.jpg"
+                                    alt="connexion"
+                                    className="CardImage opacity-90 z-0" />
+                            </div>
+                        </CardBody>
+                    </Card>
+                </div>
                 {/* FORM CARD */}
-                <Card className="md:flex-[50%] overflow-auto min-h-38 !h-full FixCardNoImage">
+                <Card className="md:flex-[50%]  FixCardNoImage">
                     <CardHeader
                         className="FixCardHeaderNoImage h-max w-full px-6 pt-6 pb-4 !flex flex-col">
                         <h3>
@@ -121,7 +127,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                             </div>
                         </div>
 
-                        <div className={`xs:flex pb-4 flex-1 w-full pt-8 h-full  min-h-44 px-4 ${hiddeImage()} justify-center items-center hidden  md:hidden `}>
+                        <div className={`md:flex pb-4 flex-1 w-full pt-8 h-full  min-h-44 px-4 ${hiddeImage()} justify-center items-center hidden  md:hidden `}>
                             <Card className={`!flex w-full md:!hidden FixCardNoImage`} >
                                 <img
                                     src="image/welcome.jpg"

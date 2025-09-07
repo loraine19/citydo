@@ -32,7 +32,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
     const { setAlertValues, setOpen, open } = useAlertStore(state => state);
 
     useEffect(() => {
-        setNotif(userRec?.Profile?.firstName ? `Conversation avec ${userRec?.Profile?.firstName}` : 'Chargement...');
+        setNotif(isLoading ? 'Chargement...' : error ?? '');
         if (!newConv && userRec?.id && !messages[0]?.read && !isLoading) {
             const read = async () => await readConversationUseCase(userRec.id);
             read();
@@ -41,10 +41,9 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
 
     useEffect(() => {
         if (error) setNotif(error);
-        else if (messages.length > 0) {
-            setNotif(userRec?.Profile?.firstName ? `Conversation avec ${userRec?.Profile?.firstName}` : 'Chargement...');
+        else if (messages.length == 0) {
+            setNotif('aucun message');
         }
-        else setNotif('aucun message');
     }, [messages])
 
 
@@ -90,28 +89,28 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
     const [openEmoji, setOpenEmoji] = useState(false);
 
     return (
-        <Card className='FixCardNoImage !flex-col rounded-2xl bg-transparent !flex !border-slate-50 !border-8 '>
-            <CardHeader className='FixCardHeaderNoImage h-6 !bg-slate-200  !rounded-b-none w-full px-3  pt-1 !relative !min-h-fit'>
+        <Card className='FixCardNoImage !bg-slate-200  !flex-col rounded-3xl  !flex !border-slate-50 !border-8 '>
+            <CardHeader className={`${notif ? 'h-6' : ''} FixCardHeaderNoImage !rounded-b-none w-full px-3  pt-1 !relative !min-h-fit'`}>
                 {newConv &&
                     <ProfileDiv profile={userRec} />}
-                <div className=' !w-[22rem] !flex  !justify-end border opacity-60 absolute -translate-y-9 -translate-x-[50%] left-[50%]'>
+                {notif && <div className=' !w-[22rem] !flex  !justify-end border opacity-60 absolute -translate-y-9 -translate-x-[50%] left-[50%]'>
                     <NotifDiv
                         notif={notif}
                         error={error}
                         isLoading={isLoading || messages.length !== 0}
                         refetch={refetch} />
-                </div>
+                </div>}
             </CardHeader>
             <CardBody
                 ref={divRef}
                 onScroll={() => handleScroll()}
-                className='bg-slate-200 !flex flex-1 !overflow-auto flex-col-reverse px-4 !border-b-0'>
+                className='rounded-3xl !flex flex-1 !overflow-auto flex-col-reverse px-4 '>
                 <div className='gap-3  lg:px-2 flex-1 justify-end items-end flex flex-col-reverse' >
                     {!isLoading && messages && messages.map((msg: MessageView, index: number) => (
                         <div key={index}
                             className={`flex p-0 w-full items-start ${msg.userId === messages[index + 1]?.userId ? ' pt-0' : ' pt-4'}`} >
                             <div className={`flex flex-1 [overflow-wrap:anywhere] flex-col px-5 shadow-sm border pt-3 pb-6 justify-between relative  
-                                    ${msg.isDeleted ? 'italic text-gray-400' : ''} 
+                                    ${msg.isDeleted ? 'italic text-slate-400' : ''} 
                                     ${msg.IWrite ?
                                     'bg-cyan-100 !text-right justify-end rounded-s-[1.5rem] rounded-tr-[1.5rem] !ml-[28%] ' :
                                     'bg-orange-100 rounded-ss-[1.5rem] rounded-r-[1.5rem] !mr-[28%]'}`}>
@@ -138,10 +137,8 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                     hasNextPage={hasNextPage}
                     handleScroll={handleScroll} />
             </CardBody >
-            <CardFooter className='bg-slate-200 !rounded-t-none !p-0'>
+            <CardFooter className=' !p-0'>
                 <div
-                    onMouseLeave={() => { setImTyping(false) }}
-                    onMouseEnter={() => { setImTyping(true) }}
                     className={`${imTyping ? '-top-2' : '-top-1'} bg-white flex justify-between rounded-[2rem] relative p-2 shadow-md m-2 min-h-min `}>
                     <div className='flex-0 flex top-0' >
                         <Icon
@@ -168,7 +165,8 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                         </div>
                     </div>
                     <textarea
-                        className='rounded-3xl h-10 py-2.5 bg-slate-200/70 pl-4 mx-1 w-full focus:outline-none resize-none overflow-hidden'
+                        onFocus={() => setImTyping(true)}
+                        className='rounded-3xl h-10 py-2.5 bg-slate-200/70 pl-4 mx-1 w-full focus:outline-none resize-none '
                         rows={1}
                         value={message}
                         placeholder='Ecrivez un message...'
@@ -180,6 +178,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                                 setImTyping(false);
                                 const target = e.target as HTMLTextAreaElement;
                                 target.style.height = `40px`;
+                                target.style.height = `${target.scrollHeight}px`;
                             }
                         }}
                         onChange={(e) => {
@@ -187,6 +186,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                             setImTyping(true);
                             const target = e.target as HTMLTextAreaElement;
                             target.style.height = `40px`;
+                            target.style.height = `${target.scrollHeight}px`;
                         }}
                         onInput={(e) => {
                             const target = e.target as HTMLTextAreaElement;
@@ -197,8 +197,9 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                                 setMessage(target.value);
                             }
                             target.style.height = '40px';
+                            target.style.height = `${target.scrollHeight}px`;
                         }}
-                        style={{ maxHeight: '120px' }}
+                        style={{ maxHeight: '40vh' }}
                     />
                     <Icon
                         color='slate'

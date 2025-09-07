@@ -72,9 +72,7 @@ export default function SurveyDetailPage() {
 
                     {/* ARTICLES */}
                     <article className='grid grid-rows-[auto,1fr] py-5  lg:-ml-5'>
-                        <SubHeader
-                            type="Autres cagnottes"
-                            place={'dans ce groupe '} />
+                        <h3>Articles</h3>
                         <SkeletonGrid count={3} />
                     </article>
 

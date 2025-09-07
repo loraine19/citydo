@@ -101,13 +101,12 @@ function App() {
                                     <Route path="/flag/:target/:id" element={<FlagCreatePage />} />
                                     <Route path="/reglement" element={<RulesPage />} />
                                     <Route path="/msg" element={<DashboardPage />} />
-
-                                    <Route path="/notification" element={<NotificationPage />} />
-
                                 </Route>
 
                                 <Route element={<WithTopNavPages title />}>
                                     {/* DETAILS PAGES */}
+
+                                    <Route path="/notification" element={<NotificationPage />} />
                                     <Route path="/service/:id" element={<ServiceDetailPage />} />
                                     <Route path="/cagnotte/:id" element={<PoolDetailPage />} />
                                     <Route path="/annonce/:id" element={<PostDetailPage />} />

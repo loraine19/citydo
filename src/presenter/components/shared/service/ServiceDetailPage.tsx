@@ -274,10 +274,8 @@ export default function ServiceDetailPage() {
 
 
                     {/* ARTICLES */}
-                    <article className='grid grid-rows-[auto,1fr] py-5 lg:-ml-5'>
-                        <SubHeader
-                            type="Autres services"
-                            place={'dans ce groupe '} />
+                    <article className='grid grid-rows-[auto,1fr] py-5  lg:-ml-5'>
+                        <h3>Articles</h3>
                         <SkeletonGrid count={3} />
                     </article>
 

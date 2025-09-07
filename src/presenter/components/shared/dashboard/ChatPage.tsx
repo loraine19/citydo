@@ -131,13 +131,12 @@ export default function ChatPage() {
     return (
         <>
             <main>
-                <div className='sectionHeader '>
+                <div className='sectionHeader relative '>
                     <SubHeader
                         form
-                        qty={open ? messages?.length : countConv}
-                        type={open ? 'messages ' : 'conversation '}
-                        place={' avec ' + (userRec?.Profile?.firstName ?? 'des membres')}
-                        closeBtn
+                        place={open ? ` - ${messages?.length} messages` : `${conversations?.length} conversations`}
+                        type={open ? `Chat avec ${userRec?.Profile?.firstName ?? ''}` : ''}
+                        closeBtn={!open}
                         link='/' />
                     {notif}
                     {!connected &&
@@ -147,7 +146,20 @@ export default function ChatPage() {
                             icon='sync_problem'
                             title='actualiser'
                             onClick={() => connexion()} />}
-
+                    {open && <Icon
+                        style='absolute z-[999] -top-1 !right-1'
+                        size='2xl'
+                        bg
+                        icon='close'
+                        title='fermer'
+                        onClick={() => {
+                            setParams({ with: '0' })
+                            setUserIdRec(0)
+                            setUserRec({} as User)
+                            setOpen(false)
+                        }}
+                    />
+                    }
                 </div>
                 <section className='flex !px-0 pb-4 !pt-7 !max-h-[calc(100dvh_-_2rem)] '>
                     {notifConv &&
@@ -162,8 +174,8 @@ export default function ChatPage() {
                         <Card className='FixCardNoImage !flex !pb-0 !px-0 h-full'>
                             <CardBody className=' !p-0.5 h-full'>
                                 <div className='flex flex-1 h-full '>
-                                    <div className='flex-1 overflow-y-auto overflow-x-hidden'>
-                                        <List className='flex-1 !border-8 rounded-2xl pl-1 border-slate-50'>
+                                    <div className='flex-1 overflow-y-auto overflow-x-hidden rounded-l-2xl '>
+                                        <List className='flex-1 !border-8 !rounded-3xl pl-1'>
                                             {conversations &&
                                                 conversations.map((message: MessageView, index: number) =>
                                                     <div key={index + 'div'}>
@@ -218,7 +230,7 @@ export default function ChatPage() {
                                     </div>
                                     {/* CONVERSATION DIV */}
                                     {open &&
-                                        <div className='relative mt-6 !w-[calc(100%-4.4rem)] rounded-2xl '>
+                                        <div className='relative mt-6 !w-[calc(100%-4.4rem)] rounded-3xl '>
                                             <Chat
                                                 refetch={refetch}
                                                 setNewConv={setNewConv}
@@ -233,19 +245,7 @@ export default function ChatPage() {
                                                 userRec={userRec}
                                                 error={error}
                                             />
-                                            <Icon
-                                                style='absolute z-[999] -top-5 !right-1'
-                                                size='md'
-                                                bg clear
-                                                icon='close'
-                                                title='fermer'
-                                                onClick={() => {
-                                                    setParams({ with: '0' })
-                                                    setUserIdRec(0)
-                                                    setUserRec({} as User)
-                                                    setOpen(false)
-                                                }}
-                                            />
+
                                         </div>
                                     }
                                 </div>

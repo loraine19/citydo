@@ -10,7 +10,7 @@ const queryClient = new QueryClient();
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider value={{ theme: { theme: 'dark' } }}>
+      <ThemeProvider value={{ theme: 'dark' }}>
         <App />
       </ThemeProvider>
     </QueryClientProvider>
