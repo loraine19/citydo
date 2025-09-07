@@ -90,10 +90,10 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
 
     return (
         <Card className='FixCardNoImage !bg-slate-100  !flex-col rounded-3xl  !flex !border-slate-300 !border '>
-            <CardHeader className={`${notif ? 'h-6' : ''} FixCardHeaderNoImage !rounded-b-none w-full px-3  pt-1 !relative !min-h-fit'`}>
+            <CardHeader className={`pt-4   FixCardHeaderNoImage !rounded-b-none w-full px-3  !relative !min-h-fit'`}>
                 {newConv &&
                     <ProfileDiv profile={userRec} />}
-                {notif && <div className=' !w-[22rem] !flex  !justify-end border  absolute -translate-y-9 -translate-x-[50%] left-[50%]'>
+                {notif && <div className=' !w-[22rem] !flex  !justify-end border  absolute -translate-y-8 -translate-x-[50%] left-[50%]'>
                     <NotifDiv
                         notif={notif}
                         error={error}
@@ -104,7 +104,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
             <CardBody
                 ref={divRef}
                 onScroll={() => handleScroll()}
-                className='rounded-3xl !flex flex-1 !overflow-auto flex-col-reverse px-4 '>
+                className='rounded-3xl !flex flex-1  !overflow-auto flex-col-reverse px-4 '>
                 <div className='gap-3  lg:px-2 flex-1 justify-end items-end flex flex-col-reverse' >
                     {!isLoading && messages && messages.map((msg: MessageView, index: number) => (
                         <div key={index}

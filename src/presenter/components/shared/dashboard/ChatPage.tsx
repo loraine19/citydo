@@ -130,7 +130,7 @@ export default function ChatPage() {
 
     return (
         <>
-            <main className='!max-h-[calc(100dvh-0rem)]'>
+            <main className='!max-h-[calc(100dvh-0.05rem)]'>
                 <div className='sectionHeader relative '>
                     <SubHeader
                         form
@@ -165,7 +165,7 @@ export default function ChatPage() {
                                         <Icon
                                             reverse
                                             bg
-                                            style='shadow-lg absolute z-[999] top-2 !right-2 animSlide'
+                                            style='shadow-md absolute z-[999] top-2 !right-2 animSlide'
                                             color={'cyan'}
                                             size='2xl'
                                             icon='arrow_back'
@@ -202,8 +202,7 @@ export default function ChatPage() {
                                                                 />
                                                                 {(online.length > 0 &&
                                                                     online.includes(message.isWith.id)) &&
-                                                                    <span className='absolute top-0 -right-2 bg-green-500 rounded-full
-                                border-4 p-1.5 border-slate-50'>
+                                                                    <span className='absolute top-0 -right-2 bg-green-500 rounded-full border-4 p-1.5 border-slate-50'>
                                                                     </span>
                                                                 }
                                                             </List.ItemStart>
