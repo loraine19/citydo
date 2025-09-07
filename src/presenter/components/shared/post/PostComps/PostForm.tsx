@@ -31,6 +31,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
             <main>
                 <div className="sectionHeader gap-2">
                     <SubHeader
+                        form
                         type={formik.values.title ? `Modifier mon annonce ` : "Créer mon annonce "}
                         place={PostCategory[formik.values.category as keyof typeof PostCategory] || ''}
                         closeBtn

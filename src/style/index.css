@@ -213,11 +213,8 @@ nav li .icon {
 
 /*BUTTONS*/
 
-button:disabled {
-    opacity: 99% !important;
-}
 button:disabled:hover {
-    @apply !bg-opacity-90 !brightness-[1] !saturate-[1];
+    @apply !bg-none;
 }
 
 button {

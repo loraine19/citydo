@@ -65,11 +65,9 @@
 
     .CardImage {
         @apply h-full w-full !rounded-3xl object-cover  bg-slate-400 opacity-90;
-
-        box-shadow: 0 2px 3px 0 #00000010 !important;
     }
     .CardImageDiv {
-        @apply h-full w-full flex flex-1;
+        @apply h-full w-full flex flex-1 !shadow-md !rounded-3xl;
     }
 
     /* CHIP */

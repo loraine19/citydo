@@ -145,8 +145,8 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
                     data-cy={icon}
                     type="button"
                     onClick={onClick}
-                    title={!disabled ? title : title + ' est desactivée'}
-                    className={`group ${classIcon(color)} ${!disabled && classActive} `}
+                    title={!disabled ? title : `${(title ?? 'cette action')} est indisponible`}
+                    className={`group ${classIcon(color)} ${!disabled ? classActive : ''} `}
                     disabled={disabled}>
                     <span className={`${(!fill && !disabled) ? 'group-hover:opacity-0 group-focus:opacity-0' : ''} opacity-100 `}>
                         {searchIcon(icon, fill)}
@@ -161,7 +161,7 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
                     style={{ fontSize: `${num}px` }}
                     data-cy={icon}
                     to={link}
-                    title={title}
+                    title={!disabled ? title : `${(title ?? 'cette action')} est indisponible`}
                     target={link.startsWith('http') ? "_blank" : ""}
                     rel="noopener noreferrer"
                     className={`group ${classIcon(color)} ${!disabled && classActive}`}>
@@ -176,7 +176,7 @@ export const Icon: React.FC<IconProps> = ({ title, disabled, onClick, icon, size
                     <span
                         style={{ fontSize: `${num}px` }}
                         data-cy={icon}
-                        title={title}
+                        title={!disabled ? title : `${(title ?? 'cette action')} est indisponible`}
                         className={`group ${classIcon(color)} relative `}>
                         <span className={`${(!fill && !disabled) ? 'group-hover:opacity-0 group-focus:opacity-0' : ''} opacity-100  `}>
                             {searchIcon(icon, fill)}

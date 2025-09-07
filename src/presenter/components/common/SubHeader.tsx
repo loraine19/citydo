@@ -2,8 +2,8 @@ import { useLocation } from "react-router-dom"
 import { Icon } from "./IconComp"
 import { useUxStore } from "../../../application/stores/ux.store"
 
-type SubHeaderProps = { type: string, qty?: (number | string), place?: any, closeBtn?: boolean, link?: string, image?: string, hideImage?: boolean, }
-export default function SubHeader({ type, qty, place, closeBtn, link, image, hideImage = true }: SubHeaderProps) {
+type SubHeaderProps = { type: string, qty?: (number | string), place?: any, closeBtn?: boolean, link?: string, image?: string, hideImage?: boolean, form?: boolean }
+export default function SubHeader({ type, qty, place, closeBtn, link, image, hideImage = true, form = false }: SubHeaderProps) {
 
 
     const { color, hideNavBottom, setHideNavBottom, navIcons, haveTitle } = useUxStore((state) => state);
@@ -40,27 +40,29 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
                                 />
                             </div>}
                     </div>}
-
                 {/* BUTTON DIV  */}
-                {(hideNavBottom && haveTitle) &&
-                    <div className="flex flex-1 absolute z-[9999] right-0.5 -bottom-14">  <Icon
-                        key={type + 'top'}
-                        style={'!shadow-lg'}
-                        reverse
-                        icon="arrow_upward_alt"
-                        color={color ?? 'gray'}
-                        size="2xl"
-                        fill bg
-                        onClick={() => scrollToTop()}
-                        title="retour en haut" />
+                {(hideNavBottom) &&
+                    <div className="absolute flex h-full w-full left-0"></div>}
+                {(hideNavBottom && !form) &&
+                    <div className={`${(hideNavBottom && !haveTitle) ? '-bottom-14 ' : '-bottom-14 '}flex flex-1 absolute z-[9999] right-0.5 `}>
+                        <Icon
+                            key={type + 'top'}
+                            style={'!shadow-lg'}
+                            reverse
+                            icon="arrow_upward_alt"
+                            color={color ?? 'gray'}
+                            size="2xl"
+                            fill bg
+                            onClick={() => scrollToTop()}
+                            title="retour en haut" />
                     </div>}
                 {closeBtn &&
-                    <div className={`${(hideNavBottom && haveTitle) ? '-bottom-14 ' : 'top-0'} flex flex-1 absolute z-[9999]  left-0.5  `}>
+                    <div className={`${(hideNavBottom && !haveTitle && !form) ? '-bottom-14 ' : 'top-0'} flex flex-1 absolute z-[9999]  left-0.5  `}>
                         <Icon
-                            reverse={hideNavBottom && haveTitle}
-                            style={(hideNavBottom && haveTitle) ? '!shadow-lg border-slate-900/10 ' : ''}
-                            bg={hideNavBottom && haveTitle}
-                            icon={(hideNavBottom && haveTitle) ? "close" : "arrow_back"}
+                            reverse={hideNavBottom && !haveTitle && !form}
+                            style={(hideNavBottom && !haveTitle && !form) ? '!shadow-lg border-slate-900/10 ' : ''}
+                            bg={hideNavBottom && !haveTitle && !form}
+                            icon={(hideNavBottom && !haveTitle) ? "close" : "arrow_back"}
                             color={color ?? 'gray'
                             }
                             size="2xl"

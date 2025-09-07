@@ -43,6 +43,7 @@ export function ServiceForm(props: { formik: any }) {
             <main>
                 <div className="sectionHeader">
                     <SubHeader
+                        form
                         type={formik.values.id ? `Modifier votre service ` : "Créer votre service "}
                         place={formik.values.title}
                         closeBtn

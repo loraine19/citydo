@@ -133,6 +133,7 @@ export default function ChatPage() {
             <main>
                 <div className='sectionHeader '>
                     <SubHeader
+                        form
                         qty={open ? messages?.length : countConv}
                         type={open ? 'messages ' : 'conversation '}
                         place={' avec ' + (userRec?.Profile?.firstName ?? 'des membres')}

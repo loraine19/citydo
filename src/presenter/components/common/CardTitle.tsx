@@ -25,7 +25,7 @@ export function Title(props: { title: string, flagged?: boolean, id?: number, Cr
                 <div className="flex flex-1 items-center gap-4 w-full">
                     <h4
                         id={title}
-                        className={"w-full flex  " + (large ? "!line-clamp-2" : "!line-clamp-1")}
+                        className={"w-full flex  " + (large ? "!line-clamp-2" : "!line-clamp-1 text-[1.05rem] ")}
                         title={title}>
                         {title}
                     </h4>

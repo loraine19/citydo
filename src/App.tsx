@@ -82,6 +82,7 @@ function App() {
                             <Route path="/" element={<PrivateRoute />}>
                                 <Route path="/myprofile" element={<MyInfosPage />} />
 
+
                                 {/* Pages with top navigation */}
                                 <Route element={<WithTopNavPages />}>
                                     <Route path="/chat" element={<ChatPage />} />
@@ -100,13 +101,13 @@ function App() {
                                     <Route path="/flag/:target/:id" element={<FlagCreatePage />} />
                                     <Route path="/reglement" element={<RulesPage />} />
                                     <Route path="/msg" element={<DashboardPage />} />
+
                                     <Route path="/notification" element={<NotificationPage />} />
+
                                 </Route>
 
                                 <Route element={<WithTopNavPages title />}>
                                     {/* DETAILS PAGES */}
-
-
                                     <Route path="/service/:id" element={<ServiceDetailPage />} />
                                     <Route path="/cagnotte/:id" element={<PoolDetailPage />} />
                                     <Route path="/annonce/:id" element={<PostDetailPage />} />

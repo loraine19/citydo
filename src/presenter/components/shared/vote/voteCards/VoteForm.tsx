@@ -51,6 +51,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
             <main>
                 <div className="sectionHeader">
                     <SubHeader
+                        form
                         type={formik.values.id ?
                             `Modifier votre ${formik.values.typeS} ` : `Créer votre ${formik.values.typeS === 'POOL' ? 'cagnotte ' : formik.values.typeS === 'SURVEY' ? 'sondage ' : 'vote'}`}
                         closeBtn
