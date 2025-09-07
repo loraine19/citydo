@@ -139,7 +139,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
             </CardBody >
             <CardFooter className=' !p-0'>
                 <div
-                    className={`${imTyping ? '-top-2' : '-top-1'} bg-white flex justify-between rounded-[2rem] relative p-2 shadow-md m-2 min-h-min `}>
+                    className={`${imTyping ? '-top-2' : '-top-1'} bg-white flex justify-between rounded-[2rem]  p-2 shadow-md m-2 min-h-min sticky `}>
                     <div className='flex-0 flex top-0 mt-1 ' >
                         <Icon
                             onClick={() => setOpenEmoji(!openEmoji)}

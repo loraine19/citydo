@@ -130,7 +130,7 @@ export default function ChatPage() {
 
     return (
         <>
-            <main>
+            <main className='!max-h-[calc(100dvh-0rem)]'>
                 <div className='sectionHeader relative '>
                     <SubHeader
                         form
@@ -180,7 +180,7 @@ export default function ChatPage() {
                                                 conversations.map((message: MessageView, index: number) =>
                                                     <div key={index + 'div'}>
                                                         <List.Item
-                                                            className={`gap-1 rounded-full  ${(userIdRec === message?.isWith.id) ?
+                                                            className={`gap-1 rounded-full overflow-hidden ${(userIdRec === message?.isWith.id) ?
                                                                 '!bg-slate-100 border !border-slate-300 py-2.5 px-2.5 shadow-md my-0.5 -ml-2.5 ' :
                                                                 'bg-slate-200 py-1 '}`}
                                                             key={index}
@@ -232,7 +232,7 @@ export default function ChatPage() {
                                     </div>
                                     {/* CONVERSATION DIV */}
                                     {open &&
-                                        <div className='absolute right-0 flex-1 h-full rounded-l-3xl backdrop:opacity-5 pt-6 !w-[calc(100%-4.6rem)] flex  bg-clip-border '>
+                                        <div className='absolute right-0 flex-1 h-full rounded-l-3xl backdrop:opacity-5 pt-[20px] -mr-[2px] -mb-[2px] !w-[calc(100%-4.6rem)] flex  bg-clip-border '>
                                             <Chat
                                                 refetch={refetch}
                                                 setNewConv={setNewConv}
