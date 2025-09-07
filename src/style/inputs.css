@@ -7,8 +7,8 @@ input:-internal-autofill-selected {
     transition: background-color 5000s ease-in-out 0s;
 }
 .inputStandart {
-    @apply !rounded-none border-b !border-slate-400  focus:!border-b-slate-800  !border-t-0 !border-x-0 hover:!border-t-0 placeholder:!opacity-90   focus:placeholder:!opacity-50 before:content-none after:content-none gap-4 font-normal  text-sm  !text-slate-500 !font-roboto !bg-transparent placeholder:!bg-red-400 
-    focus:!bg-slate-200 focus:!outline-none !ring-0 !ring-current !pl-2 active:!bg-slate-800;
+    @apply !rounded-none border-b !border-slate-400  focus:!border-b-slate-800  !border-t-0 !border-x-0 hover:!border-t-0 placeholder:!opacity-90   focus:placeholder:!opacity-50 before:content-none after:content-none gap-4 font-normal  text-sm  !text-slate-500 !font-roboto !bg-transparent 
+    focus:!bg-slate-200 focus:!outline-none !ring-0 !ring-current !pl-2 active:!bg-slate-300;
 }
 .inputStandart::placeholder {
     @apply !text-slate-600 !opacity-90 !font-roboto;

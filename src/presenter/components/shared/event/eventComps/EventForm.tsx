@@ -129,7 +129,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                                 <InputError mt error={formik.errors.description} />
                                             </div>
                                         </div>
-                                        <div className="flex flex-1 flex-col pt-4 ">
+                                        <div className="flex flex-1 flex-col pt-4 md:pt-0 ">
                                             {((Address?.lat && Address?.lng)) ?
                                                 <AddressMapOpen address={Address} /> : ''}
 
