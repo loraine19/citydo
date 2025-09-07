@@ -134,8 +134,8 @@ export default function ChatPage() {
                 <div className='sectionHeader relative '>
                     <SubHeader
                         form
-                        place={open ? ` - ${messages?.length} messages` : `${conversations?.length} conversations`}
-                        type={open ? `Chat avec ${userRec?.Profile?.firstName ?? ''}` : ''}
+                        place={open ? ` - ${messages?.length} messages` : ` - ${conversations?.length} conversations`}
+                        type={open ? `Chat avec ${userRec?.Profile?.firstName ?? ''}` : 'Messagerie '}
                         closeBtn={!open}
                         link='/' />
                     {notif}
@@ -148,9 +148,9 @@ export default function ChatPage() {
                             onClick={() => connexion()} />}
                     {open && <Icon
                         style='absolute z-[999] -top-1 !right-1'
+                        color={'cyan'}
                         size='2xl'
-                        bg
-                        icon='close'
+                        icon='arrow_back'
                         title='fermer'
                         onClick={() => {
                             setParams({ with: '0' })
@@ -161,7 +161,7 @@ export default function ChatPage() {
                     />
                     }
                 </div>
-                <section className='flex !px-0 pb-4 !pt-7 !max-h-[calc(100dvh_-_2rem)] '>
+                <section className='flex !px-0 pb-3 !pt-8 !max-h-[calc(100dvh_-_2rem)] '>
                     {notifConv &&
                         <NotifDiv
                             notif={notifConv}
@@ -171,16 +171,18 @@ export default function ChatPage() {
                         />}
                     {isLoadingConv ?
                         <Skeleton className=' m-auto !h-full ' /> :
-                        <Card className='FixCardNoImage !flex !pb-0 !px-0 h-full'>
-                            <CardBody className=' !p-0.5 h-full'>
-                                <div className='flex flex-1 h-full '>
-                                    <div className='flex-1 overflow-y-auto overflow-x-hidden rounded-l-2xl '>
-                                        <List className='flex-1 !border-8 !rounded-3xl pl-1'>
+                        <Card className='FixCardNoImage !flex !p-0 !px-0 h-full'>
+                            <CardBody className='!p-0 h-full !relative'>
+                                <div className='flex flex-1 h-full relative rounded-3xl'>
+                                    <div className='flex-1 p-3 overflow-y-auto overflow-x-hidden rounded-l-3xl !my-1 '>
+                                        <List className='flex-1 gap-2 px-2 !rounded-3xl'>
                                             {conversations &&
                                                 conversations.map((message: MessageView, index: number) =>
                                                     <div key={index + 'div'}>
                                                         <List.Item
-                                                            className={`p-1 gap-1 ${(userIdRec === message?.isWith.id) ? '!bg-slate-200 !border-slate-50 !border-8 shadow-md -mt-2 -ml-3 rounded-2xl' : 'bg-slate-50 '}`}
+                                                            className={`gap-1.5 rounded-full  ${(userIdRec === message?.isWith.id) ?
+                                                                '!bg-slate-100 border !border-slate-300  py-3 px-3 shadow-md  -ml-4  ' :
+                                                                'bg-slate-200 py-1 '}`}
                                                             key={index}
                                                             onClick={() => {
                                                                 setOpen(true)
@@ -191,7 +193,7 @@ export default function ChatPage() {
                                                             }} >
                                                             <List.ItemStart className='relative flex min-w-max'>
                                                                 <AvatarUser
-                                                                    avatarSize='md'
+                                                                    avatarSize={(userIdRec === message?.isWith.id) ? 'lg' : 'md'}
                                                                     Profile={message?.isWith?.Profile}
                                                                 />
                                                                 {(online.length > 0 &&
@@ -213,7 +215,7 @@ export default function ChatPage() {
                                                                 </div>
                                                                 <Typography
                                                                     variant="small"
-                                                                    className="font-normal !line-clamp-1">
+                                                                    className="font-normal !pr-4 !line-clamp-1">
                                                                     {message.IWrite &&
                                                                         <span className='text-slate-400'>
                                                                             {message.read && '🗸'}
@@ -223,14 +225,14 @@ export default function ChatPage() {
                                                                 </Typography>
                                                             </div>
                                                         </List.Item>
-                                                        <hr className='border-b-[1px] border-t-0 !border-slate-400/40'></hr>
+
                                                     </div>
                                                 )}
                                         </List>
                                     </div>
                                     {/* CONVERSATION DIV */}
                                     {open &&
-                                        <div className='relative mt-6 !w-[calc(100%-4.4rem)] rounded-3xl '>
+                                        <div className='absolute right-0 flex-1 h-full rounded-l-3xl backdrop:opacity-5 pt-6 !w-[calc(100%-5.2rem)] flex  bg-clip-border '>
                                             <Chat
                                                 refetch={refetch}
                                                 setNewConv={setNewConv}

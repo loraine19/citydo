@@ -89,11 +89,11 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
     const [openEmoji, setOpenEmoji] = useState(false);
 
     return (
-        <Card className='FixCardNoImage !bg-slate-200  !flex-col rounded-3xl  !flex !border-slate-50 !border-8 '>
+        <Card className='FixCardNoImage !bg-slate-100  !flex-col rounded-3xl  !flex !border-slate-300 !border '>
             <CardHeader className={`${notif ? 'h-6' : ''} FixCardHeaderNoImage !rounded-b-none w-full px-3  pt-1 !relative !min-h-fit'`}>
                 {newConv &&
                     <ProfileDiv profile={userRec} />}
-                {notif && <div className=' !w-[22rem] !flex  !justify-end border opacity-60 absolute -translate-y-9 -translate-x-[50%] left-[50%]'>
+                {notif && <div className=' !w-[22rem] !flex  !justify-end border  absolute -translate-y-9 -translate-x-[50%] left-[50%]'>
                     <NotifDiv
                         notif={notif}
                         error={error}
@@ -140,7 +140,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
             <CardFooter className=' !p-0'>
                 <div
                     className={`${imTyping ? '-top-2' : '-top-1'} bg-white flex justify-between rounded-[2rem] relative p-2 shadow-md m-2 min-h-min `}>
-                    <div className='flex-0 flex top-0' >
+                    <div className='flex-0 flex top-0 mt-1 ' >
                         <Icon
                             onClick={() => setOpenEmoji(!openEmoji)}
                             color='slate'
@@ -151,11 +151,12 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                         />
                         <div className='absolute flex overflow-auto items-end w-full pr-3 -ml-3 z-50 mb-14 bottom-0 '>
                             <EmojiPicker
-                                className='bg-cyan-600 !overflow-auto max-h-[85%] z-40 p-1 mr-2 flex flex-1'
+                                className='!bg-white !font-roboto !overflow-auto !mb-2 !shadow-md !rounded-3xl max-h-[85%] z-40 p-1.5 mx-4 flex flex-1'
                                 previewConfig={{ showPreview: false }}
                                 searchPlaceHolder='Rechercher un emoji'
                                 skinTonesDisabled={true}
-                                searchDisabled={false}
+                                height={350}
+                                searchDisabled={true}
                                 emojiStyle={EmojiStyle.GOOGLE}
                                 open={openEmoji}
                                 onEmojiClick={(emoji) => {
@@ -202,6 +203,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                         style={{ maxHeight: '40vh' }}
                     />
                     <Icon
+                        style='!mt-0.5'
                         color='slate'
                         title='Envoyer'
                         onClick={() => {
