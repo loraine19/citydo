@@ -53,9 +53,9 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
     return (
         <form onSubmit={formik.handleSubmit} className='main'>
-            <div className=' grid grid-cols-[1fr] md:grid-cols-[1fr,1fr] grid-rows-[minmax(20rem,calc(100dvh_-_20rem))] pt-6 items-center  justify-between gap-4 wRespXL px-[2%] w-full'>
+            <div className=' grid grid-cols-[1fr] md:grid-cols-[1fr,1fr] grid-rows-[minmax(20rem,calc(100dvh_-_20rem))]  items-center  justify-between gap-4 wRespXL px-[2%] w-full'>
                 {/* IMAGE CARD */}
-                <div className={` !hidden md:!flex h-full w-full  `}>
+                <div className={` !hidden md:!flex h-full w-full overflow-hidden `}>
                     <Card className={`border-slate-900/10 FixCardNoImage`} >
                         <CardBody className="FixCardBody relative !p-0 !flex overflow-hidden !items-center !justify-center ">
                             <Typography
@@ -63,7 +63,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 style={{ textShadow: "0px 1px 4px #00000080" }} >
                                 Connecter vous à votre Quartier
                             </Typography>
-                            <div className=" grid  overflow-auto max-h-full items-center justify-center bg-slate-700 rounded-3xl  z-0" >
+                            <div className=" grid  max-h-full items-center justify-center bg-slate-700 rounded-3xl  z-0" >
 
                                 <img src="image/welcome.jpg"
                                     alt="connexion"

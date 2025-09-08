@@ -61,6 +61,7 @@ function App() {
     useEffect(() => { getColor(window.location.pathname) }, [window.location.pathname]);
 
     return (
+
         <ErrorBoundary
             color={color} onRetry={handleRetry} retryCount={retryCount}>
             <AlertNotif />
@@ -142,9 +143,9 @@ function App() {
                     </Suspense>
                     <AlertModal values={alertValues ?? errorValues} />
 
-                    <div className="scale-95 opacity-50">
+                    {/* <div className="scale-95 opacity-50">
                         <ReactQueryDevtools />
-                    </div>
+                    </div> */}
                 </div>
             </BrowserRouter>
         </ErrorBoundary>

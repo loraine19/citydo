@@ -42,7 +42,7 @@
 }
 
 .style {
-    @apply bg-opacity-100 !border-slate-900/5 !brightness-95  stroke-1 stroke-slate-900/90 font-roboto;
+    @apply bg-opacity-100 !border-slate-900/10 !brightness-95  stroke-1 stroke-slate-900/90 font-roboto;
 }
 
 .inv {
@@ -50,7 +50,7 @@
 }
 
 .cyanStyle {
-    @apply !text-cyan-500  !bg-cyan-300/50   style;
+    @apply !text-cyan-500  !bg-cyan-300/50 saturate-[0.9]   style;
 }
 .cyanStyleInv {
     @apply !bg-cyan-500 inv;

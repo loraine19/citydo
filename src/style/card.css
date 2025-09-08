@@ -21,7 +21,7 @@
 
 /* list grid */
 .SubGrid {
-    @apply pt-6 max-w-[calc(100vw-1rem)] mx-1.5;
+    @apply max-w-[calc(100vw-1rem)] mx-1.5;
 }
 
 /**** CARD ****/
@@ -30,29 +30,29 @@
 
     .card {
         @apply border bg-slate-50  rounded-3xl w-full mx-auto 
-    !relative !p-0 anim z-50 bg-clip-content !overflow-visible border-slate-300   grid;
+    !relative !p-0 anim z-50  border-slate-300   grid;
         box-shadow: 0 1px 1px 0 #00000010;
     }
 
     .FixCard {
         @apply card w-respLarge h-full
-    lg:grid-rows-[minmax(100px,22vh),minmax(min-content,1fr),auto]
-    md:grid-rows-[minmax(100px,22vh),minmax(min-content,1fr),auto]
-    sm:grid-rows-[minmax(100px,23vh),minmax(min-content,1fr),auto]
-    grid-rows-[minmax(100px,23vh),minmax(min-content,1fr),auto];
+    lg:grid-rows-[minmax(100px,28vh),minmax(min-content,1fr),auto]
+    md:grid-rows-[minmax(100px,28vh),minmax(min-content,1fr),auto]
+    sm:grid-rows-[minmax(100px,28vh),minmax(min-content,1fr),auto]
+    grid-rows-[minmax(100px,28vh),minmax(min-content,1fr),auto];
     }
 
     .FixCardNoImage {
         @apply card w-respLarge 
-        my-0  h-[calc(100%+1.5rem)] !-mt-6 
+        my-0 
         grid-rows-[auto,minmax(min-content,1fr),auto];
     }
 
     /* CARD HEADER */
     .FixCardHeader {
-        @apply min-w-[calc(100%-4rem)]  mx-auto 
-        !flex !flex-1 !rounded-3xl !relative !z-[99] -mt-6  fadeIn border !border-slate-300
-        h-[calc(100%+1rem)];
+        @apply min-w-full  mx-auto !mt-0
+        !flex !flex-1 !rounded-3xl !relative !z-[99]   fadeIn border !border-slate-300
+        h-full;
     }
 
     .FixCardHeaderSmall {
@@ -67,7 +67,7 @@
         @apply h-full w-full !rounded-3xl object-cover  bg-slate-400 opacity-90;
     }
     .CardImageDiv {
-        @apply h-full w-full flex flex-1 !shadow-md !rounded-3xl;
+        @apply h-full w-full flex flex-1;
     }
 
     /* CHIP */
@@ -101,7 +101,7 @@
     /***************/
     /* DETAILD CARD  */
     .DetailCardDiv {
-        @apply wRespXL grid pt-8  px-0.5 max-h-[calc(100dvh_-_6rem)];
+        @apply wRespXL grid pt-2  px-0.5 max-h-[calc(100dvh_-_6rem)];
     }
 
     .CardDetailGrid {
@@ -120,13 +120,13 @@
     }
 
     .CardDetailGridNoImage {
-        @apply w-respLarge card !-mt-6 rounded-2xl w-full mx-auto !relative !p-0 anim z-50 !min-h-fit
+        @apply w-respLarge card  rounded-2xl w-full mx-auto !relative !p-0 anim z-50 !min-h-fit
         grid grid-rows-[auto,minmax(min-content,1fr),auto];
     }
 
     .DetailCardHeader {
-        @apply min-w-[calc(100%-4rem)] mx-auto
-        !flex flex-1 !rounded-3xl !relative !z-[99] -mt-6 !shadow-md fadeIn border border-slate-400/60 h-[calc(100%+1rem)];
+        @apply min-w-full mx-auto
+        !flex flex-1 !rounded-3xl !relative !z-[99] mt-0 !shadow-md fadeIn border border-slate-400/60 h-full;
     }
 
     .DetailCardBody {
@@ -138,11 +138,10 @@
     /* 1CTA 11REM */
     .hideCTA {
         @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_10rem)]
-        grid-rows-[minmax(calc(100dvh-12rem),calc(100dvh-12rem))];
+        grid-rows-[minmax(calc(100dvh-10rem),calc(100dvh-10rem))];
     }
     .hideCTA2 {
-        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_10rem)]
-        grid-rows-[minmax(calc(100dvh-12rem),calc(100dvh-12rem))];
+        @apply hideCTA;
     }
 
     .hideCTAForm {

@@ -101,16 +101,16 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim bg-opacity-90 wRespXL justify-between gap-2 md:gap-6  pr-4  lg:!px-0 ` :
+                    `items-center opacity-100 anim bg-opacity-90 wRespXL justify-between gap-[5%] md:gap-6  px-2 lg:!px-0 ` :
                     'z-0 md:gap-4 gap-3 pr-2 ') +
                 ` flex z-30 w-full `
             }>
                 <Navbar className={`
-                    ${navBottom ? 'ml-2 lg:ml-0 border-[1px] rounded-full !shadow bg-slate-50 border-slate-300 !flex-1 !max-w-max md:!max-w-[100%]  ' :
-                        ` !pt-1  shadow-none border-none bg-transparent w-full `}
+                    ${navBottom ? ' lg:ml-0 border-[1px] rounded-full !shadow bg-slate-50 border-slate-300 !flex-1 !max-w-full   ' :
+                        ` !pt-1  shadow-none border-none bg-transparent  w-full `}
                     flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden  `}>
                     <ul className={`${navBottom ?
-                        ' gap-[0.5vw] justify-between flex-1 !w-full p-1.5' : 'md:gap-0 gap-1 justify-around '} 
+                        ' gap-[0.5vw] justify-between flex-1 !w-full ' : 'md:gap-0 gap-1 justify-around '} 
                             flex  !max-w-[calc(100vw-5.5rem)] flex-row  rounded-full h-full  w-full  `}>
                         {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                             <Typography
@@ -122,29 +122,29 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                                     to={to}
                                     className={({ isActive }) =>
                                         `flex gap-2 lg:gap-3 justify-center lg:justify-start items-center w-full h-full rounded-full 
-                                            ${navBottom ? ` px-[4.5px] py-[4px] ` : 'opacity-90'}
-                                            ${(isActive && navBottom) ? `z-50 ${color.col}StyleInv animSlide   mx-[2px]` :
+                                            ${navBottom ? ` px-[8px] py-[4px] ` : 'opacity-90'}
+                                            ${(isActive && navBottom) ? `z-50 ${color.col}Style border animSlide !px-[4px]` :
                                             (isActive && !navBottom) ? ` border-b-[1px] px-1 md:border-none rounded-none !border-current !opacity-100 ` :
                                                 isActive ? `  ` : '!shadow-none '}`
                                     }>
                                     {({ isActive }) => (
                                         <>
                                             <Icon
-                                                reverse={isActive && navBottom ? true : false}
                                                 disabled={isActive}
                                                 style={
                                                     `${(isActive && !navBottom) ? `` : ''} min-h-[48px] `
                                                 }
-                                                clear={isActive && navBottom ? true : false}
-                                                bg={(navBottom) ? true : false}
+                                                reverse={false}
+                                                clear={navBottom}
+                                                bg={navBottom}
                                                 size={navBottom ? '3xl' : 'xl'}
                                                 icon={icon}
                                                 fill={isActive ? true : false}
                                                 color={color.col}
                                             />
                                             {/* LABEL LINK */}
-                                            <span className={`font-bold font-comfortaa drop-shadow-sm hidden pr-2
-                                            ${navBottom ? 'lg:pr-8 md:block md:!text-[0.85rem] ' : 'md:block md:!text-[0.80rem]'} 
+                                            <span className={`font-medium !font-roboto hidden pr-2
+                                            ${navBottom ? 'lg:pr-8 md:block md:!text-[0.9rem] ' : 'md:block md:!text-[0.9rem]'} 
                                             ${(isActive && !navBottom) && 'underline underline-offset-8'}`}>
                                                 {label}
                                             </span>
@@ -161,7 +161,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                     open={openBlur}
                     setOpen={setOpenBlur}
                     className={`${(!navBottom && !addBtn) ? 'hidden' : ''}
-                        ${!navBottom ? ' flex -mr-3.5 ' : '-mr-2 -mt-3'} 
+                        ${!navBottom ? ' flex -mr-3.5 ' : ' -mt-3'} 
                          z-[50]  `}
                     placement={navBottom ? 'top' : 'bottom'}
                     offset={10}

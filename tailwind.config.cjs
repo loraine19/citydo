@@ -24,29 +24,29 @@ export default {
       colors: {
         'bg-surface': 'var(--color-bg-surface)',
       },
-      darkMode: 'class',
     },
   },
   plugins: [mtConfig({
-    fonts: {
-      sans: "Roboto",
-      serif: "DM Serif Display"
-    },
-    colors: {
-      primary: {
-        default: "#06b6d4",
-        dark: "#0891b2",
-        light: "#a5f3fc",
-        foreground: "#ffffff"
-      }
-    },
-    darkColors: {
-      primary: {
-        default: "#5eead4",
-        dark: "#2dd4bf",
-        light: "#99f6e4",
-        foreground: "#030712",
-      },
-    },
+    //   fonts: {
+    //     sans: "Roboto",
+    //     serif: "DM Serif Display"
+    //   },
+    //   colors: {
+    //     primary: {
+    //       default: "#06b6d4",
+    //       dark: "#0891b2",
+    //       light: "#a5f3fc",
+    //       foreground: "#ffffff"
+    //     }
+    //   },
+    //   darkColors: {
+    //     primary: {
+    //       default: "#5eead4",
+    //       dark: "#2dd4bf",
+    //       light: "#99f6e4",
+    //       foreground: "#030712",
+    //     },
+    //   },
+    // 
   })],
 };
