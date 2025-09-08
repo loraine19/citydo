@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Suspense, lazy, useEffect, useState } from "react";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { PrivateRoute } from "./presenter/components/shared/utilsPage/PrivateRouter";
 import NotFindPage from "./presenter/components/shared/utilsPage/NotFindPage";
 import ErrorBoundary from "./presenter/components/shared/utilsPage/ErrorBoundary";
