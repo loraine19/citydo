@@ -199,16 +199,16 @@ export default function EventListPage() {
                                 handleHideCallback()
 
                             }}
-                            className="Grid">
+                            className="Grid gap-6 p-2">
                             {events.map((event: EventView, index: number) => (
-                                <div className="SubGrid "
-                                    key={index} >
-                                    <EventCard
-                                        event={event}
-                                        change={change}
-                                        mines={mines}
-                                        refetch={refetch} />
-                                </div>
+
+                                <EventCard
+
+                                    key={index}
+                                    event={event}
+                                    change={change}
+                                    mines={mines}
+                                    refetch={refetch} />
                             ))}
                             <LoadMoreButton
                                 isBottom={isBottom}

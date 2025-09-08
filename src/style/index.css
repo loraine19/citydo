@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
+/* Police = font-family in French */
+
+@import "./md3/md3.css";
 @import "./card.css";
 @import "./inputs.css";
 @import "./color.css";
@@ -26,6 +30,13 @@
 @font-face {
     font-family: "Roboto";
     src: url("/fonts/Roboto.ttf") format("ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/Montserrat.ttf") format("ttf");
     font-weight: normal;
     font-style: normal;
 }
@@ -106,9 +117,6 @@ h2 {
 h3 {
     @apply font-semibold text-[1.3rem] !text-slate-600 !font-roboto;
 }
-h4 {
-    @apply font-semibold text-[1.08rem] !text-slate-800 !font-roboto;
-}
 h5 {
     @apply text-lg text-[0.95rem] font-normal !text-slate-700 !font-roboto;
 }
@@ -120,7 +128,7 @@ p {
 }
 
 i {
-    @apply italic text-[0.95rem] font-normal !text-slate-500/90 !font-roboto;
+    @apply italic text-[0.90rem] font-normal !text-slate-500/90 !font-montserrat;
 }
 
 .description {

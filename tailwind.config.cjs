@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         comfortaa: ["Comfortaa", "sans-serif"],
         roboto: ["Roboto", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"],
       },
       screens: {
         'xxs': '320px',
@@ -24,29 +25,17 @@ export default {
       colors: {
         'bg-surface': 'var(--color-bg-surface)',
       },
+      borderRadius: {
+        sm: "4px",
+        md: "8px",
+        lg: "12px",
+        xl: "16px",
+        "2xl": "24px",
+        "3xl": "12px",
+        full: "9999px",
+      },
     },
+    ...mtConfig,
   },
-  plugins: [mtConfig({
-    //   fonts: {
-    //     sans: "Roboto",
-    //     serif: "DM Serif Display"
-    //   },
-    //   colors: {
-    //     primary: {
-    //       default: "#06b6d4",
-    //       dark: "#0891b2",
-    //       light: "#a5f3fc",
-    //       foreground: "#ffffff"
-    //     }
-    //   },
-    //   darkColors: {
-    //     primary: {
-    //       default: "#5eead4",
-    //       dark: "#2dd4bf",
-    //       light: "#99f6e4",
-    //       foreground: "#030712",
-    //     },
-    //   },
-    // 
-  })],
+  plugins: [],
 };

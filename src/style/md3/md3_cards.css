@@ -1,0 +1,153 @@
+/* Cartes */
+.md3-card {
+    padding: 16px;
+    border-radius: 12px;
+    transition: box-shadow 0.2s, background-color 0.2s;
+    background-color: var(--md3-surface);
+    box-shadow: none;
+    border: none;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+.md3-card-with-image {
+    @apply md3-card;
+    padding: 0 !important;
+}
+
+.md3-card-elevated {
+    background-color: var(--md3-surface);
+    box-shadow: var(--md3-shadow-elevation-1);
+}
+
+.md3-card-elevated:hover,
+.md3-card-elevated:focus {
+    box-shadow: var(--md3-shadow-elevation-2);
+}
+
+.md3-card-filled {
+    background-color: var(--md3-primary-container);
+    color: var(--md3-on-primary-container);
+}
+
+.md3-card-outlined {
+    background-color: var(--md3-surface);
+    border: 1px solid var(--md3-outline);
+}
+
+.md3-card:focus-visible {
+    outline: 2px solid var(--md3-primary);
+    outline-offset: 2px;
+}
+
+.md3-card-image-container-top {
+    overflow: hidden;
+    border-radius: var(--md3-radius-large);
+    height: 100%;
+    width: 100%;
+    background: var(--md3-surface-variant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.md3-card-image-container-left {
+    overflow: hidden;
+    border-radius: var(--md3-radius-large);
+    flex: 0 0 40%;
+    height: auto;
+    width: auto;
+    background: var(--md3-on-surface-variant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.md3-card-image-top {
+    display: flex;
+    flex: 1;
+    max-height: 35vh;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--md3-radius-large);
+    border-color: #00000020;
+    border-width: 1px;
+}
+.md3-card-image-left {
+    object-fit: cover;
+    width: auto;
+    height: auto;
+}
+
+.md3-card-content {
+    padding: var(--md3-spacing-sm) var(--md3-spacing-medium);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.md3-card-image-children {
+    padding: var(--md3-spacing-sm);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.md3-card-large-image-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-radius: var(--md3-radius-large);
+    background: inherit;
+    margin-top: -16px;
+}
+
+.md3-card-headline {
+    font-family: montserrat, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--md3-on-surface);
+    margin-bottom: 4px;
+}
+
+.md3-card-subhead {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--md3-on-surface-variant);
+    margin-bottom: 8px;
+}
+
+.md3-card-supporting-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--md3-on-surface-variant);
+    line-height: 1.25rem;
+}
+
+.md3-card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.md3-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--md3-spacing-medium);
+    padding: var(--md3-spacing-sm) var(--md3-spacing-small);
+    color: var(--md3-on-surface-variant);
+}
+
+.md3-card-header {
+    color: var(--md3-on-surface-variant);
+    font-size: 1.125rem;
+    font-weight: 500;
+}

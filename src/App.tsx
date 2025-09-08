@@ -50,6 +50,11 @@ const ChatPage = lazy(() => import("./presenter/components/shared/dashboard/Chat
 const RulesPage = lazy(() => import("./presenter/components/shared/dashboard/RulesPage"));
 const GroupPage = lazy(() => import("./presenter/components/shared/dashboard/group/GroupPage"));
 const GroupDetailPage = lazy(() => import("./presenter/components/shared/dashboard/group/GroupDetailPage"));
+const BaseCreatePage = lazy(() => import("./presenter/components/shared/base/BaseCreatePage"));
+const BaseEditPage = lazy(() => import("./presenter/components/shared/base/BaseEditPage"));
+const BaseListPage = lazy(() => import("./presenter/components/shared/base/BaseListPage"));
+const BaseDetailPage = lazy(() => import("./presenter/components/shared/base/BaseDetailPage"));
+
 
 function App() {
     const [retryCount, setRetryCount] = useState(0);
@@ -69,6 +74,7 @@ function App() {
                     <Suspense fallback={<LoadingPage />}>
                         <Routes>
                             {/* Public routes */}
+                            <Route path="/base" element={<BaseListPage />} />
                             <Route path="/test" element={<LoadingPage />} />
                             <Route path="/signin" element={<SignInPage />} />
                             <Route path="/signup" element={<SignUpPage />} />
@@ -101,6 +107,8 @@ function App() {
                                     <Route path="/flag/:target/:id" element={<FlagCreatePage />} />
                                     <Route path="/reglement" element={<RulesPage />} />
                                     <Route path="/msg" element={<DashboardPage />} />
+                                    <Route path="/base/create" element={<BaseCreatePage />} />
+                                    <Route path="/base/edit/:id" element={<BaseEditPage />} />
                                 </Route>
 
                                 <Route element={<WithTopNavPages title />}>
@@ -115,6 +123,7 @@ function App() {
                                     <Route path="/conciliation/:id" element={<IssueDetailPage />} />
                                     <Route path="/vote/create" element={<VoteCreatePage />} />
                                     <Route path="/sondage/:id" element={<SurveyDetailPage />} />
+                                    <Route path="/base/:id" element={<BaseDetailPage />} />
                                 </Route>
 
                                 <Route element={<WithTopNavPages addBtn navIcons />}>
@@ -133,6 +142,7 @@ function App() {
                                         <Route path="/vote" element={<VoteListPage />} />
                                         <Route path="/annonce" element={<PostListPage />} />
                                         <Route path="/conciliation" element={<ConciliationListPage />} />
+
                                     </Route>
                                 </Route>
 

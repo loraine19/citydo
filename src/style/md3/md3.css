@@ -1,0 +1,671 @@
+/* ========================================
+ * Fichier CSS pour Material Design 3
+ * ======================================== */
+
+@import "./md3_buttons.css";
+@import "./md3_cards.css";
+
+:root {
+    /* Couleurs de la palette Material Design 3 */
+    --md3-primary: #6750a4;
+    --md3-on-primary: #ffffff;
+    --md3-primary-container: #eaddff;
+    --md3-on-primary-container: #21005d;
+    --md3-secondary: #625b71;
+    --md3-on-secondary: #ffffff;
+    --md3-secondary-container: #e8def8;
+    --md3-on-secondary-container: #1d192b95;
+    --md3-tertiary: #7d5260;
+    --md3-on-tertiary: #ffffff;
+    --md3-tertiary-container: #ffd8e4;
+    --md3-on-tertiary-container: #31111d95;
+    --md3-error: #b3261e;
+    --md3-on-error: #ffffff;
+    --md3-error-container: #f9dedc;
+    --md3-on-error-container: #410e0b95;
+    --md3-background: #fffbfe;
+    --md3-on-background: #1c1b1f;
+    --md3-surface: #fffbfe;
+    --md3-on-surface: #1c1b1f;
+    --md3-surface-variant: #e7e0ec;
+    --md3-on-surface-variant: #49454f;
+    --md3-outline: #79747e;
+    --md3-outline-variant: #c9c4d4;
+    --md3-shadow: #000000;
+    --md3-scrim: rgba(0, 0, 0, 0.32);
+    --md3-inverse-surface: #313033;
+    --md3-inverse-on-surface: #f4eff4;
+    --md3-inverse-primary: #d0bcff;
+
+    /* Couleurs additionnelles demandées */
+    --md3-sky: #03a9f4;
+    --md3-on-sky: #ffffff;
+    --md3-sky-container: #b3e5fc;
+    --md3-on-sky-container: #002f4795;
+    --md3-cyan: #00bcd4;
+    --md3-on-cyan: #ffffff;
+    --md3-cyan-container: #b2ebf2;
+    --md3-on-cyan-container: #1c7279;
+    --md3-rose: #e91e63;
+    --md3-on-rose: #ffffff;
+    --md3-rose-container: #f8bbd0;
+    --md3-on-rose-container: #56002795;
+    --md3-orange: #ff9800;
+    --md3-on-orange: #ffffff;
+    --md3-orange-container: #ffe0b2;
+    --md3-on-orange-container: #4e260095;
+    --md3-green: #4caf50;
+    --md3-on-green: #ffffff;
+    --md3-green-container: #c8e6c9;
+    --md3-on-green-container: #1b5e20;
+
+    /* Ombres (élévation) */
+    --md3-shadow-elevation-0: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    --md3-shadow-elevation-1: 0px 1px 2px 0px rgba(0, 0, 0, 0.18),
+        0px 1px 3px 1px rgba(0, 0, 0, 0.1);
+    --md3-shadow-elevation-2: 0px 1px 2px 0px rgba(0, 0, 0, 0.18),
+        0px 2px 6px 2px rgba(0, 0, 0, 0.1);
+    --md3-shadow-elevation-3: 0px 1px 3px 0px rgba(0, 0, 0, 0.18),
+        0px 4px 8px 3px rgba(0, 0, 0, 0.1);
+    --md3-shadow-elevation-4: 0px 2px 3px 0px rgba(0, 0, 0, 0.18),
+        0px 6px 10px 4px rgba(0, 0, 0, 0.1);
+    --md3-shadow-elevation-5: 0px 4px 4px 0px rgba(0, 0, 0, 0.18),
+        0px 8px 12px 6px rgba(0, 0, 0, 0.1);
+
+    /* Rayons et dimensions */
+    --md3-radius-small: 4px;
+    --md3-radius-medium: 8px;
+    --md3-radius-large: 12px;
+    --md3-radius-extra-large: 28px;
+    --md3-radius-full: 9999px;
+
+    /* Animations */
+    --md3-anim-duration-short: 150ms;
+    --md3-anim-duration-medium: 250ms;
+    --md3-anim-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Padding et marges */
+    --md3-spacing-extra-small: 4px;
+    --md3-spacing-small: 8px;
+    --md3-spacing-sm: 12px;
+    --md3-spacing-medium: 16px;
+    --md3-spacing-md: 20px;
+    --md3-spacing-large: 24px;
+    --md3-spacing-extra-large: 32px;
+
+    /* hover effect */
+    --md3-hover-effect: rgba(0, 0, 0, 0.08);
+    --md3-hover-effect-light: rgba(255, 255, 255, 0.08);
+    --md3-hover-effect-dark: rgba(255, 255, 255, 0.16);
+}
+
+/* Base pour tous les composants */
+[data-md3] {
+    font-family: "Montserrat", sans-serif;
+    transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
+    box-sizing: border-box;
+}
+
+/* Utilitaires pour le layout de la démo */
+.md3-demo-page {
+    padding: 2rem;
+}
+.md3-section {
+    margin-bottom: 3rem;
+}
+.md3-component-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    align-items: center;
+}
+
+/* FAB */
+.md3-fab-container {
+    position: relative;
+}
+.md3-fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    width: 56px;
+    border-radius: var(--md3-radius-large);
+    background-color: var(--md3-primary);
+    color: var(--md3-on-primary);
+    box-shadow: var(--md3-shadow-elevation-3);
+    cursor: pointer;
+    transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
+}
+.md3-fab-small {
+    height: 40px;
+    width: 40px;
+}
+.md3-fab-large {
+    height: 96px;
+    width: 96px;
+    border-radius: var(--md3-radius-extra-large);
+}
+.md3-fab-extended {
+    width: auto;
+    min-width: 80px;
+    padding: 0 16px;
+    border-radius: var(--md3-radius-extra-large);
+}
+.md3-fab-menu-container {
+    position: absolute;
+    bottom: 64px;
+    right: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
+}
+.md3-fab-menu-container.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Inputs */
+.md3-input-container {
+    position: relative;
+    width: 100%;
+}
+.md3-input-field {
+    width: 100%;
+    padding: 16px;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
+}
+.md3-input-filled .md3-input-field {
+    background-color: var(--md3-surface-variant);
+    border-radius: var(--md3-radius-small);
+}
+.md3-input-outlined .md3-input-field {
+    background-color: transparent;
+    border: 1px solid var(--md3-outline);
+    border-radius: var(--md3-radius-small);
+}
+.md3-input-label {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    font-size: 1rem;
+    color: var(--md3-on-surface-variant);
+    pointer-events: none;
+    transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
+}
+.md3-input-field:focus + .md3-input-label,
+.md3-input-field:not(:placeholder-shown) + .md3-input-label {
+    transform: scale(0.75) translateY(-50%) translateX(-2px);
+    top: 8px;
+    left: 12px;
+}
+
+/* Switch */
+.md3-switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 32px;
+}
+.md3-switch-input {
+    opacity: 0;
+    position: absolute;
+}
+.md3-switch-toggle {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--md3-surface-variant);
+    transition: var(--md3-anim-duration-medium) var(--md3-anim-easing);
+    border-radius: 32px;
+}
+.md3-switch-handle {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--md3-on-surface-variant);
+    transition: var(--md3-anim-duration-medium) var(--md3-anim-easing);
+    border-radius: 50%;
+}
+.md3-switch-input:checked + .md3-switch-toggle {
+    background-color: var(--md3-primary);
+}
+.md3-switch-input:checked + .md3-switch-toggle .md3-switch-handle {
+    transform: translateX(20px);
+    background-color: var(--md3-on-primary);
+}
+
+/* Dialog */
+.md3-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--md3-scrim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--md3-anim-duration-medium) var(--md3-anim-easing);
+}
+.md3-dialog-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+.md3-dialog {
+    background-color: var(--md3-surface);
+    color: var(--md3-on-surface);
+    border-radius: var(--md3-radius-large);
+    padding: 1.5rem;
+    box-shadow: var(--md3-shadow-elevation-3);
+    transform: scale(0.9);
+    transition: transform var(--md3-anim-duration-medium) var(--md3-anim-easing);
+}
+.md3-dialog-overlay.open .md3-dialog {
+    transform: scale(1);
+}
+
+/* Carrousel */
+.md3-carousel {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    gap: 1rem;
+    padding: 1rem;
+}
+.md3-carousel-item {
+    flex-shrink: 0;
+    width: 300px;
+}
+.md3-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+/* Navigation Drawer */
+.md3-nav-drawer-scrim {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--md3-scrim);
+    z-index: 998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--md3-anim-duration-medium) var(--md3-anim-easing);
+}
+.md3-nav-drawer-scrim.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+.md3-nav-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 360px;
+    background-color: var(--md3-surface);
+    color: var(--md3-on-surface);
+    box-shadow: var(--md3-shadow-elevation-1);
+    transform: translateX(-100%);
+    transition: transform var(--md3-anim-duration-medium) var(--md3-anim-easing);
+    z-index: 999;
+}
+.md3-nav-drawer.open {
+    transform: translateX(0);
+}
+.md3-nav-drawer-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: var(--md3-radius-full);
+    color: var(--md3-on-surface-variant);
+    transition: all var(--md3-anim-duration-short) var(--md3-anim-easing);
+}
+.md3-nav-drawer-item.active {
+    background-color: var(--md3-primary-container);
+    color: var(--md3-on-primary-container);
+}
+
+/* --- AJOUTS DE LA V3 --- */
+/* AppBar */
+.md3-appbar {
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    height: 64px;
+    background-color: var(--md3-surface);
+    box-shadow: var(--md3-shadow-elevation-1);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    transition: box-shadow var(--md3-anim-duration-short) var(--md3-anim-easing),
+        background-color var(--md3-anim-duration-short) var(--md3-anim-easing);
+}
+
+/* FAB Menu (la position relative est gérée par le conteneur) */
+.md3-fab-menu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity var(--md3-anim-duration-short) var(--md3-anim-easing),
+        transform var(--md3-anim-duration-short) var(--md3-anim-easing);
+    pointer-events: none;
+}
+.md3-fab-menu-container.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Segmented Button (classes de base déjà ajoutées, mais il faut une classe pour le groupe) */
+.md3-segmented-button-group {
+    display: flex;
+    border: 1px solid var(--md3-outline);
+    border-radius: var(--md3-radius-full);
+    overflow: hidden;
+}
+.md3-segmented-button {
+    background-color: transparent;
+    color: var(--md3-on-surface-variant);
+    padding: 0 12px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    flex-grow: 1;
+    transition: all var(--md3-anim-duration-short) var(--md3-anim-easing);
+}
+.md3-segmented-button.active {
+    background-color: var(--md3-secondary-container);
+    color: var(--md3-on-secondary-container);
+}
+
+/* Date/Time Pickers (layout simple, nécessite une logique JS pour fonctionner) */
+.md3-picker-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--md3-surface-variant);
+    border-radius: var(--md3-radius-large);
+}
+.md3-picker-header {
+    font-family: var(--md3-font-family);
+    font-size: var(--md3-font-size-base);
+    font-weight: var(--md3-font-weight-medium);
+    color: var(--md3-on-surface-variant);
+}
+.md3-picker-controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+.md3-picker-date-item,
+.md3-picker-time-item {
+    padding: 0.5rem;
+    border-radius: var(--md3-radius-small);
+    background-color: var(--md3-surface);
+    text-align: center;
+    cursor: pointer;
+}
+.md3-picker-date-item.active,
+.md3-picker-time-item.active {
+    background-color: var(--md3-primary);
+    color: var(--md3-on-primary);
+}
+
+/* Navigation Rail */
+.md3-nav-rail {
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    background-color: var(--md3-surface);
+    color: var(--md3-on-surface);
+    box-shadow: var(--md3-shadow-elevation-1);
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
+}
+.md3-nav-rail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    cursor: pointer;
+    transition: all var(--md3-anim-duration-short) var(--md3-anim-easing);
+}
+.md3-nav-rail-item.active {
+    background-color: var(--md3-secondary-container);
+    color: var(--md3-on-secondary-container);
+}
+
+/* Side Sheet */
+.md3-side-sheet-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--md3-anim-duration-medium) var(--md3-anim-easing);
+}
+.md3-side-sheet-container.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+.md3-side-sheet {
+    background-color: var(--md3-surface);
+    width: 360px;
+    height: 100%;
+    box-shadow: var(--md3-shadow-elevation-2);
+    transform: translateX(100%);
+    transition: transform var(--md3-anim-duration-medium) var(--md3-anim-easing);
+}
+.md3-side-sheet-container.open .md3-side-sheet {
+    transform: translateX(0);
+}
+
+/* Checkbox */
+.md3-checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+.md3-checkbox-input {
+    opacity: 0;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+}
+.md3-checkbox-icon {
+    font-family: "Material Symbols Outlined";
+    font-size: 24px;
+    color: var(--md3-on-surface-variant);
+    transition: color var(--md3-anim-duration-short) var(--md3-anim-easing);
+}
+.md3-checkbox-input:checked + .md3-checkbox-icon {
+    color: var(--md3-primary);
+}
+
+/* Chip */
+.md3-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 16px;
+    height: 32px;
+    border-radius: var(--md3-radius-full);
+    cursor: pointer;
+    transition: all var(--md3-anim-duration-short) var(--md3-anim-easing);
+}
+.md3-chip-filled {
+    background-color: var(--md3-primary);
+    color: var(--md3-on-primary);
+}
+.md3-chip-outlined {
+    background-color: transparent;
+    color: var(--md3-on-surface-variant);
+    border: 1px solid var(--md3-outline);
+}
+
+/* List */
+.md3-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 300px;
+    background-color: var(--md3-surface);
+    border-radius: var(--md3-radius-small);
+    box-shadow: var(--md3-shadow-elevation-1);
+}
+.md3-list-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color var(--md3-anim-duration-short);
+}
+.md3-list-item:hover {
+    background-color: var(--md3-surface-variant);
+}
+
+/* Menu */
+.md3-menu-container {
+    position: relative;
+    display: inline-block;
+}
+.md3-menu {
+    position: absolute;
+    z-index: 100;
+    background-color: var(--md3-surface);
+    border-radius: var(--md3-radius-small);
+    box-shadow: var(--md3-shadow-elevation-2);
+    padding: 8px 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--md3-anim-duration-short) var(--md3-anim-easing);
+}
+.md3-menu.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+.md3-menu-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color var(--md3-anim-duration-short);
+}
+.md3-menu-item:hover {
+    background-color: var(--md3-surface-variant);
+}
+
+/* Sliders */
+.md3-slider-container {
+    width: 100%;
+    padding: 1rem 0;
+}
+.md3-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: var(--md3-primary-container);
+    outline: none;
+}
+.md3-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--md3-primary);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Tabs */
+.md3-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--md3-outline-variant);
+    width: 100%;
+}
+.md3-tab {
+    padding: 1rem;
+    cursor: pointer;
+    position: relative;
+    color: var(--md3-on-surface-variant);
+    transition: all var(--md3-anim-duration-short) var(--md3-anim-easing);
+}
+.md3-tab.active {
+    color: var(--md3-primary);
+}
+.md3-tab.active::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--md3-primary);
+    transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
+}
+
+/* Tooltips */
+.md3-tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+.md3-tooltip {
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: var(--md3-radius-small);
+    white-space: nowrap;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--md3-anim-duration-short) var(--md3-anim-easing);
+}
+.md3-tooltip:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+}
+.md3-tooltip-container:hover .md3-tooltip {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* --- FIN DES AJOUTS DE LA V3 --- */

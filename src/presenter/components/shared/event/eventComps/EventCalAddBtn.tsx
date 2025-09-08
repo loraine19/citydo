@@ -22,10 +22,11 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
             className={className + ' hover:cursor-pointer '}
             trigger={
                 <Icon
+                    color="slate"
                     icon="calendar_add_on"
                     title={`ajouter a mon agenda  : ${title}`}
                     bg={true}
-                    size="lg"
+                    size="xl"
                     style={iconClass}
                 />
             }

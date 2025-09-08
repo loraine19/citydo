@@ -1,0 +1,343 @@
+/* Boutons */
+.md3-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 64px;
+    height: 40px;
+    padding: 0 24px;
+    border-radius: var(--md3-radius-full);
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    position: relative; /* Nécessaire pour la surcouche d'état */
+    overflow: hidden;
+    transition: all var(--md3-anim-duration-short) var(--md3-anim-easing);
+}
+
+.md3-button:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Variantes de boutons */
+.md3-elevating {
+    box-shadow: var(--md3-shadow-elevation-1);
+}
+.md3-elevating:hover {
+    box-shadow: var(--md3-shadow-elevation-2);
+}
+.md3-elevating:active {
+    box-shadow: var(--md3-shadow-elevation-1);
+}
+/* Bouton Rempli (Filled) */
+.md3-button-hover-lighting {
+    filter: opacity(0.8) brightness(1) saturate(0.8) contrast(1.1);
+}
+.md3-button-hover-lighting:active {
+    filter: opacity(1) brightness(0.9) contrast(1.3);
+}
+
+.md3-button-hover-darkening {
+    position: relative;
+}
+.md3-button-hover-darkening::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: currentColor;
+    opacity: 0.07;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 1;
+}
+.md3-button-hover-darkening:active::after {
+    opacity: 0.04;
+    transition: all 0.5s;
+}
+.md3-button-hover-colorize:active::after {
+    opacity: 0.05;
+    transition: all 0.5s;
+}
+.md3-button-hover-colorize {
+    position: relative;
+}
+.md3-button-hover-colorize::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: currentColor;
+    opacity: 0.15;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 1;
+}
+.md3-button-hover-colorize:active::after {
+    opacity: 0.05;
+    transition: all 0.5s;
+}
+
+.md3-button-hover-lighting {
+    position: relative;
+}
+.md3-button-hover-lighting::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: currentColor;
+    opacity: 0.1;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+.md3-button-filled {
+    background-color: var(--md3-primary);
+    color: var(--md3-on-primary);
+}
+.md3-button-filled:hover {
+    @apply md3-button-hover-lighting;
+}
+
+/* Bouton Élévé (Elevated) */
+.md3-button-elevated {
+    background-color: var(--md3-surface);
+    color: var(--md3-primary);
+    box-shadow: var(--md3-shadow-elevation-1);
+}
+.md3-button-elevated:hover {
+    box-shadow: var(--md3-shadow-elevation-2);
+    @apply md3-button-hover-colorize;
+    transition: all 0.5s;
+}
+.md3-button-elevated:active {
+    box-shadow: var(--md3-shadow-elevation-1);
+    transition: all 0.5s;
+}
+
+/* Bouton Contour (Outlined) */
+.md3-button-outlined {
+    background-color: transparent;
+    color: var(--md3-primary);
+    border: 1px solid var(--md3-outline);
+}
+.md3-button-outlined:hover {
+    @apply md3-button-hover-colorize;
+}
+
+/* Bouton Texte (Text) */
+.md3-button-text {
+    background-color: transparent;
+    color: var(--md3-primary);
+    padding: 0 12px;
+    height: 36px;
+}
+.md3-button-text:hover {
+    @apply md3-button-hover-colorize;
+}
+
+/* Couleurs des boutons (à combiner avec les variantes) */
+/*Elevé + Couleur*/
+.md3-button-elevated.md3-button-secondary {
+    background-color: var(--md3-on-secondary);
+    color: var(--md3-secondary);
+}
+.md3-button-elevated.md3-button-tertiary {
+    background-color: var(--md3-on-tertiary);
+    color: var(--md3-tertiary);
+}
+.md3-button-elevated.md3-button-error {
+    background-color: var(--md3-on-error);
+    color: var(--md3-error);
+}
+.md3-button-elevated.md3-button-sky {
+    background-color: var(--md3-on-sky);
+    color: var(--md3-sky);
+}
+.md3-button-elevated.md3-button-cyan {
+    background-color: var(--md3-on-cyan);
+    color: var(--md3-cyan);
+}
+.md3-button-elevated.md3-button-rose {
+    background-color: var(--md3-on-rose);
+    color: var(--md3-rose);
+}
+.md3-button-elevated.md3-button-orange {
+    background-color: var(--md3-on-orange);
+    color: var(--md3-orange);
+}
+
+.md3-button-elevated.md3-button-green {
+    background-color: var(--md3-on-green);
+    color: var(--md3-green);
+}
+
+/* Rempli + Couleur */
+.md3-button-filled.md3-button-secondary {
+    background-color: var(--md3-secondary);
+    color: var(--md3-on-secondary);
+}
+.md3-button-filled.md3-button-tertiary {
+    background-color: var(--md3-tertiary);
+    color: var(--md3-on-tertiary);
+}
+.md3-button-filled.md3-button-error {
+    background-color: var(--md3-error);
+    color: var(--md3-on-error);
+}
+.md3-button-filled.md3-button-sky {
+    background-color: var(--md3-sky);
+    color: var(--md3-on-sky);
+}
+.md3-button-filled.md3-button-cyan {
+    background-color: var(--md3-cyan);
+    color: var(--md3-on-cyan);
+}
+.md3-button-filled.md3-button-rose {
+    background-color: var(--md3-rose);
+    color: var(--md3-on-rose);
+}
+.md3-button-filled.md3-button-orange {
+    background-color: var(--md3-orange);
+    color: var(--md3-on-orange);
+}
+.md3-button-filled.md3-button-green {
+    background-color: var(--md3-green);
+    color: var(--md3-on-green);
+}
+
+/* Contour + Couleur */
+.md3-button-outlined.md3-button-secondary {
+    border-color: var(--md3-secondary);
+    color: var(--md3-secondary);
+}
+.md3-button-outlined.md3-button-tertiary {
+    border-color: var(--md3-tertiary);
+    color: var(--md3-tertiary);
+}
+.md3-button-outlined.md3-button-error {
+    border-color: var(--md3-error);
+    color: var(--md3-error);
+}
+
+.md3-button-outlined.md3-button-sky {
+    border-color: var(--md3-sky);
+    color: var(--md3-sky);
+}
+.md3-button-outlined.md3-button-cyan {
+    border-color: var(--md3-cyan);
+    color: var(--md3-cyan);
+}
+.md3-button-outlined.md3-button-rose {
+    border-color: var(--md3-rose);
+    color: var(--md3-rose);
+}
+.md3-button-outlined.md3-button-orange {
+    border-color: var(--md3-orange);
+    color: var(--md3-orange);
+}
+.md3-button-outlined.md3-button-green {
+    border-color: var(--md3-green);
+    color: var(--md3-green);
+}
+
+/* Texte + Couleur */
+.md3-button-text.md3-button-secondary {
+    color: var(--md3-secondary);
+}
+.md3-button-text.md3-button-tertiary {
+    color: var(--md3-tertiary);
+}
+.md3-button-text.md3-button-error {
+    color: var(--md3-error);
+}
+.md3-button-text.md3-button-sky {
+    color: var(--md3-sky);
+}
+.md3-button-text.md3-button-cyan {
+    color: var(--md3-cyan);
+}
+.md3-button-text.md3-button-rose {
+    color: var(--md3-rose);
+}
+.md3-button-text.md3-button-orange {
+    color: var(--md3-orange);
+}
+.md3-button-text.md3-button-green {
+    color: var(--md3-green);
+}
+
+/* Bouton Tonal (Tonal) */
+.md3-button-tonal {
+    background-color: var(--md3-secondary-container);
+    color: var(--md3-on-secondary-container);
+}
+.md3-button-tonal:hover {
+    @apply md3-button-hover-darkening;
+}
+.md3-button-tonal:active {
+    box-shadow: var(--md3-shadow-elevation-0, none);
+    @apply md3-button-hover-darkening;
+}
+
+/* Tonal + Couleur */
+.md3-button-tonal.md3-button-primary {
+    background-color: var(--md3-primary-container);
+    color: var(--md3-on-primary-container);
+}
+.md3-button-tonal.md3-button-secondary {
+    background-color: var(--md3-secondary-container);
+    color: var(--md3-on-secondary-container);
+}
+.md3-button-tonal.md3-button-tertiary {
+    background-color: var(--md3-tertiary-container);
+    color: var(--md3-on-tertiary-container);
+}
+.md3-button-tonal.md3-button-error {
+    background-color: var(--md3-error-container);
+    color: var(--md3-on-error-container);
+}
+.md3-button-tonal.md3-button-sky {
+    background-color: var(--md3-sky-container);
+    color: var(--md3-on-sky-container);
+}
+.md3-button-tonal.md3-button-cyan {
+    background-color: var(--md3-cyan-container);
+    color: var(--md3-on-cyan-container);
+}
+.md3-button-tonal.md3-button-rose {
+    background-color: var(--md3-rose-container);
+    color: var(--md3-on-rose-container);
+}
+.md3-button-tonal.md3-button-orange {
+    background-color: var(--md3-orange-container);
+    color: var(--md3-on-orange-container);
+}
+.md3-button-tonal.md3-button-green {
+    background-color: var(--md3-green-container);
+    color: var(--md3-on-green-container);
+}
+
+/* Boutons segmentés */
+.md3-segmented-button-group {
+    display: flex;
+    border-radius: var(--md3-radius-full);
+    border: 1px solid var(--md3-outline);
+    overflow: hidden;
+}
+.md3-segmented-button {
+    background-color: transparent;
+    color: var(--md3-on-surface-variant);
+    padding: 0 12px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    flex-grow: 1;
+}
+.md3-segmented-button.active {
+    background-color: var(--md3-secondary-container);
+    color: var(--md3-on-secondary-container);
+}
