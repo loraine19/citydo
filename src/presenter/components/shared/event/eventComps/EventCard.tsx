@@ -32,6 +32,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
     const navigate = useNavigate();
     return (
         <CardMD
+            className="lg:h-[45vh] h-[35vh] min-h-fit"
             link={`/evenement/${id}`}
             image={
                 <CardMD.Image
@@ -83,7 +84,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
             </CardMD.SupportingText>
             <CardMD.Footer>
                 {!mines ? (
-                    <div className="flex relative flex-1 overflow-hidden -ml-2 items-center gap-2">
+                    <div className="flex relative flex-1 overflow-hidden items-center gap-2">
                         <EventCalAddBtn
                             event={event}
                             className="-mr-5" iconClass={`${'  top-0 !outline outline-white left-0.5 absolute hover:z-50  '}`} />

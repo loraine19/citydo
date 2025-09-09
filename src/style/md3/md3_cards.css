@@ -9,12 +9,14 @@
     overflow: hidden;
     position: relative;
     display: flex;
-    height: 100%;
+
     flex-direction: column;
 }
 .md3-card-with-image {
     @apply md3-card;
     padding: 0 !important;
+    display: grid;
+    grid-template-rows: 50% 1fr auto;
 }
 
 .md3-card-elevated {
@@ -86,6 +88,7 @@
     padding: var(--md3-spacing-sm) var(--md3-spacing-medium);
     display: flex;
     flex-direction: column;
+    gap: var(--md3-spacing-sm);
     gap: 4px;
 }
 .md3-card-image-children {
@@ -141,8 +144,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: var(--md3-spacing-sm) var(--md3-spacing-md);
     gap: var(--md3-spacing-medium);
-    padding: var(--md3-spacing-sm) var(--md3-spacing-small);
     color: var(--md3-on-surface-variant);
 }
 

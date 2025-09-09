@@ -19,14 +19,14 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
     return (
         <PopOver
             key={id + "add"}
-            className={className + ' hover:cursor-pointer '}
+            className={className + ' min-h-max hover:cursor-pointer '}
             trigger={
                 <Icon
                     color="slate"
                     icon="calendar_add_on"
                     title={`ajouter a mon agenda  : ${title}`}
                     bg={true}
-                    size="xl"
+                    size="lg"
                     style={iconClass}
                 />
             }
