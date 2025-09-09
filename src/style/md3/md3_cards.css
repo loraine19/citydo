@@ -41,7 +41,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    border-color: var(--md3-outline);
+    border-color: #00000020;
     border-width: 1px;
 }
 
