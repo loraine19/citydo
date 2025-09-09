@@ -87,7 +87,8 @@ export const CardMD: React.FC<CardMDProps> & {
     ...props
 }) => {
         const findElement = (type: string) => Children.toArray(children).find((child: any) => (child as any).type.name === type);
-        const navigate = useNavigate();
+        const navigate = useNavigate()
+        console.log(Children.toArray(children).map((child: any) => (child as any).type.name));
         //// CARD CSS
         const cardClasses = `${image ? "md3-card-with-image" : "md3-card"} md3-card-${variant} ${className ?? ""}`;
 
