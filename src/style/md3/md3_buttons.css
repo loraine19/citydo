@@ -1,4 +1,10 @@
-/* Boutons */
+/* ===========================================================
+    MD3 BUTTONS STYLES
+    =========================================================== */
+
+/* -----------------------------------------------------------
+    BASE BUTTON STYLES
+    ----------------------------------------------------------- */
 .md3-button {
     display: inline-flex;
     align-items: center;
@@ -12,7 +18,7 @@
     text-transform: uppercase;
     cursor: pointer;
     border: none;
-    position: relative; /* Nécessaire pour la surcouche d'état */
+    position: relative;
     overflow: hidden;
     transition: all var(--md3-anim-duration-short) var(--md3-anim-easing);
 }
@@ -23,77 +29,11 @@
     pointer-events: none;
 }
 
-/* Variantes de boutons */
-.md3-elevating {
-    box-shadow: var(--md3-shadow-elevation-1);
-}
-.md3-elevating:hover {
-    box-shadow: var(--md3-shadow-elevation-2);
-}
-.md3-elevating:active {
-    box-shadow: var(--md3-shadow-elevation-1);
-}
-/* Bouton Rempli (Filled) */
-.md3-button-hover-lighting {
-    filter: opacity(0.8) brightness(1) saturate(0.8) contrast(1.1);
-}
-.md3-button-hover-lighting:active {
-    filter: opacity(1) brightness(0.9) contrast(1.3);
-}
+/* -----------------------------------------------------------
+    BUTTON VARIANTS
+    ----------------------------------------------------------- */
 
-.md3-button-hover-darkening {
-    position: relative;
-}
-.md3-button-hover-darkening::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: currentColor;
-    opacity: 0.07;
-    pointer-events: none;
-    border-radius: inherit;
-    z-index: 1;
-}
-.md3-button-hover-darkening:active::after {
-    opacity: 0.2;
-    transition: all 0.5s;
-}
-.md3-button-hover-colorize:active::after {
-    opacity: 0.05;
-    transition: all 0.5s;
-}
-.md3-button-hover-colorize {
-    position: relative;
-}
-.md3-button-hover-colorize::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: currentColor;
-    opacity: 0.15;
-    pointer-events: none;
-    border-radius: inherit;
-    z-index: 1;
-}
-.md3-button-hover-colorize:active::after {
-    opacity: 0.05;
-    transition: all 0.5s;
-}
-
-.md3-button-hover-lighting {
-    position: relative;
-}
-.md3-button-hover-lighting::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: currentColor;
-    opacity: 0.1;
-    pointer-events: none;
-    border-radius: inherit;
-    z-index: 1;
-}
-
+/* Filled */
 .md3-button-filled {
     background-color: var(--md3-primary);
     color: var(--md3-on-primary);
@@ -102,7 +42,7 @@
     @apply md3-button-hover-lighting;
 }
 
-/* Bouton Élévé (Elevated) */
+/* Elevated */
 .md3-button-elevated {
     background-color: var(--md3-surface);
     color: var(--md3-primary);
@@ -118,9 +58,8 @@
     transition: all 0.5s;
 }
 
-/* Bouton Contour (Outlined) */
+/* Outlined */
 .md3-button-outlined {
-    background-color: transparent;
     color: var(--md3-primary);
     border: 1px solid var(--md3-outline);
 }
@@ -128,7 +67,7 @@
     @apply md3-button-hover-colorize;
 }
 
-/* Bouton Texte (Text) */
+/* Text */
 .md3-button-text {
     background-color: transparent;
     color: var(--md3-primary);
@@ -139,8 +78,50 @@
     @apply md3-button-hover-colorize;
 }
 
-/* Couleurs des boutons (à combiner avec les variantes) */
-/*Elevé + Couleur*/
+/* Tonal */
+.md3-button-tonal {
+    background-color: var(--md3-secondary-container);
+    color: var(--md3-on-secondary-container);
+}
+.md3-button-tonal:hover {
+    @apply md3-button-hover-darkening;
+}
+.md3-button-tonal:active {
+    box-shadow: var(--md3-shadow-elevation-0, none);
+    @apply md3-button-hover-darkening;
+}
+
+/* -----------------------------------------------------------
+    BUTTON COLOR MODIFIERS
+    ----------------------------------------------------------- */
+
+/* Filled + Color */
+.md3-button-filled.md3-button-secondary {
+    @apply md3-secondary;
+}
+.md3-button-filled.md3-button-tertiary {
+    @apply md3-tertiary;
+}
+.md3-button-filled.md3-button-error {
+    @apply md3-error;
+}
+.md3-button-filled.md3-button-sky {
+    @apply md3-sky;
+}
+.md3-button-filled.md3-button-cyan {
+    @apply md3-cyan;
+}
+.md3-button-filled.md3-button-rose {
+    @apply md3-rose;
+}
+.md3-button-filled.md3-button-orange {
+    @apply md3-orange;
+}
+.md3-button-filled.md3-button-green {
+    @apply md3-green;
+}
+
+/* Elevated + Color */
 .md3-button-elevated.md3-button-secondary {
     background-color: var(--md3-on-secondary);
     color: var(--md3-secondary);
@@ -169,47 +150,12 @@
     background-color: var(--md3-on-orange);
     color: var(--md3-orange);
 }
-
 .md3-button-elevated.md3-button-green {
     background-color: var(--md3-on-green);
     color: var(--md3-green);
 }
 
-/* Rempli + Couleur */
-.md3-button-filled.md3-button-secondary {
-    background-color: var(--md3-secondary);
-    color: var(--md3-on-secondary);
-}
-.md3-button-filled.md3-button-tertiary {
-    background-color: var(--md3-tertiary);
-    color: var(--md3-on-tertiary);
-}
-.md3-button-filled.md3-button-error {
-    background-color: var(--md3-error);
-    color: var(--md3-on-error);
-}
-.md3-button-filled.md3-button-sky {
-    background-color: var(--md3-sky);
-    color: var(--md3-on-sky);
-}
-.md3-button-filled.md3-button-cyan {
-    background-color: var(--md3-cyan);
-    color: var(--md3-on-cyan);
-}
-.md3-button-filled.md3-button-rose {
-    background-color: var(--md3-rose);
-    color: var(--md3-on-rose);
-}
-.md3-button-filled.md3-button-orange {
-    background-color: var(--md3-orange);
-    color: var(--md3-on-orange);
-}
-.md3-button-filled.md3-button-green {
-    background-color: var(--md3-green);
-    color: var(--md3-on-green);
-}
-
-/* Contour + Couleur */
+/* Outlined + Color */
 .md3-button-outlined.md3-button-secondary {
     border-color: var(--md3-secondary);
     color: var(--md3-secondary);
@@ -222,7 +168,6 @@
     border-color: var(--md3-error);
     color: var(--md3-error);
 }
-
 .md3-button-outlined.md3-button-sky {
     border-color: var(--md3-sky);
     color: var(--md3-sky);
@@ -244,7 +189,7 @@
     color: var(--md3-green);
 }
 
-/* Texte + Couleur */
+/* Text + Color */
 .md3-button-text.md3-button-secondary {
     color: var(--md3-secondary);
 }
@@ -270,58 +215,110 @@
     color: var(--md3-green);
 }
 
-/* Bouton Tonal (Tonal) */
-.md3-button-tonal {
-    background-color: var(--md3-secondary-container);
-    color: var(--md3-on-secondary-container);
-}
-.md3-button-tonal:hover {
-    @apply md3-button-hover-darkening;
-}
-.md3-button-tonal:active {
-    box-shadow: var(--md3-shadow-elevation-0, none);
-    @apply md3-button-hover-darkening;
-}
-
-/* Tonal + Couleur */
+/* Tonal + Color */
 .md3-button-tonal.md3-button-primary {
-    background-color: var(--md3-primary-container);
-    color: var(--md3-on-primary-container);
+    @apply md3-primary-container;
 }
 .md3-button-tonal.md3-button-secondary {
-    background-color: var(--md3-secondary-container);
-    color: var(--md3-on-secondary-container);
+    @apply md3-secondary-container;
 }
 .md3-button-tonal.md3-button-tertiary {
-    background-color: var(--md3-tertiary-container);
-    color: var(--md3-on-tertiary-container);
+    @apply md3-tertiary-container;
 }
 .md3-button-tonal.md3-button-error {
-    background-color: var(--md3-error-container);
-    color: var(--md3-on-error-container);
+    @apply md3-error-container;
 }
 .md3-button-tonal.md3-button-sky {
-    background-color: var(--md3-sky-container);
-    color: var(--md3-on-sky-container);
+    @apply md3-sky-container;
 }
 .md3-button-tonal.md3-button-cyan {
-    background-color: var(--md3-cyan-container);
-    color: var(--md3-on-cyan-container);
+    @apply md3-cyan-container;
 }
 .md3-button-tonal.md3-button-rose {
-    background-color: var(--md3-rose-container);
-    color: var(--md3-on-rose-container);
+    @apply md3-rose-container;
 }
 .md3-button-tonal.md3-button-orange {
-    background-color: var(--md3-orange-container);
-    color: var(--md3-on-orange-container);
+    @apply md3-orange-container;
 }
 .md3-button-tonal.md3-button-green {
-    background-color: var(--md3-green-container);
-    color: var(--md3-on-green-container);
+    @apply md3-green-container;
 }
 
-/* Boutons segmentés */
+/* -----------------------------------------------------------
+    BUTTON HOVER & ACTIVE EFFECTS
+    ----------------------------------------------------------- */
+
+/* Elevation */
+.md3-elevating {
+    box-shadow: var(--md3-shadow-elevation-1);
+}
+.md3-elevating:hover {
+    box-shadow: var(--md3-shadow-elevation-2);
+}
+.md3-elevating:active {
+    box-shadow: var(--md3-shadow-elevation-1);
+}
+
+/* Hover Lighting */
+.md3-button-hover-lighting {
+    filter: opacity(0.8) brightness(1) saturate(0.8) contrast(1.1);
+    position: relative;
+}
+.md3-button-hover-lighting:active {
+    filter: opacity(1) brightness(0.9) contrast(1.3);
+}
+.md3-button-hover-lighting::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: currentColor;
+    opacity: 0.1;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+/* Hover Darkening */
+.md3-button-hover-darkening {
+    position: relative;
+}
+.md3-button-hover-darkening::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: currentColor;
+    opacity: 0.07;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 1;
+}
+.md3-button-hover-darkening:active::after {
+    opacity: 0.2;
+    transition: all 0.5s;
+}
+
+/* Hover Colorize */
+.md3-button-hover-colorize {
+    position: relative;
+}
+.md3-button-hover-colorize::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: currentColor;
+    opacity: 0.15;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 1;
+}
+.md3-button-hover-colorize:active::after {
+    opacity: 0.05;
+    transition: all 0.5s;
+}
+
+/* -----------------------------------------------------------
+    SEGMENTED BUTTONS
+    ----------------------------------------------------------- */
 .md3-segmented-button-group {
     display: flex;
     border-radius: var(--md3-radius-full);

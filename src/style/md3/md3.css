@@ -4,6 +4,7 @@
 
 @import "./md3_buttons.css";
 @import "./md3_cards.css";
+@import "./md3_sliders.css";
 
 :root {
     /* Couleurs de la palette Material Design 3 */
@@ -104,6 +105,132 @@
     font-family: "Montserrat", sans-serif;
     transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
     box-sizing: border-box;
+}
+
+/* color schemes */
+/* Ready-to-use color utility classes with matching background and text color */
+
+.md3-primary {
+    background-color: var(--md3-primary);
+    color: var(--md3-on-primary);
+}
+.md3-primary-container {
+    background-color: var(--md3-primary-container);
+    color: var(--md3-on-primary-container);
+}
+.md3-secondary {
+    background-color: var(--md3-secondary);
+    color: var(--md3-on-secondary);
+}
+.md3-secondary-container {
+    background-color: var(--md3-secondary-container);
+    color: var(--md3-on-secondary-container);
+}
+.md3-tertiary {
+    background-color: var(--md3-tertiary);
+    color: var(--md3-on-tertiary);
+}
+.md3-tertiary-container {
+    background-color: var(--md3-tertiary-container);
+    color: var(--md3-on-tertiary-container);
+}
+.md3-error {
+    background-color: var(--md3-error);
+    color: var(--md3-on-error);
+}
+.md3-error-container {
+    background-color: var(--md3-error-container);
+    color: var(--md3-on-error-container);
+}
+.md3-background {
+    background-color: var(--md3-background);
+    color: var(--md3-on-background);
+}
+.md3-surface {
+    background-color: var(--md3-surface);
+    color: var(--md3-on-surface);
+}
+.md3-surface-variant {
+    background-color: var(--md3-surface-variant);
+    color: var(--md3-on-surface-variant);
+}
+.md3-sky {
+    background-color: var(--md3-sky);
+    color: var(--md3-on-sky);
+}
+.md3-sky-container {
+    background-color: var(--md3-sky-container);
+    color: var(--md3-on-sky-container);
+}
+.md3-cyan {
+    background-color: var(--md3-cyan);
+    color: var(--md3-on-cyan);
+}
+.md3-cyan-container {
+    background-color: var(--md3-cyan-container);
+    color: var(--md3-on-cyan-container);
+}
+.md3-rose {
+    background-color: var(--md3-rose);
+    color: var(--md3-on-rose);
+}
+.md3-rose-container {
+    background-color: var(--md3-rose-container);
+    color: var(--md3-on-rose-container);
+}
+.md3-orange {
+    background-color: var(--md3-orange);
+    color: var(--md3-on-orange);
+}
+.md3-orange-container {
+    background-color: var(--md3-orange-container);
+    color: var(--md3-on-orange-container);
+}
+.md3-green {
+    background-color: var(--md3-green);
+    color: var(--md3-on-green);
+}
+.md3-green-container {
+    background-color: var(--md3-green-container);
+    color: var(--md3-on-green-container);
+}
+
+/* Tonal pairs for background/text color utilities */
+.md3-primary-tonal {
+    background-color: var(--md3-primary-container);
+    color: var(--md3-on-primary-container);
+}
+.md3-secondary-tonal {
+    background-color: var(--md3-secondary-container);
+    color: var(--md3-on-secondary-container);
+}
+.md3-tertiary-tonal {
+    background-color: var(--md3-tertiary-container);
+    color: var(--md3-on-tertiary-container);
+}
+.md3-error-tonal {
+    background-color: var(--md3-error-container);
+    color: var(--md3-on-error-container);
+}
+.md3-sky-tonal {
+    background-color: var(--md3-sky-container);
+    color: var(--md3-on-sky-container);
+}
+.md3-cyan-tonal {
+    background-color: var(--md3-cyan-container);
+    color: var(--md3-on-cyan-container);
+}
+.md3-rose-tonal {
+    background-color: var(--md3-rose-container);
+    color: var(--md3-on-rose-container);
+}
+.md3-orange-tonal {
+    background-color: var(--md3-orange-container);
+    color: var(--md3-on-orange-container);
+}
+.md3-green-tonal {
+    background-color: var(--md3-green-container);
+    color: var(--md3-on-green-container);
 }
 
 /* Utilitaires pour le layout de la démo */
@@ -581,29 +708,6 @@
 }
 .md3-menu-item:hover {
     background-color: var(--md3-surface-variant);
-}
-
-/* Sliders */
-.md3-slider-container {
-    width: 100%;
-    padding: 1rem 0;
-}
-.md3-slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 4px;
-    background: var(--md3-primary-container);
-    outline: none;
-}
-.md3-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    background: var(--md3-primary);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
 }
 
 /* Tabs */

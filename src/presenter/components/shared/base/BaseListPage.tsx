@@ -6,12 +6,13 @@ import { CardMD, } from './baseComps/Cards';
 import { Fab, FabMenu } from './baseComps/Fabs';
 import { Carousel } from './baseComps/Carrousel';
 import { AppBar, NavigationBar, NavigationBarItem, NavigationDrawer } from './baseComps/Navigations';
-import { Checkbox, DatePicker, Slider, TimePicker } from './baseComps/Selectors';
+import { Checkbox, DatePicker, TimePicker } from './baseComps/Selectors';
 import { SideSheet } from './baseComps/Sheets';
 import { List, ListItem } from './baseComps/Lists';
 import { Chip } from './baseComps/Others';
 import { Menu, MenuItem, Tabs } from './baseComps/Menu';
 import { Tooltip } from './baseComps/Dialogs';
+import { ProgressBar, ProgressRing, Slider } from './baseComps/Sliders';
 
 const MD3DemoPage: React.FC = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -20,6 +21,7 @@ const MD3DemoPage: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLElement | null>(null);
     const [sliderValue, setSliderValue] = useState(50);
+    const [sliderValue2, setSliderValue2] = useState(70);
     const [activeTab, setActiveTab] = useState('tab1');
 
     const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -34,9 +36,29 @@ const MD3DemoPage: React.FC = () => {
                 Ceci est une page de démonstration complète de tous les composants MD3.
                 Utilise-la comme une référence pour piocher les blocs de code dont tu as besoin.
             </p>
+            {/* Menu de navigation rapide */}
+            <nav className="md3-section" style={{ marginBottom: '2rem' }}>
+                <h2>Aller à une section</h2>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                    <a href="#boutons"><Button variant="text">Boutons</Button></a>
+                    <a href="#cartes"><Button variant="text">Cartes</Button></a>
+                    <a href="#fabs"><Button variant="text">FABs</Button></a>
+                    <a href="#carrousel"><Button variant="text">Carrousel</Button></a>
+                    <a href="#appbar"><Button variant="text">App Bar</Button></a>
+                    <a href="#fabmenu"><Button variant="text">FAB Menu</Button></a>
+                    <a href="#segmente"><Button variant="text">Boutons Segmentés</Button></a>
+                    <a href="#pickers"><Button variant="text">Date & Time Pickers</Button></a>
+                    <a href="#navigation"><Button variant="text">Navigation</Button></a>
+                    <a href="#checkboxchips"><Button variant="text">Checkbox & Chips</Button></a>
+                    <a href="#listmenu"><Button variant="text">Listes et Menus</Button></a>
+                    <a href="#sliders"><Button variant="text">Sliders</Button></a>
+                    <a href="#tabs"><Button variant="text">Tabs</Button></a>
+                    <a href="#tooltips"><Button variant="text">Tooltips</Button></a>
+                </div>
+            </nav>
 
             {/* Boutons */}
-            <section className='overflow-hidden min-h-max p-4 border '>
+            <section id="boutons" className='overflow-hidden min-h-max p-4 border '>
                 <h2>Boutons</h2>
                 <div className='flex flex-col gap-1 divide-y'>
                     {/* Filled */}
@@ -112,7 +134,7 @@ const MD3DemoPage: React.FC = () => {
             </section>
 
             {/* Cartes */}
-            <section className='overflow-hidden min-h-max p-4 border '>
+            <section id='cartes' className='overflow-hidden min-h-max p-4 border '>
                 <h2>Cartes</h2>
 
                 <div className="md3-component-group grid grid-rows-[minmax(min-content,30vh)] grid-cols-3" >
@@ -183,7 +205,7 @@ const MD3DemoPage: React.FC = () => {
             </section>
 
             {/* FABs */}
-            <section className='overflow-hidden min-h-max p-4 border '>
+            <section id='fabs' className='overflow-hidden min-h-max p-4 border '>
                 <h2>Boutons d'Action Flottants (FAB)</h2>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
                     <Fab icon={<span className="material-icons">add</span>} />
@@ -194,7 +216,7 @@ const MD3DemoPage: React.FC = () => {
             </section >
 
             {/* Carrousel */}
-            < section className='overflow-hidden min-h-max p-4 border ' >
+            < section id='carrousel' className='overflow-hidden min-h-max p-4 border ' >
                 <h2>Carrousel</h2>
                 <Carousel>
                     <CardMD><h3>Élément 1</h3><p>Contenu du carrousel.</p></CardMD>
@@ -207,7 +229,7 @@ const MD3DemoPage: React.FC = () => {
             {/* --- AJOUTS DE LA V3 --- */}
 
             {/* AppBar */}
-            <section className="md3-section">
+            <section id="app-bar" className="md3-section">
                 <h2>App Bar</h2>
                 <AppBar>
                     <span className="material-icons" style={{ marginRight: '1rem' }}>menu</span>
@@ -220,7 +242,7 @@ const MD3DemoPage: React.FC = () => {
             </section>
 
             {/* FAB Menu */}
-            <section className="md3-section" style={{ position: 'relative', minHeight: '200px' }}>
+            <section id="fab-menu" className="md3-section" style={{ position: 'relative', minHeight: '200px' }}>
                 <h2>FAB Menu</h2>
                 <div style={{ position: 'absolute', bottom: '1rem', right: '1rem' }}>
                     <FabMenu mainIcon={<span className="material-icons">add</span>}>
@@ -231,7 +253,7 @@ const MD3DemoPage: React.FC = () => {
             </section>
 
             {/* Boutons segmentés */}
-            <section className="md3-section">
+            <section id="segmented-button" className="md3-section">
                 <h2>Boutons Segmentés</h2>
                 <div className="md3-segmented-button-group">
                     <SegmentedButton active={true}>Actif</SegmentedButton>
@@ -241,7 +263,7 @@ const MD3DemoPage: React.FC = () => {
             </section>
 
             {/* Date/Time Pickers */}
-            <section className="md3-section">
+            <section id="date-time-pickers" className="md3-section">
                 <h2>Date & Time Pickers</h2>
                 <div style={{ display: 'flex', flexDirection: 'row', gap: '2rem' }}>
                     <DatePicker>
@@ -258,7 +280,7 @@ const MD3DemoPage: React.FC = () => {
             </section>
 
             {/* Navigation */}
-            <section className="md3-section">
+            <section id="navigation" className="md3-section">
                 <h2>Navigation</h2>
                 <h3>Barre de Navigation</h3>
                 <NavigationBar>
@@ -291,7 +313,7 @@ const MD3DemoPage: React.FC = () => {
             </section>
 
             {/* Checkbox & Chips */}
-            <section className="md3-section">
+            <section id="checkbox-chips" className="md3-section">
                 <h2>Checkbox & Chips</h2>
                 <div className="md3-component-group">
                     <Checkbox checked={isCheckboxOn} onChange={setIsCheckboxOn} label="Accepter les termes" />
@@ -301,7 +323,7 @@ const MD3DemoPage: React.FC = () => {
             </section>
 
             {/* List & Menu */}
-            <section className="md3-section">
+            <section id="list-menu" className="md3-section">
                 <h2>Listes et Menus</h2>
                 <List>
                     <ListItem>Item de la liste 1</ListItem>
@@ -317,13 +339,69 @@ const MD3DemoPage: React.FC = () => {
             </section>
 
             {/* Sliders */}
-            <section className="md3-section">
+            <section id="sliders" className="md3-section">
                 <h2>Sliders</h2>
-                <Slider value={sliderValue} onChange={(e) => setSliderValue(Number(e.target.value))} />
+                <div className="md3-component-group flex flex-col w-[80%] gap-2">
+
+                    <Slider
+                        id="primary"
+                        size='xsmall'
+                        key='primary'
+                        value={sliderValue}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            e.preventDefault();
+                            setSliderValue(Number(e.target.value))
+                        }}
+                    />
+
+                    <Slider
+                        id='rose'
+                        size='small'
+                        key='rose'
+                        color="rose"
+                        value={sliderValue2}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSliderValue2(Number(e.target.value))}
+                    />
+
+                    <Slider
+                        id='secondary'
+
+                        key='secondary'
+                        color="secondary"
+                        value={sliderValue}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSliderValue(Number(e.target.value))}
+                    />
+
+                    <Slider
+                        id='tertiary'
+                        size='large'
+                        key='cyan'
+                        color="cyan"
+                        value={sliderValue}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSliderValue(Number(e.target.value))}
+                    />
+
+                </div>
+            </section>
+            {/* PROGRESS BAR */}
+            <section id="progress-bar" className="md3-section w-[50%] gap-8 py-11">
+                <h2>Barre de progression</h2>
+                <ProgressBar value={sliderValue} variant="wavy" size='xsmall' />
+                <ProgressBar value={sliderValue2} variant="wavy" color="rose" size='small' />
+                <ProgressBar value={94} variant="wavy" color="secondary" size='medium' />
+                <ProgressBar value={78} color="cyan" variant="wavy" size='large' />
+            </section>
+            {/* PROGRESS RING */}
+            <section id="progress-ring" className="md3-section w-[80%] flex-row  gap-4">
+                <h2>Barre de progression</h2>
+                <ProgressRing value={sliderValue} />
+                <ProgressRing value={sliderValue2} color="rose" />
+                <ProgressRing value={90} color="secondary" />
+                <ProgressRing value={sliderValue} color="cyan" />
             </section>
 
             {/* Tabs */}
-            <section className="md3-section">
+            <section id="tabs" className="md3-section">
                 <h2>Tabs</h2>
                 <Tabs activeTab={activeTab} onTabClick={setActiveTab}>
                     <div  >Onglet 1</div>
@@ -338,7 +416,7 @@ const MD3DemoPage: React.FC = () => {
             </section>
 
             {/* Tooltips */}
-            <section className="md3-section">
+            <section id="tooltips" className="md3-section">
                 <h2>Tooltips</h2>
                 <Tooltip
                     content="Ceci est une info-bulle">

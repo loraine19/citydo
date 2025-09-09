@@ -28,9 +28,7 @@ export const CardImage: React.FC<{
 }> = ({ src, alt, position = "top", className, children, onClick }) => (
     <div className={`md3-card-image-container-${position} ${className} ${onClick ? "cursor-pointer" : ""} flex-1 `}
         onClick={() => onClick && onClick()}>
-        <img
-
-            onError={(e: any) => { e.currentTarget.src = 'public/image/placeholder.jpg' }}
+        <img onError={(e: any) => { e.currentTarget.src = 'public/image/placeholder.jpg' }}
             className={`md3-card-image-${position} `}
             src={src}
             alt={alt}
@@ -62,6 +60,11 @@ export const CardSupportingText: React.FC<{ children: ReactNode; className?: str
     <div className={`md3-card-supporting-text ${className}`}>{children}</div>
 );
 
+//// CARD MEDIA
+export const CardMedia: React.FC<{ children: ReactNode; className?: string }> = ({ children, className }) => (
+    <div className={`md3-card-media ${className}`}>{children}</div>
+);
+
 //// CARD FOOTER
 export const CardFooter: React.FC<{ children: ReactNode; className?: string }> = ({ children, className }) => (
     <div className={`md3-card-footer ${className}`}>{children}</div>
@@ -76,6 +79,7 @@ export const CardMD: React.FC<CardMDProps> & {
     Image: typeof CardImage;
     Subhead: typeof CardSubhead;
     SupportingText: typeof CardSupportingText;
+    Media: typeof CardMedia;
 } = ({
     variant = "elevated",
     color,
@@ -97,7 +101,6 @@ export const CardMD: React.FC<CardMDProps> & {
 
             return (
                 <div
-
                     className={`${cardClasses} ${imagePosition === "left" ? "!flex-row" : ""} `}
                     data-md3-card
                     {...props}
@@ -112,11 +115,7 @@ export const CardMD: React.FC<CardMDProps> & {
                         {imageProps.children}
                     </CardImage>
                     <div className={"md3-card-content"}>
-
                         {children}
-
-
-
                     </div>
                 </div>
             );
@@ -138,4 +137,5 @@ CardMD.Headline = CardHeadline;
 CardMD.Image = CardImage;
 CardMD.Subhead = CardSubhead;
 CardMD.SupportingText = CardSupportingText;
+CardMD.Media = CardMedia;
 

@@ -8,13 +8,12 @@ import { GenereMyActions } from "../../../../views/viewsEntities/utilsService";
 import { EventView } from "../../../../views/viewsEntities/eventViewEntities";
 import { Title } from "../../../common/CardTitle";
 import { EventStatus } from "../../../../../domain/entities/Event";
-import { ProgressBarBlur } from "../../../common/ProgressBar";
 import Chip from "../../../common/adaptatersComps/Chip";
 import EventCalAddBtn from "./EventCalAddBtn";
 import { CardMD } from "../../base/baseComps/Cards";
-import { useNavigate } from "react-router";
 import { Button } from "../../base/baseComps/Buttons";
 import { IconAnimate } from "../../../common/IconAnimate";
+import { ProgressBar } from "../../base/baseComps/Sliders";
 
 type EventCardProps = {
     event: EventView, refetch?: () => void,
@@ -24,20 +23,20 @@ type EventCardProps = {
 
 export function EventCard({ event: initialEvent, change, mines, refetch }: EventCardProps) {
     const [event, setEvent] = useState<EventView>(initialEvent);
-    const { id, title, participantsMin, start, end, image, pourcent = 0, label, toogleParticipate, eventDateInfo } = event;
+    const { id, title, participantsMin, start, end, image, label, toogleParticipate, eventDateInfo } = event;
     const disabledDelete = new Date(start).getTime() < Date.now();
     const disabledEdit = new Date(start).getTime() < Date.now();
     const deleteEvent = async (id: number) => await DI.resolve('deleteEventUseCase').execute(id)
     const actions = GenereMyActions(event, "evenement", deleteEvent);
 
-    const navigate = useNavigate();
+
     return (
         <CardMD
-            className="md:h-[50vh] h-[35vh] min-h-fit"
+            className="md:h-[43vh] h-[30vh] min-h-fit"
             link={`/evenement/${id}`}
             image={
                 <CardMD.Image
-                    onClick={() => navigate(`/evenement/${id}`)}
+
                     src={image as string || '/image/placeholder.jpg'}
                     alt={title}
                     className={''}
@@ -62,13 +61,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                         <IconAnimate
                             active={event?.Igo}
                             icon={'person'} />
-                        <ProgressBarBlur
-                            isPast={event.isPast}
-                            label='participants'
-                            value={pourcent || 0}
-                            status={event.status as string}
-                            needed={participantsMin - (event?.Participants?.length || 0)}
-                        />
+
                     </div>
                 </CardMD.Image>}>
             <CardMD.Headline
@@ -81,14 +74,22 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
             <CardMD.Subhead>
                 {eventDateInfo}
             </CardMD.Subhead>
+            <CardMD.Media>
 
-            <CardMD.SupportingText>
-
-                <div className="description line-clamp-2 ">
-                    {event.description}
-                </div>
-
-            </CardMD.SupportingText>
+                <ProgressBar
+                    size='xsmall'
+                    className="my-4"
+                    variant="wavy"
+                    value={event.Participants.length}
+                    max={participantsMin || 10}
+                    color="cyan"
+                    label={
+                        <div className="md3-card-supporting-text justify-between flex-row">
+                            <span>il y a {event.Participants.length} participant{event.Participants.length > 1 ? 's' : ''} </span>
+                            {participantsMin} minimum
+                        </div>}
+                />
+            </CardMD.Media>
             <CardMD.Footer>
                 {!mines ? (
                     <div className="flex relative flex-1 overflow-hidden items-center gap-2">

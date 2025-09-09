@@ -40,7 +40,7 @@ var require_cjs = __commonJS({
       return options.clone !== false && options.isMergeableObject(value) ? deepmerge(emptyTarget(value), value, options) : value;
     }
     function defaultArrayMerge(target, source, options) {
-      return target.concat(source).map(function (element) {
+      return target.concat(source).map(function(element) {
         return cloneUnlessOtherwiseSpecified(element, options);
       });
     }
@@ -52,7 +52,7 @@ var require_cjs = __commonJS({
       return typeof customMerge === "function" ? customMerge : deepmerge;
     }
     function getEnumerableOwnPropertySymbols(target) {
-      return Object.getOwnPropertySymbols ? Object.getOwnPropertySymbols(target).filter(function (symbol) {
+      return Object.getOwnPropertySymbols ? Object.getOwnPropertySymbols(target).filter(function(symbol) {
         return Object.propertyIsEnumerable.call(target, symbol);
       }) : [];
     }
@@ -72,11 +72,11 @@ var require_cjs = __commonJS({
     function mergeObject(target, source, options) {
       var destination = {};
       if (options.isMergeableObject(target)) {
-        getKeys(target).forEach(function (key) {
+        getKeys(target).forEach(function(key) {
           destination[key] = cloneUnlessOtherwiseSpecified(target[key], options);
         });
       }
-      getKeys(source).forEach(function (key) {
+      getKeys(source).forEach(function(key) {
         if (propertyIsUnsafe(target, key)) {
           return;
         }
@@ -108,7 +108,7 @@ var require_cjs = __commonJS({
       if (!Array.isArray(array)) {
         throw new Error("first argument should be an array");
       }
-      return array.reduce(function (prev, next) {
+      return array.reduce(function(prev, next) {
         return deepmerge(prev, next, options);
       }, {});
     };
@@ -260,7 +260,7 @@ var require_createPlugin = __commonJS2({
     });
     Object.defineProperty(exports, "default", {
       enumerable: true,
-      get: function () {
+      get: function() {
         return _default;
       }
     });
@@ -270,8 +270,8 @@ var require_createPlugin = __commonJS2({
         config
       };
     }
-    createPlugin.withOptions = function (pluginFunction, configFunction = () => ({})) {
-      const optionsFunction = function (options) {
+    createPlugin.withOptions = function(pluginFunction, configFunction = () => ({})) {
+      const optionsFunction = function(options) {
         return {
           __options: options,
           handler: pluginFunction(options),
@@ -294,7 +294,7 @@ var require_create_plugin = __commonJS2({
     });
     Object.defineProperty(exports, "default", {
       enumerable: true,
-      get: function () {
+      get: function() {
         return _default;
       }
     });
@@ -499,8 +499,8 @@ function getRgbChannels(hex) {
   return `${red} ${green} ${blue}`;
 }
 var mtConfig = import_plugin.default.withOptions(
-  function (options) {
-    return function ({ addBase }) {
+  function(options) {
+    return function({ addBase }) {
       var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P, _Q, _R, _S, _T, _U, _V, _W, _X, _Y, _Z, __, _$, _aa, _ba, _ca, _da, _ea, _fa, _ga, _ha, _ia, _ja, _ka, _la, _ma, _na, _oa, _pa, _qa, _ra, _sa, _ta, _ua, _va, _wa, _xa, _ya, _za, _Aa, _Ba, _Ca, _Da, _Ea, _Fa, _Ga, _Ha, _Ia, _Ja, _Ka, _La, _Ma, _Na, _Oa, _Pa, _Qa, _Ra, _Sa, _Ta, _Ua, _Va, _Wa, _Xa, _Ya, _Za, __a, _$a, _ab, _bb, _cb, _db, _eb, _fb, _gb, _hb, _ib, _jb, _kb, _lb, _mb, _nb, _ob;
       addBase({
         ":root": {
@@ -720,7 +720,7 @@ var mtConfig = import_plugin.default.withOptions(
       });
     };
   },
-  function (options) {
+  function(options) {
     return {
       darkMode: "class",
       content: [
@@ -1978,7 +1978,7 @@ function toValue(mix) {
 
 // node_modules/tailwind-merge/dist/_virtual/_rollupPluginBabelHelpers.mjs
 function _extends() {
-  _extends = Object.assign ? Object.assign.bind() : function (target) {
+  _extends = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -2026,7 +2026,7 @@ function getGroupRecursive(classParts, classPartObject) {
     return void 0;
   }
   var classRest = classParts.join(CLASS_PART_SEPARATOR);
-  return (_classPartObject$vali = classPartObject.validators.find(function (_ref) {
+  return (_classPartObject$vali = classPartObject.validators.find(function(_ref) {
     var validator = _ref.validator;
     return validator(classRest);
   })) == null ? void 0 : _classPartObject$vali.classGroupId;
@@ -2048,14 +2048,14 @@ function createClassMap(config) {
     validators: []
   };
   var prefixedClassGroupEntries = getPrefixedClassGroupEntries(Object.entries(config.classGroups), prefix);
-  prefixedClassGroupEntries.forEach(function (_ref2) {
+  prefixedClassGroupEntries.forEach(function(_ref2) {
     var classGroupId = _ref2[0], classGroup = _ref2[1];
     processClassesRecursively(classGroup, classMap, classGroupId, theme2);
   });
   return classMap;
 }
 function processClassesRecursively(classGroup, classPartObject, classGroupId, theme2) {
-  classGroup.forEach(function (classDefinition) {
+  classGroup.forEach(function(classDefinition) {
     if (typeof classDefinition === "string") {
       var classPartObjectToEdit = classDefinition === "" ? classPartObject : getPart(classPartObject, classDefinition);
       classPartObjectToEdit.classGroupId = classGroupId;
@@ -2072,7 +2072,7 @@ function processClassesRecursively(classGroup, classPartObject, classGroupId, th
       });
       return;
     }
-    Object.entries(classDefinition).forEach(function (_ref3) {
+    Object.entries(classDefinition).forEach(function(_ref3) {
       var key = _ref3[0], classGroup2 = _ref3[1];
       processClassesRecursively(classGroup2, getPart(classPartObject, key), classGroupId, theme2);
     });
@@ -2080,7 +2080,7 @@ function processClassesRecursively(classGroup, classPartObject, classGroupId, th
 }
 function getPart(classPartObject, path) {
   var currentClassPartObject = classPartObject;
-  path.split(CLASS_PART_SEPARATOR).forEach(function (pathPart) {
+  path.split(CLASS_PART_SEPARATOR).forEach(function(pathPart) {
     if (!currentClassPartObject.nextPart.has(pathPart)) {
       currentClassPartObject.nextPart.set(pathPart, {
         nextPart: /* @__PURE__ */ new Map(),
@@ -2098,14 +2098,14 @@ function getPrefixedClassGroupEntries(classGroupEntries, prefix) {
   if (!prefix) {
     return classGroupEntries;
   }
-  return classGroupEntries.map(function (_ref4) {
+  return classGroupEntries.map(function(_ref4) {
     var classGroupId = _ref4[0], classGroup = _ref4[1];
-    var prefixedClassGroup = classGroup.map(function (classDefinition) {
+    var prefixedClassGroup = classGroup.map(function(classDefinition) {
       if (typeof classDefinition === "string") {
         return prefix + classDefinition;
       }
       if (typeof classDefinition === "object") {
-        return Object.fromEntries(Object.entries(classDefinition).map(function (_ref5) {
+        return Object.fromEntries(Object.entries(classDefinition).map(function(_ref5) {
           var key = _ref5[0], value = _ref5[1];
           return [prefix + key, value];
         }));
@@ -2198,7 +2198,7 @@ function sortModifiers(modifiers) {
   }
   var sortedModifiers = [];
   var unsortedModifiers = [];
-  modifiers.forEach(function (modifier) {
+  modifiers.forEach(function(modifier) {
     var isArbitraryVariant = modifier[0] === "[";
     if (isArbitraryVariant) {
       sortedModifiers.push.apply(sortedModifiers, unsortedModifiers.sort().concat([modifier]));
@@ -2224,7 +2224,7 @@ var SPLIT_CLASSES_REGEX = /\s+/;
 function mergeClassList(classList, configUtils) {
   var splitModifiers = configUtils.splitModifiers, getClassGroupId = configUtils.getClassGroupId, getConflictingClassGroupIds = configUtils.getConflictingClassGroupIds;
   var classGroupsInConflict = /* @__PURE__ */ new Set();
-  return classList.trim().split(SPLIT_CLASSES_REGEX).map(function (originalClassName) {
+  return classList.trim().split(SPLIT_CLASSES_REGEX).map(function(originalClassName) {
     var _splitModifiers = splitModifiers(originalClassName), modifiers = _splitModifiers.modifiers, hasImportantModifier = _splitModifiers.hasImportantModifier, baseClassName = _splitModifiers.baseClassName;
     var classGroupId = getClassGroupId(baseClassName);
     if (!classGroupId) {
@@ -2241,7 +2241,7 @@ function mergeClassList(classList, configUtils) {
       classGroupId,
       originalClassName
     };
-  }).reverse().filter(function (parsed) {
+  }).reverse().filter(function(parsed) {
     if (!parsed.isTailwindClass) {
       return true;
     }
@@ -2251,11 +2251,11 @@ function mergeClassList(classList, configUtils) {
       return false;
     }
     classGroupsInConflict.add(classId);
-    getConflictingClassGroupIds(classGroupId).forEach(function (group) {
+    getConflictingClassGroupIds(classGroupId).forEach(function(group) {
       return classGroupsInConflict.add(modifierId + group);
     });
     return true;
-  }).reverse().map(function (parsed) {
+  }).reverse().map(function(parsed) {
     return parsed.originalClassName;
   }).join(" ");
 }
@@ -2271,7 +2271,7 @@ function createTailwindMerge() {
   var functionToCall = initTailwindMerge;
   function initTailwindMerge(classList) {
     var firstCreateConfig = createConfig[0], restCreateConfig = createConfig.slice(1);
-    var config = restCreateConfig.reduce(function (previousConfig, createConfigCurrent) {
+    var config = restCreateConfig.reduce(function(previousConfig, createConfigCurrent) {
       return createConfigCurrent(previousConfig);
     }, firstCreateConfig());
     configUtils = createConfigUtils(config);
@@ -4402,7 +4402,7 @@ function isVirtualClick(event) {
 }
 function isVirtualPointerEvent(event) {
   return !isAndroid() && event.width === 0 && event.height === 0 || event.width === 1 && event.height === 1 && event.pressure === 0 && event.detail === 0 && event.pointerType === "mouse" || // iOS VoiceOver returns 0.333• for width/height.
-    event.width < 1 && event.height < 1 && event.pressure === 0 && event.detail === 0;
+  event.width < 1 && event.height < 1 && event.pressure === 0 && event.detail === 0;
 }
 function isSafari() {
   return /apple/i.test(navigator.vendor);
@@ -4846,7 +4846,7 @@ var arrow = (options) => ({
     };
   }
 });
-var flip = function (options) {
+var flip = function(options) {
   if (options === void 0) {
     options = {};
   }
@@ -4906,8 +4906,8 @@ var flip = function (options) {
         if (nextPlacement) {
           const ignoreCrossAxisOverflow = checkCrossAxis === "alignment" ? initialSideAxis !== getSideAxis(nextPlacement) : false;
           if (!ignoreCrossAxisOverflow || // We leave the current main axis only if every placement on that axis
-            // overflows the main axis.
-            overflowsData.every((d) => getSideAxis(d.placement) === initialSideAxis ? d.overflows[0] > 0 : true)) {
+          // overflows the main axis.
+          overflowsData.every((d) => getSideAxis(d.placement) === initialSideAxis ? d.overflows[0] > 0 : true)) {
             return {
               data: {
                 index: nextIndex,
@@ -4928,8 +4928,8 @@ var flip = function (options) {
                 if (hasFallbackAxisSideDirection) {
                   const currentSideAxis = getSideAxis(d.placement);
                   return currentSideAxis === initialSideAxis || // Create a bias to the `y` side axis due to horizontal
-                    // reading directions favoring greater width.
-                    currentSideAxis === "y";
+                  // reading directions favoring greater width.
+                  currentSideAxis === "y";
                 }
                 return true;
               }).map((d) => [d.placement, d.overflows.filter((overflow2) => overflow2 > 0).reduce((acc, overflow2) => acc + overflow2, 0)]).sort((a, b) => a[1] - b[1])[0]) == null ? void 0 : _overflowsData$filter2[0];
@@ -4978,10 +4978,10 @@ async function convertValueToCoords(state, options) {
     crossAxis: 0,
     alignmentAxis: null
   } : {
-      mainAxis: rawValue.mainAxis || 0,
-      crossAxis: rawValue.crossAxis || 0,
-      alignmentAxis: rawValue.alignmentAxis
-    };
+    mainAxis: rawValue.mainAxis || 0,
+    crossAxis: rawValue.crossAxis || 0,
+    alignmentAxis: rawValue.alignmentAxis
+  };
   if (alignment && typeof alignmentAxis === "number") {
     crossAxis = alignment === "end" ? alignmentAxis * -1 : alignmentAxis;
   }
@@ -4993,7 +4993,7 @@ async function convertValueToCoords(state, options) {
     y: crossAxis * crossAxisMulti
   };
 }
-var offset = function (options) {
+var offset = function(options) {
   if (options === void 0) {
     options = 0;
   }
@@ -5023,7 +5023,7 @@ var offset = function (options) {
     }
   };
 };
-var shift = function (options) {
+var shift = function(options) {
   if (options === void 0) {
     options = {};
   }
@@ -5095,7 +5095,7 @@ var shift = function (options) {
     }
   };
 };
-var size = function (options) {
+var size = function(options) {
   if (options === void 0) {
     options = {};
   }
@@ -5754,7 +5754,7 @@ function getOffsetParent(element, polyfill) {
   }
   return offsetParent || getContainingBlock(element) || win;
 }
-var getElementRects = async function (data) {
+var getElementRects = async function(data) {
   const getOffsetParentFn = this.getOffsetParent || getOffsetParent;
   const getDimensionsFn = this.getDimensions;
   const floatingDimensions = await getDimensionsFn(data.floating);
@@ -5974,7 +5974,7 @@ function deepEqual(a, b) {
     if (Array.isArray(a)) {
       length = a.length;
       if (length !== b.length) return false;
-      for (i = length; i-- !== 0;) {
+      for (i = length; i-- !== 0; ) {
         if (!deepEqual(a[i], b[i])) {
           return false;
         }
@@ -5986,12 +5986,12 @@ function deepEqual(a, b) {
     if (length !== Object.keys(b).length) {
       return false;
     }
-    for (i = length; i-- !== 0;) {
+    for (i = length; i-- !== 0; ) {
       if (!{}.hasOwnProperty.call(b, keys[i])) {
         return false;
       }
     }
-    for (i = length; i-- !== 0;) {
+    for (i = length; i-- !== 0; ) {
       const key = keys[i];
       if (key === "_owner" && a.$$typeof) {
         continue;
@@ -6229,12 +6229,12 @@ var arrow3 = (options, deps) => ({
 var candidateSelectors = ["input:not([inert])", "select:not([inert])", "textarea:not([inert])", "a[href]:not([inert])", "button:not([inert])", "[tabindex]:not(slot):not([inert])", "audio[controls]:not([inert])", "video[controls]:not([inert])", '[contenteditable]:not([contenteditable="false"]):not([inert])', "details>summary:first-of-type:not([inert])", "details:not([inert])"];
 var candidateSelector = candidateSelectors.join(",");
 var NoElement = typeof Element === "undefined";
-var matches = NoElement ? function () {
+var matches = NoElement ? function() {
 } : Element.prototype.matches || Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
-var getRootNode = !NoElement && Element.prototype.getRootNode ? function (element) {
+var getRootNode = !NoElement && Element.prototype.getRootNode ? function(element) {
   var _element$getRootNode;
   return element === null || element === void 0 ? void 0 : (_element$getRootNode = element.getRootNode) === null || _element$getRootNode === void 0 ? void 0 : _element$getRootNode.call(element);
-} : function (element) {
+} : function(element) {
   return element === null || element === void 0 ? void 0 : element.ownerDocument;
 };
 var isInert = function isInert2(node, lookUp) {
@@ -6289,7 +6289,7 @@ var getCandidatesIteratively = function getCandidatesIteratively2(elements, incl
         candidates.push(element);
       }
       var shadowRoot = element.shadowRoot || // check for an undisclosed shadow
-        typeof options.getShadowRoot === "function" && options.getShadowRoot(element);
+      typeof options.getShadowRoot === "function" && options.getShadowRoot(element);
       var validShadowRoot = !isInert(shadowRoot, false) && (!options.shadowRootFilter || options.shadowRootFilter(element));
       if (shadowRoot && validShadowRoot) {
         var _nestedCandidates = getCandidatesIteratively2(shadowRoot === true ? element.children : shadowRoot.children, true, options);
@@ -6339,7 +6339,7 @@ var isHiddenInput = function isHiddenInput2(node) {
   return isInput(node) && node.type === "hidden";
 };
 var isDetailsWithSummary = function isDetailsWithSummary2(node) {
-  var r = node.tagName === "DETAILS" && Array.prototype.slice.apply(node.children).some(function (child) {
+  var r = node.tagName === "DETAILS" && Array.prototype.slice.apply(node.children).some(function(child) {
     return child.tagName === "SUMMARY";
   });
   return r;
@@ -6459,10 +6459,10 @@ var isDisabledFromFieldset = function isDisabledFromFieldset2(node) {
 };
 var isNodeMatchingSelectorFocusable = function isNodeMatchingSelectorFocusable2(options, node) {
   if (node.disabled || // we must do an inert look up to filter out any elements inside an inert ancestor
-    //  because we're limited in the type of selectors we can use in JSDom (see related
-    //  note related to `candidateSelectors`)
-    isInert(node) || isHiddenInput(node) || isHidden(node, options) || // For a details element with a summary, the summary element gets the focus
-    isDetailsWithSummary(node) || isDisabledFromFieldset(node)) {
+  //  because we're limited in the type of selectors we can use in JSDom (see related
+  //  note related to `candidateSelectors`)
+  isInert(node) || isHiddenInput(node) || isHidden(node, options) || // For a details element with a summary, the summary element gets the focus
+  isDetailsWithSummary(node) || isDisabledFromFieldset(node)) {
     return false;
   }
   return true;
@@ -6483,7 +6483,7 @@ var isValidShadowRootTabbable = function isValidShadowRootTabbable2(shadowHostNo
 var sortByOrder = function sortByOrder2(candidates) {
   var regularTabbables = [];
   var orderedTabbables = [];
-  candidates.forEach(function (item, i) {
+  candidates.forEach(function(item, i) {
     var isScope = !!item.scopeParent;
     var element = isScope ? item.scopeParent : item;
     var candidateTabindex = getSortOrderTabIndex(element, isScope);
@@ -6500,7 +6500,7 @@ var sortByOrder = function sortByOrder2(candidates) {
       });
     }
   });
-  return orderedTabbables.sort(sortOrderedTabbables).reduce(function (acc, sortable) {
+  return orderedTabbables.sort(sortOrderedTabbables).reduce(function(acc, sortable) {
     sortable.isScope ? acc.push.apply(acc, sortable.content) : acc.push(sortable.content);
     return acc;
   }, []).concat(regularTabbables);
@@ -6551,7 +6551,7 @@ function useEffectEvent(callback) {
   useSafeInsertionEffect(() => {
     ref.current = callback;
   });
-  return React3.useCallback(function () {
+  return React3.useCallback(function() {
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
@@ -6999,7 +6999,7 @@ var CompositeItem = React3.forwardRef(function CompositeItem2(_ref2, forwardedRe
   return renderJsx(render, computedProps);
 });
 function _extends2() {
-  _extends2 = Object.assign ? Object.assign.bind() : function (target) {
+  _extends2 = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -7287,7 +7287,7 @@ function useHover(context, props) {
       html.removeEventListener("mouseleave", onLeave);
     };
   }, [floating, open, onOpenChange, enabled, handleCloseRef, dataRef, isHoverOpen]);
-  const closeWithDelay = React3.useCallback(function (event, runElseBranch, reason) {
+  const closeWithDelay = React3.useCallback(function(event, runElseBranch, reason) {
     if (runElseBranch === void 0) {
       runElseBranch = true;
     }
@@ -7929,7 +7929,7 @@ function FloatingFocusManager(props) {
   const preventReturnFocusRef = React3.useRef(false);
   const isPointerDownRef = React3.useRef(false);
   const isInsidePortal = portalContext != null;
-  const getTabbableContent = React3.useCallback(function (container) {
+  const getTabbableContent = React3.useCallback(function(container) {
     if (container === void 0) {
       container = floating;
     }
@@ -7995,7 +7995,7 @@ function FloatingFocusManager(props) {
           return ((_node$context3 = node.context) == null ? void 0 : _node$context3.elements.floating) === relatedTarget || ((_node$context4 = node.context) == null ? void 0 : _node$context4.elements.domReference) === relatedTarget;
         })));
         if (relatedTarget && movedToUnrelatedNode && !isPointerDownRef.current && // Fix React 18 Strict Mode returnFocus due to double rendering.
-          relatedTarget !== getPreviouslyFocusedElement()) {
+        relatedTarget !== getPreviouslyFocusedElement()) {
           preventReturnFocusRef.current = true;
           onOpenChange(false, event);
         }
@@ -8464,9 +8464,9 @@ function useDismiss(context, props) {
       }
     }
     if (markers.length && isElement(target) && !isRootElement(target) && // Clicked on a direct ancestor (e.g. FloatingOverlay).
-      !contains(target, floating) && // If the target root element contains none of the markers, then the
-      // element was injected after the floating element rendered.
-      Array.from(markers).every((marker) => !contains(targetRootAncestor, marker))) {
+    !contains(target, floating) && // If the target root element contains none of the markers, then the
+    // element was injected after the floating element rendered.
+    Array.from(markers).every((marker) => !contains(targetRootAncestor, marker))) {
       return;
     }
     if (isHTMLElement(target) && floating) {
@@ -8647,9 +8647,9 @@ function useFloating2(options) {
       setDomReference(node);
     }
     if (isElement(position.refs.reference.current) || position.refs.reference.current === null || // Don't allow setting virtual elements using the old technique back to
-      // `null` to support `positionReference` + an unstable `reference`
-      // callback ref.
-      node !== null && !isElement(node)) {
+    // `null` to support `positionReference` + an unstable `reference`
+    // callback ref.
+    node !== null && !isElement(node)) {
       position.refs.setReference(node);
     }
   }, [position.refs]);
@@ -8815,7 +8815,7 @@ function mergeProps(userProps, propsList, elementKey) {
           if (typeof value === "function") {
             var _map$get;
             (_map$get = map.get(key)) == null || _map$get.push(value);
-            acc[key] = function () {
+            acc[key] = function() {
               var _map$get2;
               for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
                 args[_key] = arguments[_key];
@@ -8952,7 +8952,7 @@ function useListNavigation(context, props) {
   const scrollItemIntoViewRef = useLatestRef2(scrollItemIntoView);
   const [activeId, setActiveId] = React3.useState();
   const [virtualId, setVirtualId] = React3.useState();
-  const focusItem = useEffectEvent(function (listRef2, indexRef2, forceScrollIntoView) {
+  const focusItem = useEffectEvent(function(listRef2, indexRef2, forceScrollIntoView) {
     if (forceScrollIntoView === void 0) {
       forceScrollIntoView = false;
     }
@@ -9455,8 +9455,8 @@ function useTypeahead(context, props) {
         }
       }
       if (listContent == null || ignoreKeysRef.current.includes(event.key) || // Character key.
-        event.key.length !== 1 || // Modifier key.
-        event.ctrlKey || event.metaKey || event.altKey) {
+      event.key.length !== 1 || // Modifier key.
+      event.ctrlKey || event.metaKey || event.altKey) {
         return;
       }
       if (open && event.key !== " ") {
@@ -9785,20 +9785,18 @@ function TooltipContentRoot({ as, className, children, ...props }, ref) {
   const { refs, getFloatingProps, open, floatingStyles } = React4.useContext(TooltipContext);
   const styles = twMerge(theme2.baseStyle, className);
   const elementRef = useMergeRefs([refs == null ? void 0 : refs.setFloating, ref]);
-  return open ? (0, import_jsx_runtime4.jsx)(FloatingPortal, {
-    children: (0, import_jsx_runtime4.jsx)(
-      Component,
-      {
-        ...props,
-        ref: elementRef,
-        "data-open": open,
-        style: { ...floatingStyles, ...props == null ? void 0 : props.style },
-        className: styles,
-        ...getFloatingProps && getFloatingProps(),
-        children
-      }
-    )
-  }) : null;
+  return open ? (0, import_jsx_runtime4.jsx)(FloatingPortal, { children: (0, import_jsx_runtime4.jsx)(
+    Component,
+    {
+      ...props,
+      ref: elementRef,
+      "data-open": open,
+      style: { ...floatingStyles, ...props == null ? void 0 : props.style },
+      className: styles,
+      ...getFloatingProps && getFloatingProps(),
+      children
+    }
+  ) }) : null;
 }
 TooltipContentRoot.displayName = "MaterialTailwind.TooltipContent";
 var TooltipContent = React4.forwardRef(TooltipContentRoot);
@@ -10162,21 +10160,19 @@ function SelectRootBase({
       value
     ]
   );
-  return (0, import_jsx_runtime7.jsxs)(SelectContext.Provider, {
-    value: contextValue, children: [
-      children,
-      (0, import_jsx_runtime7.jsx)(
-        "input",
-        {
-          readOnly: true,
-          ref,
-          name,
-          style: { display: "none" },
-          value: value || (selected == null ? void 0 : selected.value) || ""
-        }
-      )
-    ]
-  });
+  return (0, import_jsx_runtime7.jsxs)(SelectContext.Provider, { value: contextValue, children: [
+    children,
+    (0, import_jsx_runtime7.jsx)(
+      "input",
+      {
+        readOnly: true,
+        ref,
+        name,
+        style: { display: "none" },
+        value: value || (selected == null ? void 0 : selected.value) || ""
+      }
+    )
+  ] });
 }
 SelectRootBase.displayName = "MaterialTailwind.Select";
 var SelectRoot = React7.forwardRef(SelectRootBase);
@@ -11006,18 +11002,16 @@ function TabsRootBase({
     [orientation, activeTab, setActiveTab, indicatorRect, setIndicatorRect]
   );
   const styles = twMerge(theme2.baseStyle, className);
-  return (0, import_jsx_runtime11.jsx)(TabsContext.Provider, {
-    value: contextValue, children: (0, import_jsx_runtime11.jsx)(
-      Component,
-      {
-        ...props,
-        ref,
-        className: styles,
-        "data-orientation": orientation,
-        children
-      }
-    )
-  });
+  return (0, import_jsx_runtime11.jsx)(TabsContext.Provider, { value: contextValue, children: (0, import_jsx_runtime11.jsx)(
+    Component,
+    {
+      ...props,
+      ref,
+      className: styles,
+      "data-orientation": orientation,
+      children
+    }
+  ) });
 }
 TabsRootBase.displayName = "MaterialTailwind.TabsRoot";
 var TabsRoot = React12.forwardRef(TabsRootBase);
@@ -11487,27 +11481,23 @@ function InputRootBase({
     "url",
     "hidden"
   ].includes(type) ? type : "text";
-  return (0, import_jsx_runtime14.jsx)(Component, {
-    className: "relative w-full", children: (0, import_jsx_runtime14.jsxs)(InputContext.Provider, {
-      value: contextValue, children: [
-        (0, import_jsx_runtime14.jsx)(
-          "input",
-          {
-            ...props,
-            ref,
-            type: inputType,
-            className: styles,
-            disabled,
-            "data-error": isError,
-            "data-success": isSuccess,
-            "data-shape": isPill ? "pill" : "default",
-            "data-icon-placement": isIconDefined ? iconPlacement : ""
-          }
-        ),
-        children
-      ]
-    })
-  });
+  return (0, import_jsx_runtime14.jsx)(Component, { className: "relative w-full", children: (0, import_jsx_runtime14.jsxs)(InputContext.Provider, { value: contextValue, children: [
+    (0, import_jsx_runtime14.jsx)(
+      "input",
+      {
+        ...props,
+        ref,
+        type: inputType,
+        className: styles,
+        disabled,
+        "data-error": isError,
+        "data-success": isSuccess,
+        "data-shape": isPill ? "pill" : "default",
+        "data-icon-placement": isIconDefined ? iconPlacement : ""
+      }
+    ),
+    children
+  ] }) });
 }
 InputRootBase.displayName = "MaterialTailwind.Input";
 var InputRoot = React15.forwardRef(InputRootBase);
@@ -11826,36 +11816,32 @@ function MenuContentRoot({
   order ?? (order = (defaultProps == null ? void 0 : defaultProps.order) ?? ["content"]);
   const styles = twMerge(theme2.baseStyle, className);
   const elementRef = useMergeRefs([refs == null ? void 0 : refs.setFloating, ref]);
-  return (0, import_jsx_runtime16.jsx)(FloatingList, {
-    elementsRef, labelsRef, children: open && (0, import_jsx_runtime16.jsx)(FloatingPortal, {
+  return (0, import_jsx_runtime16.jsx)(FloatingList, { elementsRef, labelsRef, children: open && (0, import_jsx_runtime16.jsx)(FloatingPortal, { children: (0, import_jsx_runtime16.jsx)(
+    FloatingFocusManager,
+    {
+      order,
+      modal,
+      guards,
+      disabled,
+      initialFocus: isNested ? -1 : initialFocus,
+      returnFocus: isNested ? false : returnFocus,
+      closeOnFocusOut,
+      visuallyHiddenDismiss,
+      context,
       children: (0, import_jsx_runtime16.jsx)(
-        FloatingFocusManager,
+        Component,
         {
-          order,
-          modal,
-          guards,
-          disabled,
-          initialFocus: isNested ? -1 : initialFocus,
-          returnFocus: isNested ? false : returnFocus,
-          closeOnFocusOut,
-          visuallyHiddenDismiss,
-          context,
-          children: (0, import_jsx_runtime16.jsx)(
-            Component,
-            {
-              ...props,
-              ref: elementRef,
-              "data-open": open,
-              style: { ...floatingStyles, ...props == null ? void 0 : props.style },
-              className: styles,
-              ...getFloatingProps && getFloatingProps(),
-              children
-            }
-          )
+          ...props,
+          ref: elementRef,
+          "data-open": open,
+          style: { ...floatingStyles, ...props == null ? void 0 : props.style },
+          className: styles,
+          ...getFloatingProps && getFloatingProps(),
+          children
         }
       )
-    })
-  });
+    }
+  ) }) });
 }
 MenuContentRoot.displayName = "MaterialTailwind.MenuContent";
 var MenuContent = React17.forwardRef(MenuContentRoot);
@@ -12051,34 +12037,32 @@ function PopoverContentRoot({
   ]);
   const styles = twMerge(theme2.baseStyle, className);
   const elementRef = useMergeRefs([refs == null ? void 0 : refs.setFloating, ref]);
-  return open ? (0, import_jsx_runtime18.jsx)(FloatingPortal, {
-    children: (0, import_jsx_runtime18.jsx)(
-      FloatingFocusManager,
-      {
-        order,
-        modal,
-        guards,
-        disabled,
-        returnFocus,
-        initialFocus,
-        closeOnFocusOut,
-        visuallyHiddenDismiss,
-        context,
-        children: (0, import_jsx_runtime18.jsx)(
-          Component,
-          {
-            ...props,
-            ref: elementRef,
-            "data-open": open,
-            style: { ...floatingStyles, ...props == null ? void 0 : props.style },
-            className: styles,
-            ...getFloatingProps && getFloatingProps(),
-            children
-          }
-        )
-      }
-    )
-  }) : null;
+  return open ? (0, import_jsx_runtime18.jsx)(FloatingPortal, { children: (0, import_jsx_runtime18.jsx)(
+    FloatingFocusManager,
+    {
+      order,
+      modal,
+      guards,
+      disabled,
+      returnFocus,
+      initialFocus,
+      closeOnFocusOut,
+      visuallyHiddenDismiss,
+      context,
+      children: (0, import_jsx_runtime18.jsx)(
+        Component,
+        {
+          ...props,
+          ref: elementRef,
+          "data-open": open,
+          style: { ...floatingStyles, ...props == null ? void 0 : props.style },
+          className: styles,
+          ...getFloatingProps && getFloatingProps(),
+          children
+        }
+      )
+    }
+  ) }) : null;
 }
 PopoverContentRoot.displayName = "MaterialTailwind.PopoverContent";
 var PopoverContent = React19.forwardRef(PopoverContentRoot);
@@ -12271,27 +12255,25 @@ function RadioIndicatorRoot({ as, className, children, ...props }, ref) {
   const contextTheme = useTheme();
   const theme2 = (contextTheme == null ? void 0 : contextTheme.radioIndicator) ?? radioIndicatorTheme;
   const styles = twMerge(theme2.baseStyle, className);
-  return (0, import_jsx_runtime20.jsx)(Component, {
-    ...props, className: styles, ref, children: children || (0, import_jsx_runtime20.jsx)(
-      "svg",
-      {
-        width: "10px",
-        height: "10px",
-        viewBox: "0 0 22 22",
-        fill: "none",
-        xmlns: "http://www.w3.org/2000/svg",
-        children: (0, import_jsx_runtime20.jsx)(
-          "path",
-          {
-            fillRule: "evenodd",
-            clipRule: "evenodd",
-            d: "M11 0.25C5.06294 0.25 0.25 5.06294 0.25 11C0.25 16.9371 5.06294 21.75 11 21.75C16.9371 21.75 21.75 16.9371 21.75 11C21.75 5.06294 16.9371 0.25 11 0.25Z",
-            fill: "currentColor"
-          }
-        )
-      }
-    )
-  });
+  return (0, import_jsx_runtime20.jsx)(Component, { ...props, className: styles, ref, children: children || (0, import_jsx_runtime20.jsx)(
+    "svg",
+    {
+      width: "10px",
+      height: "10px",
+      viewBox: "0 0 22 22",
+      fill: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      children: (0, import_jsx_runtime20.jsx)(
+        "path",
+        {
+          fillRule: "evenodd",
+          clipRule: "evenodd",
+          d: "M11 0.25C5.06294 0.25 0.25 5.06294 0.25 11C0.25 16.9371 5.06294 21.75 11 21.75C16.9371 21.75 21.75 16.9371 21.75 11C21.75 5.06294 16.9371 0.25 11 0.25Z",
+          fill: "currentColor"
+        }
+      )
+    }
+  ) });
 }
 RadioIndicatorRoot.displayName = "MaterialTailwind.RadioIndicator";
 var RadioIndicator = React21.forwardRef(RadioIndicatorRoot);
@@ -12475,30 +12457,28 @@ function CheckboxIndicatorRoot({ as, className, children, ...props }, ref) {
   const { checked } = React24.useContext(CheckboxContext);
   const theme2 = (contextTheme == null ? void 0 : contextTheme.checkboxIndicator) ?? checkboxIndicatorTheme;
   const styles = twMerge(theme2.baseStyle, className);
-  return (0, import_jsx_runtime23.jsx)(Component, {
-    ...props, "data-checked": checked, className: styles, ref, children: children || (0, import_jsx_runtime23.jsx)(
-      "svg",
-      {
-        fill: "none",
-        width: "18px",
-        height: "18px",
-        strokeWidth: "2",
-        color: "currentColor",
-        viewBox: "0 0 24 24",
-        xmlns: "http://www.w3.org/2000/svg",
-        children: (0, import_jsx_runtime23.jsx)(
-          "path",
-          {
-            d: "M5 13L9 17L19 7",
-            stroke: "currentColor",
-            strokeWidth: "2",
-            strokeLinecap: "round",
-            strokeLinejoin: "round"
-          }
-        )
-      }
-    )
-  });
+  return (0, import_jsx_runtime23.jsx)(Component, { ...props, "data-checked": checked, className: styles, ref, children: children || (0, import_jsx_runtime23.jsx)(
+    "svg",
+    {
+      fill: "none",
+      width: "18px",
+      height: "18px",
+      strokeWidth: "2",
+      color: "currentColor",
+      viewBox: "0 0 24 24",
+      xmlns: "http://www.w3.org/2000/svg",
+      children: (0, import_jsx_runtime23.jsx)(
+        "path",
+        {
+          d: "M5 13L9 17L19 7",
+          stroke: "currentColor",
+          strokeWidth: "2",
+          strokeLinecap: "round",
+          strokeLinejoin: "round"
+        }
+      )
+    }
+  ) });
 }
 CheckboxIndicatorRoot.displayName = "MaterialTailwind.CheckboxIndicator";
 var CheckboxIndicator = React24.forwardRef(CheckboxIndicatorRoot);
@@ -12621,27 +12601,25 @@ function ChipDismissTriggerRoot({ as, ripple, className, children, ...props }, r
     theme2["size"][size4 || "md"],
     className
   );
-  return (0, import_jsx_runtime24.jsx)(Component, {
-    ...props, ref, className: styles, onClick: handleClick, children: children || (0, import_jsx_runtime24.jsx)(
-      "svg",
-      {
-        viewBox: "0 0 24 24",
-        fill: "none",
-        xmlns: "http://www.w3.org/2000/svg",
-        color: "currentColor",
-        className: "h-full w-full",
-        children: (0, import_jsx_runtime24.jsx)(
-          "path",
-          {
-            d: "M6.75827 17.2426L12.0009 12M17.2435 6.75736L12.0009 12M12.0009 12L6.75827 6.75736M12.0009 12L17.2435 17.2426",
-            stroke: "currentColor",
-            strokeLinecap: "round",
-            strokeLinejoin: "round"
-          }
-        )
-      }
-    )
-  });
+  return (0, import_jsx_runtime24.jsx)(Component, { ...props, ref, className: styles, onClick: handleClick, children: children || (0, import_jsx_runtime24.jsx)(
+    "svg",
+    {
+      viewBox: "0 0 24 24",
+      fill: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      color: "currentColor",
+      className: "h-full w-full",
+      children: (0, import_jsx_runtime24.jsx)(
+        "path",
+        {
+          d: "M6.75827 17.2426L12.0009 12M17.2435 6.75736L12.0009 12M12.0009 12L6.75827 6.75736M12.0009 12L17.2435 17.2426",
+          stroke: "currentColor",
+          strokeLinecap: "round",
+          strokeLinejoin: "round"
+        }
+      )
+    }
+  ) });
 }
 ChipDismissTriggerRoot.displayName = "MaterialTailwind.ChipDismissTrigger";
 var ChipDismissTrigger = React25.forwardRef(ChipDismissTriggerRoot);
@@ -12737,19 +12715,17 @@ function DialogOverlayRoot({ className, lockScroll, children, ...props }, ref) {
   const { open } = React27.useContext(DialogContext);
   lockScroll ?? (lockScroll = (defaultProps == null ? void 0 : defaultProps.lockScroll) ?? true);
   const styles = twMerge(theme2.baseStyle, className);
-  return open ? (0, import_jsx_runtime26.jsx)(FloatingPortal, {
-    children: (0, import_jsx_runtime26.jsx)(
-      FloatingOverlay,
-      {
-        ...props,
-        ref,
-        "data-open": open,
-        className: styles,
-        lockScroll,
-        children
-      }
-    )
-  }) : null;
+  return open ? (0, import_jsx_runtime26.jsx)(FloatingPortal, { children: (0, import_jsx_runtime26.jsx)(
+    FloatingOverlay,
+    {
+      ...props,
+      ref,
+      "data-open": open,
+      className: styles,
+      lockScroll,
+      children
+    }
+  ) }) : null;
 }
 DialogOverlayRoot.displayName = "MaterialTailwind.DialogOverlay";
 var DialogOverlay = React27.forwardRef(DialogOverlayRoot);
@@ -12910,19 +12886,17 @@ function DrawerOverlayRoot({ className, lockScroll, children, ...props }, ref) {
   const { open } = React28.useContext(DrawerContext);
   lockScroll ?? (lockScroll = (defaultProps == null ? void 0 : defaultProps.lockScroll) ?? true);
   const styles = twMerge(theme2.baseStyle, className);
-  return open ? (0, import_jsx_runtime27.jsx)(FloatingPortal, {
-    children: (0, import_jsx_runtime27.jsx)(
-      FloatingOverlay,
-      {
-        ...props,
-        ref,
-        "data-open": open,
-        className: styles,
-        lockScroll,
-        children
-      }
-    )
-  }) : null;
+  return open ? (0, import_jsx_runtime27.jsx)(FloatingPortal, { children: (0, import_jsx_runtime27.jsx)(
+    FloatingOverlay,
+    {
+      ...props,
+      ref,
+      "data-open": open,
+      className: styles,
+      lockScroll,
+      children
+    }
+  ) }) : null;
 }
 DrawerOverlayRoot.displayName = "MaterialTailwind.DrawerOverlay";
 var DrawerOverlay = React28.forwardRef(DrawerOverlayRoot);
@@ -13124,19 +13098,17 @@ function AccordionItemRoot({ as, value, disabled, className, children, ...props 
   const isMultiple = type === "multiple";
   const isOpen = isMultiple ? activeItem == null ? void 0 : activeItem.includes(value) : activeItem === value;
   const styles = twMerge(theme2.baseStyle, className);
-  return (0, import_jsx_runtime29.jsx)(AccordionItemContext.Provider, {
-    value, children: (0, import_jsx_runtime29.jsx)(
-      Component,
-      {
-        ...props,
-        ref,
-        "data-open": isOpen,
-        className: styles,
-        "aria-disabled": disabled,
-        children
-      }
-    )
-  });
+  return (0, import_jsx_runtime29.jsx)(AccordionItemContext.Provider, { value, children: (0, import_jsx_runtime29.jsx)(
+    Component,
+    {
+      ...props,
+      ref,
+      "data-open": isOpen,
+      className: styles,
+      "aria-disabled": disabled,
+      children
+    }
+  ) });
 }
 AccordionItemRoot.displayName = "MaterialTailwind.AccordionItem";
 var AccordionItem = React30.forwardRef(AccordionItemRoot);
@@ -13287,27 +13259,25 @@ function AlertDismissTriggerRoot({ as, ripple, className, children, ...props }, 
     setOpen == null ? void 0 : setOpen(false);
     (_a = props.onClick) == null ? void 0 : _a.call(props, event);
   }
-  return (0, import_jsx_runtime30.jsx)(Component, {
-    ...props, ref, className: styles, onClick: closeAlert, children: children || (0, import_jsx_runtime30.jsx)(
-      "svg",
-      {
-        viewBox: "0 0 24 24",
-        fill: "none",
-        xmlns: "http://www.w3.org/2000/svg",
-        color: "currentColor",
-        className: "m-1 h-5 w-5 stroke-2",
-        children: (0, import_jsx_runtime30.jsx)(
-          "path",
-          {
-            d: "M6.75827 17.2426L12.0009 12M17.2435 6.75736L12.0009 12M12.0009 12L6.75827 6.75736M12.0009 12L17.2435 17.2426",
-            stroke: "currentColor",
-            strokeLinecap: "round",
-            strokeLinejoin: "round"
-          }
-        )
-      }
-    )
-  });
+  return (0, import_jsx_runtime30.jsx)(Component, { ...props, ref, className: styles, onClick: closeAlert, children: children || (0, import_jsx_runtime30.jsx)(
+    "svg",
+    {
+      viewBox: "0 0 24 24",
+      fill: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      color: "currentColor",
+      className: "m-1 h-5 w-5 stroke-2",
+      children: (0, import_jsx_runtime30.jsx)(
+        "path",
+        {
+          d: "M6.75827 17.2426L12.0009 12M17.2435 6.75736L12.0009 12M12.0009 12L6.75827 6.75736M12.0009 12L17.2435 17.2426",
+          stroke: "currentColor",
+          strokeLinecap: "round",
+          strokeLinejoin: "round"
+        }
+      )
+    }
+  ) });
 }
 AlertDismissTriggerRoot.displayName = "MaterialTailwind.AlertDismissTrigger";
 var AlertDismissTrigger = React31.forwardRef(

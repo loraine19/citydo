@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode } from "react";
+import { ReactNode } from "react";
 
 interface SwitchProps {
     checked: boolean;
@@ -71,17 +71,5 @@ export const TimePicker: React.FC<TimePickerProps> = ({ children }) => {
 };
 
 
-interface SliderProps {
-    value: number;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    min?: number;
-    max?: number;
-}
 
-export const Slider: React.FC<SliderProps> = ({ value, onChange, min = 0, max = 100 }) => {
-    return (
-        <div className="md3-slider-container" data-md3>
-            <input type="range" className="md3-slider" min={min} max={max} value={value} onChange={onChange} />
-        </div>
-    );
-};
+
