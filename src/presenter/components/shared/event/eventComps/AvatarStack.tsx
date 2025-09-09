@@ -14,14 +14,15 @@ export function AvatarStack(props: AvatarStackProps) {
             {avatarDatas?.map((Participant: Participant, index) =>
                 <PopOver
                     key={index}
-                    trigger={<div className="relative !h-[2.65rem] !w-[2.65rem] flex hover:!z-50">
-                        <div className="absolute hover:!z-50 flex flex-1 top-0 left-0 h-[2.65rem] !w-[2.65rem] ">
-                            <AvatarUser
-                                Profile={Participant?.User?.Profile}
-                                avatarSize={'sm'}
-                                avatarStyle="border-2 !h-[2.65rem]  !w-[2.65rem] !border-white !hover:z-50 !focus:z-50  top-0 left-0 " />
-                        </div>
-                    </div>}
+                    trigger={
+                        <div className="relative !h-[2.65rem]  !w-[2.65rem] flex hover:!z-50">
+                            <div className="absolute hover:!z-50 flex flex-1 top-0 left-0 h-[2.65rem] !w-[2.65rem] ">
+                                <AvatarUser
+                                    Profile={Participant?.User?.Profile}
+                                    avatarSize={'sm'}
+                                    avatarStyle="border-2 !h-[2.65rem]  !w-[2.65rem] !border-white !hover:z-50 !focus:z-50  top-0 left-0 " />
+                            </div>
+                        </div>}
                     children={<div className="!z-[1000] card  !ml-2 !py-2">
                         <div className="p-4 w-auto flex gap-4 ">
                             <div className=" relative pt-2  pr-2">

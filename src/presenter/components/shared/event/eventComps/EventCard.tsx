@@ -14,6 +14,7 @@ import EventCalAddBtn from "./EventCalAddBtn";
 import { CardMD } from "../../base/baseComps/Cards";
 import { useNavigate } from "react-router";
 import { Button } from "../../base/baseComps/Buttons";
+import { IconAnimate } from "../../../common/IconAnimate";
 
 type EventCardProps = {
     event: EventView, refetch?: () => void,
@@ -32,7 +33,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
     const navigate = useNavigate();
     return (
         <CardMD
-            className="lg:h-[45vh] h-[35vh] min-h-fit"
+            className="md:h-[50vh] h-[35vh] min-h-fit"
             link={`/evenement/${id}`}
             image={
                 <CardMD.Image
@@ -42,6 +43,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                     className={''}
                 >
                     <div className={`w-full flex flex-col justify-between !h-full `}>
+
                         <div className="flex w-full flex-wrap justify-between items-center gap-2">
                             <button
                                 onClick={change}>
@@ -57,7 +59,9 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                                 ended={new Date(end).getTime() < Date.now()}
                                 prefix="dans" />
                         </div>
-                        {event.isPast}
+                        <IconAnimate
+                            active={event?.Igo}
+                            icon={'person'} />
                         <ProgressBarBlur
                             isPast={event.isPast}
                             label='participants'
@@ -74,12 +78,15 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                     type='evenement'
                 />
             </CardMD.Headline>
+            <CardMD.Subhead>
+                {eventDateInfo}
+            </CardMD.Subhead>
 
             <CardMD.SupportingText>
-                <p>{eventDateInfo}</p>
-                <p className="description line-clamp-1 ">
+
+                <div className="description line-clamp-2 ">
                     {event.description}
-                </p>
+                </div>
 
             </CardMD.SupportingText>
             <CardMD.Footer>

@@ -1,4 +1,4 @@
-import { ReactNode, HTMLAttributes, Children } from "react";
+import { ReactNode, HTMLAttributes } from "react";
 import { useNavigate } from "react-router";
 
 type CardVariant = "elevated" | "filled" | "outlined" | "tonal";
@@ -86,10 +86,8 @@ export const CardMD: React.FC<CardMDProps> & {
     link,
     ...props
 }) => {
-        const findElement = (type: string) => Children.toArray(children).find((child: any) => (child as any).type.name === type);
-        const navigate = useNavigate()
-        console.log(Children.toArray(children).map((child: any) => (child as any).type.name));
-        //// CARD CSS
+        const navigate = useNavigate();
+        //// CARD CSS 
         const cardClasses = `${image ? "md3-card-with-image" : "md3-card"} md3-card-${variant} ${className ?? ""}`;
 
         //// IMAGE CARD 
@@ -114,13 +112,12 @@ export const CardMD: React.FC<CardMDProps> & {
                         {imageProps.children}
                     </CardImage>
                     <div className={"md3-card-content"}>
-                        {findElement("CardHeadline")}
-                        {findElement("CardSubhead")}
-                        {findElement("CardSupportingText")}
+
+                        {children}
+
+
 
                     </div>
-
-                    {findElement("CardFooter")}
                 </div>
             );
         }
