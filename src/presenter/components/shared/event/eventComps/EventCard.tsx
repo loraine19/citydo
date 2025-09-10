@@ -18,10 +18,11 @@ import { ProgressBar } from "../../base/baseComps/Sliders";
 type EventCardProps = {
     event: EventView, refetch?: () => void,
     change: (e: any) => void,
-    mines?: boolean
+    mines?: boolean,
+    autoFit?: boolean
 }
 
-export function EventCard({ event: initialEvent, change, mines, refetch }: EventCardProps) {
+export function EventCard({ event: initialEvent, change, mines, refetch, autoFit }: EventCardProps) {
     const [event, setEvent] = useState<EventView>(initialEvent);
     const { id, title, participantsMin, start, end, image, label, toogleParticipate, eventDateInfo } = event;
     const disabledDelete = new Date(start).getTime() < Date.now();
@@ -33,8 +34,8 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
 
     return (
         <CardMD
-            autoFit
-            className="sm:h-[50vw] md:h-[55vh]   "
+            autoFit={autoFit}
+            className={`"sm:h-[50vw] md:h-[55vh]  ${autoFit ? '' : 'h-[50vh]'} "`}
             imagePosition={"top"}
             link={`/evenement/${id}`}
             image={

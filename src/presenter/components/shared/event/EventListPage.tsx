@@ -145,6 +145,10 @@ export default function EventListPage() {
         { label: 'jours', key: EventSort.INDAYS, icon: 'calendar_month' }
     ]
 
+
+    //// HANDLE COMPACT VIEW
+    const [compact, setCompact] = useState<boolean>(false);
+
     //// RENDER
     return (
 
@@ -161,7 +165,7 @@ export default function EventListPage() {
                         setReverse={setReverse}
                         action={refetch}
                     />}
-                <div className={` flex items-center justify-center gap-2`}>
+                <div className={` flex items-center justify-center gap-1.5`}>
 
                     <SelectSearch
                         searchCat={searchCat}
@@ -175,6 +179,13 @@ export default function EventListPage() {
                         color="cyan"
                         fill
                         title={view === "view_agenda" ? "voir en mode calendrier" : "voir en mode liste"} />
+                    <Icon
+                        onClick={() => setCompact(!compact)}
+                        icon={compact ? "grid_view" : "view_agenda"}
+                        size="lg"
+                        color="cyan"
+                        fill
+                        title={compact ? "voir en mode liste" : "voir en mode grille"} />
 
                 </div>
                 <SubHeader
@@ -201,9 +212,8 @@ export default function EventListPage() {
                             }}
                             className="Grid gap-4 p-2">
                             {events.map((event: EventView, index: number) => (
-
                                 <EventCard
-
+                                    autoFit={!compact}
                                     key={index}
                                     event={event}
                                     change={change}

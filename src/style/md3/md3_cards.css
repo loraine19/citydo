@@ -24,15 +24,14 @@
     @apply md3-card;
     padding: 0 !important;
     display: grid;
-    grid-template-rows: min-content;
     grid-template-columns: minmax(auto, auto) minmax(auto, 63%);
 }
 
 .md3-card-image-container {
     overflow: hidden;
     border-radius: var(--md3-radius-large);
-    height: 100%; /* Set a fixed height or use a variable */
-    width: 100%; /* Make sure it fills the parent width */
+    height: 100%;
+    width: 100%;
     background: var(--md3-surface-variant);
     align-items: center;
     justify-content: center;
