@@ -111,36 +111,36 @@ export interface ProgressBarProps {
 }
 
 const sizeMapProgressBar = {
-    xsmall: { trackHeight: '0.6rem', textSize: 'text-sm' },
-    small: { trackHeight: '0.75rem', textSize: 'text-base' },
+    xsmall: { trackHeight: '0.7rem', textSize: 'text-sm' },
+    small: { trackHeight: '0.85rem', textSize: 'text-base' },
     medium: { trackHeight: '1rem', textSize: 'text-lg' },
     large: { trackHeight: '1.25rem', textSize: 'text-xl' },
 };
 
 const wavySizeMap = {
     xsmall: {
-        decoration: 'decoration-[7px] ',
-        height: 'h-[44px]',
-        dotSize: 'h-[20px] w-[6px] -right-[3px] -bottom-[6px]',
-        dot2Size: 'h-[16px] w-[7px] -left-[3px] -bottom-[3px]',
+        decoration: 'decoration-[12px] ',
+        height: 'h-[55px] ',
+        dotSize: 'h-[22px] w-[9px] -right-[4px] -bottom-[10.5px]',
+        dot2Size: 'h-[15.5px] w-[9.5px] -left-[4px] -bottom-[7.5px] rotate-45',
     },
     small: {
-        decoration: 'decoration-[9px]',
-        height: 'h-[57px]',
-        dotSize: 'h-[27px] w-[8px] -right-[3px] -bottom-[7px] ',
-        dot2Size: 'h-[20px] w-[9px] -left-[4px] -bottom-[3px] ',
+        decoration: 'decoration-[14.5px]',
+        height: 'h-[60px]',
+        dotSize: 'h-[27px] w-[10px] -right-[4.5px] -bottom-[12.5px] ',
+        dot2Size: 'h-[24px] w-[11.5px] -left-[3.5px] -bottom-[9.5px] rotate-[50deg] ',
     },
     medium: {
-        decoration: 'decoration-[11.5px]',
-        height: 'h-[63px]',
-        dotSize: 'h-[33px] w-[10px] -right-[3px] -bottom-[8px] ',
-        dot2Size: 'h-[25px] w-[11px] -left-[5px] -bottom-[5px] ',
+        decoration: 'decoration-[18px]',
+        height: 'h-[70px]',
+        dotSize: 'h-[32.5px] w-[13px] -right-[5px] -bottom-[15px] ',
+        dot2Size: 'h-[20px] w-[15px] -left-[8px] -bottom-[8.5px] rotate-[50deg]',
     },
     large: {
-        decoration: 'decoration-[17px]',
-        height: 'h-[78px]',
-        dotSize: 'h-[47px] w-[15px] -right-[7px] -bottom-[13px] ',
-        dot2Size: 'h-[29.5px] w-[15px] -left-[7px] -bottom-[5px]  ',
+        decoration: 'decoration-[20px]',
+        height: 'h-[79px]',
+        dotSize: 'h-[36px] w-[15px] -right-[7px] -bottom-[18px] ',
+        dot2Size: 'h-[30px] w-[16.5px] -left-[5.5px] -bottom-[13.5px] rotate-[50deg] ',
     },
 };
 export const ProgressBar: React.FC<ProgressBarProps> = ({
@@ -167,31 +167,32 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 
     return (
         <>{label}
-            <div className={`${variant === 'wavy' ? '-ml-[4px] pl-[11px]' : ''} w-full`}>
+            <div className={`${variant === 'wavy' ? '-ml-[4px] pl-[12.5px] ' : ''} relative w-full`}>
 
                 <div
-                    className={`md3-progressbar-container relative ${className || ''}
-                     ${sizeMapProgressBar[size]?.textSize}`}
+                    className={`md3-progressbar-container 
+                    ${className}  ${sizeMapProgressBar[size]?.textSize}`}
                     style={{ ...style }}
                     data-variant={variant}
                     data-md3
-                >  {variant === 'wavy' &&
-                    <div className={` absolute  h-full z-40 `}
-                        style={{ width: `${percent}%` }}
-                    > <div className={` ${mainColor} ${wavySizeMap[size].dot2Size} 
-                     absolute rotate-[-32deg]
-                             rounded-full  z-50 `}>
+                >
 
-                        </div>
-                        <div className={` ${mainColor} ${wavySizeMap[size].dotSize} 
-                     absolute      rounded-full  z-50 `}>
+                    {variant === 'wavy' &&
+                        <div className={` absolute z-40 `}
+                            style={{ width: `${percent}%` }}
+                        > <div className={` ${mainColor} ${wavySizeMap[size].dot2Size} 
+                     absolute  rounded-full animate-wavy  z-50 `}>
 
-                        </div>
-                    </div>}
+                            </div>
+                            <div className={` ${mainColor} ${wavySizeMap[size].dotSize} 
+                     absolute     rounded-full animate-wavy z-50 `}>
+
+                            </div>
+                        </div>}
                     {variant === 'wavy' &&
                         <>
-                            <div className={` md3-progressbar-track-active-wavy
-                        absolute  left-0 flex w-full underline underline-offset-1 whitespace-nowrap overflow-hidden decoration-wavy  z-30 animate-wavy 
+                            <div className={` md3-progressbar-track-active-wavy 
+                        absolute left-0 flex w-full underline underline-offset-1 whitespace-nowrap overflow-hidden decoration-wavy z-30 animate-wavy 
                             ${wavySizeMap[size].decoration}
                             ${wavySizeMap[size].height}
 
@@ -201,7 +202,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
                             >
                                 {line.map((index) => (
                                     <span
-                                        key={index} className='w-full flex h-full text-transparent '  >
+                                        key={index} className='w-full flex -scale-y-[0.65] !font-comfortaa  h-full text-transparent '  >
                                         ___________________________________________________________
                                     </span>
                                 ))}
@@ -210,28 +211,28 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 
                         </>
                     }
+
+
                     {/* INACTIVE TRACK */}
-                    <div className={`md3-progressbar-track`} style={{ height: trackHeight }}>
+                    <div className={`md3-progressbar-track relative gap-3 !flex   h-full !w-full `}
+                        style={{ height: trackHeight }}>
                         {/* ACTIVE TRACK */}
-                        <div className={`-mt-2 ${mainColor} relative ${variant === 'wavy' ? '!bg-transparent h-[120%]' : ''} `} style={{ width: `${percent}%` }} >
 
-                        </div>
+                        <div className={`-mt-2 ${mainColor}  flex relative ${variant === 'wavy' ? ' bg-transparent' : 'md3-progressbar-track-active '} }`}
+                            style={{ width: `${percent}%` }} />
 
-                        <div
-                            className={`md3-progressbar-track-inactive ${inactiveColor}`}
-                            style={{ width: `${100 - percent}%` }}
-                        >
+                        <div className={`md3-progressbar-track-inactive flex-1 ${inactiveColor}`}>
 
 
                             {/* Dot at the end of inactive tracker */}
                             {percent < 100 && (
-                                <span
-                                    className={`md3-progressbar-dot  ${mainColor}  h-1 min-w-1 rounded-full  `}
+                                <span className={`md3-progressbar-dot ${trackHeight} ${mainColor} h-1 min-w-1 rounded-full  `}
                                 />
                             )}
                         </div>
-                    </div>
-                </div >
+                    </div >
+                </div>
+
             </div>
         </>
     );

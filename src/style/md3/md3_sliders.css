@@ -71,10 +71,10 @@
 .md3-progressbar-track-active,
 .md3-progressbar-track-inactive {
     height: 100%;
-    flex-shrink: 0;
 }
 
 .md3-progressbar-track-active {
+    @apply flex items-center justify-start pl-3 border;
     background: var(--progress-main-color);
     transition: width 0.35s;
 }
@@ -82,7 +82,7 @@
 .md3-progressbar-track-inactive {
     @apply flex items-center justify-end pr-1;
     background: var(--progress-inactive-color);
-    border-radius: 0 var(--md3-radius-full) var(--md3-radius-full) 0;
+    border-radius: var(--md3-radius-full);
 
     transition: width 0s;
 }

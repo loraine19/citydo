@@ -77,7 +77,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
             <CardMD.Media>
 
                 <ProgressBar
-                    size='xsmall'
+                    size='small'
                     className="my-4"
                     variant="wavy"
                     value={event.Participants.length}
