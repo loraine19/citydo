@@ -162,17 +162,18 @@ export default function EventListPage() {
                         search={search} />
                     <Icon
                         onClick={switchClick}
-                        icon={view === "view_agenda" ? "calendar_month" : "list"}
+                        icon={view === "view_agenda" ? "calendar_month" : "view_agenda"}
                         size="xl"
                         color="cyan"
                         fill
                         title={view === "view_agenda" ? "voir en mode calendrier" : "voir en mode liste"} />
                     <Icon
                         onClick={() => setCompact(!compact)}
-                        icon={compact ? "grid_view" : "view_agenda"}
+                        icon={compact ? "grid_view" : "view_column"}
                         size="xl"
                         color="cyan"
                         fill
+                        style={(view !== "view_agenda" ? "hidden" : "flex sm:hidden lg:flex")}
                         title={compact ? "voir en mode liste" : "voir en mode grille"} />
 
                 </div>

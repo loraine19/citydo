@@ -172,7 +172,7 @@ export default function PostListPage() {
         <main>
             <div className="sectionHeader">
 
-                <div className={` flex items-center justify-end gap-4 py-1`}>
+                <div className={` flex items-center justify-end gap-2 py-1`}>
                     <SelectSearch
                         searchCat={searchCat}
                         setSearchCat={setSearchCat}
