@@ -65,13 +65,13 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                                 </div>
                                 <div className="w-full z-0 absolute  px-4 top-6 flex justify-between">
                                     <Typography
-                                        className="!text-[0.8rem] !font-light !font-roboto  !whitespace-break-spaces max-w-[30vw] !text-xs !text-left">
+                                        className="!text-[0.8rem] !font-light   !whitespace-break-spaces max-w-[30vw] !text-xs !text-left">
                                         {user?.email}
                                     </Typography>
                                     <div className="relative flex flex-col gap-1">
                                         <Link
                                             to="/motdepasse_oublie"
-                                            className="!text-[0.8rem] !font-light !font-roboto  !whitespace-break-spaces max-w-[30vw] !text-right hover:underline hover:text-orange-500"
+                                            className="!text-[0.8rem] !font-light   !whitespace-break-spaces max-w-[30vw] !text-right hover:underline hover:text-orange-500"
                                         >modifier le mot de passe ?
                                         </Link>
                                         <button
@@ -82,7 +82,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                                                     window.location.href = '/msg?msg=' + sendEmail.message
                                                 }
                                             }}
-                                            className="!text-[0.8rem] !font-light !font-roboto !whitespace-break-spaces max-w-[30vw] !text-right hover:underline hover:text-red-500"
+                                            className="!text-[0.8rem] !font-light  !whitespace-break-spaces max-w-[30vw] !text-right hover:underline hover:text-red-500"
                                             title="supprimer le compte"
                                         >
                                             supprimer le compte

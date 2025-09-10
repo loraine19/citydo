@@ -28,7 +28,7 @@ export const IconAnimate: React.FC<IconAnimateProps> = ({
         <div
             className={
                 (firstLoad < 2 || !active ? "opacity-0 " : "animate-pop ") +
-                "!text-white " +
+                "!text-white  h-full flex items-center justify-center" +
                 className
             }
         >

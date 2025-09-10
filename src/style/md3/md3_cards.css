@@ -2,7 +2,7 @@
 .md3-card {
     font-family: montserrat, sans-serif;
     padding: 16px;
-    border-radius: 12px;
+    border-radius: var(--md3-radius-large);
     transition: box-shadow 0.2s, background-color 0.2s;
     background-color: var(--md3-surface);
     box-shadow: none;
@@ -11,39 +11,39 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    min-height: fit-content;
+    max-height: min-content;
 }
 .md3-card-with-image-top {
     @apply md3-card;
     padding: 0 !important;
     display: grid;
-    grid-template-rows: auto min-content;
+    grid-template-rows: minmax(200px, 40vh) minmax(min-content, auto);
 }
 
 .md3-card-with-image-left {
     @apply md3-card;
     padding: 0 !important;
     display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: minmax(auto, auto) minmax(auto, 70%);
+    grid-template-rows: min-content;
+    grid-template-columns: minmax(auto, auto) minmax(min-content, 70%);
 }
 
 .md3-card-image-container {
     overflow: hidden;
     border-radius: var(--md3-radius-large);
-    height: 100%;
-    width: auto;
+    height: 100%; /* Set a fixed height or use a variable */
+    width: 100%; /* Make sure it fills the parent width */
     background: var(--md3-surface-variant);
-    display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    border-color: #00000020;
-    border-width: 1px;
-}
-
-.md3-card-image {
     display: flex;
-    flex: 1;
+}
+.md3-card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;

@@ -17,7 +17,7 @@ export class EventView extends Event {
     isValidate: boolean;
     agendaLink: string;
     agendaICalLink: string;
-    eventDateInfo: string;
+    eventDateInfo: { start: string; end: string };
     toogleParticipate: () => Promise<EventView | any>;
     image: string = '';
 
@@ -47,12 +47,12 @@ export class EventView extends Event {
     }
 
     private eventdateInfo = (event: Event) => {
-        return (
-            new Date(event.start).toLocaleDateString('fr-FR', { weekday: 'short', month: 'short', day: 'numeric', minute: 'numeric', hour: 'numeric' })
-            + " - " +
-            (new Date(event?.start).toDateString() === new Date(event?.end).toDateString() ?
+        return {
+            start: new Date(event.start).toLocaleDateString('fr-FR', { weekday: 'short', month: 'short', day: 'numeric', minute: 'numeric', hour: 'numeric' }),
+            end: (new Date(event?.start).toDateString() === new Date(event?.end).toDateString() ?
                 new Date(event?.end).toISOString().slice(11, 16) :
-                new Date(event?.end).toLocaleDateString('fr-FR', { weekday: 'short', month: 'short', day: 'numeric', minute: 'numeric', hour: 'numeric' })))
+                new Date(event?.end).toLocaleDateString('fr-FR', { weekday: 'short', month: 'short', day: 'numeric', minute: 'numeric', hour: 'numeric' }))
+        }
     }
 
     private generateCalendarLink(event: Event): string {

@@ -34,7 +34,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
     return (
         <CardMD
             autoFit
-            className="sm:h-[58vh] md:h-[60vh] max-h-max min-h-min"
+            className="md:h-[50vw] lg:h-[55vh]   "
             imagePosition={"top"}
             link={`/evenement/${id}`}
             image={
@@ -70,8 +70,9 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
             <CardMD.Headline >
                 <Title title={title} type='evenement' />
             </CardMD.Headline>
-            <CardMD.Subhead>
-                {eventDateInfo}
+            <CardMD.Subhead className="flex gap-2">
+                <span>{eventDateInfo.start}</span>
+                <span className="hidden md:inline"> - {eventDateInfo.end}</span>
             </CardMD.Subhead>
             <CardMD.Media>
 
@@ -84,8 +85,8 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                     color="cyan"
                     label={
                         <div className="md3-card-supporting-text pt-1 justify-between flex-row">
-                            <span>il y a {event.Participants.length} participant{event.Participants.length > 1 ? 's' : ''} </span>
-                            {participantsMin} min.
+                            <span> {event.Participants.length} participant{event.Participants.length > 1 ? 's' : ''} </span>
+                            <span className="opacity-50"> / &nbsp;{participantsMin}</span>
                         </div>}
                 />
             </CardMD.Media>

@@ -143,7 +143,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                                                 color={color.col}
                                             />
                                             {/* LABEL LINK */}
-                                            <span className={`font-medium !font-roboto hidden pr-2
+                                            <span className={`font-medium  hidden pr-2
                                             ${navBottom ? 'lg:pr-8 md:block md:!text-[0.9rem] ' : 'md:block md:!text-[0.9rem]'} 
                                             ${(isActive && !navBottom) && 'underline underline-offset-8'}`}>
                                                 {label}
