@@ -26,7 +26,7 @@
     padding: 0 !important;
     display: grid;
     grid-template-rows: min-content;
-    grid-template-columns: minmax(auto, auto) minmax(min-content, 70%);
+    grid-template-columns: minmax(auto, auto) minmax(auto, 65%);
 }
 
 .md3-card-image-container {

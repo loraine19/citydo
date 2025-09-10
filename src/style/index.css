@@ -250,6 +250,12 @@ button {
 
 /* BACKDROP BLUR */
 .backdropBlur {
+    @apply bg-slate-600/40;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+
+.backdropBlurFooter {
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
 }

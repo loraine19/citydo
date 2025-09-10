@@ -59,7 +59,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                     setCloseDial(!true);
                     setOpenBlur(false)
                 }}
-                    className={` ${(closeDial || openBlur) ? ' h-screen w-screen -left-0 top-0  backdropBlur  absolute slide' : 'hidden'
+                    className={` ${(closeDial || openBlur) ? ' h-screen w-screen -left-0 top-0  backdropBlur z-[9999999]  absolute slide' : 'hidden'
                         }`}>
 
                 </div>
@@ -75,7 +75,10 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                          ${!navIcons || navBottom ? ' w-full  ' : ' w-max'} `}>
 
                         {/* PROFILE MENU  */}
-                        <Menu placement="bottom-start">
+                        <Menu offset={-45}
+                            onOpenChange={() => setCloseDial(!closeDial)}
+                            placement="top-start"
+                            open={closeDial}>
                             <MenuTrigger
                                 className="relative h-full justify-center max-w-max grid z-50  items-center !p-0">
                                 <div onClick={() => setCloseDial(!closeDial)}>
@@ -88,7 +91,13 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                                 </div>
                             </MenuTrigger>
                             <MenuContent
-                                className='flex py-3 gap-1 px-2 z-[999] overflow-auto max-h-[calc(100vh-8rem)] flex-1 flex-col !rounded-3xl !shadow -ml-1 ] '>
+                                className='bg-slate-50  pb-3 gap-1 pr-4 pl-2 z-[999] overflow-auto h-[98dvh] flex flex-col  !justify-start  !rounded-3xl !shadow -ml-2 ] '>
+                                <Icon
+                                    color='slate'
+                                    icon='close'
+                                    size='2xl'
+                                    onClick={() => setCloseDial(false)}
+                                />
                                 {/* USER ITEM */}
                                 <MenuItem
                                     className={` items-center gap-3 p-2 ${'hover:bg-brightness-100'} bg-slate-200/60 rounded-full `}>
@@ -110,7 +119,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                                 {menuItems.map((item, index) => (
                                     <MenuItem
                                         key={index}
-                                        className={`flex !flex-1 !min-w-60 pr-[10vw] items-center gap-2 p-2 ${item.onClick ? `hover:brightness-95` : 'hover:bg-slate-200'} bg-slate-200/70 rounded-full  ${item.style || ''}`}
+                                        className={`flex !min-w-60 pr-[10vw] items-center gap-2 p-2 ${item.onClick ? `hover:brightness-95` : 'hover:bg-slate-200'} bg-slate-200/70 rounded-full  ${item.style || ''}`}
                                         onClick={() => {
                                             item.onClick && item.onClick()
                                             setCloseDial(false);

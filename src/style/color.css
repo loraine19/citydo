@@ -159,5 +159,5 @@ button:disabled .Chip {
 
 .slateFooter,
 .grayFooter {
-    @apply bg-gradient-to-t to-transparent  from-[#cbd5e1] from-[1rem] backdropBlur;
+    @apply bg-gradient-to-t to-transparent  from-[#cbd5e1] from-[1rem] backdropBlurFooter;
 }

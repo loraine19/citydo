@@ -9,16 +9,17 @@ export const WithBottomPages = ({ addBtn }: { addBtn?: boolean }) => {
     if (!navBottom)
         return (
             <>
-                <NavBarBottom addBtn={addBtn} />
+
                 <Outlet />
+                <NavBarBottom addBtn={addBtn} />
 
             </>)
 
     return (
         <>
-            <NavBarBottom addBtn={addBtn} />
-            <Outlet />
 
+            <Outlet />
+            <NavBarBottom addBtn={addBtn} />
 
         </>)
 }

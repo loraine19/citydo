@@ -114,7 +114,10 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                             flex  !max-w-[calc(100vw-5.5rem)] flex-row  rounded-full h-full  w-full  `}>
                         {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                             <Typography
-                                onClick={() => { setColor(color.col) }}
+                                onClick={() => {
+                                    setOpenBlur(false);
+                                    setColor(color.col)
+                                }}
                                 key={index}
                                 as="li"
                                 className={` ${color.text} flex rounded-full h-full items-center font-medium`}>
@@ -123,7 +126,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                                     className={({ isActive }) =>
                                         `flex gap-2 lg:gap-3 justify-center lg:justify-start items-center w-full h-full rounded-full 
                                             ${navBottom ? ` px-[8px] py-[4px] ` : 'opacity-90'}
-                                            ${(isActive && navBottom) ? `z-50 ${color.col}Style border animSlide !px-[4px]` :
+                                            ${(isActive && navBottom) ? `z-50 ${color.col}Style border animSlide !px-[5.5px]` :
                                             (isActive && !navBottom) ? ` border-b-[1px] px-1 md:border-none rounded-none !border-current !opacity-100 ` :
                                                 isActive ? `  ` : '!shadow-none '}`
                                     }>
@@ -144,7 +147,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                                             />
                                             {/* LABEL LINK */}
                                             <span className={`font-medium  hidden pr-2
-                                            ${navBottom ? 'lg:pr-8 md:block md:!text-[0.9rem] ' : 'md:block md:!text-[0.9rem]'} 
+                                            ${navBottom ? 'lg:pr-8 pr-4 md:block md:!text-[0.9rem] ' : 'md:block md:!text-[0.9rem]'} 
                                             ${(isActive && !navBottom) && 'underline underline-offset-8'}`}>
                                                 {label}
                                             </span>
