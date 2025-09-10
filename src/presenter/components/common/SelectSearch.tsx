@@ -1,4 +1,4 @@
-import { Input, Menu, MenuTrigger, MenuItem, MenuContent } from "@material-tailwind/react";
+import { Menu, MenuTrigger, MenuItem, MenuContent } from "@material-tailwind/react";
 import { Label } from "../../../domain/entities/frontEntities";
 import { Icon } from "./IconComp";
 import { useUxStore } from "../../../application/stores/ux.store";
@@ -16,13 +16,12 @@ export default function SelectSearch(props: selectSearchProps) {
     const { searchCat, setSearchCat, category, search, style = '' } = props
     return (
         <div className={`w-full  pb-2 ${style}`} >
-            <div className={`"flex inputDiv md3-${color}-container !min-h-[40px] !border-none `} >
+            <div className={`"flex inputDiv md3-${color}-container !min-h-[40px] gap-2 !border-none `} >
                 <Menu placement="bottom-start">
                     <MenuTrigger
-                        className={category.length > 0 ? 'px-2' : 'invisible w-0'}>
+                        className={category.length > 0 ? '' : 'invisible w-0'}>
                         <div className="flex">
                             <Icon
-                                clear color={color ?? 'slate'}
                                 data-cy="select"
                                 icon="arrow_drop_down"
                                 size='2xl' />
@@ -48,7 +47,7 @@ export default function SelectSearch(props: selectSearchProps) {
                         </div>
                     </MenuContent>
                 </Menu>
-                <Input
+                <input
                     onClick={(e: React.MouseEvent<HTMLInputElement>) => {
                         e.stopPropagation();
                         setSearchCat({ label: '', value: null })
@@ -56,7 +55,7 @@ export default function SelectSearch(props: selectSearchProps) {
                     data-cy="input-search"
                     type="search"
                     placeholder="Rechercher"
-                    className={`${color}Style !bg-transparent border-none hover:ring-0 hover:shadow-none focus:backdrop-brightness-90  pb-0 pt-0.5 rounded-full focus:shadow-none focus:ring-0 shadow-none `}
+                    className={`md3-${color}-container hover:brightness-90 focus:backdrop-brightness-90 pb-0 pt-0.5 rounded-full min-h-8 px-4 w-full`}
                     key={searchCat.value}
                     value={searchCat.label}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,9 +65,7 @@ export default function SelectSearch(props: selectSearchProps) {
                     autoComplete="on" />
                 <Icon
                     onClick={() => search(searchCat)}
-                    style='pr-2'
-                    color={color ?? 'slate'}
-                    size="md"
+                    size="lg"
                     icon="search" />
             </div>
         </div>

@@ -35,7 +35,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
     return (
         <CardMD
             autoFit={autoFit}
-            className={` sm:h-[50vw] md:h-[55vh]  ${autoFit ? '' : 'h-[50vh]'} `}
+            className={` min-h-full`}
             imagePosition={"top"}
             link={`/evenement/${id}`}
             image={
@@ -64,7 +64,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                             icon={'person'} />
                     </div>
                 </CardMD.Image>}>
-            <CardMD.Headline className="min-h-[3.5rem]" >
+            <CardMD.Headline className="" >
                 <Title title={title} type='evenement' />
             </CardMD.Headline>
             <CardMD.Subhead className="flex gap-2">

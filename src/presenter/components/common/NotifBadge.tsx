@@ -56,7 +56,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                 <div key={index}
                     className={`relative  w-full flex items-center justify-center ${onBoard ? 'lg:hidden' : ''}`}>
                     <Icon
-                        style={`${navBottom ? `${list.color}Style !drop-shadow-sm !brightness-[1.05] ` : ` shadSm !border-0 `}`}
+                        style={`${navBottom ? `!drop-shadow-sm !brightness-[1.05] ` : ` shadSm !border-0 `}`}
                         reverse={!navBottom}
                         link={list.link}
                         icon={list.icon}

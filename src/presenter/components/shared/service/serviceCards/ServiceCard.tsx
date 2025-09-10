@@ -72,7 +72,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
 
     return (
         <CardMD
-            autoFit={compact}
+            autoFit={!compact}
             className={` sm:h-[50vw] md:h-[55vh]  ${compact ? '' : ''} `}
             imagePosition="top"
             link={`/service/${id}`}
@@ -83,7 +83,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                     className=""
                 >
 
-                    <div className="w-full flex flex-col sm:flex-row flex-wrap gap-2 overflow-hidden justify-between sm:h-max">
+                    <div className={`w-full flex ${compact ? '' : 'flex-col-reverse'} sm:flex-row flex-wrap gap-2 overflow-hidden justify-between sm:h-max`}>
                         <div className="flex flex-col h-full  flex-1 sm:flex-row flex-wrap  gap-2">
                             <button
                                 onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
@@ -129,9 +129,9 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                     type="service"
                 />
             </CardMD.Headline>
-            <CardMD.Subhead className="line-clamp-3">
+            <CardMD.Subhead>
 
-                {Group && <GroupLink group={Group} />}
+                <GroupLink group={Group} />
             </CardMD.Subhead>
             <CardMD.SupportingText className="line-clamp-2">
 

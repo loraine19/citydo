@@ -2,13 +2,13 @@
 
 /* list section */
 .Grid {
-    @apply max-h-full wRespXL grid pt-2 pb-4 gap-y-3.5
+    @apply max-h-full wRespXL grid pt-4 pb-4 gap-6
     grid-cols-[minmax(calc(50%-1rem),1fr)]  
-    sm:grid-cols-[minmax(calc(50%-1rem),1fr),minmax(calc(50%-1rem),1fr)] 
-    
+    sm:grid-cols-[auto,auto] 
     sm:auto-rows-[minmax(min-content,40vh)] 
     auto-rows-[minmax(min-content,20vh)];
 }
+
 .GridCompact {
     @apply lg:grid-cols-[auto,auto,auto];
 }
@@ -25,7 +25,7 @@
 
 /* list grid */
 .SubGrid {
-    @apply max-w-[calc(100vw-1rem)] mx-1.5;
+    @apply max-w-[calc(100vw-1rem)];
 }
 
 /**** CARD ****/

@@ -290,6 +290,80 @@
     border: 1px solid var(--md3-slate);
 }
 
+/* Text color utility classes */
+.md3-text-sky {
+    color: var(--md3-sky);
+}
+.md3-text-on-sky {
+    color: var(--md3-on-sky);
+}
+.md3-text-sky-container {
+    color: var(--md3-sky-container);
+}
+.md3-text-on-sky-container {
+    color: var(--md3-on-sky-container);
+}
+.md3-text-cyan {
+    color: var(--md3-cyan);
+}
+.md3-text-on-cyan {
+    color: var(--md3-on-cyan);
+}
+.md3-text-cyan-container {
+    color: var(--md3-cyan-container);
+}
+.md3-text-on-cyan-container {
+    color: var(--md3-on-cyan-container);
+}
+.md3-text-rose {
+    color: var(--md3-rose);
+}
+.md3-text-on-rose {
+    color: var(--md3-on-rose);
+}
+.md3-text-rose-container {
+    color: var(--md3-rose-container);
+}
+.md3-text-on-rose-container {
+    color: var(--md3-on-rose-container);
+}
+.md3-text-orange {
+    color: var(--md3-orange);
+}
+.md3-text-on-orange {
+    color: var(--md3-on-orange);
+}
+.md3-text-orange-container {
+    color: var(--md3-orange-container);
+}
+.md3-text-on-orange-container {
+    color: var(--md3-on-orange-container);
+}
+.md3-text-green {
+    color: var(--md3-green);
+}
+.md3-text-on-green {
+    color: var(--md3-on-green);
+}
+.md3-text-green-container {
+    color: var(--md3-green-container);
+}
+.md3-text-on-green-container {
+    color: var(--md3-on-green-container);
+}
+.md3-text-slate {
+    color: var(--md3-slate);
+}
+.md3-text-on-slate {
+    color: var(--md3-on-slate);
+}
+.md3-text-slate-container {
+    color: var(--md3-slate-container);
+}
+.md3-text-on-slate-container {
+    color: var(--md3-on-slate-container) !important;
+}
+
 /* Utilitaires pour le layout de la démo */
 .md3-demo-page {
     padding: 2rem;

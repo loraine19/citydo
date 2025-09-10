@@ -162,6 +162,10 @@ export default function PostListPage() {
         { key: PostSort.USER, label: "Utilisateur", icon: "person" }
     ]
 
+
+    //// HANDLE COMPACT VIEW
+    const [compact, setCompact] = useState<boolean>(false);
+
     //// RENDER
     return (
 
@@ -175,13 +179,21 @@ export default function PostListPage() {
                         category={postCategories}
                         search={search} />
                     <Icon
-                        icon={view === "list" ? "list" : "dashboard"}
+                        icon={view === "list" ? "grid_view" : "dashboard"}
                         onClick={switchClick}
                         size="xl"
                         fill
                         color="rose"
-                        style=" hidden md:flex"
+                        style={"hidden sm:flex"}
                     />
+                    <Icon
+                        onClick={() => setCompact(!compact)}
+                        icon={compact ? "view_column" : "view_agenda"}
+                        size="xl"
+                        color="rose"
+                        fill
+                        style={(view === "list" ? "hidden" : "flex sm:hidden lg:flex") + "  "}
+                        title={!compact ? "voir en mode liste" : "voir en mode grille"} />
                 </div>
                 <TabsMenu
                     labels={postTabs}
@@ -216,6 +228,7 @@ export default function PostListPage() {
                         {view === "list" ?
                             announcesToGrid.map((line, index) => (
                                 <PostGridComp
+                                    autoFit={!compact}
                                     key={index}
                                     line={line}
                                     update={refetch}
@@ -223,12 +236,13 @@ export default function PostListPage() {
                                     mines={mines}
                                     view={view} />))
                             :
-                            <div className="Grid">
+                            <div className={"Grid " + (!compact ? ' GridCompact' : '')}>
                                 {posts?.map((post: PostView, index: number) => (
                                     <div
                                         className="SubGrid"
                                         key={index}>
                                         <PostCard
+                                            autoFit={!compact}
                                             short
                                             key={post?.id}
                                             post={post}

@@ -34,6 +34,10 @@ input[type="number"] {
     }
 }
 
+input[data-cy="input-search"]::placeholder {
+    @apply !min-h-8 !h-[1rem];
+}
+
 textarea {
     @apply focus:bg-slate-200 !opacity-95   !outline-0 !ring-0 !ring-current;
 }
