@@ -75,7 +75,6 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                 <span className="hidden md:inline"> - {eventDateInfo.end}</span>
             </CardMD.Subhead>
             <CardMD.Media>
-
                 <ProgressBar
                     size='xxsmall'
                     className=" pb-3"
@@ -85,8 +84,12 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                     color="cyan"
                     label={
                         <div className="md3-card-supporting-text pt-1 justify-between flex-row">
-                            <span> {event.Participants.length} participant{event.Participants.length > 1 ? 's' : ''} </span>
-                            <span className="opacity-50"> / &nbsp;{participantsMin}</span>
+                            <span>
+                                {event.Participants.length} participant{event.Participants.length > 1 ? 's' : ''}
+                            </span>
+                            <span className="opacity-50"> / &nbsp;
+                                {participantsMin}
+                            </span>
                         </div>}
                 />
             </CardMD.Media>

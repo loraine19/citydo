@@ -212,7 +212,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
                                 {line.map((index) => (
                                     <span
                                         key={index} className='w-full flex -scale-y-[0.65] !font-comfortaa  h-full text-transparent '  >
-                                        _________________________________________________________________________________
+                                        _______________________________________________________________________________________________
                                     </span>
                                 ))}
 

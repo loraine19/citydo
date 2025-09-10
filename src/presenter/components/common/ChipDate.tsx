@@ -23,7 +23,7 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
             case prefix && !ended && !end:
                 return `${prefix} ${new Date(start).toLocaleDateString('fr-FR')}`;
             case ended:
-                return `finis le ${endDate}`;
+                return `✓ ${endDate}`;
             case endDays > 4:
                 return `${prefix} ${endDays} jours`;
             case endDays > 0:
