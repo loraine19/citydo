@@ -1,4 +1,4 @@
-import { ReactNode, HTMLAttributes } from "react";
+import { ReactNode, HTMLAttributes, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
 type CardVariant = "elevated" | "filled" | "outlined" | "tonal";
@@ -11,6 +11,7 @@ interface CardMDProps extends HTMLAttributes<HTMLDivElement> {
     image?: ReactNode;
     imagePosition?: ImagePosition;
     link?: string;
+    autoFit?: boolean;
 
 }
 
@@ -25,11 +26,11 @@ export const CardImage: React.FC<{
     className?: string;
     onClick?: () => void;
     children?: ReactNode;
-}> = ({ src, alt, position = "top", className, children, onClick }) => (
-    <div className={`md3-card-image-container-${position} ${className} ${onClick ? "cursor-pointer" : ""} flex-1 `}
+}> = ({ src, alt, className, children, onClick }) => (
+    <div className={`md3-card-image-container ${className} ${onClick ? "cursor-pointer" : ""} flex-1 `}
         onClick={() => onClick && onClick()}>
         <img onError={(e: any) => { e.currentTarget.src = 'public/image/placeholder.jpg' }}
-            className={`md3-card-image-${position} `}
+            className={`md3-card-image `}
             src={src}
             alt={alt}
         />
@@ -88,11 +89,25 @@ export const CardMD: React.FC<CardMDProps> & {
     image,
     imagePosition = "top",
     link,
+    autoFit = false,
     ...props
 }) => {
+
+
+        const [screenSmall, setScreenSmall] = useState<boolean>(window.innerWidth < 640);
+
+
+        useEffect(() => {
+            const handleResize = () => setScreenSmall(window.innerWidth < 640);
+            window.addEventListener("resize", handleResize);
+            return () => window.removeEventListener("resize", handleResize);
+        }, []);
+
         const navigate = useNavigate();
-        //// CARD CSS 
-        const cardClasses = `${image ? "md3-card-with-image" : "md3-card"} md3-card-${variant} ${className ?? ""}`;
+        //// CARD CSS
+        const cardClasses = `md3-card-${variant} 
+        ${image ? `md3-card-with-image-${!autoFit ? imagePosition : screenSmall ? 'left' : 'top'}` : "md3-card"}
+          ${className}`;
 
         //// IMAGE CARD 
         if (image) {
@@ -101,10 +116,7 @@ export const CardMD: React.FC<CardMDProps> & {
 
             return (
                 <div
-                    className={`${cardClasses} ${imagePosition === "left" ? "!flex-row" : ""} `}
-                    data-md3-card
-                    {...props}
-                >
+                    data-md3-card className={`${cardClasses} `} {...props}>
                     <CardImage
                         onClick={imageProps.onClick ? imageProps.onClick : link ? () => navigate(link) : undefined}
                         src={imageProps.src}

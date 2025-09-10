@@ -80,13 +80,12 @@
 }
 
 .md3-progressbar-track-inactive {
-    @apply flex items-center justify-end pr-1;
+    @apply flex items-center justify-end;
     background: var(--progress-inactive-color);
     border-radius: var(--md3-radius-full);
-
     transition: width 0s;
 }
 
 .md3-progressbar-track-active-wavy {
-    transition: width 0.35s;
+    transition: width 0.5s;
 }

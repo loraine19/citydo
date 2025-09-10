@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 
-type SliderSize = 'xsmall' | 'small' | 'medium' | 'large';
+type SliderSize = 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large';
 type SliderColor = 'primary' | 'secondary' | 'tertiary' | 'error' | 'sky' | 'cyan' | 'rose' | 'orange' | 'green';
 
 export interface SliderProps {
@@ -111,36 +111,48 @@ export interface ProgressBarProps {
 }
 
 const sizeMapProgressBar = {
-    xsmall: { trackHeight: '0.7rem', textSize: 'text-sm' },
-    small: { trackHeight: '0.85rem', textSize: 'text-base' },
-    medium: { trackHeight: '1rem', textSize: 'text-lg' },
-    large: { trackHeight: '1.25rem', textSize: 'text-xl' },
+    xxsmall: { trackHeight: '6px', textSize: 'text-xs' },
+    xsmall: { trackHeight: '10px', textSize: 'text-sm' },
+    small: { trackHeight: '14px', textSize: 'text-base' },
+    medium: { trackHeight: '16px', textSize: 'text-lg' },
+    large: { trackHeight: '20px', textSize: 'text-xl' },
 };
 
 const wavySizeMap = {
+    xxsmall: {
+        decoration: 'decoration-[6px] ',
+        height: 'h-[32px] ',
+        dotSize: 'h-[11.5px] w-[5px] -right-[3px] -bottom-[5px]',
+        dot2Size: 'h-[10px] w-[5px] -left-[3px] -bottom-[5px] rotate-45',
+        endIndicator: 'h-[4px] w-[4px] mr-[1px] mb-[0px]',
+    },
     xsmall: {
-        decoration: 'decoration-[12px] ',
-        height: 'h-[55px] ',
-        dotSize: 'h-[22px] w-[9px] -right-[4px] -bottom-[10.5px]',
-        dot2Size: 'h-[15.5px] w-[9.5px] -left-[4px] -bottom-[7.5px] rotate-45',
+        decoration: 'decoration-[10px] ',
+        height: 'h-[48px] ',
+        dotSize: 'h-[18px] w-[8.5px] -right-[4px] -bottom-[8.5px]',
+        dot2Size: 'h-[15px] w-[8px] -left-[4.5px] -bottom-[7.5px] rotate-45',
+        endIndicator: 'h-[6px] w-[6px] mr-[2.5px] mb-[0px]',
     },
     small: {
-        decoration: 'decoration-[14.5px]',
-        height: 'h-[60px]',
-        dotSize: 'h-[27px] w-[10px] -right-[4.5px] -bottom-[12.5px] ',
-        dot2Size: 'h-[24px] w-[11.5px] -left-[3.5px] -bottom-[9.5px] rotate-[50deg] ',
+        decoration: 'decoration-[14px]',
+        height: 'h-[58px]',
+        dotSize: 'h-[25.5px] w-[9px] -right-[4.5px] -bottom-[11px] ',
+        dot2Size: 'h-[24px] w-[10.5px] -left-[3px] -bottom-[10px] rotate-[50deg] ',
+        endIndicator: 'h-[8px] w-[8px] mr-[3px] mb-[0.5px]',
     },
     medium: {
-        decoration: 'decoration-[18px]',
-        height: 'h-[70px]',
-        dotSize: 'h-[32.5px] w-[13px] -right-[5px] -bottom-[15px] ',
-        dot2Size: 'h-[20px] w-[15px] -left-[8px] -bottom-[8.5px] rotate-[50deg]',
+        decoration: 'decoration-[16px]',
+        height: 'h-[65px]',
+        dotSize: 'h-[30px] w-[12px] -right-[5px] -bottom-[12.5px] ',
+        dot2Size: 'h-[20px] w-[12.5px] -left-[5px] -bottom-[7px] rotate-[50deg]',
+        endIndicator: 'h-[10px] w-[10px] mr-[4px] -bottom-[2px]',
     },
     large: {
         decoration: 'decoration-[20px]',
-        height: 'h-[79px]',
-        dotSize: 'h-[36px] w-[15px] -right-[7px] -bottom-[18px] ',
-        dot2Size: 'h-[30px] w-[16.5px] -left-[5.5px] -bottom-[13.5px] rotate-[50deg] ',
+        height: 'h-[76px]',
+        dotSize: 'h-[36px] w-[14.5px] -right-[7px] -bottom-[17px] ',
+        dot2Size: 'h-[30px] w-[16px] -left-[5.5px] -bottom-[12px] rotate-[50deg] ',
+        endIndicator: 'h-[12px] w-[12px] mr-[4px] -bottom-[4px]',
     },
 };
 export const ProgressBar: React.FC<ProgressBarProps> = ({
@@ -159,6 +171,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
     const trackHeight = sizeMapProgressBar[size]?.trackHeight || sizeMapProgressBar['medium'].trackHeight;
     const mainColor = customColor || `md3-${color}` || 'bg-primary';
     const inactiveColor = `md3-${color}-container` || 'bg-primary-container';
+    const endIndicator = wavySizeMap[size]?.endIndicator || wavySizeMap['medium'].endIndicator;
 
     const line = ['&nbsp;']
     for (let i = 0; i < percent / 22; i++) {
@@ -166,7 +179,8 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
     }
 
     return (
-        <>{label}
+        <>
+            <div className='pb-2 -mr-3'>{label}</div>
             <div className={`${variant === 'wavy' ? '-ml-[4px] pl-[12.5px] ' : ''} relative w-full`}>
 
                 <div
@@ -177,20 +191,15 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
                     data-md3
                 >
 
-                    {variant === 'wavy' &&
-                        <div className={` absolute z-40 `}
-                            style={{ width: `${percent}%` }}
-                        > <div className={` ${mainColor} ${wavySizeMap[size].dot2Size} 
-                     absolute  rounded-full animate-wavy  z-50 `}>
 
-                            </div>
+                    {variant === 'wavy' &&
+                        <>  <div className={` absolute z-40 md3-progressbar-track-active-wavy `}
+                            style={{ width: `${percent}%` }}>
+                            <div className={` ${mainColor} ${wavySizeMap[size].dot2Size} 
+                     absolute  rounded-full z-50 `} />
                             <div className={` ${mainColor} ${wavySizeMap[size].dotSize} 
-                     absolute     rounded-full animate-wavy z-50 `}>
-
-                            </div>
-                        </div>}
-                    {variant === 'wavy' &&
-                        <>
+                     absolute  rounded-full z-50 `} />
+                        </div>
                             <div className={` md3-progressbar-track-active-wavy 
                         absolute left-0 flex w-full underline underline-offset-1 whitespace-nowrap overflow-hidden decoration-wavy z-30 animate-wavy 
                             ${wavySizeMap[size].decoration}
@@ -203,7 +212,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
                                 {line.map((index) => (
                                     <span
                                         key={index} className='w-full flex -scale-y-[0.65] !font-comfortaa  h-full text-transparent '  >
-                                        _______________________________________________________________
+                                        _________________________________________________________________________________
                                     </span>
                                 ))}
 
@@ -214,7 +223,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 
 
                     {/* INACTIVE TRACK */}
-                    <div className={`md3-progressbar-track relative gap-3 !flex   h-full !w-full `}
+                    <div className={`md3-progressbar-trackck relative gap-3 !flex   h-full !w-full `}
                         style={{ height: trackHeight }}>
                         {/* ACTIVE TRACK */}
 
@@ -226,7 +235,8 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 
                             {/* Dot at the end of inactive tracker */}
                             {percent < 100 && (
-                                <span className={`md3-progressbar-dot ${trackHeight} ${mainColor} h-1 min-w-1 rounded-full  `}
+                                <span className={`md3-progressbar-dot 
+                                    ${endIndicator} ${mainColor} rounded-full  `}
                                 />
                             )}
                         </div>

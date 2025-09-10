@@ -30,9 +30,12 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
     const actions = GenereMyActions(event, "evenement", deleteEvent);
 
 
+
     return (
         <CardMD
-            className="md:h-[43vh] h-[30vh] min-h-fit"
+            autoFit
+            className="sm:h-[58vh] md:h-[60vh] max-h-max min-h-min"
+            imagePosition={"top"}
             link={`/evenement/${id}`}
             image={
                 <CardMD.Image
@@ -64,12 +67,8 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
 
                     </div>
                 </CardMD.Image>}>
-            <CardMD.Headline
-
-            >
-                <Title title={title}
-                    type='evenement'
-                />
+            <CardMD.Headline >
+                <Title title={title} type='evenement' />
             </CardMD.Headline>
             <CardMD.Subhead>
                 {eventDateInfo}
@@ -77,16 +76,16 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
             <CardMD.Media>
 
                 <ProgressBar
-                    size='xsmall'
-                    className="my-4"
+                    size='xxsmall'
+                    className=" pb-3"
                     variant="wavy"
                     value={event.Participants.length}
                     max={participantsMin || 10}
                     color="cyan"
                     label={
-                        <div className="md3-card-supporting-text justify-between flex-row">
+                        <div className="md3-card-supporting-text pt-1 justify-between flex-row">
                             <span>il y a {event.Participants.length} participant{event.Participants.length > 1 ? 's' : ''} </span>
-                            {participantsMin} minimum
+                            {participantsMin} min.
                         </div>}
                 />
             </CardMD.Media>
