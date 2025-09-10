@@ -181,15 +181,8 @@ export default function ServicesPage() {
 
         <main>
             <div className="sectionHeader">
-                <TabsMenu
-                    labels={serviceTabs}
-                    sortList={sortList}
-                    selectedSort={sort}
-                    setSelectedSort={setSort}
-                    reverse={reverse}
-                    setReverse={setReverse}
-                />
-                <div className={`flex items-center justify-end gap-2 py-1`}>
+
+                <div className={`flex items-center md:justify-end justify-between w-full gap-2 py-1`}>
 
                     {mine ?
                         <CheckCard
@@ -214,7 +207,14 @@ export default function ServicesPage() {
 
                 </div>
 
-
+                <TabsMenu
+                    labels={serviceTabs}
+                    sortList={sortList}
+                    selectedSort={sort}
+                    setSelectedSort={setSort}
+                    reverse={reverse}
+                    setReverse={setReverse}
+                />
                 <SubHeader
                     qty={count}
                     type={`services ${filterName()} ${categoryName()}`} />

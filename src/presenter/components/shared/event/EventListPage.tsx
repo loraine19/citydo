@@ -154,17 +154,6 @@ export default function EventListPage() {
 
         <main>
             <div className="sectionHeader">
-                {view === "view_agenda" &&
-                    <TabsMenu
-                        labels={eventTabs}
-                        defaultTab={params.filter || ''}
-                        sortList={sortList}
-                        selectedSort={sort}
-                        setSelectedSort={setSort}
-                        reverse={reverse}
-                        setReverse={setReverse}
-                        action={refetch}
-                    />}
                 <div className={`flex items-center justify-end gap-4 py-1`}>
 
                     <SelectSearch
@@ -188,6 +177,18 @@ export default function EventListPage() {
                         title={compact ? "voir en mode liste" : "voir en mode grille"} />
 
                 </div>
+                {view === "view_agenda" &&
+                    <TabsMenu
+                        labels={eventTabs}
+                        defaultTab={params.filter || ''}
+                        sortList={sortList}
+                        selectedSort={sort}
+                        setSelectedSort={setSort}
+                        reverse={reverse}
+                        setReverse={setReverse}
+                        action={refetch}
+                    />}
+
                 <SubHeader
                     qty={count || 0}
                     type={`évènements ${filterName()} ${EventCategory[category as keyof typeof EventCategory] ?? ''}`} />

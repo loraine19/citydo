@@ -15,8 +15,8 @@ export default function SelectSearch(props: selectSearchProps) {
     const { color } = useUxStore((state) => state);
     const { searchCat, setSearchCat, category, search, style = '' } = props
     return (
-        <div className={`max-w-max !self-end pb-1 ${style}`} >
-            <div className={`"flex inputDiv md3-${color}-container !min-h-10 !border-none `} >
+        <div className={`w-full  pb-2 ${style}`} >
+            <div className={`"flex inputDiv md3-${color}-container !min-h-[40px] !border-none `} >
                 <Menu placement="bottom-start">
                     <MenuTrigger
                         className={category.length > 0 ? 'px-2' : 'invisible w-0'}>

@@ -167,15 +167,7 @@ export default function PostListPage() {
 
         <main>
             <div className="sectionHeader">
-                <TabsMenu
-                    labels={postTabs}
-                    sortList={sortList}
-                    selectedSort={sort}
-                    setSelectedSort={setSort}
-                    reverse={reverse}
-                    setReverse={setReverse}
-                    action={refetch}
-                />
+
                 <div className={` flex items-center justify-end gap-4 py-1`}>
                     <SelectSearch
                         searchCat={searchCat}
@@ -191,7 +183,15 @@ export default function PostListPage() {
                         style=" hidden md:flex"
                     />
                 </div>
-
+                <TabsMenu
+                    labels={postTabs}
+                    sortList={sortList}
+                    selectedSort={sort}
+                    setSelectedSort={setSort}
+                    reverse={reverse}
+                    setReverse={setReverse}
+                    action={refetch}
+                />
                 <SubHeader
                     qty={count}
                     type={`annonces ${filterName() ?? ''} ${PostCategory[category as keyof typeof PostCategory] ?? ''}`} />

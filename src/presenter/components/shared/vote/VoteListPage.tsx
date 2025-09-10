@@ -172,6 +172,16 @@ export default function VoteListPage() {
         <main>
             <div className="sectionHeader relative">
 
+
+
+
+
+                <SelectSearch
+                    searchCat={searchCat}
+                    setSearchCat={setSearchCat}
+                    category={filter === PoolSurveyFilter.SURVEY ? surveyCategories : []}
+                    search={search} />
+
                 <TabsMenu
                     labels={tabs}
                     sortList={sortList}
@@ -181,21 +191,11 @@ export default function VoteListPage() {
                     setReverse={setReverse}
                     action={refetch}
                 />
-                <div className="flex items-center flex-col lg:flex-row justify-between lg:gap-2" >
-
-                    <CheckCard
-                        categoriesArray={boxArray}
-                        boxSelected={boxSelected}
-                        setBoxSelected={setBoxSelected}
-                        style={'flex-1'} />
-                    <SelectSearch
-                        searchCat={searchCat}
-                        setSearchCat={setSearchCat}
-                        category={filter === PoolSurveyFilter.SURVEY ? surveyCategories : []}
-                        search={search}
-                        style={' lg:w-1/3'} />
-
-                </div>
+                <CheckCard
+                    categoriesArray={boxArray}
+                    boxSelected={boxSelected}
+                    setBoxSelected={setBoxSelected}
+                    style={'pb-4'} />
                 <SubHeader
                     qty={count > 0 ? count : 'aucun'}
                     type={`${filter === PoolSurveyFilter.SURVEY ? '' :

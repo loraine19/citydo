@@ -73,7 +73,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
     return (
         <CardMD
             autoFit={compact}
-            className={` sm:h-[50vw] md:h-[55vh]  ${compact ? '' : 'h-[50vh]'} `}
+            className={` sm:h-[50vw] md:h-[55vh]  ${compact ? '' : ''} `}
             imagePosition="top"
             link={`/service/${id}`}
             image={
