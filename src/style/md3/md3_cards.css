@@ -25,7 +25,7 @@
     padding: 0 !important;
     display: grid;
     grid-template-rows: min-content;
-    grid-template-columns: minmax(auto, auto) minmax(auto, 60%);
+    grid-template-columns: minmax(auto, auto) minmax(auto, 63%);
 }
 
 .md3-card-image-container {
@@ -61,7 +61,7 @@
 
 .md3-card-content {
     @apply gap-0  overflow-hidden justify-between;
-    padding: var(--md3-spacing-sm) var(--md3-spacing-md);
+    padding: var(--md3-spacing-sm) var(--md3-spacing-sm);
     display: flex;
     flex-direction: column;
     min-height: fit-content;
@@ -100,9 +100,9 @@
 .md3-card-footer {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: var(--md3-spacing-small) 0;
+    align-items: end;
     gap: var(--md3-spacing-medium);
+    padding-top: var(--md3-spacing-small);
     color: var(--md3-on-surface-variant);
 }
 

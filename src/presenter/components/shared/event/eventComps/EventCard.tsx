@@ -39,13 +39,10 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
             link={`/evenement/${id}`}
             image={
                 <CardMD.Image
-
                     src={image as string || '/image/placeholder.jpg'}
                     alt={title}
-                    className={''}
-                >
+                    className={''} >
                     <div className={`w-full flex flex-col justify-between !h-full `}>
-
                         <div className="flex w-full flex-wrap justify-between items-center gap-2">
                             <button
                                 onClick={change}>
@@ -64,7 +61,6 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                         <IconAnimate
                             active={event?.Igo}
                             icon={'person'} />
-
                     </div>
                 </CardMD.Image>}>
             <CardMD.Headline >
@@ -77,7 +73,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
             <CardMD.Media>
                 <ProgressBar
                     size='xxsmall'
-                    className=" pb-3"
+                    className=" pb-2 lg:pb-3"
                     variant="wavy"
                     value={event.Participants.length}
                     max={participantsMin || 10}
@@ -95,10 +91,10 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
             </CardMD.Media>
             <CardMD.Footer>
                 {!mines ? (
-                    <div className="flex relative flex-1 overflow-hidden items-center gap-2">
+                    <div className="flex relative flex-1 overflow-hidden items-center">
                         <EventCalAddBtn
                             event={event}
-                            className="-mr-5" iconClass={`${'  top-0 !outline outline-white left-0.5 absolute hover:z-50  '}`} />
+                            className="-mr-3" iconClass={`${'top-0 !outline outline-white left-0.5 absolute hover:z-50  '}`} />
                         <AvatarStack avatarDatas={event.Participants} />
                     </div>
                 ) : (
@@ -125,7 +121,6 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
                             fill
                             title={event?.Igo ? "Je n'y vais plus" : "Je participe"} />
                     </Button>
-
                 </div>
             </CardMD.Footer>
         </CardMD>
