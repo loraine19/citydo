@@ -71,7 +71,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
 
                         <h6>Description</h6>
                         <div className="flex items-center gap-2 justify-between border-b border-slate-400">
-                            <i>{eventDateInfo}</i>
+                            <i>{eventDateInfo.start} - {eventDateInfo.end}</i>
                             <EventCalAddBtn event={EventLoad} className="-mb-1" />
                         </div>
                         <Typography
