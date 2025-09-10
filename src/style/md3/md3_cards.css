@@ -46,6 +46,8 @@
     height: 100%;
     object-fit: cover;
     border-radius: var(--md3-radius-large);
+
+    border: 1px solid #00000020;
 }
 
 .md3-card-image-children {
@@ -68,7 +70,7 @@
 }
 
 .md3-card-headline {
-    @apply pb-2 text-[1.125rem] lg:text-[1.25rem];
+    @apply pb-2 text-[1.125rem] md:text-[1.2rem];
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--md3-on-surface);

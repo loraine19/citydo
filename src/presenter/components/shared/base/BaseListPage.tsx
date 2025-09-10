@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Icon } from '../../common/IconComp';
-import { Button, SegmentedButton } from './baseComps/Buttons';
+import { Button, SegmentedButton, } from './baseComps/Buttons';
 import { CardMD, } from './baseComps/Cards';
 import { Fab, FabMenu } from './baseComps/Fabs';
 import { Carousel } from './baseComps/Carrousel';
@@ -23,6 +23,7 @@ const MD3DemoPage: React.FC = () => {
     const [sliderValue, setSliderValue] = useState(50);
     const [sliderValue2, setSliderValue2] = useState(70);
     const [activeTab, setActiveTab] = useState('tab1');
+    const [buttonValue, setButtonValue] = useState('1');
 
     const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setMenuAnchorEl(event.currentTarget);
@@ -30,7 +31,7 @@ const MD3DemoPage: React.FC = () => {
     };
 
     return (
-        <div data-md3 className="p-4 space-y-8 overflow-auto">
+        <div data-md3 className="p-4 space-y-8 overflow-auto max-w-[1100px] m-auto">
             <h1>Material Design 3 - Boîte à outils</h1>
             <p>
                 Ceci est une page de démonstration complète de tous les composants MD3.
@@ -61,18 +62,28 @@ const MD3DemoPage: React.FC = () => {
             <section id="boutons" className='overflow-hidden min-h-max p-4 border '>
                 <h2>Boutons</h2>
                 <div className='flex flex-col gap-1 divide-y'>
-                    {/* Filled */}
+                    {/* Filled & Tonal */}
                     <div className='md3-component-group'>
                         <Button variant="filled">Rempli</Button>
+                        <Button variant="tonal">Tonal</Button>
                         <Button variant="filled" color="secondary">Rempli Secondary</Button>
+                        <Button variant="tonal" color="secondary">Tonal Secondary</Button>
                         <Button variant="filled" color="tertiary">Rempli Tertiaire</Button>
+                        <Button variant="tonal" color="tertiary">Tonal Tertiaire</Button>
                         <Button variant="filled" color="error">Rempli Erreur</Button>
+                        <Button variant="tonal" color="error">Tonal Erreur</Button>
                         <Button variant="filled" color="sky">Rempli Sky</Button>
+                        <Button variant="tonal" elevating color="sky">Tonal Sky</Button>
                         <Button variant="filled" color="cyan">Rempli Cyan</Button>
+                        <Button variant="tonal" color="cyan">Tonal Cyan</Button>
                         <Button variant="filled" color="rose">Rempli Rose</Button>
+                        <Button variant="tonal" color="rose">Tonal Rose</Button>
                         <Button variant="filled" color="orange">Rempli Orange</Button>
+                        <Button variant="tonal" color="orange">Tonal Orange</Button>
                         <Button variant="filled" elevating color="green">Rempli Green</Button>
+                        <Button variant="tonal" color="green">Tonal Green</Button>
                         <Button variant="filled" disabled>Rempli Désactivé</Button>
+                        <Button variant="tonal" disabled>Tonal Désactivé</Button>
                     </div>
 
                     {/* Elevated */}
@@ -117,19 +128,7 @@ const MD3DemoPage: React.FC = () => {
                         <Button variant="text" disabled>Texte Désactivé</Button>
                     </div>
 
-                    {/* Tonal */}
-                    <div className='md3-component-group'>
-                        <Button variant="tonal">Tonal</Button>
-                        <Button variant="tonal" color="secondary">Tonal Secondary</Button>
-                        <Button variant="tonal" color="tertiary">Tonal Tertiaire</Button>
-                        <Button variant="tonal" color="error">Tonal Erreur</Button>
-                        <Button variant="tonal" elevating color="sky">Tonal Sky</Button>
-                        <Button variant="tonal" color="cyan">Tonal Cyan</Button>
-                        <Button variant="tonal" color="rose">Tonal Rose</Button>
-                        <Button variant="tonal" color="orange">Tonal Orange</Button>
-                        <Button variant="tonal" color="green">Tonal Green</Button>
-                        <Button variant="tonal" disabled>Tonal Désactivé</Button>
-                    </div>
+
                 </div>
             </section>
 
@@ -253,13 +252,84 @@ const MD3DemoPage: React.FC = () => {
             </section>
 
             {/* Boutons segmentés */}
-            <section id="segmented-button" className="md3-section">
+            <section id="segmented-button" className="md3-section gap-2">
                 <h2>Boutons Segmentés</h2>
-                <div className="md3-segmented-button-group">
-                    <SegmentedButton active={true}>Actif</SegmentedButton>
-                    <SegmentedButton>Inactif</SegmentedButton>
-                    <SegmentedButton disabled>Désactivé</SegmentedButton>
-                </div>
+                <SegmentedButton
+                    value={buttonValue}
+                    onChange={(val: any) => setButtonValue(val)}
+                    color="green"
+                    size="small"
+                    options={
+                        [
+                            { value: '1', label: 'Option' },
+                            { value: '2', label: 'Option 2' },
+                            { value: '3', label: 'Option 3' },
+                        ]
+                    }
+                /><SegmentedButton
+                    value={buttonValue}
+                    onChange={(val: any) => setButtonValue(val)}
+                    color="orange"
+                    size="small"
+                    options={
+                        [
+                            { value: '1', label: 'Option' },
+                            { value: '2', label: 'Option 2' },
+                            { value: '3', label: 'Option 3' },
+                        ]
+                    }
+                />
+                <SegmentedButton
+                    value={buttonValue}
+                    onChange={(val: any) => setButtonValue(val)}
+                    color="rose"
+                    size="small"
+                    options={
+                        [
+                            { value: '1', label: 'Option' },
+                            { value: '2', label: 'Option 2' },
+                            { value: '3', label: 'Option 3' },
+                        ]
+                    }
+                />
+                <SegmentedButton
+                    value={buttonValue}
+                    onChange={(val: any) => setButtonValue(val)}
+                    color="cyan"
+                    size="small"
+                    options={
+                        [
+                            { value: '1', label: 'Option' },
+                            { value: '2', label: 'Option 2' },
+                            { value: '3', label: 'Option 3' },
+                        ]
+                    }
+                />
+                <SegmentedButton
+                    value={buttonValue}
+                    onChange={(val: any) => setButtonValue(val)}
+                    color="sky"
+                    size="small"
+                    options={
+                        [
+                            { value: '1', label: 'Option' },
+                            { value: '2', label: 'Option 2' },
+                        ]
+                    }
+                />
+                <SegmentedButton
+                    value={buttonValue}
+                    onChange={(val: any) => setButtonValue(val)}
+                    color="primary"
+                    size="large"
+                    options={
+                        [
+                            { value: '1', label: 'Option', icon: { icon: 'home', size: 'xl' } },
+                            { value: '2', label: 'Option 2' },
+                            { value: '3', label: 'Option 3' },
+                        ]
+                    }
+                />
             </section>
 
             {/* Date/Time Pickers */}

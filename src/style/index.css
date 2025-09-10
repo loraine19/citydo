@@ -49,7 +49,7 @@
      bg-slate-300 dark:bg-slate-700 text-slate-700 dark:text-slate-300;
 }
 :root {
-    @apply scroll-smooth text-[14px] xs:text-[14.5px] sm:!text-[15px] lg:!text-[14px] baseBG dark:bg-slate-800 dark:!text-slate-300 font-montserrat;
+    @apply scroll-smooth text-[13px] xs:text-[14px] sm:!text-[15px] lg:!text-[14px] baseBG dark:bg-slate-800 dark:!text-slate-300 font-montserrat;
     line-height: 1.2;
     font-weight: 400;
     display: flex;
@@ -77,7 +77,7 @@ body {
 }
 
 main {
-    @apply flex flex-col wRespXL h-[calc(100%+0rem)] px-2 md:px-4  flex-1 w-full mx-auto;
+    @apply flex flex-col wRespXL h-[calc(100%+0rem)] px-4 md:px-6  flex-1 w-full mx-auto;
     min-height: 0;
     z-index: 0;
     max-height: 100vh;

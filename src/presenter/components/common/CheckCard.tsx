@@ -29,13 +29,13 @@ export default function CheckCard(props: checkCardProps) {
     const { color } = useUxStore((state) => state);
 
     return (
-        <div className={`flex w-full  ${style} `}>
-            <div className="w-full !m-0 h-full !max-w-[calc(100vw)] overflow-auto !flex items-center rounded-2xl">
+        <div className={`flex w-full  ${style} overflow-hidden gap-3`}>
+            <div className="w-full !m-0 h-full !max-w-[calc(100vw)] overflow-auto !flex items-center rounded-full ">
                 <List className="flex-row h-full flex w-full !min-w-max justify-evenly items-center  !p-0  ">
                     {categoriesArray.map((category, index) => (
                         <List.Item className="px-0.5 h-full w-full min-w-max hover:!bg-transparent" key={index}>
                             <label htmlFor={category} className="flex flex-1">
-                                <List.ItemStart className={` h-[2.2rem] relative w-full !px-0 py-0.5 !m-0 flex items-center justify-center rounded-full border-[1px] ${` ${color}Style  `} ${checkedState[index] ? ` ` : `!bg-transparent `}`}>
+                                <List.ItemStart className={` min-h-10 relative w-full !px-0 py-0.5 !m-0 flex items-center justify-center rounded-full border-[1px]  ${checkedState[index] ? ` ${` ${color}Style !border-none `} ` : ` md3-${color}-outlined  `}`}>
                                     <Checkbox
                                         checked={checkedState[index]}
                                         id={category}
@@ -50,10 +50,12 @@ export default function CheckCard(props: checkCardProps) {
                                         htmlFor="default-checkbox"
                                         className={` flex items-center justify-center whitespace-nowrap text-sm font-roboto !min-w-max  rounded-3xl  text-center w-full  lg:gap-2 gap-0.5 ${checkedState[index] ? 'pr-4 pl-2 font-medium' : 'px-4'} `}
                                     >
-                                        <Icon
+                                        {checkedState[index] && <Icon
                                             color={color ?? 'slate'}
-                                            size={"sm"}
-                                            icon={checkedState[index] ? 'check' : ''} />{category}
+                                            size={"lg"}
+                                            icon={'check'} />}
+
+                                        {category}
                                     </Typography>
                                 </List.ItemStart>
 
@@ -62,11 +64,11 @@ export default function CheckCard(props: checkCardProps) {
                     ))}
                 </List>
             </div>
-            <div className="flex items-center px-0.5 rounded-full">
+            <div className="flex items-center sm:px-1 sm:gap-1 rounded-full">
                 <Icon
                     disabled={checkedState.some(Boolean) ? false : true}
                     icon="cancel"
-                    size="lg"
+                    size="xl"
                     fill={checkedState.some(Boolean)}
                     color={color ?? 'slate'}
                     onClick={() => {
@@ -78,7 +80,7 @@ export default function CheckCard(props: checkCardProps) {
                     disabled={checkedState.every(Boolean) ? true : false}
                     fill={checkedState.every(Boolean) ? false : true}
                     icon="check_circle"
-                    size="lg"
+                    size="xl"
                     color={color ?? 'slate'}
                     onClick={() => {
                         setBoxSelected([...categoriesArray]);

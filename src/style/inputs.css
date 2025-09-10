@@ -51,7 +51,7 @@ textarea {
 }
 
 .inputDiv {
-    @apply !rounded-full h-[2.2rem] flex items-center bg-opacity-0 border-t px-4 !border capitalize font-normal;
+    @apply !rounded-full h-[2.2rem] flex items-center bg-opacity-0 border-t px-4 !border capitalize font-medium;
 }
 
 .inputDiv::placeholder {

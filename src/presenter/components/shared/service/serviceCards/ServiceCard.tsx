@@ -1,4 +1,3 @@
-import { Card, CardHeader, Typography, CardBody, CardFooter } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import { ServiceStep, ServiceType, ServiceUpdate } from "../../../../../domain/entities/Service";
 import ModifBtnStack from "../../../common/ModifBtnStack";
@@ -12,13 +11,14 @@ import { ServiceView } from "../../../../views/viewsEntities/serviceViewEntity";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { Title } from "../../../common/CardTitle";
 import Chip from "../../../common/adaptatersComps/Chip";
+import { CardMD } from "../../base/baseComps/Cards";
+import { GroupLink } from "../../../common/GroupLink";
 
 
-type ServiceProps = { service: ServiceView, mines?: boolean, change: (e: React.MouseEvent<HTMLButtonElement>) => void, update?: () => void }
-const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update }) => {
+type ServiceProps = { service: ServiceView, mines?: boolean, change: (e: React.MouseEvent<HTMLButtonElement>) => void, update?: () => void, compact?: boolean }
+const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, compact }) => {
     const { user } = useUserStore()
     const { id, title, description, image, createdAt, User, flagged, mine, IResp, points, typeS, categoryS, statusS, Group } = service
-    const haveImage = service.image ? true : false
     const navigate = useNavigate();
     const statusSInt = getEnumVal(service.statusS, ServiceStep)
     const isLateValue = isLate(createdAt, 15) && statusSInt < 3
@@ -71,107 +71,111 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update })
 
 
     return (
-        <>
-            <Card className={haveImage ? "FixCard " : "FixCardNoImage"}>
-                <CardHeader
-                    className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage"}>
-                    {image &&
-                        <div className="CardImageDiv">
-                            <img
-                                onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
-                                src={image as any}
-                                alt={title}
-                                className=" CardImage "
-                            /></div>
-                    }
-                    <div className={haveImage ? "ChipDiv" : "ChipDivNoImage"}>
-                        <div className="ChipSubDiv ">
+        <CardMD
+            autoFit={compact}
+            className={` sm:h-[50vw] md:h-[55vh]  ${compact ? '' : 'h-[50vh]'} `}
+            imagePosition="top"
+            link={`/service/${id}`}
+            image={
+                <CardMD.Image
+                    src={image as string || '/image/placeholder.jpg'}
+                    alt={title}
+                    className=""
+                >
+
+                    <div className="w-full flex flex-col sm:flex-row flex-wrap gap-2 overflow-hidden justify-between sm:h-max">
+                        <div className="flex flex-col h-full  flex-1 sm:flex-row flex-wrap  gap-2">
                             <button
                                 onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                                     const cat = e.currentTarget.innerText.toLowerCase();
-                                    change(cat as any)
+                                    change(cat as any);
                                 }}>
                                 <Chip
                                     size="sm"
                                     value={`${categoryS}`}
-                                    className="cyanChip">
-                                </Chip>
+                                    className="rounded-full h-max truncate cyanChip shadow"
+                                />
                             </button>
                             <button
-                                onClick={(e: any) => {
-                                    const cat = e.target.innerText.toLowerCase();
-                                    change(cat)
+                                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                                    const cat = e.currentTarget.innerText.toLowerCase();
+                                    change(cat as any);
                                 }}>
                                 <Chip
                                     size="sm"
                                     value={typeS}
-                                    className={`${typeS === ServiceType.GET ? "orangeChip" : "greenChip"}`}>
-                                </Chip>
+                                    className={`rounded-full h-max ${typeS === ServiceType.GET ? "orangeChip" : "greenChip"} shadow`}
+                                />
                             </button>
                             <Chip
                                 size="sm"
                                 value={statusS}
-                                className={statusColor(statusS as ServiceStep).color}>
-                            </Chip>
+                                className={`rounded-full h-max ${statusColor(statusS as ServiceStep).color} shadow`}
+                            />
                         </div>
-                        <DateChip
-                            start={createdAt}
-                            prefix="le" />
+                        <div>
+                            <DateChip
+                                start={createdAt}
+                                prefix="le"
+                            /></div>
                     </div>
+                </CardMD.Image>
+            }
+        >
+            <CardMD.Headline className="min-h-[3.6rem]">
+                <Title
+                    title={title}
+                    flagged={flagged}
+                    type="service"
+                />
+            </CardMD.Headline>
+            <CardMD.Subhead className="line-clamp-3">
 
-                </CardHeader>
-                <CardBody className={` FixCardBody  !overflow-auto`}>
-                    <Title
-                        title={title}
-                        flagged={flagged} id={id}
-                        type='service'
-                        group={Group}
+                {Group && <GroupLink group={Group} />}
+            </CardMD.Subhead>
+            <CardMD.SupportingText className="line-clamp-2">
+
+                {description}
+
+            </CardMD.SupportingText>
+            <CardMD.Footer className="justify-between items-center flex w-full">
+                {mine && mines && (
+                    <ModifBtnStack
+                        actions={myActions}
+                        icon3={isLateValue}
+                        update={update}
+                        disabled1={statusSInt > 1}
+                        disabled2={statusSInt > 1}
                     />
-                    <div className="">
-                        <Typography className="description !line-clamp-1">
-                            {description}
-                        </Typography></div>
-                </CardBody>
-                <CardFooter className="CardFooter">
-                    {mine && mines &&
-                        <ModifBtnStack
-                            actions={myActions}
-                            icon3={isLateValue}
-                            update={update}
-                            disabled1={statusSInt > 1}
-                            disabled2={statusSInt > 1} />}
-                    {IResp && mines &&
-                        <ModifBtnStack
-                            actions={takenCTA}
-                            disabled1={service.statusS !== ServiceStep.STEP_2}
-                            disabled2={service.statusS !== ServiceStep.STEP_1} />}
-                    {!mines &&
-                        <ProfileDiv
-                            profile={User} />
-                    }
-                    <div className="flex items-center">
-                        <Chip
-                            size="sm"
-                            value={`${points.join(' à ')}   pts`}
-                            className={`py-1 flex grayChip ${mines && 'hidden md:flex'}`}
-                            icon=
-                            {<Icon
-                                style="-mt-1"
-                                icon="toll"
-                                title={`Ce service ${service.typeS === ServiceType.GET ? 'vous fais gagner' : 'coute'} ${points.join(' à ')}pts`}
-                                fill={user?.Profile?.points > points[0]}
-                                color={service.typeS === ServiceType.GET ? "green" : "orange"}
-                                size="lg" />}>
-                        </Chip>
+                )}
+                {IResp && mines && (
+                    <ModifBtnStack
+                        actions={takenCTA}
+                        disabled1={service.statusS !== ServiceStep.STEP_2}
+                        disabled2={service.statusS !== ServiceStep.STEP_1}
+                    />
+                )}
+                {!mines && (
+                    <ProfileDiv profile={User} />
+                )}
+                <Chip
+                    size="md"
+                    value={`${points.join(' à ')} pts`}
+                    className={`py-1 flex grayChip ${mines && 'hidden md:flex'}`}
+                    icon={
                         <Icon
-                            icon="keyboard_arrow_right"
-                            link={`/service/${id}`}
-                            title={`voir les details de service  ${title}`}
-                            fill />
-                    </div>
-                </CardFooter>
-            </Card >
-        </>
+                            style="-mt-1"
+                            icon="toll"
+                            title={`Ce service ${service.typeS === ServiceType.GET ? 'vous fais gagner' : 'coute'} ${points.join(' à ')}pts`}
+                            fill={user?.Profile?.points > points[0]}
+                            color={service.typeS === ServiceType.GET ? "green" : "orange"}
+                            size="lg"
+                        />
+                    }
+                />
+
+            </CardMD.Footer>
+        </CardMD>
     )
 }
 export default ServiceCard

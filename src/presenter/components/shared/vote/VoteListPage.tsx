@@ -91,10 +91,10 @@ export default function VoteListPage() {
     };
 
     const tabs: TabLabel[] = [
-        { label: "tous", value: '', result: () => filterTab() },
-        { label: "cagnotte", value: PoolSurveyFilter.POOL, result: () => filterTab(PoolSurveyFilter.POOL) },
-        { label: "sondage", value: PoolSurveyFilter.SURVEY, result: () => filterTab(PoolSurveyFilter.SURVEY) },
-        { label: "les miens", value: PoolSurveyFilter.MINE, result: () => filterTab(PoolSurveyFilter.MINE) },
+        { label: "tous", value: '', result: () => filterTab(), icon: { icon: 'list' } },
+        { label: "cagnotte", value: PoolSurveyFilter.POOL, result: () => filterTab(PoolSurveyFilter.POOL), icon: { icon: "person_heart" } },
+        { label: "sondage", value: PoolSurveyFilter.SURVEY, result: () => filterTab(PoolSurveyFilter.SURVEY), icon: { icon: 'ballot' } },
+        { label: "les miens", value: PoolSurveyFilter.MINE, result: () => filterTab(PoolSurveyFilter.MINE), icon: { icon: 'person' } },
     ]
 
     //// SEARCH

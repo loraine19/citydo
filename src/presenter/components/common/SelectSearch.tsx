@@ -15,8 +15,8 @@ export default function SelectSearch(props: selectSearchProps) {
     const { color } = useUxStore((state) => state);
     const { searchCat, setSearchCat, category, search, style = '' } = props
     return (
-        <div className={` w-full pt-0.5 pb-1 ${style}`} >
-            <div className={`"flex inputDiv ${color}Style `} >
+        <div className={`max-w-max !self-end pb-1 ${style}`} >
+            <div className={`"flex inputDiv md3-${color}-container !min-h-10 !border-none `} >
                 <Menu placement="bottom-start">
                     <MenuTrigger
                         className={category.length > 0 ? 'px-2' : 'invisible w-0'}>
@@ -28,22 +28,24 @@ export default function SelectSearch(props: selectSearchProps) {
                                 size='2xl' />
                         </div>
                     </MenuTrigger>
-                    <MenuContent className="flex bg-white !rounded-3xl gap-2 p-4 flex-col mt-1 -ml-4">
-                        {category.map((label: any, index: number) => {
-                            return (
-                                <MenuItem
-                                    data-cy={label.value}
-                                    key={index}
-                                    value={label.value}
-                                    className="flex items-center gap-2 !capitalize hover:font-medium hover:bg-slate-200 pr-4 !rounded-full InputDiv font-normal font-roboto "
-                                    onClick={() => {
-                                        setSearchCat(label);
-                                        search(label)
-                                    }} >
-                                    {label.label}
-                                </MenuItem>
-                            );
-                        })}
+                    <MenuContent className="border-0 -ml-4">
+                        <div className="flex w-respLarge shadow-xl bg-white !rounded-3xl gap-2 p-4 flex-col mt-1 -ml-8">
+                            {category.map((label: any, index: number) => {
+                                return (
+                                    <MenuItem
+                                        data-cy={label.value}
+                                        key={index}
+                                        value={label.value}
+                                        className="flex items-center gap-2 !capitalize hover:font-medium hover:bg-slate-200 pr-4 !rounded-full InputDiv font-normal font-roboto "
+                                        onClick={() => {
+                                            setSearchCat(label);
+                                            search(label)
+                                        }} >
+                                        {label.label}
+                                    </MenuItem>
+                                );
+                            })}
+                        </div>
                     </MenuContent>
                 </Menu>
                 <Input

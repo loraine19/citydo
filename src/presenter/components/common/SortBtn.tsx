@@ -19,7 +19,7 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
     const [isOpen, setIsOpen] = useState(false);
     return (
         <div className="relative flex justify-between items-center  ">
-            <div className="flex items-center w-full h-full  gap-2">
+            <div className="flex items-center w-full h-full  gap-1">
                 <Menu
                     open={isOpen}
                     onOpenChange={setIsOpen}
@@ -28,12 +28,12 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
                         <div className="flex items-center relative">
                             <Icon
                                 color={color ?? 'slate'}
-                                icon="sort"
-                                size="lg"
+                                icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"}
+                                size="4xl"
                             />
                         </div>
                     </MenuTrigger>
-                    <MenuContent className="backdropBlur overflow-hidden bg-transparent m-auto !border-none shadow-none gap-2 flex rounded-3xl justify-end h-[calc(100%-110px)] wRespXL ">
+                    <MenuContent className="backdropBlurFooter overflow-hidden bg-transparent m-auto !border-none shadow-none gap-2 flex rounded-3xl justify-end h-screen wRespXL ">
                         <div className="p-4 h-max bg-white gap-2 shadow rounded-3xl border relative right-0 flex flex-col justify-start mr-3 mt-1">
                             {sortList.map((item: SortLabel, index: number) =>
                                 <div

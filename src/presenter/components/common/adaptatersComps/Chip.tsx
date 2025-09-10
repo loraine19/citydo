@@ -30,7 +30,7 @@ const Chip: React.FC<ChipProps> = ({
                     <ChipMt.Icon className="stroke w-max px-1 ">
                         {icon}
                     </ChipMt.Icon>}
-                <ChipMt.Label className="pt-[0.2em] drop-shadow-sm !font-semibold text-[0.78rem] !stroke-black  font-roboto px-0">
+                <ChipMt.Label className="pt-[0.2em] drop-shadow-sm !font-semibold text-[0.78rem] !stroke-black truncate !whitespace-normal font-roboto px-0">
                     {value}
                 </ChipMt.Label>
 

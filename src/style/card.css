@@ -5,9 +5,12 @@
     @apply max-h-full wRespXL grid pt-2 pb-4 gap-y-3.5
     grid-cols-[minmax(calc(50%-1rem),1fr)]  
     sm:grid-cols-[minmax(calc(50%-1rem),1fr),minmax(calc(50%-1rem),1fr)] 
-    lg:grid-cols-[auto,auto,auto] 
+    
     sm:auto-rows-[minmax(min-content,40vh)] 
     auto-rows-[minmax(min-content,20vh)];
+}
+.GridCompact {
+    @apply lg:grid-cols-[auto,auto,auto];
 }
 
 .Grid2 {

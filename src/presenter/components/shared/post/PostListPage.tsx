@@ -58,9 +58,12 @@ export default function PostListPage() {
     }
 
     const postTabs: TabLabel[] = [
-        { label: "tous", value: "", result: () => filterTab() },
-        { label: "J'aime", value: PostFilter.ILIKE, result: () => filterTab(PostFilter.ILIKE) },
-        { label: "Mes annonces", value: PostFilter.MINE, result: () => filterTab(PostFilter.MINE) }
+        { label: "tous", value: "", result: () => filterTab(), icon: { icon: "list" } },
+        { label: "J'aime", value: PostFilter.ILIKE, result: () => filterTab(PostFilter.ILIKE), icon: { icon: "thumb_up" } },
+        {
+            label: "Mes annonces", value: PostFilter.MINE, result: () => filterTab(PostFilter.MINE),
+            icon: { icon: "person" }
+        }
     ]
 
     const change = async (e: string | React.ChangeEvent<HTMLSelectElement> | any) => {
@@ -173,7 +176,7 @@ export default function PostListPage() {
                     setReverse={setReverse}
                     action={refetch}
                 />
-                <div className="flex items-center justify-center gap-4  ">
+                <div className={` flex items-center justify-end gap-4 py-1`}>
                     <SelectSearch
                         searchCat={searchCat}
                         setSearchCat={setSearchCat}
@@ -182,7 +185,7 @@ export default function PostListPage() {
                     <Icon
                         icon={view === "list" ? "list" : "dashboard"}
                         onClick={switchClick}
-                        size="lg"
+                        size="xl"
                         fill
                         color="rose"
                         style=" hidden md:flex"

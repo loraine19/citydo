@@ -55,10 +55,10 @@ export default function EventListPage() {
     }
 
     const eventTabs: TabLabel[] = [
-        { label: "tous", value: "", result: () => filterTab() },
-        { label: "validé", value: EventFilter.VALIDATED, result: () => filterTab(EventFilter.VALIDATED) },
-        { label: "j'y vais", value: EventFilter.IGO, result: () => filterTab(EventFilter.IGO) },
-        { label: "j'organise", value: EventFilter.MINE, result: () => filterTab(EventFilter.MINE) },
+        { label: "tous", value: "", result: () => filterTab(), icon: { icon: "list" } },
+        { label: "validé", value: EventFilter.VALIDATED, result: () => filterTab(EventFilter.VALIDATED), icon: { icon: "event_available" } },
+        { label: "j'y vais", value: EventFilter.IGO, result: () => filterTab(EventFilter.IGO), icon: { icon: "event" } },
+        { label: "j'organise", value: EventFilter.MINE, result: () => filterTab(EventFilter.MINE), icon: { icon: "person" } },
     ]
 
     //// SEARCH
@@ -165,7 +165,7 @@ export default function EventListPage() {
                         setReverse={setReverse}
                         action={refetch}
                     />}
-                <div className={` flex items-center justify-center gap-1.5`}>
+                <div className={`flex items-center justify-end gap-4 py-1`}>
 
                     <SelectSearch
                         searchCat={searchCat}
@@ -175,14 +175,14 @@ export default function EventListPage() {
                     <Icon
                         onClick={switchClick}
                         icon={view === "view_agenda" ? "calendar_month" : "list"}
-                        size="lg"
+                        size="xl"
                         color="cyan"
                         fill
                         title={view === "view_agenda" ? "voir en mode calendrier" : "voir en mode liste"} />
                     <Icon
                         onClick={() => setCompact(!compact)}
                         icon={compact ? "grid_view" : "view_agenda"}
-                        size="lg"
+                        size="xl"
                         color="cyan"
                         fill
                         title={compact ? "voir en mode liste" : "voir en mode grille"} />
@@ -210,15 +210,16 @@ export default function EventListPage() {
                                 handleHideCallback()
 
                             }}
-                            className="Grid gap-4 p-2">
+                            className={"Grid " + (!compact ? ' GridCompact' : '')}>
                             {events.map((event: EventView, index: number) => (
-                                <EventCard
-                                    autoFit={!compact}
-                                    key={index}
-                                    event={event}
-                                    change={change}
-                                    mines={mines}
-                                    refetch={refetch} />
+                                <div className="SubGrid" key={index + 'div'}>
+                                    <EventCard
+                                        autoFit={!compact}
+                                        key={index}
+                                        event={event}
+                                        change={change}
+                                        mines={mines}
+                                        refetch={refetch} /></div>
                             ))}
                             <LoadMoreButton
                                 isBottom={isBottom}

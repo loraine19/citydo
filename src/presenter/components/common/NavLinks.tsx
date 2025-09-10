@@ -169,7 +169,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                     placement={navBottom ? 'top' : 'bottom'}
                     offset={10}
                     Handler={
-                        <div className={` rounded-full !text-[2.2rem] ${color}StyleInv ${navBottom ? `!shadow-md p-2.5 w-full h-full border border-slate-900/5 -mb-2.5 lg:-mb-2  ` : ' !shadSm !p-0'}`}>
+                        <div className={` rounded-full !text-[2.2rem] ${color ?? 'slate'}StyleInv ${navBottom ? `!shadow-md p-2.5 w-full h-full border border-slate-900/5 -mb-2.5 lg:-mb-2  ` : ' !shadSm !p-0'}`}>
                             <Icon
                                 color={color ?? 'slate'}
                                 style={'!text-white/80 border-0'}

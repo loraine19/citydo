@@ -1,5 +1,6 @@
 import { JSX } from "react";
 import { EventView } from "../../presenter/views/viewsEntities/eventViewEntities";
+import { IconProps } from "../../presenter/components/common/IconComp";
 
 
 //// for front only 
@@ -24,6 +25,7 @@ export class TabLabel {
     label: string = '';
     value: string | any = '';
     result: any;
+    icon?: IconProps
 }
 
 

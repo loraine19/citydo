@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Home, KeyboardDoubleArrowDown, PartnerExchange, Search, Event, Dashboard, Ballot, Add, Person, CalendarAddOn, Flag2, ExitToApp, ExploreNearby, Visibility, ArrowCircleRight, Notifications, ArrowCircleRightFilled, ThumbUp, ThumbUpFilled, HomeFilled, PersonFilled, CircleNotifications, CircleNotificationsFilled, PersonEdit, PersonEditFilled, Diversity3, Diversity3Filled, TwoPager, TwoPagerFilled, AddCircleFilled, AddCircle, DoNotDisturbOnFilled, DoNotDisturbOn, ArrowForwardIos, ArrowBackIos, CalendarViewMonth, CalendarViewMonthFilled, SearchFilled, ArrowForwardIosFilled, ArrowBackIosFilled, NotificationsFilled, VisibilityFilled, ExploreNearbyFilled, ExitToAppFilled, Flag2Filled, CalendarAddOnFilled, AddFilled, BallotFilled, DashboardFilled, EventFilled, PartnerExchangeFilled, KeyboardDoubleArrowDownFilled, TollFilled, Toll, ArrowDropDownFilled, ArrowDropDown, CalendarMonth, CalendarMonthFilled, ListFilled, List, CancelFilled, Cancel, CheckCircleFilled, CheckCircle, SmartCardReaderFilled, SmartCardReader, SignalCellularAltFilled, SignalCellularAlt, DesignServicesFilled, DesignServices, CloseFilled, Close, ChevronRight, ChevronRightFilled, MoreUp, MoreUpFilled, ExpandContentFilled, ExpandContent, EditFilled, Edit, GroupsFilled, Groups, PersonCancelFilled, PersonCancel, AddAPhoto, AddAPhotoFilled, VisibilityOffFilled, VisibilityOff, DistanceFilled, Distance, PersonPinCircleFilled, PersonPinCircle, SyncProblemFilled, SyncProblem, KeyboardDoubleArrowUp, KeyboardDoubleArrowUpFilled, SendFilled, Send, ForumFilled, Forum, NearMeFilled, NearMe, Sms, SmsFilled, MoodFilled, Mood, MyLocationFilled, MyLocation, CallFilled, Call, Mail, MailFilled, TodayFilled, Today, LocationOn, LocationOnFilled, ClearAllFilled, ClearAll, CheckFilled, Check, Block, BlockFilled, SaveFilled, Save, SortFilled, Sort, SortByAlphaFilled, SortByAlpha, ArrowDropUpFilled, ArrowDropUp, DeleteFilled, Delete, UndoFilled, Undo, RefreshFilled, Refresh, MoveUpFilled, MoveUp, MoveDownFilled, MoveDown, ArrowUpward, ArrowUpwardFilled, ChatFilled, Chat, SaveAsFilled, SaveAs, RadioButtonCheckedFilled, RadioButtonChecked, PendingActions, PendingActionsFilled, CircleFilled, Circle, ArrowCircleUpFilled, ArrowCircleUp, PersonAddFilled, PersonAdd, KeyboardArrowRight, KeyboardArrowRightFilled, ArrowUpwardAlt, ArrowUpwardAltFilled, ArrowBack, ArrowBackFilled, GridView, GridViewFilled, ViewAgenda, ViewAgendaFilled } from '@project-lary/react-material-symbols-300-rounded';
+import { Home, KeyboardDoubleArrowDown, PartnerExchange, Search, Event, Dashboard, Ballot, Add, Person, CalendarAddOn, Flag2, ExitToApp, ExploreNearby, Visibility, ArrowCircleRight, Notifications, ArrowCircleRightFilled, ThumbUp, ThumbUpFilled, HomeFilled, PersonFilled, CircleNotifications, CircleNotificationsFilled, PersonEdit, PersonEditFilled, Diversity3, Diversity3Filled, TwoPager, TwoPagerFilled, AddCircleFilled, AddCircle, DoNotDisturbOnFilled, DoNotDisturbOn, ArrowForwardIos, ArrowBackIos, CalendarViewMonth, CalendarViewMonthFilled, SearchFilled, ArrowForwardIosFilled, ArrowBackIosFilled, NotificationsFilled, VisibilityFilled, ExploreNearbyFilled, ExitToAppFilled, Flag2Filled, CalendarAddOnFilled, AddFilled, BallotFilled, DashboardFilled, EventFilled, PartnerExchangeFilled, KeyboardDoubleArrowDownFilled, TollFilled, Toll, ArrowDropDownFilled, ArrowDropDown, CalendarMonth, CalendarMonthFilled, ListFilled, List, CancelFilled, Cancel, CheckCircleFilled, CheckCircle, SmartCardReaderFilled, SmartCardReader, SignalCellularAltFilled, SignalCellularAlt, DesignServicesFilled, DesignServices, CloseFilled, Close, ChevronRight, ChevronRightFilled, MoreUp, MoreUpFilled, ExpandContentFilled, ExpandContent, EditFilled, Edit, GroupsFilled, Groups, PersonCancelFilled, PersonCancel, AddAPhoto, AddAPhotoFilled, VisibilityOffFilled, VisibilityOff, DistanceFilled, Distance, PersonPinCircleFilled, PersonPinCircle, SyncProblemFilled, SyncProblem, KeyboardDoubleArrowUp, KeyboardDoubleArrowUpFilled, SendFilled, Send, ForumFilled, Forum, NearMeFilled, NearMe, Sms, SmsFilled, MoodFilled, Mood, MyLocationFilled, MyLocation, CallFilled, Call, Mail, MailFilled, TodayFilled, Today, LocationOn, LocationOnFilled, ClearAllFilled, ClearAll, CheckFilled, Check, Block, BlockFilled, SaveFilled, Save, SortFilled, Sort, SortByAlphaFilled, SortByAlpha, ArrowDropUpFilled, ArrowDropUp, DeleteFilled, Delete, UndoFilled, Undo, RefreshFilled, Refresh, MoveUpFilled, MoveUp, MoveDownFilled, MoveDown, ArrowUpward, ArrowUpwardFilled, ChatFilled, Chat, SaveAsFilled, SaveAs, RadioButtonCheckedFilled, RadioButtonChecked, PendingActions, PendingActionsFilled, CircleFilled, Circle, ArrowCircleUpFilled, ArrowCircleUp, PersonAddFilled, PersonAdd, KeyboardArrowRight, KeyboardArrowRightFilled, ArrowUpwardAlt, ArrowUpwardAltFilled, ArrowBack, ArrowBackFilled, GridView, GridViewFilled, ViewAgenda, ViewAgendaFilled, Output, OutputFilled, InputFilled, Input, EventBusyFilled, EventAvailableFilled, EventAvailable, EventBusy, PersonHeart, PersonHeartFilled } from '@project-lary/react-material-symbols-300-rounded';
 import { JSX } from "react";
 
 
@@ -39,6 +39,8 @@ export const iconMap = {
     do_not_disturb_on: { filled: DoNotDisturbOnFilled, default: DoNotDisturbOn },
     edit: { filled: EditFilled, default: Edit },
     event: { filled: EventFilled, default: Event },
+    event_available: { filled: EventAvailableFilled, default: EventAvailable },
+    event_busy: { filled: EventBusyFilled, default: EventBusy },
     exit_to_app: { filled: ExitToAppFilled, default: ExitToApp },
     expand_content: { filled: ExpandContentFilled, default: ExpandContent },
     explore_nearby: { filled: ExploreNearbyFilled, default: ExploreNearby },
@@ -60,12 +62,15 @@ export const iconMap = {
     my_location: { filled: MyLocationFilled, default: MyLocation },
     near_me: { filled: NearMeFilled, default: NearMe },
     notifications: { filled: NotificationsFilled, default: Notifications },
+    output: { filled: OutputFilled, default: Output },
+    input: { filled: InputFilled, default: Input },
     partner_exchange: { filled: PartnerExchangeFilled, default: PartnerExchange },
     pending_actions: { filled: PendingActionsFilled, default: PendingActions },
     person: { filled: PersonFilled, default: Person },
     person_cancel: { filled: PersonCancelFilled, default: PersonCancel },
     person_edit: { filled: PersonEditFilled, default: PersonEdit },
     person_add: { filled: PersonAddFilled, default: PersonAdd },
+    person_heart: { filled: PersonHeartFilled, default: PersonHeart },
     person_pin_circle: { filled: PersonPinCircleFilled, default: PersonPinCircle },
     radio_button_checked: { filled: RadioButtonCheckedFilled, default: RadioButtonChecked },
     refresh: { filled: RefreshFilled, default: Refresh },
@@ -95,7 +100,7 @@ function searchIcon(icon: string, fill?: boolean): JSX.Element {
     return fill ? <IconComponent.filled /> : <IconComponent.default />;
 }
 
-type IconProps = {
+export type IconProps = {
     icon: keyof typeof iconMap | string,
     style?: string,
     fill?: boolean,

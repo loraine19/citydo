@@ -49,69 +49,51 @@
     @apply !text-white bg-opacity-100 text-opacity-90 !stroke-1 !stroke-slate-900/90;
 }
 
-.cyanStyle {
-    @apply !text-cyan-500  !bg-cyan-300/50 saturate-[0.9]   style;
-}
-.cyanStyleInv {
-    @apply !bg-cyan-500 inv;
-}
-
-.orangeStyle {
-    @apply !text-orange-500 !bg-orange-300/50 style;
-}
-.orangeStyleInv {
-    @apply !bg-orange-500 inv;
-}
-.redStyle {
-    @apply !text-red-600/90 !bg-red-300/50 style;
-}
-.redStyleInv {
-    @apply !bg-red-600 inv;
-}
+/* Example for style classes */
 .skyStyle {
-    @apply !text-sky-600/90 !bg-sky-300/50 style;
+    color: var(--md3-on-sky-container) !important;
+    background-color: var(--md3-sky-container) !important;
 }
 .skyStyleInv {
-    @apply !bg-sky-600 inv;
+    background-color: var(--md3-sky) !important;
+    color: var(--md3-on-sky) !important;
 }
-.greenStyle {
-    @apply !text-green-600/90 bg-green-300/40 style;
+.cyanStyle {
+    color: var(--md3-on-cyan-container) !important;
+    background-color: var(--md3-cyan-container) !important;
 }
-.greenStyleInv {
-    @apply !bg-green-500 inv;
-}
-
-.slateStyle,
-.grayStyle {
-    @apply !text-slate-600/90 bg-slate-200  style;
-}
-.slateStyleInv,
-.grayStyleInv {
-    @apply !bg-slate-500 inv;
-}
-.tealStyle {
-    @apply !text-teal-600/90 !bg-teal-300/50 style;
-}
-.tealStyleInv {
-    @apply !bg-teal-500 inv;
-}
-.amberStyle {
-    @apply !text-amber-600/90 bg-amber-300/50 style;
-}
-.amberStyleInv {
-    @apply !bg-amber-500 inv;
+.cyanStyleInv {
+    background-color: var(--md3-cyan) !important;
+    color: var(--md3-on-cyan) !important;
 }
 .roseStyle {
-    @apply !text-rose-600/90 !bg-rose-300/50 style;
+    color: var(--md3-on-rose-container) !important;
+    background-color: var(--md3-rose-container) !important;
 }
 .roseStyleInv {
-    @apply !bg-rose-500 inv;
+    background-color: var(--md3-rose) !important;
+    color: var(--md3-on-rose) !important;
 }
-.yellowStyle {
-    @apply !text-yellow-600/90 bg-yellow-300/50 style;
+.orangeStyle {
+    color: var(--md3-on-orange-container) !important;
+    background-color: var(--md3-orange-container) !important;
 }
-.yellowStyleInv {
-    @apply !bg-yellow-600 inv;
+.orangeStyleInv {
+    background-color: var(--md3-orange) !important;
+    color: var(--md3-on-orange) !important;
+}
+.greenStyle {
+    color: var(--md3-on-green-container) !important;
+    background-color: var(--md3-green-container) !important;
+}
+.greenStyleInv {
+    background-color: var(--md3-green) !important;
+    color: var(--md3-on-green) !important;
+}
+
+.slateStyle {
+    color: var(--md3-on-slate-container) !important;
+    background-color: var(--md3-slate-container) !important;
 }
 
 .outlineStyle {

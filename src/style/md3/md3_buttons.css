@@ -120,6 +120,9 @@
 .md3-button-filled.md3-button-green {
     @apply md3-green;
 }
+.md3-button-filled.md3-button-slate {
+    @apply md3-slate;
+}
 
 /* Elevated + Color */
 .md3-button-elevated.md3-button-secondary {
@@ -153,6 +156,10 @@
 .md3-button-elevated.md3-button-green {
     background-color: var(--md3-on-green);
     color: var(--md3-green);
+}
+.md3-button-elevated.md3-button-slate {
+    background-color: var(--md3-on-slate);
+    color: var(--md3-slate);
 }
 
 /* Outlined + Color */
@@ -188,6 +195,10 @@
     border-color: var(--md3-green);
     color: var(--md3-green);
 }
+.md3-button-outlined.md3-button-slate {
+    border-color: var(--md3-slate);
+    color: var(--md3-slate);
+}
 
 /* Text + Color */
 .md3-button-text.md3-button-secondary {
@@ -213,6 +224,9 @@
 }
 .md3-button-text.md3-button-green {
     color: var(--md3-green);
+}
+.md3-button-text.md3-button-slate {
+    color: var(--md3-slate);
 }
 
 /* Tonal + Color */
@@ -242,6 +256,9 @@
 }
 .md3-button-tonal.md3-button-green {
     @apply md3-green-container;
+}
+.md3-button-tonal.md3-button-slate {
+    @apply md3-slate-container;
 }
 
 /* -----------------------------------------------------------
@@ -319,22 +336,82 @@
 /* -----------------------------------------------------------
     SEGMENTED BUTTONS
     ----------------------------------------------------------- */
+/* Segmented Button Group */
 .md3-segmented-button-group {
-    display: flex;
+    @apply flex;
+    border: 1px solid;
     border-radius: var(--md3-radius-full);
-    border: 1px solid var(--md3-outline);
     overflow: hidden;
+    width: 100%;
 }
+
+/* Segmented Button */
 .md3-segmented-button {
-    background-color: transparent;
-    color: var(--md3-on-surface-variant);
-    padding: 0 12px;
-    height: 40px;
-    border: none;
-    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     flex-grow: 1;
+    min-width: 48px;
+    height: 40px;
+    border-radius: var(--md3-radius-full);
+    padding: 0 12px;
+    cursor: pointer;
+    position: relative;
+    font-size: 1rem;
+    box-sizing: border-box;
+    outline: none;
+    overflow: hidden;
+    transition: all var(--md3-anim-duration-short) var(--md3-anim-easing);
 }
-.md3-segmented-button.active {
-    background-color: var(--md3-secondary-container);
-    color: var(--md3-on-secondary-container);
+.md3-segmented-button-start {
+    border-top-left-radius: var(--md3-radius-full);
+    border-bottom-left-radius: var(--md3-radius-full);
+}
+.md3-segmented-button-end {
+    border-top-right-radius: var(--md3-radius-full);
+    border-bottom-right-radius: var(--md3-radius-full);
+}
+
+.md3-segmented-button-small {
+    height: 32px;
+    font-size: 0.875rem;
+    padding: 0 8px;
+}
+.md3-segmented-button-medium {
+    @apply text-[0.875rem] sm:text-[1rem];
+    height: 40px;
+    padding: 0 16px;
+}
+.md3-segmented-button-large {
+    height: 48px;
+    font-size: 1.125rem;
+    padding: 0 24px;
+}
+
+.md3-segmented-button__ripple-animate {
+    animation: md3-segmented-button-ripple 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes md3-segmented-button-ripple {
+    0% {
+        opacity: 0.2;
+        transform: translate(-50%, -50%) scale(0.01); /* L'ondulation commence de très petite */
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1); /* Elle se déploie jusqu'à la taille finale */
+    }
+}
+
+.md3-segmented-button__label {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.md3-segmented-button:focus-visible {
+    outline: 2px solid var(--md3-sys-primary);
+    outline-offset: 2px;
+}
+.md3-segmented-button:disabled {
+    opacity: 0.38;
+    pointer-events: none;
 }

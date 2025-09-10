@@ -15,6 +15,7 @@ import { serviceCategoriesS } from "../../../constants";
 import NotifDiv from "../../common/NotifDiv";
 import { useUxStore } from "../../../../application/stores/ux.store";
 import { HandleHideParams, HandleScrollParams } from "../../../../application/useCases/utils.useCase";
+import { Icon } from "../../common/IconComp";
 
 export default function ServicesPage() {
     const [notif, setNotif] = useState<string>('');
@@ -103,10 +104,10 @@ export default function ServicesPage() {
     };
 
     const serviceTabs: TabLabel[] = [
-        { label: "tous", value: '', result: () => filterTab() },
-        { label: "demande", value: ServiceFilter.GET, result: () => filterTab(ServiceFilter.GET) },
-        { label: "offre", value: ServiceFilter.DO, result: () => filterTab(ServiceFilter.DO) },
-        { label: "les miens", value: ServiceFilter.MINE, result: () => filterTab(ServiceFilter.MINE) },
+        { label: "tous", value: '', result: () => filterTab(), icon: { icon: "list" } },
+        { label: "demande", value: ServiceFilter.GET, result: () => filterTab(ServiceFilter.GET), icon: { icon: "input" } },
+        { label: "offre", value: ServiceFilter.DO, result: () => filterTab(ServiceFilter.DO), icon: { icon: "output" } },
+        { label: "les miens", value: ServiceFilter.MINE, result: () => filterTab(ServiceFilter.MINE), icon: { icon: "person" } },
     ]
 
     //// SEARCH
@@ -171,6 +172,10 @@ export default function ServicesPage() {
         { key: ServiceSort.HARD, label: "Difficulté", icon: "signal_cellular_alt" }
     ]
 
+
+    //// HANDLE VIEW CHANGE
+    const [compact, setCompact] = useState<boolean>(false);
+
     //// RENDER
     return (
 
@@ -184,18 +189,31 @@ export default function ServicesPage() {
                     reverse={reverse}
                     setReverse={setReverse}
                 />
-                {mine ?
-                    <CheckCard
-                        categoriesArray={boxArray}
-                        boxSelected={boxSelected}
-                        setBoxSelected={setBoxSelected} />
-                    :
-                    <SelectSearch
-                        searchCat={searchCat}
-                        setSearchCat={setSearchCat}
-                        category={serviceCategoriesS}
-                        search={search} />
-                }
+                <div className={`flex items-center justify-end gap-2 py-1`}>
+
+                    {mine ?
+                        <CheckCard
+                            categoriesArray={boxArray}
+                            boxSelected={boxSelected}
+                            setBoxSelected={setBoxSelected} />
+                        :
+                        <SelectSearch
+                            searchCat={searchCat}
+                            setSearchCat={setSearchCat}
+                            category={serviceCategoriesS}
+                            search={search} />
+                    }
+
+                    <Icon
+                        onClick={() => setCompact(!compact)}
+                        icon={compact ? "grid_view" : "view_agenda"}
+                        size="xl"
+                        color="sky"
+                        fill
+                        title={compact ? "voir en mode liste" : "voir en mode grille"} />
+
+                </div>
+
 
                 <SubHeader
                     qty={count}
@@ -215,11 +233,12 @@ export default function ServicesPage() {
                         onScroll();
                         handleHideCallback()
                     }}
-                    className="Grid">
+                    className={"Grid" + (!compact ? ' GridCompact' : '')}>
                     {services.map((service: ServiceView, index: number) => (
                         service &&
                         <div className="SubGrid" key={index}>
                             <ServiceComp
+                                compact={compact}
                                 key={service?.id}
                                 service={service}
                                 change={search as any}
