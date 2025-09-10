@@ -34,7 +34,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch }: Event
     return (
         <CardMD
             autoFit
-            className="md:h-[50vw] lg:h-[55vh]   "
+            className="sm:h-[50vw] md:h-[55vh]   "
             imagePosition={"top"}
             link={`/evenement/${id}`}
             image={

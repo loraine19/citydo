@@ -199,7 +199,7 @@ export default function EventListPage() {
                                 handleHideCallback()
 
                             }}
-                            className="Grid gap-6 p-2">
+                            className="Grid gap-4 p-2">
                             {events.map((event: EventView, index: number) => (
 
                                 <EventCard

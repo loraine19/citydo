@@ -138,7 +138,7 @@ i {
 /* RESPONSIVE */
 
 .wRespXL {
-    @apply w-full my-0 mx-auto max-w-[1000px];
+    @apply w-full my-0 mx-auto max-w-[1100px];
 }
 .wRespL {
     @apply w-full my-0 mx-auto lg:max-w-[58rem] md:max-w-[calc(100vw-1rem)];

@@ -12,13 +12,12 @@
     display: flex;
     flex-direction: column;
     min-height: fit-content;
-    max-height: min-content;
 }
 .md3-card-with-image-top {
     @apply md3-card;
     padding: 0 !important;
     display: grid;
-    grid-template-rows: minmax(200px, 40vh) minmax(min-content, auto);
+    grid-template-rows: minmax(50%, auto) minmax(min-content, auto);
 }
 
 .md3-card-with-image-left {
@@ -26,7 +25,7 @@
     padding: 0 !important;
     display: grid;
     grid-template-rows: min-content;
-    grid-template-columns: minmax(auto, auto) minmax(auto, 65%);
+    grid-template-columns: minmax(auto, auto) minmax(auto, 60%);
 }
 
 .md3-card-image-container {
@@ -65,10 +64,12 @@
     padding: var(--md3-spacing-sm) var(--md3-spacing-md);
     display: flex;
     flex-direction: column;
+    min-height: fit-content;
+    flex: 1;
 }
 
 .md3-card-headline {
-    @apply pb-2;
+    @apply pb-2 text-[1.125rem] lg:text-[1.25rem];
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--md3-on-surface);
