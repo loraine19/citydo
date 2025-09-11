@@ -25,9 +25,9 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
             case ended:
                 return `✓ ${endDate}`;
             case endDays > 4:
-                return `${prefix} ${endDays}`;
+                return `J - ${endDays}`;
             case endDays > 0:
-                return ` ${endDays} `;
+                return `J - ${endDays}`;
             case endDays === 0:
                 return `aujourd'hui`;
             case endDays < 0:

@@ -47,11 +47,30 @@ export class EventView extends Event {
     }
 
     private eventdateInfo = (event: Event) => {
+        const formatTime = (date: Date) => {
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            return `${hours === 0 ? '' : hours + 'h'}${minutes.toString().padStart(2, '0')}`;
+        };
+
+        const formatDate = (date: Date) => {
+            // Remove leading zero from day
+            const parts = date.toLocaleDateString('fr-FR', { weekday: 'short', month: 'numeric', day: 'numeric' }).split(' ');
+            if (parts.length === 3) {
+                parts[2] = String(Number(parts[2])); // Remove leading zero
+                return parts.join(' ');
+            }
+            return parts.join(' ');
+        };
+
+        const startDate = new Date(event.start);
+        const endDate = new Date(event.end);
+
         return {
-            start: new Date(event.start).toLocaleDateString('fr-FR', { weekday: 'short', month: 'short', day: 'numeric', minute: 'numeric', hour: 'numeric' }),
-            end: (new Date(event?.start).toDateString() === new Date(event?.end).toDateString() ?
-                new Date(event?.end).toISOString().slice(11, 16) :
-                new Date(event?.end).toLocaleDateString('fr-FR', { weekday: 'short', month: 'short', day: 'numeric', minute: 'numeric', hour: 'numeric' }))
+            start: `${formatDate(startDate)} ${formatTime(startDate)}`.trim(),
+            end: (startDate.toDateString() === endDate.toDateString()
+                ? formatTime(endDate)
+                : `${formatDate(endDate)} ${formatTime(endDate)}`.trim())
         }
     }
 

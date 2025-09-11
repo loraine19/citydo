@@ -17,15 +17,15 @@ export function FlagIcon(props: { flagged: boolean, id: number, type: string }) 
     )
 }
 export function Title(props: { title: string, flagged?: boolean, id?: number, CreatedAt?: string | Date, subTitle?: string, type?: string, group?: Group, large?: boolean }) {
-    const { flagged, id, CreatedAt, subTitle, type, group, title, large } = props
+    const { flagged, id, CreatedAt, subTitle, type, group, title } = props
 
     return (
         <div className="min-h-max h-full relative pt-1 gap-1 flex flex-col ">
-            <div className="flex items-center w-full justify-between gap-2">
+            <div className="flex items-center w-full justify-between gap-1">
                 <div className="flex flex-1  gap-4 w-full">
                     <h4
                         id={title}
-                        className={"w-full flex  " + (large ? "line-clamp-2" : "lg:line-clamp-2 line-clamp-1 ")}
+                        className={"w-full flex !line-clamp-2 "}
                         title={title}>
                         {title}
                     </h4>

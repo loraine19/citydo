@@ -63,11 +63,11 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                         value={label}
                         className="rounded-full h-max cyanChip" />
                 </button>
-                <DateChip
+                {new Date(end).getTime() > Date.now() && <DateChip
                     start={start}
                     end={end}
                     ended={new Date(end).getTime() < Date.now()}
-                    prefix=" j-" />
+                    prefix=" j-" />}
                 <Chip
                     size="sm"
                     value={eventDateInfo.start}
@@ -75,7 +75,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                 />
 
             </CardMD.Chips>
-            <CardMD.Headline className="" >
+            <CardMD.Headline className="line-clamp-2" >
 
                 <Title title={title} type='evenement' />
             </CardMD.Headline>

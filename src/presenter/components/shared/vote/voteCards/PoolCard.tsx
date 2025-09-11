@@ -24,7 +24,6 @@ type PoolCardProps = {
 }
 
 export function PoolCard({ pool, change, mines, update, vote }: PoolCardProps) {
-    const ended: boolean = pool.pourcent < 100 || pool.status !== PoolSurveyStatus.PENDING
     const end: Date = new Date(new Date(pool.createdAt).getTime() + 15 * dayMS)
     const disabledEditCTA: boolean = pool?.status !== PoolSurveyStatus.PENDING
 
@@ -46,82 +45,6 @@ export function PoolCard({ pool, change, mines, update, vote }: PoolCardProps) {
 
     return (
         <>
-
-            {/* <Card className={`FixCardNoImage`}>
-                <CardHeader className={"FixCardHeaderNoImage"}>
-                    <div className={` ChipDivNoImage `}>
-                        <button onClick={(e: any) => change(e)}>
-                            <Chip
-                                size='sm'
-                                value='Cagnotte'
-                                className="greenChip" >
-                            </Chip>
-                        </button>
-                        <DateChip
-                            start={pool.createdAt}
-                            ended={ended}
-                            end={end}
-                            prefix="finis dans" />
-                    </div>
-                </CardHeader>
-                <CardBody className="FixCardBody !overflow-hidden">
-                    <div className="py-1 flex flex-col ">
-                        <ProfileDiv
-                            profile={pool?.UserBenef || {} as Partial<User>}
-                            size={'xl'} />
-                        <Title
-                            title={pool.title}
-                            group={pool.Group} />
-                    </div>
-                    <Typography
-                        className="description line-clamp-1">
-                        {pool.description}
-                    </Typography>
-                </CardBody>
-                <CardFooter
-                    className="CardFooter ">
-                    {!mines ?
-                        <div className="flex-1">
-                            <ProgressBar
-                                value={pool?.pourcent}
-                                label="vote pour"
-                                needed={pool?.needed}
-                                status={pool?.status} />
-                        </div>
-                        :
-                        <ModifBtnStack
-                            disabled2={disabledEditCTA}
-                            actions={actions}
-                            update={update} />}
-                    <div className="flex  items-center justify-between gap-2">
-                        <button
-                            disabled={pool?.status !== PoolSurveyStatus.PENDING}
-                            onClick={() => vote(values)}>
-                            <Chip
-                                size='sm'
-                                key={pool.id}
-                                value={pool.Votes?.length}
-                                variant="ghost"
-                                className="grayChip pt-1  "
-                                icon={
-                                    <Icon
-                                        disabled={pool?.status !== PoolSurveyStatus.PENDING}
-                                        icon="smart_card_reader"
-                                        fill={pool?.IVoted}
-                                        color={color()}
-                                        size="md"
-                                        title={`  ${pool.Votes?.length} personnes ${pool?.IVoted ? `dont vous ` : ''} ont voté`}
-                                    />}>
-                            </Chip>
-                        </button>
-                        <Icon
-                            icon="keyboard_arrow_right"
-                            title={`voir les details de ${pool.title}`}
-                            link={`/cagnotte/${pool.id}`}
-                            fill clear />
-                    </div>
-                </CardFooter >
-            </Card > */}
             <CardMD
                 autoFit
                 className="min-h-full"
@@ -138,9 +61,12 @@ export function PoolCard({ pool, change, mines, update, vote }: PoolCardProps) {
                     </button>
                     <DateChip
                         start={pool?.createdAt}
-                        ended={ended}
                         end={end}
-                        prefix="finis dans"
+                        prefix="J-"
+                    />
+                    <DateChip
+                        start={pool?.createdAt}
+                        prefix=" "
                     />
                 </CardMD.Chips>
                 <CardMD.Headline className="mb:pb-4 !line-clamp-1">
