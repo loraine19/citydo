@@ -235,7 +235,7 @@
 .md3-outlined {
     background-color: transparent;
     color: var(--md3-on-surface-variant);
-    border: 1px solid var(--md3-outline);
+    border: 1px solid;
 }
 
 /* Outlined color utility classes */
@@ -267,12 +267,13 @@
 .md3-cyan-outlined {
     background-color: transparent;
     color: var(--md3-cyan);
-    border: 1px solid var(--md3-on-cyan-container);
+    border: 1px solid var(--md3-cyan);
+    border-color: var(--md3-cyan);
 }
 .md3-rose-outlined {
     background-color: transparent;
     color: var(--md3-rose);
-    border: 1px solid var(--md3-rose);
+    border: 1px solid var(--md3-rose-container) !important;
 }
 .md3-orange-outlined {
     background-color: transparent;

@@ -22,7 +22,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', ...props })
 
     return (
         <>
-            <div className={`relative pl-1 pb-0.5 z-50 truncate flex items-center px-0 gap-2`}>
+            <div className={`relative ${size === 'xl' ? 'items-center' : 'items-center'} pl-1 pb-0.5 z-50 truncate flex  px-0 gap-2`}>
                 <PopOver
                     key={profile?.userId}
                     trigger={

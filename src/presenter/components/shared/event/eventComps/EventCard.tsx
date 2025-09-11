@@ -1,7 +1,6 @@
 import { AvatarStack } from "./AvatarStack";
 import { useState } from "react";
 import ModifBtnStack from "../../../common/ModifBtnStack";
-import { Icon } from "../../../common/IconComp";
 import { DateChip } from "../../../common/ChipDate";
 import DI from "../../../../../di/ioc";
 import { GenereMyActions } from "../../../../views/viewsEntities/utilsService";
@@ -43,39 +42,50 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                     src={image as string || '/image/placeholder.jpg'}
                     alt={title}
                     className={''} >
-                    <div className={`w-full flex flex-col justify-between !h-full `}>
-                        <div className="flex w-full flex-wrap justify-between items-center gap-2">
-                            <button
-                                onClick={change}>
-                                <Chip
-                                    data-cy={`chip-${label}`}
-                                    size='sm'
-                                    value={label}
-                                    className="rounded-full h-max cyanChip shadow" />
-                            </button>
-                            <DateChip
-                                start={start}
-                                end={end}
-                                ended={new Date(end).getTime() < Date.now()}
-                                prefix="dans" />
-                        </div>
+                    <div className={`w-full flex flex-col items-end !h-full`}>
+
+
+                        <DateChip
+                            start={event?.createdAt}
+                            prefix=" "
+                        />
                         <IconAnimate
                             active={event?.Igo}
                             icon={'person'} />
                     </div>
                 </CardMD.Image>}>
+            <CardMD.Chips>
+                <button
+                    onClick={change}>
+                    <Chip
+                        data-cy={`chip-${label}`}
+                        size='sm'
+                        value={label}
+                        className="rounded-full h-max cyanChip" />
+                </button>
+                <DateChip
+                    start={start}
+                    end={end}
+                    ended={new Date(end).getTime() < Date.now()}
+                    prefix=" j-" />
+                <Chip
+                    size="sm"
+                    value={eventDateInfo.start}
+                    className="rounded-full h-max Chip"
+                />
+
+            </CardMD.Chips>
             <CardMD.Headline className="" >
+
                 <Title title={title} type='evenement' />
             </CardMD.Headline>
-            <CardMD.Subhead className="flex gap-2">
-                <span>{eventDateInfo.start}</span>
-                <span className="hidden md:inline"></span>
-            </CardMD.Subhead>
+
             <CardMD.Media>
+
                 <ProgressBar
                     size='xxsmall'
+                    variant={event.Participants.length >= (participantsMin) ? 'linear' : 'wavy'}
                     className=" pb-2 lg:pb-2"
-                    variant="wavy"
                     value={event.Participants.length}
                     max={participantsMin || 10}
                     color="cyan"
@@ -89,8 +99,9 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                             </span>
                         </div>}
                 />
+
             </CardMD.Media>
-            <CardMD.Footer>
+            <CardMD.Footer className="flex items-center pb-1 ">
                 {!mines ? (
                     <div className="flex relative flex-1 overflow-hidden items-center">
                         <EventCalAddBtn
@@ -107,23 +118,23 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                 )}
                 <div className="flex items-center ">
                     <Button
+                        icon={{
+                            style: '-mt-[1px]',
+                            icon: event?.Igo ? 'person' : 'person_add',
+                            fill: event?.Igo,
+                            title: event?.Igo ? "retirer de l'evenement" : "je participe"
+                        }}
+                        size='small'
                         disabled={event?.status === EventStatus.REJECTED || event?.isPast}
                         data-cy='btn-participate'
                         onClick={async () => {
                             const event = toogleParticipate && await toogleParticipate()
                             event && setEvent(event)
                         }}
-                        variant={event?.Igo ? "tonal" : "filled"}
-                        color="cyan">
-                        <Icon
-                            disabled={event?.status === EventStatus.REJECTED || event?.isPast}
-                            size="lg"
-                            icon={event?.status === EventStatus.REJECTED || event?.isPast || event?.Igo ? "person_cancel" : "person_add"}
-                            fill
-                            title={event?.Igo ? "Je n'y vais plus" : "Je participe"} />
-                    </Button>
+                        variant={!event?.Igo ? "tonal" : "filled"}
+                        color="cyan" />
                 </div>
             </CardMD.Footer>
-        </CardMD>
+        </CardMD >
     );
 }

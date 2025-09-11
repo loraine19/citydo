@@ -59,7 +59,7 @@ export default function PostListPage() {
 
     const postTabs: TabLabel[] = [
         { label: "tous", value: "", result: () => filterTab(), icon: { icon: "list" } },
-        { label: "J'aime", value: PostFilter.ILIKE, result: () => filterTab(PostFilter.ILIKE), icon: { icon: "thumb_up" } },
+        { label: "J'aime", value: PostFilter.ILIKE, result: () => filterTab(PostFilter.ILIKE), icon: { icon: "favorite" } },
         {
             label: "Mes annonces", value: PostFilter.MINE, result: () => filterTab(PostFilter.MINE),
             icon: { icon: "person" }

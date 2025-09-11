@@ -3,24 +3,30 @@ import { Icon, IconProps } from "../../../common/IconComp";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'filled' | 'elevated' | 'outlined' | 'text' | 'tonal';
-    color?: 'primary' | 'secondary' | 'tertiary' | 'error' | 'sky' | 'cyan' | 'rose' | 'orange' | 'green';
-    children: ReactNode;
+    color?: 'primary' | 'secondary' | 'tertiary' | 'error' | 'sky' | 'cyan' | 'rose' | 'orange' | 'green' | 'slate';
+    size?: 'small' | 'medium' | 'large';
+    children?: ReactNode;
     elevating?: boolean;
     icon?: IconProps;
+    iconPosition?: 'start' | 'end';
 }
 
-export const Button: React.FC<ButtonProps> = ({ variant = 'filled', color, children, elevating, className, disabled, icon, ...props }) => {
-    const classes = `md3-button md3-button-${disabled ? 'tonal' : variant} 
-    ${color ? `md3-button-${color}` : ''} 
+export const Button: React.FC<ButtonProps> = ({ variant = 'filled', color, children, elevating, className, disabled, icon, size, iconPosition = 'start', ...props }) => {
+    const classes = `md3-button md3-button-${disabled ? 'tonal' : variant}
+    ${color ? `md3-button-${color}` : ''}  
+${size ? `md3-button-${size}` : 'md3-button-medium'}
+   
     ${className || ''} ${elevating ? 'md3-elevating' : ''}`.trim();
     return (
         <button
             disabled={disabled}
-            className={classes}
+            className={classes + ` ${icon && 'flex gap-2 items-center'} ${iconPosition === 'end' && 'flex-row-reverse'}`}
             data-md3 {...props}>
             {icon &&
                 <Icon
-                    color={icon?.color ?? color}
+                    fill={icon.fill}
+                    style={`${icon.style || ''}  `}
+                    size={size === 'small' ? 'lg' : size === 'large' ? '2xl' : 'xl'}
                     {...icon}
                 />}
 

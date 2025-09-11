@@ -82,48 +82,51 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                     alt={title}
                     className=""
                 >
-
-                    <div className={`w-full flex ${compact ? '' : 'flex-col-reverse'} sm:flex-row flex-wrap gap-2 overflow-hidden justify-between sm:h-max`}>
-                        <div className="flex flex-col h-full  flex-1 sm:flex-row flex-wrap  gap-2">
-                            <button
-                                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                                    const cat = e.currentTarget.innerText.toLowerCase();
-                                    change(cat as any);
-                                }}>
-                                <Chip
-                                    size="sm"
-                                    value={`${categoryS}`}
-                                    className="rounded-full h-max truncate cyanChip shadow"
-                                />
-                            </button>
-                            <button
-                                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                                    const cat = e.currentTarget.innerText.toLowerCase();
-                                    change(cat as any);
-                                }}>
-                                <Chip
-                                    size="sm"
-                                    value={typeS}
-                                    className={`rounded-full h-max ${typeS === ServiceType.GET ? "orangeChip" : "greenChip"} shadow`}
-                                />
-                            </button>
-                            <Chip
-                                size="sm"
-                                value={statusS}
-                                className={`rounded-full h-max ${statusColor(statusS as ServiceStep).color} shadow`}
-                            />
-                        </div>
-                        <div>
-                            <DateChip
-                                start={createdAt}
-                                prefix="le"
-                            /></div>
+                    <div className="flex w-full justify-end pt-0.5">
+                        <DateChip
+                            start={createdAt}
+                            prefix=" "
+                        />
                     </div>
                 </CardMD.Image>
             }
         >
-            <CardMD.Headline className="min-h-[3rem]">
+            <CardMD.Chips>
+
+                <button
+                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                        const cat = e.currentTarget.innerText.toLowerCase();
+                        change(cat as any);
+                    }}>
+                    <Chip
+                        size="sm"
+                        value={`${categoryS}`}
+                        className="rounded-full h-max truncate skyChip shadow"
+                    />
+                </button>
+
+                <button
+                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                        const cat = e.currentTarget.innerText.toLowerCase();
+                        change(cat as any);
+                    }}>
+                    <Chip
+                        size="sm"
+                        value={typeS}
+                        className={`rounded-full h-max ${typeS === ServiceType.GET ? "orangeChip" : "greenChip"} shadow`}
+                    />
+
+                </button>
+
+                <Chip
+                    size="sm"
+                    value={statusS}
+                    className={`rounded-full h-max ${statusColor(statusS as ServiceStep).color} shadow`}
+                />
+            </CardMD.Chips>
+            <CardMD.Headline>
                 <Title
+
                     title={title}
                     flagged={flagged}
                     type="service"
@@ -138,6 +141,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                 {description}
 
             </CardMD.SupportingText>
+
             <CardMD.Footer className="justify-between items-center flex w-full">
                 {mine && mines && (
                     <ModifBtnStack

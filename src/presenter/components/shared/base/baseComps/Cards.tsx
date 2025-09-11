@@ -46,6 +46,11 @@ export const CardHeader: React.FC<{ children: ReactNode; className?: string }> =
     <div className={`md3-card-header ${className}`}>{children}</div>
 );
 
+//// CARD CHIPS
+export const CardChips: React.FC<{ children: ReactNode; className?: string }> = ({ children, className }) => (
+    <div className={`md3-card-chips ${className}`}>{children}</div>
+);
+
 //// CARD HEADLINE
 export const CardHeadline: React.FC<{ children: ReactNode; className?: string, onClick?: () => void }> = ({ children, className }) => (
     <div className={`md3-card-headline ${className}`} >{children}</div>
@@ -81,6 +86,7 @@ export const CardMD: React.FC<CardMDProps> & {
     Subhead: typeof CardSubhead;
     SupportingText: typeof CardSupportingText;
     Media: typeof CardMedia;
+    Chips: typeof CardChips;
 } = ({
     variant = "elevated",
     color,
@@ -150,4 +156,5 @@ CardMD.Image = CardImage;
 CardMD.Subhead = CardSubhead;
 CardMD.SupportingText = CardSupportingText;
 CardMD.Media = CardMedia;
+CardMD.Chips = CardChips;
 

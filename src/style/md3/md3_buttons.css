@@ -6,15 +6,12 @@
     BASE BUTTON STYLES
     ----------------------------------------------------------- */
 .md3-button {
-    display: inline-flex;
-    align-items: center;
+    @apply flex items-center justify-center;
     justify-content: center;
     min-width: 64px;
-    height: 40px;
     padding: 0 24px;
     border-radius: var(--md3-radius-full);
-    font-weight: 500;
-    font-size: 0.875rem;
+    font-weight: 600;
     text-transform: uppercase;
     cursor: pointer;
     border: none;
@@ -27,6 +24,28 @@
     opacity: 0.38;
     cursor: not-allowed;
     pointer-events: none;
+}
+
+/* -----------------------------------------------------------
+    BUTTON SIZES
+    ----------------------------------------------------------- */
+.md3-button-small {
+    height: 32px;
+    min-width: 48px;
+    padding: 0 16px;
+    font-size: 0.875rem;
+}
+.md3-button-medium {
+    height: 40px;
+    min-width: 64px;
+    padding: 0 24px;
+    font-size: 0.925rem;
+}
+.md3-button-large {
+    height: 48px;
+    min-width: 80px;
+    padding: 0 32px;
+    font-size: 1rem;
 }
 
 /* -----------------------------------------------------------
@@ -61,7 +80,7 @@
 /* Outlined */
 .md3-button-outlined {
     color: var(--md3-primary);
-    border: 1px solid var(--md3-outline);
+    border: 1px solid;
 }
 .md3-button-outlined:hover {
     @apply md3-button-hover-colorize;
@@ -184,8 +203,7 @@
     color: var(--md3-cyan);
 }
 .md3-button-outlined.md3-button-rose {
-    border-color: var(--md3-rose);
-    color: var(--md3-rose);
+    @apply md3-rose-outlined;
 }
 .md3-button-outlined.md3-button-orange {
     border-color: var(--md3-orange);

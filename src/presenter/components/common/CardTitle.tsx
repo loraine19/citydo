@@ -20,20 +20,25 @@ export function Title(props: { title: string, flagged?: boolean, id?: number, Cr
     const { flagged, id, CreatedAt, subTitle, type, group, title, large } = props
 
     return (
-        <div className="min-h-max relative pt-1 gap-1 flex flex-col ">
+        <div className="min-h-max h-full relative pt-1 gap-1 flex flex-col ">
             <div className="flex items-center w-full justify-between gap-2">
-                <div className="flex flex-1 items-center gap-4 w-full">
+                <div className="flex flex-1  gap-4 w-full">
                     <h4
                         id={title}
-                        className={"w-full flex  " + (large ? "!line-clamp-2" : "lg:!line-clamp-2 !line-clamp-2 ")}
+                        className={"w-full flex  " + (large ? "line-clamp-2" : "lg:line-clamp-2 line-clamp-1 ")}
                         title={title}>
                         {title}
                     </h4>
                     {CreatedAt &&
                         <i className="hidden lg:flex pt-1 -mr-2">{new Date(CreatedAt).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' })}
                         </i>}
+                    {<Icon
+                        style='-mr-2'
+                        size='lg'
+                        icon="more_vert" />}
                 </div>
-                {id &&
+
+                {(!id && id) &&
                     <div className="relative flex h-full w-max pt-1 pl-1">
                         <FlagIcon
                             flagged={flagged ? true : false}

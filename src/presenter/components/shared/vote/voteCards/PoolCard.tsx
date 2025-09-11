@@ -1,10 +1,8 @@
-import { Card, CardHeader, CardBody, CardFooter, Typography } from "@material-tailwind/react";
-import { Icon } from '../../../common/IconComp'
+
 import ModifBtnStack from "../../../common/ModifBtnStack";
 import { Action } from "../../../../../domain/entities/frontEntities";
 import { dayMS, GenereMyActions } from "../../../../views/viewsEntities/utilsService";
 import { DateChip } from "../../../common/ChipDate";
-import { ProgressBar } from "../../../common/ProgressBar";
 import DI from "../../../../../di/ioc";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { Title } from "../../../common/CardTitle";
@@ -13,6 +11,9 @@ import { PoolSurveyStatus } from "../../../../../domain/entities/PoolSurvey";
 import Chip from "../../../common/adaptatersComps/Chip";
 import { AlertValues } from "../../../../../domain/entities/Error";
 import { VoteValues } from "./VoteCard";
+import { CardMD } from "../../base/baseComps/Cards";
+import { ProgressBar } from "../../base/baseComps/Sliders";
+import { Button } from "../../base/baseComps/Buttons";
 
 type PoolCardProps = {
     pool: any,
@@ -35,8 +36,8 @@ export function PoolCard({ pool, change, mines, update, vote }: PoolCardProps) {
         switch (pool?.myOpinion) {
             case 'OK': return 'green';
             case 'NO': return 'red';
-            case 'WO': return 'orange';
-            default: return 'slate';
+            case 'WO': return 'slate';
+            default: return 'orange';
         }
     }
 
@@ -46,7 +47,7 @@ export function PoolCard({ pool, change, mines, update, vote }: PoolCardProps) {
     return (
         <>
 
-            <Card className={`FixCardNoImage`}>
+            {/* <Card className={`FixCardNoImage`}>
                 <CardHeader className={"FixCardHeaderNoImage"}>
                     <div className={` ChipDivNoImage `}>
                         <button onClick={(e: any) => change(e)}>
@@ -120,7 +121,93 @@ export function PoolCard({ pool, change, mines, update, vote }: PoolCardProps) {
                             fill clear />
                     </div>
                 </CardFooter >
-            </Card >
+            </Card > */}
+            <CardMD
+                autoFit
+                className="min-h-full"
+                imagePosition="top"
+                link={`/cagnotte/${pool?.id}`}
+            >
+                <CardMD.Chips>
+                    <button onClick={change}>
+                        <Chip
+                            value="Cagnotte"
+                            size="sm"
+                            className="!px-3 min-w-max rounded-full h-max orangeChip"
+                        />
+                    </button>
+                    <DateChip
+                        start={pool?.createdAt}
+                        ended={ended}
+                        end={end}
+                        prefix="finis dans"
+                    />
+                </CardMD.Chips>
+                <CardMD.Headline className="mb:pb-4 !line-clamp-1">
+                    <Title
+                        title={pool?.title}
+                        group={pool?.Group}
+                    />
+                </CardMD.Headline>
+                <CardMD.Media className="h-full flex-1 justify-between md:pb-2 !overflow-hidden">
+                    <div className="grid overflow-hidden flex-1 ">
+                        <ProfileDiv
+                            profile={pool?.UserBenef || {} as Partial<User>}
+                            size="xl"
+                        />
+                    </div>
+                    <ProgressBar
+                        color="orange"
+                        size='xxsmall'
+                        variant={pool?.pourcent >= 100 ? 'linear' : 'wavy'}
+                        className="pb-2 lg:pb-2"
+                        value={pool?.pourcent}
+                        max={100}
+                        label={
+                            <div className="md3-card-supporting-text justify-between flex-row">
+                                {pool?.status !== PoolSurveyStatus.PENDING ?
+                                    <span>Cagnotte cloturée</span> :
+                                    <>
+                                        <span>
+                                            {pool?.Votes?.length} vote{pool?.Votes?.length > 1 ? 's ' : ' '}  pour {pool?.pourcent >= 100 ? ' approuvée' : ''}
+                                        </span>
+                                        <span className="opacity-50"> / &nbsp;
+                                            {pool?.needed}
+                                        </span>
+                                    </>
+                                }
+                            </div>
+                        }
+                    />
+                </CardMD.Media>
+                <CardMD.Footer className="flex items-center pb-1 ">
+                    {!mines ? (
+                        <div className=" w-full flex-1 truncate pl-2 -ml-2 ">
+                            <ProfileDiv
+                                profile={pool?.User} />
+                        </div>
+                    ) : (
+                        <ModifBtnStack
+                            disabled2={disabledEditCTA}
+                            actions={actions}
+                            update={update}
+                        />
+                    )}
+                    <Button
+                        icon={{
+                            style: '-mt-[1px]',
+                            icon: pool?.IVoted ? 'list_alt_check' : 'list_alt_add',
+                            fill: pool?.IVoted,
+                            title: pool?.IVoted ? "Retirer mon vote" : "Je participe"
+                        }}
+                        size='small'
+                        disabled={pool?.status !== PoolSurveyStatus.PENDING}
+                        onClick={() => vote(values)}
+                        variant={!pool?.IVoted ? "tonal" : "filled"}
+                        color={color() as any}
+                    />
+                </CardMD.Footer>
+            </CardMD>
         </>
     );
 }

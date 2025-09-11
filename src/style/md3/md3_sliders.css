@@ -61,20 +61,18 @@
     align-items: center;
 }
 
-.md3-progressbar-track {
-    @apply relative w-full overflow-hidden;
-    height: var(--progress-track-height);
-    display: flex;
-    border-radius: var(--md3-radius-full);
+.md3-progressbar-tracks {
+    @apply relative gap-3 !flex  h-full !w-full;
 }
 
 .md3-progressbar-track-active,
 .md3-progressbar-track-inactive {
     height: 100%;
+    border-radius: var(--md3-radius-full);
 }
 
 .md3-progressbar-track-active {
-    @apply flex items-center justify-start pl-3 border;
+    @apply flex items-center justify-start -mr-1;
     background: var(--progress-main-color);
     transition: width 0.35s;
 }
@@ -82,7 +80,6 @@
 .md3-progressbar-track-inactive {
     @apply flex items-center justify-end;
     background: var(--progress-inactive-color);
-    border-radius: var(--md3-radius-full);
     transition: width 0s;
 }
 

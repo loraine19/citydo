@@ -29,13 +29,13 @@ export default function CheckCard(props: checkCardProps) {
     const { color } = useUxStore((state) => state);
 
     return (
-        <div className={`flex w-full h-full  ${style} overflow-hidden gap-3`}>
-            <div className="w-full !m-0 h-full !max-w-[calc(100vw)] overflow-auto !flex items-center rounded-full ">
+        <div className={`flex w-full h-full  ${style}  gap-3`}>
+            <div className="w-full !m-0 h-full !max-w-[calc(100vw)] overflow-y-hidden overflow-x-auto !flex items-center rounded-full ">
                 <List className="flex-row h-full flex w-full !min-w-max justify-evenly items-center  !p-0  ">
                     {categoriesArray.map((category, index) => (
                         <List.Item className="px-0.5 h-full w-full min-w-max hover:!bg-transparent" key={index}>
                             <label htmlFor={category} className="flex flex-1">
-                                <List.ItemStart className={` min-h-8 relative w-full !px-0 py-0.5 !m-0 flex items-center justify-center rounded-full border-[1px]  ${checkedState[index] ? ` ${` ${color}Style !border-none `} ` : ` md3-${color}-outlined  `}`}>
+                                <List.ItemStart className={` min-h-11 relative w-full !px-0.5  !m-0 flex items-center justify-center rounded-full border-[1px]  ${checkedState[index] ? ` ${` ${color}Style !border-none `} ` : ` md3-${color}-outlined  `}`}>
                                     <Checkbox
                                         checked={checkedState[index]}
                                         id={category}

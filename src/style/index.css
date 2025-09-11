@@ -112,10 +112,10 @@ header {
 
 /* TEXT */
 h2 {
-    @apply font-bold !text-[1.3rem] !text-slate-600;
+    @apply font-bold !text-[1.125rem] !text-slate-600;
 }
 h3 {
-    @apply font-semibold text-[1.3rem] !text-slate-600;
+    @apply font-semibold text-[1.125rem] !text-slate-600;
 }
 h5 {
     @apply text-lg text-[0.95rem] font-normal !text-slate-700;
@@ -219,7 +219,7 @@ button:disabled:hover {
 
 button {
     text-transform: none !important;
-    @apply whitespace-nowrap font-medium  !border-slate-900/10;
+    @apply whitespace-nowrap font-medium  border-slate-900/10;
 }
 
 .lgBtn {

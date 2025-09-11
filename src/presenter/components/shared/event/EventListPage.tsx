@@ -175,7 +175,6 @@ export default function EventListPage() {
                         fill
                         style={(view !== "view_agenda" ? "hidden" : "flex sm:hidden lg:flex")}
                         title={compact ? "voir en mode liste" : "voir en mode grille"} />
-
                 </div>
                 {view === "view_agenda" &&
                     <TabsMenu

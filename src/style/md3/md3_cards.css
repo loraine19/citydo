@@ -1,12 +1,10 @@
 /* Cartes */
 .md3-card {
+    @apply border border-slate-300;
     font-family: montserrat, sans-serif;
-    padding: 16px;
     border-radius: var(--md3-radius-large);
     transition: box-shadow 0.2s, background-color 0.2s;
     background-color: var(--md3-surface);
-    box-shadow: none;
-    border: none;
     overflow: hidden;
     position: relative;
     display: flex;
@@ -98,6 +96,9 @@
 
 .md3-card-media {
     @apply flex flex-col pt-1;
+}
+.md3-card-chips {
+    @apply flex flex-wrap gap-2 pb-1.5 -ml-1;
 }
 
 .md3-card-footer {

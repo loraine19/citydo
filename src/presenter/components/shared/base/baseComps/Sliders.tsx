@@ -222,14 +222,14 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
                     }
 
 
-                    {/* INACTIVE TRACK */}
-                    <div className={`md3-progressbar-trackck relative gap-3 !flex   h-full !w-full `}
+                    {/*  TRACKS */}
+                    <div className={`md3-progressbar-tracks relative gap-3 !flex  h-full !w-full `}
                         style={{ height: trackHeight }}>
                         {/* ACTIVE TRACK */}
 
-                        <div className={`-mt-2 ${mainColor}  flex relative ${variant === 'wavy' ? ' bg-transparent' : 'md3-progressbar-track-active '} }`}
+                        <div className={` ${mainColor}  flex relative ${variant === 'wavy' ? ' bg-transparent' : 'md3-progressbar-track-active '} }`}
                             style={{ width: `${percent}%` }} />
-
+                        {/* INACTIVE TRACK */}
                         <div className={`md3-progressbar-track-inactive flex-1 ${inactiveColor}`}>
 
 

@@ -15,7 +15,7 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
             case endDays <= 4 && endDays >= 1:
                 return "redChip";
             default:
-                return "grayChip";
+                return "Chip";
         }
     })();
     const value = (() => {
@@ -25,9 +25,9 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
             case ended:
                 return `✓ ${endDate}`;
             case endDays > 4:
-                return `${prefix} ${endDays} jours`;
+                return `${prefix} ${endDays}`;
             case endDays > 0:
-                return `il reste ${endDays} jours`;
+                return ` ${endDays} `;
             case endDays === 0:
                 return `aujourd'hui`;
             case endDays < 0:

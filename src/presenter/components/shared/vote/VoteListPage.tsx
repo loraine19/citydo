@@ -19,6 +19,7 @@ import SelectSearch from "../../common/SelectSearch";
 import { surveyCategories } from "../../../constants";
 import { useAlertStore } from "../../../../application/stores/alert.store";
 import { AlertValues } from "../../../../domain/entities/Error";
+import { Icon } from "../../common/IconComp";
 
 export default function VoteListPage() {
 
@@ -165,23 +166,37 @@ export default function VoteListPage() {
         setOpen(true);
     }
 
+    //// HANDLE COMPACT VIEW
+    const [compact, setCompact] = useState<boolean>(false);
+
+    //// ACTIVE FILTER
+    const [filterBox, setFilterBox] = useState<boolean>(false);
 
     //// RENDER
     return (
 
         <main>
             <div className="sectionHeader relative">
-
-
-
-
-
-                <SelectSearch
+                <div className="flex  gap-2 items-center"> <SelectSearch
                     searchCat={searchCat}
                     setSearchCat={setSearchCat}
                     category={filter === PoolSurveyFilter.SURVEY ? surveyCategories : []}
                     search={search} />
-
+                    <Icon
+                        onClick={() => setCompact(!compact)}
+                        icon={compact ? "grid_view" : "view_column"}
+                        size="xl"
+                        color="orange"
+                        fill
+                        title={compact ? "voir en mode liste" : "voir en mode grille"} />
+                    <Icon
+                        onClick={() => setFilterBox(!filterBox)}
+                        icon={!filterBox ? "filter_alt" : "filter_alt_off"}
+                        size="xl"
+                        color="orange"
+                        fill
+                        title={filterBox ? "reduire" : "voir les filtres"} />
+                </div>
                 <TabsMenu
                     labels={tabs}
                     sortList={sortList}
@@ -191,11 +206,12 @@ export default function VoteListPage() {
                     setReverse={setReverse}
                     action={refetch}
                 />
-                <CheckCard
-                    categoriesArray={boxArray}
-                    boxSelected={boxSelected}
-                    setBoxSelected={setBoxSelected}
-                    style={'pb-4'} />
+                {filterBox &&
+                    <CheckCard
+                        categoriesArray={boxArray}
+                        boxSelected={boxSelected}
+                        setBoxSelected={setBoxSelected}
+                        style={filterBox ? 'pb-4 animRev' : 'pb-4 anim '} />}
                 <SubHeader
                     qty={count > 0 ? count : 'aucun'}
                     type={`${filter === PoolSurveyFilter.SURVEY ? '' :
@@ -213,7 +229,7 @@ export default function VoteListPage() {
                 <section
                     ref={divRef}
                     onScroll={() => { onScroll(); handleHideCallback() }}
-                    className="Grid">
+                    className={"Grid " + (!compact ? ' GridCompact' : '')}>
                     {poolsSurveys.map((element: PoolSurveyView, index: number) =>
                         element.type === VoteTarget.SURVEY ?
                             <div className="SubGrid" key={'div' + index}>
