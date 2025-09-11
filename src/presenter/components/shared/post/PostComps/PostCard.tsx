@@ -26,7 +26,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
             autoFit={autoFit}
             className="min-h-full lg:h-[53vh]"
             imagePosition="top"
-            link={`/post/${id}`}
+            link={`/annonce/${id}`}
             image={
                 <CardMD.Image
                     src={image as string || '/image/placeholder.jpg'}
