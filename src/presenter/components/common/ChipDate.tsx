@@ -37,7 +37,7 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
         }
     })();
     return (
-        <div className="">
+        <div className="max-h-max">
             <Chip
                 size="sm"
                 value={value}

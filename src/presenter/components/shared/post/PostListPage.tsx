@@ -27,7 +27,7 @@ export default function PostListPage() {
     const [reverse, setReverse] = useState<boolean>(true);
     const [notif, setNotif] = useState<string>('')
     const [mines, setMines] = useState<boolean>(false);
-    const [view, setView] = useState(window.innerWidth > 768 ? "list" : "dashboard");
+    const [view, setView] = useState(window.innerWidth > 768 ? "dashboard" : "dashboard");
     const [searchString, setSearchString] = useState<string>('');
 
     //// PARAMS

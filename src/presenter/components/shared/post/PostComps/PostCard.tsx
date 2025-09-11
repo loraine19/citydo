@@ -24,7 +24,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
     return (
         <CardMD
             autoFit={autoFit}
-            className="min-h-full"
+            className="min-h-full lg:h-[53vh]"
             imagePosition="top"
             link={`/post/${id}`}
             image={
@@ -34,25 +34,23 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                     className="relative"
                 >
 
-                    <div className={`w-full flex flex-col justify-between !h-full `}>
-                        <div className="flex w-full flex-wrap justify-between items-center gap-2">
-                            <button
-                                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                                    const cat = e.currentTarget.innerText.toLowerCase();
-                                    change(cat as any);
-                                }}>
-                                <Chip
-                                    size="sm"
-                                    value={`${categoryS}`}
-                                    className="rounded-full h-max truncate cyanChip shadow"
-                                />
-                            </button>
-                            <DateChip
-                                start={createdAt}
-                                prefix="le"
+                    <div className="flex flex-1 !p-0 w-full h-max flex-wrap-reverse justify-between  gap-2">
+                        <button className="h-max w-max"
+                            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                                const cat = e.currentTarget.innerText.toLowerCase();
+                                change(cat as any);
+                            }}>
+                            <Chip
+                                size="sm"
+                                value={`${categoryS}`}
+                                className="rounded-full h-max truncate cyanChip shadow"
                             />
+                        </button>
+                        <DateChip
+                            start={createdAt}
+                            prefix="le"
+                        />
 
-                        </div>
                         <IconAnimate
                             active={ILike}
                             icon={'thumb_up'} />

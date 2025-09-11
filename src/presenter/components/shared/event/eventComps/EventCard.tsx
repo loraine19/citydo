@@ -69,18 +69,18 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
             </CardMD.Headline>
             <CardMD.Subhead className="flex gap-2">
                 <span>{eventDateInfo.start}</span>
-                <span className="hidden md:inline"> - {eventDateInfo.end}</span>
+                <span className="hidden md:inline"></span>
             </CardMD.Subhead>
             <CardMD.Media>
                 <ProgressBar
                     size='xxsmall'
-                    className=" pb-2 lg:pb-3"
+                    className=" pb-2 lg:pb-2"
                     variant="wavy"
                     value={event.Participants.length}
                     max={participantsMin || 10}
                     color="cyan"
                     label={
-                        <div className="md3-card-supporting-text pt-1 justify-between flex-row">
+                        <div className="md3-card-supporting-text justify-between flex-row">
                             <span>
                                 {event.Participants.length} participant{event.Participants.length > 1 ? 's' : ''}
                             </span>

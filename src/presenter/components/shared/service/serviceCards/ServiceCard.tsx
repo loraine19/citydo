@@ -122,7 +122,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                 </CardMD.Image>
             }
         >
-            <CardMD.Headline className="min-h-[3.6rem]">
+            <CardMD.Headline className="min-h-[3rem]">
                 <Title
                     title={title}
                     flagged={flagged}
@@ -133,7 +133,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
 
                 <GroupLink group={Group} />
             </CardMD.Subhead>
-            <CardMD.SupportingText className="line-clamp-2">
+            <CardMD.SupportingText className="line-clamp-1">
 
                 {description}
 

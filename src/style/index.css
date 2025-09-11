@@ -77,7 +77,7 @@ body {
 }
 
 main {
-    @apply flex flex-col wRespXL h-[calc(100%+0rem)] px-4 md:px-6  flex-1 w-full mx-auto;
+    @apply flex flex-col wRespXL h-[calc(100%+0rem)] px-2 md:px-2  flex-1 w-full mx-auto;
     min-height: 0;
     z-index: 0;
     max-height: 100vh;
@@ -107,7 +107,7 @@ header {
 }
 
 .sectionHeader {
-    @apply flex flex-col gap-0 relative;
+    @apply flex flex-col gap-0 px-2.5 relative;
 }
 
 /* TEXT */
