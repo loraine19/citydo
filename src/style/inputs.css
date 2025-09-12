@@ -2,7 +2,7 @@
 
 @import "./color.css";
 input:-internal-autofill-selected {
-    @apply bg-slate-200 dark:bg-slate-600 !text-slate-900 dark:!text-slate-200  !outline-none !ring-0 !ring-current;
+    @apply bg-slate-200 dark:bg-slate-600 !text-current dark:!text-slate-200  !outline-none !ring-0 !ring-current;
     box-shadow: 0 0 0px 1000px white inset;
     transition: background-color 5000s ease-in-out 0s;
 }
@@ -11,11 +11,11 @@ input:-internal-autofill-selected {
     focus:!bg-slate-200 focus:!outline-none !ring-0 !ring-current !pl-2 active:!bg-slate-300;
 }
 .inputStandart::placeholder {
-    @apply !text-slate-600 !opacity-90;
+    @apply !text-current !opacity-90;
 }
 
 input {
-    @apply !text-slate-500 !opacity-95  !outline-0 !ring-0 !ring-current;
+    @apply !text-current !opacity-95  !outline-0 !ring-0 !ring-current;
 }
 
 input[type="datetime-local"] {

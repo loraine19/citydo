@@ -59,7 +59,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                     setCloseDial(!true);
                     setOpenBlur(false)
                 }}
-                    className={` ${(closeDial || openBlur) ? ' h-screen w-screen -left-0 top-0  backdropBlur z-[9999999]  absolute slide' : 'hidden'
+                    className={` ${(closeDial || openBlur) ? ' h-screen w-screen -left-0 top-0  backdropBlurFooter !z-0  absolute slide' : 'hidden'
                         }`}>
 
                 </div>
@@ -91,7 +91,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                                 </div>
                             </MenuTrigger>
                             <MenuContent
-                                className='bg-slate-50  pb-3 gap-1 pr-4 pl-2 z-[999] overflow-auto h-[98dvh] flex flex-col  !justify-start  !rounded-3xl !shadow -ml-2 ] '>
+                                className='bg-slate-50 -mt-1 pb-3 gap-1 pr-4 pl-2 z-[999] overflow-auto h-[98dvh] flex flex-col  !justify-start  !rounded-3xl !shadow -ml-2 ] '>
                                 <Icon
                                     color='slate'
                                     icon='close'

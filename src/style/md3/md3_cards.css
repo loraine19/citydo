@@ -25,7 +25,7 @@
     @apply md3-card;
     padding: 0 !important;
     display: grid;
-    grid-template-columns: minmax(auto, auto) minmax(auto, 63%);
+    grid-template-columns: minmax(auto, auto) minmax(auto, 65%);
 }
 
 .md3-card-image-container {
@@ -70,8 +70,7 @@
 }
 
 .md3-card-headline {
-    @apply pb-2 text-[1.125rem] md:text-[1.2rem];
-    font-size: 1.2rem;
+    @apply pb-2 text-[1.1rem] sm:text-[1.125rem] md:text-[1.2rem];
     font-weight: 600;
     color: var(--md3-on-surface);
 }

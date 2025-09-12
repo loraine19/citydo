@@ -55,11 +55,12 @@ export class EventView extends Event {
 
         const formatDate = (date: Date) => {
             // Remove leading zero from day
-            const parts = date.toLocaleDateString('fr-FR', { weekday: 'short', month: 'numeric', day: 'numeric' }).split(' ');
-            if (parts.length === 3) {
-                parts[2] = String(Number(parts[2])); // Remove leading zero
-                return parts.join(' ');
-            }
+            const day = date.getDate();
+            const month = date.toLocaleString('default', { month: 'short' });
+            const year = date.toLocaleString('default', { year: 'numeric' }) !== new Date().toLocaleString('default', { year: 'numeric' }) ? ` ${date.toLocaleString('default', { year: 'numeric' }).slice(-2)}` : '';
+
+            const parts = year ? [day, month, year] : [day, month, year].filter(Boolean); // Filter out empty strings
+
             return parts.join(' ');
         };
 

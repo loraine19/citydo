@@ -1,7 +1,7 @@
 import { SortLabel, TabLabel } from "../../../domain/entities/frontEntities";
 import { SortButton } from "./SortBtn";
 import { useUxStore } from "../../../application/stores/ux.store";
-import { SegmentedButton } from "../shared/base/baseComps/Buttons";
+import { SegmentedButton } from "../shared/base/baseComps/ButtonSegmented";
 
 type TabProps = {
     labels: TabLabel[];

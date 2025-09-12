@@ -3,7 +3,8 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Icon } from "./IconComp";
 import { useNotificationStore } from "../../../application/stores/notification.store";
 import { useUxStore } from "../../../application/stores/ux.store";
-import { SpeedDial } from "./adaptatersComps/SpeedDial";
+import { Fab, FabMenu } from "../shared/base/baseComps/Fabs";
+import { Md3Colors } from "../shared/base/baseComps/Buttons";
 
 interface NavBarProps {
     handleClick?: () => void;
@@ -160,7 +161,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                 </Navbar>
 
                 {/* ACTION BUTTON  */}
-                <SpeedDial
+                {/* <SpeedDial
                     open={openBlur}
                     setOpen={setOpenBlur}
                     className={`${(!navBottom && !addBtn) ? 'hidden' : ''}
@@ -205,7 +206,36 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                                     </div>
                                 </button>)}
                         </div>}
-                />
+                /> */}
+                <FabMenu
+
+                    open={openBlur}
+                    setOpen={setOpenBlur}
+                    mainProps={{
+                        className: `rounded-full ${navBottom ? '' : 'mt-0.5'}`,
+                        size: navBottom ? 'large' : 'small',
+                        icon: { icon: openBlur ? 'close' : 'edit', size: navBottom ? '2xl' : 'xl' },
+                        color: color as Md3Colors ?? 'slate'
+                    }}
+                    placement={navBottom ? "top" : "bottom"}
+                >
+                    {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
+                        <Fab
+                            className="max-w-max self-end shadow-lg"
+                            variant="tonal"
+                            key={index}
+                            size="extended"
+                            color={color.col as Md3Colors ?? 'slate'}
+                            icon={{ icon: icon, size: 'lg' }}
+                            text={label}
+                            onClick={() => {
+                                setOpenBlur(false);
+                                navigate(to);
+                            }} >
+                            {label}
+                        </Fab>
+                    )}
+                </FabMenu>
             </div>
 
         </>

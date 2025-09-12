@@ -161,14 +161,14 @@ export const Icon: React.FC<IconProps> = ({
 
 
     const classIcon = () => `
-    !rounded-full flex items-center justify-center 
+    flex items-center justify-center 
     ${colorClass}  
     ${bg ? iconSize : textSize} ${style ?? ''} `
 
     const classActive = `hover:brightness-[0.95] active:brightness-[0.9] hover:scale-[1.03] `
 
     return (
-        <div className={`${(bg && !clear) ? `max-h-max max-w-max bg-white ` : ''} rounded-full  `}>
+        <div>
             {onClick ?
                 <button
                     data-cy={icon}

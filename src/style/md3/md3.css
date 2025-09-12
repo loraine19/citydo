@@ -5,6 +5,7 @@
 @import "./md3_buttons.css";
 @import "./md3_cards.css";
 @import "./md3_sliders.css";
+@import "./md3_fabs.css";
 
 :root {
     /* Couleurs de la palette Material Design 3 */
@@ -378,54 +379,6 @@
     gap: 1rem;
     padding: 1rem;
     align-items: center;
-}
-
-/* FAB */
-.md3-fab-container {
-    position: relative;
-}
-.md3-fab {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 56px;
-    width: 56px;
-    border-radius: var(--md3-radius-large);
-    background-color: var(--md3-primary);
-    color: var(--md3-on-primary);
-    box-shadow: var(--md3-shadow-elevation-3);
-    cursor: pointer;
-    transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
-}
-.md3-fab-small {
-    height: 40px;
-    width: 40px;
-}
-.md3-fab-large {
-    height: 96px;
-    width: 96px;
-    border-radius: var(--md3-radius-extra-large);
-}
-.md3-fab-extended {
-    width: auto;
-    min-width: 80px;
-    padding: 0 16px;
-    border-radius: var(--md3-radius-extra-large);
-}
-.md3-fab-menu-container {
-    position: absolute;
-    bottom: 64px;
-    right: 0;
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 1rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
-}
-.md3-fab-menu-container.open {
-    opacity: 1;
-    pointer-events: auto;
 }
 
 /* Inputs */

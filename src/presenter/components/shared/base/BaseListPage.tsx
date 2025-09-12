@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Icon } from '../../common/IconComp';
-import { Button, SegmentedButton, } from './baseComps/Buttons';
+import { Button } from './baseComps/Buttons';
 import { CardMD, } from './baseComps/Cards';
 import { Fab, FabMenu } from './baseComps/Fabs';
 import { Carousel } from './baseComps/Carrousel';
@@ -13,6 +13,7 @@ import { Chip } from './baseComps/Others';
 import { Menu, MenuItem, Tabs } from './baseComps/Menu';
 import { Tooltip } from './baseComps/Dialogs';
 import { ProgressBar, ProgressRing, Slider } from './baseComps/Sliders';
+import { SegmentedButton } from './baseComps/ButtonSegmented';
 
 const MD3DemoPage: React.FC = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -207,46 +208,28 @@ const MD3DemoPage: React.FC = () => {
             <section id='fabs' className='overflow-hidden min-h-max p-4 border '>
                 <h2>Boutons d'Action Flottants (FAB)</h2>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
-                    <Fab icon={<span className="material-icons">add</span>} />
-                    <Fab variant="small" icon={<span className="material-icons">edit</span>} />
-                    <Fab variant="large" icon={<span className="material-icons">favorite</span>} />
-                    <Fab variant="extended" icon={<span className="material-icons">add</span>} text="Créer" />
+                    <Fab color='cyan'
+                        icon={{ icon: 'check' }} />
+                    <Fab color='sky' variant="tonal" icon={{ icon: 'edit' }} />
+                    <Fab size="large" color='rose' icon={{ icon: 'favorite' }} />
+                    <Fab size="extended" icon={{ icon: 'add' }} text="Créer" />
                 </div>
             </section >
-
-            {/* Carrousel */}
-            < section id='carrousel' className='overflow-hidden min-h-max p-4 border ' >
-                <h2>Carrousel</h2>
-                <Carousel>
-                    <CardMD><h3>Élément 1</h3><p>Contenu du carrousel.</p></CardMD>
-                    <CardMD><h3>Élément 2</h3><p>Contenu du carrousel.</p></CardMD>
-                    <CardMD><h3>Élément 3</h3><p>Contenu du carrousel.</p></CardMD>
-                    <CardMD><h3>Élément 4</h3><p>Contenu du carrousel.</p></CardMD>
-                </Carousel>
-            </section >
-
-            {/* --- AJOUTS DE LA V3 --- */}
-
-            {/* AppBar */}
-            <section id="app-bar" className="md3-section">
-                <h2>App Bar</h2>
-                <AppBar>
-                    <span className="material-icons" style={{ marginRight: '1rem' }}>menu</span>
-                    <h3>Titre de l'application</h3>
-                    <div style={{ marginLeft: 'auto' }}>
-                        <Button variant="text" children={<Icon icon="search" />} />
-                        <Button variant="text" children={<Icon icon="favorite" />} />
-                    </div>
-                </AppBar>
-            </section>
 
             {/* FAB Menu */}
             <section id="fab-menu" className="md3-section" style={{ position: 'relative', minHeight: '200px' }}>
                 <h2>FAB Menu</h2>
-                <div style={{ position: 'absolute', bottom: '1rem', right: '1rem' }}>
-                    <FabMenu mainIcon={<span className="material-icons">add</span>}>
-                        <Fab variant="small" icon={<span className="material-icons">edit</span>} />
-                        <Fab variant="small" icon={<span className="material-icons">share</span>} />
+                <div className='absolute bottom-4 right-4 gap-4 flex '>
+                    <FabMenu mainProps={{ icon: { icon: 'edit' } }}>
+                        <Fab size="small" icon={{ icon: 'edit' }} />
+                        <Fab size="small" icon={{ icon: 'favorite' }} />
+                    </FabMenu>
+
+                    <FabMenu
+                        placement='bottom'
+                        mainProps={{ icon: { icon: 'edit' } }}>
+                        <Fab size="small" icon={{ icon: 'edit' }} />
+                        <Fab size="small" icon={{ icon: 'favorite' }} />
                     </FabMenu>
                 </div>
             </section>
@@ -331,6 +314,34 @@ const MD3DemoPage: React.FC = () => {
                     }
                 />
             </section>
+
+            {/* Carrousel */}
+            < section id='carrousel' className='overflow-hidden min-h-max p-4 border ' >
+                <h2>Carrousel</h2>
+                <Carousel>
+                    <CardMD><h3>Élément 1</h3><p>Contenu du carrousel.</p></CardMD>
+                    <CardMD><h3>Élément 2</h3><p>Contenu du carrousel.</p></CardMD>
+                    <CardMD><h3>Élément 3</h3><p>Contenu du carrousel.</p></CardMD>
+                    <CardMD><h3>Élément 4</h3><p>Contenu du carrousel.</p></CardMD>
+                </Carousel>
+            </section >
+
+            {/* --- AJOUTS DE LA V3 --- */}
+
+            {/* AppBar */}
+            <section id="app-bar" className="md3-section">
+                <h2>App Bar</h2>
+                <AppBar>
+                    <span className="material-icons" style={{ marginRight: '1rem' }}>menu</span>
+                    <h3>Titre de l'application</h3>
+                    <div style={{ marginLeft: 'auto' }}>
+                        <Button variant="text" children={<Icon icon="search" />} />
+                        <Button variant="text" children={<Icon icon="favorite" />} />
+                    </div>
+                </AppBar>
+            </section>
+
+
 
             {/* Date/Time Pickers */}
             <section id="date-time-pickers" className="md3-section">

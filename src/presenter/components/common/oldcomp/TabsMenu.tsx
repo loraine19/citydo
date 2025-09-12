@@ -2,7 +2,6 @@ import { Tabs } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useUxStore } from "../../../../application/stores/ux.store";
 import { TabLabel, SortLabel } from "../../../../domain/entities/frontEntities";
-import { SegmentedButton } from "../../shared/base/baseComps/Buttons";
 import { SortButton } from "../SortBtn";
 
 
@@ -45,14 +44,6 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
                     ))}
                 </Tabs.List>
             </Tabs>
-            <SegmentedButton
-
-                options={labels}
-                value={defaultTab as string || labels[0].value}
-                onChange={() => { }}
-                color={color as any}
-                size="small"
-            />
             {sortList &&
                 <SortButton
                     action={action ?? (() => { })}

@@ -85,7 +85,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                 <ProgressBar
                     size='xxsmall'
                     variant={event.Participants.length >= (participantsMin) ? 'linear' : 'wavy'}
-                    className=" pb-2 lg:pb-2"
+                    className=" pb-1 lg:pb-2"
                     value={event.Participants.length}
                     max={participantsMin || 10}
                     color="cyan"
