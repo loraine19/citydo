@@ -21,9 +21,11 @@ export const eventCategories = getEnumLabel(EventCategory);
 export const flagReasons = getEnumLabel(FlagReason)
 export const serviceCategoriesS: Label[] = getEnumLabel(ServiceCategory, true);
 export const surveyCategories: Label[] = getEnumLabel(SurveyCategory);
+export const surveyCategoriesS: Label[] = getEnumLabel(SurveyCategory, true);
 export const serviceCategories: Label[] = getEnumLabel(ServiceCategory);
 export const skillLevels: Label[] = getEnumLabel(SkillLevel);
 export const hardLevels: Label[] = getEnumLabel(HardLevel);
+export const postCategoriesS: Label[] = getEnumLabel(PostCategory, true);
 export const postCategories: Label[] = getEnumLabel(PostCategory);
 export const groupCategories: Label[] = getEnumLabel(GroupCategory);
 

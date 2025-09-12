@@ -33,7 +33,7 @@
 }
 
 .md3-menu-item-label {
-    @apply px-1;
+    @apply px-1 w-max;
     color: var(--md3-on-primary-container) !important;
     opacity: 0.8;
 }

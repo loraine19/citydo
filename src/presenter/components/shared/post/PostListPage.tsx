@@ -9,7 +9,7 @@ import { getValue } from "../../../views/viewsEntities/utilsService";
 import DI from "../../../../di/ioc";
 import { PostView } from "../../../views/viewsEntities/postViewEntities";
 import { LoadMoreButton } from "../../common/LoadMoreBtn";
-import { postCategories } from "../../../constants";
+import { postCategories, postCategoriesS } from "../../../constants";
 import PostCard from "./PostComps/PostCard";
 import { Label, SortLabel, TabLabel } from "../../../../domain/entities/frontEntities";
 import { Icon } from "../../common/IconComp";
@@ -176,7 +176,7 @@ export default function PostListPage() {
                     <SelectSearch
                         searchCat={searchCat}
                         setSearchCat={setSearchCat}
-                        category={postCategories}
+                        category={postCategoriesS}
                         search={search} />
                     <Icon
                         icon={view === "list" ? "grid_view" : "dashboard"}

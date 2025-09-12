@@ -16,7 +16,7 @@ import NotifDiv from "../../common/NotifDiv";
 import { useUxStore } from "../../../../application/stores/ux.store";
 import { HandleHideParams, HandleScrollParams } from "../../../../application/useCases/utils.useCase";
 import SelectSearch from "../../common/SelectSearch";
-import { surveyCategories } from "../../../constants";
+import { surveyCategoriesS } from "../../../constants";
 import { useAlertStore } from "../../../../application/stores/alert.store";
 import { AlertValues } from "../../../../domain/entities/Error";
 import { Icon } from "../../common/IconComp";
@@ -177,10 +177,10 @@ export default function VoteListPage() {
 
         <main>
             <div className="sectionHeader relative">
-                <div className="flex  gap-2 items-center"> <SelectSearch
+                <div className="flex gap-2 items-center"> <SelectSearch
                     searchCat={searchCat}
                     setSearchCat={setSearchCat}
-                    category={filter === PoolSurveyFilter.SURVEY ? surveyCategories : []}
+                    category={filter === PoolSurveyFilter.SURVEY ? surveyCategoriesS : []}
                     search={search} />
                     <Icon
                         onClick={() => setCompact(!compact)}
