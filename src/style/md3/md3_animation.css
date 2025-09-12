@@ -206,9 +206,8 @@
 }
 
 .md3-menu-leave {
-    animation: md3-menu-scale-out 0.9s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+    animation: md3-menu-scale-out 0.5s cubic-bezier(0.4, 0, 0.6, 1) forwards;
     transform-origin: top;
-    /* Reset opacity and transform after animation ends */
     animation-fill-mode: forwards;
 }
 

@@ -32,6 +32,12 @@
     background: var(--md3-primary-container);
 }
 
+.md3-menu-item-label {
+    @apply px-1;
+    color: var(--md3-on-primary-container) !important;
+    opacity: 0.8;
+}
+
 .md3-menu-item:hover,
 .md3-menu-item:focus {
     background-color: var(--md3-surface-variant);
@@ -60,5 +66,5 @@
 }
 
 .md3-menu-out {
-    @apply h-0  invisible pointer-events-none;
+    @apply h-0 p-0 invisible pointer-events-none;
 }

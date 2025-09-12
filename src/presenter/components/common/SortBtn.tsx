@@ -1,8 +1,8 @@
-import { Menu, MenuTrigger, MenuContent } from "@material-tailwind/react";
 import { Icon } from "./IconComp";
 import { SortLabel } from "../../../domain/entities/frontEntities"
 import { useUxStore } from "../../../application/stores/ux.store";
 import { useState } from "react";
+import { Menu, MenuItem } from "../shared/base/baseComps/Menu";
 
 type SortButtonProps = {
     sortList: SortLabel[],
@@ -18,64 +18,68 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
     const { color } = useUxStore((state) => state);
     const [isOpen, setIsOpen] = useState(false);
     return (
-        <div className="relative flex justify-between items-center  ">
-            <div className="flex items-center w-full h-full  gap-1">
-                <Menu
-                    open={isOpen}
-                    onOpenChange={setIsOpen}
-                    placement="bottom-end">
-                    <MenuTrigger className="relative z-auto h-max min-w-max flex items-center  cursor-pointer">
-                        <div className="flex items-center relative">
-                            <Icon
-                                color={color ?? 'slate'}
-                                icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"}
-                                size="4xl"
-                            />
-                        </div>
-                    </MenuTrigger>
-                    <MenuContent className="backdropBlurFooter overflow-hidden bg-transparent m-auto !border-none shadow-none gap-2 flex rounded-3xl justify-end h-screen wRespXL ">
-                        <div className="p-4 h-max bg-white gap-2 shadow rounded-3xl border relative right-0 flex flex-col justify-start mr-3 mt-1">
-                            {sortList.map((item: SortLabel, index: number) =>
-                                <div
-                                    key={index}
-                                    className="rounded-full  pl-4 pr-2 py-0.5 flex items-center font-normal font-roboto w-full justify-between gap-4 hover:!bg-slate-200 hover:!text-underline" >
-                                    {item.label}
-                                    <div className="flex items-center">
-                                        {(selectedSort === (item.key ?? item.label)) &&
-                                            <Icon
-                                                onClick={() => {
-                                                    action()
-                                                    setSelectedSort(item.key ?? item.label)
-                                                    setReverse(!reverse)
-                                                    setIsOpen(!isOpen);
-                                                }}
-                                                color={color}
-                                                title={'Trier par inverse ' + item.label}
-                                                style="!p-0 -mr-1"
-                                                icon={reverse ? 'arrow_drop_up' : 'arrow_drop_down'} />}
-                                        <Icon
-                                            fill={selectedSort === (item.key ?? item.label)}
-                                            size={'lg'}
-                                            style={`!p-1 `}
-                                            onClick={() => {
-                                                action();
-                                                setSelectedSort(item.key ?? item.label)
-                                                setReverse(!reverse)
-                                                setIsOpen(!isOpen);
 
-                                            }}
-                                            title={'Trier par ' + item.label}
-                                            disabled={(selectedSort === (item.key ?? item.label))}
-                                            color={selectedSort === (item.key ?? item.label) ? color : 'gray'}
-                                            icon={item.icon}
-                                        />
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    </MenuContent>
-                </Menu>
-            </div>
-        </div >
+        <Menu
+            closeIcon={<></>}
+            className={"min-w-max"}
+            open={isOpen}
+            setOpen={setIsOpen}
+            placement="bottom-end"
+            trigger={
+                <Icon
+                    color={color ?? 'slate'}
+                    icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"}
+                    size="4xl"
+                />}>
+
+
+            {sortList.map((item: SortLabel, index: number) =>
+                <MenuItem
+                    key={index}
+                    data-cy={item.key ?? item.label}
+                    onClick={() => {
+                        action()
+                        setSelectedSort(item.key ?? item.label)
+                        setReverse(!reverse)
+                        setIsOpen(!isOpen);
+                    }}
+                    trailingIcon={
+                        <div className="flex items-center">
+                            {(selectedSort === (item.key ?? item.label)) &&
+                                <Icon
+                                    onClick={() => {
+                                        action()
+                                        setSelectedSort(item.key ?? item.label)
+                                        setReverse(!reverse)
+                                        setIsOpen(!isOpen);
+                                    }}
+                                    color={color}
+                                    title={'Trier par inverse ' + item.label}
+                                    style="!p-0 -mr-1"
+                                    icon={reverse ? 'arrow_drop_up' : 'arrow_drop_down'} />}
+                            <Icon
+                                fill={selectedSort === (item.key ?? item.label)}
+                                size={'lg'}
+                                style={`!p-1 `}
+                                onClick={() => {
+                                    action();
+                                    setSelectedSort(item.key ?? item.label)
+                                    setReverse(!reverse)
+                                    setIsOpen(!isOpen);
+
+                                }}
+                                title={'Trier par ' + item.label}
+                                disabled={(selectedSort === (item.key ?? item.label))}
+                                color={selectedSort === (item.key ?? item.label) ? color : 'gray'}
+                                icon={item.icon}
+                            />
+                        </div>}
+                    className="rounded-full  pl-4 pr-2 py-0.5 flex items-center font-normal font-roboto w-full justify-between gap-4 hover:!bg-slate-200 hover:!text-underline" >
+                    {item.label}
+
+
+                </MenuItem>
+            )}
+        </Menu>
     )
 }

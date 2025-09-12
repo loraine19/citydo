@@ -1,7 +1,8 @@
-import { Menu, MenuTrigger, MenuItem, MenuContent } from "@material-tailwind/react";
 import { Label } from "../../../domain/entities/frontEntities";
 import { Icon } from "./IconComp";
 import { useUxStore } from "../../../application/stores/ux.store";
+import { Menu, MenuItem } from "../shared/base/baseComps/Menu";
+import { useState } from "react";
 
 type selectSearchProps = {
     searchCat: Label;
@@ -14,38 +15,48 @@ type selectSearchProps = {
 export default function SelectSearch(props: selectSearchProps) {
     const { color } = useUxStore((state) => state);
     const { searchCat, setSearchCat, category, search, style = '' } = props
+    const [isOpen, setIsOpen] = useState(false);
     return (
         <div className={`w-full  pb-2 ${style}`} >
             <div className={`"flex inputDiv md3-${color}-container !min-h-[40px] gap-2 !border-none `} >
-                <Menu placement="bottom-start">
-                    <MenuTrigger
-                        className={category.length > 0 ? '' : 'invisible w-0'}>
-                        <div className="flex">
-                            <Icon
-                                data-cy="select"
-                                icon="arrow_drop_down"
-                                size='2xl' />
-                        </div>
-                    </MenuTrigger>
-                    <MenuContent className="border-0 -ml-4">
-                        <div className="flex w-respLarge shadow-xl bg-white !rounded-3xl gap-2 p-4 flex-col mt-1 -ml-8">
-                            {category.map((label: any, index: number) => {
-                                return (
-                                    <MenuItem
-                                        data-cy={label.value}
-                                        key={index}
-                                        value={label.value}
-                                        className="flex items-center gap-2 !capitalize hover:font-medium hover:bg-slate-200 pr-4 !rounded-full InputDiv font-normal font-roboto "
-                                        onClick={() => {
-                                            setSearchCat(label);
-                                            search(label)
-                                        }} >
-                                        {label.label}
-                                    </MenuItem>
-                                );
-                            })}
-                        </div>
-                    </MenuContent>
+                <Menu
+                    open={isOpen}
+                    setOpen={setIsOpen}
+
+                    closeIcon={<></>}
+                    placement="bottom-start"
+                    trigger={
+                        <div className={category.length > 0 ? '' : 'invisible w-0'}>
+                            <div className="flex">
+                                <Icon
+                                    data-cy="select"
+                                    icon="arrow_drop_down"
+                                    size='2xl' />
+                            </div>
+                        </div>}>
+
+                    {category.map((label: any, index: number) => {
+                        return (
+                            <MenuItem
+                                leadingIcon={searchCat.value === label.value ?
+                                    <Icon
+                                        style='-mr-1'
+                                        color={color ?? 'slate'}
+                                        size={"lg"}
+                                        icon={'check'} /> : <div className="w-3" />}
+                                data-cy={label.value}
+                                key={index}
+                                value={label.value}
+
+                                onClick={() => {
+                                    setSearchCat(label);
+                                    search(label)
+                                    setIsOpen(false);
+                                }} >
+                                {label.label}
+                            </MenuItem>
+                        );
+                    })}
                 </Menu>
                 <input
                     onClick={(e: React.MouseEvent<HTMLInputElement>) => {

@@ -62,36 +62,37 @@ export const Menu: React.FC<MenuProps> = ({
     };
 
     return (
-        <><div className="md3-menu-container">
-            {trigger && React.cloneElement(
-                trigger as React.ReactElement,
-                {
-                    onClick: handleTriggerClick,
-                    'aria-haspopup': 'menu',
-                    'aria-expanded': open,
-                }
-            )}
+        <>
+            <div className="md3-menu-container">
+                {trigger && React.cloneElement(
+                    trigger as React.ReactElement,
+                    {
+                        onClick: handleTriggerClick,
+                        'aria-haspopup': 'menu',
+                        'aria-expanded': open,
+                    }
+                )}
 
-            <div data-md3
+                <div data-md3
 
-                ref={menuRef}
-                className={` 
+                    ref={menuRef}
+                    className={` 
                     ${className || ""}
                     ${menuClasses} 
                     absolute  flex flex-col 
                     md3-menu md3-elevation ${open ? " md3-menu-enter " : " md3-menu-leave  "} `} >
-                {open &&
-                    <>  <div
-                        className={`px-2 flex`}
-                        onClick={handleClose}>
-                        {closeIcon ?? <Icon icon='close' size='md' />}
-                    </div>
-                        <div className={`md3-menu-list overflow-hidden `}>
-                            {children}
+                    {open &&
+                        <>  <div
+                            className={`px-2 flex`}
+                            onClick={handleClose}>
+                            {closeIcon ?? <Icon icon='close' size='md' />}
                         </div>
-                    </>}
+                            <div className={`md3-menu-list overflow-hidden `}>
+                                {children}
+                            </div>
+                        </>}
+                </div>
             </div>
-        </div>
             {blurBack &&
                 <BackDropBlur
                     open={open}
@@ -109,6 +110,7 @@ interface MenuItemProps {
     leadingIcon?: ReactNode;
     trailingIcon?: ReactNode;
     divider?: 'top' | 'bottom' | 'both' | 'none';
+    value?: string | number | null;
 }
 
 export const MenuItem: React.FC<MenuItemProps> = ({
@@ -118,9 +120,11 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     className,
     leadingIcon,
     trailingIcon,
-    divider
+    divider,
+    value
 }) => (
     <div onClick={disabled ? undefined : onClick}
+        data-value={value}
         className={`  md3-menu-item-container 
         ${divider ? ` md3-menu-item-divider-${divider}` : ""}`}
         data-md3>
