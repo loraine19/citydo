@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNotificationStore } from "../../../application/stores/notification.store";
 import { useUxStore } from "../../../application/stores/ux.store";
 import { NavBarSection } from "./NavLinks";
+import BackDropBlur from "../shared/base/baseComps/BackDropBlur";
 
 interface NavBarBottomProps {
     handleClick?: () => void;
@@ -16,8 +17,7 @@ export const NavBarBottom: React.FC<NavBarBottomProps> = ({ addBtn }) => {
 
     if (navBottom && !hideNavBottom) return (
         <>
-            {openBlur &&
-                <div className="w-full h-screen absolute z-50 top-0 backdropBlurFooter transition-all duration-700"> </div>}
+            <BackDropBlur open={openBlur} setOpen={setOpenBlur} />
 
             <footer className={`!left-0 fixed bottom-0 slateFooter CTA pb-1.5`}
                 onDragCapture={() => setNavBottom(!navBottom)}

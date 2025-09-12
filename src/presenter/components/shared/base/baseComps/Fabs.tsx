@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, ReactNode, useState } from "react";
-import { Button, Md3Colors, Md3Variants } from "./Buttons";
+import { Button, Md3Colors, Md3Sizes, Md3Variants } from "./Buttons";
 import { IconProps } from "../../../common/IconComp";
 
 interface FabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -14,7 +14,7 @@ export const Fab: React.FC<FabProps> = ({ size, icon, text, className, color, va
     return (
         <Button
             fab
-            size={size === 'small' ? 'small' : size === 'large' ? 'large' : 'medium'}
+            size={size !== 'extended' ? size as Md3Sizes : 'medium'}
             className={classes} data-md3 {...props}
             variant={variant ?? 'filled'}
             color={color}
@@ -49,7 +49,8 @@ export const FabMenu: React.FC<FabMenuProps> = ({ mainProps, children, placement
 
                 <div className={`md3-fab-container md3-fab-${size} ${className || ''} `}>
                     <div className={` md3-fab-menu-container md3-fab-menu-container-${placement}
-                     ${isOpen ? 'open' : ''}`}>{children}
+                    ${isOpen ? " md3-menu-enter " : " md3-menu-leave  "}`}>
+                        {children}
                     </div>
                     <Fab {...mainProps}
                         onClick={() => {

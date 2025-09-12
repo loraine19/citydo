@@ -103,7 +103,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
             <div className={
                 (navBottom ?
                     `items-center opacity-100 anim bg-opacity-90 wRespXL justify-between gap-[5%] md:gap-6  px-2 lg:!px-0 ` :
-                    'z-0 md:gap-4 gap-3 pr-2 ') +
+                    'z-0 md:gap-4 gap-3 pr-2 pt-1 ') +
                 ` flex z-30 w-full `
             }>
                 <Navbar className={`
@@ -159,62 +159,13 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                         ))}
                     </ul>
                 </Navbar>
-
-                {/* ACTION BUTTON  */}
-                {/* <SpeedDial
-                    open={openBlur}
-                    setOpen={setOpenBlur}
-                    className={`${(!navBottom && !addBtn) ? 'hidden' : ''}
-                        ${!navBottom ? ' flex -mr-3.5 ' : ' -mt-3'} 
-                         z-[50]  `}
-                    placement={navBottom ? 'top' : 'bottom'}
-                    offset={10}
-                    Handler={
-                        <div className={` rounded-full !text-[2.2rem] ${color ?? 'slate'}StyleInv ${navBottom ? `!shadow-md p-2.5 w-full h-full border border-slate-900/5 -mb-2.5 lg:-mb-2  ` : ' !shadSm !p-0'}`}>
-                            <Icon
-                                color={color ?? 'slate'}
-                                style={'!text-white/80 border-0'}
-                                reverse
-                                onClick={() => setOpenBlur(!openBlur)}
-                                icon={openBlur ? 'close' : 'edit'}
-                                bg
-                                clear={navBottom}
-                                size={navBottom ? '2xl' : 'xl'} />
-                        </div>
-                    }
-                    Content={
-                        <div className={`${!navBottom ? ' items-end justify-end ' : 'items-end justify-end'} flex gap-3 py-3 flex-col  `}>
-                            {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
-
-                                <button onClick={() => {
-                                    setOpenBlur(false);
-                                    navigate(to);
-                                }}
-                                    key={index} className={` shadow-md 
-                                     rounded-full bg-slate-50 flex items-center max-w-max hover:!bg-slate-100  `}>
-                                    <div key={index} className={
-                                        `${navBottom ? 'p-1' : 'p-0.5'}
-                                     rounded-full ${color.col}${'Style'} px-3 flex gap-1 items-center border border-slate-900/10 `}>
-                                        <Icon style={'!border-slate-900/10 '}
-                                            bg clear
-                                            size={navBottom ? '2xl' : 'xl'}
-                                            icon={icon}
-                                            color={type ? color.col : color.col} />
-                                        <div className={`${navBottom ? '' : 'text-[14px] '} whitespace-nowrap pr-5`}>
-                                            {label}
-                                        </div>
-                                    </div>
-                                </button>)}
-                        </div>}
-                /> */}
                 <FabMenu
-
                     open={openBlur}
                     setOpen={setOpenBlur}
                     mainProps={{
-                        className: `rounded-full ${navBottom ? '' : 'mt-0.5'}`,
+                        className: `rounded-full -mr-2 ${navBottom ? '' : 'mt-0.5'}`,
                         size: navBottom ? 'large' : 'small',
-                        icon: { icon: openBlur ? 'close' : 'edit', size: navBottom ? '2xl' : 'xl' },
+                        icon: { icon: openBlur ? 'close' : 'edit', size: navBottom ? '2xl' : 'lg' },
                         color: color as Md3Colors ?? 'slate'
                     }}
                     placement={navBottom ? "top" : "bottom"}

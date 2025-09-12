@@ -3,7 +3,7 @@ import { Icon, IconProps } from "../../../common/IconComp";
 
 
 export type Md3Colors = 'primary' | 'secondary' | 'tertiary' | 'error' | 'sky' | 'cyan' | 'rose' | 'orange' | 'green' | 'slate';
-export type Md3Sizes = 'small' | 'medium' | 'large';
+export type Md3Sizes = 'xsmall' | 'small' | 'medium' | 'large';
 export type Md3Variants = 'filled' | 'elevated' | 'outlined' | 'text' | 'tonal';
 
 

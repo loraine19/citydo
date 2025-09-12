@@ -1,6 +1,6 @@
 /* FAB */
 .md3-fab-container {
-    @apply fixed;
+    @apply absolute;
 }
 .md3-fab {
     display: flex;
@@ -14,6 +14,10 @@
     box-shadow: var(--md3-shadow-elevation-3);
     cursor: pointer;
     transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
+}
+.md3-fab-xsmall {
+    height: 32px;
+    width: 32px;
 }
 .md3-fab-small {
     height: 40px;

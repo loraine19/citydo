@@ -46,7 +46,6 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
 
     useEffect(() => {
         setBadgeMap(badgeMapGenerator());
-        console.log('Badge map updated:', notifsMsg);
     }, [isLoading, error])
 
 
@@ -56,7 +55,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                 <div key={index}
                     className={`relative  w-full flex items-center justify-center ${onBoard ? 'lg:hidden' : ''}`}>
                     <Icon
-                        style={`${navBottom ? `!drop-shadow-sm !brightness-[1.05] ` : ` shadSm !border-0 `}`}
+                        style={`${navBottom ? `!drop-shadow-sm !brightness-[1.05] ` : `!w-[40px] !h-[40px] shadSm !border-0 `}`}
                         reverse={!navBottom}
                         link={list.link}
                         icon={list.icon}

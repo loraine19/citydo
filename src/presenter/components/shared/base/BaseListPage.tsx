@@ -19,17 +19,13 @@ const MD3DemoPage: React.FC = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isSideSheetOpen, setIsSideSheetOpen] = useState(false);
     const [isCheckboxOn, setIsCheckboxOn] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLElement | null>(null);
     const [sliderValue, setSliderValue] = useState(50);
     const [sliderValue2, setSliderValue2] = useState(70);
     const [activeTab, setActiveTab] = useState('tab1');
     const [buttonValue, setButtonValue] = useState('1');
+    const [openBlur, setOpenBlur] = useState(false);
 
-    const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setMenuAnchorEl(event.currentTarget);
-        setIsMenuOpen(true);
-    };
+
 
     return (
         <div data-md3 className="p-4 space-y-8 overflow-auto max-w-[1100px] m-auto">
@@ -217,19 +213,59 @@ const MD3DemoPage: React.FC = () => {
             </section >
 
             {/* FAB Menu */}
-            <section id="fab-menu" className="md3-section" style={{ position: 'relative', minHeight: '200px' }}>
+            <section id="fab-menu" className="md3-section flex gap-4 !flex-row h-48 border">
                 <h2>FAB Menu</h2>
-                <div className='absolute bottom-4 right-4 gap-4 flex '>
-                    <FabMenu mainProps={{ icon: { icon: 'edit' } }}>
-                        <Fab size="small" icon={{ icon: 'edit' }} />
-                        <Fab size="small" icon={{ icon: 'favorite' }} />
-                    </FabMenu>
 
+                <div className=' h-full w-full flex-1  flex items-start justify-end '>
                     <FabMenu
-                        placement='bottom'
-                        mainProps={{ icon: { icon: 'edit' } }}>
-                        <Fab size="small" icon={{ icon: 'edit' }} />
-                        <Fab size="small" icon={{ icon: 'favorite' }} />
+                        className=""
+                        open={openBlur}
+                        setOpen={setOpenBlur}
+                        mainProps={{
+                            icon: { icon: openBlur ? 'close' : 'edit' },
+                            color: 'rose'
+                        }}
+                        placement={'bottom'}
+                    >
+
+                        <Fab
+                            className="max-w-max"
+                            variant="tonal"
+                            size="extended"
+                            color={'cyan'}
+                            icon={{ icon: 'favorite', size: 'lg' }}
+                            text={'test'}
+                            onClick={() => {
+                                setOpenBlur(false)
+                            }} >
+                            {'test'}
+                        </Fab>
+                    </FabMenu>
+                </div>
+                <div className='w-full h-full bg-sky-200 flex-1 flex items-end justify-end '>
+                    <FabMenu
+                        className=""
+                        open={openBlur}
+                        setOpen={setOpenBlur}
+                        mainProps={{
+                            icon: { icon: openBlur ? 'close' : 'edit' },
+                            color: 'sky'
+                        }}
+                        placement={'top'}
+                    >
+
+                        <Fab
+                            className="max-w-max"
+                            variant="tonal"
+                            size="extended"
+                            color={'cyan'}
+                            icon={{ icon: 'favorite', size: 'lg' }}
+                            text={'test'}
+                            onClick={() => {
+                                setOpenBlur(false)
+                            }} >
+                            {'test'}
+                        </Fab>
                     </FabMenu>
                 </div>
             </section>
@@ -404,17 +440,27 @@ const MD3DemoPage: React.FC = () => {
             </section>
 
             {/* List & Menu */}
-            <section id="list-menu" className="md3-section">
+            <section id="listmenu" className="md3-section h-full ">
                 <h2>Listes et Menus</h2>
-                <List>
+                {/* <List>
                     <ListItem>Item de la liste 1</ListItem>
                     <ListItem>Item de la liste 2</ListItem>
-                </List>
+                </List> */}
                 <div style={{ position: 'relative' }}>
-                    <Button onClick={handleMenuClick}>Ouvrir le Menu</Button>
-                    <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} anchorElement={menuAnchorEl}>
-                        <MenuItem onClick={() => alert('Option 1')}>Option 1</MenuItem>
-                        <MenuItem onClick={() => alert('Option 2')}>Option 2</MenuItem>
+
+                    <Menu
+                        blurBack
+                        placement='top-end'
+                        trigger={<Button variant="outlined" >Ouvrir le Menu</Button>} >
+                        <MenuItem onClick={() => alert("Item 1 clicked")}
+                            leadingIcon={<Icon icon="home" size="md" />}>
+                            Item 1
+                        </MenuItem>
+                        <MenuItem onClick={() => alert("Item 2 clicked")}
+                            trailingIcon={<Icon icon="check" size="md" />}>
+                            Item 2
+                        </MenuItem>
+                        <MenuItem disabled>Disabled Item</MenuItem>
                     </Menu>
                 </div>
             </section>

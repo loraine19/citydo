@@ -1,0 +1,235 @@
+/*
+  Animations de Material Design 3
+  Utilise les variables CSS pour la personnalisation
+*/
+
+/* --- Variables de base pour les animations --- */
+:root {
+    --md3-anim-duration-short: 150ms;
+    --md3-anim-duration-medium: 250ms;
+    --md3-anim-duration-long: 400ms;
+
+    /* Fonctions de timing pour un mouvement naturel */
+    --md3-anim-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+    --md3-anim-easing-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+    --md3-anim-easing-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+    --md3-anim-easing-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* ------------------------------------------- */
+/* --- 1. Ondulation (Ripple) et survol --- */
+/* ------------------------------------------- */
+
+/* L'effet d'ondulation (ripple) au clic */
+/* Utilisé pour: Button, Segmented Button, List Item, Card, etc. */
+.md3-animation-ripple {
+    animation: md3-ripple var(--md3-anim-duration-medium)
+        var(--md3-anim-easing-standard) forwards;
+}
+
+@keyframes md3-ripple {
+    0% {
+        opacity: 0.1;
+        transform: translate(-50%, -50%) scale(0.1);
+    }
+    100% {
+        opacity: 0.25;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+/* ------------------------------------------- */
+/* --- 2. Fondu (Fade) --- */
+/* ------------------------------------------- */
+
+/* Fondu simple pour l'apparition ou la disparition d'un élément */
+/* Utilisé pour: Menu, Tooltip, Dialog, etc. */
+.md3-animation-fade-in {
+    animation: md3-fade-in var(--md3-anim-duration-medium)
+        var(--md3-anim-easing-standard);
+}
+
+@keyframes md3-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.md3-animation-fade-out {
+    animation: md3-fade-out var(--md3-anim-duration-medium)
+        var(--md3-anim-easing-standard);
+}
+
+@keyframes md3-fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* ------------------------------------------- */
+/* --- 3. Glissement (Slide) --- */
+/* ------------------------------------------- */
+
+/* Glissement de la droite vers la gauche (pour les notifications, les menus) */
+/* Utilisé pour: Bottom Sheet, Side Sheet, SnackBar, etc. */
+.md3-animation-slide-left {
+    animation: md3-slide-left var(--md3-anim-duration-long)
+        var(--md3-anim-easing-decelerate);
+}
+
+@keyframes md3-slide-left {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Glissement de la gauche vers la droite */
+/* Utilisé pour: Side Sheet, Carousel (transition) */
+.md3-animation-slide-right {
+    animation: md3-slide-right var(--md3-anim-duration-long)
+        var(--md3-anim-easing-decelerate);
+}
+
+@keyframes md3-slide-right {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* ------------------------------------------- */
+/* --- 4. Mise à l'échelle (Scale) --- */
+/* ------------------------------------------- */
+
+/* Apparition en zoomant depuis le centre (pour les boîtes de dialogue) */
+/* Utilisé pour: Dialog, Fab (quand il s'agrandit pour devenir un menu) */
+.md3-animation-scale-in {
+    @apply duration-700;
+    animation: md3-scale-in 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes md3-scale-in {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Disparition en dézoomant vers le centre */
+/* Utilisé pour: Dialog, Fab (quand il se rétracte) */
+.md3-animation-scale-out {
+    animation: md3-scale-out var(--md3-anim-duration-short)
+        var(--md3-anim-easing-accelerate);
+}
+
+@keyframes md3-scale-out {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+}
+
+/* ------------------------------------------- */
+/* --- 5. Rotation et Mouvement de l'icône --- */
+/* ------------------------------------------- */
+
+/* Rotation simple d'une icône (ex: fermer/ouvrir un menu) */
+/* Utilisé pour: Boutons, Icônes de menu, FAB Menu */
+.md3-animation-rotate {
+    transition: transform var(--md3-anim-duration-medium)
+        var(--md3-anim-easing-standard);
+}
+
+.md3-animation-rotate-90 {
+    transform: rotate(90deg);
+}
+
+.md3-animation-rotate-180 {
+    transform: rotate(180deg);
+}
+
+/* ------------------------------------------- */
+/* --- 6. Mouvement de l'indicateur --- */
+/* ------------------------------------------- */
+
+/* Mouvement de l'indicateur actif dans une liste ou un carrousel */
+/* Utilisé pour: Segmented Button, Caroussel, Tabs */
+.md3-animation-indicator {
+    transition: transform var(--md3-anim-duration-short)
+        var(--md3-anim-easing-standard);
+}
+
+/*
+  Animation de déploiement d'un menu
+  Utilisé pour: Menu, Dropdown
+*/
+
+@keyframes md3-menu-expand {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.md3-animation-menu-expand {
+    animation: md3-menu-expand var(--md3-anim-duration-medium)
+        var(--md3-anim-easing-decelerate);
+    transform-origin: top left; /* Point de départ de l'animation, pour un menu en haut à gauche */
+}
+
+.md3-menu-enter {
+    animation: md3-menu-scale-in 0.9s cubic-bezier(0.2, 0, 0, 1) forwards;
+    transform-origin: top;
+}
+
+.md3-menu-leave {
+    animation: md3-menu-scale-out 0.9s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+    transform-origin: top;
+    /* Reset opacity and transform after animation ends */
+    animation-fill-mode: forwards;
+}
+
+@keyframes md3-menu-scale-in {
+    from {
+        opacity: 0;
+        transform: scaleY(0.8); /* Commence petit */
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1); /* Prend sa taille normale */
+    }
+}
+
+@keyframes md3-menu-scale-out {
+    from {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    to {
+        opacity: 0;
+        transform: scaleY(0.8);
+    }
+}
