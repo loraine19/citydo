@@ -91,7 +91,7 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
                         <Icon
                             color={item.color ?? 'slate'}
                             fill={item.fill ?? false}
-                            size={'lg'}
+                            size={'md'}
                             style={`!p-1 `}
                             onClick={() => {
                                 item.action();
@@ -99,7 +99,7 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
                                 setIsOpen(!isOpen);
 
                             }}
-                            title={'Trier par ' + item.label}
+                            title={item.label}
 
                             icon={item.icon}
                         />}

@@ -31,7 +31,7 @@
 }
 
 .md3-menu-item-label {
-    @apply px-1 w-max;
+    @apply px-1 w-max font-montserrat text-[0.875rem];
     color: var(--md3-on-primary-container) !important;
     opacity: 0.8;
 }
