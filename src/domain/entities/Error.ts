@@ -13,6 +13,7 @@ export class AlertValues {
     title: string = 'Une erreur est survenue';
     element: string | Element | React.ReactNode = ''
     disableConfirm?: boolean = false;
+    disableCancel?: boolean = false;
     confirmString?: string = 'Ok';
     button2?: { text: string, onClick: () => void } = undefined;
     isOpen?: boolean = false;

@@ -131,7 +131,7 @@ export const VoteValues = (vote: PoolSurveyView,
         title: `${vote.IVoted ? 'Modifier mon vote ' : 'Voter'} pour ${vote.title} `,
         confirmString: vote.IVoted ? 'Modifier' : 'Confirmer - ',
         element: body(voteDTO, setOpinion),
-        disableConfirm: false,
+        disableCancel: false,
         close: () => setOpen(false)
     }
 }

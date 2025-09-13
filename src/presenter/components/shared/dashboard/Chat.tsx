@@ -55,7 +55,6 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
             title: 'Supprimer le message',
             element: <Typography className='text-center'>Êtes-vous sûr de vouloir supprimer ce message ?</Typography>,
             isOpen: open,
-            disableConfirm: false,
             close: () => setOpen(false),
             confirmString: 'Ok',
             notif: notifRemove,

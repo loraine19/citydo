@@ -72,8 +72,9 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                         {/* PROFILE MENU  */}
                         <Menu
                             onClose={() => { setOpenBlur(false); setCloseDial(true); }}
-                            placement="top-start"
+                            placement="top"
                             open={!closeDial}
+                            className="mt-2"
                             trigger={<div className="relative h-full justify-center max-w-max grid z-50 items-center !p-0">
                                 <div onClick={() => {
                                     setOpenBlur(true);

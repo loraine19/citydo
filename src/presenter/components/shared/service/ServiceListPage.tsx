@@ -228,6 +228,7 @@ export default function ServicesPage() {
             {isLoading ?
                 <SkeletonGrid />
                 : <section
+                    id='refDiv'
                     ref={divRef}
                     onScroll={() => {
                         onScroll();

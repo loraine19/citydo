@@ -18,7 +18,7 @@ export default function NotFindPage() {
             title: 'Désolé, cette page n\'existe pas',
             element: `Veuillez vérifier l\'élement ${url} ou retourner à la page d\'accueil.`,
             confirmString: 'Retour à l\'accueil',
-            disableConfirm: true,
+            disableCancel: true,
             handleConfirm: () => { navigate('/'); setOpen(false) },
         });
         setOpen(true)

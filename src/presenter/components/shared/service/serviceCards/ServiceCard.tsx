@@ -13,6 +13,7 @@ import { Title } from "../../../common/CardTitle";
 import Chip from "../../../common/adaptatersComps/Chip";
 import { CardMD } from "../../base/baseComps/Cards";
 import { GroupLink } from "../../../common/GroupLink";
+import { MoreButton } from "../../../common/moreBtn";
 
 
 type ServiceProps = { service: ServiceView, mines?: boolean, change: (e: React.MouseEvent<HTMLButtonElement>) => void, update?: () => void, compact?: boolean }
@@ -73,7 +74,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
     return (
         <CardMD
             autoFit={!compact}
-            className={` sm:h-[50vw] md:h-[55vh]  ${compact ? '' : ''} `}
+            className={` sm:h-[50vw] md:h-max min-h-full ${compact ? '' : ''} `}
             imagePosition="top"
             link={`/service/${id}`}
             image={
@@ -91,46 +92,43 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                 </CardMD.Image>
             }
         >
-            <CardMD.Chips>
+            <CardMD.Chips className="justify-between items-center -mr-1">
 
-                <button
-                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                        const cat = e.currentTarget.innerText.toLowerCase();
-                        change(cat as any);
-                    }}>
+                <div className="md3-card-chips !py-0">
+                    <button
+                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                            const cat = e.currentTarget.innerText.toLowerCase();
+                            change(cat as any);
+                        }}>
+                        <Chip
+                            size="sm"
+                            value={`${categoryS}`}
+                            className="rounded-full h-max truncate skyChip shadow"
+                        />
+                    </button>
+
+                    <button
+                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                            const cat = e.currentTarget.innerText.toLowerCase();
+                            change(cat as any);
+                        }}>
+                        <Chip
+                            size="sm"
+                            value={typeS}
+                            className={`rounded-full h-max ${typeS === ServiceType.GET ? "orangeChip" : "greenChip"} shadow`}
+                        />
+
+                    </button>
+
                     <Chip
                         size="sm"
-                        value={`${categoryS}`}
-                        className="rounded-full h-max truncate skyChip shadow"
-                    />
-                </button>
-
-                <button
-                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                        const cat = e.currentTarget.innerText.toLowerCase();
-                        change(cat as any);
-                    }}>
-                    <Chip
-                        size="sm"
-                        value={typeS}
-                        className={`rounded-full h-max ${typeS === ServiceType.GET ? "orangeChip" : "greenChip"} shadow`}
-                    />
-
-                </button>
-
-                <Chip
-                    size="sm"
-                    value={statusS}
-                    className={`rounded-full h-max ${statusColor(statusS as ServiceStep).color} shadow`}
-                />
+                        value={statusS}
+                        className={`rounded-full h-max ${statusColor(statusS as ServiceStep).color} shadow`}
+                    /></div>
+                <MoreButton id={id} type={'service'} flagged={flagged} title={title} />
             </CardMD.Chips>
             <CardMD.Headline>
-                <Title
-
-                    title={title}
-                    flagged={flagged}
-                    type="service"
-                />
+                <Title title={title} />
             </CardMD.Headline>
             <CardMD.Subhead>
 

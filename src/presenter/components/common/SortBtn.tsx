@@ -21,7 +21,7 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
 
         <Menu
             closeIcon={<></>}
-            className={"mt-3"}
+            className={"mt-0"}
             open={isOpen}
             setOpen={setIsOpen}
             placement="bottom-end"

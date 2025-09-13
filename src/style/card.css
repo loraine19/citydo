@@ -2,7 +2,7 @@
 
 /* list section */
 .Grid {
-    @apply max-h-full wRespXL grid pt-4 pb-4 gap-y-5 gap-x-1
+    @apply max-h-full wRespXL grid pt-2 pb-4 gap-1
     grid-cols-[minmax(calc(50%-1rem),1fr)]  
     sm:grid-cols-[auto,auto] 
     sm:auto-rows-[minmax(min-content,40vh)] 
@@ -25,7 +25,7 @@
 
 /* list grid */
 .SubGrid {
-    @apply max-w-[calc(100vw-1rem)] px-2;
+    @apply max-w-[calc(100vw-1rem)] p-2 overflow-hidden  grid;
 }
 
 /**** CARD ****/

@@ -1,13 +1,12 @@
 /* Menu */
 .md3-menu-container {
-    position: relative;
     display: inline-block;
 }
 
 .md3-menu {
-    @apply flex flex-col  gap-2;
+    @apply flex flex-col;
     position: absolute;
-    z-index: 999999999999;
+    z-index: 999999999 !important;
     background-color: var(--md3-surface, #fff);
     border-radius: 12px;
     box-shadow: var(--md3-shadow-elevation-3);

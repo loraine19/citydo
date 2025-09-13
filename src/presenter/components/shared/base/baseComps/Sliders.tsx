@@ -193,7 +193,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 
 
                     {variant === 'wavy' &&
-                        <>  <div className={` absolute z-40 md3-progressbar-track-active-wavy `}
+                        <>  <div className={` absolute z-0 md3-progressbar-track-active-wavy `}
                             style={{ width: `${percent}%` }}>
                             <div className={` ${mainColor} ${wavySizeMap[size].dot2Size} 
                      absolute  rounded-full z-50 `} />

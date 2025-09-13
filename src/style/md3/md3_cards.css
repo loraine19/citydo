@@ -5,13 +5,12 @@
     border-radius: var(--md3-radius-large);
     transition: box-shadow 0.2s, background-color 0.2s;
     background-color: var(--md3-surface);
-    overflow: hidden;
-    position: relative;
     display: flex;
     flex-direction: column;
     min-height: fit-content;
     max-height: fit-content;
     height: fit-content;
+    overflow: hidden;
 }
 .md3-card-with-image-top {
     @apply md3-card;
@@ -29,7 +28,6 @@
 }
 
 .md3-card-image-container {
-    overflow: hidden;
     border-radius: var(--md3-radius-large);
     height: 100%;
     width: 100%;
@@ -38,6 +36,7 @@
     justify-content: center;
     position: relative;
     display: flex;
+    overflow: hidden;
 }
 .md3-card-image {
     position: absolute;
@@ -61,12 +60,13 @@
 }
 
 .md3-card-content {
-    @apply gap-0  overflow-hidden justify-between;
+    @apply gap-0   justify-between;
     padding: var(--md3-spacing-sm) var(--md3-spacing-medium);
     display: flex;
     flex-direction: column;
     min-height: fit-content;
     flex: 1;
+    overflow: hidden;
 }
 
 .md3-card-headline {
@@ -79,6 +79,7 @@
     @apply pb-1;
     font-size: 1.05rem;
     font-weight: 400;
+    overflow: hidden;
     color: var(--md3-on-surface-variant);
 }
 
@@ -97,7 +98,7 @@
     @apply flex flex-col pt-1;
 }
 .md3-card-chips {
-    @apply flex flex-wrap gap-2 pb-1.5 -ml-1;
+    @apply flex flex-wrap gap-2 pb-1.5 -ml-1 mr-3;
 }
 
 .md3-card-footer {

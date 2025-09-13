@@ -206,7 +206,7 @@
 }
 
 .md3-menu-leave {
-    animation: md3-menu-scale-out 0.5s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+    animation: md3-menu-scale-out 0.7s cubic-bezier(0.4, 0, 0.6, 1) forwards;
     transform-origin: top;
     animation-fill-mode: forwards;
 }
@@ -214,7 +214,7 @@
 @keyframes md3-menu-scale-in {
     from {
         opacity: 0;
-        transform: scaleY(0.8); /* Commence petit */
+        transform: scaleY(0); /* Commence petit */
     }
     to {
         opacity: 1;
@@ -224,11 +224,12 @@
 
 @keyframes md3-menu-scale-out {
     from {
-        opacity: 1;
+        opacity: 0.5;
         transform: scaleY(1);
     }
+
     to {
         opacity: 0;
-        transform: scaleY(0.8);
+        transform: scaleY(0);
     }
 }

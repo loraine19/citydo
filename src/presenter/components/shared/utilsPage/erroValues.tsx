@@ -29,7 +29,7 @@ export const errorValues: AlertValues = {
 
     </div>,
     confirmString: 'Retour à l\'accueil',
-    disableConfirm: false,
+    disableCancel: true,
     button2: {
         text: 'Déconnexion', onClick: () => {
             Cookies.remove('user')

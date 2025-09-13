@@ -227,6 +227,7 @@ export default function VoteListPage() {
             {isLoading || !poolsSurveys ?
                 <SkeletonGrid /> :
                 <section
+                    id='refDiv'
                     ref={divRef}
                     onScroll={() => { onScroll(); handleHideCallback() }}
                     className={"Grid " + (!compact ? ' GridCompact' : '')}>
@@ -247,6 +248,8 @@ export default function VoteListPage() {
                             <div className="SubGrid "
                                 key={'div' + index}>
                                 <PoolCard
+
+                                    divRef={divRef}
                                     pool={element}
                                     key={index}
                                     change={() => {

@@ -7,7 +7,7 @@ import { useUxStore } from "../../../application/stores/ux.store";
 
 
 export const AlertModal = ({ values }: { values: AlertValues }) => {
-    const { title, element, disableConfirm = false, confirmString, button2, isOpen, close, notif } = values;
+    const { title, element, disableConfirm = false, confirmString, button2, isOpen, close, notif, disableCancel } = values;
     const { open, setOpen } = useAlertStore(state => state)
     const { color } = useUxStore(state => state)
 
@@ -21,8 +21,8 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                 <Card className="relative FixCardNoImage min-h-min !p-4 w-resp m-auto flex max-h-[400px] ">
                     <CardHeader
                         className="FixCardHeaderNoImage flex justify-between p-4 text-center text-xl gap-6">
-                        <h4>{title ?? 'Alerte'}</h4>
-                        {!disableConfirm &&
+                        <h4 className="md3-card-headline">{title ?? 'Alerte'}</h4>
+                        {!disableCancel &&
                             <Icon
                                 onClick={() => {
                                     close && close();
@@ -56,7 +56,7 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                                 }}>
                                 {button2.text ?? '-'}
                             </Button>}
-                        {<Button
+                        {!disableConfirm && <Button
                             type="button"
                             disabled={notif ? true : false}
                             size='lg'

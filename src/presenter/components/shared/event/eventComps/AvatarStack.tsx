@@ -3,7 +3,7 @@ import { Participant } from "../../../../../domain/entities/Participant";
 import { Icon } from "../../../common/IconComp";
 import { OnlineDot } from "../../../common/onlineDot";
 import { AvatarUser } from "../../../common/AvatarUser";
-import PopOver from "../../../common/adaptatersComps/PopOver";
+import PopOver from "../../../common/oldcomp/PopOver";
 
 type AvatarStackProps = { avatarDatas: Participant[] };
 export function AvatarStack(props: AvatarStackProps) {

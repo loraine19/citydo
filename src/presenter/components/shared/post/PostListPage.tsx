@@ -215,6 +215,7 @@ export default function PostListPage() {
                         refetch={refetch} />}
             </div>
             <section
+                id='refDiv'
                 ref={divRef}
                 onScroll={(e) => {
                     e.preventDefault();

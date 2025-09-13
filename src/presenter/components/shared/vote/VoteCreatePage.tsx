@@ -73,7 +73,7 @@ export default function VoteCreatePage() {
             values.groupId = parseInt(formik.values.groupId)
             setOpen(true)
             setAlertValues({
-                disableConfirm: false,
+                disableCancel: false,
                 handleConfirm: async () => await createFunction(values),
                 confirmString: "Enregistrer ",
                 title: "Confimrer la création",

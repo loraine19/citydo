@@ -204,6 +204,7 @@ export default function EventListPage() {
                     {isLoading ?
                         <SkeletonGrid /> :
                         <section
+                            id='refDiv'
                             ref={divRef}
                             onScroll={() => {
                                 onScroll()
@@ -212,7 +213,7 @@ export default function EventListPage() {
                             }}
                             className={"Grid " + (!compact ? ' GridCompact' : '')}>
                             {events.map((event: EventView, index: number) => (
-                                <div className="SubGrid" key={index + 'div'}>
+                                <div className="SubGrid " key={index + 'div'}>
                                     <EventCard
                                         autoFit={!compact}
                                         key={index}

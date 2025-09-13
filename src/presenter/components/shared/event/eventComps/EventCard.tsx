@@ -13,6 +13,7 @@ import { CardMD } from "../../base/baseComps/Cards";
 import { Button } from "../../base/baseComps/Buttons";
 import { IconAnimate } from "../../../common/IconAnimate";
 import { ProgressBar } from "../../base/baseComps/Sliders";
+import { MoreButton } from "../../../common/moreBtn";
 
 type EventCardProps = {
     event: EventView, refetch?: () => void,
@@ -34,7 +35,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
     return (
         <CardMD
             autoFit={autoFit}
-            className={` min-h-full`}
+            className={` min-h-full  `}
             imagePosition={"top"}
             link={`/evenement/${id}`}
             image={
@@ -54,8 +55,8 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                             icon={'person'} />
                     </div>
                 </CardMD.Image>}>
-            <CardMD.Chips>
-                <button
+            <CardMD.Chips className="justify-between items-center -mr-1">
+                <div className="md3-card-chips !py-0">  <button
                     onClick={change}>
                     <Chip
                         data-cy={`chip-${label}`}
@@ -63,24 +64,25 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                         value={label}
                         className="rounded-full h-max cyanChip" />
                 </button>
-                {new Date(end).getTime() > Date.now() && <DateChip
-                    start={start}
-                    end={end}
-                    ended={new Date(end).getTime() < Date.now()}
-                    prefix=" j-" />}
-                <Chip
-                    size="sm"
-                    value={eventDateInfo.start}
-                    className="rounded-full h-max Chip"
-                />
-
+                    {new Date(end).getTime() > Date.now() && <DateChip
+                        start={start}
+                        end={end}
+                        ended={new Date(end).getTime() < Date.now()}
+                        prefix=" j-" />}
+                    <Chip
+                        size="sm"
+                        value={eventDateInfo.start}
+                        className="rounded-full h-max Chip"
+                    />
+                </div>
+                {<MoreButton
+                    id={id} type={'evenement'} flagged={event?.flagged} title={title} />}
             </CardMD.Chips>
-            <CardMD.Headline className="line-clamp-2" >
-
-                <Title title={title} type='evenement' />
+            <CardMD.Headline>
+                <Title title={title} />
             </CardMD.Headline>
 
-            <CardMD.Media>
+            <CardMD.Media >
 
                 <ProgressBar
                     size='xxsmall'

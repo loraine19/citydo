@@ -28,7 +28,6 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                 },
                 title: actions[index]?.title as string,
                 element: actions[index]?.body as string,
-                disableConfirm: false,
                 confirmString: 'Confirmer',
                 notif: '',
             });

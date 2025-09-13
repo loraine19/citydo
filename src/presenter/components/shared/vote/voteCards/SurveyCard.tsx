@@ -13,6 +13,7 @@ import { CardMD } from "../../base/baseComps/Cards";
 import { ProgressBar } from "../../base/baseComps/Sliders";
 import { Button } from "../../base/baseComps/Buttons";
 import { ProfileDiv } from "../../../common/ProfilDiv";
+import { MoreButton } from "../../../common/moreBtn";
 
 
 type SurveyCardProps = {
@@ -64,34 +65,32 @@ export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardPr
                     ) : undefined
                 }
             >
-                <CardMD.Chips>
-                    <button onClick={() => change()}>
+                <CardMD.Chips className="justify-between items-center -mr-1">
+                    <div className="md3-card-chips !py-0">
+                        <button onClick={() => change()}>
+                            <Chip
+                                value="Sondage"
+                                size="sm"
+                                className="!px-3 min-w-max rounded-full h-max orangeChip"
+                            />
+                        </button>
                         <Chip
-                            value="Sondage"
+                            value={survey?.categoryS}
                             size="sm"
-                            className="!px-3 min-w-max rounded-full h-max orangeChip"
+                            className="orangeChip"
                         />
-                    </button>
-                    <Chip
-                        value={survey?.categoryS}
-                        size="sm"
-                        className="orangeChip"
-                    />
 
-                    <DateChip
-                        start={survey?.createdAt}
-                        ended={ended}
-                        end={end}
-                        prefix="J-"
-                    />
+                        <DateChip
+                            start={survey?.createdAt}
+                            ended={ended}
+                            end={end}
+                            prefix="J-"
+                        />
+                    </div>
+                    {<MoreButton id={survey?.id} type={'vote/sondage'} flagged={survey?.flagged} title={survey?.title} />}
                 </CardMD.Chips>
                 <CardMD.Headline>
-                    <Title
-                        title={survey?.title}
-                        flagged={survey?.flagged}
-                        id={survey?.id}
-                        type="sondage"
-                    />
+                    <Title title={survey?.title} />
                 </CardMD.Headline>
                 <CardMD.Media>
                     {!mines ? (

@@ -14,16 +14,18 @@ import { VoteValues } from "./VoteCard";
 import { CardMD } from "../../base/baseComps/Cards";
 import { ProgressBar } from "../../base/baseComps/Sliders";
 import { Button } from "../../base/baseComps/Buttons";
+import { MoreButton } from "../../../common/moreBtn";
 
 type PoolCardProps = {
     pool: any,
     change: (e: any) => void,
     mines?: boolean,
     update: () => void,
-    vote: (target: AlertValues) => void
+    vote: (target: AlertValues) => void,
+    divRef?: React.RefObject<HTMLDivElement>
 }
 
-export function PoolCard({ pool, change, mines, update, vote }: PoolCardProps) {
+export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCardProps) {
     const end: Date = new Date(new Date(pool.createdAt).getTime() + 15 * dayMS)
     const disabledEditCTA: boolean = pool?.status !== PoolSurveyStatus.PENDING
 
@@ -51,33 +53,38 @@ export function PoolCard({ pool, change, mines, update, vote }: PoolCardProps) {
                 imagePosition="top"
                 link={`/cagnotte/${pool?.id}`}
             >
-                <CardMD.Chips>
-                    <button onClick={change}>
-                        <Chip
-                            value="Cagnotte"
-                            size="sm"
-                            className="!px-3 min-w-max rounded-full h-max orangeChip"
+                <CardMD.Chips className="justify-between items-center -mr-1">
+                    <div className="md3-card-chips !py-0">
+                        <button onClick={change}>
+                            <Chip
+                                value="Cagnotte"
+                                size="sm"
+                                className="!px-3 min-w-max rounded-full h-max orangeChip"
+                            />
+                        </button>
+                        <DateChip
+                            start={pool?.createdAt}
+                            end={end}
+                            prefix="J-"
                         />
-                    </button>
-                    <DateChip
-                        start={pool?.createdAt}
-                        end={end}
-                        prefix="J-"
-                    />
-                    <DateChip
-                        start={pool?.createdAt}
-                        prefix=" "
-                    />
+                        <DateChip
+                            start={pool?.createdAt}
+                            prefix=" "
+                        />
+                    </div>
+                    {<MoreButton
+                        id={pool?.id}
+                        type={'vote/cagnotte'}
+                        flagged={pool?.flagged}
+                        title={pool?.title} />}
                 </CardMD.Chips>
-                <CardMD.Headline className="mb:pb-4 !line-clamp-1">
-                    <Title
-                        title={pool?.title}
-                        group={pool?.Group}
-                    />
+                <CardMD.Headline className="mb:pb-4">
+                    <Title title={pool?.title} />
                 </CardMD.Headline>
-                <CardMD.Media className="h-full flex-1 justify-between md:pb-2 !overflow-hidden">
-                    <div className="grid overflow-hidden flex-1 ">
+                <CardMD.Media className="h-full flex-1 justify-between md:pb-2">
+                    <div className="grid  flex-1 ">
                         <ProfileDiv
+                            divRef={divRef}
                             profile={pool?.UserBenef || {} as Partial<User>}
                             size="xl"
                         />
@@ -108,8 +115,9 @@ export function PoolCard({ pool, change, mines, update, vote }: PoolCardProps) {
                 </CardMD.Media>
                 <CardMD.Footer className="flex items-center pb-1 ">
                     {!mines ? (
-                        <div className=" w-full flex-1 truncate pl-2 -ml-2 ">
+                        <div className=" w-full flex-1  pl-2 -ml-2 ">
                             <ProfileDiv
+                                divRef={divRef}
                                 profile={pool?.User} />
                         </div>
                     ) : (

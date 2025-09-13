@@ -120,7 +120,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                     </Typography>
                 </div>,
                 confirmString: 'Retour à l\'accueil',
-                disableConfirm: true,
+                disableCancel: true,
                 button2: {
                     text: 'Déconnexion', onClick: () => {
                         Cookies.remove('user')
@@ -155,7 +155,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                         </>}
                 </div>,
                 confirmString: 'Retour à l\'accueil',
-                disableConfirm: true,
+                disableCancel: true,
                 button2: {
                     text: 'Déconnexion',
                     onClick: () => {

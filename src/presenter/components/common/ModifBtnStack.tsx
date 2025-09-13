@@ -26,7 +26,6 @@ export default function ModifBtnStack({ actions, disabled1, disabled2, update, i
             },
             title: buttons[index]?.title as string,
             element: buttons[index]?.body as string,
-            disableConfirm: false,
             confirmString: 'Confirmer',
         });
     }, [index]);

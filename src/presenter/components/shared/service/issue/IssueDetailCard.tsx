@@ -10,7 +10,7 @@ import { ProfileDiv } from "../../../common/ProfilDiv"
 import { GroupLink } from "../../../common/GroupLink"
 import { InputError } from "../../../common/adaptatersComps/input"
 import Chip from "../../../common/adaptatersComps/Chip"
-import PopOver from "../../../common/adaptatersComps/PopOver"
+import PopOver from "../../../common/oldcomp/PopOver"
 
 type IssueFormProps = { issue: IssueView, service?: Service, formik?: any, modos: User[] }
 export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, modos }) => {

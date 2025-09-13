@@ -12,6 +12,7 @@ import { CardMD } from "../../base/baseComps/Cards";
 import { GroupLink } from "../../../common/GroupLink";
 import { IconAnimate } from "../../../common/IconAnimate";
 import { Button } from "../../base/baseComps/Buttons";
+import { MoreButton } from "../../../common/moreBtn";
 
 type PostCardProps = { post: PostView, mines?: boolean, change: (e: any) => void, update?: () => void, short?: boolean, autoFit?: boolean }
 
@@ -47,7 +48,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                 </CardMD.Image>
             }
         >
-            <CardMD.Chips>
+            <CardMD.Chips className="justify-between items-center w-full !-mr-8">
 
 
                 <button
@@ -61,14 +62,11 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                         className="rounded-full h-max truncate Chip md3-rose-container shadow"
                     />
                 </button>
+                {<MoreButton id={id} type={'annonce'} flagged={flagged} />}
             </CardMD.Chips>
 
-            <CardMD.Headline className=" !line-clamp-1 ">
-                <Title
-                    title={title}
-                    flagged={flagged}
-                    type="post"
-                />
+            <CardMD.Headline>
+                <Title title={title} />
             </CardMD.Headline>
 
             <CardMD.Subhead>

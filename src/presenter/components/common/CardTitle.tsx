@@ -1,6 +1,4 @@
 import { Icon } from "./IconComp";
-import { GroupLink } from "./GroupLink";
-import { Group } from "../../../domain/entities/Group";
 
 /// Button to flag usable in any component
 export function FlagIcon(props: { flagged: boolean, id: number, type: string }) {
@@ -16,46 +14,16 @@ export function FlagIcon(props: { flagged: boolean, id: number, type: string }) 
             style="hover:!text-red-500 bg-white " />
     )
 }
-export function Title(props: { title: string, flagged?: boolean, id?: number, CreatedAt?: string | Date, subTitle?: string, type?: string, group?: Group, large?: boolean }) {
-    const { flagged, id, CreatedAt, subTitle, type, group, title } = props
+export function Title(props: { title: string, large?: boolean }) {
+    const { title } = props
 
     return (
-        <div className="min-h-max h-full relative pt-1 gap-1 flex flex-col ">
-            <div className="flex items-center w-full justify-between gap-1">
-                <div className="flex flex-1  gap-4 w-full">
-                    <h4
-                        id={title}
-                        className={"w-full flex !line-clamp-2 "}
-                        title={title}>
-                        {title}
-                    </h4>
-                    {CreatedAt &&
-                        <i className="hidden lg:flex pt-1 -mr-2">{new Date(CreatedAt).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' })}
-                        </i>}
-                    {<Icon
-                        style='-mr-2'
-                        size='lg'
-                        icon="more_vert" />}
-                </div>
 
-                {(!id && id) &&
-                    <div className="relative flex h-full w-max pt-1 pl-1">
-                        <FlagIcon
-                            flagged={flagged ? true : false}
-                            id={id}
-                            type={type ?? ''} />
-                    </div>}
-            </div>
-            {(group || subTitle) &&
-                <div className="grid flex-col   justify-between  ">
-                    {subTitle &&
-                        <i className="truncate   !text-base">
-                            {subTitle}
-                        </i>}
-                    {group &&
-                        <div className="truncate">
-                            <GroupLink group={group ?? {} as Group} />
-                        </div>}
-                </div>}
-        </div>)
+        <h4
+            id={title}
+            className={"md3-headline"}
+            title={title}>
+            {title}
+        </h4>
+    )
 }
