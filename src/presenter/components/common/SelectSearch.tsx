@@ -20,9 +20,9 @@ export default function SelectSearch(props: selectSearchProps) {
         <div className={`w-full  pb-2 ${style}`} >
             <div className={`"flex inputDiv md3-${color}-container !min-h-[40px] gap-2 !border-none `} >
                 <Menu
+                    className="-ml-4 mt-3"
                     open={isOpen}
                     setOpen={setIsOpen}
-
                     closeIcon={<></>}
                     placement="bottom-start"
                     trigger={
