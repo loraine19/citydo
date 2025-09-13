@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Icon } from '../../common/IconComp';
 import { Button } from './baseComps/Buttons';
-import { CardMD, } from './baseComps/Cards';
+import { CardExample, CardMD, } from './baseComps/Cards';
 import { Fab, FabMenu } from './baseComps/Fabs';
 import { Carousel } from './baseComps/Carrousel';
 import { AppBar, NavigationBar, NavigationBarItem, NavigationDrawer } from './baseComps/Navigations';
@@ -551,6 +551,8 @@ const MD3DemoPage: React.FC = () => {
                     <Button variant="outlined">Survolez-moi</Button>
                 </Tooltip>
             </section>
+
+            <CardExample />
         </div >
     );
 };

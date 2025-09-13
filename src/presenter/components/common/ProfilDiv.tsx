@@ -28,7 +28,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
             placement={size === 'xl' ? "center_end" : "center_start"}
             trigger={
                 <div className="flex items-center">
-                    <div className={`relative mt-0.5 mb-0.5  ${width} `}>
+                    <div className={`relative   ${width} `}>
                         <AvatarUser
                             avatarStyle=""
                             Profile={profile}
@@ -57,12 +57,13 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
 
                 divider="top"
                 leadingIcon={
-                    <div className="relative">
+                    <div className="relative mt-2 px-2">
                         <Icon
+                            reverse
                             color='orange'
                             fill bg
-                            style="absolute !bg-orange-100 -top-3 -right-4 z-50"
-                            size='sm'
+                            style="absolute  -top-2 -right-1 z-50"
+                            size='xs'
                             link={`/chat?with=${profile?.userId}`}
                             title="Envoyer un message"
                             icon="sms" />
@@ -70,15 +71,14 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
                             Profile={profile}
                             avatarSize={'sm'} />
                     </div>}>
-                <div className="flex flex-col pl-2 -mt-4">
+                <div className="flex flex-col pl-2 -mt-2">
                     <Typography as="h6">
                         {profile?.firstName} {profile?.lastName}
                     </Typography>
-                    <Typography
-                        variant="small"
+                    <i
                         className={profile?.skills ? "font-normal " : 'hidden'}>
                         • {profile?.skills}
-                    </Typography>
+                    </i>
                     <div className="font-normal flex flex-col ">
                         {userDiv?.GroupUser?.map((group: GroupUser, index: number) =>
                             <i className="!line-clamp-1"

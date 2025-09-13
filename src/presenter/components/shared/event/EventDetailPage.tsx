@@ -77,6 +77,9 @@ export default function EventDetailPage() {
         handleHide(params)
     }, [divRef]);
 
+    //// HANDLE EXPAND CARD 
+    const [expanded, setExpanded] = useState<boolean>(false);
+
     return (
         <>
             <main data-cy="event-details-page">
@@ -98,13 +101,16 @@ export default function EventDetailPage() {
                 <section
                     ref={divRef}
                     onScroll={() => {
-                        handleHideCallback()
+                        handleHideCallback();
                     }}>
-                    <div className={`DetailCardDiv ${!hideNavBottom ? "hideCTA" : ""}`}>
+                    <div className={`DetailCardDiv hideCTA ${!hideNavBottom ? "hideCTA" : ""}`}>
                         {!isLoading && event ?
                             <EventDetailCard
+
                                 EventLoad={event}
-                                refetch={async () => await updateEvent()} />
+                                refetch={async () => await updateEvent()}
+                                expand={expanded}
+                                setExpand={setExpanded} />
                             :
                             <Skeleton />}
                     </div>

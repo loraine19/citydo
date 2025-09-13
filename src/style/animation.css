@@ -166,3 +166,36 @@
     animation: pop 0.01s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards,
         popReverse 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
 }
+
+.animSheet {
+    @apply duration-1000;
+
+    animation: upSheet 2s forwards, fadeIn 2s forwards;
+}
+
+.animSheetRev {
+    @apply duration-700;
+    animation: downSheet 2s forwards, fadeIn 2s forwards;
+}
+
+@keyframes upSheet {
+    from {
+        transform: translateY(0%);
+        height: 120%;
+    }
+    to {
+        transform: translateY(0);
+        height: 100%;
+    }
+}
+
+@keyframes downSheet {
+    from {
+        transform: translateY(0%);
+        height: 200%;
+    }
+    to {
+        transform: translateY(0);
+        height: 100%;
+    }
+}

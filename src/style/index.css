@@ -148,7 +148,7 @@ i {
 }
 
 .CTA {
-    @apply anim fixed bottom-0 left-0 h-max w-full !flex items-center justify-center px-0.5 rounded-t-3xl;
+    @apply anim fixed bottom-0 left-0 h-max w-full !flex items-center justify-center rounded-t-3xl;
 }
 
 .notif {

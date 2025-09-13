@@ -11,14 +11,13 @@
     border-radius: 12px;
     box-shadow: var(--md3-shadow-elevation-3);
     border: 1px solid var(--md3-outline-variant, #e0e0e0);
-    padding: var(--md3-spacing-small) var(--md3-spacing-sm);
+    padding: var(--md3-spacing-small) var(--md3-spacing-medium);
     min-width: 160px;
-    transform: scale(0.95);
 }
 
 .md3-menu-list {
     @apply flex flex-col gap-1;
-    padding: 0 0;
+    padding: 8px 0;
 }
 
 .md3-menu-item {

@@ -129,7 +129,7 @@ export const Menu: React.FC<MenuProps> = ({
             <div
                 key={key}
                 data-md3-menu
-                className={`md3-menu-container p-0.5 ${(menuRef || menuRefAuto) ? "" : "relative"}`}>
+                className={`md3-menu-container  ${(menuRef || menuRefAuto) ? "" : "relative"}`}>
                 {trigger && React.cloneElement(
                     trigger as React.ReactElement,
 
