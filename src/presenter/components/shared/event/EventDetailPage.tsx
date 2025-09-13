@@ -99,6 +99,7 @@ export default function EventDetailPage() {
 
                 </div>
                 <section
+                    className={expanded ? 'overflow-auto' : 'overflow-hidden'}
                     ref={divRef}
                     onScroll={() => {
                         handleHideCallback();

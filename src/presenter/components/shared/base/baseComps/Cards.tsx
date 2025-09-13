@@ -237,7 +237,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
                 {/* Pull handle and expandable content */}
                 <div className={` 
                             ${!expanded ? " animSheetRev max-h-[60%] lg:max-h-[55%] overflow-hidden " :
-                        "  max-h-[calc(85%)] overflow-auto animSheet "}
+                        "  max-h-[calc(100%-4rem)] !h-fit overflow-auto animSheet "}
                             md3-card-large-sheet   ${sheetClassName || ""}`}>
                     {/* Pull handle */}
                     <div className="md3-card-large-sheet-handle">

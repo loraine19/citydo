@@ -141,8 +141,8 @@
     }
     /* 1CTA 11REM */
     .hideCTA {
-        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_10rem)]
-        grid-rows-[minmax(calc(100dvh-10rem),calc(100dvh-10rem))];
+        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_9.2rem)]
+        grid-rows-[minmax(calc(100dvh-9.2rem),calc(100dvh-9.2rem))];
     }
     .hideCTA2 {
         @apply hideCTA;

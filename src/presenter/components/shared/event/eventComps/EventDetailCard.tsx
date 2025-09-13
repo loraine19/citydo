@@ -58,9 +58,8 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
 
             <CardLarge.MidSection className="py-1">
                 <CardLarge.SupportingText className="flex sm:flex-1 flex-col sm:gap-2">
-                    <h6>Description</h6>
                     <div className="flex -mt-2 items-center gap-2 justify-between border-b border-slate-400">
-                        <i>{eventDateInfo.start} - {eventDateInfo.end}</i>
+                        <i>{eventDateInfo?.start} - {eventDateInfo?.end}</i>
                         <EventCalAddBtn event={EventLoad} className="-mb-1" />
                     </div>
                     {description}
@@ -82,7 +81,7 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                     {Address ?
                         <AddressMapOpen
                             address={Address}
-                            message={`${Address.address}, ${Address.zipcode} ${Address.city}`} /> :
+                            message={`${Address?.address}, ${Address?.zipcode} ${Address?.city}`} /> :
                         <Skeleton />}
                 </CardLarge.Media>
             </CardLarge.MidSection>
@@ -99,9 +98,9 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                     max={participantsMin || 10}
                     color="cyan"
                     label={
-                        <div className="md3-card-supporting-text justify-between pt-1 flex-row">
+                        <div className="md3-card-supporting-text justify-between flex-row">
                             <span>
-                                {EventLoad?.Participants?.length} participant{EventLoad?.Participants?.length > 1 ? 's' : ''}
+                                {EventLoad?.Participants?.length} inscrit{EventLoad?.Participants?.length > 1 ? 's' : ''}
                             </span>
                             <span className="opacity-50"> / &nbsp;
                                 {participantsMin}
@@ -110,7 +109,7 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                 />
             </CardLarge.Media>
             <CardLarge.Footer >
-                <div className="flex flex-col gap-1 py-1 w-max justify-center ">
+                <div className="flex flex-col gap-2 w-max justify-center ">
                     <h6>Organisateur</h6>
                     <ProfileDiv profile={User} />
                 </div>
