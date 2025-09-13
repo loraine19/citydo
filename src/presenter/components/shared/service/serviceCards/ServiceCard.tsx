@@ -92,9 +92,9 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                 </CardMD.Image>
             }
         >
-            <CardMD.Chips className="justify-between items-center -mr-1">
+            <CardMD.Chips className="justify-between !flex-nowrap  -mr-1">
 
-                <div className="md3-card-chips !py-0">
+                <div className="md3-card-chips flex-1 !overflow-auto !py-0">
                     <button
                         onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                             const cat = e.currentTarget.innerText.toLowerCase();
@@ -125,7 +125,11 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                         value={statusS}
                         className={`rounded-full h-max ${statusColor(statusS as ServiceStep).color} shadow`}
                     /></div>
-                <MoreButton id={id} type={'service'} flagged={flagged} title={title} />
+                <MoreButton
+                    id={id}
+                    type={'service'}
+                    flagged={flagged}
+                    title={title} />
             </CardMD.Chips>
             <CardMD.Headline>
                 <Title title={title} />

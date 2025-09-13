@@ -53,8 +53,8 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                 imagePosition="top"
                 link={`/cagnotte/${pool?.id}`}
             >
-                <CardMD.Chips className="justify-between items-center -mr-1">
-                    <div className="md3-card-chips !py-0">
+                <CardMD.Chips className="justify-between flex-nowrap -mr-1">
+                    <div className="md3-card-chips overflow-hidden !py-0">
                         <button onClick={change}>
                             <Chip
                                 value="Cagnotte"

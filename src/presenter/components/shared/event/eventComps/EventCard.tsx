@@ -55,8 +55,8 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                             icon={'person'} />
                     </div>
                 </CardMD.Image>}>
-            <CardMD.Chips className="justify-between items-center -mr-1">
-                <div className="md3-card-chips !py-0">  <button
+            <CardMD.Chips className="justify-between !flex-nowrap -mr-1">
+                <div className="md3-card-chips overflow-auto !py-0">  <button
                     onClick={change}>
                     <Chip
                         data-cy={`chip-${label}`}

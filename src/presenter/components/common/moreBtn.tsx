@@ -12,10 +12,11 @@ type moreButtonProps = {
     type?: string;
     flagged?: boolean;
     title?: string;
+    className?: string;
 
 }
 
-export const MoreButton = ({ id, type, flagged, title }: moreButtonProps) => {
+export const MoreButton = ({ id, type, flagged, title, className }: moreButtonProps) => {
     const navigate = useNavigate()
     const { setAlertValues, setOpen } = useAlertStore((state) => state);
     const shareValues: AlertValues = {
@@ -61,6 +62,7 @@ export const MoreButton = ({ id, type, flagged, title }: moreButtonProps) => {
     return (
 
         <Menu
+            className={className ?? ''}
 
             closeIcon={
                 <></>}

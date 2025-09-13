@@ -98,7 +98,7 @@
     @apply flex flex-col pt-1;
 }
 .md3-card-chips {
-    @apply flex flex-wrap gap-2 pb-1.5 -ml-1 mr-3 overflow-auto;
+    @apply flex flex-wrap gap-2 pb-1.5 -ml-1 mr-3;
 }
 
 .md3-card-footer {

@@ -65,8 +65,8 @@ export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardPr
                     ) : undefined
                 }
             >
-                <CardMD.Chips className="justify-between items-center -mr-1">
-                    <div className="md3-card-chips !py-0">
+                <CardMD.Chips className="justify-between !flex-nowrap -mr-1">
+                    <div className="md3-card-chips overflow-auto !py-0">
                         <button onClick={() => change()}>
                             <Chip
                                 value="Sondage"

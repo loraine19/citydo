@@ -28,7 +28,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
             placement={size === 'xl' ? "center_end" : "center_start"}
             trigger={
                 <div className="flex items-center">
-                    <div className={` mt-0.5 mb-0.5  ${width} `}>
+                    <div className={`relative mt-0.5 mb-0.5  ${width} `}>
                         <AvatarUser
                             avatarStyle=""
                             Profile={profile}
