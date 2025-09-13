@@ -10,6 +10,7 @@ import { ProgressBarBlur } from "../../../common/ProgressBar";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import Chip from "../../../common/adaptatersComps/Chip";
 import EventCalAddBtn from "./EventCalAddBtn";
+import { MoreButton } from "../../../common/moreBtn";
 
 type EventCardProps = {
     EventLoad: EventView,
@@ -18,7 +19,7 @@ type EventCardProps = {
 }
 
 export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
-    const { id, title, description, label, image, participantsMin, pourcent, Participants, Igo, User, Address, flagged, end, start, toogleParticipate, eventDateInfo, status, isPast, Group } = EventLoad;
+    const { id, title, description, label, image, participantsMin, pourcent, Participants, Igo, User, Address, flagged, end, start, toogleParticipate, eventDateInfo, status, isPast } = EventLoad;
 
     return (
 
@@ -60,11 +61,12 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                 <Title
                     large
                     title={title}
+
+                />
+                <MoreButton
                     flagged={flagged}
                     id={id}
-                    CreatedAt={start}
-                    type='evenement'
-                    group={Group}
+                    type="evenement"
                 />
                 <div className="flex flex-1 gap-x-8 flex-col !justify-between sm:!flex-row h-full">
                     <div className="relative h-max flex w-full flex-col flex-1 ">

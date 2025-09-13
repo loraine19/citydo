@@ -9,6 +9,7 @@ import { ProfileDiv } from "../../../common/ProfilDiv";
 import { PoolSurveyStatus } from "../../../../../domain/entities/PoolSurvey";
 import Chip from "../../../common/adaptatersComps/Chip";
 import { User } from "../../../../../domain/entities/User";
+import { MoreButton } from "../../../common/moreBtn";
 
 type Props = { survey: PoolSurveyView, setOpen: (open: boolean) => void }
 
@@ -54,10 +55,12 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
                 <Title
                     large
                     title={title}
+                />
+                <MoreButton
                     flagged={flagged}
                     id={id}
-                    CreatedAt={createdAt}
-                    type='sondage' />
+                    type="vote/sondage"
+                />
                 <div className=" flex h-full  flex-1  flex-col gap-[10%] justify-between">
                     <div className=" flex h-full  flex-1  flex-col">
 

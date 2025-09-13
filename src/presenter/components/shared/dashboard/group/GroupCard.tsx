@@ -56,9 +56,10 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
             </CardHeader>
             <CardBody className="FixCardBody">
                 <Title title={name ?? ''}
-                    type='evenement'
-                    subTitle={'⌖ ' + group?.fullAddress + ' - ' + group?.area + ', metres'}
+
+
                 />
+                <p>{'⌖ ' + group?.fullAddress + ' - ' + group?.area + ', metres'}</p>
                 <Typography className="leading-[1.3rem] pt-1 !line-clamp-2">
                     {group.rules}
                 </Typography>

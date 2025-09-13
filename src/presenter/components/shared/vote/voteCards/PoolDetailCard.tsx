@@ -9,6 +9,7 @@ import { ProfileDiv } from "../../../common/ProfilDiv";
 import { User } from "../../../../../domain/entities/User";
 import { PoolSurveyStatus } from "../../../../../domain/entities/PoolSurvey";
 import Chip from "../../../common/adaptatersComps/Chip";
+import { MoreButton } from "../../../common/moreBtn";
 
 type PoolDetailCardProps = { pool: PoolSurveyView, setOpen: () => void }
 
@@ -46,8 +47,11 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
                 <Title
                     large
                     title={pool?.title}
-                    CreatedAt={pool?.createdAt}
-                    group={pool?.Group}
+
+                />
+                <MoreButton
+                    id={pool?.id}
+                    type="vote/cagnotte"
                 />
                 <div className=" flex h-full flex-1 gap-[10%] flex-col lg:flex-row">
                     <div>

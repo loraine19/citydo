@@ -10,6 +10,7 @@ import { Title } from "../../../common/CardTitle";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { User } from "../../../../../domain/entities/User";
 import Chip from "../../../common/adaptatersComps/Chip";
+import { MoreButton } from "../../../common/moreBtn";
 
 export default function PostDetailCard(props: { post: PostView, mines?: boolean, change: (e: any) => void }) {
     const [post, setPost] = useState<PostView>(props.post)
@@ -48,10 +49,11 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                 <Title
                     large
                     title={title}
+                />
+                <MoreButton
                     flagged={flagged}
                     id={id}
                     type="annonce"
-                    group={post.Group}
                 />
                 <div className="CardOverFlow pt-1">
                     <h6>Desciption</h6>

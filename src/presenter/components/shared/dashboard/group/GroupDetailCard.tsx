@@ -95,9 +95,9 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
             <CardBody className="DetailCardBody max-h-full">
                 <Title
                     title={name ?? ''}
-                    type='groupe'
-                    subTitle={`⌖ ${group?.fullAddress}  - ${group?.area} mètres`}
+
                 />
+                <p>{'⌖ ' + group?.fullAddress + ' - ' + group?.area + ', metres'}</p>
                 <div className=' w-full grid grid-cols-1 gap-x-4 grid-rows-1 overflow-x-hidden'>
                     <div className='flex overflow-x-auto scrollbar-hide snap-x snap-mandatory py-2'>
                         {infos.map((info: Label, index: number) => (

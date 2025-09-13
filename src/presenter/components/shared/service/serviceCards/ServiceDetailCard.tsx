@@ -9,6 +9,7 @@ import { Title } from "../../../common/CardTitle";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { Profile } from "../../../../../domain/entities/Profile";
 import Chip from "../../../common/adaptatersComps/Chip";
+import { MoreButton } from "../../../common/moreBtn";
 
 export default function ServiceDetailComp(props: { service: ServiceView, mines?: boolean }) {
     const { service } = props
@@ -89,10 +90,11 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                         <Title
                             large
                             title={title}
-                            flagged={flagged}
+                        />
+                        <MoreButton
+                            type="service"
                             id={id}
-                            type='service'
-                            group={service.Group}
+                            flagged={flagged}
                         />
                         <div>
                             <h6>Description</h6>
