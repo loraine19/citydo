@@ -175,7 +175,7 @@
     border-radius: var(--md3-radius-large);
     box-shadow: var(--md3-shadow-elevation-1);
     padding: var(--md3-spacing-small) var(--md3-spacing-medium);
-    border-bottom: 16px solid var(--md3-surface);
+    border-bottom: 20px solid var(--md3-surface);
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -195,7 +195,7 @@
 }
 
 .md3-card-large-sheet-handle-button {
-    @apply bg-slate-300 rounded-full;
+    @apply rounded-full;
     width: 40px;
     height: 6px;
     border-radius: 3px;

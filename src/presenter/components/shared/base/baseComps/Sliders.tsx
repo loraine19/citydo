@@ -183,32 +183,27 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
             <div className='pb-2 '>{label}</div>
             <div className={`${variant === 'wavy' ? '-ml-[4px] pl-[12.5px] ' : ''} relative w-full`}>
 
-                <div
-                    className={`md3-progressbar-container 
+                <div className={`md3-progressbar-container 
                     ${className}  ${sizeMapProgressBar[size]?.textSize}`}
                     style={{ ...style }}
                     data-variant={variant}
-                    data-md3
-                >
-
+                    data-md3 >
 
                     {variant === 'wavy' &&
                         <>  <div className={` absolute z-0 md3-progressbar-track-active-wavy `}
                             style={{ width: `${percent}%` }}>
                             <div className={` ${mainColor} ${wavySizeMap[size].dot2Size} 
-                     absolute  rounded-full z-50 `} />
+                     absolute rounded-full z-50 `} />
                             <div className={` ${mainColor} ${wavySizeMap[size].dotSize} 
-                     absolute  rounded-full z-50 `} />
+                     absolute rounded-full z-50 `} />
                         </div>
                             <div className={` md3-progressbar-track-active-wavy 
                         absolute left-0 flex w-full underline underline-offset-1 whitespace-nowrap overflow-hidden decoration-wavy z-30 animate-wavy 
                             ${wavySizeMap[size].decoration}
-                            ${wavySizeMap[size].height}
+                            ${wavySizeMap[size].height} `}
 
-                            
-                        `}
-                                style={{ width: `${percent}%`, color: customColor || `var(--md3-${color})` || 'var(--md3-primary)' }}
-                            >
+                                style={{ width: `${percent}%`, color: customColor || `var(--md3-${color})` || 'var(--md3-primary)' }}>
+
                                 {line.map((index) => (
                                     <span
                                         key={index} className='w-full flex -scale-y-[0.65] !font-comfortaa  h-full text-transparent '  >

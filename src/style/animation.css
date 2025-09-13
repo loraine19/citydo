@@ -180,8 +180,8 @@
 
 @keyframes upSheet {
     from {
-        transform: translateY(0%);
-        height: 120%;
+        transform: translateY(2%);
+        height: 100%;
     }
     to {
         transform: translateY(0);
@@ -191,8 +191,8 @@
 
 @keyframes downSheet {
     from {
-        transform: translateY(0%);
-        height: 200%;
+        transform: translateY(-2%);
+        height: 100%;
     }
     to {
         transform: translateY(0);

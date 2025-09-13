@@ -1,6 +1,7 @@
 import { ReactNode, HTMLAttributes, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import React from "react";
+import { Icon } from "../../../common/IconComp";
 
 type CardVariant = "elevated" | "filled" | "outlined" | "tonal";
 type ImagePosition = "top" | "left";
@@ -17,7 +18,6 @@ interface CardMDProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 //// SUB-COMPONENTS ////
-
 
 //// CARD IMAGE
 export const CardImage: React.FC<{
@@ -69,7 +69,7 @@ export const CardSupportingText: React.FC<{ children: ReactNode; className?: str
 
 //// CARD MEDIA
 export const CardMedia: React.FC<{ children: ReactNode; className?: string }> = ({ children, className }) => (
-    <div className={`md3-card-media anim ${className}`}>{children}</div>
+    <div className={`md3-card-media ${className}`}>{children}</div>
 );
 
 //// CARD FOOTER
@@ -237,7 +237,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
                 {/* Pull handle and expandable content */}
                 <div className={` 
                             ${!expanded ? " animSheetRev max-h-[60%] lg:max-h-[55%] overflow-hidden " :
-                        "  max-h-[calc(100%-4rem)] !h-fit overflow-auto animSheet "}
+                        "  max-h-[calc(100%-4rem)] h-full overflow-auto animSheet "}
                             md3-card-large-sheet   ${sheetClassName || ""}`}>
                     {/* Pull handle */}
                     <div className="md3-card-large-sheet-handle">
@@ -258,8 +258,15 @@ export const CardLarge: React.FC<CardLargeProps> & {
                         {children}
 
                     </div>
-                </div>
 
+                </div>
+                {!expanded && (
+                    <div className="absolute bottom-0 px-4 w-full pt-2 backdrop-blur-sm ">
+                        <Icon
+                            size='2xl'
+                            onClick={() => setExpanded(!expanded)}
+                            icon='more_horiz' />
+                    </div>)}
             </div>
         );
     };

@@ -239,6 +239,9 @@ export default function ServiceDetailPage() {
         handleHide(params)
     }, [divRef]);
 
+    //// HANDLE EXPAND CARD
+    const [expanded, setExpanded] = useState<boolean>(false);
+
     return (
         <>
             <main >
@@ -265,6 +268,8 @@ export default function ServiceDetailPage() {
                             :
 
                             <ServiceDetailComp
+                                expanded={expanded}
+                                setExpanded={setExpanded}
                                 service={service}
                                 mines={mine}
                             />
