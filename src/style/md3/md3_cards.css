@@ -191,7 +191,7 @@
 }
 
 .md3-card-large-sheet-handle {
-    @apply flex items-center justify-center;
+    @apply flex items-center justify-center pt-1 pb-2;
 }
 
 .md3-card-large-sheet-handle-button {

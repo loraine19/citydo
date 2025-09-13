@@ -243,6 +243,8 @@ export const CardLarge: React.FC<CardLargeProps> & {
                     <div className="md3-card-large-sheet-handle">
                         <button
                             className="md3-card-large-sheet-handle-button"
+                            onDrag={() => { setExpanded(!expanded) }}
+                            onDragEnd={() => { setExpanded(!expanded) }}
                             onClick={() => {
                                 setExpanded(!expanded);
                             }}
