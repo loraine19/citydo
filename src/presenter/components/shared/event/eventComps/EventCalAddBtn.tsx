@@ -1,7 +1,5 @@
-import { Card, CardHeader, CardBody, CardFooter } from "@material-tailwind/react";
 import React from "react";
 import { Link } from "react-router-dom";
-import PopOver from "../../../common/oldcomp/PopOver";
 import { Icon } from "../../../common/IconComp";
 import { EventView } from "../../../../views/viewsEntities/eventViewEntities";
 import { Menu, MenuItem } from "../../base/baseComps/Menu";
