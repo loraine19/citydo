@@ -58,24 +58,24 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
 
             <CardLarge.Headline>
                 {title}
-
             </CardLarge.Headline>
 
             <CardLarge.Subhead>
-                <div> <GroupLink group={Group} /></div>
+                <div>
+                    <GroupLink group={Group} />
+                </div>
             </CardLarge.Subhead>
 
-            <CardLarge.MidSection className="px-0">
-                <CardLarge.SupportingText className="flex sm:flex-1 flex-col sm:gap-2">
-                    <div className="flex -mt-2 items-center gap-2 justify-between border-b border-slate-400">
+            <CardLarge.MidSection className="px-0 gap-3">
+                <CardLarge.SupportingText className="flex sm:flex-1 flex-col ">
+                    <div className="flex items-center justify-between border-b border-slate-400">
                         <i>{eventDateInfo?.start} - {eventDateInfo?.end}</i>
-                        <EventCalAddBtn event={EventLoad} className="!mt-1.5 " />
+                        <EventCalAddBtn event={EventLoad} iconClass="!-mb-1.5 " />
                     </div>
                     {description}
 
                 </CardLarge.SupportingText>
                 <CardLarge.Media className="flex-1  sm:-mb-4 ">
-
                     {Address ?
                         <AddressMapOpen
                             address={Address}

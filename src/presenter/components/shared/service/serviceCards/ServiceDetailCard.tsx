@@ -55,7 +55,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                         prefix=" " />
                 </CardLarge.Chips>
             </img>}>
-            <CardLarge.Chips className=" px-2 -mt-1">
+            <CardLarge.Chips className=" px-2 md:-mt-1">
                 <div className="md3-card-chips w-full">
                     <Chip
                         size="sm"
@@ -158,7 +158,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
 
             <CardLarge.Footer className={`md3-card-large-footer `}>
 
-                <div className="flex flex-col w-full gap-2 pb-2">
+                <div className="flex flex-col w-full gap-2 ">
                     <h6>Publié par</h6>
                     <ProfileDiv profile={User} />
                 </div>
