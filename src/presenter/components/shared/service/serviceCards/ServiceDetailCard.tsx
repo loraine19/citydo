@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { HardLevel, SkillLevel, ServiceStep } from "../../../../../domain/entities/Service";
 import { Icon } from "../../../common/IconComp";
 import { DateChip } from "../../../common/ChipDate";
-import { useUserStore } from "../../../../../application/stores/user.store";
 import { ServiceView } from "../../../../views/viewsEntities/serviceViewEntity";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { Profile } from "../../../../../domain/entities/Profile";
@@ -13,8 +12,6 @@ import { GroupLink } from "../../../common/GroupLink";
 
 export default function ServiceDetailComp(props: { service: ServiceView, mines?: boolean, expanded: boolean, setExpanded: (e: boolean) => void }) {
     const { service, expanded, setExpanded } = props
-    const { user } = useUserStore()
-    const userId: number = user.id
     const navigate = useNavigate();
     const { id, title, IResp, image, User, UserResp, categoryS, statusS, hard, skill, flagged, points, typeS } = props.service
 
