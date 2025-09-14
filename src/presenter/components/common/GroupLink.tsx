@@ -18,15 +18,18 @@ export const GroupLink: React.FC<GroupDivProps> = ({ group, className, menuRef }
             open={open}
             setOpen={setOpen}
             placement="center_end"
-            className={`mt-6 ${className ?? ''}`}
+            className={`mt-6 ${className ?? ''} `}
             key={group?.id}
+            fitMax
             trigger={
-                <button className={`${className ?? ''} `}>
-                    {group?.name}
-                </button>
+                <div className={`${className ?? ''} grid max-w-full justify-start`}>
+                    <button className={`${className ?? ''}  `}>
+                        <span className="truncate">{group?.name}</span>
+                    </button></div>
 
             }>
             <MenuItem
+                className="items-start"
                 trailingIcon={<Icon
                     bg clear
                     fill
@@ -34,17 +37,22 @@ export const GroupLink: React.FC<GroupDivProps> = ({ group, className, menuRef }
                     link={`/groupe/${group?.id}`}
                     icon="arrow_forward_ios" />}>
 
-                <h6>groupe : {group?.name}</h6>
-                <p className="text-sm italic ">
-                    {group?.Address?.address}, {group?.Address?.zipcode} {group?.Address?.city}
-                </p>
-                <Chip
-                    key={category}
-                    value={category}
-                    size='sm'
-                    className="Chip" >
-                </Chip>
+                <div className="whitespace-pre-line flex flex-col gap-2">
+                    <h6>groupe : {group?.name}</h6>
+                    <i className="text-xs italic ">
+                        {group?.Address?.address}, {group?.Address?.zipcode} {group?.Address?.city}
+                    </i>
+                    <Chip
+                        key={category}
+                        value={category}
+                        size='sm'
+                        className="Chip" >
+                    </Chip>
+                </div>
+
+
             </MenuItem>
+
 
         </Menu >
     )

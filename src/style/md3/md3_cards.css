@@ -106,7 +106,6 @@
 
 .md3-card-footer {
     display: flex;
-
     justify-content: space-between;
     align-items: center;
     gap: var(--md3-spacing-medium);
@@ -141,6 +140,7 @@
     max-width: 800px;
     margin: 0 auto;
     width: 100%;
+    padding-bottom: var(--md3-spacing-medium);
 }
 
 .md3-card-large-image-content {
@@ -180,8 +180,7 @@
     background-color: var(--md3-surface);
     border-radius: var(--md3-radius-large);
     box-shadow: var(--md3-shadow-elevation-1);
-    padding: var(--md3-spacing-small) var(--md3-spacing-medium);
-    border-bottom: 20px solid var(--md3-surface);
+    padding: var(--md3-spacing-small) 0 var(--md3-spacing-medium);
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -213,6 +212,14 @@
     @apply h-fit flex flex-col;
     gap: var(--md3-spacing-small);
     flex: 1;
+}
+
+.md3-card-large-footer {
+    @apply flex gap-2 justify-between items-center;
+    border-top: 1px solid var(--md3-outline-variant);
+    padding: var(--md3-spacing-small) var(--md3-spacing-medium)
+        var(--md3-spacing-large);
+    color: var(--md3-on-surface-variant);
 }
 
 /*** STYLES ***/

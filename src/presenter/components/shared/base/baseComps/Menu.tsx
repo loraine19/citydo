@@ -15,6 +15,7 @@ interface MenuProps {
     blurBack?: boolean;
     menuRef?: React.RefObject<HTMLDivElement>;
     key?: string | number;
+    fitMax?: boolean;
 }
 
 export const Menu: React.FC<MenuProps> = ({
@@ -28,6 +29,7 @@ export const Menu: React.FC<MenuProps> = ({
     closeIcon,
     blurBack = false,
     menuRef,
+    fitMax,
     key
 }) => {
     const [internalOpen, setInternalOpen] = useState(false);
@@ -144,16 +146,14 @@ export const Menu: React.FC<MenuProps> = ({
                     <div data-md3
 
                         ref={menuRef}
-                        style={{ ...menuStyle }}
+                        style={{ ...menuStyle, maxWidth: fitMax ? `${triggerWidth}px` : '300px' }}
                         className={` 
                     ${className || ""}
-                    
+                  
                     md3-menu md3-elevation ${open ? " md3-menu-enter " : "md3-menu-leave "} `} >
 
                         {open &&
-                            <div ref={menuCurrent}
-
-                            >
+                            <div ref={menuCurrent}>
                                 <div
                                     className={`px-2 flex`}
                                     onClick={handleClose}>

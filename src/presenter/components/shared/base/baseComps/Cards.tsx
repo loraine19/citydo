@@ -236,8 +236,8 @@ export const CardLarge: React.FC<CardLargeProps> & {
 
                 {/* Pull handle and expandable content */}
                 <div className={` 
-                            ${!expanded ? " animSheetRev max-h-[60%] lg:max-h-[55%] overflow-hidden " :
-                        "  max-h-[calc(100%-4rem)] !h-fit overflow-auto animSheet "}
+                            ${!expanded ? " animSheetRev max-h-[60%] lg:max-h-[55%]  overflow-hidden " :
+                        "  max-h-[calc(100%-4rem)] min-h-fit !h-full overflow-auto animSheet "}
                             md3-card-large-sheet   ${sheetClassName || ""}`}>
                     {/* Pull handle */}
                     <div className="md3-card-large-sheet-handle">
@@ -253,17 +253,16 @@ export const CardLarge: React.FC<CardLargeProps> & {
 
                     </div>
                     {/* Expandable content */}
-                    <div className={`md3-sheet-content
+                    <div className={`md3-sheet-content 
                         ${!expanded ? " animSheetRev " : "animSheet "}`}  >
                         {children}
-
                     </div>
-
                 </div>
                 {!expanded && (
-                    <div className="absolute bottom-0 px-4 w-full pt-2 bg-gradient-to-t from-white to-transparent">
+                    <div className="absolute bottom-0 px-4 w-full py-2 bg-gradient-to-t from-white to-white/10">
                         <Icon
-                            size='2xl'
+                            bg fill clear
+                            size='xl'
                             onClick={() => setExpanded(!expanded)}
                             icon='more_horiz' />
                     </div>)}

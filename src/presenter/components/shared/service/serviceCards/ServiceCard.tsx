@@ -90,10 +90,8 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                         />
                     </div>
                 </CardMD.Image>
-            }
-        >
+            }>
             <CardMD.Chips className="justify-between">
-
                 <div className="md3-card-chips flex-1 !overflow-auto">
                     <button
                         onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
@@ -131,13 +129,17 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                     flagged={flagged}
                     title={title} />
             </CardMD.Chips>
+
             <CardMD.Headline>
                 <Title title={title} />
             </CardMD.Headline>
-            <CardMD.Subhead>
 
-                <GroupLink group={Group} />
+            <CardMD.Subhead>
+                <div className=" truncate ">
+                    <GroupLink group={Group} />
+                </div>
             </CardMD.Subhead>
+
             <CardMD.SupportingText className="line-clamp-1">
 
                 {description}
@@ -161,7 +163,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                         disabled2={service.statusS !== ServiceStep.STEP_1}
                     />
                 )}
-                {!mines && (
+                {(!mines) && (
                     <ProfileDiv profile={User} />
                 )}
                 <Chip

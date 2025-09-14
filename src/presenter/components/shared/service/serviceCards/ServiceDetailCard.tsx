@@ -52,37 +52,40 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                 src={image as string}
                 alt={title}
                 className='md3-card-large-image' >
-                <CardLarge.Chips className="py-4 px-2 justify-end">
+                <CardLarge.Chips className="p-2 justify-end">
                     <DateChip
                         start={service?.createdAt}
                         prefix=" " />
                 </CardLarge.Chips>
             </img>}>
-            <CardLarge.Chips className="-mt-1">
-                <Chip
-                    size="sm"
-                    value={`${categoryS}`}
-                    className="skyChip">
-                </Chip>
-                <Chip
-                    size="sm"
-                    value={typeS}
-                    className={`${typeS === "demande" ? "orangeChip" : "greenChip"} shadow rounded-full  h-max flex items-center gap-2 font-medium `}>
-                </Chip>
-                <button onClick={() => { statusS === ServiceStep.STEP_4 && navigate(`/conciliation/${id}`) }}>
+            <CardLarge.Chips className=" px-2 -mt-1">
+                <div className="md3-card-chips w-full">
                     <Chip
-                        size="sm" value={statusS}
-                        className={`${statusValues(statusS as ServiceStep).color} shadow rounded-full h-max flex items-center gap-2 font-medium `}>
+                        size="sm"
+                        value={`${categoryS}`}
+                        className="skyChip">
                     </Chip>
-                </button>
-            </CardLarge.Chips>
-            <CardLarge.Headline className="flex justify-between gap-2">
-                {title}
+                    <Chip
+                        size="sm"
+                        value={typeS}
+                        className={`${typeS === "demande" ? "orangeChip" : "greenChip"} shadow rounded-full  h-max flex items-center gap-2 font-medium `}>
+                    </Chip>
+                    <button onClick={() => { statusS === ServiceStep.STEP_4 && navigate(`/conciliation/${id}`) }}>
+                        <Chip
+                            size="sm" value={statusS}
+                            className={`${statusValues(statusS as ServiceStep).color} shadow rounded-full h-max flex items-center gap-2 font-medium `}>
+                        </Chip>
+                    </button>
+                </div>
                 <MoreButton
                     type="service"
                     id={id}
                     flagged={flagged}
                     title={title} />
+            </CardLarge.Chips>
+            <CardLarge.Headline>
+                {title}
+
             </CardLarge.Headline>
 
             <CardLarge.Subhead className=" flex flex-col  relative ">
@@ -156,14 +159,12 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                 </div>
             </CardLarge.MidSection>
 
-            <CardLarge.Footer className={`justify-between items-center flex w-full `}>
-                {User?.id !== userId &&
-                    <div className="flex flex-col w-full gap-2 ">
-                        <h6>Autheur</h6>
-                        <ProfileDiv profile={User} />
-                    </div>
-                }
+            <CardLarge.Footer className={`md3-card-large-footer `}>
 
+                <div className="flex flex-col w-full gap-2 pb-2">
+                    <h6>Publié par</h6>
+                    <ProfileDiv profile={User} />
+                </div>
             </CardLarge.Footer>
 
         </CardLarge>

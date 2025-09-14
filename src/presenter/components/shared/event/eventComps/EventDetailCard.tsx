@@ -31,14 +31,14 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                 src={image as string}
                 alt={title}
                 className='md3-card-large-image' >
-                <CardLarge.Chips className="py-4 px-2 justify-end">
+                <CardLarge.Chips className="p-2 justify-end">
                     <DateChip
                         start={EventLoad?.createdAt}
                         prefix=" " />
                 </CardLarge.Chips>
             </img>}>
             <CardLarge.Chips>
-                <div className="md3-card-chips w-full -mt-1"> <Chip
+                <div className="md3-card-chips w-full -mt-2"> <Chip
                     value={label}
                     className="cyanChip rounded-full h-max shadow"
                     size='sm'>
@@ -62,7 +62,7 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
             </CardLarge.Headline>
 
             <CardLarge.Subhead>
-                <GroupLink group={Group} />
+                <div> <GroupLink group={Group} /></div>
             </CardLarge.Subhead>
 
             <CardLarge.MidSection className="px-0">
@@ -84,10 +84,7 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                 </CardLarge.Media>
             </CardLarge.MidSection>
 
-            <CardLarge.Media className="gap-1">
-                <h6>Participants</h6>
-
-
+            <CardLarge.Media className="gap-2 pb-2">
                 <AvatarStack avatarDatas={Participants} />
                 <ProgressBar
                     size='xxsmall'
@@ -106,7 +103,7 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                         </div>}
                 />
             </CardLarge.Media>
-            <CardLarge.Footer >
+            <CardLarge.Footer className={`md3-card-large-footer `}>
                 <div className="flex flex-col gap-2 w-max justify-center ">
                     <h6>Organisateur</h6>
                     <ProfileDiv profile={User} />
