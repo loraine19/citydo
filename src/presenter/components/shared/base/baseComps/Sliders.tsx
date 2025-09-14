@@ -180,7 +180,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 
     return (
         <>
-            <div className='pb-2 '>{label}</div>
+            <div className='-ml-4 -mr-2 pb-1'>{label}</div>
             <div className={`${variant === 'wavy' ? '-ml-[4px] pl-[12.5px] ' : ''} relative w-full`}>
 
                 <div className={`md3-progressbar-container 

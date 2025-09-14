@@ -65,7 +65,7 @@ export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardPr
                     ) : undefined
                 }
             >
-                <CardMD.Chips className="justify-between !flex-nowrap -mr-1">
+                <CardMD.Chips className="justify-between">
                     <div className="md3-card-chips overflow-auto !py-0">
                         <button onClick={() => change()}>
                             <Chip
@@ -125,9 +125,9 @@ export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardPr
                         />
                     )}
                 </CardMD.Media>
-                <CardMD.Footer className="flex items-center pb-1 ">
+                <CardMD.Footer className="flex items-center">
                     {!mines ? (
-                        <div className=" w-full flex-1 truncate pl-2 -ml-2 ">
+                        <div className=" w-full flex-1 flex items-center truncate pl-2 -ml-2 ">
                             <ProfileDiv
                                 profile={survey?.User} />
                         </div>

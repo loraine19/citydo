@@ -8,9 +8,9 @@
     position: absolute;
     z-index: 999999999 !important;
     background-color: var(--md3-surface, #fff);
-    border-radius: 12px;
+    border-radius: var(--md3-radius-large);
     box-shadow: var(--md3-shadow-elevation-3);
-    border: 1px solid var(--md3-outline-variant, #e0e0e0);
+    border: 1px solid #00000010;
     padding: var(--md3-spacing-small) var(--md3-spacing-medium);
     min-width: 160px;
 }
@@ -21,7 +21,7 @@
 }
 
 .md3-menu-item {
-    @apply flex items-center gap-2;
+    @apply flex items-center gap-4;
     padding: var(--md3-spacing-small) var(--md3-spacing-small);
     cursor: pointer;
     border-radius: var(--md3-radius-large);
@@ -31,7 +31,7 @@
 }
 
 .md3-menu-item-label {
-    @apply px-1 w-max font-montserrat text-[0.875rem];
+    @apply pr-4 flex items-center w-max font-montserrat text-[0.875rem];
     color: var(--md3-on-primary-container) !important;
     opacity: 0.8;
 }

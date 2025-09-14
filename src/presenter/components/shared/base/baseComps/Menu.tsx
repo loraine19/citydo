@@ -45,10 +45,11 @@ export const Menu: React.FC<MenuProps> = ({
         }
     }, [menuRefAuto]);
     const triggerRef = useRef<HTMLDivElement>(null);
+    const menuCurrent = useRef<HTMLDivElement>(null);
     const triggerHeight = triggerRef?.current?.offsetHeight ?? 0;
     const triggerWidth = triggerRef.current?.offsetWidth ?? 24;
-    const menuWidth = ((menuRef?.current?.offsetWidth ?? menuRefAuto?.current?.offsetWidth ?? 180) - triggerWidth).toString();
-    const mt = (menuRef?.current?.offsetHeight ?? menuRefAuto?.current?.offsetHeight ?? 180 * 0.5 - triggerHeight * 1.8).toString();
+    const menuWidth = ((menuCurrent?.current?.offsetWidth ?? 180) + triggerWidth).toString();
+    const mt = ((menuCurrent?.current?.offsetHeight ?? 180) * 1 + triggerHeight * 1.5).toString();
 
 
     const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
@@ -73,11 +74,10 @@ export const Menu: React.FC<MenuProps> = ({
 
             }
             if (placementAll.includes('center_start')) {
-                style.translate = `0 calc(-100% - ${mt}px )`;
+                style.marginTop = `-${mt}px`;
 
             }
             if (placementAll.includes('center_bottom')) {
-                style.translate = ` -${triggerHeight}px`;
                 style.marginLeft = `-${menuWidth}px`;
             }
             setMenuStyle(style);
@@ -150,16 +150,20 @@ export const Menu: React.FC<MenuProps> = ({
                     
                     md3-menu md3-elevation ${open ? " md3-menu-enter " : "md3-menu-leave "} `} >
 
-                        {open && <>
-                            <div
-                                className={`px-2 flex`}
-                                onClick={handleClose}>
-                                {closeIcon ?? <Icon icon='close' size='md' />}
-                            </div>
-                            <div className={`md3-menu-list overflow-hidden `}>
-                                {children}
-                            </div>
-                        </>}
+                        {open &&
+                            <div ref={menuCurrent}
+
+                            >
+                                <div
+                                    className={`px-2 flex`}
+                                    onClick={handleClose}>
+                                    {closeIcon ?? <Icon icon='close' size='md' />}
+                                </div>
+                                <div
+                                    className={`md3-menu-list overflow-hidden `}>
+                                    {children}
+                                </div>
+                            </div>}
                     </div>}
 
 

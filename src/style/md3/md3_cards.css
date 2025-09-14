@@ -60,8 +60,8 @@
 }
 
 .md3-card-content {
-    @apply gap-0   justify-between;
-    padding: var(--md3-spacing-sm) var(--md3-spacing-medium);
+    @apply gap-2   justify-between;
+    padding: var(--md3-spacing-sm) 0;
     display: flex;
     flex-direction: column;
     min-height: fit-content;
@@ -70,43 +70,48 @@
 }
 
 .md3-card-headline {
-    @apply pb-2 text-[1.1rem] sm:text-[1.125rem] md:text-[1.2rem];
+    @apply text-[1.1rem] sm:text-[1.125rem] md:text-[1.2rem];
     font-weight: 600;
+    padding: 0 var(--md3-spacing-medium);
     color: var(--md3-on-surface);
 }
 
 .md3-card-subhead {
-    @apply pb-1 min-h-fit;
+    @apply min-h-fit;
+    padding: 0 var(--md3-spacing-medium);
     font-size: 1.05rem;
     font-weight: 400;
-    overflow: hidden;
     color: var(--md3-on-surface-variant);
 }
 
 .md3-card-supporting-text {
-    @apply pb-0.5;
+    @apply flex;
     display: flex;
     flex-direction: column;
     font-size: 0.9rem;
     font-weight: 400;
     color: var(--md3-on-surface-variant);
     line-height: 1.25rem;
-    padding-right: var(--md3-spacing-medium);
+    padding: 0 var(--md3-spacing-medium);
 }
 
 .md3-card-media {
-    @apply flex flex-col pt-1;
+    @apply flex flex-col;
+    padding: 0 var(--md3-spacing-medium);
 }
 .md3-card-chips {
-    @apply flex flex-wrap gap-2 pb-1.5 -ml-1 mr-3;
+    @apply flex gap-2;
+    padding: 0 4px;
 }
 
 .md3-card-footer {
     display: flex;
+
     justify-content: space-between;
-    align-items: end;
+    align-items: center;
     gap: var(--md3-spacing-medium);
-    padding-top: var(--md3-spacing-small);
+    padding: var(--md3-spacing-small) var(--md3-spacing-medium) 0;
+    border-top: 1px solid var(--md3-outline-variant);
     color: var(--md3-on-surface-variant);
 }
 
@@ -122,6 +127,7 @@
 }
 .md3-card-mid-section {
     @apply flex flex-col sm:flex-row sm:gap-2  pr-3;
+    padding: 0 var(--md3-spacing-medium);
     flex: 1;
 }
 
@@ -202,6 +208,11 @@
     background: var(--md3-on-primary-container);
     opacity: 0.25;
     cursor: pointer;
+}
+.md3-sheet-content {
+    @apply h-fit flex flex-col;
+    gap: var(--md3-spacing-small);
+    flex: 1;
 }
 
 /*** STYLES ***/

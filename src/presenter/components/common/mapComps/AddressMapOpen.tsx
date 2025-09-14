@@ -9,6 +9,7 @@ import { AddressDTO } from '../../../../infrastructure/DTOs/AddressDTO';
 import { NotifView } from '../../../views/viewsEntities/notifViewEntity';
 import { ElementNotif } from '../../../../domain/entities/Notif';
 import Chip from '../adaptatersComps/Chip';
+import { MenuItem } from '../../shared/base/baseComps/Menu';
 
 
 
@@ -211,7 +212,8 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
                         iconAnchor: [40, 75],
                     })}>
                     <Popup>
-                        {typeof message === 'string' ? message : <>{message}</> || `${address?.address} ${address?.city}`}
+                        <MenuItem>  {typeof message === 'string' ? message : <>{message}</> || `${address?.address} ${address?.city}`}
+                        </MenuItem>
                     </Popup>
                 </Marker>
             ) : (

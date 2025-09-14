@@ -46,7 +46,6 @@ export default function ServiceDetailPage() {
 
     //// UPDATE FUNCTION 
     const updateService = async () => {
-        alert('up')
         try {
             const data = await update();
             const actions = generateActions(data);
@@ -174,7 +173,7 @@ export default function ServiceDetailPage() {
                 actions = [
                     {
                         color: service.isResp ? undefined : 'red',
-                        iconImage: 'close',
+                        iconImage: 'person_cancel',
                         icon: service.isResp ? 'Annuler votre réponse' : service.isValidated ? "Besoin d'aide ?" : '142',
                         title: service.isResp ? 'Annuler votre réponse' : service.isValidated ? "Ouvrir une demande de conciliation?" : '143',
                         body: service.isResp ? service?.title : service.isValidated ? `Avant d'ouvrir une demande d'aide pouvez contacter ${generateContact(service.User)}` : '144',
@@ -244,7 +243,7 @@ export default function ServiceDetailPage() {
 
     return (
         <>
-            <main >
+            <main  >
                 <div className="sectionHeader">
                     <SubHeader
                         hideImage={true}
@@ -259,10 +258,11 @@ export default function ServiceDetailPage() {
 
                 </div>
                 <section
+                    className={`${expanded ? 'overflow-auto' : '!overflow-hidden '}`}
                     ref={divRef}
                     onScroll={() =>
                         handleHideCallback()}>
-                    <div className={`DetailCardDiv ${!hideNavBottom ? actions.length > 1 ? "hideCTA2" : "hideCTA" : ""}`}>
+                    <div className={`DetailCardDiv  ${!hideNavBottom ? actions.length > 1 ? "hideCTA2" : "hideCTA" : ""}`}>
                         {isLoading || error || !service ?
                             <Skeleton />
                             :

@@ -48,20 +48,22 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                 </CardMD.Image>
             }
         >
-            <CardMD.Chips className="justify-between items-center w-full !-mr-8">
+            <CardMD.Chips className="justify-between">
 
+                <div className="md3-card-chips flex-1 !overflow-auto">
+                    <button
+                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                            const cat = e.currentTarget.innerText.toLowerCase();
+                            change(cat as any);
+                        }}>
+                        <Chip
+                            size="sm"
+                            value={`${categoryS}`}
+                            className="rounded-full h-max truncate Chip md3-rose-container shadow"
+                        />
+                    </button>
+                </div>
 
-                <button
-                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                        const cat = e.currentTarget.innerText.toLowerCase();
-                        change(cat as any);
-                    }}>
-                    <Chip
-                        size="sm"
-                        value={`${categoryS}`}
-                        className="rounded-full h-max truncate Chip md3-rose-container shadow"
-                    />
-                </button>
                 {<MoreButton id={id} type={'annonce'} flagged={flagged} />}
             </CardMD.Chips>
 
@@ -78,9 +80,9 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                 {description}
             </CardMD.SupportingText>
 
-            <CardMD.Footer className="justify-between items-center flex w-full">
+            <CardMD.Footer className="justify-between  items-center flex w-full">
                 {!mines ?
-                    <div className=" w-full flex-1 truncate pl-2 -ml-2 ">
+                    <div className=" w-full flex-1 items-center flex truncate pl-2 -ml-2 ">
                         <ProfileDiv
                             profile={User} />
                     </div> :

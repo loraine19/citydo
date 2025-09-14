@@ -55,15 +55,16 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                             icon={'person'} />
                     </div>
                 </CardMD.Image>}>
-            <CardMD.Chips className="justify-between !flex-nowrap -mr-1">
-                <div className="md3-card-chips overflow-auto !py-0">  <button
-                    onClick={change}>
-                    <Chip
-                        data-cy={`chip-${label}`}
-                        size='sm'
-                        value={label}
-                        className="rounded-full h-max cyanChip" />
-                </button>
+            <CardMD.Chips className="justify-between !flex-nowrap">
+                <div className="md3-card-chips overflow-auto !py-0">
+                    <button
+                        onClick={change}>
+                        <Chip
+                            data-cy={`chip-${label}`}
+                            size='sm'
+                            value={label}
+                            className="rounded-full h-max cyanChip" />
+                    </button>
                     {new Date(end).getTime() > Date.now() && <DateChip
                         start={start}
                         end={end}
@@ -103,9 +104,9 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                 />
 
             </CardMD.Media>
-            <CardMD.Footer className="flex items-center pb-1 ">
+            <CardMD.Footer className="flex items-center">
                 {!mines ? (
-                    <div className="flex relative flex-1 overflow-hidden items-center">
+                    <div className="flex relative flex-1 mt-0.5 overflow-hidden items-center">
                         <EventCalAddBtn
                             event={event}
                             className="-mr-3" iconClass={`${'top-0 !outline outline-white left-0.5 absolute hover:z-50  '}`} />

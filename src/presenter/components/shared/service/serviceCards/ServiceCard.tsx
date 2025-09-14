@@ -92,9 +92,9 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                 </CardMD.Image>
             }
         >
-            <CardMD.Chips className="justify-between !flex-nowrap  -mr-1">
+            <CardMD.Chips className="justify-between">
 
-                <div className="md3-card-chips flex-1 !overflow-auto !py-0">
+                <div className="md3-card-chips flex-1 !overflow-auto">
                     <button
                         onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                             const cat = e.currentTarget.innerText.toLowerCase();

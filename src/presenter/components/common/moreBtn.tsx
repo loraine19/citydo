@@ -63,7 +63,7 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
 
         <Menu
             className={className ?? ''}
-
+            menuRef={undefined}
             closeIcon={
                 <></>}
             open={isOpen}
@@ -71,7 +71,7 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
             placement="center_bottom"
             trigger={
                 <Icon
-                    style='-mr-2'
+                    style='-mr-0'
                     color={color ?? 'slate'}
                     icon={isOpen ? "arrow_drop_up" : "more_vert"}
                     size="xl"

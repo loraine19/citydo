@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PopOver from "../../../common/oldcomp/PopOver";
 import { Icon } from "../../../common/IconComp";
 import { EventView } from "../../../../views/viewsEntities/eventViewEntities";
+import { Menu, MenuItem } from "../../base/baseComps/Menu";
 
 
 
@@ -17,8 +18,11 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
     const { id, title, agendaLink, agendaICalLink } = event;
 
     return (
-        <PopOver
+        <Menu
             key={id + "add"}
+            placement="center_bottom"
+            onClose={() => { }}
+            closeIcon={<></>}
             className={className + ' min-h-max hover:cursor-pointer '}
             trigger={
                 <Icon
@@ -29,43 +33,30 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
                     size="lg"
                     style={iconClass}
                 />
-            }
-            children={
-                <Card className="card">
-                    <CardHeader className="px-4 py-2 flex items-center gap-4">
+            }>
 
-                        <h4>
-                            Ajouter à votre agenda
-                        </h4>
-                    </CardHeader>
-                    <CardBody className="FixCardBody flex flex-col items-center justify-center divide-y  ">
-                        <Link to={agendaLink}
-                            className="w-full flex items-center gap-3 border-t px-4 py-3 "
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <Icon icon="calendar_add_on" bg fill color="cyan" size="lg" />
-                            <h6>Google Agenda</h6>
-                        </Link>
-                        <Link
-                            to={agendaICalLink}
-                            className="w-full flex items-center gap-3 px-4 py-3 !border-b "
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <Icon icon="calendar_add_on" bg fill color="orange" size="lg" />
 
-                            <h6>iCal / Autres agendas</h6>
-                        </Link>
-                    </CardBody>
-                    <CardFooter className="CardFooter">
-                        <small>
-                            Synchronisez facilement cet événement avec votre agenda préféré
-                        </small>
-                    </CardFooter>
-                </Card>
-            }
-        />
+            <MenuItem
+                leadingIcon={<Icon icon="calendar_add_on" bg fill color="cyan" size="lg" />}>
+                <Link to={agendaLink}
+                    className="pb-1"
+                    target="_blank"
+                    rel="noopener noreferrer" >
+                    <h6>Google Agenda</h6>
+                </Link>
+            </MenuItem>
+            <MenuItem
+                leadingIcon={<Icon icon="calendar_add_on" bg fill color="orange" size="lg" />}
+            >
+                <Link
+                    className="pb-1"
+                    to={agendaICalLink}
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    <h6>iCal / Autres agendas</h6>
+                </Link>
+            </MenuItem>
+        </Menu>
     );
 };
 

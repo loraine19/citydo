@@ -81,7 +81,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                 <CardMD.Headline className="mb:pb-4">
                     <Title title={pool?.title} />
                 </CardMD.Headline>
-                <CardMD.Media className="h-full flex-1 justify-between md:pb-2">
+                <CardMD.Media className="h-full flex-1 justify-between gap-2">
                     <div className="grid  flex-1 ">
                         <ProfileDiv
                             divRef={divRef}
@@ -93,11 +93,11 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                         color="orange"
                         size='xxsmall'
                         variant={pool?.pourcent >= 100 ? 'linear' : 'wavy'}
-                        className="pb-2 lg:pb-2"
+                        className="pb-2"
                         value={pool?.pourcent}
                         max={100}
                         label={
-                            <div className="md3-card-supporting-text justify-between flex-row">
+                            <div className="md3-card-supporting-text -mb-2 justify-between flex-row">
                                 {pool?.status !== PoolSurveyStatus.PENDING ?
                                     <span>Cagnotte cloturée</span> :
                                     <>
@@ -113,9 +113,9 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                         }
                     />
                 </CardMD.Media>
-                <CardMD.Footer className="flex items-center pb-1 ">
+                <CardMD.Footer className="flex items-center  ">
                     {!mines ? (
-                        <div className=" w-full flex-1  pl-2 -ml-2 ">
+                        <div className=" w-full flex-1 flex items-center ">
                             <ProfileDiv
                                 divRef={divRef}
                                 profile={pool?.User} />

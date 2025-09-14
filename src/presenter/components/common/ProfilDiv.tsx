@@ -27,7 +27,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
             closeIcon={size === 'xl' ? null : ' '}
             placement={size === 'xl' ? "center_end" : "center_start"}
             trigger={
-                <div className="flex items-center">
+                <div className="flex items-center ">
                     <div className={`relative   ${width} `}>
                         <AvatarUser
                             avatarStyle=""
@@ -38,7 +38,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
                     </div>
                     <div className="flex flex-col gap-1 truncate ">
                         <Typography variant={textSize}
-                            className="border-b pb-1 border-slate-400/50 pr-4  ">
+                            className=" pr-4 pt-1.5 ">
                             {profile?.firstName}
                         </Typography>
                         <div className={`text-slate-500  !line-clamp-2 pr-4`}>
