@@ -214,10 +214,10 @@ export const CardLarge: React.FC<CardLargeProps> & {
         const imageProps = (image as any)?.props || {};
 
         // Card classes
-        const cardClasses = `md3-card-large !min-h-fit md3-card-${variant} ${className || ""}`;
+        const cardClasses = `md3-card-large !bg-transparent !border-none !min-h-fit md3-card-${variant} ${className || ""}`;
 
         return (
-            <div className={`${cardClasses} relative flex flex-1 overflow-hidden`} data-md3-card
+            <div className={`${cardClasses}  relative flex flex-1 overflow-hidden`} data-md3-card
                 {...props}>
                 {/* Large Image */}
                 <div className={`  absolute top-0 anim md3-card-large-image-container h-[50%] `}  >

@@ -5,7 +5,6 @@ import { dayMS, GenereMyActions } from "../../../../views/viewsEntities/utilsSer
 import { DateChip } from "../../../common/ChipDate";
 import DI from "../../../../../di/ioc";
 import { ProfileDiv } from "../../../common/ProfilDiv";
-import { Title } from "../../../common/CardTitle";
 import { User } from "../../../../../domain/entities/User";
 import { PoolSurveyStatus } from "../../../../../domain/entities/PoolSurvey";
 import Chip from "../../../common/adaptatersComps/Chip";
@@ -15,6 +14,7 @@ import { CardMD } from "../../base/baseComps/Cards";
 import { ProgressBar } from "../../base/baseComps/Sliders";
 import { Button } from "../../base/baseComps/Buttons";
 import { MoreButton } from "../../../common/moreBtn";
+import { Link } from "react-router-dom";
 
 type PoolCardProps = {
     pool: any,
@@ -78,8 +78,8 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                         flagged={pool?.flagged}
                         title={pool?.title} />}
                 </CardMD.Chips>
-                <CardMD.Headline className="mb:pb-4">
-                    <Title title={pool?.title} />
+                <CardMD.Headline className="mb:pb-6">
+                    <Link to={`/cagnotte/${pool?.id}`}>{pool?.title}</Link>
                 </CardMD.Headline>
                 <CardMD.Media className="h-full flex-1 justify-between gap-2">
                     <div className="grid  flex-1 ">

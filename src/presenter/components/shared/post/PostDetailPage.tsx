@@ -7,7 +7,7 @@ import { GenereMyActions, } from '../../../views/viewsEntities/utilsService';
 import DI from '../../../../di/ioc';
 import { Skeleton, SkeletonGrid } from '../../common/Skeleton';
 import { useAlertStore } from '../../../../application/stores/alert.store';
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useState } from 'react';
 import { HandleHideParams } from '../../../../application/useCases/utils.useCase';
 import { useUxStore } from '../../../../application/stores/ux.store';
 
@@ -67,6 +67,9 @@ export default function PostDetailPage() {
         },
     ]
 
+    //// HANDLE EXPAND
+    const [expand, setExpand] = useState<boolean>(false);
+
     return (
         <>
             <main>
@@ -79,6 +82,7 @@ export default function PostDetailPage() {
                         closeBtn />
                 </div>
                 <section
+                    className={`${expand ? 'overflow-auto' : 'overflow-hidden'} `}
                     ref={divRef}
                     onScroll={() => {
                         handleHideCallback()
@@ -87,6 +91,8 @@ export default function PostDetailPage() {
                     <div className={`DetailCardDiv ${!hideNavBottom ? post?.isMine ? "hideCTA" : "hideCTA2" : ""}`}>
                         {!isLoading && post ?
                             <PostDetailCard
+                                expand={expand}
+                                setExpand={setExpand}
                                 post={post}
                                 mines={post?.isMine}
                                 change={() => { }} /> :

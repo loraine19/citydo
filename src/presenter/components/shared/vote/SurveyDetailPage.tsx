@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CTAMines from '../../common/CTA';
 import SubHeader from '../../common/SubHeader';
@@ -43,6 +43,9 @@ export default function SurveyDetailPage() {
     //// VOTE VALUES
     const voteValues = VoteValues(survey, refetch);
 
+    //// HANDLE EXPAND CARD 
+    const [expand, setExpand] = useState(false);
+
     return (
         <>
             <main >
@@ -55,6 +58,7 @@ export default function SurveyDetailPage() {
                         closeBtn />
                 </div>
                 <section
+                    className={`${expand ? 'overflow-auto' : 'overflow-hidden'}`}
                     ref={divRef}
                     onScroll={() => {
                         handleHideCallback()
@@ -65,6 +69,8 @@ export default function SurveyDetailPage() {
                             <Skeleton
                                 className='!rounded-3xl flex pt-8 pb-1 h-full' /> :
                             <SurveyDetailCard
+                                expand={expand}
+                                setExpand={setExpand}
                                 setOpen={setOpen}
                                 survey={survey} />
                         }

@@ -22,10 +22,10 @@ export const GroupLink: React.FC<GroupDivProps> = ({ group, className, menuRef }
             key={group?.id}
             fitMax
             trigger={
-                <div className={`${className ?? ''} grid max-w-full justify-start`}>
-                    <button className={`${className ?? ''}  `}>
-                        <span className="truncate">{group?.name}</span>
-                    </button></div>
+                <div className={`${className ?? ''} max-w-full line-clamp-1 justify-start`}>
+
+                    {group?.name}
+                </div>
 
             }>
             <MenuItem

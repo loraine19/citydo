@@ -135,15 +135,11 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
             </CardMD.Headline>
 
             <CardMD.Subhead>
-                <div className=" truncate ">
-                    <GroupLink group={Group} />
-                </div>
+                <GroupLink group={Group} />
             </CardMD.Subhead>
 
             <CardMD.SupportingText className="line-clamp-1">
-
                 {description}
-
             </CardMD.SupportingText>
 
             <CardMD.Footer className="justify-between items-center flex w-full">

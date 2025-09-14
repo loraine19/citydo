@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Action } from '../../../../domain/entities/frontEntities';
 import CTAMines from '../../common/CTA';
@@ -43,6 +43,9 @@ export default function PoolDetailPage() {
     const { setAlertValues } = useAlertStore(state => state)
     const handleVote = () => setAlertValues(VoteValues(pool, refetch))
 
+    //// HANDLE EXPAND CARD
+    const [expand, setExpand] = useState(false);
+
     return (<>
 
         <main>
@@ -53,6 +56,7 @@ export default function PoolDetailPage() {
                     closeBtn />
             </div>
             <section
+                className={`${expand ? 'overflow-auto' : 'overflow-hidden'}`}
                 ref={divRef}
                 onScroll={() => {
                     handleHideCallback()
@@ -62,6 +66,8 @@ export default function PoolDetailPage() {
                     {isLoading || !pool || error ?
                         <Skeleton /> :
                         <PoolDetailCard
+                            expand={expand}
+                            setExpand={setExpand}
                             setOpen={handleVote}
                             pool={pool} />
                     }

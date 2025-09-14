@@ -1,110 +1,104 @@
-import { Card, CardHeader, Typography, CardBody, CardFooter, } from "@material-tailwind/react";
-import { Icon } from "../../../common/IconComp";
 import { dayMS } from "../../../../views/viewsEntities/utilsService";
 import { DateChip } from "../../../common/ChipDate";
 import { PoolSurveyView } from "../../../../views/viewsEntities/poolSurveyViewEntity";
-import { ProgressBar } from "../../../common/ProgressBar";
-import { Title } from "../../../common/CardTitle";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { User } from "../../../../../domain/entities/User";
 import { PoolSurveyStatus } from "../../../../../domain/entities/PoolSurvey";
-import Chip from "../../../common/adaptatersComps/Chip";
 import { MoreButton } from "../../../common/moreBtn";
+import { CardLarge } from "../../base/baseComps/Cards";
+import { GroupLink } from "../../../common/GroupLink";
+import { ProgressBar } from "../../base/baseComps/Sliders";
 
-type PoolDetailCardProps = { pool: PoolSurveyView, setOpen: () => void }
+type PoolDetailCardProps = { pool: PoolSurveyView, setOpen: () => void, expand: boolean, setExpand: (expand: boolean) => void }
 
-export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
+export default function PoolDetailCard({ pool, setExpand }: PoolDetailCardProps) {
     const end = new Date(new Date(pool?.createdAt).getTime() + 15 * dayMS)
-    const ended: boolean = pool?.status !== PoolSurveyStatus.PENDING || pool?.pourcent >= 100 ? true : false
-
-    const color = (): string => {
-        switch (pool?.myOpinion) {
-            case 'OK': return 'green';
-            case 'NO': return 'red';
-            case 'WO': return 'orange';
-            default: return 'slate';
-        }
-    }
     return (
-        <Card className="CardDetailGridNoImage" >
-            <CardHeader className={"FixCardHeaderNoImage"}
-                floated={false}>
-                <div className={`ChipDivNoImage flex-wrap`}>
-                    <Chip
-                        value={'Cagnotte'}
-                        size='sm'
-                        className="cyanChip">
-                    </Chip>
+        <CardLarge
+            expanded={true}
+            setExpanded={setExpand}
+            title={pool?.title}
+            image={
+                <CardLarge.Media>
+                    <CardLarge.Chips className="justify-end p-2">
+                        <DateChip
+                            start={pool?.createdAt}
+                            prefix="publié le " />
+                    </CardLarge.Chips>
+
+                </CardLarge.Media>}
+        >
+            <CardLarge.Chips className="justify-between">
+
+                <div className="md3-card-chips flex-1 !overflow-auto">
+
                     <DateChip
                         start={pool?.createdAt}
-                        ended={ended}
+                        ended={pool?.status !== PoolSurveyStatus.PENDING}
                         end={end}
                         prefix="finis dans" />
                 </div>
-            </CardHeader>
-            <CardBody
-                className="DetailCardBody ">
-                <Title
-                    large
-                    title={pool?.title}
-
-                />
                 <MoreButton
                     id={pool?.id}
-                    type="vote/cagnotte"
-                />
-                <div className=" flex h-full flex-1 gap-[10%] flex-col lg:flex-row">
-                    <div>
-                        <h6>Description</h6>
-                        <Typography className="description">
-                            {pool?.description}
-                        </Typography>
-                    </div>
-                    <div className="grid ">
-                        <h6>Beneficiaire</h6>
-                        <ProfileDiv
-                            profile={pool?.UserBenef || {} as Partial<User>}
-                            size={'lg'} />
-                    </div>
+                    type={'vote/sondage'}
+                    title={pool?.title} />
+            </CardLarge.Chips>
+            <CardLarge.Headline>
+                {pool?.title}
+            </CardLarge.Headline>
+
+            <CardLarge.Subhead>
+                <div>
+                    <GroupLink group={pool?.Group} />
                 </div>
-                <div className="flex flex-col">
+            </CardLarge.Subhead>
+            <CardLarge.SupportingText>
+                <h6>Description</h6>
+                {pool?.description}
+            </CardLarge.SupportingText>
+            <CardLarge.Media className="h-full flex-1 justify-between gap-2">
+                <ProfileDiv
+                    profile={pool?.UserBenef || {} as Partial<User>}
+                    size={'lg'} />
+            </CardLarge.Media>
+            <CardLarge.Media className="h-full flex-1 justify-between gap-2">
+                <div className="flex flex-col py-2 gap-2 ">
                     <h6>Progression des Votes</h6>
                     <ProgressBar
+                        color="orange"
+                        size='xxsmall'
+                        variant={pool?.pourcent >= 100 ? 'linear' : 'wavy'}
+                        className=" pb-2 lg:pb-2"
                         value={pool?.pourcent}
-                        label="votes pour "
-                        size={'lg'}
-                        needed={pool?.needed} />
+                        max={100}
+                        label={
+                            <div className="md3-card-supporting-text justify-between flex-row">
+                                {pool?.status !== PoolSurveyStatus.PENDING ?
+                                    <span>Sondage cloturé</span> :
+                                    <>
+                                        <span>
+                                            {pool?.Votes.length} vote{pool?.Votes.length > 1 ? 's ' : ' '}  pour {pool?.pourcent >= 100 ? ' approuvé' : ''}</span>
+                                        <span className="opacity-50"> / &nbsp;
+                                            {pool?.needed}
+                                        </span>
+                                    </>
+
+                                }
+                            </div>}
+
+                    />
                 </div>
-            </CardBody>
-            <CardFooter className="DetailCardFooter ">
-                <div>
+            </CardLarge.Media>
+            <CardLarge.Footer className="md3-card-large-footer gap-2">
+                <div className="flex flex-col gap-2 ">
                     <h6>Créé par</h6>
                     <ProfileDiv
                         profile={pool?.User || {} as Partial<User>} />
                 </div>
-                <div className="flex flex-col gap-2 items-end">
-                    <h6>Votes &nbsp; </h6>
-                    <button
-                        disabled={pool?.close}
-                        onClick={() => { setOpen() }}>
-                        <Chip
-                            size='sm'
-                            value={pool.Votes?.length}
-                            variant="ghost"
-                            className="rounded-full px-4 grayChip"
-                            icon={
-                                <Icon
-                                    disabled={pool?.close}
-                                    icon="smart_card_reader"
-                                    fill={pool?.IVoted}
-                                    color={color()}
-                                    size="md"
-                                    title={`${pool.Votes?.length} personnes ${pool?.IVoted ? `dont vous ` : ''} ont voté`} />}>
-                        </Chip>
-                    </button>
-                </div>
-            </CardFooter>
-        </Card>
+
+            </CardLarge.Footer>
+
+        </CardLarge>
     )
 }
 
