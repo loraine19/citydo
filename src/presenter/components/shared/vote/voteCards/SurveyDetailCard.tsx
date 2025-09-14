@@ -75,7 +75,7 @@ export default function SurveyDetailCard({ survey, expand, setExpand }: Props) {
                     <ProgressBar
                         color="orange"
                         size='xxsmall'
-                        variant={survey?.pourcent >= 100 ? 'linear' : 'wavy'}
+                        variant={survey?.status !== PoolSurveyStatus.PENDING ? 'linear' : 'wavy'}
                         className=" pb-2 lg:pb-2"
                         value={survey?.pourcent}
                         max={100}
