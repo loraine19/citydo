@@ -144,6 +144,12 @@
         @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_9.2rem)]
         grid-rows-[minmax(calc(100dvh-9.2rem),calc(100dvh-9.2rem))];
     }
+
+    .expandedCardDiv {
+        @apply mb-[3rem] min-h-full max-h-[calc(100dvh_-_9.2rem)]
+        grid-rows-[minmax(calc(100dvh-9.2rem),calc(fit-content))];
+    }
+
     .hideCTA2 {
         @apply hideCTA;
     }

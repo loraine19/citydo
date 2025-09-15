@@ -19,19 +19,19 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
     }
 
     return (
-        <div className={`flex flex-col pb-1 relative -ml-4 h-full w-[calc(100%_+_2rem)] ]`}>
+        <div className={`flex flex-col py-1 relative -ml-4 h-full w-[calc(100%_+_2rem)] ]`}>
             {/* TITLE DIV  */}
             <div className={`flex w-full h-full px-4 flex-1  gap-x-2 justify-end lg:justify-between`}>
                 {(!hideNavBottom || !navIcons) &&
-                    <div className={`flex flex-1 h-full w-full 
-                    ${hideImage ? '' : 'bg-white shadow-md rounded-3xl animRev mb-1 p-1 gap-2 items-center  justify-center border border-slate-400/40'}`}>
-                        <h2 className={`${hideImage ? '!line-clamp-1 ' : '!line-clamp-3'}
-                        ${closeBtn ? 'text-center pr-4 !pl-8 truncate' : ''} flex flex-1 !pl-2 text-right`}>
+                    <div className={`flex flex-1 h-full w-full items-center pl-12
+                    ${hideImage ? '' : 'bg-white shadow-md rounded-3xl animRev mb-1 p-1 gap-2 border border-slate-400/40'}`}>
+                        <div className={`${hideImage ? '!line-clamp-1 ' : '!line-clamp-3'}
+                        ${closeBtn ? 'text-center pr-4 !pl-8 truncate' : ''} flex flex-1  md3-${color}-container max-w-max rounded-full py-1 px-8 `}>
                             <span className={`capitalize font-medium `}>{qty} {type}</span>
-                            <span className="hidden sm:inline-block !lowercase !font-light opacity-75">
+                            <span className="hidden sm:inline-block !lowercase !font-normal opacity-75">
                                 &nbsp;{place ?? ""}
                             </span>
-                        </h2>
+                        </div>
                         {image &&
                             <div className={`${hideImage ? 'hidden' : ' max-w-[50%]flex-1 w-max h-full'} `} >
                                 <img src={image ?? '/image/placeholder.jpg'}
@@ -75,7 +75,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
 
 
             </div>
-            <hr className={`${!hideImage ? 'hidden' : 'pb-1'} !border-${color}-500 border-b border-t-0 w-full !opacity-30 `} />
+            <hr className={`${!hideImage ? 'hidden' : ''} !border-${color}-500 border-b border-t-0 w-full !opacity-0 `} />
         </div>
     )
 }

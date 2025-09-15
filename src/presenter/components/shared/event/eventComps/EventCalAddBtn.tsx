@@ -18,17 +18,17 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
     return (
         <Menu
             key={id + "add"}
-            placement="center_bottom"
+            placement="center_up"
             onClose={() => { }}
             closeIcon={<></>}
-            className={className + ' min-h-max hover:cursor-pointer '}
+            className={className + ' hover:z-50 min-h-max hover:cursor-pointer '}
             trigger={
                 <Icon
-                    color="slate"
+                    color="cyan"
                     icon="calendar_add_on"
                     title={`ajouter a mon agenda  : ${title}`}
                     bg={true}
-                    size="lg"
+                    size="xl"
                     style={iconClass}
                 />
             }>

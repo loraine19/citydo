@@ -43,13 +43,14 @@ export const AvatarUser = ({ Profile, avatarSize = '', avatarStyle = '', style =
 
     const [inError, setInError] = useState<boolean>(false);
     return (
-        <div className={`relative rounded-full overflow-hidden  ${avatarStyle} ${style}  w-max h-full min-w-max `}>
+        <div className={`relative rounded-full overflow-hidden   w-max h-full min-w-max `}>
             {Profile?.image && !inError ?
                 <Avatar
+
                     onError={() => setInError(true)}
                     referrerPolicy="unsafe-url"
                     size={avatarStyle === 'ms' ? 'sm' : avatarSize as any ?? 'sm'}
-                    className={`${classicStyle} ${avatarStyle} bg-${userColor}-100 text-white text-xs  fadeIn min-w-max rounded-full  ${avatarSize === 'ms' ? '!w-[37px] !h-[37px]' : ''}`}
+                    className={`${classicStyle} ${avatarStyle} bg-${userColor}-100 text-white text-xs fadeIn min-w-max rounded-full  ${avatarSize === 'ms' ? '!w-[37px] !h-[37px]' : ''}`}
                     alt={Profile?.firstName || 'user'}
                     src={Profile?.image as string}
                 /> :

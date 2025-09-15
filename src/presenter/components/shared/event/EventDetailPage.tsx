@@ -104,7 +104,7 @@ export default function EventDetailPage() {
                     onScroll={() => {
                         handleHideCallback();
                     }}>
-                    <div className={`DetailCardDiv hideCTA ${!hideNavBottom ? "hideCTA" : ""}`}>
+                    <div className={`DetailCardDiv ${expanded ? 'expandedCardDiv' : 'hideCTA'} `}>
                         {!isLoading && event ?
                             <EventDetailCard
 

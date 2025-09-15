@@ -8,7 +8,7 @@ interface MenuProps {
     anchorEl?: HTMLElement | null;
     className?: string;
     children: ReactNode;
-    placement?: 'start' | 'end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'up' | 'down' | 'left' | 'right' | 'center' | 'center_start' | 'center_end' | 'center_top' | 'center_bottom';
+    placement?: 'start' | 'end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'up' | 'down' | 'left' | 'right' | 'center' | 'center_start' | 'center_end' | 'center_top' | 'center_bottom' | 'center_up';
     onClose?: () => void;
     trigger?: ReactNode;
     closeIcon?: ReactNode;
@@ -58,6 +58,7 @@ export const Menu: React.FC<MenuProps> = ({
     const menuWidth = ((menuCurrent?.current?.offsetWidth ?? 180) + triggerWidth).toString();
     const ml = ((menuCurrent?.current?.offsetWidth ?? 180) / 2).toString();
     const mt = ((menuCurrent?.current?.offsetHeight ?? 180) * 1 + triggerHeight * 1.5).toString();
+    const mtUp = ((menuCurrent?.current?.offsetHeight ?? 180) * 1.5).toString();
 
 
     const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
@@ -90,6 +91,9 @@ export const Menu: React.FC<MenuProps> = ({
             }
             if (placementAll.includes('center_top')) {
                 style.top = '0%'
+            }
+            if (placementAll.includes('center_up')) {
+                style.marginTop = `-${mtUp}px`;
             }
             setMenuStyle(style);
         } else {

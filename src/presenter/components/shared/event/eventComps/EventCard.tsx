@@ -106,10 +106,11 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
             </CardMD.Media>
             <CardMD.Footer className="flex items-center">
                 {!mines ? (
-                    <div className="flex relative flex-1 mt-0.5 overflow-hidden items-center">
+                    <div className="flex flex-1 mt-0.5 overflow-hidden items-center ">
                         <EventCalAddBtn
                             event={event}
-                            className="-mr-3" iconClass={`${'top-0 !outline outline-white left-0.5 absolute hover:z-50  '}`} />
+                            iconClass={`${'top-0 border-2 !border-white  hover:z-[999] relative -mr-3 '}`} />
+
                         <AvatarStack avatarDatas={event.Participants} />
                     </div>
                 ) : (

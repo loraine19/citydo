@@ -27,8 +27,8 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
             expanded={expand}
             setExpanded={setExpand}
             image={<img
-                onError={(e) => e.currentTarget.src = '/image/placeholder.jpg'}
-                src={image as string}
+                onError={(e: any) => e.currentTarget.src = 'public/image/placeholder.jpg'}
+                src={image as string || '/image/placeholder.jpg'}
                 alt={title}
                 className='md3-card-large-image' >
                 <CardLarge.Chips className="p-2 justify-end">
@@ -67,10 +67,10 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
             </CardLarge.Subhead>
 
             <CardLarge.MidSection className="px-0 gap-3">
-                <CardLarge.SupportingText className="flex sm:flex-1 flex-col ">
-                    <div className="flex items-center justify-between border-b border-slate-400">
+                <CardLarge.SupportingText className="flex sm:flex-1 flex-col gap-1 ">
+                    <div className="flex items-center -mt-3 justify-between border-b border-slate-400">
                         <i>{eventDateInfo?.start} - {eventDateInfo?.end}</i>
-                        <EventCalAddBtn event={EventLoad} iconClass="!-mb-1.5 " />
+                        <EventCalAddBtn event={EventLoad} iconClass="!-mb-1.5 md:-mr-6 " />
                     </div>
                     {description}
 

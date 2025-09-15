@@ -45,7 +45,7 @@ export const SegmentedButton: React.FC<SegmentedButtonProps> = ({
                     ) : option.icon ?
                         <Icon
 
-                            size={'xl'}
+                            size={'lg'}
                             fill        {...option.icon}
 
                         /> : null}

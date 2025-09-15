@@ -26,7 +26,7 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
                 value={defaultTab as string || labels[0].value}
                 onChange={() => { }}
                 color={color as any}
-                size="medium"
+                size="small"
             />
             {sortList &&
                 <SortButton

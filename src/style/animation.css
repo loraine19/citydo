@@ -182,7 +182,7 @@
 
 @keyframes upSheet {
     from {
-        transform: translateY(20%);
+        transform: translateY(5%);
         height: 100%;
     }
     to {
@@ -193,7 +193,7 @@
 
 @keyframes downSheet {
     from {
-        transform: translateY(10%);
+        transform: translateY(5%);
         height: 100%;
     }
     to {
