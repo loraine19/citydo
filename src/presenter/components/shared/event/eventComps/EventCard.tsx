@@ -56,7 +56,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                     </div>
                 </CardMD.Image>}>
             <CardMD.Chips className="justify-between">
-                <div className="md3-card-chips  !py-0">
+                <div className="md3-card-chips  flex-wrap !py-0">
                     <button
                         onClick={change}>
                         <Chip

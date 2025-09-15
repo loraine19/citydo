@@ -21,7 +21,7 @@ export default function SelectSearch(props: selectSearchProps) {
         <div
 
             className={`w-full relative  ${style}`} >
-            <div className={`"flex inputDiv md3-${color}-container !min-h-[32px] gap-2 !border-none `} >
+            <div className={`"flex inputDiv md3-button-tonal md3-button-${color}  !min-h-[32px] gap-2 !border-none `} >
                 <Menu
                     className=""
                     open={isOpen}
