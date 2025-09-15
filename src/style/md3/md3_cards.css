@@ -219,7 +219,7 @@
     @apply flex gap-2 justify-between items-center;
     border-top: 1px solid var(--md3-outline-variant);
     padding: var(--md3-spacing-small) var(--md3-spacing-medium)
-        var(--md3-spacing-large);
+        var(--md3-spacing-sm);
     color: var(--md3-on-surface-variant);
 }
 
