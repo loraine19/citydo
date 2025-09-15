@@ -163,8 +163,9 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                     backdropBlur={true}
                     open={openFab}
                     setOpen={setOpenFab}
+                    className=""
                     mainProps={{
-                        className: `rounded-full  `,
+                        className: `rounded-full `,
                         size: navBottom ? 'large' : 'small',
                         icon: { icon: openFab ? 'close' : 'edit', size: navBottom ? '2xl' : 'lg' },
                         color: color as Md3Colors ?? 'slate'
@@ -173,7 +174,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                 >
                     {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
                         <Fab
-                            className="max-w-max self-end shadow-lg"
+                            className="max-w-max self-end shadow-lg mr-4"
                             variant="tonal"
                             key={index}
                             size="extended"

@@ -44,7 +44,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
                 {(hideNavBottom) &&
                     <div className="absolute flex h-full w-full left-0"></div>}
                 {(hideNavBottom && !form) &&
-                    <div className={`${(hideNavBottom && !haveTitle) ? '-bottom-14 ' : '-bottom-14 '}flex flex-1 absolute z-[9999] right-0.5 `}>
+                    <div className={`${(hideNavBottom && !haveTitle) ? '-bottom-14 ' : '-bottom-14 '} flex flex-1 absolute z-[9999] right-4 `}>
                         <Icon
                             key={type + 'top'}
                             style={'!shadow-lg'}
@@ -57,15 +57,15 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
                             title="retour en haut" />
                     </div>}
                 {closeBtn &&
-                    <div className={`${(hideNavBottom && !haveTitle && !form) ? '-bottom-14 ' : 'top-1.5 left-6'} flex flex-1 absolute z-[9999]  left-1 `}>
+                    <div className={`${(hideNavBottom && !haveTitle && !form) ? '-bottom-14 ' : 'top-1 left-6'} flex flex-1 absolute z-[9999]  left-1 `}>
                         <Icon
                             reverse={hideNavBottom && !haveTitle && !form}
-                            style={(hideNavBottom && !form) ? "shadow" : ""}
-                            bg={(hideNavBottom && !form)}
+                            style={(hideNavBottom && !haveTitle && !form) ? "shadow" : ""}
+                            bg={(hideNavBottom && !haveTitle && !form)}
                             icon={(hideNavBottom && !haveTitle) ? "close" : "arrow_back"}
                             color={color ?? 'gray'
                             }
-                            size={(hideNavBottom && !form) ? "2xl" : "xl"}
+                            size={(hideNavBottom && !haveTitle && !form) ? "2xl" : "xl"}
                             fill
                             link={goBack}
                             title={"retour " + goBack?.replace("/", "")}
