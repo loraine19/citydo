@@ -25,9 +25,9 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
                 {(!hideNavBottom || !navIcons) &&
                     <div className={`flex flex-1 h-full w-full items-center 
                     ${hideImage ? '' : 'bg-white shadow-md rounded-3xl animRev mb-1 p-1 gap-2 border border-slate-400/40'}`}>
-                        <div className={`text-center justify-center
+                        <div className={`text-center justify-center 
                         ${closeBtn ? ' truncate ' : ''} flex flex-1 md3-${color}-outlined h-[30px] rounded-full items-center`}>
-                            <span className={`capitalize font-medium `}>{qty} {type}</span>
+                            <span className={`capitalize font-normal`}>{qty} {type}</span>
                             <span className="hidden sm:inline-block !lowercase !font-normal opacity-75">
                                 &nbsp;{place ?? ""}
                             </span>

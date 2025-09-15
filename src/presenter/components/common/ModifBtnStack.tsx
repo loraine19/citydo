@@ -27,6 +27,7 @@ export default function ModifBtnStack({ actions, disabled1, disabled2, update, i
             title: buttons[index]?.title as string,
             element: buttons[index]?.body as string,
             confirmString: 'Confirmer',
+            disableConfirm: false,
         });
     }, [index]);
 
@@ -47,7 +48,7 @@ export default function ModifBtnStack({ actions, disabled1, disabled2, update, i
 
                         key={i}
                         icon={btn.iconImage as string || ''}
-                        color={color}
+                        color={color ?? 'slate'}
                         onClick={() => { setOpen(true); setIndex(i); }}
                         bg
                         size="lg"

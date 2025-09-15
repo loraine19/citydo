@@ -10,7 +10,6 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
     const { title, element, disableConfirm = false, confirmString, button2, isOpen, close, notif, disableCancel } = values;
     const { open, setOpen } = useAlertStore(state => state)
     const { color } = useUxStore(state => state)
-
     const { reset } = useAlertStore(state => state)
 
 
@@ -56,11 +55,11 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                                 }}>
                                 {button2.text ?? '-'}
                             </Button>}
-                        {!disableConfirm && <Button
+                        <Button
                             type="button"
                             disabled={notif ? true : false}
                             size='lg'
-                            className={`btn ${color ?? 'slate'}StyleInv `}
+                            className={`btn ${color ?? 'slate'}StyleInv ${disableConfirm ? ' hidden' : ''} `}
                             onClick={() => {
                                 values.handleConfirm && values.handleConfirm();
                                 close && close() || setOpen(false);
@@ -68,7 +67,7 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                             }
                             }>
                             {confirmString || 'OK'}
-                        </Button>}
+                        </Button>
                     </CardFooter>
                 </Card></div>
         </div>

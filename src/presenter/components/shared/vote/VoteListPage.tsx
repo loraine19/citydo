@@ -234,8 +234,10 @@ export default function VoteListPage() {
                     className={"Grid " + (!compact ? ' GridCompact' : '')}>
                     {poolsSurveys.map((element: PoolSurveyView, index: number) =>
                         element.type === VoteTarget.SURVEY ?
-                            <div className="SubGrid" key={'div' + index}>
+                            <div className="SubGrid"
+                                key={'div' + index}>
                                 <SurveyCard
+                                    autoFit={!compact}
                                     survey={element}
                                     key={index}
                                     change={() => {

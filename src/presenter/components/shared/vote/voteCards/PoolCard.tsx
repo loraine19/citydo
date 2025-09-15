@@ -53,7 +53,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                 imagePosition="top"
                 link={`/cagnotte/${pool?.id}`}
             >
-                <CardMD.Chips className="justify-between flex-nowrap -mr-1">
+                <CardMD.Chips className="justify-between flex-wrap">
                     <div className="md3-card-chips overflow-hidden !py-0">
                         <button onClick={change}>
                             <Chip
@@ -82,7 +82,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                     <Link to={`/cagnotte/${pool?.id}`}>{pool?.title}</Link>
                 </CardMD.Headline>
                 <CardMD.Media className="h-full flex-1 justify-between gap-2">
-                    <div className="grid  flex-1 ">
+                    <div className="grid truncate flex-1 ">
                         <ProfileDiv
                             divRef={divRef}
                             profile={pool?.UserBenef || {} as Partial<User>}
@@ -97,7 +97,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                         value={pool?.pourcent}
                         max={100}
                         label={
-                            <div className="md3-card-supporting-text -mb-2 justify-between flex-row">
+                            <div className="md3-card-supporting-text  justify-between flex-row">
                                 {pool?.status !== PoolSurveyStatus.PENDING ?
                                     <span>Cagnotte cloturée</span> :
                                     <>

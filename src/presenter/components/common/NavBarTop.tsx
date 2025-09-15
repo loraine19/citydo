@@ -140,14 +140,14 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                     {/* INSERTION NAVLINK TOP  */}
                     {(!navBottom && navIcons && !hideNavBottom) &&
                         <div onMouseEnter={() => { }}
-                            className="lg:pr-6 pr-4 pl-1.5 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
+                            className="lg:pr-6 pr-3 pl-1.5   w-full h-full overflow-hidden flex justify-center items-center">
                             <NavBarSection
                                 addBtn={addBtn} />
                         </div>
                     }
 
                     {/* NOTIF BAGDES  */}
-                    <div className={`justify-end items-center flex h-full pl-1 
+                    <div className={`justify-end items-center flex h-full  
                     ${hideNavBottom ? 'hidden' : ''} 
                     ${navBottom ? ' w-max' : ''}`} >
                         <NotifBadge />

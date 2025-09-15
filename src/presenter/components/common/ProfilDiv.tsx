@@ -24,7 +24,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
             key={profile?.userId + size}
             className={size === 'xl' ? '-ml-4' : '-ml-4 '}
             menuRef={divRef}
-            closeIcon={size === 'xl' ? null : ' '}
+            closeIcon={size === 'xl' ? ' ' : ' '}
             placement={size === 'xl' ? "center_end" : "center_start"}
             trigger={
                 <div className="flex items-center gap-2 ">

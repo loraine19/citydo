@@ -21,10 +21,11 @@ type SurveyCardProps = {
     change: () => void,
     mines?: boolean,
     update: () => void,
-    vote: (target: AlertValues) => void
+    vote: (target: AlertValues) => void,
+    autoFit?: boolean
 }
 
-export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardProps) {
+export function SurveyCard({ survey, change, mines, update, vote, autoFit }: SurveyCardProps) {
     const end = new Date(new Date(survey?.createdAt).getTime() + 15 * dayMS)
     const ended: boolean = survey?.status !== PoolSurveyStatus.PENDING
     const deleteSurvey = async (id: number) => await DI.resolve('deleteSurveyUseCase').execute(id)
@@ -44,7 +45,7 @@ export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardPr
 
 
             <CardMD
-                autoFit
+                autoFit={autoFit}
                 className="min-h-full"
                 imagePosition="top"
                 link={`/sondage/${survey?.id}`}
@@ -66,7 +67,7 @@ export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardPr
                 }
             >
                 <CardMD.Chips className="justify-between">
-                    <div className="md3-card-chips overflow-auto !py-0">
+                    <div className="md3-card-chips flex-wrap !py-0">
                         <button onClick={() => change()}>
                             <Chip
                                 value="Sondage"
@@ -93,37 +94,31 @@ export function SurveyCard({ survey, change, mines, update, vote }: SurveyCardPr
                     <Title title={survey?.title} />
                 </CardMD.Headline>
                 <CardMD.Media>
-                    {!mines ? (
-                        <ProgressBar
-                            color="orange"
-                            size='xxsmall'
-                            variant={survey?.pourcent >= 100 ? 'linear' : 'wavy'}
-                            className=" pb-2 lg:pb-2"
-                            value={survey?.pourcent}
-                            max={100}
-                            label={
-                                <div className="md3-card-supporting-text justify-between flex-row">
-                                    {survey?.status !== PoolSurveyStatus.PENDING ?
-                                        <span>Sondage cloturé</span> :
-                                        <>
-                                            <span>
-                                                {survey?.Votes.length} vote{survey?.Votes.length > 1 ? 's ' : ' '}  pour {survey?.pourcent >= 100 ? ' approuvé' : ''}</span>
-                                            <span className="opacity-50"> / &nbsp;
-                                                {survey?.needed}
-                                            </span>
-                                        </>
+                    <ProgressBar
+                        color="orange"
+                        size='xxsmall'
+                        variant={survey?.pourcent >= 100 ? 'linear' : 'wavy'}
+                        className=" pb-2 lg:pb-2"
+                        value={survey?.pourcent}
+                        max={100}
+                        label={
+                            <div className="md3-card-supporting-text pb-1 justify-between flex-row">
+                                {survey?.status !== PoolSurveyStatus.PENDING ?
+                                    <span>Sondage cloturé</span> :
+                                    <>
+                                        <span>
+                                            {survey?.Votes.length} vote{survey?.Votes.length > 1 ? 's ' : ' '}  pour {survey?.pourcent >= 100 ? ' approuvé' : ''}</span>
+                                        <span className="opacity-50"> / &nbsp;
+                                            {survey?.needed}
+                                        </span>
+                                    </>
 
-                                    }
-                                </div>}
+                                }
+                            </div>}
 
-                        />
-                    ) : (
-                        <ModifBtnStack
-                            disabled2={ended}
-                            actions={actions}
-                            update={update}
-                        />
-                    )}
+                    />
+
+
                 </CardMD.Media>
                 <CardMD.Footer className="flex items-center">
                     {!mines ? (

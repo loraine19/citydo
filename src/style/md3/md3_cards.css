@@ -70,7 +70,7 @@
 }
 
 .md3-card-headline {
-    @apply text-[1.1rem] sm:text-[1.125rem] md:text-[1.2rem];
+    @apply text-[1.1rem] sm:text-[1.125rem] md:text-[1.2rem] line-clamp-2;
     font-weight: 600;
     padding: 0 var(--md3-spacing-medium);
     color: var(--md3-on-surface);
