@@ -59,12 +59,13 @@
 }
 
 .md3-card-content {
-    @apply gap-2   justify-between;
+    @apply gap-2 justify-between;
     padding: var(--md3-spacing-sm) 0;
     display: flex;
     flex-direction: column;
     min-height: fit-content;
     flex: 1;
+    height: 100%;
     overflow: hidden;
 }
 

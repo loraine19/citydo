@@ -19,7 +19,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
     }
 
     return (
-        <div className={`flex flex-col relative -ml-4 h-full w-[calc(100%_+_2rem)] ]`}>
+        <div className={`flex flex-col pb-1 relative -ml-4 h-full w-[calc(100%_+_2rem)] ]`}>
             {/* TITLE DIV  */}
             <div className={`flex w-full h-full px-4 flex-1  gap-x-2 justify-end lg:justify-between`}>
                 {(!hideNavBottom || !navIcons) &&
@@ -49,7 +49,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
                             key={type + 'top'}
                             style={'!shadow-lg'}
                             reverse
-                            icon="arrow_upward_alt"
+                            icon="vertical_align_top"
                             color={color ?? 'gray'}
                             size="2xl"
                             fill bg
@@ -57,11 +57,11 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
                             title="retour en haut" />
                     </div>}
                 {closeBtn &&
-                    <div className={`${(hideNavBottom && !haveTitle && !form) ? '-bottom-14 ' : 'top-0'} flex flex-1 absolute z-[9999]  left-0.5  `}>
+                    <div className={`${(hideNavBottom && !haveTitle && !form) ? '-bottom-14 ' : 'top-0'} flex flex-1 absolute z-[9999]  left-1 `}>
                         <Icon
                             reverse={hideNavBottom && !haveTitle && !form}
-                            style={(hideNavBottom && !haveTitle && !form) ? '!shadow-lg border-slate-900/10 ' : ''}
-                            bg={hideNavBottom && !haveTitle && !form}
+                            style={'!shadow border-slate-900/10 '}
+                            bg
                             icon={(hideNavBottom && !haveTitle) ? "close" : "arrow_back"}
                             color={color ?? 'gray'
                             }
@@ -75,7 +75,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
 
 
             </div>
-            <hr className={`${!hideImage ? 'hidden' : 'pb-1'} !border-${color}-500 border-b border-t-0 w-full !opacity-70 `} />
+            <hr className={`${!hideImage ? 'hidden' : 'pb-1'} !border-${color}-500 border-b border-t-0 w-full !opacity-30 `} />
         </div>
     )
 }
