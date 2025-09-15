@@ -5,16 +5,15 @@ import { useNotificationStore } from "../../../application/stores/notification.s
 import { useUxStore } from "../../../application/stores/ux.store";
 import { Fab, FabMenu } from "../shared/base/baseComps/Fabs";
 import { Md3Colors } from "../shared/base/baseComps/Buttons";
+import { useState } from "react";
 
 interface NavBarProps {
     handleClick?: () => void;
     addBtn?: boolean;
     color?: string;
-    openBlur?: boolean;
-    setOpenBlur: (open: boolean) => void;
 }
 
-export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpenBlur }) => {
+export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
     const location = useLocation()
     const type = new URLSearchParams(location.pathname.split("/")[1]).toString().replace("=", '');
     const { } = useNotificationStore((state) => state);
@@ -95,6 +94,8 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
         }
     ]
 
+    const [openFab, setOpenFab] = useState(false);
+
 
     return (
         <>
@@ -102,7 +103,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim bg-opacity-90 wRespXL justify-between gap-[5%] md:gap-6  px-2 lg:!px-0 ` :
+                    `items-center opacity-100 anim bg-opacity-90 wRespXL justify-between gap-[5%] md:gap-6  px-2 lg:!px-0 pb-1 ` :
                     'z-0 md:gap-4 gap-3 pr-2 pt-1 ') +
                 ` flex z-30 w-full `
             }>
@@ -116,7 +117,6 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                         {navItems.map(({ to, icon, label, color }: NavItem, index) => (
                             <Typography
                                 onClick={() => {
-                                    setOpenBlur(false);
                                     setColor(color.col)
                                 }}
                                 key={index}
@@ -125,9 +125,9 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                                 <NavLink
                                     to={to}
                                     className={({ isActive }) =>
-                                        `flex gap-2 lg:gap-3 justify-center lg:justify-start items-center w-full h-full rounded-full 
+                                        `flex gap-2 lg:gap-1 justify-center lg:justify-start items-center w-full h-full rounded-full 
                                             ${navBottom ? ` px-[8px] py-[4px] ` : 'opacity-90'}
-                                            ${(isActive && navBottom) ? `z-50 ${color.col}Style border animSlide !px-[5.5px]` :
+                                            ${(isActive && navBottom) ? `${color.col}Style border animSlide !px-[5.5px] md:!pl-[24px]` :
                                             (isActive && !navBottom) ? ` border-b-[1px] px-1 md:border-none rounded-none !border-current !opacity-100 ` :
                                                 isActive ? `  ` : '!shadow-none '}`
                                     }>
@@ -160,12 +160,13 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                     </ul>
                 </Navbar>
                 <FabMenu
-                    open={openBlur}
-                    setOpen={setOpenBlur}
+                    backdropBlur={true}
+                    open={openFab}
+                    setOpen={setOpenFab}
                     mainProps={{
-                        className: `rounded-full -mr-2 ${navBottom ? '' : 'mt-0.5'}`,
+                        className: `rounded-full  `,
                         size: navBottom ? 'large' : 'small',
-                        icon: { icon: openBlur ? 'close' : 'edit', size: navBottom ? '2xl' : 'lg' },
+                        icon: { icon: openFab ? 'close' : 'edit', size: navBottom ? '2xl' : 'lg' },
                         color: color as Md3Colors ?? 'slate'
                     }}
                     placement={navBottom ? "top" : "bottom"}
@@ -180,8 +181,8 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn, openBlur, setOpen
                             icon={{ icon: icon, size: 'lg' }}
                             text={label}
                             onClick={() => {
-                                setOpenBlur(false);
                                 navigate(to);
+                                setOpenFab(false);
                             }} >
                             {label}
                         </Fab>

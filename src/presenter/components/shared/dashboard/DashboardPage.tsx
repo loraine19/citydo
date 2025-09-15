@@ -42,7 +42,7 @@ export default function DashboardPage() {
     const { notifsMap, isLoadingMap, refetchMap, countMap } = notifMapViewModelFactory();
 
     //// CLASSES
-    const userClasse = "flex row-span-3 lg:grid  animRev z-50 lg:min-h-full ";
+    const userClasse = "flex row-span-3 lg:grid  animRev  lg:min-h-full ";
     const eventClasse = "h-full flex !min-h-[14rem] row-span-5 lg:grid ";
     const notifClasse = " row-span-1  " + (notifs.length > 0 ? " min-h-[5rem]" : " min-h-[3rem]")
     const mapClasse = "flex row-span-7  !min-h-[14rem] lg:min-h-[32%] lg:grid ";
@@ -76,11 +76,14 @@ export default function DashboardPage() {
 
 
     return (
-        <main className={` lg:!-mt-0  !overflow-hidden 
+        <main
+
+            className={` lg:!-mt-0  !overflow-hidden 
             ${navBottom ? '-mt-6  !max-h-[calc(100dvh_-_7.5rem)] lg:!max-h-[calc(100dvh_-_8.5rem)] ' :
-                '!-mt-6 !max-h-[calc(100dvh_-_3.5rem)] lg:!max-h-[calc(100dvh_-_2rem)] '} `}
+                    '!-mt-6 !max-h-[calc(100dvh_-_3.5rem)] lg:!max-h-[calc(100dvh_-_2rem)] '} `}
             data-cy="dashboard-body" >
-            <div ref={divRef}
+            <div id='refDiv'
+                ref={divRef}
                 className={" px-[1%] flex-1 max-max overflow-auto flex flex-col lg:grid grid-cols-2 grid-rows-[auto_auto_auto_1fr_1fr_2fr_auto_auto] w-full gap-y-2 lg:gap-y-3 lg:gap-x-4 place-content-start pt-11 lg:pt-6 rounded-b-[1rem] lg:pb-6  pb-3 "}>
 
                 {/* USER CARD  */}
@@ -259,7 +262,7 @@ export default function DashboardPage() {
 
                 {/* CALENDARD CARD  */}
                 <div className={eventClasse}>
-                    <CardMD className=" min-h-full max-h-full !grid bg-gradient-to-t from-cyan-100 to-cyan-50 anim ">
+                    <CardMD className=" min-h-full max-h-full w-full bg-gradient-to-t from-cyan-100 to-cyan-50 anim ">
 
                         <CalendarComp logo={true} />
                     </CardMD>

@@ -7,7 +7,6 @@ import { AvatarUser } from "./AvatarUser";
 import { useUxStore } from "../../../application/stores/ux.store";
 import { NavBarSection } from "./NavLinks";
 import { useEffect, useState } from "react";
-import BackDropBlur from "../shared/base/baseComps/BackDropBlur";
 import { Menu, MenuItem } from "../shared/base/baseComps/Menu";
 
 export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolean, navIcons?: boolean, title?: boolean }) {
@@ -33,7 +32,6 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
 
     const [closeDial, setCloseDial] = useState<boolean>(false)
-    const [openBlur, setOpenBlur] = useState<boolean>(false)
 
     useEffect(() => {
         getColor(window.location.pathname);
@@ -56,28 +54,27 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                 </div>}
             <header>
 
-                {/*BLUR POP BACKGROUND */}
-                <BackDropBlur open={openBlur} setOpen={setOpenBlur} />
+
 
                 {/* CONTAINER */}
-                <div className={`wRespXL pl-2 !pb-1 pt-2  lg:px-0 slide h-full justify-between items-end 
+                <div
+                    className={`wRespXL pl-2 !pb-1 pt-2  lg:px-0 slide h-full justify-between items-end 
 
             ${(!navBottom || !navIcons) ? 'flex ' : 'flex'}
            
                 ${hideNavBottom ? ' flex animRev !py-0' : ' flex animRev pt-2 pb-2'}`} >
 
-                    <div className={`flex h-full ${hideNavBottom ? 'hidden' : ''}
+                    <div className={`flex h-full relative ${hideNavBottom ? 'hidden' : ''}
                          ${!navIcons || navBottom ? ' w-full  ' : ' w-max'} `}>
 
                         {/* PROFILE MENU  */}
                         <Menu
-                            onClose={() => { setOpenBlur(false); setCloseDial(true); }}
-                            placement="top"
+                            blurBack
+                            onClose={() => { setCloseDial(true); }}
+                            placement="center_top"
                             open={!closeDial}
-                            className="mt-2"
                             trigger={<div className="relative h-full justify-center max-w-max grid z-50 items-center !p-0">
                                 <div onClick={() => {
-                                    setOpenBlur(true);
                                     setCloseDial(false);
                                 }}>
                                     <div className='flex w-[3.2rem] flex-1 items-center'>
@@ -116,7 +113,6 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                                     onClick={() => {
                                         item.onClick && item.onClick();
                                         setCloseDial(false);
-                                        setOpenBlur(false);
                                     }}
                                     leadingIcon={
                                         <Icon
@@ -146,8 +142,6 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                         <div onMouseEnter={() => { }}
                             className="lg:pr-6 pr-4 pl-1.5 pb-0.5  w-full h-full overflow-hidden flex justify-center items-center">
                             <NavBarSection
-                                setOpenBlur={setOpenBlur}
-                                openBlur={openBlur}
                                 addBtn={addBtn} />
                         </div>
                     }

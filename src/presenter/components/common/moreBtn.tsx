@@ -62,8 +62,9 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
     return (
 
         <Menu
+            ref={false}
+            key={`more-menu-${id}`}
             className={className ?? ''}
-            menuRef={undefined}
             closeIcon={
                 <></>}
             open={isOpen}

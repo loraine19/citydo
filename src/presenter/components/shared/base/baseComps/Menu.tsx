@@ -16,6 +16,7 @@ interface MenuProps {
     menuRef?: React.RefObject<HTMLDivElement>;
     key?: string | number;
     fitMax?: boolean;
+    ref?: boolean;
 }
 
 export const Menu: React.FC<MenuProps> = ({
@@ -30,27 +31,32 @@ export const Menu: React.FC<MenuProps> = ({
     blurBack = false,
     menuRef,
     fitMax,
+    ref,
     key
 }) => {
     const [internalOpen, setInternalOpen] = useState(false);
     const isControlled = controlledOpen !== undefined && setOpen !== undefined;
     const open = isControlled ? controlledOpen : internalOpen;
     const placementAll: string[] = placement.split('-');
+    const menuRefAuto = useRef<HTMLDivElement>(null);
 
-    const menuRefAuto = useRef<HTMLDivElement>();
     useEffect(() => {
         if (menuRefAuto.current) {
+            console.log('test')
             const refDiv = document.getElementById('refDiv');
-            if (refDiv) {
+            if (refDiv && ref) {
                 refDiv.appendChild(menuRefAuto.current);
             }
         }
-    }, [menuRefAuto]);
+        console.log("menuRefAuto", menuRefAuto, menuRef);
+    }, []);
+
     const triggerRef = useRef<HTMLDivElement>(null);
     const menuCurrent = useRef<HTMLDivElement>(null);
     const triggerHeight = triggerRef?.current?.offsetHeight ?? 0;
     const triggerWidth = triggerRef.current?.offsetWidth ?? 24;
     const menuWidth = ((menuCurrent?.current?.offsetWidth ?? 180) + triggerWidth).toString();
+    const ml = ((menuCurrent?.current?.offsetWidth ?? 180) / 2).toString();
     const mt = ((menuCurrent?.current?.offsetHeight ?? 180) * 1 + triggerHeight * 1.5).toString();
 
 
@@ -69,7 +75,7 @@ export const Menu: React.FC<MenuProps> = ({
             if (placementAll.includes('up')) style.bottom = '100%';
             if (placementAll.includes('center')) {
                 style.left = '50%';
-                style.transform = 'translateX(-50%)';
+                style.marginLeft = `-${ml}px`;
             }
             if (placementAll.includes('center_end')) {
                 style.translate = `0 -${triggerHeight}px`;
@@ -81,6 +87,9 @@ export const Menu: React.FC<MenuProps> = ({
             }
             if (placementAll.includes('center_bottom')) {
                 style.marginLeft = `-${menuWidth}px`;
+            }
+            if (placementAll.includes('center_top')) {
+                style.top = '0%'
             }
             setMenuStyle(style);
         } else {
@@ -131,12 +140,12 @@ export const Menu: React.FC<MenuProps> = ({
             <div
                 key={key}
                 data-md3-menu
-                className={`md3-menu-container  ${(menuRef || menuRefAuto) ? "" : "relative"}`}>
-                {trigger && React.cloneElement(
+                className={`md3-menu-container  ${(menuRef || menuRefAuto) ? "" : "relative"} `}>
+                {(trigger) && React.cloneElement(
                     trigger as React.ReactElement,
 
                     {
-                        ref: triggerRef,
+                        ref: ref ? triggerRef : undefined,
                         onClick: handleTriggerClick,
                         'aria-haspopup': 'menu',
                         'aria-expanded': open,
@@ -144,9 +153,9 @@ export const Menu: React.FC<MenuProps> = ({
                 )}
                 {
                     <div data-md3
-
-                        ref={menuRef}
-                        style={{ ...menuStyle, maxWidth: fitMax ? `${triggerWidth}px` : '300px' }}
+                        key={key}
+                        ref={menuRef || menuRefAuto}
+                        style={{ ...menuStyle, maxWidth: fitMax ? `${triggerWidth}px` : '' }}
                         className={` 
                     ${className || ""}
                   

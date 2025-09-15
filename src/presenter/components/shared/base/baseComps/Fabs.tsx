@@ -1,6 +1,7 @@
 import { ButtonHTMLAttributes, ReactNode, useState } from "react";
 import { Button, Md3Colors, Md3Sizes, Md3Variants } from "./Buttons";
 import { IconProps } from "../../../common/IconComp";
+import BackDropBlur from "./BackDropBlur";
 
 interface FabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     size?: 'small' | 'large' | 'medium' | 'xlarge' | 'extended';
@@ -34,10 +35,11 @@ interface FabMenuProps {
     placement?: 'start' | 'end' | 'top' | 'bottom';
     open?: boolean;
     setOpen?: (open: boolean) => void;
+    backdropBlur?: boolean;
 }
 
 //md3-fab-container z-50 md3-fab-container-${placement}
-export const FabMenu: React.FC<FabMenuProps> = ({ mainProps, children, placement, className, open, setOpen }) => {
+export const FabMenu: React.FC<FabMenuProps> = ({ mainProps, children, placement, className, open, setOpen, backdropBlur }) => {
     const [isOpen, setIsOpen] = useState(false);
     const size = mainProps?.size || 'medium';
 
@@ -46,21 +48,26 @@ export const FabMenu: React.FC<FabMenuProps> = ({ mainProps, children, placement
 
 
             <div className={`md3-fab-${size} ${mainProps?.className || ''}`}>
-
                 <div className={`md3-fab-container md3-fab-${size} ${className || ''} `}>
-                    <div className={` md3-fab-menu-container md3-fab-menu-container-${placement}
-                    ${isOpen ? " md3-menu-enter " : " md3-menu-leave  "}`}>
-                        {children}
+                    <div className={` md3-fab-menu-container md3-fab-menu-container-${placement} 
+                    ${isOpen ? 'open md3-menu-enter' : 'md3-menu-leave'}
+                    
+                    `}> {children}
                     </div>
+
                     <Fab {...mainProps}
                         onClick={() => {
                             setIsOpen(!isOpen);
                             setOpen && setOpen(!open)
                         }} />
                 </div>
-
-
             </div>
+            {backdropBlur &&
+                <BackDropBlur
+                    open={isOpen}
+                    setOpen={setIsOpen}
+                    className="z-0" />}
+
 
         </>
 

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Popover, PopoverContent, PopoverTrigger, Typography } from '@material-tailwind/react';
 import { EventCard } from '../shared/event/eventComps/EventCard';
 import { Icon } from './IconComp';
 import DI from '../../../di/ioc'
@@ -8,8 +7,9 @@ import { getLabel } from '../../views/viewsEntities/utilsService';
 import { eventCategories } from '../../constants';
 import { EventStatus } from '../../../domain/entities/Event';
 import { CardMD } from '../shared/base/baseComps/Cards';
+import { Menu } from '../shared/base/baseComps/Menu';
 
-export default function CalendarCompLarge(props: { logo?: boolean }) {
+export default function CalendarCompLarge(props: { logo?: boolean, divRef?: React.RefObject<HTMLDivElement> }) {
     const { logo } = props || {}
     const [numberOfwweks, setNumberOfwweks] = useState<number>(2)
     const [startDateBackup] = useState<Date>(new Date().getDay() > 0 ? new Date() : new Date(new Date().getTime() - 1 * dayMS));
@@ -50,10 +50,8 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                             link="/evenement"
                             size="md"
                             title='Voir tous les événements' />
-                        <div>
-                            <Typography className="hidden lg:flex pl-2">
-                                Évenements
-                            </Typography>
+                        <div className="hidden lg:flex pl-2">
+                            Évenements
                         </div>
                     </div>}
 
@@ -61,17 +59,16 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
 
                 {/* DAY SETTING */}
                 <div className={`flex flex-1 justify-center gap-1 items-center font-normal text-sm `}>
-                    <Typography>jour</Typography>
+                    jour
                     <Icon
                         icon='do_not_disturb_on'
                         size='sm'
                         onClick={removeCol} />
-                    <Typography
-                        as='button'
+                    <button
                         onClick={resetCol}
-                        className='!font-extralight underline underline-offset-4 pt-0.5'>
+                        className='!px-2'>
                         {col}
-                    </Typography>
+                    </button>
                     <Icon
                         icon='add_circle'
                         size='sm'
@@ -86,12 +83,12 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                             icon='do_not_disturb_on'
                             size='sm'
                             onClick={() => setNumberOfwweks(numberOfwweks > 1 ? numberOfwweks - 1 : 1)} />
-                        <Typography as='button'
-                            className='!font-extralight underline underline-offset-4 text-base pt-0.5'
+                        <button
+                            className='px-2'
                             onClick={() => setNumberOfwweks(2)}>
                             {numberOfwweks}
 
-                        </Typography>
+                        </button>
                         <Icon
                             icon='add_circle'
                             size='sm'
@@ -100,17 +97,16 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
 
 
                 {/* DATE NAVIGATION */}
-                <div className='flex flex-1 justify-end items-center'>
+                <div className='flex flex-1 justify-end items-center font-normal'>
                     <Icon
                         icon='arrow_back_ios'
                         size='sm'
                         onClick={removeWeek} />
-                    <Typography
-                        as='button'
+                    <button
                         onClick={resetWeek}
-                        className='!font-extralight !text-slate-600/80 underline underline-offset-4 pt-1'>
+                        className='px-2 font-normal text-sm'>
                         {(new Date().toLocaleDateString('fr-FR', { weekday: 'short', month: 'numeric', day: 'numeric' }))}
-                    </Typography>
+                    </button>
                     <Icon
                         icon='arrow_forward_ios'
                         size='sm'
@@ -147,7 +143,7 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                                 className={`grid rounded-xl h-full overflow-auto pb-3 !border border-slate-200 !bg-slate-200/50
                                 ${colClass[col - 1]}`}>
                                 {week.map((day: any, index: number) =>
-                                    <div className={`flex flex-col text-center h-full  border-r border-slate-100/50  `}
+                                    <div className={`flex flex-col text-center h-full border-r border-slate-100/50  `}
                                         key={index}>
                                         <p className={`${new Date(day.date).toDateString() === new Date().toDateString() && '!text-orange-500  underline underline-offset-4 text-font-bold'} 'w-full !text-xs pt-0  min-h-4 sticky top-0 text-center bg-slate-100`}>
                                             {day.date.toLocaleDateString('fr-FR', { weekday: 'narrow', month: 'numeric', day: 'numeric' })}
@@ -157,44 +153,37 @@ export default function CalendarCompLarge(props: { logo?: boolean }) {
                                                 const eventDays = event.days.map((d: any) => new Date(d).toDateString());
                                                 const currentDay = new Date(new Date(day.date).getTime()).toDateString();
                                                 return (
-                                                    <div key={indexEvent} className='w-full rounded-xl  '>
-                                                        <Popover
-                                                            open={open && popId === event.id + day.date} >
-                                                            <button
-                                                                data-cy='event-handler'
-                                                                title={'Voir événement' + ' ' + event.title}
-                                                                className=' w-full rounded-xl'
-                                                                onClick={() => { setOpen(true); setPopId(event.id + day.date) }}>
-                                                                <PopoverTrigger className='w-full'>
+                                                    <div key={indexEvent} className='w-full grid rounded-xl  '>
+                                                        <Menu
+                                                            blurBack
+                                                            placement='center'
+                                                            open={open && popId === event.id + day.date}
+                                                            trigger={
+                                                                <button
+                                                                    data-cy='event-handler'
+                                                                    title={'Voir événement' + ' ' + event.title}
+                                                                    className=' min-w-full rounded-xl'
+                                                                    onClick={() => { setOpen(true); setPopId(event.id + day.date) }}
+                                                                >
+
                                                                     <div
                                                                         className=
                                                                         {`${!event.actif && 'invisible'} 
-                                                                             ${event.status !== EventStatus.VALIDATED ? `!bg-slate-400/80` : `bg-cyan-500`} shadow-md px-[0.5rem] mb-[0.2rem]  text-white h-5 truncate flex items-center justify-center font-normal z-50 
+                                                                             ${event.status !== EventStatus.VALIDATED ? `!bg-slate-400/80` : `bg-cyan-500`} shadow-md px-[0.5rem] mb-[0.2rem]  text-white h-5 truncate flex items-center justify-center font-normal z-50  w-full
                                                         text-[0.80rem]
                                                         ${(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) ? 'rounded-l-xl !justify-start !z-50 pl-4 !font-medium capitalize' : 'italic text-opacity-70'}
                                                         ${(eventDays[eventDays.length - 1] === currentDay || new Date(day.date).getDay() === 0) && 'rounded-r-xl '}
                                                     `}>
                                                                         {(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) ? getLabel(event.category, eventCategories) + '...' : `Jour ${eventDays.indexOf(currentDay) + 1}`}
                                                                     </div>
-                                                                </PopoverTrigger>
-                                                            </button>
-                                                            <PopoverContent
-                                                                className='bg-transparent backdrop-blur 
-                                                                h-[calc(100vh-8rem)] w-screen flex items-center justify-center
-                                                                !absolute  shadow-none z-40 border-none p-0 !top-[4rem] !-translate-x-[0%]  flex-col'>
-                                                                <div className=' p-4 flex flex-col gap-6 items-end'>
-                                                                    <Icon
-                                                                        fill
-                                                                        title='Fermer'
-                                                                        icon="cancel"
-                                                                        size="3xl"
-                                                                        onClick={() => setOpen(false)}
-                                                                        style='' />
-                                                                    <EventCard event={event} change={() => { }} />
+                                                                </button>}>
 
-                                                                </div>
-                                                            </PopoverContent>
-                                                        </Popover>
+
+                                                            <EventCard
+                                                                event={event}
+                                                                change={() => { }} />
+
+                                                        </Menu>
                                                     </div>
                                                 )
                                             })}

@@ -8,7 +8,6 @@
 .md3-button {
     @apply flex items-center justify-center;
     justify-content: center;
-    min-width: 64px;
     padding: 0 24px;
     border-radius: var(--md3-radius-full);
     font-weight: 600;
@@ -46,6 +45,22 @@
     min-width: 80px;
     padding: 0 32px;
     font-size: 1rem;
+}
+
+.md3-button-small-round {
+    height: 32px;
+    width: 32px;
+    padding: 0;
+}
+.md3-button-medium-round {
+    height: 40px;
+    width: 40px;
+    padding: 0;
+}
+.md3-button-large-round {
+    height: 48px;
+    width: 48px;
+    padding: 0;
 }
 
 /* -----------------------------------------------------------
@@ -91,8 +106,8 @@
     background-color: transparent;
     color: var(--md3-primary);
     padding: 0 12px;
-    height: 36px;
 }
+
 .md3-button-text:hover {
     @apply md3-button-hover-colorize;
 }

@@ -21,6 +21,7 @@ export const WithBottomPages = ({ addBtn }: { addBtn?: boolean }) => {
             <Outlet />
             <NavBarBottom addBtn={addBtn} />
 
+
         </>)
 }
 

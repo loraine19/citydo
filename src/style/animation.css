@@ -31,10 +31,12 @@
 }
 @keyframes slide {
     from {
-        transform: translateX(-90%);
+        transform: translateX(-100%);
+        opacity: 0;
     }
     to {
         transform: translateX(0);
+        opacity: 1;
     }
 }
 @keyframes slideOut {
@@ -168,7 +170,7 @@
 }
 
 .animSheet {
-    @apply duration-1000;
+    @apply duration-700;
 
     animation: upSheet 2s forwards, fadeIn 2s forwards;
 }
@@ -180,7 +182,7 @@
 
 @keyframes upSheet {
     from {
-        transform: translateY(2%);
+        transform: translateY(20%);
         height: 100%;
     }
     to {
@@ -191,7 +193,7 @@
 
 @keyframes downSheet {
     from {
-        transform: translateY(-2%);
+        transform: translateY(10%);
         height: 100%;
     }
     to {

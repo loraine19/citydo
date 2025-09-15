@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 
 interface BackDropBlurProps {
     open?: boolean;
@@ -11,20 +12,25 @@ const BackDropBlur: React.FC<BackDropBlurProps> = ({
     open,
     setOpen,
     className = "",
-    children
+    children,
 }) => {
-    return (
-        open && (
-            <div
-                className={`fixed inset-0 z-0 backdrop-blur animRev ${className}`}
-                onClick={() => setOpen && setOpen(!open)}
-                style={{}}
-            >
+    if (!open) return null;
 
-                {children}
-            </div>)
+    if (typeof window === "undefined") return null;
 
-    )
-}
+    const root = document.getElementById("refDiv");
+    if (!root || !root.parentNode) return null;
+
+    return ReactDOM.createPortal(
+        <div
+            className={`fixed inset-0 z-0 backdrop-blur animate-fade ${className}`}
+            onClick={() => setOpen && setOpen(false)}
+            style={{}}
+        >
+            {children}
+        </div>,
+        root.parentNode as Element
+    );
+};
 
 export default BackDropBlur;
