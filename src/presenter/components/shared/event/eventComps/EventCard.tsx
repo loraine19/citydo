@@ -63,13 +63,15 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                             data-cy={`chip-${label}`}
                             size='sm'
                             value={label}
-                            className="rounded-full h-max cyanChip" />
+                            color='cyan'
+                            className="rounded-full h-max " />
                     </button>
-                    {new Date(end).getTime() > Date.now() && <DateChip
-                        start={start}
-                        end={end}
-                        ended={new Date(end).getTime() < Date.now()}
-                        prefix=" j-" />}
+                    {new Date(end).getTime() > Date.now() &&
+                        <DateChip
+                            start={start}
+                            end={end}
+                            ended={new Date(end).getTime() < Date.now()}
+                            prefix=" j-" />}
                     <Chip
                         size="sm"
                         value={eventDateInfo.start}
@@ -93,7 +95,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                     max={participantsMin || 10}
                     color="cyan"
                     label={
-                        <div className="md3-card-supporting-text justify-between flex-row">
+                        <div className="md3-card-supporting-text pb-1 justify-between flex-row">
                             <span>
                                 {event.Participants.length} participant{event.Participants.length > 1 ? 's' : ''}
                             </span>

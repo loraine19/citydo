@@ -1,9 +1,10 @@
 import { Chip as ChipMt } from "@material-tailwind/react";
+import { Md3Colors } from "../../shared/base/baseComps/Buttons";
 
 // On définit les props classiques d'un input
 type ChipProps = {
     variant?: 'solid' | 'outline' | 'ghost'
-    color?: string
+    color?: Md3Colors
     value?: string | number,
     icon?: React.ReactNode,
     className?: string,
@@ -12,11 +13,12 @@ type ChipProps = {
 
 
 const Chip: React.FC<ChipProps> = ({
-    variant = 'solid',
+    variant = 'container',
     value,
     icon,
     className,
-    size
+    size,
+    color = 'slate'
 }) => {
 
 
@@ -24,8 +26,7 @@ const Chip: React.FC<ChipProps> = ({
         <div className="Chip !p-0 !bg-slate-100">
             <ChipMt
                 size={size}
-                className={`flex  !shadow-none items-center justify-center !max-h-max h-full !rounded-full ${className}`}
-                variant={variant} >
+                className={`flex Chip !shadow-none items-center justify-center !max-h-max h-full !rounded-full md3-${color}-${variant} ${className}`} >
                 {icon &&
                     <ChipMt.Icon className="stroke w-max px-1 ">
                         {icon}

@@ -9,13 +9,13 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
     const dateClass = (() => {
         switch (true) {
             case endDays >= 14:
-                return "greenChip";
+                return "green";
             case endDays >= 4 && endDays <= 7:
-                return "orangeChip";
+                return "orange";
             case endDays <= 4 && endDays >= 1:
-                return "redChip";
+                return "error";
             default:
-                return "Chip";
+                return "slate";
         }
     })();
     const value = (() => {
@@ -41,7 +41,7 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
             <Chip
                 size="sm"
                 value={value}
-                className={`${dateClass} rounded-full w-max h-max lowercase`}>
+                color={dateClass}>
             </Chip>
         </div>
     )

@@ -69,7 +69,7 @@ export default function SelectSearch(props: selectSearchProps) {
                     data-cy="input-search"
                     type="search"
                     placeholder="Rechercher"
-                    className={`md3-${color}-container hover:brightness-90 focus:backdrop-brightness-90 pb-0 pt-0.5 rounded-full min-h-8 px-4 w-full`}
+                    className={`md3-${color}-container hover:bg-slate-50/50 focus:bg-slate-50/80 pb-0 pt-0.5 rounded-full min-h-8 px-4 w-full placeholder:!text-current`}
                     key={searchCat.value}
                     value={searchCat.label}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

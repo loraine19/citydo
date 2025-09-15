@@ -59,7 +59,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                             <Chip
                                 value="Cagnotte"
                                 size="sm"
-                                className="!px-3 min-w-max rounded-full h-max orangeChip"
+                                color={"orange"}
                             />
                         </button>
                         <DateChip

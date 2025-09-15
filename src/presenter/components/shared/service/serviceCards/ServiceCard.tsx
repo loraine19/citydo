@@ -14,6 +14,7 @@ import Chip from "../../../common/adaptatersComps/Chip";
 import { CardMD } from "../../base/baseComps/Cards";
 import { GroupLink } from "../../../common/GroupLink";
 import { MoreButton } from "../../../common/moreBtn";
+import { Md3Colors } from "../../base/baseComps/Buttons";
 
 
 type ServiceProps = { service: ServiceView, mines?: boolean, change: (e: React.MouseEvent<HTMLButtonElement>) => void, update?: () => void, compact?: boolean }
@@ -29,11 +30,11 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
 
     const statusColor = (step: ServiceStep): { color: string } => {
         switch (step) {
-            case ServiceStep.STEP_1: return { color: "orangeChip" };
-            case ServiceStep.STEP_2: return { color: "greenChip" };
-            case ServiceStep.STEP_3: return { color: "grayChip" };
-            case ServiceStep.STEP_4: return { color: "redChip" };
-            default: return { color: "Chip" };
+            case ServiceStep.STEP_1: return { color: "orange" };
+            case ServiceStep.STEP_2: return { color: "green" };
+            case ServiceStep.STEP_3: return { color: "slate" };
+            case ServiceStep.STEP_4: return { color: "error" };
+            default: return { color: "slate" };
         }
     }
 
@@ -99,9 +100,10 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                             change(cat as any);
                         }}>
                         <Chip
+                            color='sky'
                             size="sm"
                             value={`${categoryS}`}
-                            className="rounded-full h-max truncate skyChip shadow"
+                            className="rounded-full h-max truncate  shadow"
                         />
                     </button>
 
@@ -113,7 +115,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                         <Chip
                             size="sm"
                             value={typeS}
-                            className={`rounded-full h-max ${typeS === ServiceType.GET ? "orangeChip" : "greenChip"} shadow`}
+                            color={typeS === ServiceType.GET ? "orange" : "green"}
                         />
 
                     </button>
@@ -121,7 +123,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                     <Chip
                         size="sm"
                         value={statusS}
-                        className={`rounded-full h-max ${statusColor(statusS as ServiceStep).color} shadow`}
+                        color={statusColor(statusS as ServiceStep).color as Md3Colors}
                     /></div>
                 <MoreButton
                     id={id}
@@ -164,11 +166,12 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                 )}
                 <Chip
                     size="md"
+                    color='slate'
                     value={`${points.join(' à ')} pts`}
-                    className={`py-1 flex grayChip ${mines && 'hidden md:flex'}`}
+                    className={`py-0 flex  ${mines && 'hidden md:flex'}`}
                     icon={
                         <Icon
-                            style="-mt-1"
+                            style="-mt-0.5"
                             icon="toll"
                             title={`Ce service ${service.typeS === ServiceType.GET ? 'vous fais gagner' : 'coute'} ${points.join(' à ')}pts`}
                             fill={user?.Profile?.points > points[0]}

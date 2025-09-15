@@ -29,6 +29,8 @@
 
 .md3-card-image-container {
     border-radius: var(--md3-radius-large);
+
+    outline: 1px solid #00000025;
     height: 100%;
     width: 100%;
     background: var(--md3-surface-variant);
@@ -40,6 +42,7 @@
 }
 .md3-card-image {
     position: absolute;
+    filter: grayscale(20%);
     top: 0;
     left: 0;
     width: 100%;

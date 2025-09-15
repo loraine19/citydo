@@ -47,7 +47,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                         <Chip
                             size="sm"
                             value={`${categoryS}`}
-                            className="rounded-full h-max truncate Chip md3-rose-container shadow"
+                            color="rose"
                         />
                     </Link>
                 </div>

@@ -72,13 +72,13 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                             <Chip
                                 value="Sondage"
                                 size="sm"
-                                className="!px-3 min-w-max rounded-full h-max orangeChip"
+                                color="orange"
                             />
                         </button>
                         <Chip
                             value={survey?.categoryS}
                             size="sm"
-                            className="orangeChip"
+                            color="orange"
                         />
 
                         <DateChip

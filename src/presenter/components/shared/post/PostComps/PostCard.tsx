@@ -59,7 +59,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                         <Chip
                             size="sm"
                             value={`${categoryS}`}
-                            className="rounded-full h-max truncate Chip md3-rose-container shadow"
+                            color="rose"
                         />
                     </button>
                 </div>

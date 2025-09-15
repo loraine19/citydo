@@ -65,7 +65,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
                             icon={(hideNavBottom && !haveTitle) ? "close" : "arrow_back"}
                             color={color ?? 'gray'
                             }
-                            size={(hideNavBottom && !haveTitle && !form) ? "2xl" : "xl"}
+                            size={(hideNavBottom && !haveTitle && !form) ? "2xl" : "lg"}
                             fill
                             link={goBack}
                             title={"retour " + goBack?.replace("/", "")}

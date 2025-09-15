@@ -42,7 +42,7 @@ export default function SurveyDetailCard({ survey, expand, setExpand }: Props) {
                     <Chip
                         size="sm"
                         value={`${categoryS}`}
-                        className="rounded-full h-max truncate Chip md3-rose-container shadow"
+                        color="orange"
                     />
                     <DateChip
                         start={createdAt}

@@ -26,23 +26,25 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
         <CardLarge
             expanded={expand}
             setExpanded={setExpand}
-            image={<img
-                onError={(e: any) => e.currentTarget.src = 'public/image/placeholder.jpg'}
-                src={image as string || '/image/placeholder.jpg'}
-                alt={title}
-                className='md3-card-large-image' >
-                <CardLarge.Chips className="p-2 justify-end">
-                    <DateChip
-                        start={EventLoad?.createdAt}
-                        prefix=" " />
-                </CardLarge.Chips>
-            </img>}>
+            image={
+                <img
+                    onError={(e: any) => e.currentTarget.src = 'public/image/placeholder.jpg'}
+                    src={image as string || '/image/placeholder.jpg'}
+                    alt={title}
+                    className='md3-card-large-image' >
+                    <CardLarge.Chips className="p-2 justify-end">
+                        <DateChip
+                            start={EventLoad?.createdAt}
+                            prefix=" " />
+                    </CardLarge.Chips>
+                </img>}>
             <CardLarge.Chips>
-                <div className="md3-card-chips w-full -mt-2"> <Chip
-                    value={label}
-                    className="cyanChip rounded-full h-max shadow"
-                    size='sm'>
-                </Chip>
+                <div className="md3-card-chips w-full -mt-2">
+                    <Chip
+                        value={label}
+                        color='cyan'
+                        size='sm'>
+                    </Chip>
                     <DateChip
                         start={start}
                         end={end}
