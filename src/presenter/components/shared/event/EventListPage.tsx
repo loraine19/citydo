@@ -154,7 +154,7 @@ export default function EventListPage() {
 
         <main>
             <div className="sectionHeader">
-                <div className={`flex items-center justify-center gap-2 pt-1`}>
+                <div className={`flex items-center justify-center gap-2 `}>
                     <SelectSearch
                         searchCat={searchCat}
                         setSearchCat={setSearchCat}

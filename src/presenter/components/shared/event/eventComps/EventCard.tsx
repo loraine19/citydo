@@ -106,7 +106,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
             </CardMD.Media>
             <CardMD.Footer className="flex items-center">
                 {!mines ? (
-                    <div className="flex flex-1 mt-0.5 overflow-hidden items-center ">
+                    <div className="flex flex-1 mt-0.5 -ml-1 overflow-hidden items-center ">
                         <EventCalAddBtn
                             event={event}
                             iconClass={`${'top-0 border-2 !border-white  hover:z-[999] relative -mr-3 '}`} />

@@ -212,7 +212,7 @@ export default function VoteListPage() {
                         categoriesArray={boxArray}
                         boxSelected={boxSelected}
                         setBoxSelected={setBoxSelected}
-                        style={filterBox ? 'pb-4 animRev' : 'pb-4 anim '} />}
+                        style={filterBox ? 'animRev' : 'anim '} />}
                 <SubHeader
                     qty={count > 0 ? count : 'aucun'}
                     type={`${filter === PoolSurveyFilter.SURVEY ? '' :

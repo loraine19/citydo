@@ -19,14 +19,14 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
     }
 
     return (
-        <div className={`flex flex-col pt-1 relative -ml-4 h-full w-[calc(100%_+_2rem)] ]`}>
+        <div className={`flex flex-col relative -ml-4  w-[calc(100%_+_2rem)] ]`}>
             {/* TITLE DIV  */}
             <div className={`flex w-full h-full px-4 flex-1  gap-x-2 justify-end lg:justify-between`}>
                 {(!hideNavBottom || !navIcons) &&
                     <div className={`flex flex-1 h-full w-full items-center 
                     ${hideImage ? '' : 'bg-white shadow-md rounded-3xl animRev mb-1 p-1 gap-2 border border-slate-400/40'}`}>
                         <div className={`text-center justify-center
-                        ${closeBtn ? ' truncate ' : ''} flex flex-1 md3-${color}-outlined  rounded-full py-1 px-8 `}>
+                        ${closeBtn ? ' truncate ' : ''} flex flex-1 md3-${color}-outlined h-[30px] rounded-full items-center`}>
                             <span className={`capitalize font-medium `}>{qty} {type}</span>
                             <span className="hidden sm:inline-block !lowercase !font-normal opacity-75">
                                 &nbsp;{place ?? ""}

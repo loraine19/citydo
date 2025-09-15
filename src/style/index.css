@@ -107,7 +107,7 @@ header {
 }
 
 .sectionHeader {
-    @apply flex flex-col gap-0 px-2.5 relative;
+    @apply flex flex-col gap-2  px-1 relative;
 }
 
 /* TEXT */
