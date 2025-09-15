@@ -24,12 +24,11 @@
     @apply md3-card;
     padding: 0 !important;
     display: grid;
-    grid-template-columns: minmax(auto, auto) minmax(auto, 65%);
+    grid-template-columns: minmax(auto, auto) minmax(auto, 60%);
 }
 
 .md3-card-image-container {
     border-radius: var(--md3-radius-large);
-
     outline: 1px solid #00000025;
     height: 100%;
     width: 100%;

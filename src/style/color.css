@@ -11,7 +11,7 @@
 }
 .slateBG,
 .grayBG {
-    @apply bg-gradient-to-t from-transparent via-slate-100/30 via-[50%] to-slate-50;
+    @apply bg-gradient-to-t from-transparent via-slate-100/30 via-[80%] to-slate-50;
 }
 .orangeBG {
     @apply bg-gradient-to-t from-transparent  via-orange-100/80 via-[80%] to-slate-50;

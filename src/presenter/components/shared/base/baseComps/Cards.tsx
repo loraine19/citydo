@@ -94,7 +94,7 @@ export const CardMD: React.FC<CardMDProps> & {
     Chips: typeof CardChips;
     MidSection: typeof CardMidSection;
 } = ({
-    variant = "outlined",
+    variant = "elevated",
     color,
     children,
     className,

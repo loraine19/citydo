@@ -25,7 +25,7 @@
 
 /* list grid */
 .SubGrid {
-    @apply max-w-[calc(100vw-1rem)] p-2 overflow-hidden  grid;
+    @apply max-w-[calc(100vw-1rem)] p-2  overflow-hidden  grid;
 }
 
 /**** CARD ****/
