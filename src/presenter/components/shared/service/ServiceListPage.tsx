@@ -183,7 +183,7 @@ export default function ServicesPage() {
         <main>
             <div className="sectionHeader">
 
-                <div className={`flex items-center md:justify-end justify-between w-full gap-2 py-1`}>
+                <div className={`flex items-center md:justify-end justify-between w-full gap-2`}>
 
                     {mine ?
                         <CheckCard
@@ -201,7 +201,7 @@ export default function ServicesPage() {
                     <Icon
                         onClick={() => setCompact(!compact)}
                         icon={compact ? "grid_view" : "view_agenda"}
-                        size="xl"
+                        size="lg"
                         color="sky"
                         fill
                         title={compact ? "voir en mode liste" : "voir en mode grille"} />

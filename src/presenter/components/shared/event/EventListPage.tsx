@@ -154,7 +154,7 @@ export default function EventListPage() {
 
         <main>
             <div className="sectionHeader">
-                <div className={`flex items-center justify-end gap-4 py-1`}>
+                <div className={`flex items-center justify-center gap-2 pt-1`}>
                     <SelectSearch
                         searchCat={searchCat}
                         setSearchCat={setSearchCat}
@@ -163,14 +163,14 @@ export default function EventListPage() {
                     <Icon
                         onClick={switchClick}
                         icon={view === "view_agenda" ? "calendar_month" : "view_agenda"}
-                        size="xl"
+                        size="lg"
                         color="cyan"
                         fill
                         title={view === "view_agenda" ? "voir en mode calendrier" : "voir en mode liste"} />
                     <Icon
                         onClick={() => setCompact(!compact)}
                         icon={compact ? "grid_view" : "view_column"}
-                        size="xl"
+                        size="lg"
                         color="cyan"
                         fill
                         style={(view !== "view_agenda" ? "hidden" : "flex sm:hidden lg:flex")}

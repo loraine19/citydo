@@ -172,7 +172,7 @@ export default function PostListPage() {
         <main>
             <div className="sectionHeader">
 
-                <div className={` flex items-center justify-end gap-2 py-1`}>
+                <div className={` flex items-center justify-end gap-2 `}>
                     <SelectSearch
                         searchCat={searchCat}
                         setSearchCat={setSearchCat}
@@ -181,7 +181,7 @@ export default function PostListPage() {
                     <Icon
                         icon={view === "list" ? "grid_view" : "dashboard"}
                         onClick={switchClick}
-                        size="xl"
+                        size="lg"
                         fill
                         color="rose"
                         style={"hidden sm:flex"}
@@ -189,7 +189,7 @@ export default function PostListPage() {
                     <Icon
                         onClick={() => setCompact(!compact)}
                         icon={compact ? "view_column" : "view_agenda"}
-                        size="xl"
+                        size="lg"
                         color="rose"
                         fill
                         style={(view === "list" ? "hidden" : "flex sm:hidden lg:flex") + "  "}

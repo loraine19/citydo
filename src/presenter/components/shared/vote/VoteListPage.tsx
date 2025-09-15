@@ -177,22 +177,23 @@ export default function VoteListPage() {
 
         <main>
             <div className="sectionHeader relative">
-                <div className="flex gap-2 items-center"> <SelectSearch
-                    searchCat={searchCat}
-                    setSearchCat={setSearchCat}
-                    category={filter === PoolSurveyFilter.SURVEY ? surveyCategoriesS : []}
-                    search={search} />
+                <div className="flex gap-2 items-center">
+                    <SelectSearch
+                        searchCat={searchCat}
+                        setSearchCat={setSearchCat}
+                        category={filter === PoolSurveyFilter.SURVEY ? surveyCategoriesS : []}
+                        search={search} />
                     <Icon
                         onClick={() => setCompact(!compact)}
                         icon={compact ? "grid_view" : "view_column"}
-                        size="xl"
+                        size="lg"
                         color="orange"
                         fill
                         title={compact ? "voir en mode liste" : "voir en mode grille"} />
                     <Icon
                         onClick={() => setFilterBox(!filterBox)}
                         icon={!filterBox ? "filter_alt" : "filter_alt_off"}
-                        size="xl"
+                        size="lg"
                         color="orange"
                         fill
                         title={filterBox ? "reduire" : "voir les filtres"} />

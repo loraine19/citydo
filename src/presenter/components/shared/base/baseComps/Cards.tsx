@@ -220,7 +220,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
             <div className={`${cardClasses} !bg-transparent !border-none relative min-h-full flex flex-1 overflow-hidden`} data-md3-card
                 {...props}>
                 {/* Large Image */}
-                <div className={`  absolute top-0 anim md3-card-large-image-container h-[50%] `}  >
+                <div className={`  absolute top-0 anim md3-card-large-image-container h-[55%] `}  >
                     <img
                         src={imageProps.src}
                         alt={imageProps.alt}

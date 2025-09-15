@@ -19,14 +19,14 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
     }
 
     return (
-        <div className={`flex flex-col py-1 relative -ml-4 h-full w-[calc(100%_+_2rem)] ]`}>
+        <div className={`flex flex-col pt-1 relative -ml-4 h-full w-[calc(100%_+_2rem)] ]`}>
             {/* TITLE DIV  */}
             <div className={`flex w-full h-full px-4 flex-1  gap-x-2 justify-end lg:justify-between`}>
                 {(!hideNavBottom || !navIcons) &&
                     <div className={`flex flex-1 h-full w-full items-center 
                     ${hideImage ? '' : 'bg-white shadow-md rounded-3xl animRev mb-1 p-1 gap-2 border border-slate-400/40'}`}>
-                        <div className={`${hideImage ? '!line-clamp-1 ' : '!line-clamp-3'}
-                        ${closeBtn ? 'text-center pr-4 ml-12 truncate ' : ''} flex flex-1  md3-${color}-container max-w-max rounded-full py-1 px-8 `}>
+                        <div className={`text-center justify-center
+                        ${closeBtn ? ' truncate ' : ''} flex flex-1 md3-${color}-outlined  rounded-full py-1 px-8 `}>
                             <span className={`capitalize font-medium `}>{qty} {type}</span>
                             <span className="hidden sm:inline-block !lowercase !font-normal opacity-75">
                                 &nbsp;{place ?? ""}
@@ -57,15 +57,15 @@ export default function SubHeader({ type, qty, place, closeBtn, link, image, hid
                             title="retour en haut" />
                     </div>}
                 {closeBtn &&
-                    <div className={`${(hideNavBottom && !haveTitle && !form) ? '-bottom-14 ' : 'top-0'} flex flex-1 absolute z-[9999]  left-1 `}>
+                    <div className={`${(hideNavBottom && !haveTitle && !form) ? '-bottom-14 ' : 'top-1.5 left-6'} flex flex-1 absolute z-[9999]  left-1 `}>
                         <Icon
                             reverse={hideNavBottom && !haveTitle && !form}
-                            style={'!shadow border-slate-900/10 '}
-                            bg
+                            style={(hideNavBottom && !form) ? "shadow" : ""}
+                            bg={(hideNavBottom && !form)}
                             icon={(hideNavBottom && !haveTitle) ? "close" : "arrow_back"}
                             color={color ?? 'gray'
                             }
-                            size="2xl"
+                            size={(hideNavBottom && !form) ? "2xl" : "xl"}
                             fill
                             link={goBack}
                             title={"retour " + goBack?.replace("/", "")}

@@ -29,7 +29,7 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
                 <Icon
                     color={color ?? 'slate'}
                     icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"}
-                    size="4xl"
+                    size="2xl"
                 />}>
 
 
