@@ -1,7 +1,9 @@
-import { Button, Popover, PopoverContent, PopoverTrigger } from '@material-tailwind/react';
+import { Menu } from '../shared/base/baseComps/Menu';
+import { CardMD } from '../shared/base/baseComps/Cards';
+import { Button, Md3Variants } from '../shared/base/baseComps/Buttons';
 
 type popUpProps = {
-    variant: 'solid' | 'outline' | 'ghost' | 'gradient',
+    variant: Md3Variants,
     text: string,
     content: any, classNames: any
 }
@@ -10,16 +12,21 @@ export default function PopUp(props: popUpProps) {
 
     return (
         <>
-            <Popover offset={10}>
-                <PopoverTrigger>
-                    <Button variant={variant} color='primary' className={classNames} >{text}</Button>
-                </PopoverTrigger>
-                <PopoverContent className="flex w-resp !max-h-[25vh] !max-w-[90%] mx-[5%]  !p-4">
-                    <div className='flex overflow-auto'>
-                        {content}
-                    </div>
-                </PopoverContent>
-            </Popover>
+            <Menu
+                menuRef={undefined}
+                open={true}
+                placement="center_end"
+                trigger={
+                    <Button variant={variant}
+                        color='primary'
+                        className={classNames} >
+                        {text}
+                    </Button>}>
+
+                <CardMD.SupportingText className='flex !max-h-[25vh]  overflow-auto'>
+                    {content}
+                </CardMD.SupportingText>
+            </Menu>
         </>
     )
 }

@@ -1,8 +1,8 @@
 import { Typography } from "@material-tailwind/react";
 
-export function AuthHeader() {
+export function AuthHeader(props: { className?: string }) {
     return (
-        <header className="!min-h-[7rem] h-max py-auto  flex gap-3 items-center justify-center">
+        <header className={`!min-h-[6rem] h-max py-auto  flex gap-3 items-center justify-center ${props.className}`}>
             <div className="relative flex items-center justify-center flex-1 pt-2">
                 <img
                     onError={(e) => { (e.target as HTMLImageElement).src = 'https://citydo.fr/image/logo.svg' }}

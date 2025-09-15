@@ -296,12 +296,12 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply bg-white/50 border rounded-3xl h-1;
+    @apply bg-slate-300/50 border rounded-3xl h-1;
     cursor: pointer;
 }
 ::-webkit-scrollbar-thumb:hover,
 ::-webkit-scrollbar-thumb:active {
-    @apply bg-white/80;
+    @apply bg-slate-300/80;
 }
 button span {
     @apply !truncate max-w-full min-h-max;

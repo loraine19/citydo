@@ -22,7 +22,7 @@ export default function SignUpPage() {
         email: string().email("Email non valide").required("Email est obligatoire"),
         password: string().required("Mot de passe est obligatoire").min(8, "minimum 8 lettres"),
         passwordConfirm: string().oneOf([ref('password')], "les mots de passes doivent correspondre").required("Confirmation obligatoire"),
-        checkbox: boolean().oneOf([true], "Vous devez accepter les termes et conditions").required("Vous devez accepter les termes et conditions")
+        checkbox: boolean().oneOf([true], "Vous devez accepter").required("Vous devez accepter ")
     })
 
     const formik = useFormik({
@@ -65,7 +65,13 @@ export default function SignUpPage() {
                 />
             </main>
 
-            <footer className="flex flex-col items-center gap-1 pb-[2rem] sm:pb-[4rem] justify-center">
+            <footer
+                style={{
+                    bottom: 0,
+
+                    display: 'flex',
+                }}
+                className="  flex flex-col items-center gap-1 py-[1.5rem] justify-center">
                 <i
                     className="flex !text-slate-900 justify-center">
                     Vous avez deja un compte?

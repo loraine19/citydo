@@ -9,7 +9,7 @@ type ImagePosition = "top" | "left";
 interface CardMDProps extends HTMLAttributes<HTMLDivElement> {
     variant?: CardVariant;
     color?: string;
-    children: ReactNode;
+    children?: ReactNode;
     image?: ReactNode;
     imagePosition?: ImagePosition;
     link?: string;

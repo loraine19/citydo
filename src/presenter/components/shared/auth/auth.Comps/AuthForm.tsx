@@ -1,4 +1,4 @@
-import { Card, CardBody, Typography, Input, CardFooter, Checkbox, Button, CardHeader } from '@material-tailwind/react';
+import { Input, Checkbox, } from '@material-tailwind/react';
 import { useEffect, useState } from 'react';
 import PopUp from '../../../common/PopUp';
 import { Icon } from '../../../common/IconComp';
@@ -6,6 +6,8 @@ import { FormikProps } from 'formik';
 import { useUserStore } from '../../../../../application/stores/user.store'
 import DI from '../../../../../di/ioc';
 import { InputError } from '../../../common/adaptatersComps/input';
+import { Button } from '../../base/baseComps/Buttons';
+import { CardMD } from '../../base/baseComps/Cards';
 
 type AuthFormProps = {
     lead: string;
@@ -53,104 +55,89 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
     return (
         <form onSubmit={formik.handleSubmit} className='main'>
-            <div className=' grid grid-cols-[1fr] md:grid-cols-[1fr,1fr] grid-rows-[minmax(20rem,calc(100dvh_-_20rem))]  items-center  justify-between gap-4 wRespXL px-[2%] w-full'>
-                {/* IMAGE CARD */}
-                <div className={` !hidden md:!flex h-full w-full overflow-hidden `}>
-                    <Card className={`border-slate-900/10 FixCardNoImage`} >
-                        <CardBody className="FixCardBody relative !p-0 !flex overflow-hidden !items-center !justify-center ">
-                            <Typography
-                                className="absolute top-4 !leading-[1] text-[2.8rem] font-bold !text-center !font-comfortaa z-10 !text-white"
-                                style={{ textShadow: "0px 1px 4px #00000080" }} >
-                                Connecter vous à votre Quartier
-                            </Typography>
-                            <div className=" grid  max-h-full items-center justify-center bg-slate-700 rounded-3xl  z-0" >
+            <div className={`${confirm ? 'grid-rows-[minmax(50px,calc(100dvh_-_13rem))]' : 'grid-rows-[minmax(50px,calc(100dvh_-_17rem))]'}
+            grid grid-cols-[1fr] md:grid-cols-[1fr,1fr] 
+              items-center justify-between gap-4 wRespXL px-[2%] w-full '`}>
+                {/* IMAGE CARDMD */}
+                <CardMD
+                    className={` min-h-full !pb-0 grid-rows-[100%] !hidden md:!grid h-full w-full`}
+                    image={<CardMD.Image
+                        src='image/welcome.jpg'>
+                        <p className="absolute top-4 !leading-[1] text-[2.8rem] font-bold !text-center !font-comfortaa z-10 !text-white "
+                            style={{ textShadow: "0px 1px 4px #00000080" }} >
+                            Connecter vous à votre Quartier
+                        </p>
+                    </CardMD.Image>}
+                />
 
-                                <img src="image/welcome.jpg"
-                                    alt="connexion"
-                                    className="CardImage opacity-90 z-0" />
-                            </div>
-                        </CardBody>
-                    </Card>
-                </div>
-                {/* FORM CARD */}
-                <Card className="md:flex-[50%]  FixCardNoImage">
-                    <CardHeader
-                        className="FixCardHeaderNoImage h-max w-full px-6 pt-6 pb-4 !flex flex-col">
+                {/* FORM CARDMD */}
+                <CardMD className='min-h-full overflow-auto justify-between' >
+                    <CardMD.Headline className='!pt-2 px-6'>
                         <h3>
                             {lead}
                         </h3>
-                        <Typography
+                        <p
                             data-cy="notif-text"
                             className={`text-sm ${inError ? "error" : ""}`}>
                             {notif}
-                        </Typography>
-                    </CardHeader>
-                    <CardBody className='FixCardBody justify-center !flex '>
-                        <div className='flex flex-col gap-2 w-full overflow-auto px-4 '>
-                            <Input
-                                className={`inputStandart ${formik?.errors.email ? 'error' : ''}`}
-                                placeholder={"Email"}
-                                name="email"
+                        </p>
+                    </CardMD.Headline>
+                    <CardMD.Subhead className='flex flex-col gap-1 w-full overflow-auto px-8'>
+                        <Input
+                            className={`inputStandart ${formik?.errors.email ? 'error' : ''}`}
+                            placeholder={"Email"}
+                            name="email"
+                            onChange={formik.handleChange}
+                            data-cy="email-input" />
+                        <InputError error={formik?.errors.email} />
+                        <Input
+                            className={` inputStandart !relative`}
+                            isError={!!formik?.errors.password}
+                            placeholder={"Mot de passe"}
+                            name="password"
+                            onChange={formik.handleChange}
+                            type={passWordInput.value}
+                            data-cy="password-input" >
+                            <Icon
+                                style={'!absolute top-[50%] translate-y-[-50%] right-2'}
+                                onClick={() => toggleInputStyle(passWordInput, setPassWordInput)}
+                                size='lg'
+                                icon={passWordInput.icon} />
+                        </Input>
+                        <InputError error={formik?.errors.password} />
+                        <div className={!confirm ? "hidden" : " flex flex-1 flex-col w-full"}>
+                            <Input className={` inputStandart `}
+                                isError={!!formik?.errors.passwordConfirm}
+                                placeholder={"Confirmer le mot de passe"}
+                                name="passwordConfirm"
+                                type={passWordInput2.value}
                                 onChange={formik.handleChange}
-                                data-cy="email-input" />
-                            <InputError error={formik?.errors.email} />
-                            <Input
-                                className={` inputStandart !relative`}
-                                isError={!!formik?.errors.password}
-                                placeholder={"Mot de passe"}
-                                name="password"
-                                onChange={formik.handleChange}
-                                type={passWordInput.value}
-                                data-cy="password-input" >
+                                data-cy="password-confirm-input" >
                                 <Icon
                                     style={'!absolute top-[50%] translate-y-[-50%] right-2'}
-                                    onClick={() => toggleInputStyle(passWordInput, setPassWordInput)}
-                                    size='lg'
-                                    icon={passWordInput.icon} />
+                                    onClick={() => toggleInputStyle(passWordInput2, setPassWordInput2)}
+                                    icon={passWordInput2.icon}
+                                    size='lg' />
                             </Input>
-                            <InputError error={formik?.errors.password} />
-                            <div className={!confirm ? "hidden" : ""}>
-                                <Input className={` inputStandart `}
-                                    isError={!!formik?.errors.passwordConfirm}
-                                    placeholder={"Confirmer le mot de passe"}
-                                    name="passwordConfirm"
-                                    type={passWordInput2.value}
-                                    onChange={formik.handleChange}
-                                    data-cy="password-confirm-input" >
-                                    <Icon
-                                        style={'!absolute top-[50%] translate-y-[-50%] right-2'}
-                                        onClick={() => toggleInputStyle(passWordInput2, setPassWordInput2)}
-                                        icon={passWordInput2.icon}
-                                        size='lg' />
-                                </Input>
-                                <InputError mt error={formik?.errors.passwordConfirm} />
-                            </div>
+                            <InputError mt error={formik?.errors.passwordConfirm} />
                         </div>
-
-                        <div className={`md:flex pb-4 flex-1 w-full pt-8 h-full  min-h-44 px-4 ${hiddeImage()} justify-center items-center hidden  md:hidden `}>
-                            <Card className={`!flex w-full md:!hidden FixCardNoImage`} >
-                                <img
-                                    src="image/welcome.jpg"
-                                    alt="connexion"
-                                    className="absolute !min-h-24  inset-0 object-cover w-full h-full rounded-2xl  z-0   object-center" />
-                            </Card>
-                        </div>
-
-                    </CardBody>
-                    <CardFooter className={` FixCardFooter !flex !pb-8 my-0 !min-h-max !flex-1 items-center `}>
-                        <div className={`${!checkbox ? 'flex-col justify-between  pl-6 gap-5' : 'justify-between'} flex h-full flex-1 gap-2 pb-1 w-full  px-4 `}>
-                            <div className='flex h-full  gap-1 flex-col '>
-                                <i className='text-sm'>{checkbox ? 'acceptez les conditions d\'utilisation' : ''} </i>
-
-                                <Button
-                                    data-cy="submit-button"
-                                    type="submit"
-                                    size="md"
-                                    className=" bg-cyan-500 btn ">
-                                    {submitText}
-                                </Button>
-                                <div className={`${!checkbox ? "hidden" : "flex flex-col w-full "} `}>
-                                    <div className='flex items-center gap-2'>
+                    </CardMD.Subhead>
+                    <CardMD.Media>
+                        <div className={`${!checkbox ? 'justify-between  gap-5' : 'justify-between'} flex flex-1 gap-2 h-full  items-end w-full  px-4`}>
+                            <div className='flex w-full flex-col-reverse h-full  gap-1 '>
+                                <div className='flex flex-1 flex-col w-full gap-2 '>
+                                    <Button
+                                        data-cy="submit-button"
+                                        type="submit"
+                                        size="large"
+                                        variant="filled"
+                                        color='cyan'
+                                        elevating>
+                                        {submitText}
+                                    </Button>
+                                </div>
+                                <div className={`${!checkbox ? "hidden" : "flex flex-1 items-center  "} `}>
+                                    <div className='flex items-center gap-1'>
                                         <Checkbox
                                             data-cy="terms-checkbox"
                                             type="checkbox"
@@ -159,51 +146,55 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                             onChange={(e: any) => { formik.values.checkbox = e.target.checked }} >
                                             <Checkbox.Indicator
                                                 className="relative opacity-100 flex items-center justify-center">
-                                                <Icon style={'opacity-0 group-data-[checked=true]:opacity-100 absolute top-[50%] translate-y-[-50%] -left-1'}
+                                                <Icon style={'opacity-50 group-data-[checked=true]:opacity-100 !absolute  translate-y-[-50%] -left-1'}
                                                     bg
                                                     size='sm'
-                                                    color={formik.errors.checkbox ? 'red' : 'slate'}
+                                                    color={formik.errors.checkbox ? 'error' : 'slate'}
                                                     icon={""}
                                                 />
-                                                <Icon style={'opacity-100 group-data-[checked=true]:opacity-0 !absolute top-[50%] translate-y-[-50%] -left-1'}
+                                                <Icon style={'opacity-100 group-data-[checked=true]:opacity-0 !absolute  translate-y-[-50%] -left-1'}
                                                     bg
                                                     size='sm'
-                                                    color={formik.errors.checkbox ? 'red' : 'cyan'}
+                                                    color={'cyan'}
                                                     icon={"check"}
                                                 />
                                             </Checkbox.Indicator>
                                         </Checkbox>
                                         <div className='!justify-start w-full  -ml-4 flex flex-col'>
                                             <PopUp
-                                                variant={"ghost"}
+                                                variant={"text"}
                                                 classNames={`${popOverClass} !border-none scale-95 !flex ounded-full !z-[999999]`}
                                                 text={popOverButtonText}
                                                 content={popOverContent} />
                                         </div>
                                     </div>
-                                    <InputError error={formik?.errors.checkbox} style=' !py-2' />
+                                    <InputError mt error={formik?.errors.checkbox} />
                                 </div>
                             </div>
-                            <div className='flex h-full gap-1 flex-col '>
-                                <i className='text-sm'>Ou {submitText} avec </i>
-                                <Button
-                                    size="md"
-                                    className="max-w-max slateStyle !bg-slate-100 !relative flex !border-slate-900/10
-                                      btnIcon "
-                                    onClick={async () => {
-                                        setIsLoggedIn(true)
-                                        await googleAuth()
-                                    }}>
-                                    <img
-                                        src="image/google.svg"
-                                        alt="metamask"
-                                        className="h-6 w-6 " />
-                                    Google &nbsp;
-                                </Button>
-                            </div>
                         </div>
-                    </CardFooter>
-                </Card>
+                    </CardMD.Media>
+                    <CardMD.Footer className="px-8 flex-col max-h-fit pt-0  pb-4 gap-1 border-0">
+                        <div className='flex-1 w-full flex'>
+                            <Button
+                                elevating
+                                type='button'
+                                size="large"
+                                variant='tonal'
+                                className="flex w-full"
+                                onClick={async () => {
+                                    setIsLoggedIn(true)
+                                    await googleAuth()
+                                }}
+                            >
+                                <img
+                                    src="image/google.svg"
+                                    alt="metamask"
+                                    className="h-6 w-6 absolute left-3" />
+                                <div className='pl-8'>{submitText} avec Google &nbsp;</div>
+                            </Button>
+                        </div>
+                    </CardMD.Footer>
+                </CardMD>
             </div>
         </form>
     )
