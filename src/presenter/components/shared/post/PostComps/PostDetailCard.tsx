@@ -1,5 +1,4 @@
 import { useState, } from "react";
-import { Flag } from "../../../../../domain/entities/Flag";
 import { Like } from "../../../../../domain/entities/Like";
 import { useUserStore } from "../../../../../application/stores/user.store";
 import { DateChip } from "../../../common/ChipDate";
