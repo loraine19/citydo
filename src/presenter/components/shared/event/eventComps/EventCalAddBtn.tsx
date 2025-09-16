@@ -35,7 +35,9 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
 
 
             <MenuItem
-                leadingIcon={<Icon icon="calendar_add_on" bg fill color="cyan" size="lg" />}>
+                className="px-4 hover:!bg-slate-200"
+                leadingIcon={
+                    <Icon icon="calendar_add_on" bg fill color="cyan" size="lg" />}>
                 <Link to={agendaLink}
                     className="pb-1"
                     target="_blank"
@@ -44,6 +46,8 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
                 </Link>
             </MenuItem>
             <MenuItem
+                className="px-4 hover:!bg-slate-200"
+                onClick={() => { alert('ee') }}
                 leadingIcon={<Icon icon="calendar_add_on" bg fill color="orange" size="lg" />}
             >
                 <Link

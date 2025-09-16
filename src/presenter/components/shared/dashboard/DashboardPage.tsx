@@ -78,8 +78,8 @@ export default function DashboardPage() {
     return (
         <main
 
-            className={` lg:!-mt-0  !overflow-hidden pb-2
-            ${navBottom ? '-mt-6  !max-h-[calc(100dvh_-_7.5rem)] lg:!max-h-[calc(100dvh_-_8.5rem)] ' :
+            className={` lg:!-mt-0 !overflow-hidden pb-2 bg-gradient-to-t from-slate-200/50 to-transparent
+            ${navBottom ? '-mt-6  !max-h-[calc(100dvh_-_6.5rem)] lg:!max-h-[calc(100dvh_-_8rem)] ' :
                     '!-mt-6 !max-h-[calc(100dvh_-_3.5rem)] lg:!max-h-[calc(100dvh_-_2rem)] '} `}
             data-cy="dashboard-body" >
             <div id='refDiv'
@@ -214,7 +214,7 @@ export default function DashboardPage() {
 
                 {/* MAPCARD  */}
                 <div className={mapClasse}>
-                    <CardMD className="min-h-full !flex flex-1 gray100 anim  ">
+                    <CardMD className="min-h-full !flex flex-1  anim  ">
                         <CardMD.Subhead>
                             <div className="flex items-center gap-2">
                                 <div className="flex items-center gap-2">

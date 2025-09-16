@@ -163,9 +163,7 @@ export const Menu: React.FC<MenuProps> = ({
                         key={key}
                         ref={menuRef || menuRefAuto}
                         style={{ ...menuStyle, maxWidth: fitMax ? `${triggerWidth}px` : '' }}
-                        className={` 
-                    ${className || ""}
-                  
+                        className={` ${className || ""}
                     md3-menu md3-elevation ${open ? " md3-menu-enter " : " md3-menu-leave "} `} >
 
                         {open &&
@@ -222,7 +220,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         onClick={disabled ? undefined : onClick}
         data-value={value}
         className={` md3-menu-item-container
-            ${bg ? '' : 'border-t border-slate-300/80 !pt-1 first:border-0 first:!pt-0'}
+            ${bg ? '' : 'border-t border-slate-300/80 !pt-1 rounded-none first:border-0 first:!pt-0'}
             ${divider ? `md3-menu-item-divider-${divider}` : ''}
         `}
         data-md3
@@ -230,8 +228,8 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     >
         <div
             className={`md3-menu-item${disabled ? " disabled" : ""}
-                ${bg ? '' : ' !bg-transparent'}
-                ${className || ""}`}
+                ${bg ? '' : ' rounded-none !bg-transparent'}
+                ${className || ""} `}
             tabIndex={disabled ? -1 : 0}
             aria-disabled={disabled}
             role="menuitem"

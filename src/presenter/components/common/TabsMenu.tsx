@@ -22,6 +22,7 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
             style={{ zIndex: 0 }}>
 
             <SegmentedButton
+                className="bg-white"
                 options={labels}
                 value={defaultTab as string || labels[0].value}
                 onChange={() => { }}

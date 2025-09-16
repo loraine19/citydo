@@ -70,7 +70,7 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
                                 }}
                                 title={'Trier par ' + item.label}
                                 disabled={(selectedSort === (item.key ?? item.label))}
-                                color={selectedSort === (item.key ?? item.label) ? color : 'gray'}
+                                color={selectedSort === (item.key ?? item.label) ? color : 'slate'}
                                 icon={item.icon}
                             />
                         </div>}

@@ -57,9 +57,10 @@ interface NavigationBarItemProps extends HTMLAttributes<HTMLLIElement> {
     active?: boolean;
     onClickAction?: () => void;
     value?: string;
+    row?: boolean;
 }
 
-export const NavigationBarItem: React.FC<NavigationBarItemProps> = ({ label, icon, active, className, onClickAction, ...props }) => {
+export const NavigationBarItem: React.FC<NavigationBarItemProps> = ({ label, icon, active, className, onClickAction, row, ...props }) => {
     const classes = `md3-nav-item ${active ? 'active' : ''} ${className || ''}`.trim();
 
     return (
@@ -67,9 +68,12 @@ export const NavigationBarItem: React.FC<NavigationBarItemProps> = ({ label, ico
             className={classes}
             data-md3 {...props}>
             <button
+                className={row ? 'flex !flex-row items-center md:gap-4 flex-1 justify-between ' : ''}
                 onClick={() => onClickAction && onClickAction()}>
                 {icon}
-                <span>{label}</span>
+                <span>
+                    {label}
+                </span>
             </button>
         </li>
     );
@@ -86,7 +90,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({ isOpen, onCl
         <>
             <div className={`md3-nav-drawer-scrim ${isOpen ? 'open' : ''}`} onClick={onClose}></div>
             <div className={`md3-nav-drawer ${isOpen ? 'open' : ''}`} data-md3>
-                -   {children}
+                {children}
             </div>
         </>
     );

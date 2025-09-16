@@ -63,6 +63,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
                         {/* PROFILE MENU  */}
                         <Menu
+                            className={`p-4`}
                             blurBack
                             placement="center_top"
                             trigger={<div className="relative h-full justify-center max-w-max grid z-50 items-center !p-0">
@@ -79,6 +80,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
                             {/* USER ITEM */}
                             <MenuItem
+
                                 bg
                                 onClick={() => {
                                     navigate('/myprofile')

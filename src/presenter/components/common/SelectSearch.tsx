@@ -21,7 +21,7 @@ export default function SelectSearch(props: selectSearchProps) {
         <div
 
             className={`w-full relative  ${style}`} >
-            <div className={`"flex inputDiv md3-button-${color}  md3-button-tonal !pr-1   !min-h-[43px] gap-2 `} >
+            <div className={`"flex inputDiv md3-button-${color} md3-button-tonal !pr-1.5   !min-h-[46px] gap-2 `} >
                 <Menu
                     className=""
                     open={isOpen}
@@ -69,7 +69,7 @@ export default function SelectSearch(props: selectSearchProps) {
                     data-cy="input-search"
                     type="search"
                     placeholder="Rechercher"
-                    className={`md3-tex-${color} hover:bg-slate-50/50 focus:bg-slate-50/80 pb-0 pt-0.5 rounded-full min-h-8 px-4 w-full placeholder:!text-current`}
+                    className={`md3-${color}-container hover:bg-slate-50/50 focus:bg-slate-50/80 pb-0 pt-0.5 rounded-full min-h-8 px-4 w-full placeholder:!text-current`}
                     key={searchCat.value}
                     value={searchCat.label}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
