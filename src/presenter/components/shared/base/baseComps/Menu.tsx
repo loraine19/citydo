@@ -55,7 +55,7 @@ export const Menu: React.FC<MenuProps> = ({
     const triggerHeight = triggerRef?.current?.offsetHeight ?? 0;
     const triggerWidth = triggerRef.current?.offsetWidth ?? 24;
     const menuWidth = ((menuCurrent?.current?.offsetWidth ?? 180) + triggerWidth).toString();
-    const ml = ((menuCurrent?.current?.offsetWidth ?? 180) / 2).toString();
+    const ml = ((menuCurrent?.current?.offsetWidth ?? 180) * 0.5).toString();
     const mt = ((menuCurrent?.current?.offsetHeight ?? 180) * 1 + triggerHeight * 1.5).toString();
     const mtUp = ((menuCurrent?.current?.offsetHeight ?? 180) * 1.5).toString();
 
@@ -74,11 +74,14 @@ export const Menu: React.FC<MenuProps> = ({
             if (placementAll.includes('end')) style.right = 0;
             if (placementAll.includes('up')) style.bottom = '100%';
             if (placementAll.includes('center')) {
-                style.left = '50%';
-                style.marginLeft = `-${ml}px`;
+                style.left = `calc(50% - (${ml}px + 0.8rem))`;
+                style.top = `20vh`;
+                style.transform = `translate(-50%, -50%)`;
+
             }
             if (placementAll.includes('center_end')) {
-                style.translate = `0 -${triggerHeight}px`;
+                style.translate = `0 -${triggerHeight}px`
+                    ;
 
             }
             if (placementAll.includes('center_start')) {

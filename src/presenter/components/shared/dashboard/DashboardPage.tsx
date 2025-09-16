@@ -43,8 +43,8 @@ export default function DashboardPage() {
 
     //// CLASSES
     const userClasse = "flex row-span-3 lg:grid  animRev  lg:min-h-full ";
-    const eventClasse = " flex h-full  !min-h-[13rem] row-span-5 lg:grid   ";
-    const notifClasse = " row-span-1  animRev " + (notifs.length > 0 ? " min-h-[5rem]" : " min-h-[3rem]")
+    const eventClasse = " flex h-full !min-h-[13rem] row-span-5 lg:grid   ";
+    const notifClasse = " row-span-1 animRev " + (notifs.length > 0 ? " min-h-[5rem]" : " min-h-[3rem]")
     const mapClasse = "flex row-span-7 h-full  lg:min-h-[32%] lg:grid ";
 
 

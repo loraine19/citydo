@@ -117,7 +117,7 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
             {/* CALENDAR */}
             <div className='relative max-h-full w-full flex flex-1 '>
                 {loadingEvents || errorEvents ? (
-                    <div className='absolute flex flex-col flex-1 h-full p-2 gap-2 w-full rounded-3xl bg-white shadow '>
+                    <div className='absolute flex flex-col flex-1 h-full p-2 gap-2 w-full rounded-2xl bg-white  '>
                         <div className={`grid grid-cols-${num} rounded-lg h-full overflow-auto pb-3 bg-slate-50 divide-x divide-cyan-500 divide-opacity-20`}>
                             {[...Array(num)].map((_, index) => (
                                 <div key={index} className='text-xs w-full flex flex-col text-center h-full'>
@@ -136,11 +136,11 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                         </div>
                     </div>
                 ) :
-                    (<div className='!border !border-slate-300/80 absolute flex flex-col flex-1 h-full p-2 gap-2  w-full rounded-xl bg-white shadow-md  '>
+                    (<div className=' absolute flex flex-col flex-1 h-full p-1 gap-1  w-full rounded-xl bg-white  shadow  '>
                         {weeks && weeks.map((week: any, key: number) => (
                             <div
                                 key={key}
-                                className={`grid rounded-xl h-full overflow-auto pb-3 !border border-slate-200 !bg-slate-200/50
+                                className={`grid rounded-xl h-full overflow-auto pb-3 border-slate-200 !bg-slate-200/50  border
                                 ${colClass[col - 1]}`}>
                                 {week.map((day: any, index: number) =>
                                     <div className={`flex flex-col text-center h-full border-r border-slate-100/50  `}
@@ -153,8 +153,11 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                                                 const eventDays = event.days.map((d: any) => new Date(d).toDateString());
                                                 const currentDay = new Date(new Date(day.date).getTime()).toDateString();
                                                 return (
-                                                    <div key={indexEvent} className='w-full grid rounded-xl  '>
+                                                    <div
+                                                        key={indexEvent}
+                                                        className='w-full grid rounded-xl  '>
                                                         <Menu
+                                                            ref
                                                             blurBack
                                                             placement='center'
                                                             open={open && popId === event.id + day.date}

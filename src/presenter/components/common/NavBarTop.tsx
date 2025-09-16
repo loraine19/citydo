@@ -60,7 +60,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
             ${(!navBottom || !navIcons) ? 'flex ' : 'flex'}
            
-                ${hideNavBottom ? ' flex animRev !py-0' : ' flex animRev pt-2 pb-2'}`} >
+                ${hideNavBottom ? ' flex animRev !py-0' : ' flex pt-2 pb-2'}`} >
 
                     <div className={`flex h-full relative ${hideNavBottom ? 'hidden' : ''}
                          ${!navIcons || navBottom ? ' w-full  ' : ' w-max'} `}>
