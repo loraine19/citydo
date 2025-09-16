@@ -66,7 +66,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
                             title="retour en haut" />
                     </div>}
             </div>
-            <hr className={` border-black/20 border-b-2 border-t-0 w-[calc(100%_+_4rem)] -ml-[2rem]  !opacity-90 pb-2 `} />
+            <hr className={` border-black/20 border-b z-[1] border-t-0 w-[calc(100%_+_4rem)] -ml-[2rem]  !opacity-90 pb-2 shadow-md `} />
         </div>
     )
 }

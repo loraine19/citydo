@@ -77,8 +77,8 @@ export default function DashboardPage() {
 
     return (
         <main
-
-            className={` lg:!-mt-0 !overflow-hidden pb-2 bg-gradient-to-t from-slate-200/50 to-transparent
+            className={`px-4 lg:!-mt-0 !overflow-hidden pb-2 bg-gradient-to-t from-slate-200/10
+               via-slate-200  to-transparent
             ${navBottom ? '-mt-6  !max-h-[calc(100dvh_-_6.5rem)] lg:!max-h-[calc(100dvh_-_8rem)] ' :
                     '!-mt-6 !max-h-[calc(100dvh_-_3.5rem)] lg:!max-h-[calc(100dvh_-_2rem)] '} `}
             data-cy="dashboard-body" >

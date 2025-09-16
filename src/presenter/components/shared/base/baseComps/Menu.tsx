@@ -163,7 +163,7 @@ export const Menu: React.FC<MenuProps> = ({
                         key={key}
                         ref={menuRef || menuRefAuto}
                         style={{ ...menuStyle, maxWidth: fitMax ? `${triggerWidth}px` : '' }}
-                        className={` ${className || ""}
+                        className={` ${className || ""} !z-50
                     md3-menu md3-elevation ${open ? " md3-menu-enter " : " md3-menu-leave "} `} >
 
                         {open &&

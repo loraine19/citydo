@@ -41,6 +41,7 @@ export default function SelectSearch(props: selectSearchProps) {
                     {category.map((label: any, index: number) => {
                         return (
                             <MenuItem
+                                className="hover:!bg-slate-200"
                                 leadingIcon={searchCat.value === label.value ?
                                     <Icon
                                         style='-mr-1'
@@ -69,7 +70,7 @@ export default function SelectSearch(props: selectSearchProps) {
                     data-cy="input-search"
                     type="search"
                     placeholder="Rechercher"
-                    className={`md3-${color}-container hover:bg-slate-50/50 focus:bg-slate-50/80 pb-0 pt-0.5 rounded-full min-h-8 px-4 w-full placeholder:!text-current`}
+                    className={`md3-${color}-container hover:bg-slate-50/50 focus:bg-slate-50/80 pb-0 pt-0.5 rounded-full min-h-9 px-4 w-full placeholder:!text-current`}
                     key={searchCat.value}
                     value={searchCat.label}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

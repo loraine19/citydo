@@ -36,8 +36,9 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
             icon: 'flag_2',
             label: 'Signaler',
             key: `flag${id}`,
-            fill: flagged ?? false,
-            color: flagged ? 'red' : '',
+            fill: flagged,
+            flagged: flagged,
+            color: flagged ? 'red' : 'slate',
             action: () => { navigate(`/flag/${type}/${id}`) },
         },
         {
@@ -64,9 +65,8 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
         <Menu
             ref={false}
             key={`more-menu-${id}`}
-            className={className ?? ''}
-            closeIcon={
-                <></>}
+            className={className ?? '' + ' !-ml-40 '}
+            closeIcon={<></>}
             open={isOpen}
             setOpen={setIsOpen}
             placement="center_bottom"
@@ -87,24 +87,20 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
                         item.action();
                         setIsOpen(!isOpen);
                     }}
-                    trailingIcon={
-
+                    leadingIcon={
                         <Icon
-                            color={item.color ?? 'slate'}
+                            bg
+                            color={item.flagged ? 'error' : 'slate'}
                             fill={item.fill ?? false}
-                            size={'md'}
-                            style={`!p-1 `}
+                            size={'lg'}
                             onClick={() => {
                                 item.action();
-
                                 setIsOpen(!isOpen);
-
                             }}
                             title={item.label}
-
                             icon={item.icon}
                         />}
-                    className="rounded-full  pl-4 pr-2 py-0.5 flex items-center font-normal font-roboto w-full justify-between gap-4 hover:!bg-slate-200 hover:!text-underline" >
+                    className="flex hover:!bg-slate-200 pl-4 " >
                     {item.label}
                 </MenuItem>
             )}

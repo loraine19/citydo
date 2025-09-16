@@ -21,7 +21,6 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
     const { user } = useUserStore()
     const userId: number = user.id
     const Author: User = post?.User
-    const flagged: boolean = post?.Flags?.find((flag: Flag) => flag.userId === userId) ? true : false
     const ILike: boolean = post?.Likes?.find((like: Like) => like.userId === userId) ? true : false
 
     return (
@@ -52,7 +51,10 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                     </Link>
                 </div>
 
-                {<MoreButton id={id} type={'annonce'} flagged={flagged} />}
+                {<MoreButton
+                    id={id}
+                    type={'annonce'}
+                    flagged={post?.flagged} />}
             </CardLarge.Chips>
 
             <CardLarge.Headline>

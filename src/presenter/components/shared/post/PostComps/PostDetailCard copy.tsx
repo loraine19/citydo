@@ -50,6 +50,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                     large
                     title={title}
                 />
+                {flagged && <span className="text-red-500">Flagged</span>}
                 <MoreButton
                     flagged={flagged}
                     id={id}
