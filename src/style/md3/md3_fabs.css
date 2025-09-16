@@ -62,11 +62,11 @@
 }
 
 .md3-fab-menu-container-bottom {
-    @apply top-full mt-[1rem] right-0;
+    @apply mt-[1rem] right-0 top-full;
 }
 
 .md3-fab-menu-container.open {
-    @apply h-fit;
+    @apply h-fit max-w-max;
     opacity: 1;
 }
 

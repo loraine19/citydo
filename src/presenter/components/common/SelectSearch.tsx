@@ -21,7 +21,7 @@ export default function SelectSearch(props: selectSearchProps) {
         <div
 
             className={`w-full relative  ${style}`} >
-            <div className={`"flex inputDiv md3-button-tonal md3-button-${color}  !min-h-[32px] gap-2 !border-none `} >
+            <div className={`"flex inputDiv md3-button-${color}  md3-button-tonal !pr-1   !min-h-[43px] gap-2 `} >
                 <Menu
                     className=""
                     open={isOpen}
@@ -69,7 +69,7 @@ export default function SelectSearch(props: selectSearchProps) {
                     data-cy="input-search"
                     type="search"
                     placeholder="Rechercher"
-                    className={`md3-${color}-container hover:bg-slate-50/50 focus:bg-slate-50/80 pb-0 pt-0.5 rounded-full min-h-8 px-4 w-full placeholder:!text-current`}
+                    className={`md3-tex-${color} hover:bg-slate-50/50 focus:bg-slate-50/80 pb-0 pt-0.5 rounded-full min-h-8 px-4 w-full placeholder:!text-current`}
                     key={searchCat.value}
                     value={searchCat.label}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,6 +78,9 @@ export default function SelectSearch(props: selectSearchProps) {
                     onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && search(searchCat)}
                     autoComplete="on" />
                 <Icon
+                    bg
+                    reverse
+                    color={color ?? 'slate'}
                     onClick={() => search(searchCat)}
                     size="lg"
                     icon="search" />

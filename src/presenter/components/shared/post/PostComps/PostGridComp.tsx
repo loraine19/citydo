@@ -8,7 +8,7 @@ export default function PostGridComp(props: { line: PostView[], mines?: boolean,
 
 
     return (
-        <div className={"grid grid-cols-[auto,auto] grid-rows-[minmax(min-content,1fr)] pt-4 gap-5 "}>
+        <div className={"grid grid-cols-[auto,auto] px-[2rem] grid-rows-[minmax(min-content,1fr)] pt-4 gap-5 "}>
             {line[0] &&
                 <div className={line[0].image ? short : short}>
                     <PostCard key={line[0].id} post={line[0]} mines={mines} change={change} update={update} short={true} autoFit={autoFit} />

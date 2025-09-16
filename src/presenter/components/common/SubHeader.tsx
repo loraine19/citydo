@@ -19,35 +19,36 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
     }
 
     return (
-        <div className={`flex flex-col relative -ml-4  w-[calc(100%_+_2rem)] ]`}>
+        <div className={`flex flex-col relative`}>
             {/* TITLE DIV  */}
-            <div className={`flex w-full h-full px-4 flex-1  gap-x-2 justify-end lg:justify-between`}>
+            <div className={`flex w-full h-full px-3 flex-1 gap-x-2 justify-end lg:justify-between`}>
                 {(!hideNavBottom || !navIcons) &&
-                    <div className={`flex flex-1 h-full w-full items-center`}>
-                        <div className={`text-center justify-center 
-                        ${closeBtn ? ' truncate ' : ''} flex flex-1 md3-${color}-outlined h-[30px] rounded-full items-center`}>
+                    <div className={`flex flex-1 h-full w-full items-center  
+                        ${closeBtn ? 'truncate !justify-between  ' : 'pt-2 '}`}>
 
-                            {closeBtn &&
-                                <div className={`${(hideNavBottom && !haveTitle && !form) ? '-bottom-14 absolute z-[9999]' : 'pl-2'} flex`}>
-                                    <Icon
-                                        reverse={hideNavBottom && !haveTitle && !form}
-                                        style={(hideNavBottom && !haveTitle && !form) ? "shadow" : ""}
-                                        bg={(hideNavBottom && !haveTitle && !form)}
-                                        icon={(hideNavBottom && !haveTitle) ? "close" : "arrow_back"}
-                                        color={color ?? 'slate'}
-                                        size={(hideNavBottom && !haveTitle && !form) ? "2xl" : "lg"}
-                                        fill
-                                        link={goBack}
-                                        title={"retour " + goBack?.replace("/", "")}
-                                    />
-                                </div>}
-                            <div className="flex flex-1 justify-center items-center gap-x-1 px-2 py-1">
-                                <span className={`capitalize font-normal`}>{qty} {type}</span>
-                                <span className="hidden sm:inline-block !lowercase !font-normal opacity-75">
-                                    &nbsp;{place ?? ""}
-                                </span>
-                            </div>
+                        <div className="flex gap-x-1 !text-[1.3rem]">
+                            <span className={`font-semibold`}>{qty} {type}</span>
+                            <span className="hidden sm:inline-block !lowercase !font-light">
+                                &nbsp;{place ?? ""}
+                            </span>
                         </div>
+
+                        {closeBtn &&
+                            <div className={`${(hideNavBottom && !haveTitle && !form) ?
+                                '-bottom-14 absolute z-[9999]' : 'pl-2'} flex`}>
+                                <Icon
+                                    reverse={hideNavBottom && !haveTitle && !form}
+                                    style={(hideNavBottom && !haveTitle && !form) ? "shadow" : ""}
+                                    bg={(hideNavBottom && !haveTitle && !form)}
+                                    icon={"close"}
+                                    color={'primary'}
+                                    size={(hideNavBottom && !haveTitle && !form) ? "2xl" : "lg"}
+                                    fill
+                                    link={goBack}
+                                    title={"retour " + goBack?.replace("/", "")}
+                                />
+                            </div>}
+
                     </div>}
 
                 {/* BUTTON UP  */}
@@ -65,7 +66,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
                             title="retour en haut" />
                     </div>}
             </div>
-            <hr className={` !border-${color}-500 border-b border-t-0 w-full !opacity-0 `} />
+            <hr className={` border-black/20 border-b-2 border-t-0 w-[calc(100%_+_4rem)] -ml-[2rem]  !opacity-90 pb-2 `} />
         </div>
     )
 }

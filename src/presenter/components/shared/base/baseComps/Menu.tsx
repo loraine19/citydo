@@ -170,7 +170,7 @@ export const Menu: React.FC<MenuProps> = ({
 
                         {open &&
                             <div
-                                className={`animSheetRev `}
+                                className={` animSheetRev `}
                                 ref={menuCurrent}>
                                 <div
                                     className={`px-2 flex`}
@@ -221,7 +221,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     <div
         onClick={disabled ? undefined : onClick}
         data-value={value}
-        className={`md3-menu-item-container
+        className={` md3-menu-item-container
             ${bg ? '' : 'border-t border-slate-300/80 !pt-1 first:border-0 first:!pt-0'}
             ${divider ? `md3-menu-item-divider-${divider}` : ''}
         `}

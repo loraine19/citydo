@@ -86,7 +86,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 {notif}
                             </p>
                         </CardMD.Headline>
-                        <CardMD.Subhead className='flex flex-col h-full w-full justify-center overflow-auto gap-4 py-8 px-12 flex-1 '>
+                        <CardMD.Subhead className='flex flex-col h-full w-full justify-center overflow-auto gap-3 py-4 px-12 flex-1 '>
                             <Input
                                 className={`inputStandart ${formik?.errors.email ? 'error' : ''}`}
                                 placeholder={"Email"}
@@ -126,7 +126,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 <InputError mt error={formik?.errors.passwordConfirm} />
                             </div>
                         </CardMD.Subhead>
-                        <CardMD.Media className="flex py-1">
+                        <CardMD.Media className="flex ">
                             <div className={`${!checkbox ? 'justify-between  gap-5' : 'justify-between'} flex flex-1 gap-2 h-full  items-end w-full  px-4`}>
                                 <div className='flex w-full flex-col-reverse h-full  gap-1 '>
                                     <div className='flex flex-1 flex-col w-full gap-2 '>

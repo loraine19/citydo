@@ -84,7 +84,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `anim  wRespXL justify-between gap-[4%] md:gap-6 px-2 lg:!px-0 pb-1 ` :
+                    `anim  wRespXL slateFooter pb-4 justify-between gap-[4%] md:gap-6 px-2 lg:!px-0 ` :
                     'z-0 md:gap-4 gap-1 bg-transparent  ') +
                 ` flex items-center  w-full `
             }>
@@ -93,7 +93,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                     onValueChange={(value) => setNavValue(value)}
                     className={`
                     ${navBottom ?
-                            'border-[1px] rounded-full !shadow bg-slate-50 border-slate-300 !flex-1 !max-w-full p-0 justify-between !bg-none ' :
+                            'border-[1px] rounded-full !shadow !bg-white border-slate-300 !flex-1 !max-w-full p-0 justify-between !bg-none ' :
                             `shadow-none w-full  justify-around pb-2 md:pb-0  md:px-2`}
                     items-center overflow-x-auto overflow-y-hidden flex !max-w-[calc(100vw-5.5rem)]  h-full w-full `}>
 
@@ -145,6 +145,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                 </NavigationBar>
                 {addBtn &&
                     <FabMenu
+
                         backdropBlur={true}
                         open={openFab}
                         setOpen={setOpenFab}

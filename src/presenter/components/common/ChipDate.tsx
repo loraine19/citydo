@@ -15,15 +15,15 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
             case endDays <= 4 && endDays >= 1:
                 return "error";
             default:
-                return "slate";
+                return "primary";
         }
     })();
     const value = (() => {
         switch (true) {
             case prefix && !ended && !end:
-                return `${prefix} ${new Date(start).toLocaleDateString('fr-FR')}`;
+                return `${prefix} ${new Date(start).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' })}`;
             case ended:
-                return `✓ ${endDate}`;
+                return `⛌ ${new Date(endDate).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' })}`;
             case endDays > 4:
                 return `J - ${endDays}`;
             case endDays > 0:
@@ -33,7 +33,7 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
             case endDays < 0:
                 return `en cours`;
             default:
-                return `${prefix} ${new Date(start).toLocaleDateString('fr-FR')}`;
+                return `${prefix} ${new Date(start).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' })}`;
         }
     })();
     return (

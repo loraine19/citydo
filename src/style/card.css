@@ -2,7 +2,7 @@
 
 /* list section */
 .Grid {
-    @apply max-h-full wRespXL grid pt-1 pb-4 gap-1
+    @apply max-h-full wRespXL grid pt-3 pb-4 gap-1 m-auto  pl-[0.5rem] md:px-[1rem]
     grid-cols-[minmax(calc(50%-1rem),1fr)]  
     sm:grid-cols-[auto,auto] 
     sm:auto-rows-[minmax(min-content,40vh)] 

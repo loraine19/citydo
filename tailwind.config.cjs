@@ -17,6 +17,7 @@ export default {
         comfortaa: ["Comfortaa", "sans-serif"],
         roboto: ["Roboto", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"],
+        quicksand: ["Quicksand", "sans-serif"],
       },
       screens: {
         'xxs': '320px',

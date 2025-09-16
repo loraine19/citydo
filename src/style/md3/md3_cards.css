@@ -17,7 +17,7 @@
     padding: 0 !important;
     display: grid;
     flex-shrink: 0;
-    grid-template-rows: minmax(26vh, auto) minmax(max-content, 60%);
+    grid-template-rows: minmax(22vh, auto) minmax(max-content, 60%);
 }
 
 .md3-card-with-image-left {

@@ -55,13 +55,9 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
 
                 {/* CONTAINER */}
-                <div
-                    className={`wRespXL pl-2 !pb-1 pt-2  lg:px-0 slide h-full justify-between items-end 
-
-            ${(!navBottom || !navIcons) ? 'flex ' : 'flex'}
-           
-                ${hideNavBottom ? ' flex animRev !py-0' : ' flex pt-2 pb-2'}`} >
-
+                <div id='navBarTop'
+                    className={`wRespXL pl-2 flex lg:px-0 slide h-full justify-between items-end     
+                ${hideNavBottom ? 'animRev !py-1' : '!py-3'}`} >
                     <div className={`flex h-full relative ${hideNavBottom ? 'hidden' : ''}
                          ${!navIcons || navBottom ? ' w-full  ' : ' w-max'} `}>
 
@@ -71,9 +67,9 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                             placement="center_top"
                             trigger={<div className="relative h-full justify-center max-w-max grid z-50 items-center !p-0">
                                 <div >
-                                    <div className='flex w-[3.2rem] flex-1 items-center'>
+                                    <div className='flex w-[2.5rem] flex-1 items-center'>
                                         <img
-                                            className="!w-[3.2rem] !h-[3.2rem] object-cover object-center !stroke-2"
+                                            className="!w-[2.5rem] !h-[2.5rem] object-cover object-center"
                                             src="/image/logo.svg"
                                             alt="logo"
                                         />
@@ -128,9 +124,9 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                             {/* </MenuContent> */}
                         </Menu>
                         {(!hideNavBottom || !navIcons) &&
-                            <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : ' w-full !flex-1 justify-center -mr-2 lg:-mr-8'}  items-center  flex h-full  pt-1 pl-4 `}>
-                                <h1 className={`drop-shadow-sm flex !font-comfortaa text-[2.1rem]  ${!navIcons ? 'pl-0 ' : ''} !text-slate-600 font-[900] `}>
-                                    City'Do
+                            <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : ' w-full !flex-1 -mr-2 lg:-mr-8'}  items-center  flex h-full   pl-2`}>
+                                <h1 className={`drop-shadow-sm flex !font-quicksand !text-[2rem]  ${!navIcons ? 'pl-0 ' : ''} md3-text-cyan font-[600] `}>
+                                    City'do
                                 </h1>
                             </div>}
 
@@ -139,7 +135,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                     {/* INSERTION NAVLINK TOP  */}
                     {(!navBottom && navIcons && !hideNavBottom) &&
                         <div onMouseEnter={() => { }}
-                            className="lg:pr-6 pr-3 pl-1.5   w-full h-full overflow-hidden flex justify-center items-center">
+                            className="lg:pr-6 pr-3 pl-1.5 relative w-full h-full  flex justify-center items-center">
                             <NavBarSection
                                 addBtn={addBtn} />
                         </div>
