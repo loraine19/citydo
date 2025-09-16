@@ -230,7 +230,7 @@ export default function EventListPage() {
                 </>
             }
             {view === "event" && !isLoading &&
-                <section>
+                <section className="px-1 py-4 h-full">
                     <CalendarComp />
                 </section>}
 

@@ -54,8 +54,11 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
 
     return (
-        <form onSubmit={formik.handleSubmit} className='main'>
-            <div className={`${confirm ? 'grid-rows-[minmax(50px,calc(100dvh_-_15rem))]' : 'grid-rows-[minmax(50px,calc(100dvh_-_19rem))]'}
+        <form onSubmit={formik.handleSubmit}
+            className='main flex-1 h-full flex justify-center items-center'>
+            <div className={`${confirm ?
+                'md:grid-rows-[minmax(50px,calc(100dvh_-_16rem))]' :
+                'md:grid-rows-[minmax(50px,calc(100dvh_-_20rem))]'}
             grid grid-cols-[1fr] md:grid-cols-[1fr,1fr] 
               items-center justify-between gap-4 wRespXL px-[2%] w-full overflow-hidden `}>
                 {/* IMAGE CARDMD */}
@@ -72,7 +75,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
                 {/* FORM CARDMD */}
                 <div className='h-full !overflow-auto flex-1'>
-                    <CardMD className='min-h-full !overflow-auto  !flex flex-col justify-between' >
+                    <CardMD className='min-h-full !overflow-auto h-full flex-1 !flex flex-col justify-between' >
                         <CardMD.Headline className='!pt-2 px-6'>
                             <h3>
                                 {lead}
@@ -83,7 +86,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 {notif}
                             </p>
                         </CardMD.Headline>
-                        <CardMD.Subhead className='flex flex-col h-full w-full gap-[2vh] justify-center overflow-auto px-8 flex-1 '>
+                        <CardMD.Subhead className='flex flex-col h-full w-full justify-center overflow-auto gap-4 py-8 px-12 flex-1 '>
                             <Input
                                 className={`inputStandart ${formik?.errors.email ? 'error' : ''}`}
                                 placeholder={"Email"}
@@ -123,7 +126,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 <InputError mt error={formik?.errors.passwordConfirm} />
                             </div>
                         </CardMD.Subhead>
-                        <CardMD.Media className="flex-1 flex h-full py-1">
+                        <CardMD.Media className="flex py-1">
                             <div className={`${!checkbox ? 'justify-between  gap-5' : 'justify-between'} flex flex-1 gap-2 h-full  items-end w-full  px-4`}>
                                 <div className='flex w-full flex-col-reverse h-full  gap-1 '>
                                     <div className='flex flex-1 flex-col w-full gap-2 '>
@@ -174,7 +177,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 </div>
                             </div>
                         </CardMD.Media>
-                        <CardMD.Footer className="px-8 flex-col items-center justify-center pt-0 flex-1 h-full pb-4 gap-1 border-0">
+                        <CardMD.Footer className="px-8 flex-col items-center justify-center  pb-4 gap-1 border-0">
 
                             <Button
                                 elevating
