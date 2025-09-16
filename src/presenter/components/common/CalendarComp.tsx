@@ -47,7 +47,7 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                             fill bg
                             color='cyan'
                             icon='today'
-                            link="/evenement"
+                            link="/evenement?view=view_agenda"
                             size="md"
                             title='Voir tous les événements' />
                         <div className="hidden lg:flex pl-2">
@@ -135,17 +135,18 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                             ))}
                         </div>
                     </div>
-                ) :
-                    (<div className=' absolute flex flex-col flex-1 h-full p-1 gap-1  w-full rounded-xl bg-white  shadow  '>
+                )
+                    :
+                    (<div className='absolute flex flex-col flex-1 h-full p-1 gap-1 w-full rounded-xl bg-white shadow'>
                         {weeks && weeks.map((week: any, key: number) => (
                             <div
                                 key={key}
-                                className={`grid rounded-xl h-full overflow-auto pb-3 border-slate-200 !bg-slate-200/50  border
+                                className={`grid rounded-xl h-full overflow-auto pb-3 border-slate-200 !bg-slate-200/50 border
                                 ${colClass[col - 1]}`}>
                                 {week.map((day: any, index: number) =>
                                     <div className={`flex flex-col text-center h-full border-r border-slate-100/50  `}
                                         key={index}>
-                                        <p className={`${new Date(day.date).toDateString() === new Date().toDateString() && '!text-orange-500  underline underline-offset-4 text-font-bold'} 'w-full !text-xs pt-0  min-h-4 sticky top-0 text-center bg-slate-100`}>
+                                        <p className={`${new Date(day.date).toDateString() === new Date().toDateString() && '!text-orange-500 underline underline-offset-4 text-font-bold'} 'w-full !text-xs pt-0 min-h-4 sticky top-0 text-center bg-slate-100`}>
                                             {day.date.toLocaleDateString('fr-FR', { weekday: 'narrow', month: 'numeric', day: 'numeric' })}
                                         </p>
                                         <div className='min-h-4 h-full flex flex-col w-full items-center gap-0.5' key={index}>
@@ -168,7 +169,6 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                                                                     className=' min-w-full rounded-xl'
                                                                     onClick={() => { setOpen(true); setPopId(event.id + day.date) }}
                                                                 >
-
                                                                     <div
                                                                         className=
                                                                         {`${!event.actif && 'invisible'} 

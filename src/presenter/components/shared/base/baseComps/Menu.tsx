@@ -76,9 +76,8 @@ export const Menu: React.FC<MenuProps> = ({
             if (placementAll.includes('center')) {
                 style.marginLeft = `calc(50% - ${ml}px)`;
                 style.marginRight = `calc(50% - ${ml}px)`;
-                style.top = `20vh`;
                 style.left = '0%';
-                style.transform = `translate(-50%, -50%)`;
+                style.top = '10%';
 
             }
             if (placementAll.includes('center_end')) {
@@ -167,11 +166,11 @@ export const Menu: React.FC<MenuProps> = ({
                         className={` 
                     ${className || ""}
                   
-                    md3-menu md3-elevation ${open ? " md3-menu-enter " : "md3-menu-leave "} `} >
+                    md3-menu md3-elevation ${open ? " md3-menu-enter " : " md3-menu-leave "} `} >
 
                         {open &&
                             <div
-                                className={` `}
+                                className={`animSheetRev `}
                                 ref={menuCurrent}>
                                 <div
                                     className={`px-2 flex`}

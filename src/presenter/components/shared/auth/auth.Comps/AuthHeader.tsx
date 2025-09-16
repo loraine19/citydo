@@ -6,7 +6,7 @@ export function AuthHeader(props: { className?: string }) {
             <div className="relative flex items-center justify-center flex-1 pt-2">
                 <img
                     onError={(e) => { (e.target as HTMLImageElement).src = 'https://citydo.fr/image/logo.svg' }}
-                    className="h-[3.5rem] w-[3.rem] -mr-5 -mt-1 object-cover object-center"
+                    className="h-[3.5rem] w-[3.5rem] -mr-5 -mt-1 object-cover object-center"
                     src="image/logo.svg"
                     alt="logo" />
                 <Typography

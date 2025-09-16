@@ -30,8 +30,17 @@ export default function EventListPage() {
 
     //// PARAMS
     const [Params, setParams] = useSearchParams();
-    const params = { filter: Params.get("filter"), category: Params.get("category") }
-    useEffect(() => { setCategory(params.category || ''); setFilter(params.filter || '') }, []);
+    const params = {
+        filter: Params.get("filter"),
+        category: Params.get("category"),
+        eventView: Params.get("eventView")
+    };
+    useEffect(() => {
+        setCategory(params.category || '');
+        setFilter(params.filter || '');
+        setView(params.eventView || '')
+        setParams({ filter: params.filter || '', category: params.category || '', eventView: params.eventView || '' })
+    }, []);
 
     //// VIEW MODEL
     const eventViewModelFactory = (params: EventFindParams) => DI.resolve('eventViewModel')(params);
@@ -50,7 +59,7 @@ export default function EventListPage() {
         value !== filter && setCategory('')
         setFilter(value || '');
         value === EventFilter.MINE ? setMines(true) : setMines(false);
-        setParams({ filter: value as string || '', category: category })
+        setParams({ filter: value as string || '', category: category, eventView: view });
         await refetch();
     }
 
@@ -69,7 +78,7 @@ export default function EventListPage() {
         const label = searchLabel.label;
         if (value) {
             setCategory(value);
-            setParams({ search: tabSelected, category: value });
+            setParams({ search: tabSelected, category: value, eventView: view });
         }
         else if (label !== 'tous') setSearchString(label)
     };
@@ -89,7 +98,7 @@ export default function EventListPage() {
         const selectedCategory = typeof e !== "object" ?
             e.toUpperCase() : getValue(e.target.innerText.toLowerCase(), eventCategories).toLowerCase();
         setCategory(selectedCategory);
-        setParams({ filter: filter as string || '', category: selectedCategory });
+        setParams({ filter: filter as string || '', category: selectedCategory, eventView: view });
         await refetch();
     }
 
@@ -104,7 +113,13 @@ export default function EventListPage() {
 
     //// HANDLE VIEW CHANGE
     const switchClick = () => {
-        setView(view === "view_agenda" ? "event" : "view_agenda");
+        const nextView = view === "view_agenda" ? "event" : "view_agenda";
+        setView(nextView);
+        setParams({
+            eventView: nextView,
+            filter: filter as string || '',
+            category: category || ''
+        });
         setCategory('');
         filterTab("" as EventFilter)
         setHideNavBottom(false)
@@ -151,7 +166,6 @@ export default function EventListPage() {
 
     //// RENDER
     return (
-
         <main>
             <div className="sectionHeader">
                 <div className={`flex items-center justify-center gap-2 `}>
@@ -187,7 +201,6 @@ export default function EventListPage() {
                         setReverse={setReverse}
                         action={refetch}
                     />}
-
                 <SubHeader
                     qty={count || 0}
                     type={`évènements ${filterName()} ${EventCategory[category as keyof typeof EventCategory] ?? ''}`} />
@@ -209,11 +222,11 @@ export default function EventListPage() {
                             onScroll={() => {
                                 onScroll()
                                 handleHideCallback()
-
                             }}
                             className={"Grid " + (!compact ? ' GridCompact' : '')}>
                             {events.map((event: EventView, index: number) => (
-                                <div className="SubGrid " key={index + 'div'}>
+                                <div className="SubGrid "
+                                    key={index + 'div'}>
                                     <EventCard
                                         autoFit={!compact}
                                         key={index}
@@ -230,7 +243,7 @@ export default function EventListPage() {
                 </>
             }
             {view === "event" && !isLoading &&
-                <section className="px-1 py-4 h-full">
+                <section id='refDiv' className="px-1 py-4 max-h-[calc(100dvh_-_14rem)]">
                     <CalendarComp />
                 </section>}
 

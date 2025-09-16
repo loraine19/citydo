@@ -66,3 +66,59 @@
 .md3-menu-out {
     @apply h-0 p-0 invisible pointer-events-none;
 }
+/*
+  Animation de déploiement d'un menu
+  Utilisé pour: Menu, Dropdown
+*/
+
+@keyframes md3-menu-expand {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.md3-animation-menu-expand {
+    animation: md3-menu-expand var(--md3-anim-duration-medium)
+        var(--md3-anim-easing-decelerate);
+    transform-origin: top left; /* Point de départ de l'animation, pour un menu en haut à gauche */
+}
+
+.md3-menu-enter {
+    animation: md3-menu-scale-in 0.9s cubic-bezier(0.2, 0, 0, 1) forwards;
+    transform-origin: top;
+}
+
+.md3-menu-leave {
+    @apply border-none bg-transparent shadow-none;
+    animation: md3-menu-scale-out 0.9s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+    transform-origin: top;
+    animation-fill-mode: forwards;
+}
+
+@keyframes md3-menu-scale-in {
+    from {
+        opacity: 0;
+        transform: scaleY(0); /* Commence petit */
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1); /* Prend sa taille normale */
+    }
+}
+
+@keyframes md3-menu-scale-out {
+    from {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+}

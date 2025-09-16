@@ -55,7 +55,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
     return (
         <form onSubmit={formik.handleSubmit}
-            className='main flex-1 h-full flex justify-center items-center'>
+            className='main flex-1 h-[calc(100%-5rem)] flex justify-center items-center'>
             <div className={`${confirm ?
                 'md:grid-rows-[minmax(50px,calc(100dvh_-_16rem))]' :
                 'md:grid-rows-[minmax(50px,calc(100dvh_-_20rem))]'}
