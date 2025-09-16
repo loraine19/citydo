@@ -193,12 +193,12 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
                         <>  <div className={` absolute z-0 md3-progressbar-track-active-wavy `}
                             style={{ width: `${percent}%` }}>
                             <div className={` ${mainColor} ${wavySizeMap[size].dot2Size} 
-                     absolute rounded-full z-50 `} />
+                     absolute rounded-full  `} />
                             <div className={` ${mainColor} ${wavySizeMap[size].dotSize} 
-                     absolute rounded-full z-50 `} />
+                     absolute rounded-full  `} />
                         </div>
                             <div className={` md3-progressbar-track-active-wavy 
-                        absolute left-0 flex w-full underline underline-offset-1 whitespace-nowrap overflow-hidden decoration-wavy z-30 animate-wavy 
+                        absolute left-0 flex w-full underline underline-offset-1 whitespace-nowrap overflow-hidden decoration-wavy animate-wavy 
                             ${wavySizeMap[size].decoration}
                             ${wavySizeMap[size].height} `}
 

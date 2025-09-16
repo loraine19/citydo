@@ -24,6 +24,7 @@ const MD3DemoPage: React.FC = () => {
     const [activeTab, setActiveTab] = useState('tab1');
     const [buttonValue, setButtonValue] = useState('1');
     const [openBlur, setOpenBlur] = useState(false);
+    const [navValue, setNavValue] = useState('Accueil');
 
 
 
@@ -400,10 +401,26 @@ const MD3DemoPage: React.FC = () => {
             <section id="navigation" className="md3-section">
                 <h2>Navigation</h2>
                 <h3>Barre de Navigation</h3>
-                <NavigationBar>
-                    <NavigationBarItem label="Accueil" icon={<span className="material-icons">home</span>} active />
-                    <NavigationBarItem label="Recherche" icon={<span className="material-icons">search</span>} />
-                    <NavigationBarItem label="Profil" icon={<span className="material-icons">person</span>} />
+                <NavigationBar
+                    value={navValue}
+                    onValueChange={(value) => {
+                        setNavValue(value);
+                        alert(`Navigation vers: ${value}`);
+                    }}>
+                    <NavigationBarItem
+                        value="Accueil"
+                        label="Accueil"
+                        icon={<Icon
+                            icon="home"
+                            size="md" />} />
+                    <NavigationBarItem
+                        value="Recherche"
+                        label="Recherche"
+                        icon={<Icon icon="search" size="md" />} />
+                    <NavigationBarItem
+                        value="Profil"
+                        label="Profil"
+                        icon={<Icon icon="person" size="md" />} />
                 </NavigationBar>
                 <h3>Tiroir de Navigation</h3>
                 <Button onClick={() => setIsDrawerOpen(true)}>Ouvrir le Tiroir</Button>

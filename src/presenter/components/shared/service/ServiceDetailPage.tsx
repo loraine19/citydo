@@ -246,7 +246,6 @@ export default function ServiceDetailPage() {
             <main  >
                 <div className="sectionHeader">
                     <SubHeader
-                        hideImage={true}
                         type={`${typeS ?? ''} de service ${categoryS ?? ''}`}
                         closeBtn />
                     {notif &&

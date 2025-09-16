@@ -69,3 +69,20 @@
     @apply h-fit;
     opacity: 1;
 }
+
+/* FAB Menu (la position relative est gérée par le conteneur) */
+.md3-fab-menu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity var(--md3-anim-duration-short) var(--md3-anim-easing),
+        transform var(--md3-anim-duration-short) var(--md3-anim-easing);
+    pointer-events: none;
+}
+.md3-fab-menu-container.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}

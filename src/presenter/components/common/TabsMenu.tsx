@@ -18,7 +18,7 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
 
     const { color } = useUxStore((state) => state);
     return (
-        <div className="!relative w-full flex items-center  justify-between gap-x-1 !z-50"
+        <div className="!relative w-full flex items-center  justify-between gap-x-1 !z-10"
             style={{ zIndex: 0 }}>
 
             <SegmentedButton

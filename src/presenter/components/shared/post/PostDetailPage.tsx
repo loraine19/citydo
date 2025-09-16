@@ -75,9 +75,6 @@ export default function PostDetailPage() {
             <main>
                 <div className="sectionHeader ">
                     <SubHeader
-
-                        hideImage={!hideNavBottom || !post?.image}
-                        image={post?.image ?? ""}
                         type={`annonce ${post?.categoryS ?? ""}`}
                         closeBtn />
                 </div>

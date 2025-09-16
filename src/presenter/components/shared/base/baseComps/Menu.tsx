@@ -32,7 +32,7 @@ export const Menu: React.FC<MenuProps> = ({
     menuRef,
     fitMax,
     ref,
-    key
+    key,
 }) => {
     const [internalOpen, setInternalOpen] = useState(false);
     const isControlled = controlledOpen !== undefined && setOpen !== undefined;
@@ -144,7 +144,7 @@ export const Menu: React.FC<MenuProps> = ({
             <div
                 key={key}
                 data-md3-menu
-                className={`md3-menu-container  ${(menuRef || menuRefAuto) ? "" : "relative"} `}>
+                className={`md3-menu-container   ${(menuRef || menuRefAuto) ? "" : "relative"} `}>
                 {(trigger) && React.cloneElement(
                     trigger as React.ReactElement,
 
@@ -166,13 +166,15 @@ export const Menu: React.FC<MenuProps> = ({
                     md3-menu md3-elevation ${open ? " md3-menu-enter " : "md3-menu-leave "} `} >
 
                         {open &&
-                            <div ref={menuCurrent}>
+                            <div
+                                className={` `}
+                                ref={menuCurrent}>
                                 <div
                                     className={`px-2 flex`}
                                     onClick={handleClose}>
                                     {closeIcon ?? <Icon icon='close' size='md' />}
                                 </div>
-                                <div
+                                <div onClick={handleClose}
                                     className={`md3-menu-list overflow-hidden `}>
                                     {children}
                                 </div>
@@ -199,6 +201,7 @@ interface MenuItemProps {
     trailingIcon?: ReactNode;
     divider?: 'top' | 'bottom' | 'both' | 'none';
     value?: string | number | null;
+    bg?: boolean
 }
 
 export const MenuItem: React.FC<MenuItemProps> = ({
@@ -209,19 +212,25 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     leadingIcon,
     trailingIcon,
     divider,
-    value
+    value,
+    bg
 }) => (
-    <div onClick={disabled ? undefined : onClick}
+    <div
+        onClick={disabled ? undefined : onClick}
         data-value={value}
-        className={`  md3-menu-item-container 
-        ${divider ? ` md3-menu-item-divider-${divider}` : ""}`}
-        data-md3>
+        className={`md3-menu-item-container
+            ${bg ? '' : 'border-t border-slate-300/80 !pt-1 first:border-0 first:!pt-0'}
+            ${divider ? `md3-menu-item-divider-${divider}` : ''}
+        `}
+        data-md3
+
+    >
         <div
-            className={`md3-menu-item${disabled ? " disabled" : ""} 
-            ${className || ""}`}
+            className={`md3-menu-item${disabled ? " disabled" : ""}
+                ${bg ? '' : ' !bg-transparent'}
+                ${className || ""}`}
             tabIndex={disabled ? -1 : 0}
             aria-disabled={disabled}
-
             role="menuitem"
             data-md3
         >

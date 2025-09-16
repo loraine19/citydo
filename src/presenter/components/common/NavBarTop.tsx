@@ -6,7 +6,7 @@ import { useUserStore } from "../../../application/stores/user.store";
 import { AvatarUser } from "./AvatarUser";
 import { useUxStore } from "../../../application/stores/ux.store";
 import { NavBarSection } from "./NavLinks";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Menu, MenuItem } from "../shared/base/baseComps/Menu";
 
 export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolean, navIcons?: boolean, title?: boolean }) {
@@ -30,8 +30,6 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
     if (!onBoard && !navIcons) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate", divider: 'bottom' })
 
-
-    const [closeDial, setCloseDial] = useState<boolean>(false)
 
     useEffect(() => {
         getColor(window.location.pathname);
@@ -70,13 +68,9 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                         {/* PROFILE MENU  */}
                         <Menu
                             blurBack
-                            onClose={() => { setCloseDial(true); }}
                             placement="center_top"
-                            open={!closeDial}
                             trigger={<div className="relative h-full justify-center max-w-max grid z-50 items-center !p-0">
-                                <div onClick={() => {
-                                    setCloseDial(false);
-                                }}>
+                                <div >
                                     <div className='flex w-[3.2rem] flex-1 items-center'>
                                         <img
                                             className="!w-[3.2rem] !h-[3.2rem] object-cover object-center !stroke-2"
@@ -89,6 +83,10 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
                             {/* USER ITEM */}
                             <MenuItem
+                                bg
+                                onClick={() => {
+                                    navigate('/myprofile')
+                                }}
                                 divider="top"
                                 leadingIcon={
                                     <div>
@@ -108,11 +106,12 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                             {/* LIST ITEM */}
                             {menuItems.map((item, index) => (
                                 <MenuItem
+                                    bg
                                     divider={item.divider as "top" | "bottom" | "both" | undefined}
                                     key={index}
                                     onClick={() => {
                                         item.onClick && item.onClick();
-                                        setCloseDial(false);
+
                                     }}
                                     leadingIcon={
                                         <Icon

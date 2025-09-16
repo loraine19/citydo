@@ -51,8 +51,6 @@ export default function SurveyDetailPage() {
             <main >
                 <div className="sectionHeader">
                     <SubHeader
-                        hideImage={!hideNavBottom || !survey?.image}
-                        image={survey?.image}
                         type={`sondage ${survey?.categoryS}`}
                         link='/vote'
                         closeBtn />

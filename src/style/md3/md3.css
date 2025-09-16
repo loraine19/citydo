@@ -8,6 +8,7 @@
 @import "./md3_sliders.css";
 @import "./md3_fabs.css";
 @import "./md3_menu.css";
+@import "./md3_navigation.css";
 
 :root {
     /* Couleurs de la palette Material Design 3 */
@@ -45,7 +46,7 @@
     /* Sky */
     --md3-sky: #2f9ed2;
     --md3-on-sky: #ffffff;
-    --md3-sky-container: #b0daed;
+    --md3-sky-container: #bae3f6;
     --md3-on-sky-container: #2c93c4;
     --md3-secondary-sky: #5d5d85;
     --md3-on-secondary-sky: #ffffff;
@@ -53,7 +54,7 @@
     /* Cyan */
     --md3-cyan: #00b4d4;
     --md3-on-cyan: #ffffff;
-    --md3-cyan-container: #b0e2e9;
+    --md3-cyan-container: #b6e7ee;
     --md3-on-cyan-container: #03a1bd;
     --md3-secondary-cyan: #5a7679;
     --md3-on-secondary-cyan: #ffffff;
@@ -69,7 +70,7 @@
     /* Orange */
     --md3-orange: #ff9800;
     --md3-on-orange: #ffffff;
-    --md3-orange-container: #f6d9b1;
+    --md3-orange-container: #fbe1bc;
     --md3-on-orange-container: #dd8604;
     --md3-secondary-orange: #9b6c4b;
     --md3-on-secondary-orange: #ffffff;
@@ -265,23 +266,23 @@
 .md3-sky-outlined {
     background-color: transparent;
     color: var(--md3-sky);
-    border: 1px solid var(--md3-sky);
+    border: 1px solid var(--md3-outline);
 }
 .md3-cyan-outlined {
     background-color: transparent;
     color: var(--md3-cyan);
     border: 1px solid var(--md3-cyan);
-    border-color: var(--md3-cyan);
+    border-color: var(--md3-outline);
 }
 .md3-rose-outlined {
     background-color: transparent;
     color: var(--md3-rose);
-    border: 1px solid var(--md3-rose-container) !important;
+    border: 1px solid var(--md3-outline);
 }
 .md3-orange-outlined {
     background-color: transparent;
     color: var(--md3-orange);
-    border: 1px solid var(--md3-orange);
+    border: 1px solid var(--md3-outline);
 }
 .md3-green-outlined {
     background-color: transparent;
@@ -366,6 +367,44 @@
 }
 .md3-text-on-slate-container {
     color: var(--md3-on-slate-container) !important;
+}
+
+/* Border color utility classes */
+.md3-border-primary {
+    border-color: var(--md3-primary) !important;
+}
+.md3-border-secondary {
+    border-color: var(--md3-secondary) !important;
+}
+.md3-border-tertiary {
+    border-color: var(--md3-tertiary) !important;
+}
+.md3-border-error {
+    border-color: var(--md3-error) !important;
+}
+.md3-border-sky {
+    border-color: var(--md3-sky) !important;
+}
+.md3-border-cyan {
+    border-color: var(--md3-cyan) !important;
+}
+.md3-border-rose {
+    border-color: var(--md3-rose) !important;
+}
+.md3-border-orange {
+    border-color: var(--md3-orange) !important;
+}
+.md3-border-green {
+    border-color: var(--md3-green) !important;
+}
+.md3-border-slate {
+    border-color: var(--md3-slate) !important;
+}
+.md3-border-outline {
+    border-color: var(--md3-outline) !important;
+}
+.md3-border-surface-variant {
+    border-color: var(--md3-surface-variant) !important;
 }
 
 /* Utilitaires pour le layout de la démo */
@@ -575,23 +614,6 @@
         background-color var(--md3-anim-duration-short) var(--md3-anim-easing);
 }
 
-/* FAB Menu (la position relative est gérée par le conteneur) */
-.md3-fab-menu-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    opacity: 0;
-    transform: translateY(1rem);
-    transition: opacity var(--md3-anim-duration-short) var(--md3-anim-easing),
-        transform var(--md3-anim-duration-short) var(--md3-anim-easing);
-    pointer-events: none;
-}
-.md3-fab-menu-container.open {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
 /* Date/Time Pickers (layout simple, nécessite une logique JS pour fonctionner) */
 .md3-picker-container {
     display: flex;
@@ -624,34 +646,6 @@
 .md3-picker-time-item.active {
     background-color: var(--md3-primary);
     color: var(--md3-on-primary);
-}
-
-/* Navigation Rail */
-.md3-nav-rail {
-    display: flex;
-    flex-direction: column;
-    width: 80px;
-    background-color: var(--md3-surface);
-    color: var(--md3-on-surface);
-    box-shadow: var(--md3-shadow-elevation-1);
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
-}
-.md3-nav-rail-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 56px;
-    cursor: pointer;
-    transition: all var(--md3-anim-duration-short) var(--md3-anim-easing);
-}
-.md3-nav-rail-item.active {
-    background-color: var(--md3-secondary-container);
-    color: var(--md3-on-secondary-container);
 }
 
 /* Side Sheet */

@@ -1,11 +1,11 @@
-import { Navbar, Typography } from "@material-tailwind/react";
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Icon } from "./IconComp";
 import { useNotificationStore } from "../../../application/stores/notification.store";
 import { useUxStore } from "../../../application/stores/ux.store";
 import { Fab, FabMenu } from "../shared/base/baseComps/Fabs";
 import { Md3Colors } from "../shared/base/baseComps/Buttons";
 import { useState } from "react";
+import { NavigationBar, NavigationBarItem } from "../shared/base/baseComps/Navigations";
 
 interface NavBarProps {
     handleClick?: () => void;
@@ -29,11 +29,11 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
 
     //// NAV ITEMS
     const navItems: NavItem[] = [
-        { to: "/", icon: "home", label: "Home", color: { border: "!border-slate-500/20", background: "!bg-slate-500", text: "!text-slate-500", col: 'slate' } },
-        { to: "/service", icon: "partner_exchange", label: "Service", color: { border: "!border-sky-500/20", background: "!bg-sky-500", text: "!text-sky-500", col: 'sky' } },
-        { to: "/evenement", icon: "event", label: "Évenement", color: { border: "!border-cyan-500/20", background: "!bg-cyan-500", text: "!text-cyan-500", col: 'cyan' } },
-        { to: "/annonce", icon: "dashboard", label: "Annonce", color: { border: "!border-rose-500/20", background: "!bg-rose-500", text: "!text-rose-500", col: 'rose' } },
-        { to: "/vote", icon: "ballot", label: `${addBtn ? "Vote⠀" : 'Votes⠀⠀'}`, color: { border: "!border-orange-500/20", background: "!bg-orange-500", text: "!text-orange-500", col: 'orange' } },
+        { to: "/", icon: "home", label: "Home", color: 'slate' },
+        { to: "/service", icon: "partner_exchange", label: "Service", color: 'sky' },
+        { to: "/evenement", icon: "event", label: "Évenement", color: 'cyan' },
+        { to: "/annonce", icon: "dashboard", label: "Annonce", color: 'rose' },
+        { to: "/vote", icon: "ballot", label: `Vote`, color: 'orange' },
     ]
 
     //// ADD BUTTON ITEM
@@ -47,54 +47,35 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             groupe: "groups"
         }[type] || "add",
         label: `Ajouter un ${type}`,
-        color: {
-            border: `"!border-${color}-500"`,
-            col: color,
-            text: `!text-${color}-500`,
-        }
+        color: color,
     }] : [
         {
             to: `/service/create`,
             icon: "partner_exchange",
             label: `Ajouter un Service`,
-            color: {
-                border: "!border-sky-500 ",
-                col: 'sky',
-                text: "!text-sky-500",
-            }
+            color: 'sky'
         }, {
             to: `/evenement/create`,
             icon: "event",
             label: `Ajouter un Événement`,
-            color: {
-                border: "!border-cyan-500",
-                col: 'cyan',
-                text: "!text-cyan-500",
-            }
+            color: 'cyan'
         },
         {
             to: `/annonce/create`,
             icon: "dashboard",
             label: `Ajouter une Annonce`,
-            color: {
-                border: "!border-rose-500",
-                col: 'rose',
-                text: "!text-rose-500",
-            }
+            color: 'rose'
         },
         {
             to: `/vote/create`,
             icon: "ballot",
             label: `Créer un Vote`,
-            color: {
-                border: "!border-orange-500",
-                col: 'orange',
-                text: "!text-orange-500",
-            }
+            color: 'orange'
         }
     ]
 
     const [openFab, setOpenFab] = useState(false);
+    const [navValue, setNavValue] = useState('Accueil');
 
 
     return (
@@ -103,92 +84,95 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `items-center opacity-100 anim bg-opacity-90 wRespXL justify-between gap-[5%] md:gap-6  px-2 lg:!px-0 pb-1 ` :
-                    'z-0 md:gap-4 gap-3  pt-2.5 ') +
-                ` flex z-30 w-full `
+                    ` opacity-100 anim  wRespXL justify-between gap-[4%] md:gap-6 px-2 lg:!px-0 pb-1 ` :
+                    'z-0 md:gap-4 gap-3  ') +
+                ` flex items-center  w-full `
             }>
-                <Navbar className={`
-                    ${navBottom ? ' lg:ml-0 border-[1px] rounded-full !shadow bg-slate-50 border-slate-300 !flex-1 !max-w-full   ' :
-                        ` !pt-1  shadow-none border-none bg-transparent  w-full `}
-                    flex h-full items-center !p-0 overflow-x-auto overflow-y-hidden  `}>
-                    <ul className={`${navBottom ?
-                        ' gap-[0.5vw] justify-between flex-1 !w-full ' : 'md:gap-0 gap-1 justify-around '} 
-                            flex  !max-w-[calc(100vw-5.5rem)] flex-row  rounded-full h-full  w-full  `}>
-                        {navItems.map(({ to, icon, label, color }: NavItem, index) => (
-                            <Typography
-                                onClick={() => {
-                                    setColor(color.col)
-                                }}
+                <NavigationBar
+                    value={navValue}
+                    onValueChange={(value) => setNavValue(value)}
+                    className={`
+                    ${navBottom ?
+                            'border-[1px] rounded-full !shadow bg-slate-50 border-slate-300 !flex-1 !max-w-full py-0 px-0 gap-[0.5vw] justify-between' :
+                            `shadow-none w-full  justify-around pb-2 md:pb-0  md:px-2`}
+                    items-center overflow-x-auto overflow-y-hidden flex !max-w-[calc(100vw-5.5rem)]  h-full w-full `}>
+
+                    {navItems.map(({ to, icon, label, color }: NavItem, index) => {
+                        const active = location.pathname === to;
+                        if (active && navValue !== label) setNavValue(label);
+                        return (
+
+                            <NavigationBarItem
+                                className={`md3-text-${color}
+                                    ${navBottom ? 'md:px-14 h-[60px]  md:w-max' : '!rounded-none !p-0'}
+                                    ${navBottom ? active ? `md3-${color}-container animSlide w-[62px]` : ` !min-w-[70px]` : ``}
+                                    
+                                        `}
+                                active={active}
+                                icon={
+                                    <Icon
+                                        disabled={active}
+                                        style={
+
+                                            `${(active && !navBottom) ? `` : ''}
+                                             ${!navBottom ? active ? `animSlide border-b md3-border-${color} py-1 md:border-none md:py-0 px-2 ` : `px-1.5` : ``} `
+                                        }
+                                        reverse={false}
+                                        clear={navBottom}
+                                        size={navBottom ? '2xl' : 'xl'}
+                                        icon={icon}
+                                        fill={active} />
+                                }
+                                label={
+                                    <span className={`hidden md:block
+                                            ${navBottom ?
+                                            ' md:!text-[0.9rem] ' :
+                                            ' md:!text-[0.8rem] pb-[4px] '
+                                        } 
+                                            ${active ? 'underline underline-offset-[6px] ' : ''} `}>
+                                        {label}
+                                    </span>}
+                                value={label}
                                 key={index}
-                                as="li"
-                                className={` ${color.text} flex rounded-full h-full items-center font-medium`}>
-                                <NavLink
-                                    to={to}
-                                    className={({ isActive }) =>
-                                        `flex gap-2 lg:gap-1 justify-center lg:justify-start items-center w-full h-full rounded-full 
-                                            ${navBottom ? ` px-[8px] py-[4px] ` : 'opacity-90'}
-                                            ${(isActive && navBottom) ? `${color.col}Style border animSlide !px-[5.5px] md:!pl-[24px]` :
-                                            (isActive && !navBottom) ? ` border-b-[1px] px-1 md:border-none rounded-none !border-current !opacity-100 ` :
-                                                isActive ? `  ` : '!shadow-none '}`
-                                    }>
-                                    {({ isActive }) => (
-                                        <>
-                                            <Icon
-                                                disabled={isActive}
-                                                style={
-                                                    `${(isActive && !navBottom) ? `` : ''} min-h-[48px] `
-                                                }
-                                                reverse={false}
-                                                clear={navBottom}
-                                                bg={navBottom}
-                                                size={navBottom ? '3xl' : 'xl'}
-                                                icon={icon}
-                                                fill={isActive ? true : false}
-                                                color={color.col}
-                                            />
-                                            {/* LABEL LINK */}
-                                            <span className={`font-medium  hidden pr-2
-                                            ${navBottom ? 'lg:pr-8 pr-4 md:block md:!text-[0.9rem] ' : 'md:block md:!text-[0.9rem]'} 
-                                            ${(isActive && !navBottom) && 'underline underline-offset-8'}`}>
-                                                {label}
-                                            </span>
-                                        </>
-                                    )}
-                                </NavLink>
-                            </Typography>
-                        ))}
-                    </ul>
-                </Navbar>
-                <FabMenu
-                    backdropBlur={true}
-                    open={openFab}
-                    setOpen={setOpenFab}
-                    className=""
-                    mainProps={{
-                        className: `rounded-full `,
-                        size: navBottom ? 'large' : 'small',
-                        icon: { icon: openFab ? 'close' : 'edit', size: navBottom ? '2xl' : 'lg' },
-                        color: color as Md3Colors ?? 'slate'
-                    }}
-                    placement={navBottom ? "top" : "bottom"}
-                >
-                    {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
-                        <Fab
-                            className="max-w-max self-end shadow-lg mr-4"
-                            variant="tonal"
-                            key={index}
-                            size="extended"
-                            color={color.col as Md3Colors ?? 'slate'}
-                            icon={{ icon: icon, size: 'lg' }}
-                            text={label}
-                            onClick={() => {
-                                navigate(to);
-                                setOpenFab(false);
-                            }} >
-                            {label}
-                        </Fab>
-                    )}
-                </FabMenu>
+                                onClickAction={() => {
+                                    setColor(color)
+                                    navigate(to)
+                                }}
+                            >
+                            </NavigationBarItem>
+                        )
+                    })}
+                </NavigationBar>
+                {addBtn &&
+                    <FabMenu
+                        backdropBlur={true}
+                        open={openFab}
+                        setOpen={setOpenFab}
+                        mainProps={{
+                            className: `rounded-full`,
+                            size: navBottom ? 'large' : 'small',
+                            icon: { icon: openFab ? 'close' : 'edit', size: navBottom ? '2xl' : 'lg' },
+                            color: color as Md3Colors ?? 'slate'
+                        }}
+                        placement={navBottom ? "top" : "bottom"}
+                    >
+                        {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
+                            <Fab
+                                className="max-w-max self-end shadow-lg mr-4"
+                                variant="tonal"
+                                key={index}
+                                size="extended"
+                                color={color as Md3Colors ?? 'slate'}
+                                icon={{ icon: icon, size: 'lg' }}
+                                text={label}
+                                onClick={() => {
+                                    navigate(to);
+                                    setOpenFab(false);
+                                }} >
+                                {label}
+                            </Fab>
+                        )}
+                    </FabMenu>}
             </div>
 
         </>
