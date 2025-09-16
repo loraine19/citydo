@@ -129,7 +129,7 @@ function App() {
                                 <Route element={<WithTopNavPages addBtn navIcons />}>
 
                                     {/* Pages with bottom navigation */}
-                                    <Route element={<WithBottomPages addBtn={false} />}>
+                                    <Route element={<WithBottomPages addBtn={true} />}>
                                         <Route path="/" element={<DashboardPage />} />
                                     </Route>
 

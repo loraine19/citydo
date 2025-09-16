@@ -199,15 +199,9 @@ export const CardLarge: React.FC<CardLargeProps> & {
     setExpanded,
     ...props
 }) => {
-        const [screenSmall, setScreenSmall] = useState<boolean>(window.innerWidth < 640);
-        // const [expanded, setExpanded] = useState<boolean>(false);
 
-        useEffect(() => {
-            const handleResize = () => setScreenSmall(window.innerWidth < 640);
-            window.addEventListener("resize", handleResize);
-            return () => window.removeEventListener("resize", handleResize);
-            console.log('resize', screenSmall);
-        }, []);
+
+        const divRef = React.useRef<HTMLDivElement>(null);
 
 
         // Extract image props if image is a React element
@@ -215,42 +209,55 @@ export const CardLarge: React.FC<CardLargeProps> & {
 
         // Card classes
         const cardClasses = `md3-card-large  !min-h-fit md3-card-${variant} ${className || ""}`;
+        const [keepHandle, setKeepHandle] = useState(false);
 
         return (
-            <div className={`${cardClasses} !bg-transparent !border-none relative min-h-full flex flex-1 overflow-hidden`} data-md3-card
+            <div className={`${cardClasses}  !border-none relative min-h-full flex flex-1 overflow-hidden`} data-md3-card
                 {...props}>
                 {/* Large Image */}
-                <div className={`  absolute top-0 anim md3-card-large-image-container h-[55%] `}  >
-                    <img
-                        src={imageProps.src}
-                        alt={imageProps.alt}
-                        className={`md3-card-large-image ${imageProps.className || ""}`}
-                    />
-                    {imageProps.children && (
-                        <div className="md3-card-large-image-children" >
-                            {imageProps.children}
-                        </div>
-                    )}
-                </div>
+                {imageProps.src &&
+                    <div className={`  absolute top-0 anim md3-card-large-image-container h-[55%] `}  >
+                        <img
+                            src={imageProps.src}
+                            alt={imageProps.alt}
+                            className={`md3-card-large-image ${imageProps.className || ""}`}
+                        />
+                        {imageProps.children && (
+                            <div className="md3-card-large-image-children" >
+                                {imageProps.children}
+                            </div>
+                        )}
+                    </div>}
 
                 {/* Pull handle and expandable content */}
-                <div className={` 
-                            ${!expanded ? " animSheetRev max-h-[60%] lg:max-h-[55%]  overflow-hidden " :
-                        "  max-h-[calc(100%-4rem)]  !h-fit overflow-auto animSheet "}
-                            md3-card-large-sheet  ${sheetClassName || ""}`}>
-                    {/* Pull handle */}
-                    <div className="md3-card-large-sheet-handle">
-                        <button
-                            className="md3-card-large-sheet-handle-button "
-                            onDrag={() => { setExpanded(!expanded) }}
-                            onDragEnd={() => { setExpanded(!expanded) }}
-                            onClick={() => {
-                                setExpanded(!expanded);
-                            }}
-                            tabIndex={0}
-                            aria-label="Expand card content" />
+                <div id='sheet'
+                    ref={divRef}
 
-                    </div>
+                    className={` md3-card-large-sheet  ${sheetClassName || ""}
+                        ${imageProps.src ? `
+                            ${(!expanded) ?
+                                " animSheetRev max-h-[60%] lg:max-h-[55%]  overflow-hidden " :
+                                "  max-h-[calc(100%-4rem)]  !h-fit overflow-auto animSheet "}
+                            `
+                            : "!h-full"}
+                            `}>
+                    {/* Pull handle */}
+                    {(keepHandle ||
+                        (divRef?.current &&
+                            ((divRef.current.clientHeight ?? 0) !== (divRef.current.scrollHeight ?? 0)))) &&
+
+                        <div className="md3-card-large-sheet-handle">
+                            <button
+                                className="md3-card-large-sheet-handle-button "
+                                onClick={() => {
+                                    setExpanded(!expanded);
+                                    setKeepHandle(true);
+
+                                }}
+                                tabIndex={0}
+                                aria-label="Expand card content" />
+
+                        </div>}
                     {/* Expandable content */}
                     <div className={`md3-sheet-content `}  >
                         {children}

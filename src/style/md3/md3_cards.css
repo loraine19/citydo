@@ -111,7 +111,7 @@
     justify-content: space-between;
     align-items: center;
     gap: var(--md3-spacing-medium);
-    padding: var(--md3-spacing-small) var(--md3-spacing-medium) 0;
+    padding: var(--md3-spacing-sm) var(--md3-spacing-medium) 0;
     border-top: 1px solid var(--md3-outline-variant);
     color: var(--md3-on-surface-variant);
 }
@@ -134,7 +134,7 @@
 
 /*** LARGER CARDS ***/
 .md3-card-large {
-    @apply flex flex-col;
+    @apply flex flex-col w-respLarge;
     border-radius: var(--md3-radius-large);
     box-shadow: var(--md3-shadow-elevation-1);
     transition: box-shadow 0.2s, background-color 0.2s;

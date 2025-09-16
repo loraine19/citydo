@@ -84,8 +84,8 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    ` opacity-100 anim  wRespXL justify-between gap-[4%] md:gap-6 px-2 lg:!px-0 pb-1 ` :
-                    'z-0 md:gap-4 gap-3  ') +
+                    `anim  wRespXL justify-between gap-[4%] md:gap-6 px-2 lg:!px-0 pb-1 ` :
+                    'z-0 md:gap-4 gap-3 bg-transparent  ') +
                 ` flex items-center  w-full `
             }>
                 <NavigationBar
@@ -93,7 +93,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                     onValueChange={(value) => setNavValue(value)}
                     className={`
                     ${navBottom ?
-                            'border-[1px] rounded-full !shadow bg-slate-50 border-slate-300 !flex-1 !max-w-full py-0 px-0 gap-[0.5vw] justify-between' :
+                            'border-[1px] rounded-full !shadow bg-slate-50 border-slate-300 !flex-1 !max-w-full p-0 justify-between !bg-none ' :
                             `shadow-none w-full  justify-around pb-2 md:pb-0  md:px-2`}
                     items-center overflow-x-auto overflow-y-hidden flex !max-w-[calc(100vw-5.5rem)]  h-full w-full `}>
 
@@ -104,8 +104,8 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
 
                             <NavigationBarItem
                                 className={`md3-text-${color}
-                                    ${navBottom ? 'md:px-14 h-[60px]  md:w-max' : '!rounded-none !p-0'}
-                                    ${navBottom ? active ? `md3-${color}-container animSlide w-[62px]` : ` !min-w-[70px]` : ``}
+                                    ${navBottom ? 'md:px-14 h-[60px]  md:w-max' : ' !rounded-none !p-0'}
+                                    ${navBottom ? active ? `md3-${color}-container animSlide w-[61px]` : ` max-w-[50px] sm:max-w-maw last:mr-[2vw] first:ml-[2vw]` : ``}
                                     
                                         `}
                                 active={active}
