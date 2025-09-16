@@ -43,9 +43,9 @@ export default function DashboardPage() {
 
     //// CLASSES
     const userClasse = "flex row-span-3 lg:grid  animRev  lg:min-h-full ";
-    const eventClasse = "h-full flex !min-h-[14rem] row-span-5 lg:grid   ";
+    const eventClasse = " flex h-full  !min-h-[13rem] row-span-5 lg:grid   ";
     const notifClasse = " row-span-1  animRev " + (notifs.length > 0 ? " min-h-[5rem]" : " min-h-[3rem]")
-    const mapClasse = "flex row-span-7  !min-h-[14rem] lg:min-h-[32%] lg:grid ";
+    const mapClasse = "flex row-span-7 h-full  lg:min-h-[32%] lg:grid ";
 
 
     //// HANDLE SCROLL NOTIFICATIONS
@@ -78,7 +78,7 @@ export default function DashboardPage() {
     return (
         <main
 
-            className={` lg:!-mt-0  !overflow-hidden 
+            className={` lg:!-mt-0  !overflow-hidden pb-2
             ${navBottom ? '-mt-6  !max-h-[calc(100dvh_-_7.5rem)] lg:!max-h-[calc(100dvh_-_8.5rem)] ' :
                     '!-mt-6 !max-h-[calc(100dvh_-_3.5rem)] lg:!max-h-[calc(100dvh_-_2rem)] '} `}
             data-cy="dashboard-body" >
@@ -262,7 +262,7 @@ export default function DashboardPage() {
 
                 {/* CALENDARD CARD  */}
                 <div className={eventClasse}>
-                    <CardMD className=" min-h-full max-h-full w-full bg-gradient-to-t from-cyan-100 to-cyan-50 anim ">
+                    <CardMD className=" min-h-full max-h-full w-full bg-gradient-to-t from-cyan-100 to-cyan-50 anim mb-4">
 
                         <CalendarComp logo={true} />
                     </CardMD>
