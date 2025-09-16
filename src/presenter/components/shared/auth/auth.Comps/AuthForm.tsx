@@ -57,8 +57,8 @@ export const AuthForm: React.FC<AuthFormProps> = ({
         <form onSubmit={formik.handleSubmit}
             className='main flex-1 h-[calc(100%-5rem)] flex justify-center items-center'>
             <div className={`${confirm ?
-                'md:grid-rows-[minmax(50px,calc(100dvh_-_16rem))]' :
-                'md:grid-rows-[minmax(50px,calc(100dvh_-_20rem))]'}
+                'md:grid-rows-[minmax(50px,calc(100dvh_-_17rem))]' :
+                'md:grid-rows-[minmax(50px,calc(100dvh_-_21rem))]'}
             grid grid-cols-[1fr] md:grid-cols-[1fr,1fr] 
               items-center justify-between gap-4 wRespXL px-[2%] w-full overflow-hidden `}>
                 {/* IMAGE CARDMD */}

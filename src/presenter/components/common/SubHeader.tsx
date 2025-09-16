@@ -53,14 +53,14 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
 
                 {/* BUTTON UP  */}
                 {(hideNavBottom && !form) &&
-                    <div className={`${(hideNavBottom && !haveTitle) ? '-bottom-14 ' : '-bottom-14 '} flex flex-1 absolute z-[9999] right-4 `}>
+                    <div className={`${(hideNavBottom && !haveTitle) ? '-bottom-14 ' : '-bottom-14 '} flex flex-1 absolute z-[9999] right-1 top-4 `}>
                         <Icon
                             key={type + 'top'}
                             style={'!shadow-lg'}
                             reverse
                             icon="vertical_align_top"
                             color={color ?? 'gray'}
-                            size="2xl"
+                            size="3xl"
                             fill bg
                             onClick={() => scrollToTop()}
                             title="retour en haut" />

@@ -38,8 +38,8 @@ export default function EventListPage() {
     useEffect(() => {
         setCategory(params.category || '');
         setFilter(params.filter || '');
-        setView(params.eventView || '')
-        setParams({ filter: params.filter || '', category: params.category || '', eventView: params.eventView || '' })
+        setView(params.eventView || 'view_agenda')
+        setParams({ filter: params.filter || '', category: params.category || '', eventView: params.eventView || 'view_agenda' })
     }, []);
 
     //// VIEW MODEL
