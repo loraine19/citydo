@@ -105,7 +105,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                             <NavigationBarItem
                                 className={`md3-text-${color}
                                     ${navBottom ? 'md:px-14 h-[60px]  md:w-max' : ' !rounded-none !p-0'}
-                                    ${navBottom ? active ? `md3-${color}-container animSlide w-[61px]` : ` max-w-[50px] sm:max-w-maw last:mr-[2vw] first:ml-[2vw]` : ``}
+                                    ${navBottom ? active ? `md3-${color}-container animSlide w-[63px]` : ` max-w-[50px] sm:max-w-maw last:mr-[2vw] first:ml-[2vw]` : ``}
                                     
                                         `}
                                 active={active}
