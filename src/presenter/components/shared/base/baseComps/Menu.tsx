@@ -74,8 +74,10 @@ export const Menu: React.FC<MenuProps> = ({
             if (placementAll.includes('end')) style.right = 0;
             if (placementAll.includes('up')) style.bottom = '100%';
             if (placementAll.includes('center')) {
-                style.left = `calc(50% - (${ml}px + 0.8rem))`;
+                style.marginLeft = `calc(50% - ${ml}*1.1px)`;
+                style.marginRight = `calc(50% - ${ml}*1.1px)`;
                 style.top = `20vh`;
+                style.left = '0%';
                 style.transform = `translate(-50%, -50%)`;
 
             }
