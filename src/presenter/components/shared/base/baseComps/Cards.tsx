@@ -94,7 +94,7 @@ export const CardMD: React.FC<CardMDProps> & {
     Chips: typeof CardChips;
     MidSection: typeof CardMidSection;
 } = ({
-    variant = "elevated",
+    variant = "outlined",
     color,
     children,
     className,
@@ -187,7 +187,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
     expanded?: boolean;
     setExpanded?: (expanded: boolean) => void;
 } = ({
-    variant = "elevated",
+    variant = "outlined",
     color,
     children,
     className,
@@ -202,7 +202,15 @@ export const CardLarge: React.FC<CardLargeProps> & {
 
 
         const divRef = React.useRef<HTMLDivElement>(null);
+        const [largeContent, setLargeContent] = useState<boolean>(false);
 
+        useEffect(() => {
+            if (divRef.current) {
+                setLargeContent(
+                    divRef.current.clientHeight !== divRef.current.scrollHeight
+                );
+            }
+        }, [divRef]);
 
         // Extract image props if image is a React element
         const imageProps = (image as any)?.props || {};
@@ -210,6 +218,8 @@ export const CardLarge: React.FC<CardLargeProps> & {
         // Card classes
         const cardClasses = `md3-card-large  !min-h-fit md3-card-${variant} ${className || ""}`;
         const [keepHandle, setKeepHandle] = useState(false);
+
+        useEffect(() => { }, [largeContent]);
 
         return (
             <div className={`${cardClasses}  !border-none relative min-h-full flex flex-1 overflow-hidden`} data-md3-card
@@ -233,37 +243,35 @@ export const CardLarge: React.FC<CardLargeProps> & {
                 <div id='sheet'
                     ref={divRef}
 
-                    className={` md3-card-large-sheet  ${sheetClassName || ""}
+                    className={` md3-card-large-sheet md3-card-${variant}  ${sheetClassName || ""}
                         ${imageProps.src ? `
                             ${(!expanded) ?
                                 " animSheetRev max-h-[60%] lg:max-h-[55%]  overflow-hidden " :
-                                "  max-h-[calc(100%-4rem)]  !h-fit overflow-auto animSheet "}
+                                "  max-h-[calc(100%-4rem)] h-fit overflow-auto animSheet "}
                             `
                             : "!h-full"}
                             `}>
                     {/* Pull handle */}
-                    {(keepHandle ||
-                        (divRef?.current &&
-                            ((divRef.current.clientHeight ?? 0) !== (divRef.current.scrollHeight ?? 0)))) &&
 
-                        <div className="md3-card-large-sheet-handle">
-                            <button
-                                className="md3-card-large-sheet-handle-button "
-                                onClick={() => {
-                                    setExpanded(!expanded);
-                                    setKeepHandle(true);
 
-                                }}
-                                tabIndex={0}
-                                aria-label="Expand card content" />
+                    <div className="md3-card-large-sheet-handle">
+                        {((keepHandle || largeContent) && imageProps.src) && <button
+                            className="md3-card-large-sheet-handle-button "
+                            onClick={() => {
+                                setExpanded(!expanded);
+                                setKeepHandle(true);
 
-                        </div>}
+                            }}
+                            tabIndex={0}
+                            aria-label="Expand card content" />}
+
+                    </div>
                     {/* Expandable content */}
                     <div className={`md3-sheet-content `}  >
                         {children}
                     </div>
                 </div>
-                {!expanded && (
+                {!expanded && largeContent && (
                     <div className="absolute bottom-0 px-4 w-full py-2 bg-gradient-to-t from-white to-white/10">
                         <Icon
                             bg fill clear

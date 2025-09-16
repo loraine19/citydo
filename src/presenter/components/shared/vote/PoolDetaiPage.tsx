@@ -56,7 +56,7 @@ export default function PoolDetailPage() {
                     closeBtn />
             </div>
             <section
-                className={`${expand ? 'overflow-auto' : 'overflow-hidden'}`}
+                className={`${expand ? 'overflow-auto' : ''}`}
                 ref={divRef}
                 onScroll={() => {
                     handleHideCallback()

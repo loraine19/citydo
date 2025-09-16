@@ -30,7 +30,7 @@ export default function PoolDetailCard({ pool, setExpand }: PoolDetailCardProps)
         >
             <CardLarge.Chips className="justify-between">
 
-                <div className="md3-card-chips flex-1 !overflow-auto">
+                <div className="md3-card-chips flex-1">
 
                     <DateChip
                         start={pool?.createdAt}

@@ -193,7 +193,7 @@
 
 @keyframes downSheet {
     from {
-        transform: translateY(5%);
+        transform: translateY(20%);
         height: 100%;
     }
     to {
