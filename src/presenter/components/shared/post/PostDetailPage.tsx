@@ -79,6 +79,7 @@ export default function PostDetailPage() {
                         closeBtn />
                 </div>
                 <section
+                    id='refDiv'
                     className={`${expand ? 'overflow-auto' : ''} `}
                     ref={divRef}
                     onScroll={() => {

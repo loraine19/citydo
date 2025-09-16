@@ -42,7 +42,6 @@ export const Menu: React.FC<MenuProps> = ({
 
     useEffect(() => {
         if (menuRefAuto.current) {
-            console.log('test')
             const refDiv = document.getElementById('refDiv');
             if (refDiv && ref) {
                 refDiv.appendChild(menuRefAuto.current);

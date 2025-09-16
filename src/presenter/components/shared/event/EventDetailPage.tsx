@@ -98,6 +98,7 @@ export default function EventDetailPage() {
 
                 </div>
                 <section
+                    id='refDiv'
                     className={expanded ? 'overflow-auto' : 'overflow-hidden'}
                     ref={divRef}
                     onScroll={() => {

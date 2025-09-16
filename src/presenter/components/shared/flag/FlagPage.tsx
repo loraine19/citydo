@@ -76,6 +76,7 @@ export default function FlagPage() {
             {isLoading ?
                 <SkeletonGrid small count={6} /> :
                 <section
+                    id='refDiv'
                     ref={divRef}
                     onScroll={(e) => {
                         e.stopPropagation();

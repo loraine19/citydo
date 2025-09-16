@@ -140,6 +140,7 @@ export default function GroupPage() {
             {isLoading || error ?
                 <SkeletonGrid />
                 : <section
+                    id='refDiv'
                     ref={divRef}
                     onScroll={() => { onScroll(); handleHideCallback() }}
                     className="Grid">

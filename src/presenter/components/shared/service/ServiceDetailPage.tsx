@@ -257,6 +257,7 @@ export default function ServiceDetailPage() {
 
                 </div>
                 <section
+                    id='refDiv'
                     className={`${expanded ? 'overflow-auto' : '!overflow-hidden '}`}
                     ref={divRef}
                     onScroll={() =>
