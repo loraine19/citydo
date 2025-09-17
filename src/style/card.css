@@ -105,7 +105,7 @@
     /***************/
     /* DETAILD CARD  */
     .DetailCardDiv {
-        @apply wRespXL grid pt-2  px-2 max-h-[calc(100dvh_-_6rem)];
+        @apply wRespXL grid pt-2  px-[1rem] max-h-[calc(100dvh_-_6rem)];
     }
 
     .CardDetailGrid {

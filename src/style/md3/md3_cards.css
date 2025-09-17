@@ -136,7 +136,7 @@
 .md3-card-large {
     @apply flex flex-col w-respLarge;
     border-radius: var(--md3-radius-large);
-    box-shadow: var(--md3-shadow-elevation-1);
+    box-shadow: var(--md3-shadow-elevation-4);
     transition: box-shadow 0.2s, background-color 0.2s;
     background-color: transparent;
     max-width: 800px;
@@ -169,6 +169,7 @@
     display: flex;
     justify-content: center;
     overflow: hidden;
+    box-shadow: var(--md3-shadow-elevation-4);
     border-radius: var(--md3-radius-large);
 }
 
@@ -228,12 +229,12 @@
 
 .md3-card-elevated {
     background-color: var(--md3-surface);
-    box-shadow: var(--md3-shadow-elevation-4);
+    box-shadow: var(--md3-shadow-elevation-1);
 }
 
 .md3-card-elevated:hover,
 .md3-card-elevated:focus {
-    box-shadow: var(--md3-shadow-elevation-5);
+    box-shadow: var(--md3-shadow-elevation-2);
 }
 
 .md3-card-filled {
