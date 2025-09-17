@@ -68,7 +68,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                     <Dialog >
                         <Dialog.Trigger
                             className={` ${list.count > 0 ? '' : 'invisible'} 
-                            -ml-5 pr-2  h-max w-full -mt-6  relative  flex`}>
+                            ${navBottom ? '-ml-3 pr-2' : '-ml-4 pr-0.5 '} h-max w-full -mt-6  relative  flex`}>
                             <Icon
                                 title={'ouvrir le popup'}
                                 style={(' outline-[0px]') + ' !font-semibold  !pt-[1px]  outline '}

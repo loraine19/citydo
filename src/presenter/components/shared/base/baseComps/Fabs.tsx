@@ -38,7 +38,6 @@ interface FabMenuProps {
     backdropBlur?: boolean;
 }
 
-//md3-fab-container z-50 md3-fab-container-${placement}
 export const FabMenu: React.FC<FabMenuProps> = ({ mainProps, children, placement, className, open, setOpen, backdropBlur }) => {
     const [isOpen, setIsOpen] = useState(false);
     const size = mainProps?.size || 'medium';

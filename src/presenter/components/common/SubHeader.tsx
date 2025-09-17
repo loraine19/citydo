@@ -22,7 +22,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
         <div className={`flex flex-col relative border-t-0 w-[calc(100%_+_1.6rem)] -ml-[0.8rem] `}>
             <hr className={` border-black/20 border-b z-[1] border-t-0 w-[calc(100%_+_4rem)] -ml-[2rem]  !opacity-90 pb-2 shadow-md `} />
             {/* TITLE DIV  */}
-            <div className={`flex w-full h-full px-3  bg-slate-200/90  flex-1 gap-x-2 justify-end lg:justify-between`}>
+            <div className={`flex w-full h-full px-[3rem]  bg-slate-200/90  flex-1 gap-x-2 justify-end lg:justify-between`}>
                 {(!hideNavBottom || !navIcons) &&
                     <div className={`flex flex-1 h-full w-full items-center  
                         ${closeBtn ? 'truncate !justify-between pt-3 ' : 'pt-2 '}`}>

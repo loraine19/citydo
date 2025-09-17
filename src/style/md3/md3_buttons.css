@@ -80,15 +80,15 @@
 .md3-button-elevated {
     background-color: var(--md3-surface);
     color: var(--md3-primary);
-    box-shadow: var(--md3-shadow-elevation-4);
+    box-shadow: var(--md3-shadow-elevation-1);
 }
 .md3-button-elevated:hover {
-    box-shadow: var(--md3-shadow-elevation-5);
+    box-shadow: var(--md3-shadow-elevation-2);
     @apply md3-button-hover-colorize;
     transition: all 0.5s;
 }
 .md3-button-elevated:active {
-    box-shadow: var(--md3-shadow-elevation-3);
+    box-shadow: var(--md3-shadow-elevation-1);
     transition: all 0.5s;
 }
 

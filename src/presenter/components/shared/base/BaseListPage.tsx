@@ -60,6 +60,19 @@ const MD3DemoPage: React.FC = () => {
             <section id="boutons" className='overflow-hidden min-h-max p-4 border '>
                 <h2>Boutons</h2>
                 <div className='flex flex-col gap-1 divide-y'>
+
+                    {/* Test md3-elevation classes */}
+                    <div className="flex gap-4 mb-4">
+                        {[0, 1, 2, 3, 4, 5].map((level) => (
+                            <div
+                                key={level}
+                                className={`md3-elevation-${level} w-16 h-16 flex items-center justify-center rounded bg-surface`}
+                                style={{ border: '1px solid var(--md3-outline-variant)' }}
+                            >
+                                {level}
+                            </div>
+                        ))}
+                    </div>
                     {/* Filled & Tonal */}
                     <div className='md3-component-group'>
                         <Button variant="filled">Rempli</Button>

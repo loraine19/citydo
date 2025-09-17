@@ -11,7 +11,7 @@
     border-radius: var(--md3-radius-large);
     background-color: var(--md3-primary);
     color: var(--md3-on-primary);
-    box-shadow: var(--md3-shadow-elevation-3);
+    box-shadow: var(--md3-shadow-elevation-4);
     cursor: pointer;
     transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
 }
