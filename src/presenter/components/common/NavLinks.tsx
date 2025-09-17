@@ -84,8 +84,8 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `anim  wRespXL slateFooter pb-1 md:pb-4 justify-between gap-[4%] md:gap-6 px-2 lg:!px-0 ` :
-                    'z-0 md:gap-4 gap-1 bg-transparent  ') +
+                    `anim  wRespXL slateFooter pb-1.5 md:pb-4 justify-between  px-2 lg:!px-0 ` :
+                    'z-0  bg-transparent -mt-1.5 ') +
                 ` flex items-center  w-full `
             }>
                 <NavigationBar
@@ -93,9 +93,9 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                     onValueChange={(value) => setNavValue(value)}
                     className={`
                     ${navBottom ?
-                            'border-[1px] rounded-full !shadow !bg-white border-slate-200 !flex-1 !max-w-full p-0 justify-between !bg-none ' :
+                            ' rounded-full  !flex-1 !max-w-full p-0 justify-between bg-white border' :
                             `shadow-none w-full  justify-around pb-2 md:pb-0  md:px-2`}
-                    items-center overflow-x-auto overflow-y-hidden flex !max-w-[calc(100vw-5.5rem)]  h-full w-full `}>
+                    items-center overflow-x-auto overflow-y-hidden flex   h-full w-full `}>
 
                     {navItems.map(({ to, icon, label, color }: NavItem, index) => {
                         const active = location.pathname === to;
@@ -105,8 +105,10 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                             <NavigationBarItem
                                 row={navBottom}
                                 className={`md3-text-${color}
-                                    ${navBottom ? 'md:px-12 h-[60px]  md:w-max' : ' !rounded-none !p-0'}
-                                    ${navBottom ? active ? `md3-${color}-container animSlide w-[63px]` : ` max-w-[50px] sm:max-w-maw last:mr-[2vw] first:ml-[2vw]` : ``}
+                                    ${navBottom ? 'md:px-12 h-[56px]   md:w-max' : ' !rounded-none !p-0'}
+                                    ${navBottom ? active ?
+                                        `md3-${color}-container md3-elevation-1 animSlide w-[58px] border border-black/15 `
+                                        : ` max-w-[50px] sm:max-w-maw last:mr-[2vw] first:ml-[2vw]` : ``}
                                     
                                         `}
                                 active={active}
@@ -115,7 +117,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                         disabled={active}
                                         style={
                                             `${(active && !navBottom) ? `` : ''}
-                                             ${!navBottom ? active ? `animSlide border-b md3-border-${color} py-1 md:border-none md:py-0 px-2 ` : `px-1.5` : ``} `
+                                             ${!navBottom ? active ? `  animSlide border-b md3-border-${color} py-1 md:border-none md:py-0 px-2 ` : `px-1.5` : ``} `
                                         }
                                         reverse={false}
                                         clear={navBottom}
@@ -148,13 +150,14 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                         backdropBlur={true}
                         open={openFab}
                         setOpen={setOpenFab}
+                        className={`${navBottom ? 'bottom-[5.2rem] fixed right-2' : 'fixed bottom-[2rem] right-2 '}`}
                         mainProps={{
-                            className: `rounded-full`,
-                            size: navBottom ? 'large' : 'small',
-                            icon: { icon: openFab ? 'close' : 'edit', size: navBottom ? '2xl' : 'lg' },
+                            className: ` rounded-full  `,
+                            size: navBottom ? 'medium' : 'medium',
+                            icon: { icon: openFab ? 'close' : 'edit', size: '2xl' },
                             color: color as Md3Colors ?? 'slate'
                         }}
-                        placement={navBottom ? "top" : "bottom"}
+                        placement={'top'}
                     >
                         {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
                             <Fab

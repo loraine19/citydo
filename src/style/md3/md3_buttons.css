@@ -35,10 +35,10 @@
     font-size: 0.875rem;
 }
 .md3-button-medium {
-    height: 40px;
+    height: 42px;
     min-width: 64px;
     padding: 0 24px;
-    font-size: 0.925rem;
+    font-size: 0.9rem;
 }
 .md3-button-large {
     height: 48px;
@@ -71,6 +71,8 @@
 .md3-button-filled {
     background-color: var(--md3-primary);
     color: var(--md3-on-primary);
+
+    border: 1px solid var(--md3-outline);
 }
 .md3-button-filled:hover {
     @apply md3-button-hover-darkening;
@@ -80,7 +82,8 @@
 .md3-button-elevated {
     background-color: var(--md3-surface);
     color: var(--md3-primary);
-    box-shadow: var(--md3-shadow-elevation-1);
+    border: 1px solid var(--md3-outline);
+    box-shadow: var(--md3-shadow-elevation-0);
 }
 .md3-button-elevated:hover {
     box-shadow: var(--md3-shadow-elevation-2);
@@ -116,6 +119,8 @@
 .md3-button-tonal {
     background-color: var(--md3-secondary-container);
     color: var(--md3-on-secondary-container);
+
+    border: 1px solid var(--md3-outline);
 }
 .md3-button-tonal:hover {
     @apply md3-button-hover-darkening;
@@ -300,10 +305,10 @@
 
 /* Elevation */
 .md3-elevating {
-    box-shadow: var(--md3-shadow-elevation-1);
+    box-shadow: var(--md3-shadow-elevation-2);
 }
 .md3-elevating:hover {
-    box-shadow: var(--md3-shadow-elevation-2);
+    box-shadow: var(--md3-shadow-elevation-3);
 }
 .md3-elevating:active {
     box-shadow: var(--md3-shadow-elevation-1);

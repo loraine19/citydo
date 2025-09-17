@@ -20,7 +20,7 @@ import { Md3Colors } from "../../base/baseComps/Buttons";
 type ServiceProps = { service: ServiceView, mines?: boolean, change: (e: React.MouseEvent<HTMLButtonElement>) => void, update?: () => void, compact?: boolean }
 const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, compact }) => {
     const { user } = useUserStore()
-    const { id, title, description, image, createdAt, User, flagged, mine, IResp, points, typeS, categoryS, statusS, Group } = service
+    const { id, title, image, createdAt, User, flagged, mine, IResp, points, typeS, categoryS, statusS, Group } = service
     const navigate = useNavigate();
     const statusSInt = getEnumVal(service.statusS, ServiceStep)
     const isLateValue = isLate(createdAt, 15) && statusSInt < 3
@@ -30,11 +30,11 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
 
     const statusColor = (step: ServiceStep): { color: string } => {
         switch (step) {
-            case ServiceStep.STEP_1: return { color: "orange" };
-            case ServiceStep.STEP_2: return { color: "green" };
+            case ServiceStep.STEP_1: return { color: "slate" };
+            case ServiceStep.STEP_2: return { color: "slate" };
             case ServiceStep.STEP_3: return { color: "slate" };
             case ServiceStep.STEP_4: return { color: "error" };
-            default: return { color: "slate" };
+            default: return { color: "green" };
         }
     }
 
@@ -120,11 +120,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
 
                     </button>
 
-                    <Chip
-                        size="sm"
-                        value={statusS}
-                        color={statusColor(statusS as ServiceStep).color as Md3Colors}
-                    /></div>
+                </div>
                 <MoreButton
                     id={id}
                     type={'service'}
@@ -140,9 +136,29 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                 <GroupLink group={Group} />
             </CardMD.Subhead>
 
-            <CardMD.SupportingText className="line-clamp-1">
-                {description}
-            </CardMD.SupportingText>
+            <CardMD.Media className="pb-1 flex-row gap-2 justify-start">
+                <Chip
+                    size="sm"
+                    value={statusS}
+                    color={statusColor(statusS as ServiceStep).color as Md3Colors}
+                />
+                <Chip
+                    size="sm"
+                    color='slate'
+                    value={`${points.join(' à ')} pts`}
+                    className={`py-0 flex  ${mines && 'hidden md:flex'}`}
+                    icon={
+                        <Icon
+                            style="-mt-0.5"
+                            icon="toll"
+                            title={`Ce service ${service.typeS === ServiceType.GET ? 'vous fais gagner' : 'coute'} ${points.join(' à ')}pts`}
+                            fill={user?.Profile?.points > points[0]}
+                            color={service.typeS === ServiceType.GET ? "green" : "orange"}
+                            size="lg"
+                        />
+                    }
+                />
+            </CardMD.Media>
 
             <CardMD.Footer className="justify-between items-center flex w-full">
                 {mine && mines && (
@@ -164,22 +180,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                 {(!mines) && (
                     <ProfileDiv profile={User} />
                 )}
-                <Chip
-                    size="md"
-                    color='slate'
-                    value={`${points.join(' à ')} pts`}
-                    className={`py-0 flex  ${mines && 'hidden md:flex'}`}
-                    icon={
-                        <Icon
-                            style="-mt-0.5"
-                            icon="toll"
-                            title={`Ce service ${service.typeS === ServiceType.GET ? 'vous fais gagner' : 'coute'} ${points.join(' à ')}pts`}
-                            fill={user?.Profile?.points > points[0]}
-                            color={service.typeS === ServiceType.GET ? "green" : "orange"}
-                            size="lg"
-                        />
-                    }
-                />
+
 
             </CardMD.Footer>
         </CardMD>

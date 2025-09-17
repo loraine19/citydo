@@ -19,7 +19,7 @@ export const SegmentedButton: React.FC<SegmentedButtonProps> = ({
     className,
 }) => {
     const [selectedValueState, setSelectedValueState] = useState(value);
-    const activeClasse = ` animSlide  md3-${color} elevated  `
+    const activeClasse = ` animSlide  md3-${color} md3-elevation-2 border ;  `
 
     return (
         <div className={`md3-segmented-button-group md3-${color}-outlined  ${className || ''} `}>

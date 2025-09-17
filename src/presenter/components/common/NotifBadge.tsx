@@ -50,12 +50,12 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
 
 
     return (
-        <div className={`${!navBottom ? 'lg:gap-2 md:mr-1 ' : ' lg:gap-1'}  flex h-full `}>
+        <div className={`${!navBottom ? 'lg:gap-2 gap-1 md:mr-1 ' : ' lg:gap-1'}  flex h-full `}>
             {badgeMap.map((list: NotifBadgeProps, index: number) =>
                 <div key={index}
                     className={`relative  w-full flex items-center justify-center ${onBoard ? 'lg:hidden' : ''}`}>
                     <Icon
-                        style={`${navBottom ? `!drop-shadow-sm !brightness-[1.05] ` : `!w-[40px] !h-[40px]  `}`}
+                        style={`${navBottom ? `!drop-shadow-sm !brightness-[1.05] ` : `px-0.5 `}`}
                         reverse={!navBottom}
                         link={list.link}
                         icon={list.icon}
@@ -71,11 +71,12 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                             ${navBottom ? '-ml-3 pr-2' : '-ml-4 pr-0.5 '} h-max w-full -mt-6  relative  flex`}>
                             <Icon
                                 title={'ouvrir le popup'}
-                                style={(' outline-[0px]') + ' !font-semibold  !pt-[1px]  outline '}
+                                style={(' outline-[4px]') + ' !font-semibold scale-[0.5] !pt-[1px]  outline '}
                                 bg
                                 reverse
-                                icon={list.count >= 99 ? '⁺99 ' :
-                                    (list.count ? list.count.toString() : '0')}
+                                // icon={list.count >= 99 ? '⁺99 ' :
+                                //     (list.count ? list.count.toString() : '0')}
+                                icon=''
                                 color={list.color}
                                 fill={!navBottom}
                                 size={'xs'} />

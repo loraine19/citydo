@@ -24,7 +24,7 @@ export const Button: React.FC<ButtonProps> = ({ variant = 'filled', color, child
     ${color ? `md3-button-${color}` : ''}  
 ${!fab && (size ? `md3-button-${size}${round ? '-round' : ''}` : 'md3-button-medium')}
 
-    ${className || ''} ${elevating ? ' md3-elevation-4 ' : ''} `.trim();
+    ${className || ''} ${elevating ? ' md3-elevating ' : ''} `.trim();
     return (
         <button
             disabled={disabled}

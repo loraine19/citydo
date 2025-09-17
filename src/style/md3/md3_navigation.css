@@ -33,9 +33,12 @@
     align-items: center;
     bottom: 0;
     width: 100%;
-    box-shadow: var(--md3-shadow-elevation-3);
+    box-shadow: var(--md3-shadow-elevation-4);
     z-index: 100;
     padding: var(--md3-spacing-small);
+    &:hover {
+        box-shadow: var(--md3-shadow-elevation-5);
+    }
 }
 .md3-nav-item {
     display: flex;

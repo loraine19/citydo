@@ -79,20 +79,19 @@
 }
 
 .md3-card-subhead {
-    @apply min-h-fit text-[0.95rem] sm:text-[1rem] md:text-[1.05rem] flex items-center;
+    @apply min-h-fit text-[0.95rem] sm:text-[1rem] md:text-[1.05rem] !pb-1 flex items-center;
     padding: 0 var(--md3-spacing-medium);
-    font-weight: 400;
+    font-weight: 500;
     color: var(--md3-on-surface-variant);
 }
 
 .md3-card-supporting-text {
-    @apply flex-1;
+    @apply flex-1 text-[0.85rem] sm:text-[0.9rem] opacity-90;
     display: flex;
     flex-direction: column;
-    font-size: 0.9rem;
     font-weight: 400;
     color: var(--md3-on-surface-variant);
-    line-height: 1rem;
+    line-height: 1.1rem;
     padding: 0 var(--md3-spacing-medium);
 }
 
@@ -107,12 +106,14 @@
 
 .md3-card-footer {
     display: flex;
+    flex-shrink: 0;
     justify-content: space-between;
     align-items: center;
     gap: var(--md3-spacing-medium);
     padding: var(--md3-spacing-sm) var(--md3-spacing-medium) 0;
     border-top: 1px solid var(--md3-outline-variant);
     color: var(--md3-on-surface-variant);
+    overflow: hidden;
 }
 
 .md3-card-header {

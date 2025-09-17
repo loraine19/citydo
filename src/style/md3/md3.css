@@ -95,15 +95,15 @@
     --md3-shadow-elevation-0: none;
 
     /* ÉLÉVATION 1: Ombre très subtile, pour les surfaces de base ou les boutons. */
-    --md3-shadow-elevation-1: 0 1px 2px rgba(0, 0, 0, 0.06);
+    --md3-shadow-elevation-1: 0 1px 2px rgba(0, 0, 0, 0.08);
 
     /* ÉLÉVATION 2: Ombre légère, pour les cartes ou les fiches. */
-    --md3-shadow-elevation-2: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --md3-shadow-elevation-2: 0 2px 4px rgba(0, 0, 0, 0.09);
 
     /* ÉLÉVATION 3: Ombre plus prononcée, pour les menus ou les popovers.
      C'est le style de l'image que tu as partagée. */
-    --md3-shadow-elevation-3: 0 4px 12px rgba(0, 0, 0, 0.08),
-        0 1px 3px rgba(0, 0, 0, 0.05);
+    --md3-shadow-elevation-3: 0 5px 10px rgba(0, 0, 0, 0.095),
+        0 1px 3px rgba(0, 0, 0, 0.06);
 
     /* ÉLÉVATION 4: Ombre marquée pour les dialogues importants ou les éléments flottants. */
     --md3-shadow-elevation-4: 0 6px 16px rgba(0, 0, 0, 0.09),

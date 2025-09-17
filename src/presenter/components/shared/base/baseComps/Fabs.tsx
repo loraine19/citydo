@@ -11,7 +11,7 @@ interface FabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     text?: string;
 }
 export const Fab: React.FC<FabProps> = ({ size, icon, text, className, color, variant, ...props }) => {
-    const classes = `md3-fab ${size ? `md3-fab-${size}` : ''}  ${className || ''}`.trim();
+    const classes = `md3-fab  ${size ? `md3-fab-${size}` : ''}  ${className || ''}`.trim();
     return (
         <Button
             fab
@@ -46,7 +46,7 @@ export const FabMenu: React.FC<FabMenuProps> = ({ mainProps, children, placement
         <>
 
 
-            <div className={`md3-fab-${size} ${mainProps?.className || ''}`}>
+            <div className={`md3-fab-${size} ${mainProps?.className || ''} max-w-max`}>
                 <div className={`md3-fab-container md3-fab-${size} ${className || ''} `}>
                     <div className={` md3-fab-menu-container md3-fab-menu-container-${placement} 
                     ${isOpen ? 'open md3-menu-enter' : 'md3-menu-leave'}

@@ -63,7 +63,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
             <CardLarge.Subhead>
                 <GroupLink group={post.Group} />
             </CardLarge.Subhead>
-            <CardLarge.SupportingText className="line-clamp-2 flex-1 h-full">
+            <CardLarge.SupportingText className="line-clamp-2 bg-red-100">
                 {description}
             </CardLarge.SupportingText>
             <CardLarge.Media>

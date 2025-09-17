@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { AuthForm } from './auth.Comps/AuthForm';
 import { AuthHeader } from './auth.Comps/AuthHeader';
-import { Button } from '@material-tailwind/react';
 import DI from '../../../../di/ioc';
 import { terms } from '../../../../domain/constants/constants';
 import { AccessDTO } from '../../../../infrastructure/DTOs/AuthDTO';
 import { SignUpDTO } from '../../../../infrastructure/DTOs/SignUpDTO';
+import { Button } from '../base/baseComps/Buttons';
 
 export default function SignUpPage() {
     const [notif, setNotif] = useState<string>("");
@@ -70,13 +70,15 @@ export default function SignUpPage() {
                     bottom: 0,
                     display: 'flex',
                 }}
-                className="  flex flex-col items-center gap-1 pb-[3rem] pt-[2rem] justify-center">
+                className="  flex flex-col items-center gap-1 pb-[3rem] pt-[1rem] justify-center">
                 <i className="flex !text-slate-900 justify-center">
                     Vous avez deja un compte?
                 </i>
                 <Link to="/signin">
                     <Button
-                        className="btn slateChip">
+                        elevating
+                        size='medium'
+                        variant='tonal'>
                         Connectez-vous
                     </Button>
                 </Link>

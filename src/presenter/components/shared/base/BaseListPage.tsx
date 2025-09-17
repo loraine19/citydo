@@ -170,7 +170,7 @@ const MD3DemoPage: React.FC = () => {
                         <CardMD.Footer>Footer</CardMD.Footer>
                     </CardMD>
                     {/* Avec actions */}
-                    <div className='bg-red-500 flex max-h-[45vh]'>
+                    <div className=' flex max-h-[45vh]'>
                         <CardMD
                             variant="elevated"
                             image={

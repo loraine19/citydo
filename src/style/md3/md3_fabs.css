@@ -9,9 +9,10 @@
     height: 52px;
     width: 52px;
     border-radius: var(--md3-radius-large);
+    border: 1px solid var(--md3-outline);
     background-color: var(--md3-primary);
     color: var(--md3-on-primary);
-    box-shadow: var(--md3-shadow-elevation-4);
+    box-shadow: var(--md3-shadow-elevation-5);
     cursor: pointer;
     transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
 }
@@ -58,7 +59,7 @@
 }*/
 
 .md3-fab-menu-container-top {
-    @apply bottom-[calc(100%+1rem)] right-0;
+    @apply bottom-full pb-[1rem] right-0;
 }
 
 .md3-fab-menu-container-bottom {
@@ -72,16 +73,18 @@
 
 /* FAB Menu (la position relative est gérée par le conteneur) */
 .md3-fab-menu-container {
+    @apply h-fit w-full;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    opacity: 0;
-    transform: translateY(1rem);
+    opacity: 1;
+    transform: translateY(0rem);
     transition: opacity var(--md3-anim-duration-short) var(--md3-anim-easing),
         transform var(--md3-anim-duration-short) var(--md3-anim-easing);
     pointer-events: none;
 }
 .md3-fab-menu-container.open {
+    @apply h-fit max-w-max;
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;

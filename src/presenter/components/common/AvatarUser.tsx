@@ -59,8 +59,8 @@ export const AvatarUser = ({ Profile, avatarSize = '', avatarStyle = '', style =
                     <Icon
                         bg
                         fill
-                        style={`${avatarStyle} ${classicStyle} ${style} leading-[1] pt-[10%] flex z-auto  font-comfortaa !min-w-full font-bold hover:z-50`}
-                        color={userColor}
+                        style={`${avatarStyle} ${classicStyle} ${style} leading-[1] pt-[0%] flex z-auto   !min-w-full font-semibold hover:z-50 bg-${userColor}-100 text-${userColor}-800  `}
+                        color={userColor ?? 'slate'}
                         size={iconSize()}
                         icon={Profile?.firstName?.charAt(0).toUpperCase() || '?'}
                     />

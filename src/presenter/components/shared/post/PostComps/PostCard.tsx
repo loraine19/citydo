@@ -74,8 +74,10 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
             <CardMD.Subhead>
                 <GroupLink group={Group} />
             </CardMD.Subhead>
-            <CardMD.SupportingText className={short ? "line-clamp-1" : "line-clamp-2"}>
-                {description}
+            <CardMD.SupportingText>
+                <span className={short ? " !line-clamp-1" : "!line-clamp-2"}>
+                    {description}
+                </span>
             </CardMD.SupportingText>
 
             <CardMD.Footer className="justify-between  items-center flex w-full">

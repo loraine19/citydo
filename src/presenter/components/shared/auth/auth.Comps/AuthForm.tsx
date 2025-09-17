@@ -55,9 +55,9 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
     return (
         <form onSubmit={formik.handleSubmit}
-            className='main flex-1   flex justify-center items-center'>
+            className='main flex-1 flex justify-center items-center'>
             <div className={`${confirm ?
-                'md:grid-rows-[minmax(50px,calc(100dvh_-_19rem))]' :
+                'md:grid-rows-[minmax(50px,calc(100dvh_-_17rem))]' :
                 'md:grid-rows-[minmax(50px,calc(100dvh_-_21rem))]'}
             grid grid-cols-[1fr] md:grid-cols-[1fr,1fr] 
               items-center justify-between gap-[2%] wRespXL px-[2%] !py-4 w-full`}>
@@ -85,7 +85,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                             {notif}
                         </p>
                     </CardMD.Headline>
-                    <CardMD.Subhead className='flex flex-col h-full w-full justify-center overflow-auto gap-3 py-4 px-12 flex-1 '>
+                    <CardMD.Subhead className='flex flex-col h-full w-full justify-center overflow-auto gap-2 py-3 px-12 flex-1 '>
                         <Input
                             className={`inputStandart ${formik?.errors.email ? 'error' : ''}`}
                             placeholder={"Email"}
@@ -125,10 +125,10 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                             <InputError mt error={formik?.errors.passwordConfirm} />
                         </div>
                     </CardMD.Subhead>
-                    <CardMD.Media className="flex ">
+                    <CardMD.Media className="flex flex-1">
                         <div className={`${!checkbox ? 'justify-between  gap-5' : 'justify-between'} flex flex-1 gap-2 h-full  items-end w-full  px-4`}>
                             <div className='flex w-full flex-col-reverse h-full  gap-1 '>
-                                <div className='flex flex-1 flex-col w-full gap-2 '>
+                                <div className='flex flex-1  justify-end flex-col w-full gap-2 '>
                                     <Button
                                         data-cy="submit-button"
                                         type="submit"
@@ -177,7 +177,6 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                         </div>
                     </CardMD.Media>
                     <CardMD.Footer className="px-8 flex-col items-center justify-center  pb-4 gap-1 border-0">
-
                         <Button
                             type='button'
                             size="large"

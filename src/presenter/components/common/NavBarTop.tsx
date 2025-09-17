@@ -137,7 +137,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                     {/* INSERTION NAVLINK TOP  */}
                     {(!navBottom && navIcons && !hideNavBottom) &&
                         <div onMouseEnter={() => { }}
-                            className="lg:pr-6 pr-3 pl-1.5 relative w-full h-full  flex justify-center items-center">
+                            className=" w-full h-full  flex justify-center items-center">
                             <NavBarSection
                                 addBtn={addBtn} />
                         </div>

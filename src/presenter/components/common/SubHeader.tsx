@@ -1,6 +1,8 @@
 import { useLocation } from "react-router-dom"
 import { Icon } from "./IconComp"
 import { useUxStore } from "../../../application/stores/ux.store"
+import { Fab } from "../shared/base/baseComps/Fabs";
+import { Md3Colors } from "../shared/base/baseComps/Buttons";
 
 type SubHeaderProps = { type: string, qty?: (number | string), place?: any, closeBtn?: boolean, link?: string, form?: boolean }
 export default function SubHeader({ type, qty, place, closeBtn, link, form = false }: SubHeaderProps) {
@@ -22,7 +24,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
         <div className={`flex flex-col relative border-t-0 w-[calc(100%_+_1.6rem)] -ml-[0.8rem] `}>
             <hr className={` border-black/20 border-b z-[1] border-t-0 w-[calc(100%_+_4rem)] -ml-[2rem]  !opacity-90 pb-2 shadow-md `} />
             {/* TITLE DIV  */}
-            <div className={`flex w-full h-full px-[3rem]  bg-slate-200/90  flex-1 gap-x-2 justify-end lg:justify-between`}>
+            <div className={`flex w-full h-full px-[1rem] lg:px-[3rem] bg-slate-200/90  flex-1 gap-x-2 justify-end lg:justify-between`}>
                 {(!hideNavBottom || !navIcons) &&
                     <div className={`flex flex-1 h-full w-full items-center  
                         ${closeBtn ? 'truncate !justify-between pt-3 ' : 'pt-2 '}`}>
@@ -37,6 +39,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
                         {closeBtn &&
                             <div className={`${(hideNavBottom && !haveTitle && !form) ?
                                 '-bottom-14 absolute z-[9999]' : 'pl-2'} flex`}>
+
                                 <Icon
                                     reverse={hideNavBottom && !haveTitle && !form}
                                     style={(hideNavBottom && !haveTitle && !form) ? "shadow" : ""}
@@ -54,17 +57,19 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
 
                 {/* BUTTON UP  */}
                 {(hideNavBottom && !form) &&
-                    <div className={`${(hideNavBottom && !haveTitle) ? '-bottom-14 ' : '-bottom-14 '} flex flex-1 absolute z-[9999] right-1 top-4 `}>
-                        <Icon
-                            key={type + 'top'}
-                            style={'!shadow-lg'}
-                            reverse
-                            icon="vertical_align_top"
-                            color={color ?? 'gray'}
-                            size="3xl"
-                            fill bg
-                            onClick={() => scrollToTop()}
-                            title="retour en haut" />
+                    <div className={`${(hideNavBottom && !haveTitle) ? '-bottom-14 ' : '-bottom-14 '} flex flex-1 absolute z-[9999] right-2 top-4 `}>
+                        <Fab
+                            className="rounded-full"
+                            color={color as Md3Colors ?? 'slate'}
+                            size={(hideNavBottom && !haveTitle && !form) ? 'medium' : 'medium'}
+                            icon={{
+                                icon: "arrow_upward_alt",
+                                size: "3xl",
+                                fill: true,
+                                onClick: () => scrollToTop()
+                            }}
+                        >
+                        </Fab>
                     </div>}
             </div>
 
