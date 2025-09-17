@@ -228,12 +228,12 @@
 
 .md3-card-elevated {
     background-color: var(--md3-surface);
-    box-shadow: var(--md3-shadow-elevation-1);
+    box-shadow: var(--md3-shadow-elevation-4);
 }
 
 .md3-card-elevated:hover,
 .md3-card-elevated:focus {
-    box-shadow: var(--md3-shadow-elevation-2);
+    box-shadow: var(--md3-shadow-elevation-5);
 }
 
 .md3-card-filled {

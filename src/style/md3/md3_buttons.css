@@ -73,22 +73,22 @@
     color: var(--md3-on-primary);
 }
 .md3-button-filled:hover {
-    @apply md3-button-hover-lighting;
+    @apply md3-button-hover-darkening;
 }
 
 /* Elevated */
 .md3-button-elevated {
     background-color: var(--md3-surface);
     color: var(--md3-primary);
-    box-shadow: var(--md3-shadow-elevation-3);
+    box-shadow: var(--md3-shadow-elevation-4);
 }
 .md3-button-elevated:hover {
-    box-shadow: var(--md3-shadow-elevation-2);
+    box-shadow: var(--md3-shadow-elevation-5);
     @apply md3-button-hover-colorize;
     transition: all 0.5s;
 }
 .md3-button-elevated:active {
-    box-shadow: var(--md3-shadow-elevation-1);
+    box-shadow: var(--md3-shadow-elevation-3);
     transition: all 0.5s;
 }
 

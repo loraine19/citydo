@@ -57,7 +57,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                 {/* CONTAINER */}
                 <div id='navBarTop'
                     className={`wRespXL pl-2 flex lg:px-0 slide h-full justify-between items-end     
-                ${hideNavBottom ? 'animRev !py-1' : '!py-3'}`} >
+                ${hideNavBottom ? 'animRev !py-1' : '!py-2'}`} >
                     <div className={`flex h-full relative ${hideNavBottom ? 'hidden' : ''}
                          ${!navIcons || navBottom ? ' w-full  ' : ' w-max'} `}>
 
