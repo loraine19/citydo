@@ -116,7 +116,6 @@ export const Menu: React.FC<MenuProps> = ({
 
                 //Centrer on triiger center if no space
                 else {
-                    style.backgroundColor = 'red';
                     style.position = 'fixed';
                     style.top = `${triggerRect.bottom / 2 > 200 ? triggerRect.bottom / 2 : 200}px`;
                     style.left = `${triggerRect.right / 2}px`;
