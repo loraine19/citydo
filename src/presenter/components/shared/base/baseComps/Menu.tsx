@@ -87,7 +87,6 @@ export const Menu: React.FC<MenuProps> = ({
                 style.top = `${(triggerRect.top - menuHeight) > 50 ? (triggerRect.top - menuHeight) : 50}px`;
                 style.left = `${triggerRect.left - menuWidth}px`;
                 style.transformOrigin = `bottom`
-                style.backgroundColor = 'yellow';
             }
             else if (placement === 'top-right'
                 || (placement === 'auto' && (spaceRight >= menuWidth
@@ -137,8 +136,13 @@ export const Menu: React.FC<MenuProps> = ({
             }
             else {
                 style.position = 'fixed';
-                style.top = `${(triggerRect.top + menuHeight) < viewportHeight ? (triggerRect.bottom - menuHeight) : 50}px`;
-                style.left = `${triggerRect.right + menuWidth < viewportWidth ? ((triggerRect.right - menuWidth / 2) + triggerWidth / 2) : ((viewportWidth - menuWidth / 2) + triggerWidth / 2)}px`;
+                style.top = `${(triggerRect.bottom + menuHeight) < viewportHeight
+                    ? triggerRect.bottom
+                    : Math.max(0, viewportHeight - menuHeight - triggerRect.height)
+                    }px`;
+                style.left = `${(triggerRect.right + menuWidth + triggerWidth) < viewportWidth ?
+                    ((triggerRect.right - menuWidth / 2) + triggerWidth / 2) :
+                    ((viewportWidth / 2 - (menuWidth / 2)) - (triggerWidth / 2))}px`;
                 style.transformOrigin = `top`
             }
 
