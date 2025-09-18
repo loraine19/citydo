@@ -2,9 +2,9 @@
 
 /* list section */
 .Grid {
-    @apply max-h-full wRespXL grid pt-0 pb-4 gap-2 m-auto  pl-[0.5rem] md:px-[2rem]
+    @apply max-h-full wRespXL grid  pb-4 gap-2 m-auto  pl-[0.5rem] md:px-[2rem]
     grid-cols-[minmax(calc(50%-1rem),1fr)]  
-    sm:grid-cols-[auto,auto] 
+    sm:grid-cols-[1fr,1fr] 
     sm:auto-rows-[minmax(min-content,40vh)] 
     auto-rows-[minmax(min-content,20vh)];
 }
@@ -14,12 +14,12 @@
 }
 
 .Grid2 {
-    @apply !max-h-full grid grid-cols-[minmax(calc(50%-1rem),_1fr)] gap-y-3 pb-4 gap-x-1 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)];
+    @apply wRespXL !max-h-full grid grid-cols-[minmax(calc(50%-1rem),_1fr)] gap-y-3 pb-4 gap-x-1 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)];
     grid-auto-rows: minmax(320px, 53vh);
 }
 
 .GridSmall {
-    @apply !max-h-full grid grid-cols-[minmax(calc(50%-1rem),_1fr)] gap-y-3 gap-x-1 pb-4 pt-2 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)];
+    @apply wRespXL  !max-h-full grid grid-cols-[minmax(calc(50%-1rem),_1fr)] gap-y-3 gap-x-1 pb-4 pt-2 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)];
     grid-auto-rows: max-content;
 }
 
@@ -54,8 +54,7 @@
 
     /* CARD HEADER */
     .FixCardHeader {
-        @apply min-w-full  mx-auto !mt-0
-        !flex !flex-1 !rounded-3xl !relative !z-[99]   fadeIn border !border-slate-300
+        @apply min-w-full  mx-auto !mt-0  fadeIn border !border-slate-300
         h-full;
     }
 
@@ -105,7 +104,7 @@
     /***************/
     /* DETAILD CARD  */
     .DetailCardDiv {
-        @apply wRespXL grid pt-2  px-[1rem] max-h-[calc(100dvh_-_6rem)];
+        @apply wRespXL grid  px-[1rem] max-h-[calc(100dvh_-_6rem)];
     }
 
     .CardDetailGrid {
@@ -130,7 +129,7 @@
 
     .DetailCardHeader {
         @apply min-w-full mx-auto
-        !flex flex-1 !rounded-3xl !relative !z-[99] mt-0 !shadow-md fadeIn border border-slate-400/60 h-full;
+        !flex flex-1 !rounded-3xl !relative  mt-0 !shadow-md fadeIn border border-slate-400/60 h-full;
     }
 
     .DetailCardBody {
@@ -141,8 +140,8 @@
     }
     /* 1CTA 11REM */
     .hideCTA {
-        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_9.2rem)]
-        grid-rows-[minmax(calc(100dvh-9.2rem),calc(100dvh-9.2rem))];
+        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_8rem)]
+        grid-rows-[minmax(calc(100dvh-8rem),calc(100dvh-8rem))];
     }
 
     .expandedCardDiv {
@@ -152,6 +151,8 @@
 
     .hideCTA2 {
         @apply hideCTA;
+        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_9rem)]
+        grid-rows-[minmax(calc(100dvh-9rem),calc(100dvh-9rem))];
     }
 
     .hideCTAForm {

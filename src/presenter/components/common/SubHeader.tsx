@@ -1,10 +1,16 @@
-import { useLocation } from "react-router-dom"
-import { Icon } from "./IconComp"
+import { useLocation, useNavigate } from "react-router-dom"
 import { useUxStore } from "../../../application/stores/ux.store"
 import { Fab } from "../shared/base/baseComps/Fabs";
 import { Md3Colors } from "../shared/base/baseComps/Buttons";
 
-type SubHeaderProps = { type: string, qty?: (number | string), place?: any, closeBtn?: boolean, link?: string, form?: boolean }
+type SubHeaderProps = {
+    type?: string,
+    qty?: (number | string),
+    place?: any,
+    closeBtn?: boolean,
+    link?: string,
+    form?: boolean
+}
 export default function SubHeader({ type, qty, place, closeBtn, link, form = false }: SubHeaderProps) {
 
 
@@ -20,59 +26,70 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
         }
     }
 
+    const navigate = useNavigate();
+
     return (
-        <div className={`flex flex-col relative border-t-0 w-[calc(100%_+_1.6rem)] -ml-[0.8rem] `}>
-            <hr className={` border-black/20 border-b z-[1] border-t-0 w-[calc(100%_+_4rem)] -ml-[2rem]  !opacity-90 pb-2 shadow-md `} />
-            {/* TITLE DIV  */}
-            <div className={`flex w-full h-full px-[1rem] lg:px-[3rem] bg-slate-200/90  flex-1 gap-x-2 justify-end lg:justify-between`}>
-                {(!hideNavBottom || !navIcons) &&
-                    <div className={`flex flex-1 h-full w-full items-center  
-                        ${closeBtn ? 'truncate !justify-between pt-3 ' : 'pt-2 '}`}>
+        <div className={`flex flex-col relative border-t-0 `}>
 
-                        <div className="flex gap-x-1 !text-[1.5rem] text-slate-700">
-                            <span className={`font-semibold`}>{qty} {type}</span>
-                            <span className="hidden sm:inline-block !lowercase !font-light">
-                                &nbsp;{place ?? ""}
-                            </span>
-                        </div>
+            {/* LINE DIV  */}
+            <hr className={` border-black/20 border-b z-[1] border-t-0 w-[calc(100dvw)] left-0 fixed  !opacity-90 pb-2 shadow-md !pt-0 !-mt-2 `} />
 
-                        {closeBtn &&
-                            <div className={`${(hideNavBottom && !haveTitle && !form) ?
-                                '-bottom-14 absolute z-[9999]' : 'pl-2'} flex`}>
+            {/* TYPE DIV  */}
 
-                                <Icon
-                                    reverse={hideNavBottom && !haveTitle && !form}
-                                    style={(hideNavBottom && !haveTitle && !form) ? "shadow" : ""}
-                                    bg={(hideNavBottom && !haveTitle && !form)}
-                                    icon={"close"}
-                                    color={'primary'}
-                                    size={(hideNavBottom && !haveTitle && !form) ? "2xl" : "lg"}
-                                    fill
-                                    link={goBack}
-                                    title={"retour " + goBack?.replace("/", "")}
-                                />
-                            </div>}
+            <div className={`
+                    ${((!hideNavBottom || !navIcons) && type) ? 'md3-menu-enter !py-1' : ' md3-menu-leave'}
+                
+                flex flex-1 h-full w-full px-[0rem] items-center absolute top-7  z-[1]`}>
+                {closeBtn &&
+                    <Fab
+                        variant='filled'
+                        color={color as Md3Colors ?? 'slate'}
+                        className="rounded-full"
+                        size='small'
+                        onClick={() => {
+                            if (closeBtn) {
+                                navigate(-2)
+                            }
+                        }}
+                        icon={closeBtn ? {
+                            reverse: hideNavBottom && !haveTitle && !form,
+                            style: (hideNavBottom && !haveTitle && !form) ? "shadow" : "",
+                            icon: "arrow_back",
+                            size: (hideNavBottom && !haveTitle && !form) ? "2xl" : "lg",
+                            link: goBack,
+                        } : undefined}>
+                    </Fab>}
+                <div className={`${closeBtn ? ' ml-4 w-full ' : ''} flex flex-1  items-center`}>
+                    <Fab
+                        className={`h-[40px] !text-[0.95rem] `}
+                        color={color as Md3Colors ?? 'slate'}
+                        size="extended"
+                        variant='filled'
+                        text={`${qty ?? ''} ${type ?? ''} ${place ? `à ${place}` : ''}`}
 
-                    </div>}
+                    >
+                    </Fab>
+                </div>
 
-                {/* BUTTON UP  */}
-                {(hideNavBottom && !form) &&
-                    <div className={`${(hideNavBottom && !haveTitle) ? '-bottom-14 ' : '-bottom-14 '} flex flex-1 absolute z-[9999] right-2 top-4 `}>
-                        <Fab
-                            className="rounded-full"
-                            color={color as Md3Colors ?? 'slate'}
-                            size={(hideNavBottom && !haveTitle && !form) ? 'medium' : 'medium'}
-                            icon={{
-                                icon: "arrow_upward_alt",
-                                size: "3xl",
-                                fill: true,
-                                onClick: () => scrollToTop()
-                            }}
-                        >
-                        </Fab>
-                    </div>}
             </div>
 
+            {/* BUTTON UP  */}
+            {(hideNavBottom && !form) &&
+                <div className={`${(hideNavBottom && !haveTitle) ? '-bottom-14 ' : '-bottom-14 '} flex flex-1 absolute z-[2] right-2 top-4 `}>
+                    <Fab
+                        className="rounded-full"
+                        color={color as Md3Colors ?? 'slate'}
+                        size={'large'}
+                        icon={{
+                            icon: "arrow_upward_alt",
+                            size: "3xl",
+                            fill: true,
+                            onClick: () => scrollToTop()
+                        }}
+                    >
+                    </Fab>
+                </div>}
         </div>
+
     )
 }

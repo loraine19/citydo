@@ -218,7 +218,7 @@ export default function ServicesPage() {
                 />
                 <SubHeader
                     qty={count}
-                    type={`services ${filterName()} ${categoryName()}`} />
+                    type={`services ${filterName() ? '/ ' + filterName() : ''} ${categoryName() ? '/ ' + categoryName() : ''}`} />
                 {(notif || error) &&
                     <NotifDiv
                         error={error}

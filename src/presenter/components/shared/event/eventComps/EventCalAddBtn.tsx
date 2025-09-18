@@ -10,18 +10,21 @@ interface EventCalAddBtnProps {
     event: EventView;
     className?: string;
     iconClass?: string;
+    ref?: boolean;
 }
 
-const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconClass }) => {
-    const { id, title, agendaLink, agendaICalLink } = event;
+const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconClass, ref }) => {
+    const { id, title, agendaLink, agendaICalLink, } = event;
 
     return (
         <Menu
+            ref={ref}
             key={id + "add"}
-            placement="center_up"
+            blurBack
+            placement={!ref ? "center_up" : "full_center"}
             onClose={() => { }}
-            closeIcon={<></>}
-            className={className + ' hover:z-50 min-h-max hover:cursor-pointer '}
+            className={`${className} hover:z-50 ${!ref ? '' : '  '}`}
+
             trigger={
                 <Icon
                     color="cyan"
@@ -35,7 +38,7 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
 
 
             <MenuItem
-                className="px-4 hover:!bg-slate-200"
+                className="px-4"
                 leadingIcon={
                     <Icon icon="calendar_add_on" bg fill color="cyan" size="lg" />}>
                 <Link to={agendaLink}
@@ -46,8 +49,7 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
                 </Link>
             </MenuItem>
             <MenuItem
-                className="px-4 hover:!bg-slate-200"
-                onClick={() => { alert('ee') }}
+                className="px-4 "
                 leadingIcon={<Icon icon="calendar_add_on" bg fill color="orange" size="lg" />}
             >
                 <Link

@@ -84,8 +84,8 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `anim  wRespXL slateFooter pb-1.5 md:pb-4 justify-between  px-2 lg:!px-0 ` :
-                    'z-0  bg-transparent -mt-1.5 ') +
+                    `anim  wRespXL slateFooter pb-2.5 md:pb-4 justify-between  px-2 lg:!px-0 ` :
+                    ' -mt-1.5 ') +
                 ` flex items-center  w-full `
             }>
                 <NavigationBar
@@ -93,9 +93,9 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                     onValueChange={(value) => setNavValue(value)}
                     className={`
                     ${navBottom ?
-                            ' rounded-full  !flex-1 !max-w-full p-0 justify-between bg-white border' :
+                            'rounded-full !flex-1 !max-w-full p-0 justify-between bg-white border' :
                             `shadow-none w-full  justify-around pb-2 md:pb-0  md:px-2`}
-                    items-center overflow-x-auto overflow-y-hidden flex   h-full w-full `}>
+                    items-center overflow-x-auto md3-elevation-0 overflow-y-hidden flex h-full w-full `}>
 
                     {navItems.map(({ to, icon, label, color }: NavItem, index) => {
                         const active = location.pathname === to;
@@ -105,9 +105,9 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                             <NavigationBarItem
                                 row={navBottom}
                                 className={`md3-text-${color}
-                                    ${navBottom ? 'md:px-12 h-[56px]   md:w-max' : ' !rounded-none !p-0'}
+                                    ${navBottom ? 'md:px-12 h-[64px]   md:w-max' : ' !rounded-none !p-0'}
                                     ${navBottom ? active ?
-                                        `md3-${color}-container md3-elevation-1 animSlide w-[58px] border border-black/15 `
+                                        `md3-${color}-container md3-elevation-1 animSlide w-[64px] border border-black/5 `
                                         : ` max-w-[50px] sm:max-w-maw last:mr-[2vw] first:ml-[2vw]` : ``}
                                     
                                         `}
@@ -150,10 +150,12 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                         backdropBlur={true}
                         open={openFab}
                         setOpen={setOpenFab}
-                        className={`${navBottom ? 'bottom-[5.2rem] fixed right-2' : 'fixed bottom-[2rem] right-2 '}`}
+                        className={`${navBottom ?
+                            'bottom-[calc(100%_+_1rem)] fixed right-2' :
+                            'fixed bottom-[1rem] right-2 lg:mr-[calc(50dvw-550px)]'}`}
                         mainProps={{
                             className: ` rounded-full  `,
-                            size: navBottom ? 'medium' : 'medium',
+                            size: 'large',
                             icon: { icon: openFab ? 'close' : 'edit', size: '2xl' },
                             color: color as Md3Colors ?? 'slate'
                         }}

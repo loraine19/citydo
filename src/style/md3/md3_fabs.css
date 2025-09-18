@@ -45,7 +45,7 @@
     border-radius: var(--md3-radius-extra-large);
 }
 .md3-fab-menu-container {
-    @apply z-[9999999]  w-full absolute h-full;
+    @apply z-[999]  w-full absolute h-full;
 }
 /* .md3-fab-container-start .md3-fab-menu-container {
     right: auto;

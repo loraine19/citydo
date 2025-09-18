@@ -82,8 +82,11 @@ export default function EventDetailPage() {
 
     return (
         <>
-            <main data-cy="event-details-page">
-                <div className="sectionHeader">
+            <main
+
+
+                data-cy="event-details-page">
+                <div className="sectionHeader ">
                     <SubHeader
                         type={`évenement ${event?.label ?? ''}`}
                         place={`${event?.Address?.address ?? ''} ${event?.Address?.city ?? ''}`}
@@ -104,7 +107,8 @@ export default function EventDetailPage() {
                     onScroll={() => {
                         handleHideCallback();
                     }}>
-                    <div className={`DetailCardDiv ${expanded ? 'expandedCardDiv' : 'hideCTA'} `}>
+                    <div
+                        className={`DetailCardDiv ${expanded ? 'expandedCardDiv' : 'hideCTA'}   `}>
                         {!isLoading && event ?
                             <EventDetailCard
 
@@ -139,6 +143,7 @@ export default function EventDetailPage() {
                     }
                 </>}
             </footer>
+
         </>
     );
 }

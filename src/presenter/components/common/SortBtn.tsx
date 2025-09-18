@@ -20,11 +20,12 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
     return (
 
         <Menu
-            closeIcon={<></>}
-            className={"mt-0"}
+            className="lg:!right-[calc(50dvw-500px)] right-4 mt-4"
             open={isOpen}
             setOpen={setIsOpen}
-            placement="bottom-end"
+            blurBack
+            placement="center_bottom"
+            title="Trier par"
             trigger={
                 <Icon
                     color={color ?? 'slate'}
@@ -55,12 +56,10 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
                                     }}
                                     color={color}
                                     title={'Trier par inverse ' + item.label}
-                                    style="!p-0 -mr-1"
                                     icon={reverse ? 'arrow_drop_up' : 'arrow_drop_down'} />}
                             <Icon
                                 fill={selectedSort === (item.key ?? item.label)}
                                 size={'lg'}
-                                style={`!p-1 `}
                                 onClick={() => {
                                     action();
                                     setSelectedSort(item.key ?? item.label)
@@ -73,8 +72,7 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
                                 color={selectedSort === (item.key ?? item.label) ? color : 'slate'}
                                 icon={item.icon}
                             />
-                        </div>}
-                    className="rounded-full  pl-4 pr-2 py-0.5 flex items-center font-normal font-roboto w-full justify-between gap-4 hover:!bg-slate-200 hover:!text-underline" >
+                        </div>} >
                     {item.label}
 
 

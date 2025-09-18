@@ -111,7 +111,7 @@
     align-items: center;
     gap: var(--md3-spacing-medium);
     padding: var(--md3-spacing-sm) var(--md3-spacing-medium) 0;
-    border-top: 1px solid var(--md3-outline-variant);
+    border-top: 0.5px solid #00000015;
     color: var(--md3-on-surface-variant);
     overflow: hidden;
 }
@@ -220,8 +220,7 @@
 .md3-card-large-footer {
     @apply flex gap-2 justify-between items-center;
     border-top: 1px solid var(--md3-outline-variant);
-    padding: var(--md3-spacing-small) var(--md3-spacing-medium)
-        var(--md3-spacing-large);
+    padding: var(--md3-spacing-small) var(--md3-spacing-medium);
     color: var(--md3-on-surface-variant);
 }
 

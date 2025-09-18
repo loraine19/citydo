@@ -88,14 +88,13 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
 
             <CardLarge.Subhead className=" flex flex-col items-start  relative ">
                 <GroupLink group={service?.Group} />
-                <h6>Détails</h6>
             </CardLarge.Subhead>
 
             <CardLarge.SupportingText>
                 {service?.description}
             </CardLarge.SupportingText>
 
-            <CardLarge.Media className="gap-8 flex-1 flex-row ">
+            <CardLarge.Media className="gap-8 w-full flex-row justify-start ">
                 <div className="flex flex-col gap-2 ">
                     <h6 className="">Difficulté</h6>
                     <div className="flex flex-col lg:flex-row xs:flex-row gap-2">

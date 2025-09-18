@@ -218,15 +218,15 @@ export const CardLarge: React.FC<CardLargeProps> & {
         // Card classes
         const cardClasses = `md3-card-large  !min-h-fit md3-card-${variant} ${className || ""}`;
         const [keepHandle, setKeepHandle] = useState(false);
-
-        useEffect(() => { }, [largeContent]);
-
         return (
-            <div className={`${cardClasses}  !border-none relative min-h-full flex flex-1 overflow-hidden`} data-md3-card
+            <div
+                className={`${cardClasses}  !border-none relative min-h-full flex flex-1 overflow-hidden`} data-md3-card
                 {...props}>
+
                 {/* Large Image */}
                 {imageProps.src &&
                     <div className={`  absolute top-0 anim md3-card-large-image-container h-[55%] `}  >
+
                         <img
                             src={imageProps.src}
                             alt={imageProps.alt}
@@ -238,6 +238,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
                             </div>
                         )}
                     </div>}
+
 
                 {/* Pull handle and expandable content */}
                 <div id='sheet'
@@ -251,6 +252,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
                             `
                             : "!h-full"}
                             `}>
+
                     {/* Pull handle */}
 
 
@@ -268,6 +270,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
                     </div>
                     {/* Expandable content */}
                     <div className={`md3-sheet-content `}  >
+
                         {children}
                     </div>
                 </div>

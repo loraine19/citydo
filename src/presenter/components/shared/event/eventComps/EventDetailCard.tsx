@@ -10,6 +10,7 @@ import { MoreButton } from "../../../common/moreBtn";
 import { CardLarge } from "../../base/baseComps/Cards";
 import { GroupLink } from "../../../common/GroupLink";
 import { ProgressBar } from "../../base/baseComps/Sliders";
+import { useRef } from "react";
 
 type EventCardProps = {
     EventLoad: EventView,
@@ -19,11 +20,15 @@ type EventCardProps = {
     setExpand: (expand: boolean) => void
 }
 
+
+
 export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps) {
     const { id, title, description, label, image, participantsMin, Participants, User, Address, flagged, end, start, eventDateInfo, Group, } = EventLoad;
+    const refMore = useRef(null);
 
     return (
         <CardLarge
+
             expanded={expand}
             setExpanded={setExpand}
             image={
@@ -38,8 +43,12 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                             prefix=" " />
                     </CardLarge.Chips>
                 </img>}>
-            <CardLarge.Chips>
-                <div className="md3-card-chips w-full -mt-2">
+
+            <CardLarge.Chips
+
+                className="!relative !z-[999]">
+                <div
+                    className="md3-card-chips w-full -mt-2">
                     <Chip
                         value={label}
                         color='cyan'
@@ -51,11 +60,13 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                         ended={new Date(end).getTime() < Date.now()}
                         prefix={'commence dans '} />
                 </div>
+
                 <MoreButton
-                    flagged={flagged}
+                    divRef={refMore}
+                    ref
                     id={id}
-                    type="evenement"
-                />
+                    type={'annonce'}
+                    flagged={flagged} />
             </CardLarge.Chips>
 
             <CardLarge.Headline>
@@ -72,7 +83,10 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                 <CardLarge.SupportingText className="flex sm:flex-1 flex-col gap-1 ">
                     <div className="flex items-center -mt-3 justify-between border-b border-slate-400">
                         <i>{eventDateInfo?.start} - {eventDateInfo?.end}</i>
-                        <EventCalAddBtn event={EventLoad} iconClass="!-mb-1.5 md:-mr-6 " />
+                        <EventCalAddBtn
+                            ref
+                            event={EventLoad}
+                            iconClass="!-mb-1.5 md:-mr-6 relative" />
                     </div>
                     {description}
 
@@ -87,7 +101,7 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
             </CardLarge.MidSection>
 
             <CardLarge.Media className="gap-2 pb-2">
-                <AvatarStack avatarDatas={Participants} />
+                <AvatarStack ref avatarDatas={Participants} />
                 <ProgressBar
                     size='xxsmall'
                     variant={EventLoad?.Participants?.length >= (participantsMin) ? 'linear' : 'wavy'}

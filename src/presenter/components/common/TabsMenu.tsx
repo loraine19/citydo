@@ -18,8 +18,8 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
 
     const { color } = useUxStore((state) => state);
     return (
-        <div className="!relative w-full flex items-center  justify-between gap-x-1 !z-10"
-            style={{ zIndex: 0 }}>
+        <div
+            className="w-full flex items-center  justify-between gap-x-1 ">
 
             <SegmentedButton
                 className="bg-white"
@@ -29,7 +29,7 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
                 color={color as any}
                 size="medium"
             />
-            {sortList &&
+            <div className="flex items-center ">   {sortList &&
                 <SortButton
                     action={action ?? (() => { })}
                     sortList={sortList}
@@ -38,7 +38,7 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
                     reverse={reverse ?? false}
                     setReverse={setReverse ?? (value => value)}
                 />
-            }
+            }</div>
         </div>
     );
 }

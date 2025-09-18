@@ -56,27 +56,35 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
                 {/* CONTAINER */}
                 <div id='navBarTop'
-                    className={`wRespXL pl-2 flex lg:px-0 slide h-full justify-between items-end     
-                ${hideNavBottom ? 'animRev !py-1' : '!py-2'}`} >
-                    <div className={`flex h-full relative ${hideNavBottom ? 'hidden' : ''}
-                         ${!navIcons || navBottom ? ' w-full  ' : ' w-max'} `}>
+                    className={`pl-2 flex lg:px-0 slide h-full justify-between items-end     
+                ${hideNavBottom ? 'animSheet !py-1' : ' !py-1'}`} >
+                    <div className={`flex h-full relative z-[999]
+                    ${hideNavBottom ? '!h-0 animSheetRev invisible ' : ' animSheetRev'}
+                         ${!navIcons || navBottom ? ' w-full ' : ' w-max'}
+                         ${!navIcons ? 'pb-1.5 ' : ''}
+                         `}>
 
                         {/* PROFILE MENU  */}
                         <Menu
-                            className={`p-4`}
+                            closeIcon={
+                                <Icon
+                                    icon="close"
+                                    bg style='self-start' color='slate' size="sm" />}
+                            className={`px-4 py-2 `}
                             blurBack
-                            placement="center_top"
-                            trigger={<div className="relative h-full justify-center max-w-max grid z-50 items-center !p-0">
-                                <div >
-                                    <div className='flex w-[2.5rem] flex-1 items-center'>
-                                        <img
-                                            className="!w-[2.5rem] !h-[2.5rem] object-cover object-center"
-                                            src="/image/logo.svg"
-                                            alt="logo"
-                                        />
+                            placement="start"
+                            trigger={
+                                <div className=" ml-2 h-full justify-center max-w-max grid z-50 items-center !p-0">
+                                    <div >
+                                        <div className='flex w-[2.5rem] flex-1 items-center'>
+                                            <img
+                                                className="!w-[2.5rem] !h-[2.5rem] object-cover object-center"
+                                                src="/image/logo.svg"
+                                                alt="logo"
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                            </div>}>
+                                </div>}>
 
                             {/* USER ITEM */}
                             <MenuItem
@@ -126,8 +134,8 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                             {/* </MenuContent> */}
                         </Menu>
                         {(!hideNavBottom || !navIcons) &&
-                            <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : ' w-full !flex-1 -mr-2 lg:-mr-8'}  items-center  flex h-full   pl-2`}>
-                                <h1 className={`drop-shadow-sm flex !font-quicksand !text-[2rem]  ${!navIcons ? 'pl-0 ' : ''} md3-text-cyan font-[600] `}>
+                            <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : ' w-full !flex-1 -mr-2 lg:-mr-8'}  items-center  flex h-full  pl-2`}>
+                                <h1 className={`drop-shadow-sm flex !font-quicksand !text-[1.8rem]  ${!navIcons ? 'pl-0 ' : ''} md3-text-slate font-[600] pb-0.5 -ml-1`}>
                                     City'do
                                 </h1>
                             </div>}

@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 export default function PostDetailCard(props: { post: PostView, mines?: boolean, change: (e: any) => void, expand: boolean, setExpand: (expand: boolean) => void }) {
     const [post, setPost] = useState<PostView>(props.post)
     const { expand, setExpand } = props
-    const { id, title, description, image, categoryS, category, createdAt, Likes, toogleLike } = post
+    const { id, title, description, image, categoryS, createdAt, Likes, toogleLike } = post
     const { user } = useUserStore()
     const userId: number = user.id
     const Author: User = post?.User
@@ -41,7 +41,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
             <CardLarge.Chips className="justify-between">
 
                 <div className="md3-card-chips flex-1 !overflow-auto">
-                    <Link to={`/annonce?search=&category=${category}`}>
+                    <Link to={`/annonce?search=&category=${post?.category}`} >
                         <Chip
                             size="sm"
                             value={`${categoryS}`}
@@ -63,7 +63,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
             <CardLarge.Subhead>
                 <GroupLink group={post.Group} />
             </CardLarge.Subhead>
-            <CardLarge.SupportingText className="line-clamp-2 bg-red-100">
+            <CardLarge.SupportingText className="line-clamp-2">
                 {description}
             </CardLarge.SupportingText>
             <CardLarge.Media>

@@ -14,7 +14,7 @@ export const SegmentedButton: React.FC<SegmentedButtonProps> = ({
     value,
     onChange,
     options,
-    color = 'primary',
+    color = 'slate',
     size = 'medium',
     className,
 }) => {

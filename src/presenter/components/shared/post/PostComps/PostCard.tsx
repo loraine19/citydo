@@ -52,10 +52,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
 
                 <div className="md3-card-chips flex-1 !overflow-auto">
                     <button
-                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                            const cat = e.currentTarget.innerText.toLowerCase();
-                            change(cat as any);
-                        }}>
+                        onClick={() => change(post?.category as string)}>
                         <Chip
                             size="sm"
                             value={`${categoryS}`}

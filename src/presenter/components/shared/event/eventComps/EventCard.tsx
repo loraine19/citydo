@@ -56,7 +56,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                     </div>
                 </CardMD.Image>}>
             <CardMD.Chips className="justify-between">
-                <div className="md3-card-chips  flex-wrap !py-0">
+                <div className="md3-card-chips flex-wrap !py-0">
                     <button
                         onClick={change}>
                         <Chip
@@ -111,7 +111,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                     <div className="flex flex-1 mt-0.5 -ml-1 overflow-hidden items-center ">
                         <EventCalAddBtn
                             event={event}
-                            iconClass={`${'top-0 border-2 !border-white  hover:z-[999] relative -mr-3 '}`} />
+                            iconClass={`${'top-0 border-2 !border-white  hover:z-[2] relative -mr-3 '}`} />
 
                         <AvatarStack avatarDatas={event.Participants} />
                     </div>

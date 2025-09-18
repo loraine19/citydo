@@ -50,7 +50,7 @@ export const AvatarUser = ({ Profile, avatarSize = '', avatarStyle = '', style =
                     onError={() => setInError(true)}
                     referrerPolicy="unsafe-url"
                     size={avatarStyle === 'ms' ? 'sm' : avatarSize as any ?? 'sm'}
-                    className={`${classicStyle} ${avatarStyle} bg-${userColor}-100 text-white text-xs fadeIn min-w-max rounded-full  ${avatarSize === 'ms' ? '!w-[37px] !h-[37px]' : ''}`}
+                    className={` !z-[1] ${classicStyle} ${avatarStyle} bg-${userColor}-100 text-white text-xs fadeIn min-w-max rounded-full  ${avatarSize === 'ms' ? '!w-[37px] !h-[37px]' : ''}`}
                     alt={Profile?.firstName || 'user'}
                     src={Profile?.image as string}
                 /> :

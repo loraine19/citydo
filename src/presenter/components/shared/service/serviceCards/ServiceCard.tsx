@@ -136,7 +136,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                 <GroupLink group={Group} />
             </CardMD.Subhead>
 
-            <CardMD.Media className="pb-1 flex-row gap-2 justify-start">
+            <CardMD.Chips className="pb-1  flex-row gap-2  justify-start">
                 <Chip
                     size="sm"
                     value={statusS}
@@ -158,7 +158,8 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                         />
                     }
                 />
-            </CardMD.Media>
+
+            </CardMD.Chips>
 
             <CardMD.Footer className="justify-between items-center flex w-full">
                 {mine && mines && (

@@ -33,7 +33,11 @@ export default function PostListPage() {
     //// PARAMS
     const [Params, setParams] = useSearchParams();
     const params = { filter: Params.get("filter"), category: Params.get("category") }
-    useEffect(() => { setCategory(params.category ?? ''); setFilter(params.filter ?? ''); }, []);
+
+    useEffect(() => {
+        setCategory(params.category ?? '');
+        setFilter(params.filter ?? '');
+    }, [params]);
 
     //// VIEW MODEL
     const postViewModelFactory = (paramsFind: PostFindParams) => DI.resolve('postViewModel')(paramsFind);
@@ -71,6 +75,7 @@ export default function PostListPage() {
             e.toUpperCase() : getValue(e.target.innerText.toLowerCase(), postCategories).toLowerCase();
         setCategory(selectedCategory);
         setParams({ filter: filter as string || '', category: selectedCategory });
+        alert('change category to ' + selectedCategory)
         await refetch()
     }
 

@@ -1,5 +1,4 @@
 import { Icon } from "./IconComp";
-import { useUxStore } from "../../../application/stores/ux.store";
 import { useState } from "react";
 import { Menu, MenuItem } from "../shared/base/baseComps/Menu";
 import { useNavigate } from "react-router";
@@ -13,10 +12,12 @@ type moreButtonProps = {
     flagged?: boolean;
     title?: string;
     className?: string;
+    ref?: boolean;
+    divRef?: any;
 
 }
 
-export const MoreButton = ({ id, type, flagged, title, className }: moreButtonProps) => {
+export const MoreButton = ({ id, type, flagged, title, className, ref }: moreButtonProps) => {
     const navigate = useNavigate()
     const { setAlertValues, setOpen } = useAlertStore((state) => state);
     const shareValues: AlertValues = {
@@ -53,7 +54,6 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
 
     ]
 
-    const { color } = useUxStore((state) => state);
     const [isOpen, setIsOpen] = useState(false);
 
     // If you need to manipulate the menu DOM node, use a ref and useEffect
@@ -63,17 +63,17 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
     return (
 
         <Menu
-            ref={false}
+            ref={ref}
+            blurBack
             key={`more-menu-${id}`}
-            className={className ?? '' + ' !-ml-40 '}
-            closeIcon={<></>}
+            className={className ?? '' + ''}
             open={isOpen}
             setOpen={setIsOpen}
-            placement="center_bottom"
+            placement={ref ? "full_center" : "center_up"}
             trigger={
                 <Icon
                     style='-mr-0'
-                    color={color ?? 'slate'}
+                    color={'slate'}
                     icon={isOpen ? "arrow_drop_up" : "more_vert"}
                     size="xl"
                 />}>
@@ -92,7 +92,7 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
                             bg
                             color={item.flagged ? 'error' : 'slate'}
                             fill={item.fill ?? false}
-                            size={'lg'}
+                            size={'md'}
                             onClick={() => {
                                 item.action();
                                 setIsOpen(!isOpen);
@@ -100,7 +100,7 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
                             title={item.label}
                             icon={item.icon}
                         />}
-                    className="flex hover:!bg-slate-200 pl-4 " >
+                    className="flex  pl-3 " >
                     {item.label}
                 </MenuItem>
             )}

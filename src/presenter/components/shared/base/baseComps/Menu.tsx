@@ -8,7 +8,7 @@ interface MenuProps {
     anchorEl?: HTMLElement | null;
     className?: string;
     children: ReactNode;
-    placement?: 'start' | 'end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'up' | 'down' | 'left' | 'right' | 'center' | 'center_start' | 'center_end' | 'center_top' | 'center_bottom' | 'center_up';
+    placement?: 'start' | 'end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'up' | 'down' | 'left' | 'right' | 'center' | 'center_start' | 'center_end' | 'center_top' | 'center_bottom' | 'center_up' | 'full_center' | 'top_center';
     onClose?: () => void;
     trigger?: ReactNode;
     closeIcon?: ReactNode;
@@ -17,6 +17,7 @@ interface MenuProps {
     key?: string | number;
     fitMax?: boolean;
     ref?: boolean;
+    title?: string
 }
 
 export const Menu: React.FC<MenuProps> = ({
@@ -33,6 +34,7 @@ export const Menu: React.FC<MenuProps> = ({
     fitMax,
     ref,
     key,
+    title
 }) => {
     const [internalOpen, setInternalOpen] = useState(false);
     const isControlled = controlledOpen !== undefined && setOpen !== undefined;
@@ -43,21 +45,27 @@ export const Menu: React.FC<MenuProps> = ({
     useEffect(() => {
         if (menuRefAuto.current) {
             const refDiv = document.getElementById('refDiv');
+            const blurDiv = document.getElementById('blurDiv');
             if (refDiv && ref) {
                 refDiv.appendChild(menuRefAuto.current);
             }
+            else if (blurDiv && blurBack && ref) {
+                blurDiv.appendChild(menuRefAuto.current);
+            }
         }
         console.log("menuRefAuto", menuRefAuto, menuRef);
-    }, []);
+    }, [open]);
 
     const triggerRef = useRef<HTMLDivElement>(null);
     const menuCurrent = useRef<HTMLDivElement>(null);
-    const triggerHeight = triggerRef?.current?.offsetHeight ?? 0;
-    const triggerWidth = triggerRef.current?.offsetWidth ?? 24;
+    const containerRef = useRef<HTMLDivElement>(null);
+    const triggerHeight = triggerRef?.current?.offsetHeight ?? 30;
+    const triggerWidth = triggerRef.current?.offsetWidth ?? 44;
+    const triggerRect = containerRef.current ? containerRef.current.getBoundingClientRect() : null;
     const menuWidth = ((menuCurrent?.current?.offsetWidth ?? 180) + triggerWidth).toString();
     const ml = ((menuCurrent?.current?.offsetWidth ?? 180) * 0.5).toString();
     const mt = ((menuCurrent?.current?.offsetHeight ?? 180) * 1 + triggerHeight * 1.5).toString();
-    const mtUp = ((menuCurrent?.current?.offsetHeight ?? 180) * 1.5).toString();
+    const mtUp = ((menuCurrent?.current?.offsetHeight ?? 180) * 1.2).toString();
 
 
     const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
@@ -69,7 +77,7 @@ export const Menu: React.FC<MenuProps> = ({
             if (placementAll.includes('bottom')) style.top = '100%';
             if (placementAll.includes('start')) {
                 style.left = 0;
-                style.top = '100%';
+                style.top = '0%';
             }
             if (placementAll.includes('end')) style.right = 0;
             if (placementAll.includes('up')) style.bottom = '100%';
@@ -82,21 +90,48 @@ export const Menu: React.FC<MenuProps> = ({
             }
             if (placementAll.includes('center_end')) {
                 style.translate = `0 -${triggerHeight}px`
-                    ;
 
             }
             if (placementAll.includes('center_start')) {
-                style.marginTop = `-${mt}px`;
+                style.marginTop = `-${triggerHeight}px`
 
             }
             if (placementAll.includes('center_bottom')) {
-                style.marginLeft = `-${menuWidth}px`;
+                style.right = '0'
             }
             if (placementAll.includes('center_top')) {
-                style.top = '0%'
+                style.marginTop = `calc(-${mtUp}px)`;
             }
             if (placementAll.includes('center_up')) {
-                style.marginTop = `-${mtUp}px`;
+                style.marginTop = `-${mt}px`;
+            }
+
+            if (placementAll.includes('full_center')) {
+                if (triggerRect) {
+                    style.position = 'fixed';
+                    style.top = `${triggerRect.top + triggerHeight / 2}px`;
+                    style.left = `${triggerRect.left + triggerWidth / 2}px`;
+                    style.transform = 'translate(-50%, -50%)';
+                    style.marginLeft = `calc(-${ml}*2px)`
+                } else {
+                    style.top = `50%`;
+                    style.left = `50%`;
+                    style.transform = 'translate(-50%, -50%)';
+                }
+            }
+
+            if (placementAll.includes('top_center')) {
+                if (triggerRect) {
+                    style.position = 'fixed';
+                    style.top = `${triggerRect.top + triggerHeight / 2}px`;
+                    style.left = `${triggerRect.left + triggerWidth / 2}px`;
+                    style.transform = 'translate(-50%, -50%)';
+                    style.marginTop = `calc(-${mt}px)`
+                } else {
+                    style.top = `50%`;
+                    style.left = `50%`;
+                    style.transform = 'translate(-50%, -50%)';
+                }
             }
             setMenuStyle(style);
         } else {
@@ -144,51 +179,71 @@ export const Menu: React.FC<MenuProps> = ({
 
     return (
         <>
+
+
+
             <div
+                ref={containerRef}
                 key={key}
                 data-md3-menu
-                className={`md3-menu-container   ${(menuRef || menuRefAuto) ? "" : "relative"} `}>
+                className={`md3-menu-container  ${(menuRef || menuRefAuto) ? "" : "relative"} `}>
                 {(trigger) && React.cloneElement(
                     trigger as React.ReactElement,
 
                     {
-                        ref: ref ? triggerRef : undefined,
+                        ref: triggerRef,
                         onClick: handleTriggerClick,
                         'aria-haspopup': 'menu',
                         'aria-expanded': open,
+                        id: 'menu-button',
                     }
                 )}
-                {
-                    <div data-md3
-                        key={key}
-                        ref={menuRef || menuRefAuto}
-                        style={{ ...menuStyle, maxWidth: fitMax ? `${triggerWidth}px` : '' }}
-                        className={` ${className || ""} !z-50
+
+                {<div data-md3
+                    key={key}
+                    ref={menuRef || menuRefAuto}
+                    style={(!open || open) ? {
+                        ...menuStyle,
+                        maxWidth: fitMax ? `${triggerWidth}px` : ''
+                    } : {}}
+                    className={` ${className || ""} 
                     md3-menu md3-elevation ${open ? " md3-menu-enter " : " md3-menu-leave "} `} >
 
-                        {open &&
-                            <div
-                                className={` animSheetRev `}
-                                ref={menuCurrent}>
-                                <div
-                                    className={`px-2 flex`}
-                                    onClick={handleClose}>
-                                    {closeIcon ?? <Icon icon='close' size='md' />}
-                                </div>
-                                <div onClick={handleClose}
-                                    className={`md3-menu-list overflow-hidden `}>
-                                    {children}
-                                </div>
-                            </div>}
+
+                    {<div className={`${open ? "!z-[999]" : " hidden -z-10 "}`}
+                        ref={menuCurrent}>
+
+                        <div
+                            onClick={handleClose}>
+                            {closeIcon ??
+                                <div className={`px-2 pt-2  -mb-7 flex justify-end w-full`}>
+                                    <Icon
+                                        icon='close'
+                                        bg color='slate'
+                                        size='sm'
+                                        style='place-self-end' />
+                                </div>}
+                        </div>
+
+                        <div onClick={handleClose}
+                            className={`md3-menu-list overflow-hidden `}>
+                            {title &&
+                                <div className="flex-1 font-medium text-slate-700 -mb-1 p-3 text-[0.95rem] ">
+                                    {title}
+                                </div>}
+                            {children}
+                        </div>
                     </div>}
-
-
+                </div>
+                }
             </div>
-            {blurBack &&
-                <BackDropBlur
-                    open={open}
-                    setOpen={handleClose}
-                    className="z-40" />}
+            {blurBack && <BackDropBlur
+                open={open}
+                setOpen={handleClose}
+                className="" >
+
+            </BackDropBlur>
+            }
         </>
     );
 };
@@ -202,7 +257,8 @@ interface MenuItemProps {
     trailingIcon?: ReactNode;
     divider?: 'top' | 'bottom' | 'both' | 'none';
     value?: string | number | null;
-    bg?: boolean
+    bg?: boolean,
+    title?: string
 }
 
 export const MenuItem: React.FC<MenuItemProps> = ({
@@ -214,12 +270,15 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     trailingIcon,
     divider,
     value,
-    bg
+    bg,
+    title
 }) => (
     <div
+        title={title}
         onClick={disabled ? undefined : onClick}
         data-value={value}
         className={` md3-menu-item-container
+          
             ${bg ? '' : 'border-t border-slate-300/80 !pt-1 rounded-none first:border-0 first:!pt-0'}
             ${divider ? `md3-menu-item-divider-${divider}` : ''}
         `}
@@ -227,8 +286,8 @@ export const MenuItem: React.FC<MenuItemProps> = ({
 
     >
         <div
-            className={`md3-menu-item${disabled ? " disabled" : ""}
-                ${bg ? '' : ' rounded-none !bg-transparent'}
+            className={`md3-menu-item${disabled ? " disabled" : ""} 
+                ${bg ? '' : ' rounded-none bg-transparent'}
                 ${className || ""} `}
             tabIndex={disabled ? -1 : 0}
             aria-disabled={disabled}
@@ -239,11 +298,11 @@ export const MenuItem: React.FC<MenuItemProps> = ({
                 <span className="md3-menu-item-icon leading">
                     {leadingIcon}
                 </span>}
-            <span className="md3-menu-item-label">
+            <span className="md3-menu-item-label w-full">
                 {children}
             </span>
             {trailingIcon &&
-                <span className="md3-menu-item-icon trailing">
+                <span className="md3-menu-item-icon trailing w-full flex-1 justify-end flex pr-1">
                     {trailingIcon}
                 </span>}
         </div>

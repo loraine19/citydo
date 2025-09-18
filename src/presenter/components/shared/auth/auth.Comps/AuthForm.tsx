@@ -166,7 +166,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                         <div className='!justify-start w-full  -ml-4 flex flex-col'>
                                             <PopUp
                                                 variant={"text"}
-                                                classNames={`${popOverClass} !border-none scale-95 !flex ounded-full !z-[999999]`}
+                                                classNames={`${popOverClass} !border-none scale-95 !flex ounded-full !z-[999]`}
                                                 text={popOverButtonText}
                                                 content={popOverContent} />
                                         </div>

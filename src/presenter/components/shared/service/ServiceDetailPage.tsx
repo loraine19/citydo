@@ -246,7 +246,7 @@ export default function ServiceDetailPage() {
             <main  >
                 <div className="sectionHeader">
                     <SubHeader
-                        type={`${typeS ?? ''} de service ${categoryS ?? ''}`}
+                        type={`services / ${typeS ?? ''} / ${categoryS ?? ''}`}
                         closeBtn />
                     {notif &&
                         <NotifDiv

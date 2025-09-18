@@ -18,7 +18,7 @@ export default function PopOver({
             {isOpen &&
                 <div
                     onClick={() => setIsOpen(false)}
-                    className="!fixed top-[0rem] p-4 left-0 h-[calc(100%-0rem)] w-[100%] !z-[9999] flex justify-center items-center overflow-hidden ">
+                    className="!fixed top-[0rem] p-4 left-0 h-[calc(100%-0rem)] w-[100%] !z-[999] flex justify-center items-center overflow-hidden ">
                     <div className="flex items-center justify-center h-full ">{children}</div>
                 </div>}
         </div>

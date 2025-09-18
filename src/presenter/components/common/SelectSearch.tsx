@@ -21,12 +21,13 @@ export default function SelectSearch(props: selectSearchProps) {
         <div
 
             className={`w-full relative  ${style}`} >
-            <div className={`flex items-center rounded-full md3-button-${color} md3-button-tonal !pr-1 pl-3 !min-h-[42px] gap-2 `} >
+            <div className={`flex items-center rounded-full md3-button-${color} md3-button-tonal !pr-[4px] pl-3 !min-h-[42px] gap-2 `} >
                 <Menu
+                    blurBack
+                    title="Catégorie"
                     className=""
                     open={isOpen}
                     setOpen={setIsOpen}
-                    closeIcon={<></>}
                     placement="bottom-start"
                     trigger={
                         <div className={category.length > 0 ? '' : 'invisible w-0'}>
@@ -41,9 +42,9 @@ export default function SelectSearch(props: selectSearchProps) {
                     {category.map((label: any, index: number) => {
                         return (
                             <MenuItem
-                                className="hover:!bg-slate-200"
-                                leadingIcon={searchCat.value === label.value ?
+                                trailingIcon={searchCat.value === label.value ?
                                     <Icon
+
                                         style='-mr-1'
                                         color={color ?? 'slate'}
                                         size={"lg"}
@@ -83,7 +84,7 @@ export default function SelectSearch(props: selectSearchProps) {
                     reverse
                     color={color ?? 'slate'}
                     onClick={() => search(searchCat)}
-                    size="xl"
+                    size="lg"
                     icon="search" />
             </div>
         </div>

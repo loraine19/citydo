@@ -196,7 +196,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
             zoomControl={false}
             attributionControl={false}
             scrollWheelZoom={false}
-            className='!z-10 flex flex-1 items-center justify-center !rounded-3xl ' >
+            className=' flex flex-1 items-center justify-center !rounded-3xl ' >
             <TileLayer
                 url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}" />
             <ZoomControls />

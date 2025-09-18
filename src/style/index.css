@@ -85,7 +85,7 @@ body {
 }
 
 main {
-    @apply flex flex-col wRespXL h-[calc(100%+0rem)]   flex-1 w-full mx-auto;
+    @apply flex flex-col h-[calc(100%+0rem)] !bg-slate-300/40  flex-1 w-full mx-auto;
     min-height: 0;
     z-index: 0;
     max-height: 100vh;
@@ -93,7 +93,7 @@ main {
 
 section,
 .Section {
-    @apply !bg-slate-200/80 relative flex flex-col overflow-y-auto flex-1;
+    @apply relative flex   flex-col overflow-y-auto flex-1 !pt-8;
     gap: 0.2rem;
     min-height: 0;
 }
@@ -107,7 +107,7 @@ footer {
 }
 
 header {
-    @apply w-full  mx-auto px-2 relative pt-[0.1rem];
+    @apply w-full  mx-auto px-2 relative wRespXL pt-[0.1rem];
     width: 100%;
     margin: 0 auto;
     flex-shrink: 0;
@@ -115,7 +115,7 @@ header {
 }
 
 .sectionHeader {
-    @apply flex flex-col gap-2  px-3 relative;
+    @apply flex flex-col gap-2 bg-slate-50 wRespXL  px-3 relative;
 }
 
 /* TEXT */
@@ -146,7 +146,7 @@ i {
 /* RESPONSIVE */
 
 .wRespXL {
-    @apply w-full my-0 mx-auto max-w-[1100px];
+    @apply w-full my-0 mx-auto lg:!px-[calc(50dvw-500px)];
 }
 .wRespL {
     @apply w-full my-0 mx-auto lg:max-w-[58rem] md:max-w-[calc(100vw-1rem)];

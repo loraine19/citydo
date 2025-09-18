@@ -10,7 +10,7 @@
     background-color: var(--md3-surface, #fff);
     border-radius: var(--md3-radius-large);
     box-shadow: var(--md3-shadow-elevation-3);
-    border: 1px solid #00000010;
+    border: 1px solid #2b2b2b03;
     min-width: 160px;
 }
 
@@ -30,14 +30,17 @@
 }
 
 .md3-menu-item-label {
-    @apply flex items-center w-max font-montserrat text-[0.875rem];
+    @apply flex items-center w-max font-montserrat text-[0.875rem] px-2 gap-2;
     color: var(--md3-on-primary-container);
     opacity: 0.8;
 }
 
 .md3-menu-item:hover,
 .md3-menu-item:focus {
-    background-color: var(--md3-surface-variant);
+    background-color: var(--md3-primary-container);
+}
+.md3-menu-item.disabled {
+    pointer-events: none;
 }
 
 .md3-menu-item:active {
@@ -93,10 +96,9 @@
 }
 
 .md3-menu-leave {
-    @apply border-none bg-transparent shadow-none;
+    @apply border-none shadow-none transition-all;
     animation: md3-menu-scale-out 0.9s cubic-bezier(0.4, 0, 0.6, 1) forwards;
     transform-origin: top;
-    animation-fill-mode: forwards;
 }
 
 @keyframes md3-menu-scale-in {
@@ -112,12 +114,12 @@
 
 @keyframes md3-menu-scale-out {
     from {
-        opacity: 1;
+        opacity: 0;
         transform: scaleY(1);
     }
 
     to {
-        opacity: 0;
+        opacity: 0.5;
         transform: scaleY(0);
     }
 }
