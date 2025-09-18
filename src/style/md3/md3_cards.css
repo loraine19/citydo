@@ -103,8 +103,8 @@
 }
 
 .md3-card-media {
-    @apply flex flex-col flex-1 justify-end;
-    padding: 0 var(--md3-spacing-medium);
+    @apply flex flex-col justify-end;
+    padding: 0.25rem var(--md3-spacing-medium) 0;
 }
 .md3-card-chips {
     @apply flex gap-2;
@@ -235,12 +235,12 @@
 
 .md3-card-elevated {
     background-color: var(--md3-surface);
-    box-shadow: var(--md3-shadow-elevation-3);
+    box-shadow: var(--md3-shadow-elevation-2);
 }
 
 .md3-card-elevated:hover,
 .md3-card-elevated:focus {
-    box-shadow: var(--md3-shadow-elevation-4);
+    box-shadow: var(--md3-shadow-elevation-3);
 }
 
 .md3-card-filled {

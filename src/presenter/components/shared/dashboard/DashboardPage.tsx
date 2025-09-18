@@ -43,9 +43,9 @@ export default function DashboardPage() {
 
     //// CLASSES
     const userClasse = "flex row-span-3 lg:grid  animRev p-2 lg:min-h-full ";
-    const eventClasse = " flex h-full !min-h-[13rem] p-3 row-span-5 lg:grid   ";
-    const notifClasse = " row-span-1 animRev p-3 " + (notifs.length > 0 ? " min-h-[5rem]" : " min-h-[3rem]")
-    const mapClasse = "flex row-span-7 h-full p-3 lg:min-h-[32%] lg:grid ";
+    const eventClasse = " flex h-full !min-h-[13rem] p-2 row-span-5 lg:grid   ";
+    const notifClasse = " row-span-1 animRev p-2 " + (notifs.length > 0 ? " min-h-[5rem]" : " min-h-[3rem]")
+    const mapClasse = "flex row-span-7 h-full p-2 lg:min-h-[32%] lg:grid ";
 
 
     //// HANDLE SCROLL NOTIFICATIONS
@@ -79,12 +79,12 @@ export default function DashboardPage() {
         <main
             className={` lg:!-mt-0 !overflow-hidden bg-gradient-to-t from-slate-50
                via-slate-200  to-slate-50  wRespXL
-            ${navBottom ? '-mt-6 !bg-slate-700  !max-h-[calc(100dvh_-_8rem)] lg:!max-h-[calc(100dvh_-_8rem)] ' :
-                    '!-mt-6 !max-h-[calc(100dvh_-_3.5rem)] lg:!max-h-[calc(100dvh_-_2rem)] '} `}
+            ${navBottom ? ' !max-h-[calc(100dvh_-_8rem)] lg:!max-h-[calc(100dvh_-_8rem)] ' :
+                    ' !max-h-[calc(100dvh_-_3.5rem)] lg:!max-h-[calc(100dvh_-_2rem)] '} `}
             data-cy="dashboard-body" >
             <div id='refDiv'
                 ref={divRef}
-                className={" px-[1%] flex-1 max-max overflow-auto flex flex-col lg:grid grid-cols-2 grid-rows-[auto_auto_auto_1fr_1fr_2fr_auto_auto] w-full  place-content-start pt-11 lg:pt-6 rounded-b-[1rem] lg:pb-6  pb-3 "}>
+                className={" px-[1rem] flex-1 max-max overflow-auto flex flex-col lg:grid grid-cols-2 grid-rows-[auto_auto_auto_1fr_1fr_2fr_auto_auto] w-full  place-content-start pt-6  rounded-b-[1rem] lg:pb-6 -mt-2 pb-3 "}>
 
                 {/* USER CARD  */}
                 <div className={`${userClasse}`}>
@@ -131,7 +131,7 @@ export default function DashboardPage() {
 
                 {/* NOTIF CARD  */}
                 <div className={`hidden lg:${notifClasse} grid-cols-1 h-full  lg:grid`}>
-                    <CardMD className="!flex bg-gradient-to-t from-orange-100 to-orange-50">
+                    <CardMD className="!flex bg-gradient-to-t from-orange-100 to-orange-50 pt-2">
                         <CardMD.Subhead className="flex gap-2 items-center">
                             <div className="relative">
                                 <Icon
@@ -178,7 +178,7 @@ export default function DashboardPage() {
                                                     await refetch();
                                                     notif?.link && navigate(notif?.link)
                                                 }}>
-                                                <p className="!line-clamp-1 ">
+                                                <i className="!line-clamp-1 ">
                                                     <span
                                                         className={` capitalize font-normal ${notif?.typeS === 'message' ? 'text-cyan-600' : 'text-orange-600'}`}>
                                                         {notif?.typeS} :&nbsp;
@@ -186,7 +186,7 @@ export default function DashboardPage() {
                                                     <span className="w-full">
                                                         {notif?.description}
                                                     </span>
-                                                </p>
+                                                </i>
                                             </div>
                                             <Icon
                                                 fill
@@ -214,7 +214,7 @@ export default function DashboardPage() {
 
                 {/* MAPCARD  */}
                 <div className={mapClasse}>
-                    <CardMD className="min-h-full !flex flex-1  anim  ">
+                    <CardMD className="min-h-full !flex flex-1 py-2  anim  ">
                         <CardMD.Subhead>
                             <div className="flex items-center gap-2">
                                 <div className="flex items-center gap-2">
@@ -239,7 +239,7 @@ export default function DashboardPage() {
                                     address={user?.Profile?.Address}
                                     notifs={notifsMap} /> :
                                 <CardMD className="FixCard h-full w-full !flex  !flex-col flex-1 justify-center items-center bg-gray-50">
-                                    <CardMD.Subhead>
+                                    <CardMD.Subhead className="flex-1 h-full">
                                         {user?.Profile?.Address ? 'pas de nouveautés à proximité , essayer de modifier de rafraichir' : 'Veuillez renseigner votre adresse pour voir les services à proximité'}
                                     </CardMD.Subhead>
                                     {user?.Profile?.Address ?
@@ -262,7 +262,7 @@ export default function DashboardPage() {
 
                 {/* CALENDARD CARD  */}
                 <div className={eventClasse}>
-                    <CardMD className=" min-h-full max-h-full w-full bg-gradient-to-t from-cyan-100 to-cyan-50 anim mb-4">
+                    <CardMD className=" min-h-full max-h-full w-full bg-gradient-to-t from-cyan-100 to-cyan-50 anim py-2">
 
                         <CalendarComp logo={true} />
                     </CardMD>

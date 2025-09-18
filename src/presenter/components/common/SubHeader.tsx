@@ -39,7 +39,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
             <div
                 style={{ transformOrigin: 'left' }}
                 className={`
-                    ${((!hideNavBottom || !navIcons)) ? `md3-fab-item-enter !py-1 ${!closeBtn ? '-ml-4' : '-ml-2'}` : ' md3-fab-item-leave'} ${closeBtn ? ' top-9 ' : 'top-8'}
+                    ${((!hideNavBottom || !navIcons)) ? `md3-fab-item-enter !py-1 ${!closeBtn ? '-ml-4' : '-ml-2'}` : ' md3-fab-item-leave'} ${closeBtn ? ' top-9 ' : 'top-7'}
                 
                 flex flex-1 h-full w-full px-[0rem] items-center absolute  z-[1]`}>
                 {closeBtn &&
@@ -68,7 +68,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
                         size="extended"
                         variant='elevated'
                         text={<>
-                            <span>{qty ?? ''}</span>
+                            <span>{qty ?? ''} </span>
                             <span>{type ?? ''} </span>
                             <span className="font-light">{place ? `/  ${place}` : ''}</span>
                         </>}

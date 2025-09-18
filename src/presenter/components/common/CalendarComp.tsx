@@ -8,7 +8,6 @@ import { eventCategories } from '../../constants';
 import { EventStatus } from '../../../domain/entities/Event';
 import { CardMD } from '../shared/base/baseComps/Cards';
 import { Menu } from '../shared/base/baseComps/Menu';
-import NotifDiv from './NotifDiv';
 
 export default function CalendarCompLarge(props: { logo?: boolean, divRef?: React.RefObject<HTMLDivElement> }) {
     const { logo } = props || {}
@@ -39,6 +38,7 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
     }, [])
     useEffect(() => {
         hasNextPage && fetchNextPage()
+        if (!weeks) refetch()
 
     }, [startDate, numberOfwweks, loadingEvents, errorEvents])
 
@@ -124,13 +124,9 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
             {/* CALENDAR */}
             <div className='relative max-h-full w-full flex flex-1 '>
 
-                {(loadingEvents || errorEvents || !weeks) ? (
+                {(loadingEvents || errorEvents) ? (
                     <div className='absolute flex flex-col flex-1 h-full p-2 gap-2 w-full rounded-2xl bg-white  '>
-                        <NotifDiv
-                            error={errorEvents}
-                            isLoading={loadingEvents}
-                            notif={errorEvents ?? "Aucun événement"}
-                            refetch={refetch} />
+
                         <div className={`grid grid-cols-${num} rounded-lg h-full overflow-auto pb-3 bg-slate-50 divide-x divide-cyan-500 divide-opacity-20`}>
                             {[...Array(num)].map((_, index) => (
                                 <div key={index} className='text-xs w-full flex flex-col text-center h-full'>
