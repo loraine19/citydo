@@ -58,7 +58,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                 <div id='navBarTop'
                     className={`pl-2 flex lg:px-0 slide h-full justify-between items-end     
                 ${hideNavBottom ? 'animSheet !py-1' : ' !py-1'}`} >
-                    <div className={`flex h-full relative z-[999]
+                    <div className={`flex h-full relative z-[2]
                     ${hideNavBottom ? '!h-0 animSheetRev invisible ' : ' animSheetRev'}
                          ${!navIcons || navBottom ? ' w-full ' : ' w-max'}
                          ${!navIcons ? 'pb-1.5 ' : ''}
@@ -66,13 +66,14 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
                         {/* PROFILE MENU  */}
                         <Menu
+                            ref
                             closeIcon={
                                 <Icon
                                     icon="close"
                                     bg style='self-start' color='slate' size="sm" />}
                             className={`px-4 py-2 `}
                             blurBack
-                            placement="start"
+                            placement="bottom-right"
                             trigger={
                                 <div className=" ml-2 h-full justify-center max-w-max grid z-50 items-center !p-0">
                                     <div >

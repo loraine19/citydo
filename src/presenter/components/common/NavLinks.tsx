@@ -84,18 +84,18 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `anim  wRespXL slateFooter pb-2.5 md:pb-4 justify-between  px-2 lg:!px-0 ` :
+                    `anim   pb-2.5 md:pb-4 justify-between   ` :
                     ' -mt-1.5 ') +
-                ` flex items-center  w-full `
+                ` flex items-center w-full `
             }>
                 <NavigationBar
                     value={navValue}
                     onValueChange={(value) => setNavValue(value)}
                     className={`
                     ${navBottom ?
-                            'rounded-full !flex-1 !max-w-full p-0 justify-between bg-white border' :
-                            `shadow-none w-full  justify-around pb-2 md:pb-0  md:px-2`}
-                    items-center overflow-x-auto md3-elevation-0 overflow-y-hidden flex h-full w-full `}>
+                            ' rounded-full !flex-1 md3-elevation-2 !max-w-full p-0 justify-between bg-white border' :
+                            ` shadow-none w-full md3-elevation-0 justify-around pb-2 md:pb-0  md:px-2`}
+                    items-center overflow-x-auto  overflow-y-hidden flex h-full w-full `}>
 
                     {navItems.map(({ to, icon, label, color }: NavItem, index) => {
                         const active = location.pathname === to;

@@ -24,7 +24,7 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
             open={isOpen}
             setOpen={setIsOpen}
             blurBack
-            placement="center_bottom"
+            placement="bottom-left"
             title="Trier par"
             trigger={
                 <Icon

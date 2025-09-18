@@ -14,8 +14,6 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
     const [numberOfwweks, setNumberOfwweks] = useState<number>(2)
     const [startDateBackup] = useState<Date>(new Date().getDay() > 0 ? new Date() : new Date(new Date().getTime() - 1 * dayMS));
     const [startDate, setStartDate] = useState<string>(startDateBackup.toDateString())
-    const [open, setOpen] = useState<boolean>(false)
-    const [popId, setPopId] = useState<string>('')
     const { weeks, loadingEvents, errorEvents, fetchNextPage, hasNextPage } = DI.resolve('eventsWeekViewModel')(startDate, numberOfwweks)
 
     //// NAVIGATE WEEK BTN 
@@ -158,16 +156,20 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                                                         key={indexEvent}
                                                         className='w-full grid rounded-xl  '>
                                                         <Menu
+                                                            closeIcon={
+                                                                <Icon
+                                                                    icon="close"
+                                                                    bg style='self-start' color='slate' size="sm" />}
+                                                            className='px-2 pt-2 bg-slate-100'
                                                             ref
                                                             blurBack
-                                                            placement='center'
-                                                            open={open && popId === event.id + day.date}
+                                                            placement='auto'
                                                             trigger={
                                                                 <button
                                                                     data-cy='event-handler'
                                                                     title={'Voir événement' + ' ' + event.title}
                                                                     className=' min-w-full rounded-xl'
-                                                                    onClick={() => { setOpen(true); setPopId(event.id + day.date) }}
+
                                                                 >
                                                                     <div
                                                                         className=

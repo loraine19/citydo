@@ -15,7 +15,7 @@ export default function PopUp(props: popUpProps) {
             <Menu
                 menuRef={undefined}
                 open={true}
-                placement="center_end"
+                placement="auto"
                 trigger={
                     <Button variant={variant}
                         color='primary'

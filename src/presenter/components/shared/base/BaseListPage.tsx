@@ -480,7 +480,7 @@ const MD3DemoPage: React.FC = () => {
 
                     <Menu
                         blurBack
-                        placement='top-end'
+                        placement='auto'
                         trigger={<Button variant="outlined" >Ouvrir le Menu</Button>} >
                         <MenuItem onClick={() => alert("Item 1 clicked")}
                             leadingIcon={<Icon icon="home" size="md" />}>

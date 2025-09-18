@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 
 type AvatarStackProps = { avatarDatas: Participant[], ref?: boolean };
 export function AvatarStack(props: AvatarStackProps) {
-    const { avatarDatas, ref } = props;
+    const { avatarDatas } = props;
     const navigate = useNavigate();
 
     return (
@@ -15,9 +15,9 @@ export function AvatarStack(props: AvatarStackProps) {
             {avatarDatas?.map((Participant: Participant, index) =>
                 <Menu
                     className="px-2"
-                    ref={ref}
+                    ref
                     blurBack
-                    placement={ref ? "top_center" : "center_up"}
+                    placement={'auto'}
                     key={index}
                     trigger={
                         <div className="relative !h-[2.65rem] !z-[1] !w-[2.65rem] flex hover:!z-[4] ">

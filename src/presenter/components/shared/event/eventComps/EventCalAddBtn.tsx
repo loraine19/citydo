@@ -18,10 +18,10 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
 
     return (
         <Menu
-            ref={ref}
+            ref
             key={id + "add"}
             blurBack
-            placement={!ref ? "center_up" : "full_center"}
+            placement={'auto'}
             onClose={() => { }}
             className={`${className} hover:z-50 ${!ref ? '' : '  '}`}
 

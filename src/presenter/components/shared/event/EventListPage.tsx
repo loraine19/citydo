@@ -243,7 +243,7 @@ export default function EventListPage() {
                 </>
             }
             {view === "event" && !isLoading &&
-                <section id='refDiv' className="px-1 py-4 max-h-[calc(100dvh_-_14rem)]">
+                <section id='refDiv' className="!pt-12 wRespXL max-h-[calc(100dvh_-_14rem)]">
                     <CalendarComp />
                 </section>}
 

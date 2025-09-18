@@ -13,12 +13,13 @@ export const GroupLink: React.FC<GroupDivProps> = ({ group, className, menuRef }
     return (
 
         <Menu
+            ref
             closeIcon={<></>}
             menuRef={menuRef}
             open={open}
             setOpen={setOpen}
-            placement="center_end"
-            className={`mt-6 ${className ?? ''} `}
+            placement="auto"
+            className={` ${className ?? ''} `}
             key={group?.id}
             fitMax
             trigger={

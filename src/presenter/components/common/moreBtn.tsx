@@ -69,7 +69,7 @@ export const MoreButton = ({ id, type, flagged, title, className, ref }: moreBut
             className={className ?? '' + ''}
             open={isOpen}
             setOpen={setIsOpen}
-            placement={ref ? "full_center" : "center_up"}
+            placement={'auto'}
             trigger={
                 <Icon
                     style='-mr-0'
