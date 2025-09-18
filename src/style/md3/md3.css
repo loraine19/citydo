@@ -162,14 +162,181 @@
     --md3-anim-duration-medium: 250ms;
     --md3-anim-easing: cubic-bezier(0.4, 0, 0.2, 1);
 
-    /* Padding et marges */
-    --md3-spacing-extra-small: 4px;
-    --md3-spacing-small: 8px;
-    --md3-spacing-sm: 12px;
-    --md3-spacing-medium: 16px;
-    --md3-spacing-md: 20px;
-    --md3-spacing-large: 24px;
-    --md3-spacing-extra-large: 32px;
+    /* Padding et marges (en rem) */
+    --md3-spacing-extra-small: 0.25rem; /* 4px */
+    --md3-spacing-small: 0.5rem; /* 8px */
+    --md3-spacing-sm: 0.75rem; /* 12px */
+    --md3-spacing-medium: 1rem; /* 16px */
+    --md3-spacing-md: 1.25rem; /* 20px */
+    --md3-spacing-large: 1.5rem; /* 24px */
+    --md3-spacing-extra-large: 2rem; /* 32px */
+
+    /* Spacing utility classes */
+    /* Padding */
+    .md3-p-xs {
+        padding: var(--md3-spacing-extra-small) !important;
+    }
+    .md3-p-s {
+        padding: var(--md3-spacing-small) !important;
+    }
+    .md3-p-sm {
+        padding: var(--md3-spacing-sm) !important;
+    }
+    .md3-p-m {
+        padding: var(--md3-spacing-medium) !important;
+    }
+    .md3-p-md {
+        padding: var(--md3-spacing-md) !important;
+    }
+    .md3-p-l {
+        padding: var(--md3-spacing-large) !important;
+    }
+    .md3-p-xl {
+        padding: var(--md3-spacing-extra-large) !important;
+    }
+
+    /* Padding X */
+    .md3-px-xs {
+        padding-left: var(--md3-spacing-extra-small) !important;
+        padding-right: var(--md3-spacing-extra-small) !important;
+    }
+    .md3-px-s {
+        padding-left: var(--md3-spacing-small) !important;
+        padding-right: var(--md3-spacing-small) !important;
+    }
+    .md3-px-sm {
+        padding-left: var(--md3-spacing-sm) !important;
+        padding-right: var(--md3-spacing-sm) !important;
+    }
+    .md3-px-m {
+        padding-left: var(--md3-spacing-medium) !important;
+        padding-right: var(--md3-spacing-medium) !important;
+    }
+    .md3-px-md {
+        padding-left: var(--md3-spacing-md) !important;
+        padding-right: var(--md3-spacing-md) !important;
+    }
+    .md3-px-l {
+        padding-left: var(--md3-spacing-large) !important;
+        padding-right: var(--md3-spacing-large) !important;
+    }
+    .md3-px-xl {
+        padding-left: var(--md3-spacing-extra-large) !important;
+        padding-right: var(--md3-spacing-extra-large) !important;
+    }
+
+    /* Padding Y */
+    .md3-py-xs {
+        padding-top: var(--md3-spacing-extra-small) !important;
+        padding-bottom: var(--md3-spacing-extra-small) !important;
+    }
+    .md3-py-s {
+        padding-top: var(--md3-spacing-small) !important;
+        padding-bottom: var(--md3-spacing-small) !important;
+    }
+    .md3-py-sm {
+        padding-top: var(--md3-spacing-sm) !important;
+        padding-bottom: var(--md3-spacing-sm) !important;
+    }
+    .md3-py-m {
+        padding-top: var(--md3-spacing-medium) !important;
+        padding-bottom: var(--md3-spacing-medium) !important;
+    }
+    .md3-py-md {
+        padding-top: var(--md3-spacing-md) !important;
+        padding-bottom: var(--md3-spacing-md) !important;
+    }
+    .md3-py-l {
+        padding-top: var(--md3-spacing-large) !important;
+        padding-bottom: var(--md3-spacing-large) !important;
+    }
+    .md3-py-xl {
+        padding-top: var(--md3-spacing-extra-large) !important;
+        padding-bottom: var(--md3-spacing-extra-large) !important;
+    }
+
+    /* Margin */
+    .md3-m-xs {
+        margin: var(--md3-spacing-extra-small) !important;
+    }
+    .md3-m-s {
+        margin: var(--md3-spacing-small) !important;
+    }
+    .md3-m-sm {
+        margin: var(--md3-spacing-sm) !important;
+    }
+    .md3-m-m {
+        margin: var(--md3-spacing-medium) !important;
+    }
+    .md3-m-md {
+        margin: var(--md3-spacing-md) !important;
+    }
+    .md3-m-l {
+        margin: var(--md3-spacing-large) !important;
+    }
+    .md3-m-xl {
+        margin: var(--md3-spacing-extra-large) !important;
+    }
+
+    /* Margin X */
+    .md3-mx-xs {
+        margin-left: var(--md3-spacing-extra-small) !important;
+        margin-right: var(--md3-spacing-extra-small) !important;
+    }
+    .md3-mx-s {
+        margin-left: var(--md3-spacing-small) !important;
+        margin-right: var(--md3-spacing-small) !important;
+    }
+    .md3-mx-sm {
+        margin-left: var(--md3-spacing-sm) !important;
+        margin-right: var(--md3-spacing-sm) !important;
+    }
+    .md3-mx-m {
+        margin-left: var(--md3-spacing-medium) !important;
+        margin-right: var(--md3-spacing-medium) !important;
+    }
+    .md3-mx-md {
+        margin-left: var(--md3-spacing-md) !important;
+        margin-right: var(--md3-spacing-md) !important;
+    }
+    .md3-mx-l {
+        margin-left: var(--md3-spacing-large) !important;
+        margin-right: var(--md3-spacing-large) !important;
+    }
+    .md3-mx-xl {
+        margin-left: var(--md3-spacing-extra-large) !important;
+        margin-right: var(--md3-spacing-extra-large) !important;
+    }
+
+    /* Margin Y */
+    .md3-my-xs {
+        margin-top: var(--md3-spacing-extra-small) !important;
+        margin-bottom: var(--md3-spacing-extra-small) !important;
+    }
+    .md3-my-s {
+        margin-top: var(--md3-spacing-small) !important;
+        margin-bottom: var(--md3-spacing-small) !important;
+    }
+    .md3-my-sm {
+        margin-top: var(--md3-spacing-sm) !important;
+        margin-bottom: var(--md3-spacing-sm) !important;
+    }
+    .md3-my-m {
+        margin-top: var(--md3-spacing-medium) !important;
+        margin-bottom: var(--md3-spacing-medium) !important;
+    }
+    .md3-my-md {
+        margin-top: var(--md3-spacing-md) !important;
+        margin-bottom: var(--md3-spacing-md) !important;
+    }
+    .md3-my-l {
+        margin-top: var(--md3-spacing-large) !important;
+        margin-bottom: var(--md3-spacing-large) !important;
+    }
+    .md3-my-xl {
+        margin-top: var(--md3-spacing-extra-large) !important;
+        margin-bottom: var(--md3-spacing-extra-large) !important;
+    }
 
     /* hover effect */
     --md3-hover-effect: rgba(0, 0, 0, 0.08);

@@ -53,11 +53,31 @@
 * {
     box-sizing: border-box;
 }
+
+html {
+    font-size: 16px;
+    @media (max-width: 1024px) {
+        /* lg */
+        font-size: 15.5px;
+    }
+    @media (max-width: 768px) {
+        /* md */
+        font-size: 15px;
+    }
+    @media (max-width: 640px) {
+        /* sm */
+        font-size: 14.5px;
+    }
+    @media (max-width: 475px) {
+        /* xs */
+        font-size: 13.5px;
+    }
+}
 .baseBG {
     @apply dark:bg-slate-700 text-slate-700 dark:text-slate-300;
 }
 :root {
-    @apply bg-slate-50 scroll-smooth text-[13px] xs:text-[15px] sm:!text-[15px] lg:!text-[15px] font-montserrat;
+    @apply bg-slate-50 scroll-smooth  font-montserrat;
     line-height: 1.2;
     font-weight: 400;
     display: flex;
