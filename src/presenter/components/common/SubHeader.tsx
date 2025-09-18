@@ -32,7 +32,8 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
         <div className={`flex flex-col relative border-t-0 `}>
 
             {/* LINE DIV  */}
-            <hr className={` border-black/20 border-b z-[1] border-t-0 w-[calc(100dvw)] left-0 fixed   pt-2 bg-slate-50 shadow -mt-1  `} />
+            <hr className={` z-[1] border-t-0 w-[calc(100dvw)] left-0 fixed pt-2 bg-slate-50 -mt-1 
+                md3-elevation-2 `} />
 
             {/* TYPE DIV  */}
 
@@ -61,7 +62,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
                             link: goBack,
                         } : undefined}>
                     </Fab>}
-                <div className={`${closeBtn ? ' w-full pr-16 ' : 'justify-center'} flex flex-1 overflow-hidden items-center pl-4 py-4 `}>
+                <div className={`${closeBtn ? ' w-full pr-16 ' : ''} flex flex-1 overflow-hidden items-center pl-4 py-4 `}>
                     <Fab
                         className={`h-[40px] !text-[0.95rem] pointer-events-none`}
                         color={color as Md3Colors ?? 'slate'}

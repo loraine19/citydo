@@ -25,7 +25,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
         { icon: 'groups', text: "Groupes", onClick: () => navigate('/groupe'), color: "orange", divider: 'top', },
 
         { icon: 'diversity_3', text: "Conciliation", onClick: () => navigate('/conciliation'), color: 'orange', divider: 'bottom', },
-        { icon: "exit_to_app", text: "Déconnexion", onClick: () => navigate('/signin'), color: "red" },
+        { icon: "exit_to_app", text: "Déconnexion", onClick: () => navigate('/signin'), color: "error" },
     ]
 
     if (!onBoard && !navIcons) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate", divider: 'bottom' })
@@ -72,11 +72,11 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                                 <Icon
                                     icon="close"
                                     bg style='self-start' color='slate' size="sm" />}
-                            className={`px-4 py-2 !z-[999] `}
+                            className={`px-4 py-2 !z-[999] -mt-4 -ml-1  `}
                             blurBack
                             placement="up-bottom-right"
                             trigger={
-                                <div className={`${hideNavBottom ? 'hidden' : ''} ml-2 h-full justify-center max-w-max grid z-50 items-center !p-0`}>
+                                <div className={`${hideNavBottom ? 'hidden' : ''}  h-full justify-center max-w-max grid items-center !p-0`}>
                                     <div >
                                         <div className='flex w-[2.5rem] flex-1 items-center'>
                                             <img

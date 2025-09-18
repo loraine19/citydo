@@ -174,7 +174,7 @@ export default function ServicesPage() {
 
 
     //// HANDLE VIEW CHANGE
-    const [compact, setCompact] = useState<boolean>(false);
+    const [compact, setCompact] = useState<boolean>(true);
 
 
     //// RENDER

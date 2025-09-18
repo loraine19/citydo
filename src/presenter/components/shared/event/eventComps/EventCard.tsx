@@ -85,7 +85,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                 <Title title={title} />
             </CardMD.Headline>
 
-            <CardMD.Media >
+            <CardMD.Media className="flex-1" >
 
                 <ProgressBar
                     size='xxsmall'

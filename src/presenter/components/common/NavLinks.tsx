@@ -84,7 +84,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `anim wRespXLMargin px-4  pb-2.5 md:pb-4 justify-between   ` :
+                    `anim wRespXLMargin px-2  pb-2.5 md:pb-4 justify-between   ` :
                     ' -mt-1.5  ') +
                 ` flex items-center w-full `
             }>

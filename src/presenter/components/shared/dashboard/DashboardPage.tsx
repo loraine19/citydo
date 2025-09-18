@@ -4,9 +4,7 @@ import CalendarComp from "../../common/CalendarComp";
 import { useEffect, useRef, useState } from "react";
 import { useUserStore } from "../../../../application/stores/user.store";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { LogOutButton } from "../../common/LogOutBtn";
 import { NotifView } from "../../../views/viewsEntities/notifViewEntity";
-import { Role } from "../../../../domain/entities/GroupUser";
 import DI from "../../../../di/ioc";
 import { LoadMoreButton } from "../../common/LoadMoreBtn";
 import { ElementNotif } from "../../../../domain/entities/Notif";
@@ -16,13 +14,11 @@ import NotifDiv from "../../common/NotifDiv";
 import { useUxStore } from "../../../../application/stores/ux.store";
 import { OnlineDot } from "../../common/onlineDot";
 import { CardMD } from "../base/baseComps/Cards";
-
 export default function DashboardPage() {
 
     //// USER & AUTORISATION
     const { user, fetchUser, setIsLoggedIn, } = useUserStore((state) => state);
     const { setHideNavBottom, navBottom } = useUxStore((state) => state);
-    const modo = user?.GroupUser?.map(g => g.role).includes(Role.MODO) || false;
     useEffect(() => {
         !user ? setIsLoggedIn(false) : setIsLoggedIn(true);
         !user?.Profile && fetchUser()
@@ -42,11 +38,19 @@ export default function DashboardPage() {
     const { notifsMap, isLoadingMap, refetchMap, countMap } = notifMapViewModelFactory();
 
     //// CLASSES
-    const userClasse = "flex row-span-3 lg:grid  animRev p-2 lg:min-h-full ";
-    const eventClasse = " flex h-full !min-h-[13rem] p-2 row-span-5 lg:grid   ";
-    const notifClasse = " row-span-1 animRev p-2 " + (notifs.length > 0 ? " min-h-[5rem]" : " min-h-[3rem]")
-    const mapClasse = "flex row-span-7 h-full p-2 lg:min-h-[32%] lg:grid ";
+    // Responsive grid: 
+    // - On md and up: 2 columns, 4 rows
+    // - User: row 1, col 1
+    // - Notif: row 1, col 2
+    // - Event: rows 2-4, col 1
+    // - Map: rows 2-4, col 2
+    // User and Notif have max-content height, Event and Map fill remaining space
 
+    // User div takes twice the height of notif div
+    const userClasse = "row-start-1 row-end-3 col-start-1 col-end-2 flex animRev p-2 !max-h-max  ";
+    const notifClasse = "row-start-1 row-end-2 col-start-2 col-end-3 animRev p-2 " + (notifs.length > 0 ? " min-h-[4rem] " : "min-h-[5rem]");
+    const eventClasse = "row-start-3 row-end-5 col-start-1 col-end-2  flex flex-col h-full min-h-[13rem] p-2 flex-1 ";
+    const mapClasse = "row-start-2 row-end-5 col-start-2 col-end-3 flex flex-1  flex-col h-full p-2";
 
     //// HANDLE SCROLL NOTIFICATIONS
     const divRef = useRef(null);
@@ -84,12 +88,16 @@ export default function DashboardPage() {
             data-cy="dashboard-body" >
             <div id='refDiv'
                 ref={divRef}
-                className={" px-[1rem] flex-1 max-max overflow-auto flex flex-col lg:grid grid-cols-2 grid-rows-[auto_auto_auto_1fr_1fr_2fr_auto_auto] w-full  place-content-start pt-6  rounded-b-[1rem] lg:pb-6 -mt-2 pb-3 "}>
+                className={`
+                    px-[1rem] flex-1 max-max overflow-auto flex flex-col
+                    md:grid md:grid-cols-2 md:grid-rows-[max-content,max-content,1fr,1fr]
+                    w-full place-content-start pt-6 rounded-b-[1rem] lg:pb-6 -mt-2 pb-3 
+                `}>
 
                 {/* USER CARD  */}
                 <div className={`${userClasse}`}>
-                    <CardMD className="lg:h-full !overflow-visible  flex-1 anim lg:min-h-full">
-                        <CardMD.Media className="-top-[1.5rem] w-full flex-1 items-center absolute ">
+                    <CardMD className=" !overflow-visible pt-12 flex-1 anim ">
+                        <CardMD.Media className="-top-[1.5rem]  w-full flex-1 items-center absolute ">
                             <div className="relative !z-40 ">
                                 <AvatarUser
                                     avatarSize="lg"
@@ -99,33 +107,20 @@ export default function DashboardPage() {
                                     id={user?.id} />
                             </div>
                         </CardMD.Media>
-                        <CardMD.Headline className="pt-[2.5rem] justify-center items-center text-center ">
-                            {user?.Profile?.firstName}
-                        </CardMD.Headline>
-                        <CardMD.Media className="justify-center items-center ">
-                            <div className="flex gap-1 border rounded-full max-w-max justify-center items-center py-1 px-2 flex-1 bg-slate-200 border-slate-300 ">
-                                <Icon bg clear
-                                    link="/myprofile"
-                                    icon="person_edit"
-                                    size="lg"
-                                    title="ouvrir la page profil" />
-                                <hr className="bg-slate-300 h-3/4 w-[1px]" />
-                                <Icon bg clear
-                                    link="/groupe"
-                                    icon="groups"
-                                    size="lg"
-                                    title="ouvrir la page des groupes" />
-                                <hr className="bg-slate-300 h-3/4 w-[1px]" />
-                                <Icon bg clear
-                                    link={modo ? '/conciliation' : ''}
-                                    icon="diversity_3"
-                                    size="lg"
-                                    title={modo ? "ouvrir la page conciliation" : "vous devez être conciliateur dans un groupe"} />
-                                <hr className="bg-slate-300 h-3/4 w-[1px]" />
-                                <LogOutButton
-                                    style={'!border-0'} size="lg" />
+
+                        <CardMD.Subhead className="justify-center items-center !py-3 ">
+
+                            <div className="rounded-full md3-slate-container px-12 m py-2 flex flex-col items-center justify-center shadow-sm mt-2">
+
+                                <span>
+                                    Bienvenue&nbsp;
+                                    {user?.Profile?.firstName ?? ""}   !
+                                </span>
+                                <span className="text-sm font-normal opacity-80">
+                                    vous avez  {user?.Profile?.points ?? 0} points
+                                </span>
                             </div>
-                        </CardMD.Media>
+                        </CardMD.Subhead>
                     </CardMD>
                 </div>
 
@@ -164,7 +159,7 @@ export default function DashboardPage() {
                                 isLoading={isLoading}
                                 refetch={refetch}
                                 notif={error} />
-                            <div className="relative flex flex-col max-h-14  w-full overflow-y-auto"
+                            <div className="relative flex flex-col max-h-[3rem]  w-full overflow-y-auto"
                                 onScroll={() => handleScroll()}
                                 ref={divRef}>
                                 <div className="relative overflow-auto gap-0.5 flex flex-col">

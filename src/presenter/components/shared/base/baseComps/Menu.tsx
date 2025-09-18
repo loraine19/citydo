@@ -194,6 +194,10 @@ export const Menu: React.FC<MenuProps> = ({
 
     const [visible, setVisible] = useState(false);
 
+    useEffect(() => {
+        setVisible(false);
+    }, []);
+
     return (
         <>
             <div
