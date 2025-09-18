@@ -66,15 +66,15 @@ html {
     }
     @media (max-width: 640px) {
         /* sm */
-        font-size: 15px;
+        font-size: 15.5px;
     }
     @media (max-width: 475px) {
         /* xs */
-        font-size: 15px;
+        font-size: 16px;
     }
     @media (max-width: 375px) {
         /* xxs */
-        font-size: 13.5px;
+        font-size: 16px;
     }
 }
 .baseBG {
@@ -109,7 +109,7 @@ body {
 }
 
 main {
-    @apply flex flex-col h-[calc(100%+0rem)] !bg-slate-300/40  flex-1 w-full mx-auto;
+    @apply flex flex-col h-[calc(100%+0rem)] !bg-slate-300/30  flex-1 w-full mx-auto;
     min-height: 0;
     z-index: 0;
     max-height: 100vh;

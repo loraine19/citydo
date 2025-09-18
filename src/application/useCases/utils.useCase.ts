@@ -54,7 +54,7 @@ export class UtilsUseCase implements UtilsInterface {
             if (scrollTop + clientHeight + max / 2 >= scrollHeight) return
             let shouldHide = (scrollTop >= max && (this.init <= scrollTop));
             this.init = scrollTop
-            setTimeout(() => setHide(shouldHide), max * 10)
+            setTimeout(() => setHide(shouldHide), max * 2)
         }
     }
 

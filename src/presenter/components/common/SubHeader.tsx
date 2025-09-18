@@ -32,16 +32,16 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
         <div className={`flex flex-col relative border-t-0 `}>
 
             {/* LINE DIV  */}
-            <hr className={` border-black/20 border-b z-[1] border-t-0 w-[calc(100dvw)] left-0 fixed   pt-2 bg-slate-50 shadow-md -mt-1  `} />
+            <hr className={` border-black/20 border-b z-[1] border-t-0 w-[calc(100dvw)] left-0 fixed   pt-2 bg-slate-50 shadow -mt-1  `} />
 
             {/* TYPE DIV  */}
 
             <div
                 style={{ transformOrigin: 'left' }}
                 className={`
-                    ${((!hideNavBottom || !navIcons)) ? `md3-fab-item-enter !py-1 ${!closeBtn && '-ml-4'}` : ' md3-fab-item-leave'}
+                    ${((!hideNavBottom || !navIcons)) ? `md3-fab-item-enter !py-1 ${!closeBtn ? '-ml-4' : '-ml-2'}` : ' md3-fab-item-leave'} ${closeBtn ? ' top-9 ' : 'top-8'}
                 
-                flex flex-1 h-full w-full px-[0rem] items-center absolute top-9  z-[1]`}>
+                flex flex-1 h-full w-full px-[0rem] items-center absolute  z-[1]`}>
                 {closeBtn &&
                     <Fab
                         variant='elevated'
@@ -61,9 +61,9 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
                             link: goBack,
                         } : undefined}>
                     </Fab>}
-                <div className={`${closeBtn ? ' w-full ' : ''} flex flex-1 overflow-hidden items-center pl-4 py-4 pr-16`}>
+                <div className={`${closeBtn ? ' w-full pr-16 ' : 'justify-center'} flex flex-1 overflow-hidden items-center pl-4 py-4 `}>
                     <Fab
-                        className={`h-[40px] !text-[0.95rem] `}
+                        className={`h-[40px] !text-[0.95rem] pointer-events-none`}
                         color={color as Md3Colors ?? 'slate'}
                         size="extended"
                         variant='elevated'
