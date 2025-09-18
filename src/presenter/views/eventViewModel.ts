@@ -101,6 +101,8 @@ export const eventsWeekViewModel = () => {
     const { data, isLoading, error, fetchNextPage, hasNextPage, refetch }
       = useInfiniteQuery({
         queryKey: ['events'],
+        refetchOnWindowFocus: true,
+
         queryFn: async ({ pageParam = 1 }) => await getEvents.execute(pageParam) || { events: [], count: 0 },
         initialPageParam: 1,
         getNextPageParam: (lastPage, pages) => lastPage.events?.length ? pages.length + 1 : undefined
@@ -110,47 +112,50 @@ export const eventsWeekViewModel = () => {
 
     const flat = data?.pages.flat().map(page => page.events).flat()
     if (flat && new Date(flat[flat.length - 1]?.start).getTime() < new Date(startDate).getTime() + numberOfWeeks * 7 * dayMS) { refetch() }
-    const eventList = userLoading ? [] : flat?.map(event => new EventView(event, userId)) || []
+    const eventList = (userLoading || isLoading || !data) ? [] : flat?.map(event => new EventView(event, userId)) || []
 
     const weeks: { date: Date, events: EventView[], text: string }[][] = [];
     let date = new Date(startDate)
 
-    for (let weekIndex = 0; weekIndex < numberOfWeeks; weekIndex++) {
-      const week: { date: Date, events: EventView[], text: string }[] = [];
-      const weekDay = date.getDay();
-      const monday = date.getTime() - ((weekDay - 1) * dayMS);
-      for (let i = 0; i < 7; i++) {
-        const nextDay = new Date(monday + (i * dayMS));
-        week.push({ date: nextDay, events: [], text: shortDateString(nextDay) });
-      }
-      for (const event of eventList) {
-        if (event.days) {
-          for (const day of event.days) {
-            const dayString = new Date(day).toLocaleDateString();
-            const weekDay = week.find(w => new Date(w.date).toLocaleDateString() === dayString);
-            if (weekDay) {
-              const isEventInWeek = weekDay.events.some(e => e.id === event.id);
-              if (!isEventInWeek) {
-                week.forEach((w: any) => {
-                  const isActive = new Date(w.date).toLocaleDateString() === dayString;
-                  w.events.push({ ...event, actif: isActive } as EventView);
-                });
-              } else {
-                weekDay.events.forEach(e => {
-                  if (e?.days?.some((d: any) => new Date(d).toLocaleDateString() === dayString)) {
-                    e.actif = true;
-                  }
-                });
+    if (eventList.length > 0) {
+      for (let weekIndex = 0; weekIndex < numberOfWeeks; weekIndex++) {
+        const week: { date: Date, events: EventView[], text: string }[] = [];
+        const weekDay = date.getDay();
+        const monday = date.getTime() - ((weekDay - 1) * dayMS);
+        for (let i = 0; i < 7; i++) {
+          const nextDay = new Date(monday + (i * dayMS));
+          week.push({ date: nextDay, events: [], text: shortDateString(nextDay) });
+        }
+        for (const event of eventList) {
+          if (event.days) {
+            for (const day of event.days) {
+              const dayString = new Date(day).toLocaleDateString();
+              const weekDay = week.find(w => new Date(w.date).toLocaleDateString() === dayString);
+              if (weekDay) {
+                const isEventInWeek = weekDay.events.some(e => e.id === event.id);
+                if (!isEventInWeek) {
+                  week.forEach((w: any) => {
+                    const isActive = new Date(w.date).toLocaleDateString() === dayString;
+                    w.events.push({ ...event, actif: isActive } as EventView);
+                  });
+                } else {
+                  weekDay.events.forEach(e => {
+                    if (e?.days?.some((d: any) => new Date(d).toLocaleDateString() === dayString)) {
+                      e.actif = true;
+                    }
+                  });
+                }
+                weekDay.events.sort((a, b) => a.id - b.id);
               }
-              weekDay.events.sort((a, b) => a.id - b.id);
             }
           }
         }
+        weeks.push(week);
+        date = new Date(monday + 7 * dayMS);
       }
-      weeks.push(week);
-      date = new Date(monday + 7 * dayMS);
+      return { weeks, refetch, isLoading, error, fetchNextPage, hasNextPage };
     }
-    return { weeks, refetch, isLoading, error, fetchNextPage, hasNextPage };
+    return { weeks: [], refetch, isLoading: true, error, fetchNextPage, hasNextPage }
   }
 }
 

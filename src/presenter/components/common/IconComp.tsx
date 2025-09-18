@@ -176,7 +176,7 @@ export const Icon: React.FC<IconProps> = ({
 
 
     const classIcon = () => `
-    flex items-center justify-center 
+    flex items-center justify-center z-[0]
     ${colorClass}  
     ${bg ? iconSize : textSize} ${style ?? ''} `
 
@@ -220,7 +220,7 @@ export const Icon: React.FC<IconProps> = ({
                     <span
                         data-cy={icon}
                         title={!disabled ? title : `${(title ?? 'cette action')} est indisponible`}
-                        className={`group ${classIcon()} relative `}>
+                        className={`group ${classIcon()}  `}>
                         <span className={`${(!fill && !disabled) ? 'group-hover:opacity-0 group-focus:opacity-0' : ''} opacity-100  `}>
                             {searchIcon(icon, fill)}
                         </span>

@@ -1,26 +1,43 @@
-import { Card, CardBody, CardFooter, CardHeader } from "@material-tailwind/react";
 import { useUxStore } from "../../../application/stores/ux.store";
+import { CardMD } from "../shared/base/baseComps/Cards";
 
-export function Skeleton(props: { className?: string, grid?: boolean }) {
-    const { className } = props ?? 'SubGrid'
+export function Skeleton(props: { className?: string, grid?: boolean, compact?: boolean }) {
+    const { className, compact } = props ?? 'SubGrid'
     const style = `animate-pulse  flex items-center FixCard justify-center !w-full !h-full`;
 
     const { color } = useUxStore()
     return (
-        <div className={`h-full  pb-1.5 w-full flex flex-col flex-1 items-center justify-center ${className ?? ''}`}>
-            <Card className={style + 'fixCard w-full h-full gap-2 !flex flex-col'}>
-                <CardHeader className={`${color}BG bg-slate-200 mx-4 FixCardHeader animate-pulse !flex h-full flex-1 w-[calc(100%-1rem)] border-slate-300 lg:min-h-[220px] md:min-h-[150px] min-h-[200px]`}>
-                </CardHeader>
-                <CardBody className="FixCardBody flex-1 !py-3  !flex gap-[15%]">
-                    <div className="h-6 bg-slate-200 rounded-3xl  animate-pulse"></div>
-                    <div className="h-[45%] min-h-4 bg-slate-200 rounded-3xl w-3/4 animate-pulse"></div>
+        <div className={`h-full !z-[0]  pb-1.5 w-full flex flex-col flex-1 items-center justify-center ${className ?? ''}`}>
+            <CardMD
+                autoFit={compact}
+                variant="elevated"
+                className={style + ' !w-full h-full grid-cols-[100%]  '}
+                image={
+                    <CardMD.Image
+                        src="/img/placeholder.png"
+                        alt="img placeholder"
+                        position="top"
+                        className={`!w-full !flex-1 flex min-w-full ${color}Style`}
+                    >
 
-                </CardBody>
-                <CardFooter className="FixCardFooter !flex gap-2 !my-[2%] px-5 justify-between items-center">
+                    </CardMD.Image>
+                }
+            >
+                <CardMD.Headline className="min-w-[100%] flex-1 flex">
+                    <div className="h-6 bg-slate-200 rounded-3xl w-2/3 animate-pulse"></div>
+                </CardMD.Headline>
+                <CardMD.Subhead>
+                    <div className="h-4 bg-slate-200 rounded-3xl w-3/4 animate-pulse"></div>
+                </CardMD.Subhead>
+                <CardMD.SupportingText>
+                    <div className="h-4 bg-slate-200 rounded-3xl w-full mb-2 animate-pulse"></div>
+                    <div className="h-4 bg-slate-200 rounded-3xl w-5/6 animate-pulse"></div>
+                </CardMD.SupportingText>
+                <CardMD.Footer>
                     <div className="h-8 bg-slate-200 rounded-3xl w-1/2 animate-pulse"></div>
                     <div className="h-8 bg-slate-200 rounded-3xl w-8 animate-pulse"></div>
-                </CardFooter>
-            </Card>
+                </CardMD.Footer>
+            </CardMD>
             {/* {!grid &&
                 <footer><CTAMines
                     actions={[{ icon: '...loading' }]}>
@@ -30,13 +47,13 @@ export function Skeleton(props: { className?: string, grid?: boolean }) {
     );
 };
 
-export function SkeletonGrid(props: { small?: boolean, count?: number }) {
-    const { small, count } = props;
+export function SkeletonGrid(props: { small?: boolean, count?: number, compact?: boolean }) {
+    const { small, count, compact } = props;
     let num = count ?? 4
     small ? num = 8 : num = num
     return (
         <section>
-            <div className={` ${small ? 'GridSmall  min-h-full' : 'Grid'}`}>
+            <div className={` ${small ? 'GridSmall  min-h-full' : 'Grid'} ${compact ? 'GridCompact' : ''} `}>
                 {[...Array(num)].map((_, index) => (
                     <div
                         key={index + 'div'}

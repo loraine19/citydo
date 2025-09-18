@@ -42,10 +42,10 @@ export default function DashboardPage() {
     const { notifsMap, isLoadingMap, refetchMap, countMap } = notifMapViewModelFactory();
 
     //// CLASSES
-    const userClasse = "flex row-span-3 lg:grid  animRev  lg:min-h-full ";
-    const eventClasse = " flex h-full !min-h-[13rem] row-span-5 lg:grid   ";
-    const notifClasse = " row-span-1 animRev " + (notifs.length > 0 ? " min-h-[5rem]" : " min-h-[3rem]")
-    const mapClasse = "flex row-span-7 h-full  lg:min-h-[32%] lg:grid ";
+    const userClasse = "flex row-span-3 lg:grid  animRev p-2 lg:min-h-full ";
+    const eventClasse = " flex h-full !min-h-[13rem] p-3 row-span-5 lg:grid   ";
+    const notifClasse = " row-span-1 animRev p-3 " + (notifs.length > 0 ? " min-h-[5rem]" : " min-h-[3rem]")
+    const mapClasse = "flex row-span-7 h-full p-3 lg:min-h-[32%] lg:grid ";
 
 
     //// HANDLE SCROLL NOTIFICATIONS
@@ -77,14 +77,14 @@ export default function DashboardPage() {
 
     return (
         <main
-            className={`px-4 lg:!-mt-0 !overflow-hidden pb-2 bg-gradient-to-t from-slate-50
+            className={` lg:!-mt-0 !overflow-hidden bg-gradient-to-t from-slate-50
                via-slate-200  to-slate-50  wRespXL
             ${navBottom ? '-mt-6  !max-h-[calc(100dvh_-_6.5rem)] lg:!max-h-[calc(100dvh_-_8rem)] ' :
                     '!-mt-6 !max-h-[calc(100dvh_-_3.5rem)] lg:!max-h-[calc(100dvh_-_2rem)] '} `}
             data-cy="dashboard-body" >
             <div id='refDiv'
                 ref={divRef}
-                className={" px-[1%] flex-1 max-max overflow-auto flex flex-col lg:grid grid-cols-2 grid-rows-[auto_auto_auto_1fr_1fr_2fr_auto_auto] w-full gap-y-2 lg:gap-y-3 lg:gap-x-4 place-content-start pt-11 lg:pt-6 rounded-b-[1rem] lg:pb-6  pb-3 "}>
+                className={" px-[1%] flex-1 max-max overflow-auto flex flex-col lg:grid grid-cols-2 grid-rows-[auto_auto_auto_1fr_1fr_2fr_auto_auto] w-full  place-content-start pt-11 lg:pt-6 rounded-b-[1rem] lg:pb-6  pb-3 "}>
 
                 {/* USER CARD  */}
                 <div className={`${userClasse}`}>

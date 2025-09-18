@@ -57,7 +57,7 @@ export function AvatarStack(props: AvatarStackProps) {
                     </MenuItem>
                     <MenuItem
                         title={`Envoyer un message à ${Participant?.User?.Profile?.firstName}`}
-                        onClick={() => navigate(`/chat/${Participant?.userId}`)}
+                        onClick={() => navigate(`/chat?with=${Participant?.userId}`)}
                         leadingIcon={<Icon icon="chat" color='sky' bg />}>
                         Envoyer un message
 

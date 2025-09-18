@@ -8,7 +8,7 @@ interface FabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: Md3Variants;
     color?: Md3Colors;
     icon?: IconProps;
-    text?: string;
+    text?: string | ReactNode;
 }
 export const Fab: React.FC<FabProps> = ({ size, icon, text, className, color, variant, ...props }) => {
     const classes = `md3-fab  ${size ? `md3-fab-${size}` : ''}  ${className || ''}`.trim();
@@ -39,6 +39,7 @@ interface FabMenuProps {
 }
 
 export const FabMenu: React.FC<FabMenuProps> = ({ mainProps, children, placement, className, open, setOpen, backdropBlur }) => {
+    const [visible, setVisible] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const size = mainProps?.size || 'medium';
 
@@ -48,14 +49,19 @@ export const FabMenu: React.FC<FabMenuProps> = ({ mainProps, children, placement
 
             <div className={`md3-fab-${size} ${mainProps?.className || ''} max-w-max`}>
                 <div className={`md3-fab-container md3-fab-${size} ${className || ''} `}>
-                    <div className={` md3-fab-menu-container md3-fab-menu-container-${placement} 
-                    ${isOpen ? 'open md3-menu-enter' : 'md3-menu-leave'}
+                    <div style={{ transformOrigin: 'right' }}
+                        className={` md3-fab-menu-container md3-fab-menu-container-${placement} 
+                            ${visible ? '' : 'invisible'}
+                            ${isOpen ? 'open md3-fab-item-enter' : 'md3-fab-item-leave'}
                     
                     `}> {children}
                     </div>
 
-                    <Fab {...mainProps}
+                    <Fab
+
+                        {...mainProps}
                         onClick={() => {
+                            setVisible(true)
                             setIsOpen(!isOpen);
                             setOpen && setOpen(!open)
                         }} />

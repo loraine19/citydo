@@ -97,7 +97,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
                 </MenuItem>
                 <MenuItem
                     title={`Envoyer un message à ${profile?.firstName}`}
-                    onClick={() => navigate(`/chat/${profile?.userId}`)}
+                    onClick={() => navigate(`/chat?with${profile?.userId}`)}
                     leadingIcon={<Icon icon="chat" color='sky' fill size={'md'} bg />}>
                     Envoyer un message
 

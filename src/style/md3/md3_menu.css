@@ -96,9 +96,8 @@
 }
 
 .md3-menu-leave {
-    @apply border-none shadow-none transition-all;
     animation: md3-menu-scale-out 0.9s cubic-bezier(0.4, 0, 0.6, 1) forwards;
-    transform-origin: top;
+    transform-origin: bottom;
 }
 
 @keyframes md3-menu-scale-in {
@@ -114,12 +113,12 @@
 
 @keyframes md3-menu-scale-out {
     from {
-        opacity: 0;
+        opacity: 1;
         transform: scaleY(1);
     }
 
     to {
-        opacity: 0.5;
+        opacity: 0;
         transform: scaleY(0);
     }
 }

@@ -8,13 +8,14 @@ import { eventCategories } from '../../constants';
 import { EventStatus } from '../../../domain/entities/Event';
 import { CardMD } from '../shared/base/baseComps/Cards';
 import { Menu } from '../shared/base/baseComps/Menu';
+import NotifDiv from './NotifDiv';
 
 export default function CalendarCompLarge(props: { logo?: boolean, divRef?: React.RefObject<HTMLDivElement> }) {
     const { logo } = props || {}
     const [numberOfwweks, setNumberOfwweks] = useState<number>(2)
     const [startDateBackup] = useState<Date>(new Date().getDay() > 0 ? new Date() : new Date(new Date().getTime() - 1 * dayMS));
     const [startDate, setStartDate] = useState<string>(startDateBackup.toDateString())
-    const { weeks, loadingEvents, errorEvents, fetchNextPage, hasNextPage } = DI.resolve('eventsWeekViewModel')(startDate, numberOfwweks)
+    const { weeks, loadingEvents, errorEvents, fetchNextPage, hasNextPage, refetch } = DI.resolve('eventsWeekViewModel')(startDate, numberOfwweks)
 
     //// NAVIGATE WEEK BTN 
     const addWeek = () => { setStartDate((new Date(new Date(startDate).getTime() + 7 * dayMS)).toDateString()) }
@@ -28,10 +29,18 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
 
     //// USE EFFECT 
     window.addEventListener('resize', () => {
-        if (window.innerWidth < 900) { setNumberOfwweks(1) } else { setNumberOfwweks(2) }
+        if (window.innerWidth < 900) {
+            setNumberOfwweks(1)
+        } else { setNumberOfwweks(2) }
     })
-    useEffect(() => { if (window.innerWidth < 900) { setNumberOfwweks(1); } else { setNumberOfwweks(2) } }, [])
-    useEffect(() => { hasNextPage && fetchNextPage() }, [startDate, numberOfwweks, loadingEvents])
+    useEffect(() => {
+        if (window.innerWidth < 900
+        ) { setNumberOfwweks(1); } else { setNumberOfwweks(2) }
+    }, [])
+    useEffect(() => {
+        hasNextPage && fetchNextPage()
+
+    }, [startDate, numberOfwweks, loadingEvents, errorEvents])
 
     const colClass = ['grid-cols-1', 'grid-cols-2', 'grid-cols-3', 'grid-cols-4', 'grid-cols-5', 'grid-cols-6', 'grid-cols-7']
 
@@ -114,8 +123,14 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
 
             {/* CALENDAR */}
             <div className='relative max-h-full w-full flex flex-1 '>
-                {loadingEvents || errorEvents ? (
+
+                {(loadingEvents || errorEvents || !weeks) ? (
                     <div className='absolute flex flex-col flex-1 h-full p-2 gap-2 w-full rounded-2xl bg-white  '>
+                        <NotifDiv
+                            error={errorEvents}
+                            isLoading={loadingEvents}
+                            notif={errorEvents ?? "Aucun événement"}
+                            refetch={refetch} />
                         <div className={`grid grid-cols-${num} rounded-lg h-full overflow-auto pb-3 bg-slate-50 divide-x divide-cyan-500 divide-opacity-20`}>
                             {[...Array(num)].map((_, index) => (
                                 <div key={index} className='text-xs w-full flex flex-col text-center h-full'>
@@ -163,7 +178,7 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                                                             className='px-2 pt-2 bg-slate-100'
                                                             ref
                                                             blurBack
-                                                            placement='auto'
+                                                            placement='center'
                                                             trigger={
                                                                 <button
                                                                     data-cy='event-handler'
@@ -176,7 +191,7 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                                                                         {`${!event.actif && 'invisible'} 
                                                                              ${event.status !== EventStatus.VALIDATED ? `!bg-slate-400/80` : `bg-cyan-500`} shadow-md px-[0.5rem] mb-[0.2rem]  text-white h-5 truncate flex items-center justify-center font-normal z-50  w-full
                                                         text-[0.80rem]
-                                                        ${(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) ? 'rounded-l-xl !justify-start !z-50 pl-4 !font-medium capitalize' : 'italic text-opacity-70'}
+                                                        ${(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) ? 'rounded-l-xl !justify-start !z-50 pl-3 !font-medium capitalize' : 'italic text-opacity-70'}
                                                         ${(eventDays[eventDays.length - 1] === currentDay || new Date(day.date).getDay() === 0) && 'rounded-r-xl '}
                                                     `}>
                                                                         {(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) ? getLabel(event.category, eventCategories) + '...' : `Jour ${eventDays.indexOf(currentDay) + 1}`}

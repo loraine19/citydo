@@ -202,8 +202,8 @@ export default function EventListPage() {
                         action={refetch}
                     />}
                 <SubHeader
-                    qty={count || 0}
-                    type={`évènements ${filterName()} ${EventCategory[category as keyof typeof EventCategory] ?? ''}`} />
+                    qty={count > 0 ? count : 'pas d\''}
+                    type={` évènements ${filterName()} ${EventCategory[category as keyof typeof EventCategory] ?? ''}`} />
                 {(view === "view_agenda" && notif) &&
                     <NotifDiv
                         error={error}
@@ -215,7 +215,7 @@ export default function EventListPage() {
             {view === "view_agenda" &&
                 <>
                     {isLoading ?
-                        <SkeletonGrid /> :
+                        <SkeletonGrid compact={compact} /> :
                         <section
                             id='refDiv'
                             ref={divRef}
@@ -243,7 +243,7 @@ export default function EventListPage() {
                 </>
             }
             {view === "event" && !isLoading &&
-                <section id='refDiv' className="!pt-12 wRespXL max-h-[calc(100dvh_-_14rem)]">
+                <section id='refDiv' className="!pt-14 pb-4  max-h-[calc(100dvh_-_11rem)]">
                     <CalendarComp />
                 </section>}
 

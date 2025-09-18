@@ -2,7 +2,7 @@
 
 /* list section */
 .Grid {
-    @apply max-h-full wRespXL grid  pb-4 gap-2 m-auto  pl-[0.5rem] md:px-[2rem]
+    @apply max-h-full w-full grid  pb-4 gap-2  px-4 pl-[0.5rem] md:px-[2rem]
     grid-cols-[minmax(calc(50%-1rem),1fr)]  
     sm:grid-cols-[1fr,1fr] 
     sm:auto-rows-[minmax(min-content,40vh)] 
@@ -19,13 +19,13 @@
 }
 
 .GridSmall {
-    @apply wRespXL  !max-h-full grid grid-cols-[minmax(calc(50%-1rem),_1fr)] gap-y-3 gap-x-1 pb-4 pt-2 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)];
+    @apply !max-h-full grid grid-cols-[minmax(calc(50%-1rem),_1fr)] gap-y-3 gap-x-1 pb-4 pt-2 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)];
     grid-auto-rows: max-content;
 }
 
 /* list grid */
 .SubGrid {
-    @apply max-w-[calc(100vw-1rem)] p-2  overflow-hidden  grid;
+    @apply max-w-[calc(100vw-1rem)] p-2.5  overflow-hidden  grid;
 }
 
 /**** CARD ****/

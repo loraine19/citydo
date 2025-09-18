@@ -93,7 +93,7 @@ main {
 
 section,
 .Section {
-    @apply relative flex   flex-col overflow-y-auto flex-1 !pt-8;
+    @apply relative flex wRespXLMargin  flex-col overflow-y-auto flex-1 !pt-8;
     gap: 0.2rem;
     min-height: 0;
 }
@@ -147,6 +147,10 @@ i {
 
 .wRespXL {
     @apply w-full my-0 mx-auto lg:!px-[calc(50dvw-500px)];
+}
+
+.wRespXLMargin {
+    @apply w-full my-0 mx-auto lg:!max-w-[1000px];
 }
 .wRespL {
     @apply w-full my-0 mx-auto lg:max-w-[58rem] md:max-w-[calc(100vw-1rem)];

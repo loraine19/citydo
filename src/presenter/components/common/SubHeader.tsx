@@ -36,15 +36,17 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
 
             {/* TYPE DIV  */}
 
-            <div className={`
-                    ${((!hideNavBottom || !navIcons) && type) ? 'md3-menu-enter !py-1' : ' md3-menu-leave'}
+            <div
+                style={{ transformOrigin: 'left' }}
+                className={`
+                    ${((!hideNavBottom || !navIcons) && type) ? 'md3-fab-item-enter !py-1' : ' md3-fab-item-leave'}
                 
                 flex flex-1 h-full w-full px-[0rem] items-center absolute top-7  z-[1]`}>
                 {closeBtn &&
                     <Fab
                         variant='filled'
                         color={color as Md3Colors ?? 'slate'}
-                        className="rounded-full"
+                        className="rounded-full  min-w-[40px] "
                         size='small'
                         onClick={() => {
                             if (closeBtn) {
@@ -59,13 +61,17 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
                             link: goBack,
                         } : undefined}>
                     </Fab>}
-                <div className={`${closeBtn ? ' ml-4 w-full ' : ''} flex flex-1  items-center`}>
+                <div className={`${closeBtn ? ' ml-4 w-full ' : ''} flex flex-1 overflow-hidden items-center pr-16`}>
                     <Fab
                         className={`h-[40px] !text-[0.95rem] `}
                         color={color as Md3Colors ?? 'slate'}
                         size="extended"
                         variant='filled'
-                        text={`${qty ?? ''} ${type ?? ''} ${place ? `à ${place}` : ''}`}
+                        text={<>
+                            <span>{qty ?? ''}</span>
+                            <span>{type ?? ''} </span>
+                            <span className="font-light">{place ? `/  ${place}` : ''}</span>
+                        </>}
 
                     >
                     </Fab>

@@ -134,8 +134,8 @@ export default function ChatPage() {
                 <div className='sectionHeader relative '>
                     <SubHeader
                         form
-                        place={open ? ` - ${messages?.length} messages` : ` - ${conversations?.length} conversations`}
-                        type={open ? `Chat - avec ${userRec?.Profile?.firstName ?? ''}` : 'Chat '}
+                        place={open ? `${messages?.length} messages` : `${conversations?.length} conversations`}
+                        type={open ? `Chat avec ${userRec?.Profile?.firstName ?? ''}` : 'Chat '}
                         closeBtn
                         link='/' />
                     {notif}
@@ -168,9 +168,9 @@ export default function ChatPage() {
                                             reverse
                                             bg
                                             style='shadow-md absolute z-[999] top-2 !right-2 animSlide'
-                                            color={'cyan'}
+                                            color={'slate'}
                                             size='2xl'
-                                            icon='arrow_back'
+                                            icon='close'
                                             title='fermer'
                                             onClick={() => {
                                                 setParams({ with: '0' })
@@ -237,7 +237,7 @@ export default function ChatPage() {
                                     </div>
                                     {/* CONVERSATION DIV */}
                                     {open &&
-                                        <div className='absolute  right-0 flex-1 h-full rounded-l-3xl backdrop:opacity-5 pt-[20px] -mr-[1px] -mb-[2px] !w-[calc(100%-4.4rem)] flex  bg-clip-border '>
+                                        <div className='absolute  right-0 flex-1 h-full rounded-l-3xl backdrop:opacity-5 -mr-[1px] -mb-[2px] !w-[calc(100%-4.4rem)] flex  bg-clip-border '>
                                             <Chat
                                                 refetch={refetch}
                                                 setNewConv={setNewConv}

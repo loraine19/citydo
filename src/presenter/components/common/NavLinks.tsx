@@ -85,13 +85,13 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             <div className={
                 (navBottom ?
                     `anim   pb-2.5 md:pb-4 justify-between   ` :
-                    ' -mt-1.5 ') +
+                    ' -mt-1.5  ') +
                 ` flex items-center w-full `
             }>
                 <NavigationBar
                     value={navValue}
                     onValueChange={(value) => setNavValue(value)}
-                    className={`
+                    className={` 
                     ${navBottom ?
                             ' rounded-full !flex-1 md3-elevation-2 !max-w-full p-0 justify-between bg-white border' :
                             ` shadow-none w-full md3-elevation-0 justify-around pb-2 md:pb-0  md:px-2`}
@@ -104,7 +104,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
 
                             <NavigationBarItem
                                 row={navBottom}
-                                className={`md3-text-${color}
+                                className={`md3-text-${color} 
                                     ${navBottom ? 'md:px-12 h-[64px]   md:w-max' : ' !rounded-none !p-0'}
                                     ${navBottom ? active ?
                                         `md3-${color}-container md3-elevation-1 animSlide w-[64px] border border-black/5 `

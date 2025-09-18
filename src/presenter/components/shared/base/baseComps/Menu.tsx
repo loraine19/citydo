@@ -8,7 +8,7 @@ interface MenuProps {
     anchorEl?: HTMLElement | null;
     className?: string;
     children: ReactNode;
-    placement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'auto';
+    placement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'auto' | 'center-trigger' | 'center' | 'up-bottom-right';
     onClose?: () => void;
     trigger?: ReactNode;
     closeIcon?: ReactNode;
@@ -64,69 +64,89 @@ export const Menu: React.FC<MenuProps> = ({
 
 
     const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
-
     useLayoutEffect(() => {
-        if (open) {
-            let style: React.CSSProperties = {};
+        let style: React.CSSProperties = {};
 
-            if (triggerRect && menuCurrent.current) {
-                const viewportHeight = window.innerHeight;
-                const viewportWidth = window.innerWidth;
-                const menuHeight = menuCurrent.current.offsetHeight;
-                const menuWidth = menuCurrent.current.offsetWidth;
+        if (triggerRect && menuCurrent.current) {
+            const viewportHeight = window.innerHeight;
+            const viewportWidth = window.innerWidth;
+            const menuHeight = menuCurrent.current.offsetHeight;
+            const menuWidth = menuCurrent.current.offsetWidth;
 
-                // Calculate available space
-                const spaceBelow = viewportHeight - triggerRect.bottom;
-                const spaceAbove = triggerRect.top;
-                const spaceRight = viewportWidth - triggerRect.right;
-                const spaceLeft = triggerRect.left;
+            // Calculate available space
+            const spaceBelow = viewportHeight - triggerRect.bottom;
+            const spaceAbove = triggerRect.top;
+            const spaceRight = viewportWidth - triggerRect.right;
+            const spaceLeft = triggerRect.left;
 
-
-                if (placement === 'top-left'
-                    || (placement === 'auto' && (spaceLeft >= menuWidth
-                        && (spaceAbove >= menuHeight) && spaceAbove >= 250))
-                ) {
-                    style.position = 'fixed';
-                    style.top = `${(triggerRect.top - menuHeight)}px`;
-                    style.left = `${triggerRect.left - menuWidth}px`;
-                }
-                else if (placement === 'top-right'
-                    || (placement === 'auto' && (spaceRight >= menuWidth
-                        && (spaceAbove >= menuHeight) && spaceAbove >= 250))
-                ) {
-
-                    style.position = 'fixed';
-                    style.top = `${(triggerRect.top - menuHeight)}px`;
-                    style.left = `${triggerRect.left}px`;
-                }
-                else if (placement === 'bottom-left'
-                    || (placement === 'auto' && (spaceLeft >= menuWidth && spaceBelow >= menuHeight))
-                ) {
-                    style.position = 'fixed';
-                    style.top = `${triggerRect.bottom}px`;
-                    style.left = `${triggerRect.left - menuWidth}px`;
-                }
-                else if (placement === 'bottom-right'
-                    || (placement === 'auto' && (spaceRight >= menuWidth && spaceBelow >= menuHeight))
-                ) {
-                    style.position = 'fixed';
-                    style.top = `${triggerRect.bottom}px`;
-                    style.left = `${triggerRect.left}px`;
-                }
-
-                //Centrer on triiger center if no space
-                else {
-                    style.position = 'fixed';
-                    style.top = `${triggerRect.bottom / 2 > 200 ? triggerRect.bottom / 2 : 200}px`;
-                    style.left = `${triggerRect.right / 2}px`;
-                }
-
-
+            if (placement === 'top-left'
+                || (placement === 'auto' && (spaceLeft >= menuWidth
+                    && (spaceAbove >= menuHeight) && spaceAbove >= 250))
+            ) {
+                style.position = 'fixed';
+                style.top = `${(triggerRect.top - menuHeight) > 50 ? (triggerRect.top - menuHeight) : 50}px`;
+                style.left = `${triggerRect.left - menuWidth}px`;
+                style.transformOrigin = `bottom`
+                style.backgroundColor = 'yellow';
             }
-            setMenuStyle(style);
-        } else {
-            setMenuStyle({});
+            else if (placement === 'top-right'
+                || (placement === 'auto' && (spaceRight >= menuWidth
+                    && (spaceAbove >= menuHeight) && spaceAbove >= 250))
+            ) {
+                style.position = 'fixed';
+                style.top = `${(triggerRect.top - menuHeight) > 50 ? (triggerRect.top - menuHeight) : 50}px`;
+                style.left = `${triggerRect.left}px`;
+                style.transformOrigin = `bottom`;
+            }
+            else if (placement === 'bottom-left'
+                || (placement === 'auto' && (spaceLeft >= menuWidth && spaceBelow >= menuHeight))
+            ) {
+                style.position = 'fixed';
+                style.top = `${triggerRect.bottom}px`;
+                style.left = `${triggerRect.left - menuWidth}px`;
+                style.transformOrigin = `top`
+            }
+            else if (placement === 'bottom-right'
+                || (placement === 'auto' && (spaceRight >= menuWidth && spaceBelow >= menuHeight))
+            ) {
+                style.position = 'fixed';
+                style.top = `${triggerRect.bottom}px`;
+                style.left = `${triggerRect.left}px`;
+                style.transformOrigin = `top`
+            }
+
+            //Centrer on triiger center if no space
+            else if (placement === 'center-trigger') {
+                style.position = 'fixed';
+                style.top = `${(triggerRect.bottom / 2) > 200 ? (triggerRect.bottom / 2) : 200}px`;
+                style.left = `${triggerRect.right / 2}px`;
+                style.transformOrigin = `top`
+            }
+            else if (placement === 'center') {
+                style.position = 'fixed';
+                style.top = `${(viewportHeight - menuHeight) / 2}px`;
+                style.left = `${(viewportWidth - menuWidth) / 2}px`;
+                style.transformOrigin = `center`
+            }
+
+            else if (placement === 'up-bottom-right') {
+                style.position = 'fixed';
+                style.backgroundColor = 'red'
+                style.top = `${triggerRect.bottom - triggerRect.height}px`;
+                style.left = `${triggerRect.right - menuWidth > 0 ? (triggerRect.right - menuWidth - triggerWidth / 2) : 0}px`;
+                style.transformOrigin = `top`
+            }
+            else {
+                style.position = 'fixed';
+                style.top = `${(triggerRect.top + menuHeight) < viewportHeight ? (triggerRect.bottom - menuHeight) : 50}px`;
+                style.left = `${triggerRect.right + menuWidth < viewportWidth ? ((triggerRect.right - menuWidth / 2) + triggerWidth / 2) : ((viewportWidth - menuWidth / 2) + triggerWidth / 2)}px`;
+                style.transformOrigin = `top`
+            }
+
+
         }
+        setMenuStyle(style);
+
     }, [open, placement, menuWidth]);
 
 
@@ -162,16 +182,17 @@ export const Menu: React.FC<MenuProps> = ({
         });
         if (isControlled) {
             setOpen?.(!open);
+            setVisible(true);
         } else {
             setInternalOpen(!open);
+            setVisible(true);
         }
     };
 
+    const [visible, setVisible] = useState(false);
+
     return (
         <>
-
-
-
             <div
                 ref={containerRef}
                 key={key}
@@ -192,15 +213,18 @@ export const Menu: React.FC<MenuProps> = ({
                 {<div data-md3
                     key={key}
                     ref={menuRef || menuRefAuto}
-                    style={(!open || open) ? {
+                    style={{
                         ...menuStyle,
                         maxWidth: fitMax ? `${triggerWidth}px` : ''
-                    } : {}}
+                    }}
                     className={` ${className || ""} 
-                    md3-menu md3-elevation ${open ? " md3-menu-enter " : " md3-menu-leave "} `} >
+                    md3-menu md3-elevation 
+                    ${visible ? "" : "invisible"}
+                     ${open ? " md3-menu-enter " : ` md3-menu-leave `} `} >
 
 
-                    {<div className={`${open ? "!z-[999]" : " hidden -z-10 "}`}
+                    {<div className={`
+                    ${(open) ? "!z-[999]" : " -z-10 "}`}
                         ref={menuCurrent}>
 
                         <div
