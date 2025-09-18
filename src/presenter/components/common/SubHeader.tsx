@@ -32,7 +32,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
         <div className={`flex flex-col relative border-t-0 `}>
 
             {/* LINE DIV  */}
-            <hr className={` border-black/20 border-b z-[1] border-t-0 w-[calc(100dvw)] left-0 fixed  !opacity-90 pb-2 shadow-md !pt-0 !-mt-2 `} />
+            <hr className={` border-black/20 border-b z-[1] border-t-0 w-[calc(100dvw)] left-0 fixed   pt-2 bg-white shadow-md -mt-1  `} />
 
             {/* TYPE DIV  */}
 
@@ -41,10 +41,10 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
                 className={`
                     ${((!hideNavBottom || !navIcons) && type) ? 'md3-fab-item-enter !py-1' : ' md3-fab-item-leave'}
                 
-                flex flex-1 h-full w-full px-[0rem] items-center absolute top-7  z-[1]`}>
+                flex flex-1 h-full w-full px-[0rem] items-center absolute top-9  z-[1]`}>
                 {closeBtn &&
                     <Fab
-                        variant='filled'
+                        variant='elevated'
                         color={color as Md3Colors ?? 'slate'}
                         className="rounded-full  min-w-[40px] "
                         size='small'
@@ -61,12 +61,12 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
                             link: goBack,
                         } : undefined}>
                     </Fab>}
-                <div className={`${closeBtn ? ' ml-4 w-full ' : ''} flex flex-1 overflow-hidden items-center pr-16`}>
+                <div className={`${closeBtn ? ' w-full ' : ''} flex flex-1 overflow-hidden items-center pl-4 py-4 pr-16`}>
                     <Fab
                         className={`h-[40px] !text-[0.95rem] `}
                         color={color as Md3Colors ?? 'slate'}
                         size="extended"
-                        variant='filled'
+                        variant='elevated'
                         text={<>
                             <span>{qty ?? ''}</span>
                             <span>{type ?? ''} </span>

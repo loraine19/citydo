@@ -131,7 +131,6 @@ export const Menu: React.FC<MenuProps> = ({
 
             else if (placement === 'up-bottom-right') {
                 style.position = 'fixed';
-                style.backgroundColor = 'red'
                 style.top = `${triggerRect.bottom - triggerRect.height}px`;
                 style.left = `${triggerRect.right - menuWidth > 0 ? (triggerRect.right - menuWidth - triggerWidth / 2) : 0}px`;
                 style.transformOrigin = `top`

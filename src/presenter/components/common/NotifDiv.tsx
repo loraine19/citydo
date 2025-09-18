@@ -19,29 +19,31 @@ const NotifDiv: React.FC<NotifDivProps> = ({ notif, isLoading, refetch, error })
     }, [notif, error]);
 
     return (
-        <div className={`absolute place-items-end !max-w-full  !top-[100%] h-fit w-full left-0 notif min-w-max  min-h-max !justify-start !text-${color}-500 `}>
+        <div className={`absolute place-items-end !max-w-full  !top-[100%] h-fit w-full left-0 notif min-w-max !pt-8 z-[1] min-h-max !justify-start !text-${color}-500 `}>
             {error ? 'Une erreur est survenue : ' : ''}
-            <span className="wRespXLMargin w-full text-center ">{notif !== error && notif} </span>
-            <span
+            <span className="wRespXLMargin w-full text-center pt-10">{notif !== error && notif} </span>
+            <div
                 style={{ display: 'inline-block', transition: 'transform 0.5s' }}
-                className={'py-4'}
+                className={'py-3'}
                 onClick={e => {
-                    e.stopPropagation();
                     const el = e.currentTarget;
                     el.classList.add('spin');
                     setAttempt(attempt + 1);
+                    refetch();
                     setTimeout(() => { el.classList.remove('spin'); refetch() }, 700);
                 }}
             >
                 <Icon
-                    style={(attempt > 2 || isLoading || error) ? '!hidden' : ''}
+
+                    reverse
+                    style={(attempt > 2 || isLoading || error) ? '!hidden' : 'md3-elevation-2'}
                     color={color}
                     size='3xl'
                     title="Recharger la liste"
                     bg={!isLoading}
                     icon={'refresh'}
                 />
-            </span>
+            </div>
 
         </div>
     )

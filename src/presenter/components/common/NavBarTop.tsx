@@ -58,7 +58,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                 <div id='navBarTop'
 
                     className={`pl-2 flex lg:px-0 slide h-full justify-between items-end     
-                ${hideNavBottom ? '   !py-1' : ' !py-1'}`} >
+                ${hideNavBottom ? '   !py-1 ' : ' !py-2'}`} >
                     <div
                         className={`flex duration-300 ease-in-out items-center
                     ${hideNavBottom ? ' md3-menu-leave ' : 'md3-menu-enter h-full'}
