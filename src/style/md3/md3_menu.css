@@ -11,12 +11,12 @@
     border-radius: var(--md3-radius-large);
     box-shadow: var(--md3-shadow-elevation-3);
     border: 1px solid #2b2b2b03;
-    min-width: 160px;
+    min-width: 10rem;
 }
 
 .md3-menu-list {
     @apply flex flex-col gap-1;
-    padding: 8px 0;
+    padding: var(--md3-spacing-small) 0;
 }
 
 .md3-menu-item {

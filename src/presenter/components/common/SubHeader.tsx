@@ -39,7 +39,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
             <div
                 style={{ transformOrigin: 'left' }}
                 className={`
-                    ${((!hideNavBottom || !navIcons) && type) ? 'md3-fab-item-enter !py-1' : ' md3-fab-item-leave'}
+                    ${((!hideNavBottom || !navIcons)) ? `md3-fab-item-enter !py-1 ${!closeBtn && '-ml-4'}` : ' md3-fab-item-leave'}
                 
                 flex flex-1 h-full w-full px-[0rem] items-center absolute top-9  z-[1]`}>
                 {closeBtn &&
