@@ -162,7 +162,7 @@ export default function EventListPage() {
 
 
     //// HANDLE COMPACT VIEW
-    const [compact, setCompact] = useState<boolean>(false);
+    const [compact, setCompact] = useState<boolean>(true);
 
     //// RENDER
     return (

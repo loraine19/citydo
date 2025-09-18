@@ -167,7 +167,7 @@ export default function VoteListPage() {
     }
 
     //// HANDLE COMPACT VIEW
-    const [compact, setCompact] = useState<boolean>(false);
+    const [compact, setCompact] = useState<boolean>(true);
 
     //// ACTIVE FILTER
     const [filterBox, setFilterBox] = useState<boolean>(false);
