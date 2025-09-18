@@ -32,7 +32,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
         <div className={`flex flex-col relative border-t-0 `}>
 
             {/* LINE DIV  */}
-            <hr className={` border-black/20 border-b z-[1] border-t-0 w-[calc(100dvw)] left-0 fixed   pt-2 bg-white shadow-md -mt-1  `} />
+            <hr className={` border-black/20 border-b z-[1] border-t-0 w-[calc(100dvw)] left-0 fixed   pt-2 bg-slate-50 shadow-md -mt-1  `} />
 
             {/* TYPE DIV  */}
 

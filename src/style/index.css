@@ -57,7 +57,7 @@
     @apply dark:bg-slate-700 text-slate-700 dark:text-slate-300;
 }
 :root {
-    @apply bg-slate-50 scroll-smooth text-[13px] xs:text-[14.5px] sm:!text-[15px] lg:!text-[15px] font-montserrat;
+    @apply bg-slate-50 scroll-smooth text-[13px] xs:text-[15px] sm:!text-[15px] lg:!text-[15px] font-montserrat;
     line-height: 1.2;
     font-weight: 400;
     display: flex;
