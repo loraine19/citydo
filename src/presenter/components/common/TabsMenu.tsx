@@ -22,7 +22,7 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
             className="w-full flex items-center  justify-between gap-x-1 ">
 
             <SegmentedButton
-                className="bg-white"
+                className="md3-primary-container"
                 options={labels}
                 value={defaultTab as string || labels[0].value}
                 onChange={() => { }}

@@ -167,7 +167,7 @@ export default function EventListPage() {
     //// RENDER
     return (
         <main>
-            <div className="sectionHeader">
+            <div className="sectionHeader " data-md3>
                 <div className={`flex items-center justify-center gap-2 `}>
                     <SelectSearch
                         searchCat={searchCat}

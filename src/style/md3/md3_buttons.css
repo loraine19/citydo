@@ -71,7 +71,6 @@
 .md3-button-filled {
     background-color: var(--md3-primary);
     color: var(--md3-on-primary);
-
     border: 0.0625rem solid var(--md3-outline);
 }
 .md3-button-filled:hover {
@@ -82,7 +81,6 @@
 .md3-button-elevated {
     background-color: var(--md3-surface);
     color: var(--md3-primary);
-    border: 0.0625rem solid var(--md3-outline);
     box-shadow: var(--md3-shadow-elevation-3);
 }
 .md3-button-elevated:hover {

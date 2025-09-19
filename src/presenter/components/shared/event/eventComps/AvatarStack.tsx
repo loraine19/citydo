@@ -25,7 +25,7 @@ export function AvatarStack(props: AvatarStackProps) {
                                 <AvatarUser
                                     Profile={Participant?.User?.Profile}
                                     avatarSize={'sm'}
-                                    avatarStyle="border-2 !h-[2.65rem] !w-[2.65rem] !border-white !hover:z-50 !focus:z-50  top-0 left-0 " />
+                                    avatarStyle="border-2 !h-[2.65rem] !w-[2.65rem] !border-[var(--md3-outlined)] !hover:z-[2] !focus:z-50  top-0 left-0 " />
                             </div>
                         </div>}>
                     <MenuItem
@@ -35,7 +35,7 @@ export function AvatarStack(props: AvatarStackProps) {
                                 <AvatarUser
                                     Profile={Participant.User?.Profile}
                                     avatarSize={'lg'}
-                                    avatarStyle="border-2 border-white scale-90" />
+                                    avatarStyle="border-2 border-[var(--md3-outlined)] scale-90" />
 
                                 <OnlineDot id={Participant?.userId} />
                             </div>}>

@@ -23,7 +23,7 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
             blurBack
             placement={'auto'}
             onClose={() => { }}
-            className={`${className} hover:z-50 ${!ref ? '' : '  '}`}
+            className={`${className} hover:z-[2] ${!ref ? '' : '  '}`}
 
             trigger={
                 <Icon

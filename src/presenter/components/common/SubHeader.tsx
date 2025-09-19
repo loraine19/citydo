@@ -33,7 +33,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
 
             {/* LINE DIV  */}
             {!haveTitle &&
-                <hr className={`rounded-b-[2rem] z-[1] border-t-0 w-screen -ml-3  lg:-ml-[calc(50dvw-50%)] left-0 absolute pt-4 bg-slate-50 -mt-2 
+                <hr className={`rounded-b-[2rem] z-[1] border-t-0 w-screen -ml-3  lg:-ml-[calc(50dvw-50%)] left-0 absolute pt-4 md3-primary-container -mt-2 
                md3-elevation-3 `} />}
 
             {/* TYPE DIV  */}

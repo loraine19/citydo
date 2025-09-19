@@ -93,25 +93,14 @@
 
     /* Ombres (élévation) - style moderne, moins décalées vers le bas, plus diffuses */
     --md3-shadow-elevation-0: none;
-
-    /* ÉLÉVATION 1: Ombre très subtile, pour les surfaces de base ou les boutons. */
-    --md3-shadow-elevation-1: 0 0.0625rem 0.125rem #00000025;
-
-    /* ÉLÉVATION 2: Ombre légère, pour les cartes ou les fiches. */
-    --md3-shadow-elevation-2: 0 0.125rem 0.25rem #00000025;
-
-    /* ÉLÉVATION 3: Ombre plus prononcée, pour les menus ou les popovers.
-     C'est le style de l'image que tu as partagée. */
-    --md3-shadow-elevation-3: 0 0.3125rem 0.625rem #00000025,
-        0 0.0625rem 0.1875rem #00000014;
-
-    /* ÉLÉVATION 4: Ombre marquée pour les dialogues importants ou les éléments flottants. */
-    --md3-shadow-elevation-4: 0 0.375rem 1rem #00000025,
-        0 0.125rem 0.3125rem #00000014;
-
-    /* ÉLÉVATION 5: Ombre la plus profonde, pour les fenêtres modales ou les éléments de premier plan. */
-    --md3-shadow-elevation-5: 0 0.5rem 1.25rem #00000025,
-        0 0.25rem 0.5rem #00000014;
+    --md3-shadow-elevation-1: 0 0.0625rem 0.125rem #00000035;
+    --md3-shadow-elevation-2: 0 0.125rem 0.25rem #00000035;
+    --md3-shadow-elevation-3: 0 0.3125rem 0.625rem #00000035,
+        0 0.0625rem 0.1875rem #00000020;
+    --md3-shadow-elevation-4: 0 0.375rem 1rem #00000035,
+        0 0.125rem 0.3125rem #00000020;
+    --md3-shadow-elevation-5: 0 0.5rem 1.25rem #00000035,
+        0 0.25rem 0.5rem #00000020;
 
     /* Rayons et dimensions */
     --md3-radius-small: 4px;
@@ -139,6 +128,85 @@
     --md3-hover-effect-light: rgba(255, 255, 255, 0.08);
     --md3-hover-effect-dark: rgba(255, 255, 255, 0.16);
 }
+@media (prefers-color-scheme: dark) {
+    :root {
+        --md3-primary: #242e30;
+        --md3-on-primary: #d6dfe4;
+        --md3-primary-container: #242e30;
+        --md3-on-primary-container: #d6dfe4;
+        --md3-surface: #131b1d;
+        --md3-on-surface: #e6e1e5;
+        --md3-background: #1c1b1f;
+        --md3-on-background: #e6e1e5;
+        --md3-surface-variant: #475569;
+        --md3-on-surface-variant: #dbe0e6;
+        --md3-outline: #dbe0e659;
+        --md3-outline-variant: #242e30;
+        --md3-shadow: #000000;
+        --md3-scrim: rgba(0, 0, 0, 0.32);
+        --md3-inverse-surface: #e6e1e5;
+        --md3-inverse-on-surface: #242e30;
+        --md3-inverse-primary: #64748b;
+
+        /* Sky */
+        --md3-sky: #bce9fe;
+        --md3-on-sky: #004c65;
+        --md3-sky-container: #004c65;
+        --md3-on-sky-container: #bce9fe;
+        --md3-secondary-sky: #5d5d85;
+        --md3-on-secondary-sky: #ffffff;
+
+        /* Cyan */
+        --md3-cyan: #acedff;
+        --md3-on-cyan: #004d5d;
+        --md3-cyan-container: #004d5d;
+        --md3-on-cyan-container: #acedff;
+        --md3-secondary-cyan: #5a7679;
+        --md3-on-secondary-cyan: #ffffff;
+
+        /* Rose */
+        --md3-rose: #fddbdc;
+        --md3-on-rose: #8d0053;
+        --md3-rose-container: #8d0053;
+        --md3-on-rose-container: #fddbdc;
+        --md3-secondary-rose: #c2758d;
+        --md3-on-secondary-rose: #ffffff;
+
+        /* Orange */
+        --md3-orange: #ffdcc4;
+        --md3-on-orange: #763402;
+        --md3-orange-container: #763402;
+        --md3-on-orange-container: #ffdcc4;
+        --md3-secondary-orange: #9b6c4b;
+        --md3-on-secondary-orange: #ffffff;
+
+        /* Green */
+        --md3-green: #beeeba;
+        --md3-on-green: #01512c;
+        --md3-green-container: #01512c;
+        --md3-on-green-container: #beeeba;
+        --md3-secondary-green: #59614f;
+        --md3-on-secondary-green: #ffffff;
+
+        /* Slate */
+        --md3-slate: #e3e3e3;
+        --md3-on-slate: #474747;
+        --md3-slate-container: #474747;
+        --md3-on-slate-container: #e3e3e3;
+        --md3-secondary-slate: #475569;
+        --md3-on-secondary-slate: #ffffff;
+
+        --md3-shadow-elevation-0: none;
+        --md3-shadow-elevation-1: 0 0.0625rem 0.125rem #00000045;
+        --md3-shadow-elevation-2: 0 0.125rem 0.25rem #00000045;
+        --md3-shadow-elevation-3: 0 0.3125rem 0.625rem #00000045,
+            0 0.0625rem 0.1875rem #00000030;
+        --md3-shadow-elevation-4: 0 0.375rem 1rem #00000045,
+            0 0.125rem 0.3125rem #00000030;
+        --md3-shadow-elevation-5: 0 0.5rem 1.25rem #00000045,
+            0 0.25rem 0.5rem #00000030;
+    }
+}
 
 /* Base pour tous les composants */
 [data-md3] {
@@ -148,28 +216,13 @@
 }
 
 /* color schemes */
-/* Ready-to-use color utility classes with matching background and text color */
 
 .md3-primary {
     background-color: var(--md3-primary);
     color: var(--md3-on-primary);
 }
-@media (prefers-color-scheme: dark) {
-    .md3-primary {
-        background-color: var(--md3-on-primary);
-        color: var(--md3-primary);
-    }
-    .md3-primary-container {
-        background-color: var(--md3-on-primary-container);
-        color: var(--md3-primary-container);
-    }
-    .md3-surface {
-        background-color: var(--md3-on-surface);
-        color: var(--md3-surface);
-    }
-}
 .md3-primary-container {
-    background-color: var(--md3-primary-container);
+    background-color: var(--md3-primary-container) !important;
     color: var(--md3-on-primary-container);
 }
 .md3-secondary {

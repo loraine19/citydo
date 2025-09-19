@@ -1,6 +1,6 @@
 /* Cartes */
 .md3-card {
-    @apply border border-black/5 md3-primary-container;
+    @apply md3-primary-container;
     font-family: montserrat, sans-serif;
     border-radius: var(--md3-radius-large);
     transition: box-shadow 0.2s, background-color 0.2s;
@@ -233,7 +233,7 @@
 /*** STYLES ***/
 
 .md3-card-elevated {
-    background-color: var(--md3-primary-container);
+    @apply md3-primary-container;
     box-shadow: var(--md3-shadow-elevation-3);
 }
 
@@ -243,12 +243,11 @@
 }
 
 .md3-card-filled {
-    background-color: var(--md3-primary-container);
-    color: var(--md3-on-primary-container);
+    @apply md3-primary-container;
 }
 
 .md3-card-outlined {
-    background-color: var(--md3-primary-container);
+    @apply md3-primary-container;
     border: 1px solid var(--md3-outline);
 }
 

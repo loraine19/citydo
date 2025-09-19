@@ -18,9 +18,7 @@ export default function SelectSearch(props: selectSearchProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div
-
-            className={`w-full relative  ${style}`} >
+        <div className={`w-full relative  ${style} `} >
             <div className={`flex items-center rounded-full md3-button-${color} md3-button-${'tonal'} !pr-[3px] pl-3 !min-h-[42px] gap-2 `} >
                 <Menu
                     blurBack
@@ -71,7 +69,7 @@ export default function SelectSearch(props: selectSearchProps) {
                     data-cy="input-search"
                     type="search"
                     placeholder="Rechercher"
-                    className={`md3-${color}-container hover:bg-slate-50/50 focus:bg-slate-50/80 pb-0 pt-0.5 rounded-full min-h-9 px-4 w-full placeholder:!text-current`}
+                    className={`md3-${color}-container hover:brightness-90 focus:brightness-80 pb-0 pt-0.5 rounded-full min-h-9 px-4 w-full placeholder:!text-current`}
                     key={searchCat.value}
                     value={searchCat.label}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

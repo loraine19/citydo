@@ -45,13 +45,13 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
     return (
         <>
 
-            <header className={`${!onBoard && 'bg-[var(--md3-primary-container)]'}`}>
+            <header className={`${!onBoard && 'md3-primary-container'}`}>
                 {/* CONTAINER */}
                 <div id='navBarTop'
                     className={`  pl-1 flex lg:px-0 slide h-full justify-between  gap-4
                 ${(hideNavBottom || title) ? ' !h-2  !bg-transparent' : '  !py-2.5'}`} >
                     <div
-                        className={`flex duration-300 ease-in-out px-3 py-1 md3-button-${'tonal'}  rounded-full
+                        className={`flex duration-300 ease-in-out px-3 py-1 md3-button-primary md3-button-${'tonal'}  rounded-full
                     ${(hideNavBottom || title) ? ' md3-menu-leave ' : 'md3-menu-enter '}
                          ${!navIcons || navBottom ? ' w-full ' : ' w-max'}
                          ${!navIcons ? 'pb-1.5 ' : ''}
