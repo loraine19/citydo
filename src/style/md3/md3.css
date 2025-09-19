@@ -15,7 +15,7 @@
     --md3-primary: #64748b;
     --md3-on-primary: #ffffff;
     --md3-primary-container: #f6fafd;
-    --md3-on-primary-container: #3a4a60;
+    --md3-on-primary-container: #242e30;
     --md3-secondary: #475569;
     --md3-on-secondary: #ffffff;
     --md3-secondary-container: #e2e8f0;
@@ -31,7 +31,7 @@
     --md3-background: #fffbfe;
     --md3-on-background: #1c1b1f;
     --md3-surface: #e7eff2;
-    --md3-on-surface: #1e293b;
+    --md3-on-surface: #131b1d;
     --md3-surface-variant: #dbe0e6;
     --md3-on-surface-variant: #475569;
     --md3-outline: #00000025;
@@ -153,6 +153,20 @@
 .md3-primary {
     background-color: var(--md3-primary);
     color: var(--md3-on-primary);
+}
+@media (prefers-color-scheme: dark) {
+    .md3-primary {
+        background-color: var(--md3-on-primary);
+        color: var(--md3-primary);
+    }
+    .md3-primary-container {
+        background-color: var(--md3-on-primary-container);
+        color: var(--md3-primary-container);
+    }
+    .md3-surface {
+        background-color: var(--md3-on-surface);
+        color: var(--md3-surface);
+    }
 }
 .md3-primary-container {
     background-color: var(--md3-primary-container);

@@ -1,10 +1,9 @@
 /* Cartes */
 .md3-card {
-    @apply border border-black/5;
+    @apply border border-black/5 md3-primary-container;
     font-family: montserrat, sans-serif;
     border-radius: var(--md3-radius-large);
     transition: box-shadow 0.2s, background-color 0.2s;
-    background-color: var(--md3-primary-container);
     display: flex;
     flex-direction: column;
     min-height: fit-content;
@@ -141,8 +140,7 @@
 
 /*** LARGER CARDS ***/
 .md3-card-large {
-    @apply flex flex-col w-respLarge;
-    background-color: var(--md3-on-primary-container);
+    @apply flex flex-col w-respLarge md3-primary-container;
     border-radius: var(--md3-radius-large);
     box-shadow: var(--md3-shadow-elevation-4);
     transition: box-shadow 0.2s, background-color 0.2s;

@@ -79,9 +79,8 @@ html {
 }
 
 :root {
-    @apply scroll-smooth  font-montserrat;
+    @apply scroll-smooth  font-montserrat md3-surface;
     line-height: 1.2;
-    background-color: var(--md3-surface);
     font-weight: 400;
     display: flex;
     flex-direction: column;
