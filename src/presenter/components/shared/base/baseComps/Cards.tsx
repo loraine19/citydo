@@ -30,7 +30,7 @@ export const CardImage: React.FC<{
 }> = ({ src, alt, className, children, onClick }) => (
     <div className={`md3-card-image-container ${className} ${onClick ? "cursor-pointer" : ""} flex-1 `}
         onClick={() => onClick && onClick()}>
-        <img onError={(e: any) => { e.currentTarget.src = 'public/image/placeholder.jpg' }}
+        <img onError={(e: any) => { e.target.onerror = null; }}
             className={`md3-card-image`}
             src={src}
             alt={alt}

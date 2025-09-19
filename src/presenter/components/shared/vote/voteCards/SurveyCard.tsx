@@ -14,6 +14,7 @@ import { ProgressBar } from "../../base/baseComps/Sliders";
 import { Button } from "../../base/baseComps/Buttons";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { MoreButton } from "../../../common/moreBtn";
+import { IconAnimate } from "../../../common/IconAnimate";
 
 
 type SurveyCardProps = {
@@ -56,18 +57,21 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                             alt={survey?.title}
                             className=""
                         >
-                            <div className="w-full flex flex-col items-end !h-full">
+                            <div className={`w-full flex flex-col items-end !h-full`}>
                                 <DateChip
                                     start={survey?.createdAt}
                                     prefix=" "
                                 />
+                                <IconAnimate
+                                    active={survey?.IVoted}
+                                    icon={'ballot'} />
                             </div>
                         </CardMD.Image>
                     ) : undefined
                 }
             >
                 <CardMD.Chips className="justify-between">
-                    <div className="md3-card-chips flex-wrap !py-0">
+                    <div className="md3-card-chips ">
                         <button onClick={() => change()}>
                             <Chip
                                 value="Sondage"
@@ -118,7 +122,7 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
 
 
                 </CardMD.Media>
-                <CardMD.Footer className="flex items-center">
+                <CardMD.Footer className="flex items-center pb-1">
                     {!mines ? (
                         <div className=" w-full flex-1 flex items-center truncate pl-2 -ml-2 ">
                             <ProfileDiv
@@ -138,7 +142,7 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                             fill: survey?.IVoted,
                             title: survey?.IVoted ? "Retirer mon vote" : "Je participe"
                         }}
-                        size='small'
+                        size='medium'
                         disabled={survey?.status !== PoolSurveyStatus.PENDING}
                         onClick={() => vote(values)}
                         variant={!survey?.IVoted ? "tonal" : "filled"}

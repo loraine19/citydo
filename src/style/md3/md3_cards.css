@@ -107,8 +107,8 @@
     padding: 0.25rem var(--md3-spacing-medium) 0;
 }
 .md3-card-chips {
-    @apply flex gap-1.5 overflow-auto rounded-full;
-    padding: 0 var(--md3-spacing-small);
+    @apply flex gap-2 overflow-auto rounded-full;
+    padding: 0 var(--md3-spacing-small) 0;
 }
 
 .md3-card-footer {

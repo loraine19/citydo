@@ -58,10 +58,10 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                 <div id='navBarTop'
 
                     className={`pl-2 flex lg:px-0 slide h-full justify-between items-end     
-                ${hideNavBottom ? '   !py-1 ' : ' !pb-2 pt-3'}`} >
+                ${hideNavBottom ? '!h-1   !py-1 md3-menu-leave ' : ' md3-menu-enter !pb-2 pt-3'}`} >
                     <div
                         className={`flex duration-300 ease-in-out items-center
-                    ${hideNavBottom ? ' md3-menu-leave ' : 'md3-menu-enter h-full'}
+                    ${hideNavBottom ? ' md3-menu-leave ' : 'md3-menu-enter '}
                          ${!navIcons || navBottom ? ' w-full ' : ' w-max'}
                          ${!navIcons ? 'pb-1.5 ' : ''}
                          `}>
@@ -76,7 +76,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                             blurBack
                             placement="up-bottom-right"
                             trigger={
-                                <div className={`${hideNavBottom ? 'hidden' : ''}  h-full justify-center max-w-max grid items-center !p-0`}>
+                                <div className={`${hideNavBottom ? '' : ''}  h-full justify-center max-w-max grid items-center !p-0`}>
                                     <div >
                                         <div className='flex w-[2.5rem] flex-1 items-center'>
                                             <img

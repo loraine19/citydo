@@ -35,15 +35,15 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                     className="relative"
                 >
 
-                    <div className="flex flex-1 !p-0 w-full h-max flex-wrap-reverse justify-end  gap-2">
+                    <div className={`w-full flex flex-col items-end !h-full`}>
                         <DateChip
                             start={createdAt}
                             prefix=" "
                         />
 
                         <IconAnimate
-                            active={ILike}
-                            icon={'thumb_up'} />
+                            active={post?.ILike}
+                            icon={'favorite'} />
                     </div>
                 </CardMD.Image>
             }
@@ -87,7 +87,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                         update={update} />}
 
                 <Button
-                    size='small'
+                    size='medium'
                     onClick={async () => { setPost(await toogleLike()) }}
                     variant={ILike ? "filled" : "tonal"}
                     color="rose"

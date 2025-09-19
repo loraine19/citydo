@@ -133,7 +133,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                             fill: pool?.IVoted,
                             title: pool?.IVoted ? "Retirer mon vote" : "Je participe"
                         }}
-                        size='small'
+                        size='medium'
                         disabled={pool?.status !== PoolSurveyStatus.PENDING}
                         onClick={() => vote(values)}
                         variant={!pool?.IVoted ? "tonal" : "filled"}

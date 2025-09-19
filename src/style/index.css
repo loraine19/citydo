@@ -70,7 +70,7 @@ html {
     }
     @media (max-width: 475px) {
         /* xs */
-        font-size: 14px;
+        font-size: 15px;
     }
     @media (max-width: 375px) {
         /* xxs */

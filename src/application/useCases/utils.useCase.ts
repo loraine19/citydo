@@ -44,17 +44,23 @@ export class UtilsUseCase implements UtilsInterface {
 
 
     //// handle hide 
-    private init = 0
+    private init = 0;
+    private lastShouldHide: boolean | null = null;
     handleHide = (params: HandleHideParams) => {
         let { divRef, setHide, max = 50 } = params;
 
         if (!divRef.current) return;
-        if (divRef.current && (divRef.current as HTMLElement).scrollTop >= 10) {
-            const { scrollTop, scrollHeight, clientHeight } = divRef.current;
-            if (scrollTop + clientHeight + max / 2 >= scrollHeight) return
+        const { scrollTop, scrollHeight, clientHeight } = divRef.current;
+        if (scrollTop >= 10) {
+            if (scrollTop + clientHeight + max / 2 >= scrollHeight) return;
             let shouldHide = (scrollTop >= max && (this.init <= scrollTop));
-            this.init = scrollTop
-            setTimeout(() => setHide(shouldHide), max * 2)
+            this.init = scrollTop;
+
+            // Avoid flickering: only update if value changes
+            if (this.lastShouldHide !== shouldHide) {
+                this.lastShouldHide = shouldHide;
+                setTimeout(() => setHide(shouldHide), max * 2);
+            }
         }
     }
 

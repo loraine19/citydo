@@ -156,7 +156,9 @@ export default function VoteListPage() {
         handleHide(params)
     }, [divRef]);
     const [hide, setHide] = useState<boolean>(false);
-    useEffect(() => { (hide !== hideNavBottom) && setHideNavBottom(hide) }, [hide]);
+    useEffect(() => {
+        (hide !== hideNavBottom) && setHideNavBottom(hide)
+    }, [hide]);
 
     //// HANDLE VOTE
     const { setAlertValues, setOpen } = useAlertStore(state => state)
@@ -176,7 +178,7 @@ export default function VoteListPage() {
     return (
 
         <main>
-            <div className="sectionHeader relative">
+            <div className="sectionHeader">
                 <div className="flex gap-2 items-center">
                     <SelectSearch
                         searchCat={searchCat}
@@ -225,12 +227,15 @@ export default function VoteListPage() {
                         isLoading={isLoading}
                         refetch={refetch} />}
             </div>
-            {isLoading || !poolsSurveys ?
+            {isLoading ?
                 <SkeletonGrid /> :
                 <section
                     id='refDiv'
                     ref={divRef}
-                    onScroll={() => { onScroll(); handleHideCallback() }}
+                    onScroll={() => {
+                        onScroll();
+                        handleHideCallback()
+                    }}
                     className={"Grid " + (!compact ? ' GridCompact' : '')}>
                     {poolsSurveys.map((element: PoolSurveyView, index: number) =>
                         element.type === VoteTarget.SURVEY ?

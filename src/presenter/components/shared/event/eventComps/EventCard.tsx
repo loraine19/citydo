@@ -56,7 +56,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                     </div>
                 </CardMD.Image>}>
             <CardMD.Chips className="justify-between">
-                <div className="md3-card-chips flex-wrap !py-0">
+                <div className="md3-card-chips">
                     <button
                         onClick={change}>
                         <Chip
@@ -72,7 +72,6 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                             prefix=" j-" />}
                     <Chip
                         value={eventDateInfo.start}
-                        className="rounded-full h-max Chip"
                     />
                 </div>
                 {<MoreButton
@@ -105,7 +104,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
             </CardMD.Media>
             <CardMD.Footer className="flex items-center">
                 {!mines ? (
-                    <div className="flex flex-1 mt-0.5 -ml-1 overflow-hidden items-center ">
+                    <div className="flex flex-1 my-0.5 -ml-1 overflow-hidden items-center ">
                         <EventCalAddBtn
                             event={event}
                             iconClass={`${'top-0 border-2 !border-white  hover:z-[2] relative -mr-3 '}`} />
@@ -127,7 +126,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                             fill: event?.Igo,
                             title: event?.Igo ? "retirer de l'evenement" : "je participe"
                         }}
-                        size='small'
+                        size='medium'
                         disabled={event?.status === EventStatus.REJECTED || event?.isPast}
                         data-cy='btn-participate'
                         onClick={async () => {

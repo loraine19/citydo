@@ -14,8 +14,8 @@ export function Skeleton(props: { className?: string, grid?: boolean, compact?: 
                 className={style + ' !w-full h-full grid-cols-[100%]  '}
                 image={
                     <CardMD.Image
-                        src="/img/placeholder.png"
-                        alt="img placeholder"
+                        src="/images/placeholder.png"
+                        alt=""
                         position="top"
                         className={`!w-full !flex-1 flex min-w-full ${color}Style`}
                     >
