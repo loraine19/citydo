@@ -58,7 +58,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
                         icon={closeBtn ? {
                             reverse: hideNavBottom && !haveTitle && !form,
                             style: (hideNavBottom && !haveTitle && !form) ? "shadow" : "",
-                            icon: "arrow_back",
+                            icon: form ? 'close' : 'close',
                             size: (hideNavBottom && !haveTitle && !form) ? "2xl" : "lg",
                             link: goBack,
                         } : undefined}>
