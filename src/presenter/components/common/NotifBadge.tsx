@@ -51,7 +51,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
 
 
     return (
-        <div className={`gap-1  flex h-full `}>
+        <div className={`xs:gap-3 pb-0.5 pl-1 md:gap-4 md:pb-3 flex h-full `}>
             {badgeMap.map((list: NotifBadgeProps, index: number) =>
                 <div key={index}
                     className={`relative  w-full flex items-center justify-center ${onBoard ? 'lg:hidden' : ''}`}>
@@ -71,7 +71,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                             ${navBottom ? '-ml-3 pr-2' : '-ml-4 pr-0.5 '} h-max w-full -mt-6  relative  flex`}>
                             <Icon
                                 title={'ouvrir le popup'}
-                                style={(' outline-[4px]') + ' !font-semibold scale-[0.5] !pt-[1px]  outline '}
+                                style={(' outline-[5px] outline-slate-50') + ' !font-semibold scale-[0.6] !pt-[1px]  outline '}
                                 bg
                                 reverse
                                 // icon={list.count >= 99 ? '⁺99 ' :

@@ -32,7 +32,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
         <div className={`flex flex-col relative border-t-0 `}>
 
             {/* LINE DIV  */}
-            <hr className={` z-[1] border-t-0 w-[calc(100dvw)] lg:-ml-[calc(50dvw-50%)] left-0 absolute pt-2 bg-slate-50 -mt-1 
+            <hr className={` z-[1] border-t-0 w-screen -ml-3  lg:-ml-[calc(50dvw-50%)] left-0 absolute pt-2 bg-slate-50 -mt-1 
                ${!hideNavBottom || !navIcons ? 'md3-elevation-1' : 'md3-elevation-2'}  `} />
 
             {/* TYPE DIV  */}

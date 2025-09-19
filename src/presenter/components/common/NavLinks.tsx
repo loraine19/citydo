@@ -85,7 +85,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             <div className={
                 (navBottom ?
                     `anim wRespXLMargin px-2  pb-2.5 md:pb-4 justify-between   ` :
-                    ' -mt-1.5  ') +
+                    ' -mt-1.5   ') +
                 ` flex items-center w-full `
             }>
                 <NavigationBar
@@ -94,7 +94,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                     className={` 
                     ${navBottom ?
                             ' rounded-full !flex-1 md3-elevation-2 !max-w-full p-0 justify-between bg-white border' :
-                            ` shadow-none w-full md3-elevation-0 justify-around pb-2 md:pb-0  md:px-2`}
+                            ` !shadow-none w-full md3-elevation-0 justify-around pb-2 md:pb-0  md:px-2`}
                     items-center overflow-x-auto  overflow-y-hidden flex h-full w-full `}>
 
                     {navItems.map(({ to, icon, label, color }: NavItem, index) => {

@@ -56,11 +56,10 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
                 {/* CONTAINER */}
                 <div id='navBarTop'
-
-                    className={`pl-2 flex lg:px-0 slide h-full justify-between items-end     
-                ${hideNavBottom ? '!h-1   !py-1 md3-menu-leave ' : ' md3-menu-enter !pb-2 pt-3'}`} >
+                    className={`pl-2 flex lg:px-0 slide h-full justify-between  
+                ${hideNavBottom ? '!h-3  ' : '  !py-3'}`} >
                     <div
-                        className={`flex duration-300 ease-in-out items-center
+                        className={`flex duration-300 ease-in-out 
                     ${hideNavBottom ? ' md3-menu-leave ' : 'md3-menu-enter '}
                          ${!navIcons || navBottom ? ' w-full ' : ' w-max'}
                          ${!navIcons ? 'pb-1.5 ' : ''}
