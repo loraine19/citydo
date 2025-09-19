@@ -18,10 +18,10 @@ export default function PostCreatePage() {
     const { setOpen, setAlertValues, handleApiError } = useAlertStore(state => state);
 
     const formSchema = object({
-        category: string().required("Obligatoire"),
+        category: string().required("Categorie est obligatoire"),
         title: string().required("Le titre est obligatoire").min(5, "minmum 5 lettres"),
         description: string().required("Description est obligatoire").min(2, "minmum 2 lettres").max(TextLength.MAX_LONGTEXT, "le texte est trop long"),
-        shareA: array().required("Partager est obligatoire").min(1, "minmum 1 contact"),
+        shareA: array().required("1 contact est obligatoire").min(1, "minmum 1 contact"),
         groupId: string().required("Groupe est obligatoire").notOneOf(["0"], "Groupe est obligatoire"),
     })
 

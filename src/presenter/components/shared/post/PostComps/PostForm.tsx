@@ -1,5 +1,5 @@
 import { Input, Textarea, } from "@material-tailwind/react";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import SubHeader from "../../../common/SubHeader";
 import { ImageBtn } from "../../../common/ImageBtn";
 import { DateChip } from "../../../common/ChipDate";
@@ -109,6 +109,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                 </div>
                             </CardLarge.SupportingText>
                             <CardLarge.Media className="flex  pb-4  justify-center ">
+                                {formik?.values?.shareA}
                                 <div className="flex items-center gap-4 pb-1">
 
                                     <Checkbox
@@ -117,7 +118,11 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                         id='phone-checkbox'
                                         name="shareA"
                                         value="PHONE"
-                                        onChange={formik.handleChange}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                                            formik.handleChange(e);
+                                            alert('test')
+                                            console.log(formik.values, formik.errors);
+                                        }}
                                         checked={checkShare("phone")} >
                                     </Checkbox>
 
@@ -127,14 +132,14 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                         id='email-checkbox'
                                         name="shareA"
                                         value="EMAIL"
-                                        onChange={formik.handleChange}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => formik.handleChange(e)}
                                         checked={checkShare("email")}>
                                     </Checkbox>
                                 </div>
                                 <InputError
                                     mt
                                     tips="Choisir un moyen de contact"
-                                    error={formik.errors.share} />
+                                    error={formik.errors.shareA} />
 
 
                             </CardLarge.Media>

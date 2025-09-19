@@ -115,8 +115,8 @@ export function ServiceForm(props: { formik: any }) {
                             </CardLarge.Headline>
                             <CardLarge.SupportingText>
                                 <Textarea
-                                    rows={3}
-                                    aria-rowcount={3}
+                                    rows={2}
+                                    aria-rowcount={2}
                                     isError={!!formik.errors.description}
                                     className={`inputStandart max-h-fit min-h-full`}
                                     placeholder='Description'
@@ -125,8 +125,11 @@ export function ServiceForm(props: { formik: any }) {
                                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                                         formik.handleChange(e);
                                         const textarea = e.target as HTMLTextAreaElement;
-                                        textarea.style.height = 'fit-content';
+                                        textarea.style.height = '2.5rem';
                                         textarea.style.height = textarea.scrollHeight + 'px';
+                                        if (e.target.value === '') {
+                                            textarea.style.height = '2.5rem';
+                                        }
                                     }}
                                     defaultValue={formik.values?.description}
                                 />
@@ -134,7 +137,7 @@ export function ServiceForm(props: { formik: any }) {
                             </CardLarge.SupportingText>
                             <CardLarge.Media className="flex flex-col py-3 mt-4 h-max">
                                 <span className="md3-card-supporting-text !pl-0">Difficulté du service: </span>
-                                <div className="flex  flex-col flex-1 h-full gap-y-6 md:flex-row justify-between">
+                                <div className="flex  flex-col flex-1 h-full gap-6 md:flex-row ">
                                     <div className="flex border  rounded-3xl  p-3 gap-[5vw]">
                                         <div>
                                             <Select
@@ -156,7 +159,7 @@ export function ServiceForm(props: { formik: any }) {
                                                 options={hardLevels} />
                                         </div>
                                     </div>
-                                    <div className="pr-4 h-full flex  flex-col  justify-between gap-2">
+                                    <div className="pr-4 h-full flex border  rounded-3xl  p-3 flex-col  justify-between gap-2">
                                         <span className="md3-card-supporting-text">Points </span>
                                         <Chip
                                             size='medium'
