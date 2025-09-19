@@ -50,12 +50,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
             <main>
                 <div className="sectionHeader">
-                    <SubHeader
-                        form
-                        type={formik.values.id ?
-                            `Modifier votre ${formik.values.typeS} ` : `Créer votre ${formik.values.typeS === 'POOL' ? 'cagnotte ' : formik.values.typeS === 'SURVEY' ? 'sondage ' : 'vote'}`}
-                        closeBtn
-                        place={formik.values.id ? formik.values.title : ''} />
+
                     <div className="w-respLarge flex flex-col grid-cols-[55%_auto] lg:grid grid-rows-1  gap-2 py-3">
                         <div className="flex gap-2 flex-1 w-full ">
                             <RadioGroup
@@ -91,6 +86,12 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                             formik={formik}
                             user={user} />
                     </div>
+                    <SubHeader
+                        form
+                        type={formik.values.id ?
+                            `Modifier votre ${formik.values.typeS} ` : `Créer votre ${formik.values.typeS === 'POOL' ? 'cagnotte ' : formik.values.typeS === 'SURVEY' ? 'sondage ' : 'vote'}`}
+                        closeBtn
+                        place={formik.values.id ? formik.values.title : ''} />
                 </div>
                 <section >
                     <div className={`FormCardDiv `}>
