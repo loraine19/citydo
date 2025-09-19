@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import { Icon } from "../../../common/IconComp";
 import { Md3Colors } from "./Buttons";
 
@@ -27,7 +27,7 @@ export const Switch: React.FC<SwitchProps> = ({ checked, onChange, ...props }) =
 
 interface CheckboxProps {
     checked: boolean;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    onChange: (e: any) => void;
     label: string;
     className?: string;
     size?: 'lg' | 'xl' | '2xl' | '3xl';
@@ -49,9 +49,9 @@ export const Checkbox: React.FC<CheckboxProps> = ({ checked, onChange, label, cl
                 name={name}
                 value={value}
                 type="checkbox"
-                className="md3-checkbox-input"
+                className="md3-checkbox-input invisible"
                 checked={checked}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                onChange={(e: any) => {
                     setIsChecked(e.target.checked);
                     onChange(e);
                 }} />

@@ -1,5 +1,5 @@
 import { Input, Textarea, } from "@material-tailwind/react";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import SubHeader from "../../../common/SubHeader";
 import { ImageBtn } from "../../../common/ImageBtn";
 import { DateChip } from "../../../common/ChipDate";
@@ -108,20 +108,17 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                     <InputError mt error={formik.errors.description} />
                                 </div>
                             </CardLarge.SupportingText>
-                            <CardLarge.Media className="flex  pb-4  justify-center ">
-                                {formik?.values?.shareA}
+                            <CardLarge.Media className="flex pb-4 justify-center ">
                                 <div className="flex items-center gap-4 pb-1">
-
                                     <Checkbox
                                         color="rose"
                                         label="Téléphone"
                                         id='phone-checkbox'
                                         name="shareA"
                                         value="PHONE"
-                                        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                                        onChange={(e: any) => {
                                             formik.handleChange(e);
-                                            alert('test')
-                                            console.log(formik.values, formik.errors);
+
                                         }}
                                         checked={checkShare("phone")} >
                                     </Checkbox>
@@ -132,7 +129,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                         id='email-checkbox'
                                         name="shareA"
                                         value="EMAIL"
-                                        onChange={(e: ChangeEvent<HTMLInputElement>) => formik.handleChange(e)}
+                                        onChange={(e: any) => formik.handleChange(e)}
                                         checked={checkShare("email")}>
                                     </Checkbox>
                                 </div>
@@ -140,8 +137,6 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                     mt
                                     tips="Choisir un moyen de contact"
                                     error={formik.errors.shareA} />
-
-
                             </CardLarge.Media>
                         </CardLarge>
                     </div>
