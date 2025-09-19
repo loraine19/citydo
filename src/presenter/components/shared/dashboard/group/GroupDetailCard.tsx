@@ -82,7 +82,6 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
                         address={Address} />}
                 <div className={"ChipDiv"}>
                     <Chip
-                        size='sm'
                         value={categoryS}
                         className={'cyanChip'}>
                     </Chip>
@@ -139,7 +138,6 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
                 {!mines ? (
                     <div className="flex w-full items-center gap-2 ">
                         <Chip
-                            size='sm'
                             value={group?.categoryS}
                             className="cyanChip text-ellipsis  " >
                         </Chip>
@@ -158,9 +156,8 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
                             setAlertValues(toogleModoValues)
                         }}>
                         <Chip
-                            size='sm'
                             value={group?.ImModo ? '⠀✓' : '⠀'}
-                            variant="ghost"
+
                             className="rounded-full h-max  grayChip flex items-center  !min-w-max "
                             icon={
                                 <Icon
@@ -177,9 +174,8 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
                             setAlertValues(toogleMemberValues)
                         }}>
                         <Chip
-                            size='sm'
                             value={group?.GroupUser?.length}
-                            variant="ghost"
+
                             className="rounded-full grayChip h-max flex items-center pl-6 !min-w-max "
                             icon={
                                 <Icon

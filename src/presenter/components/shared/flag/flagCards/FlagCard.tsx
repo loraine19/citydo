@@ -38,12 +38,10 @@ export function FlagCard(props: { flag: FlagView, update: () => void }) {
                 <div className="ChipDivNoImage justify-between ">
                     <div className="flex flex-1 items-center gap-2 w-full">
                         <Chip
-                            size='sm'
                             value={targetS}
                             className="cyanChip">
                         </Chip>
                         <Chip
-                            size='sm'
                             value={reasonS}
                             className={`redChip truncate overflow-auto max-w-[30vw]`}>
                         </Chip>
@@ -61,9 +59,8 @@ export function FlagCard(props: { flag: FlagView, update: () => void }) {
             </CardBody>
             <CardFooter className="CardFooter items-center !px-4">
                 <Chip
-                    size='sm'
                     value={'signalé le ' + new Date(createdAt).toLocaleDateString('fr-FR')}
-                    className={`rounded-full grayChip h-max flex items-center gap-2  `}>
+                >
                 </Chip>
                 <Icon
                     icon="keyboard_arrow_right"

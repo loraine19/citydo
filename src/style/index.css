@@ -70,11 +70,11 @@ html {
     }
     @media (max-width: 475px) {
         /* xs */
-        font-size: 16px;
+        font-size: 14px;
     }
     @media (max-width: 375px) {
         /* xxs */
-        font-size: 16px;
+        font-size: 13px;
     }
 }
 .baseBG {
@@ -323,8 +323,8 @@ button {
 
 /* SCROLL BARE */
 ::-webkit-scrollbar {
-    width: 4px;
-    height: 2px;
+    width: 2px;
+    height: 0px;
     @apply bg-slate-400/5 rounded-3xl;
 }
 ::-webkit-scrollbar:hover {

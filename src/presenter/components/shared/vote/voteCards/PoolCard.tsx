@@ -58,7 +58,6 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                         <button onClick={change}>
                             <Chip
                                 value="Cagnotte"
-                                size="sm"
                                 color={"orange"}
                             />
                         </button>

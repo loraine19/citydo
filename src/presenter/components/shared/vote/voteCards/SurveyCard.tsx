@@ -71,13 +71,11 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                         <button onClick={() => change()}>
                             <Chip
                                 value="Sondage"
-                                size="sm"
                                 color="orange"
                             />
                         </button>
                         <Chip
                             value={survey?.categoryS}
-                            size="sm"
                             color="orange"
                         />
 

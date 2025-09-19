@@ -21,19 +21,16 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
                 <div className="flex w-full justify-between items-center ">
                     <div className="flex items-center gap-2 ">
                         <Chip
-                            size='sm'
                             value={categoryS}
                             className="cyanChip lowercase" >
                         </Chip>
                         <Chip
-                            size='sm'
                             value={typeS}
                             className={`${type === ServiceType.GET ? "orangeChip lowercase" : "greenChip lowercase"}`}>
                         </Chip>
                     </div>
                     <div className="flex items-center gap-2">
                         <Chip
-                            size='sm'
                             value={(new Date(createdAt)).toLocaleDateString('fr-FR')}
                             className="grayChip lowercase">
                         </Chip>

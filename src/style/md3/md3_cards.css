@@ -24,7 +24,7 @@
     @apply md3-card;
     padding: 0 !important;
     display: grid;
-    grid-template-columns: minmax(auto, auto) minmax(auto, 65%);
+    grid-template-columns: minmax(auto, auto) minmax(auto, 60%);
 }
 
 .md3-card-image-container {
@@ -71,7 +71,7 @@
 }
 
 .md3-card-headline {
-    @apply text-[1.125rem]  line-clamp-2;
+    @apply text-[1.2rem]  line-clamp-2;
     font-weight: 600;
     padding: 0 var(--md3-spacing-medium);
     color: var(--md3-on-surface);
@@ -107,7 +107,7 @@
     padding: 0.25rem var(--md3-spacing-medium) 0;
 }
 .md3-card-chips {
-    @apply flex gap-2;
+    @apply flex gap-1.5 overflow-auto rounded-full;
     padding: 0 var(--md3-spacing-small);
 }
 

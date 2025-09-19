@@ -9,6 +9,7 @@ import { useNotificationStore } from "../../../application/stores/notification.s
 import Chip from "./adaptatersComps/Chip";
 import NotifDiv from "./NotifDiv";
 import { useUxStore } from "../../../application/stores/ux.store";
+import { Md3Colors } from "../shared/base/baseComps/Buttons";
 
 export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
     const notifViewModelFactory = DI.resolve('notifViewModel');
@@ -99,13 +100,10 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                                                 <div className="flex w-full py-1 gap-4">
                                                     <Chip
                                                         value={notif.typeS}
-                                                        className={`${list.color}Chip`}
-                                                        size='sm'>
+                                                        color={`${list.color}` as Md3Colors}>
                                                     </Chip>
                                                     <Chip
-                                                        value={notif.update}
-                                                        className={`slateChip`}
-                                                        size='sm'>
+                                                        value={notif.update}>
                                                     </Chip>
                                                 </div>
                                                 <div className="flex items-center w-full justify-between gap-1 pt-1">

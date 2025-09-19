@@ -69,13 +69,14 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
             className={className ?? '' + ''}
             open={isOpen}
             setOpen={setIsOpen}
-            placement={'auto'}
+            placement={'bottom-left'}
             trigger={
                 <Icon
-                    style='-mr-0'
+                    fill
+                    style='-mr-0.5 mt-1'
                     color={'slate'}
                     icon={isOpen ? "arrow_drop_up" : "more_vert"}
-                    size="xl"
+                    size="lg"
                 />}>
 
 
@@ -100,7 +101,7 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
                             title={item.label}
                             icon={item.icon}
                         />}
-                    className="flex  pl-3 " >
+                    className="flex !pr-12 " >
                     {item.label}
                 </MenuItem>
             )}

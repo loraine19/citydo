@@ -61,10 +61,8 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                         onClick={change}>
                         <Chip
                             data-cy={`chip-${label}`}
-                            size='sm'
                             value={label}
-                            color='cyan'
-                            className="rounded-full h-max " />
+                            color='cyan' />
                     </button>
                     {new Date(end).getTime() > Date.now() &&
                         <DateChip
@@ -73,7 +71,6 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                             ended={new Date(end).getTime() < Date.now()}
                             prefix=" j-" />}
                     <Chip
-                        size="sm"
                         value={eventDateInfo.start}
                         className="rounded-full h-max Chip"
                     />

@@ -58,19 +58,16 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
             <CardLarge.Chips className=" px-2 md:-mt-1">
                 <div className="md3-card-chips w-full">
                     <Chip
-                        size="sm"
                         value={`${categoryS}`}
                         color='sky'
                     >
                     </Chip>
                     <Chip
-                        size="sm"
                         value={typeS}
                         color={typeS === ServiceType.GET ? "orange" : "green"}>
                     </Chip>
                     <button onClick={() => { statusS === ServiceStep.STEP_4 && navigate(`/conciliation/${id}`) }}>
-                        <Chip
-                            size="sm" value={statusS}
+                        <Chip value={statusS}
                             className={`${statusValues(statusS as ServiceStep).color} shadow rounded-full h-max flex items-center gap-2 font-medium `}>
                         </Chip>
                     </button>
@@ -99,8 +96,6 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                     <h6 className="">Difficulté</h6>
                     <div className="flex flex-col lg:flex-row xs:flex-row gap-2">
                         <Chip
-                            color='slate'
-                            size="sm"
                             value={SkillLevel[skill as unknown as keyof typeof SkillLevel]}
                             icon={<Icon
                                 disabled
@@ -110,7 +105,6 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                                 title="Compétence" />}>
                         </Chip>
                         <Chip
-                            size="sm"
                             color='slate'
                             value={HardLevel[hard as unknown as keyof typeof HardLevel]}
                             icon={<Icon

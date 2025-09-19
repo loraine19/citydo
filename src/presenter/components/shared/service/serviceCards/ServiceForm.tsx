@@ -163,7 +163,6 @@ export function ServiceForm(props: { formik: any }) {
                                             <div className=" pr-4">
                                                 <Typography className='text-xs pb-2'>Points </Typography>
                                                 <Chip
-                                                    size="sm"
                                                     value={`${points} pts`}
                                                     className="grayChip -mr-2 "
                                                     icon={

@@ -61,7 +61,6 @@ const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) =
                                     change(cat)
                                 }}>
                                 <Chip
-                                    size="sm"
                                     value={statusS}
                                     className={`${statusS === IssueStep.STEP_3 && 'greenChip' || statusS === IssueStep.STEP_4 && 'grayChip' || 'orangeChip'} truncate lowercase`}
                                 >

@@ -16,7 +16,6 @@ export function NotifCard(props: notifCardProps) {
             <CardHeader className={"FixCardHeaderNoImage !flex !w-full  !my-0 "} >
                 <div className="ChipDivNoImage w-full ">
                     <Chip
-                        size='sm'
                         value={typeS}
                         className="cyanChip text-ellipsis  " >
                     </Chip>

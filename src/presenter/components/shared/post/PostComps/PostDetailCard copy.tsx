@@ -35,7 +35,6 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                     </div>}
                 <div className={haveImage ? "ChipDiv " : "ChipDivNoImage"}>
                     <Chip
-                        size='sm'
                         value={categoryS}
                         className={'cyanChip'}>
                     </Chip>
@@ -79,9 +78,8 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                                 data && setPost(data)
                             }}>
                             <Chip
-                                size="sm"
                                 value={`${Likes?.length}`}
-                                variant="ghost"
+
                                 className="!h-max !px-4 rounded-full grayChip flex items-center "
                                 icon={
                                     <Icon

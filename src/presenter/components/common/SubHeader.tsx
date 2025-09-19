@@ -51,7 +51,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
                         size='small'
                         onClick={() => {
                             if (closeBtn) {
-                                navigate(-2)
+                                navigate(goBack);
                             }
                         }}
                         icon={closeBtn ? {
@@ -69,7 +69,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
                         size="extended"
                         variant='elevated'
                         text={<>
-                            <span>{qty ?? ''} </span>
+                            <span className="font-bold">{qty ?? ''} </span>
                             <span>{type ?? ''} </span>
                             <span className="font-light">{place ? `/  ${place}` : ''}</span>
                         </>}
@@ -82,11 +82,12 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
 
             {/* BUTTON UP  */}
             {(hideNavBottom && !form) &&
-                <div className={`${(hideNavBottom && !haveTitle) ? '-bottom-14 ' : '-bottom-14 '} flex flex-1 absolute z-[2] right-2 top-4 `}>
+                <div className={`${(hideNavBottom && !haveTitle) ? '-bottom-9 ' : '-bottom-9 '} flex flex-1 absolute z-[2] right-0 top-4 `}>
                     <Fab
+                        variant="elevated"
                         className="rounded-full"
                         color={color as Md3Colors ?? 'slate'}
-                        size={'large'}
+                        size={'medium'}
                         icon={{
                             icon: "arrow_upward_alt",
                             size: "3xl",

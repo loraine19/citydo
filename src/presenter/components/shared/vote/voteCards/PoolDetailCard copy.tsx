@@ -32,8 +32,7 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
                 <div className={`ChipDivNoImage flex-wrap`}>
                     <Chip
                         value={'Cagnotte'}
-                        size='sm'
-                        className="cyanChip">
+                        color='cyan'>
                     </Chip>
                     <DateChip
                         start={pool?.createdAt}
@@ -88,9 +87,8 @@ export default function PoolDetailCard({ pool, setOpen }: PoolDetailCardProps) {
                         disabled={pool?.close}
                         onClick={() => { setOpen() }}>
                         <Chip
-                            size='sm'
                             value={pool.Votes?.length}
-                            variant="ghost"
+
                             className="rounded-full px-4 grayChip"
                             icon={
                                 <Icon

@@ -9,7 +9,6 @@ import DI from "../../../../../di/ioc";
 import { GenereMyActions, getEnumVal, isLate } from "../../../../views/viewsEntities/utilsService";
 import { ServiceView } from "../../../../views/viewsEntities/serviceViewEntity";
 import { ProfileDiv } from "../../../common/ProfilDiv";
-import { Title } from "../../../common/CardTitle";
 import Chip from "../../../common/adaptatersComps/Chip";
 import { CardMD } from "../../base/baseComps/Cards";
 import { GroupLink } from "../../../common/GroupLink";
@@ -85,15 +84,12 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                     className=""
                 >
                     <div className="flex w-full justify-end pt-0.5">
-                        <DateChip
-                            start={createdAt}
-                            prefix=" "
-                        />
+
                     </div>
                 </CardMD.Image>
             }>
             <CardMD.Chips className="justify-between">
-                <div className="md3-card-chips flex-1 flex-wrap">
+                <div className="md3-card-chips flex-1 ">
                     <button
                         onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                             const cat = e.currentTarget.innerText.toLowerCase();
@@ -101,9 +97,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                         }}>
                         <Chip
                             color='sky'
-                            size="sm"
                             value={`${categoryS}`}
-                            className="rounded-full h-max truncate  shadow"
                         />
                     </button>
 
@@ -113,13 +107,15 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                             change(cat as any);
                         }}>
                         <Chip
-                            size="sm"
                             value={typeS}
                             color={typeS === ServiceType.GET ? "orange" : "green"}
                         />
 
                     </button>
-
+                    <Chip
+                        value={statusS}
+                        color={statusColor(statusS as ServiceStep).color as Md3Colors}
+                    />
                 </div>
                 <MoreButton
                     id={id}
@@ -128,33 +124,26 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                     title={title} />
             </CardMD.Chips>
 
-            <CardMD.Headline>
-                <Title title={title} />
+            <CardMD.Headline className="line-clamp-1 sm:line-clamp-2">
+                {title}
             </CardMD.Headline>
 
             <CardMD.Subhead>
                 <GroupLink group={Group} />
             </CardMD.Subhead>
 
-            <CardMD.Chips className="pb-1  flex-row gap-2  justify-start">
+            <CardMD.Chips className="pb-1  flex-row px-4  justify-start">
+
                 <Chip
-                    size="sm"
-                    value={statusS}
-                    color={statusColor(statusS as ServiceStep).color as Md3Colors}
-                />
-                <Chip
-                    size="sm"
-                    color='slate'
                     value={`${points.join(' à ')} pts`}
-                    className={`py-0 flex  ${mines && 'hidden md:flex'}`}
                     icon={
                         <Icon
-                            style="-mt-0.5"
+                            style=" -ml-1"
                             icon="toll"
                             title={`Ce service ${service.typeS === ServiceType.GET ? 'vous fais gagner' : 'coute'} ${points.join(' à ')}pts`}
                             fill={user?.Profile?.points > points[0]}
                             color={service.typeS === ServiceType.GET ? "green" : "orange"}
-                            size="lg"
+                            size="md"
                         />
                     }
                 />
@@ -182,7 +171,10 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                     <ProfileDiv profile={User} />
                 )}
 
-
+                <DateChip
+                    start={createdAt}
+                    prefix=" "
+                />
             </CardMD.Footer>
         </CardMD>
     )

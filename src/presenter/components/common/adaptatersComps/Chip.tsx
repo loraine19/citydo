@@ -1,40 +1,55 @@
-import { Chip as ChipMt } from "@material-tailwind/react";
+import React from "react";
 import { Md3Colors } from "../../shared/base/baseComps/Buttons";
 
-// On définit les props classiques d'un input
-type ChipProps = {
-    variant?: 'solid' | 'outline' | 'ghost'
-    color?: Md3Colors
-    value?: string | number,
-    icon?: React.ReactNode,
-    className?: string,
-    size?: 'sm' | 'md' | 'lg'
-}
+type ChipVariant = "filled" | "outlined" | "tonal";
+type ChipSize = "small" | "medium" | "large";
 
+type ChipProps = {
+    variant?: ChipVariant;
+    color?: Md3Colors;
+    value?: string | number;
+    icon?: React.ReactNode;
+    className?: string;
+    size?: ChipSize;
+    onClick?: React.MouseEventHandler<HTMLDivElement>;
+};
+
+const variantClassMap: Record<ChipVariant, string> = {
+    filled: "md3-chip-filled",
+    outlined: "md3-chip-outlined",
+    tonal: "md3-chip-tonal",
+};
+
+const sizeClassMap: Record<ChipSize, string> = {
+    small: "md3-chip-small",
+    medium: "md3-chip-medium",
+    large: "md3-chip-large",
+};
 
 const Chip: React.FC<ChipProps> = ({
-    variant = 'container',
+    variant = "tonal",
+    color = "slate",
     value,
     icon,
-    className,
-    size,
-    color = 'slate'
+    className = "",
+    size = "small",
+    onClick,
 }) => {
-
+    const classes = [
+        "md3-chip",
+        variantClassMap[variant],
+        `md3-chip-${color}`,
+        sizeClassMap[size],
+        className,
+    ]
+        .filter(Boolean)
+        .join(" ");
 
     return (
-
-        <ChipMt
-            size={size}
-            className={`flex  Chip !shadow-none items-center justify-center !max-h-max h-full !rounded-full md3-${color}-${variant} ${className}`} >
-            {icon &&
-                <ChipMt.Icon className="stroke w-max px-1 ">
-                    {icon}
-                </ChipMt.Icon>}
-            <ChipMt.Label className="pt-[0.2em]  !font-medium text-[0.75rem] !stroke-black truncate !whitespace-normal  ">
-                {value}
-            </ChipMt.Label>
-        </ChipMt>
+        <div className={classes} onClick={onClick} tabIndex={onClick ? 0 : undefined} role={onClick ? "button" : undefined}>
+            {icon && <span className="mr-2 flex items-center">{icon}</span>}
+            <span className="truncate">{value}</span>
+        </div>
     );
 };
 

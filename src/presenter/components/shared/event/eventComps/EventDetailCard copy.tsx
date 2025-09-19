@@ -36,8 +36,7 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                     <div className="flex w-full flex-wrap items-center justify-between gap-2">
                         <Chip
                             value={label}
-                            className="cyanChip rounded-full h-max shadow"
-                            size='sm'>
+                            className="cyanChip rounded-full h-max shadow">
                         </Chip>
                         <DateChip
                             start={start}
@@ -115,9 +114,8 @@ export function EventDetailCard({ EventLoad, refetch }: EventCardProps) {
                             refetch && await refetch()
                         }}>
                         <Chip
-                            size='sm'
                             value={participantsMin}
-                            variant="ghost"
+
                             className="rounded-full grayChip h-max flex items-center px-4 "
                             icon={
                                 <Icon

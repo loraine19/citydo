@@ -43,7 +43,6 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                 <div className="md3-card-chips flex-1 !overflow-auto">
                     <Link to={`/annonce?search=&category=${post?.category}`} >
                         <Chip
-                            size="sm"
                             value={`${categoryS}`}
                             color="rose"
                         />

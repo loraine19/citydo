@@ -85,7 +85,6 @@ const MarkerList = ({ notifsMap }: { notifsMap: NotifView[] }) => {
                                 {notif.title}
                             </Typography>
                             <Chip
-                                size='sm'
                                 value={notif.typeS}
                                 className='cyanChip text-ellipsis rounded-full max-w-max ' />
                         </div>

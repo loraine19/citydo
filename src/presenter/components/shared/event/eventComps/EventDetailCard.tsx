@@ -51,8 +51,7 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                     className="md3-card-chips w-full -mt-2">
                     <Chip
                         value={label}
-                        color='cyan'
-                        size='sm'>
+                        color='cyan'>
                     </Chip>
                     <DateChip
                         start={start}

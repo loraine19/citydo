@@ -45,9 +45,7 @@ export const GroupLink: React.FC<GroupDivProps> = ({ group, className, menuRef }
                     </i>
                     <Chip
                         key={category}
-                        value={category}
-                        size='sm'
-                        className="Chip" >
+                        value={category} >
                     </Chip>
                 </div>
 

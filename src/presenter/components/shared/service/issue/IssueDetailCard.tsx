@@ -33,15 +33,13 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, mo
                         </div>
                         <div className="flex gap-2 items-center">
                             <Chip
-                                size="sm"
-                                className={`${issue?.statusS === IssueStep.STEP_3 && 'greenChip' || issue?.statusS === IssueStep.STEP_4 && 'grayChip' || 'orangeChip'} lowercase`}
+                                color={`${issue?.statusS === IssueStep.STEP_3 && 'green' || issue?.statusS === IssueStep.STEP_4 && 'slate' || 'orange'}`}
                                 value={issue?.statusS ?? 'nouveau'}>
                             </Chip>
                             {issue?.date ?
                                 <Chip
-                                    size='sm'
                                     value={'' + (new Date(formik?.values?.createdAt ? formik?.values.createdAt : issue.createdAt)).toLocaleDateString('fr-FR')}
-                                    className={`!flex lowercase grayChip shadow font-medium before:content-['']`}>
+                                >
                                 </Chip>
                                 :
                                 <div className='flex flex-col flex-1 !max-w-max overflow-auto pt-1'>

@@ -43,9 +43,8 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
                     <div className="flex w-full justify-between items-center gap-2">
                         <button>
                             <Chip
-                                size='sm'
                                 value={'label'}
-                                className="rounded-full h-max cyanChip shadow" />
+                                color='cyan' />
                         </button>
                         <DateChip
                             start={createdAt}
@@ -68,7 +67,6 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
                 {!mines ? (
                     <div className="flex w-full items-center gap-2">
                         <Chip
-                            size='sm'
                             value={group?.categoryS}
                             className="cyanChip text-ellipsis  " >
                         </Chip>
@@ -86,9 +84,8 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
                         setGroup(groupUpdated)
                     }}>
                         <Chip
-                            size='sm'
                             value={group?.ImModo ? '⠀✓' : '⠀'}
-                            variant="ghost"
+
                             className="grayChip gap-2"
                             icon={
                                 <Icon
@@ -104,9 +101,8 @@ export function GroupCard({ group: initialGroup, mines, refetch }: GroupCardProp
                             setGroup(groupUpdated)
                         }}>
                         <Chip
-                            size='sm'
                             value={group?.GroupUser?.length}
-                            variant="ghost"
+
                             className="grayChip gap-2"
                             icon={
                                 <Icon

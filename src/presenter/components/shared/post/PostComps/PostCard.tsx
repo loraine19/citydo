@@ -54,7 +54,6 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                     <button
                         onClick={() => change(post?.category as string)}>
                         <Chip
-                            size="sm"
                             value={`${categoryS}`}
                             color="rose"
                         />

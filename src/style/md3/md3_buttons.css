@@ -452,3 +452,162 @@
     opacity: 0.38;
     pointer-events: none;
 }
+
+/* -----------------------------------------------------------
+CHIP 
+    ----------------------------------------------------------- */
+
+/* Chip */
+.md3-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 16px;
+    height: 32px;
+    border-radius: var(--md3-radius-full);
+    cursor: pointer;
+    transition: all var(--md3-anim-duration-short) var(--md3-anim-easing);
+}
+
+/* Chip Sizes */
+.md3-chip-small {
+    height: 1.5rem; /* 24px */
+    font-size: 0.875rem;
+    padding: 0 0.625rem; /* 10px */
+}
+.md3-chip-medium {
+    height: 2rem; /* 32px */
+    font-size: 1rem;
+    padding: 0 1rem; /* 16px */
+}
+.md3-chip-large {
+    height: 2.5rem; /* 40px */
+    font-size: 1.125rem;
+    padding: 0 1.25rem; /* 20px */
+}
+
+/* Chip Variants */
+.md3-chip-filled {
+    background-color: var(--md3-primary);
+    color: var(--md3-on-primary);
+}
+.md3-chip-outlined {
+    background-color: transparent;
+    color: var(--md3-on-surface-variant);
+    border: 1px solid var(--md3-outline);
+}
+.md3-chip-tonal {
+    background-color: var(--md3-secondary-container);
+    color: var(--md3-on-secondary-container);
+}
+
+/* Chip Variant Colors */
+.md3-chip-filled.md3-chip-secondary {
+    background-color: var(--md3-secondary);
+    color: var(--md3-on-secondary);
+}
+.md3-chip-filled.md3-chip-tertiary {
+    background-color: var(--md3-tertiary);
+    color: var(--md3-on-tertiary);
+}
+.md3-chip-filled.md3-chip-error {
+    background-color: var(--md3-error);
+    color: var(--md3-on-error);
+}
+.md3-chip-filled.md3-chip-sky {
+    background-color: var(--md3-sky);
+    color: var(--md3-on-sky);
+}
+.md3-chip-filled.md3-chip-cyan {
+    background-color: var(--md3-cyan);
+    color: var(--md3-on-cyan);
+}
+.md3-chip-filled.md3-chip-rose {
+    background-color: var(--md3-rose);
+    color: var(--md3-on-rose);
+}
+.md3-chip-filled.md3-chip-orange {
+    background-color: var(--md3-orange);
+    color: var(--md3-on-orange);
+}
+.md3-chip-filled.md3-chip-green {
+    background-color: var(--md3-green);
+    color: var(--md3-on-green);
+}
+.md3-chip-filled.md3-chip-slate {
+    background-color: var(--md3-slate);
+    color: var(--md3-on-slate);
+}
+
+.md3-chip-outlined.md3-chip-secondary {
+    border-color: var(--md3-secondary);
+    color: var(--md3-secondary);
+}
+.md3-chip-outlined.md3-chip-tertiary {
+    border-color: var(--md3-tertiary);
+    color: var(--md3-tertiary);
+}
+.md3-chip-outlined.md3-chip-error {
+    border-color: var(--md3-error);
+    color: var(--md3-error);
+}
+.md3-chip-outlined.md3-chip-sky {
+    border-color: var(--md3-sky);
+    color: var(--md3-sky);
+}
+.md3-chip-outlined.md3-chip-cyan {
+    border-color: var(--md3-cyan);
+    color: var(--md3-cyan);
+}
+.md3-chip-outlined.md3-chip-rose {
+    border-color: var(--md3-rose);
+    color: var(--md3-rose);
+}
+.md3-chip-outlined.md3-chip-orange {
+    border-color: var(--md3-orange);
+    color: var(--md3-orange);
+}
+.md3-chip-outlined.md3-chip-green {
+    border-color: var(--md3-green);
+    color: var(--md3-green);
+}
+.md3-chip-outlined.md3-chip-slate {
+    border-color: var(--md3-slate);
+    color: var(--md3-slate);
+}
+
+.md3-chip-tonal.md3-chip-secondary {
+    background-color: var(--md3-secondary-container);
+    color: var(--md3-on-secondary-container);
+}
+.md3-chip-tonal.md3-chip-tertiary {
+    background-color: var(--md3-tertiary-container);
+    color: var(--md3-on-tertiary-container);
+}
+.md3-chip-tonal.md3-chip-error {
+    background-color: var(--md3-error-container);
+    color: var(--md3-on-error-container);
+}
+.md3-chip-tonal.md3-chip-sky {
+    background-color: var(--md3-sky-container);
+    color: var(--md3-on-sky-container);
+}
+.md3-chip-tonal.md3-chip-cyan {
+    background-color: var(--md3-cyan-container);
+    color: var(--md3-on-cyan-container);
+}
+.md3-chip-tonal.md3-chip-rose {
+    background-color: var(--md3-rose-container);
+    color: var(--md3-on-rose-container);
+}
+.md3-chip-tonal.md3-chip-orange {
+    background-color: var(--md3-orange-container);
+    color: var(--md3-on-orange-container);
+}
+.md3-chip-tonal.md3-chip-green {
+    background-color: var(--md3-green-container);
+    color: var(--md3-on-green-container);
+}
+.md3-chip-tonal.md3-chip-slate {
+    background-color: var(--md3-slate-container);
+    color: var(--md3-on-slate-container);
+}

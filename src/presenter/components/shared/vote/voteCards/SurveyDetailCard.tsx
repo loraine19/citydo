@@ -40,7 +40,6 @@ export default function SurveyDetailCard({ survey, expand, setExpand }: Props) {
 
                 <div className="md3-card-chips flex-1 !overflow-auto">
                     <Chip
-                        size="sm"
                         value={`${categoryS}`}
                         color="orange"
                     />

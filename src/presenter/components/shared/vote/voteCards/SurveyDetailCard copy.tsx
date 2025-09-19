@@ -40,9 +40,8 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
                 }
                 <div className={haveImage ? "ChipDiv flex-wrap" : "ChipDivNoImage flex-wrap"}>
                     <Chip
-                        size='sm'
-                        value={categoryS}
-                        className="cyanChip">
+                        color={'cyan'}
+                        value={categoryS}>
                     </Chip>
                     <DateChip
                         start={createdAt}
@@ -92,9 +91,8 @@ export default function SurveyDetailCard({ survey, setOpen }: Props) {
                         disabled={survey?.close}
                         onClick={() => { setOpen(true) }}>
                         <Chip
-                            size='sm'
                             value={survey?.Votes?.length}
-                            variant="ghost"
+
                             className="rounded-full px-4 grayChip"
                             icon={
                                 <Icon

@@ -10,6 +10,7 @@ import { ProfileDiv } from "../../../common/ProfilDiv";
 import { Profile } from "../../../../../domain/entities/Profile";
 import Chip from "../../../common/adaptatersComps/Chip";
 import { MoreButton } from "../../../common/moreBtn";
+import { Md3Colors } from "../../base/baseComps/Buttons";
 
 export default function ServiceDetailComp(props: { service: ServiceView, mines?: boolean }) {
     const { service } = props
@@ -62,19 +63,17 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
 
                     <div className="ChipSubDiv  ">
                         <Chip
-                            size="sm"
                             value={`${categoryS}`}
                             className="skyChip">
                         </Chip>
                         <Chip
-                            size="sm"
                             value={typeS}
                             className={`${typeS === "demande" ? "orangeChip" : "greenChip"} shadow rounded-full  h-max flex items-center gap-2 font-medium `}>
                         </Chip>
                         <button onClick={() => { statusS === ServiceStep.STEP_4 && navigate(`/conciliation/${id}`) }}>
                             <Chip
-                                size="sm" value={statusS}
-                                className={`${statusValues(statusS as ServiceStep).color} shadow rounded-full h-max flex items-center gap-2 font-medium `}>
+                                value={statusS}
+                                color={statusValues(statusS as ServiceStep).color as Md3Colors}>
                             </Chip>
                         </button>
                     </div>
@@ -109,7 +108,6 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                             <h6 className="lg:text-right">Difficulté</h6>
                             <div className="flex flex-col lg:flex-row pt-1 xs:flex-row gap-2">
                                 <Chip
-                                    size="sm"
                                     value={SkillLevel[skill as unknown as keyof typeof SkillLevel]}
                                     className=" grayChip "
                                     icon={<Icon
@@ -120,9 +118,8 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                                         title="Compétence" />}>
                                 </Chip>
                                 <Chip
-                                    size="sm"
                                     value={HardLevel[hard as unknown as keyof typeof HardLevel]}
-                                    className="grayChip "
+                                    color='slate'
                                     icon={<Icon
                                         disabled
                                         size="sm"
