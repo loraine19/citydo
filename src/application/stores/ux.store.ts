@@ -7,6 +7,8 @@ interface UxStore {
   color: string;
   setColor: (color: string) => void;
   getColor: (path?: string) => void;
+  dark: boolean;
+  setDark: (value: boolean) => void;
   navBottom: boolean;
   setNavBottom: (value: boolean) => void;
   hideNavBottom: boolean;
@@ -22,6 +24,8 @@ const storage = new cryptedStorage();
 export const useUxStore = create<UxStore, [['zustand/persist', UxStore]]>(
   persist((set) => {
     return {
+      dark: false,
+      setDark: (value: boolean) => set(() => ({ dark: value })),
       navBottom: true,
       setNavBottom: (value: boolean) => set(() => ({ navBottom: value })),
       hideNavBottom: false,

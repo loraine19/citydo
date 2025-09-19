@@ -12,14 +12,24 @@ import { Menu, MenuItem } from "../shared/base/baseComps/Menu";
 export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolean, navIcons?: boolean, title?: boolean }) {
     const navigate = useNavigate();
     const { user } = useUserStore((state) => state);
-    const { hideNavBottom, setHideNavBottom, navBottom, setNavBottom, color, getColor, setNavIcons, setHaveTitle } = useUxStore((state) => state);
+    const { hideNavBottom, setHideNavBottom, navBottom, setNavBottom, color, getColor, setNavIcons, setHaveTitle, dark, setDark } = useUxStore((state) => state);
     const onBoard = window.location.pathname === '/'
+
+
 
     ///// MENU ITEMS
     const menuItems = [
         { icon: "toll", text: ` ${user?.Profile?.points} points`, color: 'sky', divider: 'bottom' },
         { icon: "person_edit", text: "Modifier mon profil", onClick: () => navigate('/myprofile'), color: "cyan", divider: 'top' },
+        {
+            icon: dark ? "light_mode" : "dark_mode",
+            text: dark ? "Désactiver le mode sombre" : "Activer le mode sombre",
+            onClick: () => setDark(!dark),
+            color: "cyan", divider: "none", style: 'rounded-none'
+        },
         { icon: navBottom ? 'move_up' : 'move_down', text: navBottom ? "Cacher la barre" : "Afficher la barre", onClick: () => { setNavBottom(!navBottom) }, color: 'cyan', divider: 'bottom' },
+
+
         // { icon: "forum", text: `Messagerie (${unReadMsgNotif ?? ''})`, onClick: () => navigate('/chat'), color: 'cyan' },
 
         { icon: 'groups', text: "Groupes", onClick: () => navigate('/groupe'), color: "orange", divider: 'top', },
@@ -63,7 +73,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                                 <Icon
                                     icon="close"
                                     bg style='self-start' color='slate' size="sm" />}
-                            className={`px-4 py-2 !z-[999] -mt-4 -ml-1  `}
+                            className={`px-4 py-2 !z-[99999] -mt-6 -ml-1  `}
                             blurBack
                             placement="up-bottom-right"
                             trigger={
@@ -102,6 +112,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                             {menuItems.map((item, index) => (
                                 <MenuItem
                                     bg
+                                    className={item.style}
                                     divider={item.divider as "top" | "bottom" | "both" | undefined}
                                     key={index}
                                     onClick={() => item.onClick && item.onClick()}

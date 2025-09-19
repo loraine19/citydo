@@ -129,7 +129,7 @@
     --md3-hover-effect-dark: rgba(255, 255, 255, 0.16);
 }
 @media (prefers-color-scheme: dark) {
-    :root {
+    .dark {
         --md3-primary: #242e30;
         --md3-on-primary: #d6dfe4;
         --md3-primary-container: #242e30;

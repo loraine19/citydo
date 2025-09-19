@@ -61,7 +61,7 @@ function App() {
     const handleRetry = () => setRetryCount(retryCount + 1);
 
     const { alertValues } = useAlertStore(state => state);
-    const { color, getColor } = useUxStore(state => state);
+    const { color, getColor, dark } = useUxStore(state => state);
     useEffect(() => { getColor(window.location.pathname) }, [window.location.pathname]);
 
     return (
@@ -70,7 +70,7 @@ function App() {
             color={color} onRetry={handleRetry} retryCount={retryCount}>
             <AlertNotif />
             <BrowserRouter>
-                <div className={`App`}>
+                <div className={`App ${dark ? 'dark' : ''}`}>
                     <Suspense fallback={<LoadingPage />}>
                         <Routes>
                             {/* Public routes */}
