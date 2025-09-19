@@ -107,7 +107,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                     <div className="flex flex-1 my-0.5 -ml-1 overflow-hidden items-center ">
                         <EventCalAddBtn
                             event={event}
-                            iconClass={`${'top-0 border-2 !border-[var(--md3-outlined)]  hover:z-[2] relative -mr-3 '}`} />
+                            iconClass={`${'top-0 border-[3px] !border-[var(--md3-primary-container)]  hover:z-[2] relative -mr-3 '}`} />
 
                         <AvatarStack avatarDatas={event.Participants} />
                     </div>
@@ -126,7 +126,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                             fill: event?.Igo,
                             title: event?.Igo ? "retirer de l'evenement" : "je participe"
                         }}
-                        size='medium'
+                        size='small'
                         disabled={event?.status === EventStatus.REJECTED || event?.isPast}
                         data-cy='btn-participate'
                         onClick={async () => {

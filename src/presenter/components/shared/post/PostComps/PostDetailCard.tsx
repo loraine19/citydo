@@ -12,6 +12,7 @@ import { CardLarge } from "../../base/baseComps/Cards";
 import { GroupLink } from "../../../common/GroupLink";
 import { Button } from "../../base/baseComps/Buttons";
 import { Link } from "react-router-dom";
+import { IconAnimate } from "../../../common/IconAnimate";
 
 export default function PostDetailCard(props: { post: PostView, mines?: boolean, change: (e: any) => void, expand: boolean, setExpand: (expand: boolean) => void }) {
     const [post, setPost] = useState<PostView>(props.post)
@@ -37,6 +38,10 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                         start={createdAt}
                         prefix="publié le " />
                 </CardLarge.Chips>
+                <IconAnimate
+                    active={post?.ILike}
+                    icon={'favorite'} />
+
             </img>}>
             <CardLarge.Chips className="justify-between">
 
@@ -68,7 +73,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
             <CardLarge.Media>
                 <Button
                     className="max-w-max"
-                    size='small'
+                    size='medium'
                     onClick={async () => { setPost(await toogleLike()) }}
                     variant={ILike ? "filled" : "tonal"}
                     color="rose"

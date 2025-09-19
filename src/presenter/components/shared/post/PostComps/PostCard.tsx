@@ -87,7 +87,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                         update={update} />}
 
                 <Button
-                    size='medium'
+                    size='small'
                     onClick={async () => { setPost(await toogleLike()) }}
                     variant={ILike ? "filled" : "tonal"}
                     color="rose"

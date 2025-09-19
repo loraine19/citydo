@@ -20,7 +20,7 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
     return (
 
         <Menu
-            className="lg:!right-[calc(50dvw-500px)] right-4 mt-4"
+            className="!mt-6 !ml-6"
             open={isOpen}
             setOpen={setIsOpen}
             blurBack

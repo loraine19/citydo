@@ -27,6 +27,7 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
 
             trigger={
                 <Icon
+                    reverse
                     color="cyan"
                     icon="calendar_add_on"
                     title={`ajouter a mon agenda  : ${title}`}

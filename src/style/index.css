@@ -55,6 +55,7 @@
 }
 
 html {
+    @apply md3-surface;
     font-size: 16px;
     @media (max-width: 1024px) {
         /* lg */
@@ -129,15 +130,15 @@ footer {
 }
 
 header {
-    @apply w-full  mx-auto px-2 relative wRespXL pt-[0.1rem];
+    @apply w-full  mx-auto px-2 relative wRespXL;
     width: 100%;
     margin: 0 auto;
     flex-shrink: 0;
-    z-index: 40 !important;
+    z-index: 1;
 }
 
 .sectionHeader {
-    @apply flex flex-col gap-2  wRespXL px-3 relative md3-primary-container;
+    @apply flex flex-col gap-2 px-3 relative md3-card-header wRespXL;
 }
 
 /* TEXT */

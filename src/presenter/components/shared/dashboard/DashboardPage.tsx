@@ -125,7 +125,7 @@ export default function DashboardPage() {
 
                 {/* NOTIF CARD  */}
                 <div className={`hidden lg:${notifClasse} grid-cols-1 h-full  lg:grid`}>
-                    <CardMD className="!flex md3-orange-container pt-2">
+                    <CardMD className="!flex  pt-2">
                         <CardMD.Subhead className="flex gap-2 items-center">
                             <div className="relative">
                                 <Icon
@@ -256,7 +256,7 @@ export default function DashboardPage() {
 
                 {/* CALENDARD CARD  */}
                 <div className={eventClasse}>
-                    <CardMD className=" min-h-full max-h-full w-full md3-cyan-container anim py-2">
+                    <CardMD className=" min-h-full max-h-full w-full  anim py-2">
 
                         <CalendarComp logo={true} />
                     </CardMD>

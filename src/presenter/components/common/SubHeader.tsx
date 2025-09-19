@@ -29,19 +29,15 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
     const navigate = useNavigate();
 
     return (
-        <div className={`flex flex-col relative border-t-0  `}>
-
-            {/* LINE DIV  */}
-            {!haveTitle &&
-                <hr className={`rounded-b-[2rem] z-[1] border-t-0 w-screen -ml-3  lg:-ml-[calc(50dvw-50%)] left-0 absolute pt-4 md3-primary-container -mt-2 
-               md3-elevation-3 `} />}
+        <div className={` flex-col relative  `}>
 
             {/* TYPE DIV  */}
 
             <div
                 style={{ transformOrigin: 'left' }}
                 className={`
-                    ${((!hideNavBottom || !navIcons)) ? `md3-fab-item-enter !py-1 ${!closeBtn ? '-ml-4' : '-ml-1'}` : ' md3-fab-item-leave'} ${closeBtn ? ' top-9 ' : 'top-9'} ${haveTitle ? ' !top-4 ' : ''}
+                    ${((!hideNavBottom || !navIcons)) ? `md3-fab-item-enter top-8
+                    ${!closeBtn ? '-ml-4' : '-ml-1'}` : ' md3-fab-item-leave'} 
                 
                 flex flex-1 h-full w-full px-[0rem] items-center absolute  z-[1]`}>
                 {closeBtn &&

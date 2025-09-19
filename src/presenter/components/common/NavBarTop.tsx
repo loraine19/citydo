@@ -55,88 +55,90 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
     return (
         <>
 
-            <header className={`${!onBoard && 'md3-primary-container'}`}>
+            <header className={`${!onBoard && 'md3-primary-container'}  `}>
                 {/* CONTAINER */}
-                <div id='navBarTop'
-                    className={`  pl-1 flex lg:px-0 slide h-full justify-between  gap-4
-                ${(hideNavBottom || title) ? ' !h-2  !bg-transparent' : '  !py-2.5'}`} >
-                    <div
-                        className={`flex duration-300 ease-in-out px-3 py-1 md3-button-primary md3-button-${'tonal'}  rounded-full
+                <div id='navBarTop' className={` pl-1 flex lg:px-0 slide  justify-between  gap-4
+                ${(hideNavBottom || title) ? ' !h-0' : ' h-full !pt-3 pb-1'}`} >
+                    <div className={`flex duration-300 ease-in-out
                     ${(hideNavBottom || title) ? ' md3-menu-leave ' : 'md3-menu-enter '}
                          ${!navIcons || navBottom ? ' w-full ' : ' w-max'}
-                         ${!navIcons ? 'pb-1.5 ' : ''}
+                         ${!navIcons ? ' ' : ''}
                          `}>
 
                         {/* PROFILE MENU  */}
-                        <Menu
-                            closeIcon={
-                                <Icon
-                                    icon="close"
-                                    bg style='self-start' color='slate' size="sm" />}
-                            className={`px-4 py-2 !z-[99999] -mt-6 -ml-1  `}
-                            blurBack
-                            placement="up-bottom-right"
-                            trigger={
-                                <div className={`${hideNavBottom ? '' : ''}  h-full justify-center max-w-max grid items-center !p-0`}>
-                                    <div >
-                                        <div className='flex w-[2rem] flex-1 items-center'>
-                                            <img className="!w-[2rem] !h-[2rem] object-cover object-center"
-                                                src="/image/logo.svg"
-                                                alt="logo"
-                                            />
+                        <div className={`px-3 py-1  md3-button-primary md3-button-${'tonal'}  rounded-full !min-w-max flex items-center md3-elevation-2 `}>
+                            <Menu
+                                closeIcon={
+                                    <Icon
+                                        icon="close"
+                                        bg style='self-start' color='slate' size="sm" />}
+                                className={`px-4 py-2 !z-[99999] -mt-6 -ml-1  `}
+                                blurBack
+                                placement="up-bottom-right"
+                                trigger={
+                                    <div className="flex items-center"> <div className={`${hideNavBottom ? '' : ''}  h-full justify-center max-w-max grid items-center !p-0`}>
+                                        <div >
+                                            <div className='flex w-[2rem] flex-1 items-center'>
+                                                <img className="!w-[2rem] !h-[2rem] object-cover object-center"
+                                                    src="/image/logo.svg"
+                                                    alt="logo"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>}>
-
-                            {/* USER ITEM */}
-                            <MenuItem
-                                bg
-                                onClick={() => navigate('/myprofile')}
-                                divider="top"
-                                leadingIcon={
-                                    <div>
-                                        <AvatarUser
-                                            style='!shadow-none'
-                                            avatarSize='md'
-                                            Profile={user?.Profile}
-                                        />
+                                        {(!hideNavBottom || !navIcons) &&
+                                            <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : ' w-full !flex-1 '}  items-center  flex h-full pb-1 px-2`}>
+                                                <h1 className={`drop-shadow-sm flex !font-quicksand !text-[1.5rem]  ${!navIcons ? 'pl-0 ' : ''} md3-text-slate font-[600]`}>
+                                                    City'do
+                                                </h1>
+                                            </div>}
                                     </div>}>
-                                <div className="flex flex-1 flex-col">
-                                    <span className="font-semibold ">
-                                        {user?.Profile?.firstName} {user?.Profile?.lastName}
-                                    </span>
-                                    <i className="text-xs text-slate-500">{user?.email}</i>
-                                </div>
-                            </MenuItem>
-                            {/* LIST ITEM */}
-                            {menuItems.map((item, index) => (
+
+                                {/* USER ITEM */}
                                 <MenuItem
                                     bg
-                                    className={item.style}
-                                    divider={item.divider as "top" | "bottom" | "both" | undefined}
-                                    key={index}
-                                    onClick={() => item.onClick && item.onClick()}
+                                    onClick={() => navigate('/myprofile')}
+                                    divider="top"
                                     leadingIcon={
-                                        <Icon
-                                            disabled={!item.onClick}
-                                            bg
-                                            fill
-                                            size='xl'
-                                            color={item.color ?? color}
-                                            icon={item.icon}
-                                        />}>
-                                    {item.text}
+                                        <div>
+                                            <AvatarUser
+                                                style='!shadow-none'
+                                                avatarSize='md'
+                                                Profile={user?.Profile}
+                                            />
+                                        </div>}>
+                                    <div className="flex flex-1 flex-col">
+                                        <span className="font-semibold ">
+                                            {user?.Profile?.firstName} {user?.Profile?.lastName}
+                                        </span>
+                                        <i className="text-xs text-slate-500">{user?.email}</i>
+                                    </div>
                                 </MenuItem>
-                            ))}
-                            {/* </MenuContent> */}
-                        </Menu>
-                        {(!hideNavBottom || !navIcons) &&
-                            <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : ' w-full !flex-1 -mr-2 lg:-mr-8'}  items-center  flex h-full  pl-2`}>
-                                <h1 className={`drop-shadow-sm flex !font-quicksand !text-[1.5rem]  ${!navIcons ? 'pl-0 ' : ''} md3-text-slate font-[600]`}>
-                                    City'do
-                                </h1>
-                            </div>}
+                                {/* LIST ITEM */}
+                                {menuItems.map((item, index) => (
+                                    <MenuItem
+                                        bg
+                                        className={item.style}
+                                        divider={item.divider as "top" | "bottom" | "both" | undefined}
+                                        key={index}
+                                        onClick={() => item.onClick && item.onClick()}
+                                        leadingIcon={
+                                            <Icon
+                                                disabled={!item.onClick}
+                                                bg
+                                                fill
+                                                size='lg'
+                                                color={item.color ?? color}
+                                                icon={item.icon}
+                                            />}>
+                                        {item.text}
+                                    </MenuItem>
+                                ))}
+                                {/* </MenuContent> */}
+                            </Menu>
 
+
+                        </div>
                     </div>
 
                     {/* INSERTION NAVLINK TOP  */}

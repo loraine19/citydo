@@ -43,7 +43,7 @@ export const Menu: React.FC<MenuProps> = ({
 
     useEffect(() => {
         if (menuRefAuto.current) {
-            const refDiv = document.getElementById('refDiv');
+            const refDiv = document.getElementById('root');
             const blurDiv = document.getElementById('blurDiv');
             if (refDiv && ref) {
                 refDiv.appendChild(menuRefAuto.current);
@@ -216,7 +216,7 @@ export const Menu: React.FC<MenuProps> = ({
                     }
                 )}
 
-                {<div data-md3
+                {visible && <div data-md3
                     key={key}
                     ref={menuRef || menuRefAuto}
                     style={{

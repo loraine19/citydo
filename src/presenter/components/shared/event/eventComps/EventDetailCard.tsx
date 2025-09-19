@@ -48,7 +48,7 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
 
                 className="!relative !z-[999]">
                 <div
-                    className="md3-card-chips w-full -mt-2">
+                    className="md3-card-chips w-full ">
                     <Chip
                         value={label}
                         color='cyan'>

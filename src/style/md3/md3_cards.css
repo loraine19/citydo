@@ -230,6 +230,11 @@
     gap: var(--md3-spacing-small);
 }
 
+.md3-card-header {
+    @apply md3-primary-container rounded-b-[1.8rem] z-[2];
+    box-shadow: var(--md3-shadow-elevation-4);
+}
+
 /*** STYLES ***/
 
 .md3-card-elevated {
