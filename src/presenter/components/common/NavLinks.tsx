@@ -93,7 +93,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                     onValueChange={(value) => setNavValue(value)}
                     className={` 
                     ${navBottom ?
-                            ' rounded-t-[1.8rem] p-2.5 !flex-1 md3-elevation-2 !max-w-full justify-between bg-gradient-to-t from-transparent to-[1rem] to-white border' :
+                            ' rounded-t-[1.8rem] p-2.5 !flex-1 md3-elevation-2 !max-w-full !border-b-0 justify-between bg-gradient-to-t from-transparent to-[1rem] to-white border' :
                             ` !shadow-none w-full md3-elevation-0 justify-around pb-2 md:pb-0  md:px-2`}
                     items-center overflow-x-auto  overflow-y-hidden flex h-full w-full `}>
 
