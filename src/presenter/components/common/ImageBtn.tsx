@@ -25,9 +25,9 @@ export const ImageBtn = (props: { formik: any; setImgBlob: any; imgDef?: string;
     const { color } = useUxStore((state) => state);
 
     return (
-        <div className={`absolute -mb-1 pb-2 pl-1 z-30 ${className}`}>
+        <div className={`absolute -mb-1 pb-2 pl-1 ${className}`}>
             <Button
-                variant="tonal"
+                variant={formik?.values?.image ? "tonal" : "filled"}
                 size="medium"
                 color={color as any}
                 type="button">

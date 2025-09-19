@@ -36,7 +36,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
             {options.map((option) => (
                 <div
                     key={option.value}
-                    className={`${option.color ?? color}Style inputDiv !pr-2 flex items-center flex-1 gap-2`}
+                    className={`md3-button-${option.color ?? color} md3-button-tonal rounded-full px-5 !pr-2 flex items-center flex-1 gap-2`}
                 >
                     <div className="relative flex items-center justify-center  h-7 w-7">
                         <Icon

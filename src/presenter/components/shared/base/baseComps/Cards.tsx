@@ -171,6 +171,7 @@ interface CardLargeProps extends Omit<CardMDProps, "imagePosition"> {
     sheetClassName?: string;
     expanded: boolean;
     setExpanded: (expanded: boolean) => void;
+    form?: boolean;
 }
 
 // CardLarge: Composed like CardMD but with a large image and a content sheet, supports all CardMD subcomponents
@@ -185,6 +186,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
     Chips: typeof CardChips;
     MidSection: typeof CardMidSection;
     expanded?: boolean;
+    form?: boolean;
     setExpanded?: (expanded: boolean) => void;
 } = ({
     variant = "outlined",
@@ -197,6 +199,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
     sheetClassName,
     expanded,
     setExpanded,
+    form,
     ...props
 }) => {
 
@@ -205,19 +208,41 @@ export const CardLarge: React.FC<CardLargeProps> & {
         const [largeContent, setLargeContent] = useState<boolean>(false);
 
         useEffect(() => {
-            if (divRef.current) {
-                setLargeContent(
-                    divRef.current.clientHeight !== divRef.current.scrollHeight
-                );
+            const checkContent = () => {
+                if (divRef.current) {
+                    setLargeContent(
+                        divRef.current.clientHeight !== divRef.current.scrollHeight
+                    );
+                }
+            };
+
+            checkContent();
+            // Use ResizeObserver to detect divRef size/content changes instead of window resize
+            let observer: ResizeObserver | null = null;
+            if (divRef.current && "ResizeObserver" in window && form) {
+                observer = new ResizeObserver(() => {
+                    checkContent();
+                    // Expand if content is larger than container on content resize
+
+                });
+                observer.observe(divRef.current);
+                if (!expanded) {
+                    setExpanded(divRef.current.clientHeight !== divRef.current.scrollHeight);
+                };
             }
-        }, [divRef]);
+
+            // Cleanup
+            return () => {
+                if (observer) observer.disconnect();
+            };
+        }, [divRef, children, form]);
 
         // Extract image props if image is a React element
         const imageProps = (image as any)?.props || {};
 
         // Card classes
         const cardClasses = `md3-card-large  !min-h-fit md3-card-${variant} ${className || ""}`;
-        const [keepHandle, setKeepHandle] = useState(false);
+        const [keepHandle, setKeepHandle] = useState(form ? true : false);
         return (
             <div
                 className={`${cardClasses}  !border-none relative min-h-full flex flex-1 overflow-hidden`} data-md3-card
@@ -243,34 +268,33 @@ export const CardLarge: React.FC<CardLargeProps> & {
                 {/* Pull handle and expandable content */}
                 <div id='sheet'
                     ref={divRef}
-
                     className={` md3-card-large-sheet md3-card-${variant}  ${sheetClassName || ""}
-                        ${imageProps.src ? `
+
+                       
+                        ${(imageProps.src) ? `
                             ${(!expanded) ?
                                 " animSheetRev max-h-[60%] lg:max-h-[55%]  overflow-hidden " :
                                 "  max-h-[calc(100%-4rem)] h-fit overflow-auto animSheet "}
                             `
-                            : "!h-full"}
+                            : `h-full `}
                             `}>
 
-                    {/* Pull handle */}
-
-
                     <div className="md3-card-large-sheet-handle">
-                        {((keepHandle || largeContent) && imageProps.src) && <button
-                            className="md3-card-large-sheet-handle-button "
-                            onClick={() => {
-                                setExpanded(!expanded);
-                                setKeepHandle(true);
+                        {((keepHandle || largeContent) && imageProps.src) &&
+                            <button
+                                className="md3-card-large-sheet-handle-button "
+                                onClick={() => {
+                                    setExpanded(!expanded);
+                                    setKeepHandle(true);
 
-                            }}
-                            tabIndex={0}
-                            aria-label="Expand card content" />}
+                                }}
+                                tabIndex={0}
+                                aria-label="Expand card content" />}
 
                     </div>
                     {/* Expandable content */}
-                    <div className={`md3-sheet-content `}  >
-
+                    <div
+                        className={`md3-sheet-content`}  >
                         {children}
                     </div>
                 </div>

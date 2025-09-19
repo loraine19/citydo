@@ -79,34 +79,33 @@ export const Menu: React.FC<MenuProps> = ({
             const spaceRight = viewportWidth - triggerRect.right;
             const spaceLeft = triggerRect.left;
 
-            if (placement === 'top-left'
-                || (placement === 'auto' && (spaceLeft >= menuWidth
-                    && (spaceAbove >= menuHeight) && spaceAbove >= 250))
-            ) {
+            if ((placement === 'top-left'
+                || placement === 'auto') && (spaceLeft >= menuWidth
+                    && (spaceAbove >= menuHeight) && spaceAbove >= 250)) {
                 style.position = 'fixed';
                 style.top = `${(triggerRect.top - menuHeight) > 50 ? (triggerRect.top - menuHeight) : 50}px`;
                 style.left = `${triggerRect.left - menuWidth}px`;
                 style.transformOrigin = `bottom`
             }
-            else if (placement === 'top-right'
-                || (placement === 'auto' && (spaceRight >= menuWidth
-                    && (spaceAbove >= menuHeight) && spaceAbove >= 250))
+            else if ((placement === 'top-right'
+                || placement === 'auto') && (spaceRight >= menuWidth
+                    && (spaceAbove >= menuHeight) && spaceAbove >= 250)
             ) {
                 style.position = 'fixed';
                 style.top = `${(triggerRect.top - menuHeight) > 50 ? (triggerRect.top - menuHeight) : 50}px`;
                 style.left = `${triggerRect.left}px`;
                 style.transformOrigin = `bottom`;
             }
-            else if (placement === 'bottom-left'
-                || (placement === 'auto' && (spaceLeft >= menuWidth && spaceBelow >= menuHeight))
-            ) {
+            else if ((placement === 'bottom-left'
+                || placement === 'auto')
+                && (spaceLeft >= menuWidth && spaceBelow >= menuHeight)) {
                 style.position = 'fixed';
                 style.top = `${triggerRect.bottom}px`;
                 style.left = `${triggerRect.left - menuWidth}px`;
                 style.transformOrigin = `top`
             }
-            else if (placement === 'bottom-right'
-                || (placement === 'auto' && (spaceRight >= menuWidth && spaceBelow >= menuHeight))
+            else if ((placement === 'bottom-right' || placement === 'auto')
+                && (spaceRight >= menuWidth && spaceBelow >= menuHeight)
             ) {
                 style.position = 'fixed';
                 style.top = `${triggerRect.bottom}px`;

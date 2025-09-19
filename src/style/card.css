@@ -156,7 +156,7 @@
     }
 
     .hideCTAForm {
-        @apply min-h-fit max-h-[calc(100dvh_-_12rem)] 
+        @apply min-h-fit pt-4 max-h-[calc(100dvh_-_12rem)] 
         lg:max-h-[calc(100dvh_-_11rem)]
         grid-rows-[minmax(calc(100dvh-16rem),calc(100dvh-14rem))]
        lg:grid-rows-[minmax(calc(100dvh-12rem),calc(100dvh-11rem))];

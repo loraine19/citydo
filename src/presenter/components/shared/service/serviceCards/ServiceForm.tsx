@@ -1,4 +1,4 @@
-import { Card, CardHeader, Typography, CardBody, Input, Textarea } from "@material-tailwind/react";
+import { Input, Textarea } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import SubHeader from "../../../common/SubHeader";
 import { Profile } from "../../../../../domain/entities/Profile";
@@ -14,12 +14,13 @@ import Chip from "../../../common/adaptatersComps/Chip";
 import { RadioGroup } from "../../../common/adaptatersComps/RadioGroup";
 import { Select } from "../../../common/adaptatersComps/Select";
 import CTAMines from "../../../common/CTA";
+import { CardLarge } from "../../base/baseComps/Cards";
+import { ServiceCategory } from "../../../../../domain/entities/Service";
 
 export function ServiceForm(props: { formik: any }) {
     const { formik } = props;
     const { user } = useUserStore();
 
-    // DEBUT LOGIQUE CALCUL POUR CHAMPS POINTS ds form
     const [points, setPoints] = useState<string>(formik.values.points?.join(' à ') || '0 à 1');
 
     useEffect(() => {
@@ -28,13 +29,11 @@ export function ServiceForm(props: { formik: any }) {
         setPoints(updatedValues?.points?.join(' à ') || '0 à 1');
     }, [formik.values.hard, formik.values.skill, formik.values.type]);
 
-
     const userProfile: Profile = user.Profile;
-    const start = formik.values.createdAt || new Date()
-    const haveImage = formik.values.image ? true : false;
+    const start = formik.values.createdAt || new Date();
     const [imgBlob, setImgBlob] = useState<string | undefined>(formik.values.image);
     const [groupId, setGroupId] = useState<string | undefined>(formik.values.groupId);
-
+    const [expand, setExpand] = useState<boolean>(false);
 
     return (
         <form
@@ -42,13 +41,8 @@ export function ServiceForm(props: { formik: any }) {
             className="flex flex-col h-full overflow-hidden">
             <main>
                 <div className="sectionHeader">
-                    <SubHeader
-                        form
-                        type={formik.values.id ? `Modifier votre service ` : "Créer votre service "}
-                        place={formik.values.title}
-                        closeBtn
-                    />
-                    <div className="w-respLarge flex flex-col grid-cols-[55%_auto] lg:grid grid-rows-1  gap-2 py-3">
+
+                    <div className=" flex flex-col grid-cols-[55%_auto] lg:grid grid-rows-1  gap-2 py-3">
                         <div className="flex gap-2 flex-1 w-full ">
                             <RadioGroup
                                 name={"type"}
@@ -78,114 +72,112 @@ export function ServiceForm(props: { formik: any }) {
                             user={user}
                             disabled={formik.values.statusValue > 0} />
                     </div>
+                    <SubHeader
+                        form
+                        type={formik.values.id ? `Modifier votre service ` : "Créer votre service " + '/ ' + formik.values.typeS}
+                        place={ServiceCategory[formik.values.category as keyof typeof ServiceCategory] || ''}
+                        closeBtn
+                    />
                 </div>
                 <section>
-                    <div className={`FormCardDiv !pb-8 `}>
-                        <Card className={`${haveImage ? "FormDetailGrid " : "FixCardNoImage "} `}>
-                            <CardHeader className={haveImage ?
-                                "FixCardHeader" :
-                                "FixCardHeaderNoImage pt-16 pb-0"} >
-                                <ImageBtn
-                                    className="!absolute z-40 !h-max !left-3  top-3"
-                                    formik={formik}
-                                    setImgBlob={setImgBlob} />
-                                <img
-                                    onError={(e) => e.currentTarget.src = '/images/placeholder.jpg'}
-                                    src={imgBlob || formik.values.image || null}
+                    <div className="DetailCardDiv hideCTAForm">
+                        <CardLarge
+                            form
+                            expanded={expand}
+                            setExpanded={setExpand}
+                            image={
+                                <CardLarge.Image
+                                    className="md3-rose-container"
+                                    src={imgBlob || formik.values.image || undefined}
                                     alt={formik.values.title || 'image'}
-                                    width={100}
-                                    height={100}
-                                    className={haveImage ? "CardImage" : "hidden"}
                                 />
-                                <div className={`${start ? 'ChipDiv !justify-end top-3 right-3' : 'invisible'}`}>
-                                    <DateChip
-                                        prefix="publié le"
-                                        start={start} />
-                                </div>
-
-                            </CardHeader>
-                            <CardBody className='FixCardBody '>
-                                <div className='py-2 h-full -mt-2 '>
-                                    <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
-                                        placeholder={"Titre"}
-                                        name="title"
-                                        onChange={formik.handleChange}
-                                        value={formik.values.title}
-                                    />
-                                    <InputError mt error={formik.errors.title} />
-                                    <div className='flex flex-col h-max gap-5 pt-2 min-h-max '>
-                                        <div className=' relative flex flex-col flex-1 '>
-                                            <Textarea
-                                                rows={3}
-                                                aria-rowcount={3}
-                                                isError={!!formik.errors.description}
-                                                className={`inputStandart max-h-fit min-h-full`}
-                                                placeholder='Description'
-                                                resize={true}
-                                                name="description"
-                                                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                                                    formik.handleChange(e);
-                                                    const textarea = e.target as HTMLTextAreaElement;
-                                                    textarea.style.height = 'fit-content';
-
-                                                    textarea.style.height = textarea.scrollHeight + 'px';
-                                                }}
-                                                defaultValue={formik.values?.description}
+                            }
+                        >
+                            <CardLarge.Chips className="justify-between px-2 pt-1">
+                                <ImageBtn
+                                    className="!relative -mt-1 mb-2 ml-2"
+                                    formik={formik}
+                                    setImgBlob={setImgBlob}
+                                />
+                                <DateChip
+                                    prefix="publié le"
+                                    start={start}
+                                />
+                            </CardLarge.Chips>
+                            <CardLarge.Headline>
+                                <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
+                                    placeholder={"Titre"}
+                                    name="title"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.title}
+                                />
+                                <InputError mt error={formik.errors.title} />
+                            </CardLarge.Headline>
+                            <CardLarge.SupportingText>
+                                <Textarea
+                                    rows={3}
+                                    aria-rowcount={3}
+                                    isError={!!formik.errors.description}
+                                    className={`inputStandart max-h-fit min-h-full`}
+                                    placeholder='Description'
+                                    resize={true}
+                                    name="description"
+                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                                        formik.handleChange(e);
+                                        const textarea = e.target as HTMLTextAreaElement;
+                                        textarea.style.height = 'fit-content';
+                                        textarea.style.height = textarea.scrollHeight + 'px';
+                                    }}
+                                    defaultValue={formik.values?.description}
+                                />
+                                <InputError mt error={formik.errors.description} />
+                            </CardLarge.SupportingText>
+                            <CardLarge.Media className="flex flex-col py-3 mt-4 h-max">
+                                <span className="md3-card-supporting-text !pl-0">Difficulté du service: </span>
+                                <div className="flex  flex-col flex-1 h-full gap-y-6 md:flex-row justify-between">
+                                    <div className="flex border  rounded-3xl  p-3 gap-[5vw]">
+                                        <div>
+                                            <Select
+                                                simple
+                                                name={'skill'}
+                                                formik={formik}
+                                                value={formik.values.skill?.toString()}
+                                                options={skillLevels}
+                                                placeholder="Compétence"
                                             />
-                                            <InputError mt error={formik.errors.description} />
+                                        </div>
+                                        <div>
+                                            <Select
+                                                placeholder="Pénibilité"
+                                                simple
+                                                name={'hard'}
+                                                formik={formik}
+                                                value={formik.values.hard?.toString()}
+                                                options={hardLevels} />
                                         </div>
                                     </div>
-                                    <div className="flex flex-col justify-center py-3 mt-4 h-max ">
-                                        <Typography className='text-xs'>Difficulté du service: </Typography>
-                                        <div className="flex flex-col flex-1 h-full gap-y-6 md:flex-row justify-between">
-                                            <div className="flex gap-[5vw]">
-                                                <div>
-                                                    <Select
-                                                        simple
-                                                        name={'skill'}
-                                                        formik={formik}
-                                                        value={formik.values.skill?.toString()}
-                                                        options={skillLevels}
-                                                        placeholder="Compétence"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <Select
-                                                        placeholder="Pénibilité"
-                                                        simple
-                                                        name={'hard'}
-                                                        formik={formik}
-                                                        value={formik.values.hard?.toString()}
-                                                        options={hardLevels} />
-                                                </div>
-
-                                            </div>
-                                            <div className=" pr-4">
-                                                <Typography className='text-xs pb-2'>Points </Typography>
-                                                <Chip
-                                                    value={`${points} pts`}
-                                                    className="grayChip -mr-2 "
-                                                    icon={
-                                                        <Icon
-                                                            color={formik.values.type === "do" ?
-                                                                "green" : "orange"}
-                                                            icon="toll"
-                                                            size="sm"
-                                                            style=" ml-0.5"
-                                                            fill={userProfile?.points > parseInt(points[0])}
-                                                        />}
-                                                />
-
-                                            </div>
-                                        </div>
+                                    <div className="pr-4 h-full flex  flex-col  justify-between gap-2">
+                                        <span className="md3-card-supporting-text">Points </span>
+                                        <Chip
+                                            size='medium'
+                                            value={`${points} pts`}
+                                            icon={
+                                                <Icon
+                                                    color={formik.values.type === "do" ?
+                                                        "green" : "orange"}
+                                                    icon="toll"
+                                                    size="sm"
+                                                    style=" ml-0.5"
+                                                    fill={userProfile?.points > parseInt(points[0])}
+                                                />}
+                                        />
                                     </div>
                                 </div>
-                            </CardBody>
-                        </Card>
+                            </CardLarge.Media>
+                        </CardLarge>
                     </div>
                 </section>
-            </main >
-
+            </main>
             <CTAMines
                 actions={[
                     {
@@ -196,6 +188,6 @@ export function ServiceForm(props: { formik: any }) {
                         function: () => { }
                     }
                 ]} />
-        </form >
-    )
+        </form>
+    );
 }
