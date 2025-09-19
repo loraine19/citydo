@@ -84,7 +84,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `anim wRespXLMargin px-0   justify-between   ` :
+                    `anim wRespXLMargin px-0.5 ` :
                     ' -mt-1.5   ') +
                 ` flex items-center w-full `
             }>
@@ -93,7 +93,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                     onValueChange={(value) => setNavValue(value)}
                     className={` 
                     ${navBottom ?
-                            ' rounded-t-[1.8rem] p-2.5 !flex-1 md3-elevation-2 !max-w-full !border-b-0 justify-between bg-gradient-to-t from-transparent to-[1rem] to-white border' :
+                            ' rounded-t-[1.5rem] p-2 !flex-1 md3-elevation-4 !max-w-full !border-b-0 justify-between bg-slate-50 border' :
                             ` !shadow-none w-full md3-elevation-0 justify-around pb-2 md:pb-0  md:px-2`}
                     items-center overflow-x-auto  overflow-y-hidden flex h-full w-full `}>
 
@@ -156,7 +156,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                         mainProps={{
                             className: ` rounded-[5rem]  `,
                             size: 'large',
-                            icon: { icon: openFab ? 'close' : 'edit', size: '2xl' },
+                            icon: { icon: openFab ? 'close' : 'add', size: '2xl' },
                             color: color as Md3Colors ?? 'slate'
                         }}
                         placement={'top'}

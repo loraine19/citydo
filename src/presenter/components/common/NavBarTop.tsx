@@ -44,22 +44,14 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
     return (
         <>
-            {/* SEPARATOR */}
-            {hideNavBottom &&
-                <div className="w-full hidden ">
-                    <hr className={` !border-${color}-500 border-t-0 !border-b-[1px] opacity-75 `}
-                    />
-                </div>}
-            <header>
 
-
-
+            <header className={`${!onBoard && 'bg-[var(--md3-primary-container)]'}`}>
                 {/* CONTAINER */}
                 <div id='navBarTop'
-                    className={`pl-2 flex lg:px-0 slide h-full justify-between  
-                ${(hideNavBottom || title) ? ' !h-2  !bg-transparent' : '  !py-3'}`} >
+                    className={`  pl-1 flex lg:px-0 slide h-full justify-between  gap-4
+                ${(hideNavBottom || title) ? ' !h-2  !bg-transparent' : '  !py-2.5'}`} >
                     <div
-                        className={`flex duration-300 ease-in-out 
+                        className={`flex duration-300 ease-in-out px-3 py-1 md3-button-${'tonal'}  rounded-full
                     ${(hideNavBottom || title) ? ' md3-menu-leave ' : 'md3-menu-enter '}
                          ${!navIcons || navBottom ? ' w-full ' : ' w-max'}
                          ${!navIcons ? 'pb-1.5 ' : ''}
@@ -77,9 +69,8 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                             trigger={
                                 <div className={`${hideNavBottom ? '' : ''}  h-full justify-center max-w-max grid items-center !p-0`}>
                                     <div >
-                                        <div className='flex w-[2.5rem] flex-1 items-center'>
-                                            <img
-                                                className="!w-[2.5rem] !h-[2.5rem] object-cover object-center"
+                                        <div className='flex w-[2rem] flex-1 items-center'>
+                                            <img className="!w-[2rem] !h-[2rem] object-cover object-center"
                                                 src="/image/logo.svg"
                                                 alt="logo"
                                             />
@@ -89,11 +80,8 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
                             {/* USER ITEM */}
                             <MenuItem
-
                                 bg
-                                onClick={() => {
-                                    navigate('/myprofile')
-                                }}
+                                onClick={() => navigate('/myprofile')}
                                 divider="top"
                                 leadingIcon={
                                     <div>
@@ -116,10 +104,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                                     bg
                                     divider={item.divider as "top" | "bottom" | "both" | undefined}
                                     key={index}
-                                    onClick={() => {
-                                        item.onClick && item.onClick();
-
-                                    }}
+                                    onClick={() => item.onClick && item.onClick()}
                                     leadingIcon={
                                         <Icon
                                             disabled={!item.onClick}
@@ -136,7 +121,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                         </Menu>
                         {(!hideNavBottom || !navIcons) &&
                             <div className={`${(!navBottom && navIcons) ? 'hidden lg:flex' : ' w-full !flex-1 -mr-2 lg:-mr-8'}  items-center  flex h-full  pl-2`}>
-                                <h1 className={`drop-shadow-sm flex !font-quicksand !text-[1.8rem]  ${!navIcons ? 'pl-0 ' : ''} md3-text-slate font-[600] pb-0.5 -ml-1`}>
+                                <h1 className={`drop-shadow-sm flex !font-quicksand !text-[1.5rem]  ${!navIcons ? 'pl-0 ' : ''} md3-text-slate font-[600]`}>
                                     City'do
                                 </h1>
                             </div>}

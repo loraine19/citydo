@@ -1,10 +1,10 @@
 /* Cartes */
 .md3-card {
-    @apply border border-black/10;
+    @apply border border-black/5;
     font-family: montserrat, sans-serif;
     border-radius: var(--md3-radius-large);
     transition: box-shadow 0.2s, background-color 0.2s;
-    background-color: var(--md3-surface);
+    background-color: var(--md3-primary-container);
     display: flex;
     flex-direction: column;
     min-height: fit-content;
@@ -29,7 +29,6 @@
 
 .md3-card-image-container {
     border-radius: var(--md3-radius-large);
-    outline: 1px solid #00000025;
     height: 100%;
     width: 100%;
     align-items: center;
@@ -37,10 +36,11 @@
     position: relative;
     display: flex;
     overflow: hidden;
+    box-shadow: var(--md3-shadow-elevation-1);
 }
 .md3-card-image {
     position: absolute;
-    filter: grayscale(20%);
+    filter: grayscale(25%);
     top: 0;
     left: 0;
     width: 100%;
@@ -142,6 +142,7 @@
 /*** LARGER CARDS ***/
 .md3-card-large {
     @apply flex flex-col w-respLarge;
+    background-color: var(--md3-on-primary-container);
     border-radius: var(--md3-radius-large);
     box-shadow: var(--md3-shadow-elevation-4);
     transition: box-shadow 0.2s, background-color 0.2s;
@@ -234,13 +235,13 @@
 /*** STYLES ***/
 
 .md3-card-elevated {
-    background-color: var(--md3-surface);
-    box-shadow: var(--md3-shadow-elevation-2);
+    background-color: var(--md3-primary-container);
+    box-shadow: var(--md3-shadow-elevation-3);
 }
 
 .md3-card-elevated:hover,
 .md3-card-elevated:focus {
-    box-shadow: var(--md3-shadow-elevation-3);
+    box-shadow: var(--md3-shadow-elevation-4);
 }
 
 .md3-card-filled {
@@ -249,7 +250,7 @@
 }
 
 .md3-card-outlined {
-    background-color: var(--md3-surface);
+    background-color: var(--md3-primary-container);
     border: 1px solid var(--md3-outline);
 }
 

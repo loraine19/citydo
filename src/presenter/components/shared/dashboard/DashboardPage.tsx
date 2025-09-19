@@ -81,8 +81,7 @@ export default function DashboardPage() {
 
     return (
         <main
-            className={` lg:!-mt-0 !overflow-hidden bg-gradient-to-t from-slate-50
-               via-slate-200  to-slate-50  wRespXL
+            className={` lg:!-mt-0 !overflow-hidden  wRespXL
             ${navBottom ? ' !max-h-[calc(100dvh_-_8rem)] lg:!max-h-[calc(100dvh_-_8rem)] ' :
                     ' !max-h-[calc(100dvh_-_3.5rem)] lg:!max-h-[calc(100dvh_-_2rem)] '} `}
             data-cy="dashboard-body" >
