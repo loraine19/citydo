@@ -140,8 +140,8 @@
     }
     /* 1CTA 11REM */
     .hideCTA {
-        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_8rem)]
-        grid-rows-[minmax(calc(100dvh-8rem),calc(100dvh-8rem))];
+        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_5.5rem)]
+        grid-rows-[minmax(calc(100dvh-5.5rem),calc(100dvh-5.5rem))];
     }
 
     .expandedCardDiv {
@@ -151,8 +151,8 @@
 
     .hideCTA2 {
         @apply hideCTA;
-        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_9rem)]
-        grid-rows-[minmax(calc(100dvh-9rem),calc(100dvh-9rem))];
+        @apply mb-[3rem] min-h-fit max-h-[calc(100dvh_-_5.5rem)]
+        grid-rows-[minmax(calc(100dvh-5.5rem),calc(100dvh-5.5rem))];
     }
 
     .hideCTAForm {

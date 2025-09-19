@@ -91,7 +91,7 @@ function App() {
 
                                 {/* Pages with top navigation */}
                                 <Route element={<WithTopNavPages />}>
-                                    <Route path="/chat" element={<ChatPage />} />
+
                                     <Route path="/service/create" element={<ServiceCreatePage />} />
                                     <Route path="/service/edit/:id" element={<ServiceEditPage />} />
                                     <Route path="/conciliation/edit/:id" element={<IssueEditPage />} />
@@ -113,7 +113,7 @@ function App() {
 
                                 <Route element={<WithTopNavPages title />}>
                                     {/* DETAILS PAGES */}
-
+                                    <Route path="/chat" element={<ChatPage />} />
                                     <Route path="/notification" element={<NotificationPage />} />
                                     <Route path="/service/:id" element={<ServiceDetailPage />} />
                                     <Route path="/cagnotte/:id" element={<PoolDetailPage />} />

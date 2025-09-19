@@ -9,6 +9,7 @@ import Chip from "../../../common/adaptatersComps/Chip";
 import { MoreButton } from "../../../common/moreBtn";
 import { CardLarge } from "../../base/baseComps/Cards";
 import { GroupLink } from "../../../common/GroupLink";
+import { Md3Colors } from "../../base/baseComps/Buttons";
 
 export default function ServiceDetailComp(props: { service: ServiceView, mines?: boolean, expanded: boolean, setExpanded: (e: boolean) => void }) {
     const { service, expanded, setExpanded } = props
@@ -67,8 +68,9 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                         color={typeS === ServiceType.GET ? "orange" : "green"}>
                     </Chip>
                     <button onClick={() => { statusS === ServiceStep.STEP_4 && navigate(`/conciliation/${id}`) }}>
-                        <Chip value={statusS}
-                            className={`${statusValues(statusS as ServiceStep).color} shadow rounded-full h-max flex items-center gap-2 font-medium `}>
+                        <Chip
+                            value={statusS}
+                            color={statusValues(statusS as ServiceStep).color as Md3Colors}>
                         </Chip>
                     </button>
                 </div>

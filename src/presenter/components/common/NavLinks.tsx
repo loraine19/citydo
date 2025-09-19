@@ -84,7 +84,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 (navBottom ?
-                    `anim wRespXLMargin px-2  pb-2.5 md:pb-4 justify-between   ` :
+                    `anim wRespXLMargin px-0   justify-between   ` :
                     ' -mt-1.5   ') +
                 ` flex items-center w-full `
             }>
@@ -93,7 +93,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                     onValueChange={(value) => setNavValue(value)}
                     className={` 
                     ${navBottom ?
-                            ' rounded-full !flex-1 md3-elevation-2 !max-w-full p-0 justify-between bg-white border' :
+                            ' rounded-t-[1.8rem] p-2.5 !flex-1 md3-elevation-2 !max-w-full justify-between bg-gradient-to-t from-transparent to-[1rem] to-white border' :
                             ` !shadow-none w-full md3-elevation-0 justify-around pb-2 md:pb-0  md:px-2`}
                     items-center overflow-x-auto  overflow-y-hidden flex h-full w-full `}>
 
@@ -103,11 +103,11 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                         return (
 
                             <NavigationBarItem
-                                row={navBottom}
+                                row={!navBottom}
                                 className={`md3-text-${color} 
-                                    ${navBottom ? 'md:px-12 h-[64px]   md:w-max' : ' !rounded-none !p-0'}
+                                    ${navBottom ? 'md:px-12  md:w-max ' : ' !rounded-none !p-0'}
                                     ${navBottom ? active ?
-                                        `md3-${color}-container md3-elevation-1 animSlide w-[64px] border border-black/5 `
+                                        `md3-${color}-container md3-elevation-0 animSlide  border-[1px] border-black/5 `
                                         : ` max-w-[50px] sm:max-w-maw last:mr-[2vw] first:ml-[2vw]` : ``}
                                     
                                         `}
@@ -128,10 +128,10 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                 label={
                                     <span className={`hidden md:block
                                             ${navBottom ?
-                                            ' md:!text-[0.9rem] ' :
-                                            ' md:!text-[0.8rem] pb-[4px] '
+                                            ' text-[0.7rem] md:!text-[0.9rem] ' :
+                                            ' !text-[0.8rem] pb-[4px] '
                                         } 
-                                            ${active ? 'underline underline-offset-[6px] ' : ''} `}>
+                                            ${active && !navBottom ? 'underline underline-offset-[6px] ' : ''} `}>
                                         {label}
                                     </span>}
                                 value={label}
@@ -154,7 +154,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                             'bottom-[calc(100%_+_1rem)] fixed right-2' :
                             'fixed bottom-[1rem] right-2 lg:mr-[calc(50dvw-550px)]'}`}
                         mainProps={{
-                            className: ` rounded-full  `,
+                            className: ` rounded-[5rem]  `,
                             size: 'large',
                             icon: { icon: openFab ? 'close' : 'edit', size: '2xl' },
                             color: color as Md3Colors ?? 'slate'

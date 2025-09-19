@@ -46,7 +46,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
         <>
             {/* SEPARATOR */}
             {hideNavBottom &&
-                <div className="w-full ">
+                <div className="w-full hidden ">
                     <hr className={` !border-${color}-500 border-t-0 !border-b-[1px] opacity-75 `}
                     />
                 </div>}
@@ -57,10 +57,10 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                 {/* CONTAINER */}
                 <div id='navBarTop'
                     className={`pl-2 flex lg:px-0 slide h-full justify-between  
-                ${hideNavBottom ? '!h-3  ' : '  !py-3'}`} >
+                ${(hideNavBottom || title) ? ' !h-2  !bg-transparent' : '  !py-3'}`} >
                     <div
                         className={`flex duration-300 ease-in-out 
-                    ${hideNavBottom ? ' md3-menu-leave ' : 'md3-menu-enter '}
+                    ${(hideNavBottom || title) ? ' md3-menu-leave ' : 'md3-menu-enter '}
                          ${!navIcons || navBottom ? ' w-full ' : ' w-max'}
                          ${!navIcons ? 'pb-1.5 ' : ''}
                          `}>
@@ -154,7 +154,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
                     {/* NOTIF BAGDES  */}
                     <div className={`justify-end items-center flex h-full  
-                    ${hideNavBottom ? 'hidden' : ''} 
+                    ${hideNavBottom || title ? 'hidden' : ''} 
                     ${navBottom ? ' w-max' : ''}`} >
                         <NotifBadge />
                     </div>

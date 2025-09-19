@@ -29,18 +29,19 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
     const navigate = useNavigate();
 
     return (
-        <div className={`flex flex-col relative border-t-0 `}>
+        <div className={`flex flex-col relative border-t-0  `}>
 
             {/* LINE DIV  */}
-            <hr className={` z-[1] border-t-0 w-screen -ml-3  lg:-ml-[calc(50dvw-50%)] left-0 absolute pt-2 bg-slate-50 -mt-1 
-               ${!hideNavBottom || !navIcons ? 'md3-elevation-1' : 'md3-elevation-2'}  `} />
+            {!haveTitle &&
+                <hr className={`rounded-b-[2rem] z-[1] border-t-0 w-screen -ml-3  lg:-ml-[calc(50dvw-50%)] left-0 absolute pt-4 bg-slate-50 -mt-2 
+               md3-elevation-2 `} />}
 
             {/* TYPE DIV  */}
 
             <div
                 style={{ transformOrigin: 'left' }}
                 className={`
-                    ${((!hideNavBottom || !navIcons)) ? `md3-fab-item-enter !py-1 ${!closeBtn ? '-ml-4' : '-ml-2'}` : ' md3-fab-item-leave'} ${closeBtn ? ' top-9 ' : 'top-7'}
+                    ${((!hideNavBottom || !navIcons)) ? `md3-fab-item-enter !py-1 ${!closeBtn ? '-ml-4' : '-ml-1'}` : ' md3-fab-item-leave'} ${closeBtn ? ' top-9 ' : 'top-9'} ${haveTitle ? ' !top-4 ' : ''}
                 
                 flex flex-1 h-full w-full px-[0rem] items-center absolute  z-[1]`}>
                 {closeBtn &&
@@ -87,10 +88,10 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
                         variant="elevated"
                         className="rounded-full"
                         color={color as Md3Colors ?? 'slate'}
-                        size={'medium'}
+                        size={'small'}
                         icon={{
                             icon: "arrow_upward_alt",
-                            size: "3xl",
+                            size: "xl",
                             fill: true,
                             onClick: () => scrollToTop()
                         }}
