@@ -117,7 +117,7 @@ export const NavigationRailItem: React.FC<NavigationRailItemProps> = ({ label, i
     return (
         <div className={classes} data-md3 {...props}>
             {icon}
-            <span>-{label}</span>
+            <span>{label}</span>
         </div>
     );
 };

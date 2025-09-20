@@ -86,7 +86,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                 (navBottom ?
                     `anim wRespXLMargin px-0.5 ` :
                     ' -mt-1.5   ') +
-                ` flex items-center w-full `
+                ` flex items-center w-full  `
             }>
                 <NavigationBar
                     value={navValue}
@@ -117,7 +117,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                         disabled={active}
                                         style={
                                             `${(active && !navBottom) ? `` : ''}
-                                             ${!navBottom ? active ? `  animSlide border-b md3-border-${color} py-1 md:border-none md:py-0 px-2 ` : `px-1.5` : ``} `
+                                             ${!navBottom ? active ? ` border-b md3-border-${color} py-1 md:border-none md:py-0 px-2 ` : `px-1.5` : ``} `
                                         }
                                         reverse={false}
                                         clear={navBottom}

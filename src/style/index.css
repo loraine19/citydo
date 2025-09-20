@@ -55,7 +55,8 @@
 }
 
 html {
-    @apply md3-surface;
+    @apply md3-surface dark;
+    background-color: var(--md3-on-surface);
     font-size: 16px;
     @media (max-width: 1024px) {
         /* lg */
@@ -80,7 +81,8 @@ html {
 }
 
 :root {
-    @apply scroll-smooth font-montserrat md3-surface;
+    @apply scroll-smooth font-montserrat;
+
     line-height: 1.2;
     font-weight: 400;
     display: flex;
@@ -98,6 +100,7 @@ html {
 /* MAIN SECTIONS */
 #root {
     @apply flex flex-col h-screen w-screen;
+    background-color: var(--md3-surface);
 }
 body {
     @apply h-screen w-screen  flex flex-col;

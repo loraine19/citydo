@@ -299,7 +299,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
                     </div>
                 </div>
                 {!expanded && largeContent && (
-                    <div className="absolute bottom-0 px-4 w-full py-2 bg-gradient-to-t from-white to-white/10">
+                    <div className="absolute bottom-0 px-4 w-full py-4 bg-gradient-to-t from-[var(--md3-primary-container)] to-transparent ">
                         <Icon
                             bg fill clear
                             size='xl'

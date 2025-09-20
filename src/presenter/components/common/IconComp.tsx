@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Home, KeyboardDoubleArrowDown, PartnerExchange, Search, Event, Dashboard, Ballot, Add, Person, CalendarAddOn, Flag2, ExitToApp, ExploreNearby, Visibility, ArrowCircleRight, Notifications, ArrowCircleRightFilled, ThumbUp, ThumbUpFilled, HomeFilled, PersonFilled, CircleNotifications, CircleNotificationsFilled, PersonEdit, PersonEditFilled, Diversity3, Diversity3Filled, TwoPager, TwoPagerFilled, AddCircleFilled, AddCircle, DoNotDisturbOnFilled, DoNotDisturbOn, ArrowForwardIos, ArrowBackIos, CalendarViewMonth, CalendarViewMonthFilled, SearchFilled, ArrowForwardIosFilled, ArrowBackIosFilled, NotificationsFilled, VisibilityFilled, ExploreNearbyFilled, ExitToAppFilled, Flag2Filled, CalendarAddOnFilled, AddFilled, BallotFilled, DashboardFilled, EventFilled, PartnerExchangeFilled, KeyboardDoubleArrowDownFilled, TollFilled, Toll, ArrowDropDownFilled, ArrowDropDown, CalendarMonth, CalendarMonthFilled, ListFilled, List, CancelFilled, Cancel, CheckCircleFilled, CheckCircle, SmartCardReaderFilled, SmartCardReader, SignalCellularAltFilled, SignalCellularAlt, DesignServicesFilled, DesignServices, CloseFilled, Close, ChevronRight, ChevronRightFilled, MoreUp, MoreUpFilled, ExpandContentFilled, ExpandContent, EditFilled, Edit, GroupsFilled, Groups, PersonCancelFilled, PersonCancel, AddAPhoto, AddAPhotoFilled, VisibilityOffFilled, VisibilityOff, DistanceFilled, Distance, PersonPinCircleFilled, PersonPinCircle, SyncProblemFilled, SyncProblem, KeyboardDoubleArrowUp, KeyboardDoubleArrowUpFilled, SendFilled, Send, ForumFilled, Forum, NearMeFilled, NearMe, Sms, SmsFilled, MoodFilled, Mood, MyLocationFilled, MyLocation, CallFilled, Call, Mail, MailFilled, TodayFilled, Today, LocationOn, LocationOnFilled, ClearAllFilled, ClearAll, CheckFilled, Check, Block, BlockFilled, SaveFilled, Save, SortFilled, Sort, SortByAlphaFilled, SortByAlpha, ArrowDropUpFilled, ArrowDropUp, DeleteFilled, Delete, UndoFilled, Undo, RefreshFilled, Refresh, MoveUpFilled, MoveUp, MoveDownFilled, MoveDown, ArrowUpward, ArrowUpwardFilled, ChatFilled, Chat, SaveAsFilled, SaveAs, RadioButtonCheckedFilled, RadioButtonChecked, PendingActions, PendingActionsFilled, CircleFilled, Circle, ArrowCircleUpFilled, ArrowCircleUp, PersonAddFilled, PersonAdd, KeyboardArrowRight, KeyboardArrowRightFilled, ArrowUpwardAlt, ArrowUpwardAltFilled, ArrowBack, ArrowBackFilled, GridView, GridViewFilled, ViewAgenda, ViewAgendaFilled, Output, OutputFilled, InputFilled, Input, EventBusyFilled, EventAvailableFilled, EventAvailable, EventBusy, PersonHeart, PersonHeartFilled, ViewColumn, ViewColumnFilled, Favorite, FavoriteFilled, HeartMinusFilled, HeartMinus, MoreVert, MoreVertFilled, VotingChip, VotingChipFilled, ListAltCheck, ListAltCheckFilled, ListAltAdd, ListAltAddFilled, FilterAlt, FilterAltFilled, FilterAltOff, FilterAltOffFilled, ShareFilled, Share, MoreHorizFilled, MoreHoriz, VerticalAlignTop, VerticalAlignTopFilled, CheckBox, CheckBoxFilled, CheckBoxOutlineBlank, CheckBoxOutlineBlankFilled, DarkMode, DarkModeFilled, LightMode, LightModeFilled } from '@project-lary/react-material-symbols-400-rounded';
 import { FaFacebook, FaSnapchatGhost, FaTwitter, FaWhatsapp } from "react-icons/fa"
 import { IoLogoWhatsapp } from "react-icons/io";
-import { JSX } from "react";
+import { JSX, useState } from "react";
 
 
 export const iconMap = {
@@ -180,14 +180,18 @@ export const Icon: React.FC<IconProps> = ({
 
 
     const classIcon = () => `
-    flex items-center justify-center z-[0]
+    flex items-center justify-center 
     ${colorClass}  
     ${bg ? iconSize : textSize} ${style ?? ''} `
 
     const classActive = `hover:brightness-[0.95] active:brightness-[0.9] hover:scale-[1.03] `
+    const [isFill, setIsFill] = useState(fill);
 
     return (
-        <div>
+        <div
+            onMouseEnter={() => setIsFill(true)}
+            onMouseLeave={() => setIsFill(fill ?? false)}
+        >
             {onClick ?
                 <button
                     data-cy={icon}
@@ -196,14 +200,9 @@ export const Icon: React.FC<IconProps> = ({
                     title={!disabled ? title : `${(title ?? 'cette action')} est indisponible`}
                     className={`group ${classIcon()} ${!disabled ? classActive : ''} `}
                     disabled={disabled}>
-                    <span className={`${(!fill && !disabled) ? 'group-hover:opacity-0 group-focus:opacity-0' : ''} opacity-100 `}>
-                        {searchIcon(icon, fill)}
+                    <span>
+                        {searchIcon(icon, isFill)}
                     </span>
-                    {(!disabled || !fill) &&
-                        <span className={`${!fill ? 'group-hover:opacity-90 group-focus:opacity-90 ' : ''}  absolute opacity-0 ${disabled ? 'hidden' : ''}`}>
-                            {searchIcon(icon, true)}
-                        </span>}
-
                 </button>
                 : link ?
                     <Link
@@ -213,25 +212,19 @@ export const Icon: React.FC<IconProps> = ({
                         target={link.startsWith('http') ? "_blank" : ""}
                         rel="noopener noreferrer"
                         className={`group ${classIcon()} ${!disabled && classActive}`}>
-                        <span className={`${(!fill && !disabled) ? 'group-hover:opacity-0 group-focus:opacity-0' : ''} opacity-100 `}>
-                            {searchIcon(icon, fill)}
+                        <span>
+                            {searchIcon(icon, isFill)}
                         </span>
-                        {(!disabled || !fill) &&
-                            <span className={`${!fill ? 'group-hover:opacity-90 group-focus:opacity-90 ' : ''}  absolute opacity-0 ${disabled ? 'hidden' : ''}`}>
-                                {searchIcon(icon, true)}
-                            </span>}
                     </Link> :
                     <span
+
                         data-cy={icon}
                         title={!disabled ? title : `${(title ?? 'cette action')} est indisponible`}
                         className={`group ${classIcon()}  `}>
-                        <span className={`${(!fill && !disabled) ? 'group-hover:opacity-0 group-focus:opacity-0' : ''} opacity-100  `}>
-                            {searchIcon(icon, fill)}
+                        <span>
+                            {searchIcon(icon, isFill)}
                         </span>
-                        {(!disabled || !fill) &&
-                            <span className={`${!fill ? 'group-hover:opacity-90 group-focus:opacity-90 ' : ''}  absolute opacity-0 ${disabled ? 'hidden' : ''}`}>
-                                {searchIcon(icon, true)}
-                            </span>}
+
                     </span>
             }
         </div>)

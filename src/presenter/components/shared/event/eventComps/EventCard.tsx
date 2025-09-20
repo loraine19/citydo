@@ -107,7 +107,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                     <div className="flex flex-1 my-0.5 -ml-1 overflow-hidden items-center ">
                         <EventCalAddBtn
                             event={event}
-                            iconClass={`${'top-0 border-[3px] !border-[var(--md3-primary-container)]  hover:z-[2] relative -mr-3 '}`} />
+                            iconClass={`${'top-0 border-[4px] !border-[var(--md3-primary-container)]  hover:z-[2] relative -mr-3 '}`} />
 
                         <AvatarStack avatarDatas={event.Participants} />
                     </div>

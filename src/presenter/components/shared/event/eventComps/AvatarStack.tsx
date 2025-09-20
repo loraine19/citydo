@@ -4,15 +4,58 @@ import { OnlineDot } from "../../../common/onlineDot";
 import { AvatarUser } from "../../../common/AvatarUser";
 import { Menu, MenuItem } from "../../base/baseComps/Menu";
 import { useNavigate } from "react-router";
+import { useEffect, useRef, useState } from "react";
+import Chip from "../../../common/adaptatersComps/Chip";
 
 type AvatarStackProps = { avatarDatas: Participant[], ref?: boolean };
 export function AvatarStack(props: AvatarStackProps) {
     const { avatarDatas } = props;
     const navigate = useNavigate();
+    const containerRef = useRef<HTMLDivElement>(null);
+    // Dynamically calculate how many avatars fit in the container
+    const AVATAR_WIDTH = 44; // px, ~2.65rem (actual avatar size)
+    const AVATAR_OVERLAP = 12; // px, overlap due to -space-x-3
+
+    const [maxVisible, setMaxVisible] = useState(1);
+
+    useEffect(() => {
+        function updateMaxVisible() {
+            if (containerRef.current) {
+                const containerWidth = containerRef.current.offsetWidth;
+                // First avatar takes full width, each next overlaps
+                let calculated = 1;
+                if (avatarDatas.length > 1) {
+                    calculated = Math.floor(
+                        ((containerWidth - 10) - AVATAR_WIDTH) / (AVATAR_WIDTH - AVATAR_OVERLAP)
+                    ) + 1;
+                }
+                calculated = Math.max(1, Math.min(calculated, avatarDatas.length));
+                setMaxVisible(calculated);
+            } else {
+                setMaxVisible(1);
+            }
+        }
+        updateMaxVisible();
+        window.addEventListener("resize", updateMaxVisible);
+        return () => window.removeEventListener("resize", updateMaxVisible);
+    }, [avatarDatas.length]);
+
+    const visibleAvatars = avatarDatas.slice(0, maxVisible);
+    const hiddenCount = avatarDatas.length - visibleAvatars.length > 0
+        ? <Chip
+            onClick={() => setMaxVisible(avatarDatas.length)}
+            color='cyan'
+            value={`+${avatarDatas.length - visibleAvatars.length}`}
+            className="border-[4px] !h-[2.65rem] !w-[2.65rem] flex items-center justify-center !rounded-full  shrink-0 font-semibold !border-[var(--md3-primary-container)] text-[1rem] pt-0.5 pr-0.5 p-0"
+        />
+        : null;
 
     return (
-        <div className="flex flex-1 items-center -space-x-3 overflow-x-auto overflow-y-hidden !rounded-full pr-3 ">
-            {avatarDatas?.map((Participant: Participant, index) =>
+        <div
+            ref={containerRef}
+            className={` ${maxVisible === avatarDatas.length ? 'overflow-y-auto' : ''} flex flex-1 items-center -space-x-3 overflow-x-auto w-full !rounded-full pr-3 `}
+        >
+            {visibleAvatars?.map((Participant: Participant, index) =>
                 <Menu
                     className="px-2"
                     ref
@@ -25,7 +68,7 @@ export function AvatarStack(props: AvatarStackProps) {
                                 <AvatarUser
                                     Profile={Participant?.User?.Profile}
                                     avatarSize={'sm'}
-                                    avatarStyle="border-2 !h-[2.65rem] !w-[2.65rem] !border-[var(--md3-outlined)] !hover:z-[2] !focus:z-50  top-0 left-0 " />
+                                    avatarStyle="border-[4px] !h-[2.65rem] !w-[2.65rem] !border-[var(--md3-primary-container)] !hover:z-[2] !focus:z-[2]  top-0 left-0 " />
                             </div>
                         </div>}>
                     <MenuItem
@@ -40,7 +83,7 @@ export function AvatarStack(props: AvatarStackProps) {
                                 <OnlineDot id={Participant?.userId} />
                             </div>}>
 
-                        <span className="font-bold">{Participant?.User?.Profile?.firstName}<br></br> {Participant?.User?.Profile?.lastName}
+                        <span className="font-bold">{Participant?.User?.Profile?.firstName}<br /> {Participant?.User?.Profile?.lastName}
                         </span>
                     </MenuItem>
                     <MenuItem
@@ -65,6 +108,12 @@ export function AvatarStack(props: AvatarStackProps) {
                 </Menu>
 
             )}
+            <div className="relative !h-[2.65rem] !z-[1] !w-[2.65rem] flex hover:!z-[4] ">
+                <div className="absolute hover:!z-[4] flex flex-1 top-0 left-0 h-[2.65rem] !w-[2.65rem] ">
+                    <div>{hiddenCount}</div>
+                </div>
+            </div>
+
         </div >
     );
 }

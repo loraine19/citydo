@@ -71,8 +71,10 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                                 closeIcon={
                                     <Icon
                                         icon="close"
-                                        bg style='self-start' color='slate' size="sm" />}
-                                className={`px-4 py-2 !z-[99999] -mt-6 -ml-1  `}
+                                        bg style='self-start'
+                                        color='slate'
+                                        size="sm" />}
+                                className={`px-4 py-2 !z-[9999999] -mt-6 -ml-1  `}
                                 blurBack
                                 placement="up-bottom-right"
                                 trigger={
@@ -143,8 +145,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
                     {/* INSERTION NAVLINK TOP  */}
                     {(!navBottom && navIcons && !hideNavBottom) &&
-                        <div onMouseEnter={() => { }}
-                            className=" w-full h-full   flex justify-center items-center">
+                        <div className="static w-full h-full flex justify-center items-center">
                             <NavBarSection
                                 addBtn={addBtn} />
                         </div>

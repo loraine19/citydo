@@ -70,7 +70,7 @@ function App() {
             color={color} onRetry={handleRetry} retryCount={retryCount}>
             <AlertNotif />
             <BrowserRouter>
-                <div className={`App ${dark ? 'dark' : ''}`}>
+                <div className={`App ${dark ? 'dark' : ''} md3-surface `}>
                     <Suspense fallback={<LoadingPage />}>
                         <Routes>
                             {/* Public routes */}
