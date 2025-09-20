@@ -458,7 +458,7 @@ CHIP
     align-items: center;
     padding: 0 16px;
     height: 32px;
-    border-radius: var(--md3-radius-full);
+    border-radius: var(--md3-radius-medium);
     cursor: pointer;
     transition: all var(--md3-anim-duration-short) var(--md3-anim-easing);
 }
@@ -488,7 +488,7 @@ CHIP
 .md3-chip-outlined {
     background-color: transparent;
     color: var(--md3-on-surface-variant);
-    border: 1px solid var(--md3-outline);
+    border: 1px solid var(--md3-outline) !important;
 }
 .md3-chip-tonal {
     background-color: var(--md3-secondary-container);

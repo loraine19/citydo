@@ -27,7 +27,7 @@ const sizeClassMap: Record<ChipSize, string> = {
 };
 
 const Chip: React.FC<ChipProps> = ({
-    variant = "tonal",
+    variant = "outlined",
     color = "slate",
     value,
     icon,
@@ -46,9 +46,18 @@ const Chip: React.FC<ChipProps> = ({
         .join(" ");
 
     return (
-        <div className={classes} onClick={onClick} tabIndex={onClick ? 0 : undefined} role={onClick ? "button" : undefined}>
-            {icon && <span className="mr-2 flex items-center">{icon}</span>}
-            <span className="truncate">{value}</span>
+        <div
+            className={classes}
+            onClick={onClick}
+            tabIndex={onClick ? 0 : undefined}
+            role={onClick ? "button" : undefined}>
+            {icon &&
+                <span className="mr-2 flex items-center">
+                    {icon}
+                </span>}
+            <span className="truncate">
+                {value}
+            </span>
         </div>
     );
 };
