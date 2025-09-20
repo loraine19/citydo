@@ -14,7 +14,6 @@ interface CardMDProps extends HTMLAttributes<HTMLDivElement> {
     imagePosition?: ImagePosition;
     link?: string;
     autoFit?: boolean;
-
 }
 
 //// SUB-COMPONENTS ////
@@ -28,9 +27,12 @@ export const CardImage: React.FC<{
     onClick?: () => void;
     children?: ReactNode;
 }> = ({ src, alt, className, children, onClick }) => (
-    <div className={`md3-card-image-container ${className} ${onClick ? "cursor-pointer" : ""} flex-1 `}
+    <div className={`md3-card-image-container flex-1
+        ${className} 
+        ${onClick ? "cursor-pointer" : ""}  `}
         onClick={() => onClick && onClick()}>
-        <img onError={(e: any) => { e.target.onerror = null; }}
+        <img
+            onError={(e: any) => { e.target.onerror = null; }}
             className={`md3-card-image`}
             src={src}
             alt={alt}
@@ -118,11 +120,12 @@ export const CardMD: React.FC<CardMDProps> & {
         const navigate = useNavigate();
         //// CARD CSS
         const cardClasses = `md3-card-${variant} 
-        ${image ? `md3-card-with-image-${!autoFit ? imagePosition : screenSmall ? 'left' : 'top'}` : "md3-card"}
+        ${image && (image as any).props?.src ?
+                `md3-card-with-image-${!autoFit ? imagePosition : (screenSmall) ? 'left' : 'top'}` : "md3-card"}
           ${className}`;
 
         //// IMAGE CARD 
-        if (image) {
+        if (image && (image as any).props?.src) {
 
             const imageProps = (image as any).props || {};
 
@@ -130,7 +133,8 @@ export const CardMD: React.FC<CardMDProps> & {
                 <div
                     data-md3-card className={`${cardClasses} `} {...props}>
                     <CardImage
-                        onClick={imageProps.onClick ? imageProps.onClick : link ? () => navigate(link) : undefined}
+                        onClick={
+                            imageProps.onClick ? imageProps.onClick : link ? () => navigate(link) : undefined}
                         src={imageProps.src}
                         alt={imageProps.alt}
                         position={imagePosition}
@@ -148,7 +152,7 @@ export const CardMD: React.FC<CardMDProps> & {
         //// REGULAR CARD
         return (
             <div className={cardClasses} data-md3-card {...props}>
-                <div className="md3-card-content">
+                <div className={` !image md3-card-content pt-3`}>
                     {children}
                 </div>
             </div>

@@ -48,6 +48,7 @@ export function Select({
                         {error ?? displayLabel}
                     </div>
                     <Menu
+                        key={'select-menu' + (color)}
                         closeIcon={<></>}
                         className="mt-2 w-max"
                         blurBack

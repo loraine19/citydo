@@ -30,7 +30,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
             link={`/annonce/${id}`}
             image={
                 <CardMD.Image
-                    src={image as string || '/image/placeholder.jpg'}
+                    src={image as string}
                     alt={title}
                     className="relative"
                 >
@@ -51,13 +51,11 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
             <CardMD.Chips className="justify-between">
 
                 <div className="md3-card-chips flex-1 !overflow-auto">
-                    <button
-                        onClick={() => change(post?.category as string)}>
-                        <Chip
-                            value={`${categoryS}`}
-                            color="rose"
-                        />
-                    </button>
+                    <Chip
+                        onClick={() => change(post?.category as string)}
+                        value={`${categoryS}`}
+                        color="rose"
+                    />
                 </div>
 
                 {<MoreButton id={id} type={'annonce'} flagged={flagged} />}

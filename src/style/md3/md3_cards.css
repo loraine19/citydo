@@ -23,7 +23,7 @@
     @apply md3-card;
     padding: 0 !important;
     display: grid;
-    grid-template-columns: minmax(auto, auto) minmax(auto, 60%);
+    grid-template-columns: minmax(auto, 1fr) minmax(auto, 60%);
 }
 
 .md3-card-image-container {

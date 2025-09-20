@@ -22,7 +22,8 @@ const BackDropBlur: React.FC<BackDropBlurProps> = ({
     if (!root || !root.parentNode) return null;
 
     return ReactDOM.createPortal(
-        <div id='blurDiv'
+        <div
+            id='blurDiv'
             className={`fixed  !z-[1] inset-0  backdrop-blur animate-fade 
                 ${className}`}
             onClick={() => setOpen && setOpen(false)}

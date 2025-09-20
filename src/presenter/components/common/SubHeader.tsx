@@ -29,7 +29,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
     const navigate = useNavigate();
 
     return (
-        <div className={` flex-col relative  `}>
+        <div className={` flex-col relative `}>
 
             {/* TYPE DIV  */}
 

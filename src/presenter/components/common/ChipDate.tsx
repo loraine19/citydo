@@ -24,8 +24,8 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
                 return `${prefix} ${new Date(start).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' })}`;
             case ended:
                 return `⛌ ${new Date(endDate).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' })}`;
-            case endDays > 4:
-                return `J - ${endDays}`;
+            case endDays > 9:
+                return null;
             case endDays > 0:
                 return `J - ${endDays}`;
             case endDays === 0:
@@ -36,12 +36,13 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
                 return `${prefix} ${new Date(start).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' })}`;
         }
     })();
+    if (!value) return null;
     return (
-        <div className="max-h-max">
-            <Chip
+        <div className="max-h-max opacity-80 ">
+            {value && <Chip
                 value={value}
                 color={dateClass}>
-            </Chip>
+            </Chip>}
         </div>
     )
 }

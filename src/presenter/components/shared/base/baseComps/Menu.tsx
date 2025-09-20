@@ -14,7 +14,7 @@ interface MenuProps {
     closeIcon?: ReactNode;
     blurBack?: boolean;
     menuRef?: React.RefObject<HTMLDivElement>;
-    key?: string | number;
+    key: string | number;
     fitMax?: boolean;
     ref?: boolean;
     title?: string
@@ -41,29 +41,50 @@ export const Menu: React.FC<MenuProps> = ({
     const open = isControlled ? controlledOpen : internalOpen;
     const menuRefAuto = useRef<HTMLDivElement>(null);
 
-    // Close all menus when navigating to a new page (route change)
-    // Keep track of all open menus globally
-    // Use a global Set to track open menus.
-    // To help identify menu divs in the DOM, add a unique data attribute (e.g., data-md3-menu) to each menu's root div.
-    // This allows you to easily find all menu elements using document.querySelectorAll('[data-md3-menu]')
-    // Keep track of all open menus globally using a Set on window
-    // To help identify menu divs in the DOM, add a unique data attribute (e.g., data-md3-menu) to each menu's root div.
-    // This allows you to easily find all menu elements using document.querySelectorAll('[data-md3-menu]')
+    // Global set to track open menus
     const openMenus: Set<() => void> = (window as any).__OPEN_MENUS__ || ((window as any).__OPEN_MENUS__ = new Set<() => void>());
 
-    // Collect all divs with data-md3-menu attribute and store them globally
-    useEffect(() => {
-        const menuDivs = Array.from(document.querySelectorAll('div[data-md3-menu]'));
-        (window as any).__MD3_MENU_DIVS__ = menuDivs;
-    }, [open]);
+    // Close handler for this menu
+    const path = window.location.pathname;
 
-    // Register/unregister this menu's close handler
     const handleClose = React.useCallback(() => {
         setOpen?.(false);
         setInternalOpen(false);
         onClose?.();
     }, [setOpen, onClose]);
 
+    // Close all menus on route change
+    useEffect(() => {
+
+        const handleClickOutside = () => {
+            const menuNode = (menuRef?.current || menuRefAuto.current);
+            if (menuNode) {
+                handleClose();
+            }
+        };
+        handleClickOutside();
+    }, [path]);
+
+    // Close menu on click outside
+    useEffect(() => {
+        if (!open) return;
+
+        const handleClickOutside = (event: MouseEvent) => {
+            const menuNode = (menuRef?.current || menuRefAuto.current);
+            if (menuNode && !menuNode.contains(event.target as Node)) {
+                handleClose();
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [open, menuRef, menuRefAuto, handleClose]);
+
+
+
+    // Register/unregister this menu's close handler
     useEffect(() => {
         if (open) {
             openMenus.add(handleClose);
@@ -73,24 +94,9 @@ export const Menu: React.FC<MenuProps> = ({
         return () => {
             openMenus.delete(handleClose);
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open, handleClose]);
 
-    useEffect(() => {
-        const handlePageChange = () => {
-            openMenus.forEach((close: any) => close());
-        };
 
-        window.addEventListener('popstate', handlePageChange);
-        window.addEventListener('pushstate', handlePageChange);
-        window.addEventListener('replacestate', handlePageChange);
-
-        return () => {
-            window.removeEventListener('popstate', handlePageChange);
-            window.removeEventListener('pushstate', handlePageChange);
-            window.removeEventListener('replacestate', handlePageChange);
-        };
-    }, []);
 
 
     useEffect(() => {
@@ -247,10 +253,10 @@ export const Menu: React.FC<MenuProps> = ({
                 )}
 
                 {visible &&
-                    <div data-md3-menu
-                        aria-expanded={open} id='menu-button'
-
-
+                    <div
+                        data-md3-menu
+                        aria-expanded={open}
+                        id={'menu-button_' + key}
                         key={key}
                         ref={menuRef || menuRefAuto}
                         style={{
@@ -263,7 +269,8 @@ export const Menu: React.FC<MenuProps> = ({
                      ${open ? " md3-menu-enter " : ` md3-menu-leave `} `} >
 
 
-                        {<div className={`
+                        {<div
+                            className={`
                     ${(open) ? "!z-[999]" : " -z-10 "}`}
                             ref={menuCurrent}>
 
@@ -293,6 +300,8 @@ export const Menu: React.FC<MenuProps> = ({
             </div>
             {blurBack &&
                 <BackDropBlur
+                    key={'backdrop-blur' + key}
+
                     open={open}
                     setOpen={handleClose}
                     className="z-[2]" >

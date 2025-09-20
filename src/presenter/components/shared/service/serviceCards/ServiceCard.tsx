@@ -74,44 +74,42 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
     return (
         <CardMD
             autoFit={!compact}
-            className={` sm:h-[50vw] md:h-max min-h-full ${compact ? '' : ''} `}
+            className={`min-h-full ${compact ? '' : ''} `}
             imagePosition="top"
             link={`/service/${id}`}
             image={
                 <CardMD.Image
-                    src={image as string || '/image/placeholder.jpg'}
+                    src={image as string}
                     alt={title}
                     className=""
                 >
-                    <div className="flex w-full justify-end pt-0.5">
-
+                    <div className="flex w-full justify-end ">
+                        <DateChip
+                            start={createdAt}
+                            prefix=" "
+                        />
                     </div>
                 </CardMD.Image>
             }>
-            <CardMD.Chips className="justify-between">
+            <CardMD.Chips>
                 <div className="md3-card-chips flex-1 ">
-                    <button
-                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                            const cat = e.currentTarget.innerText.toLowerCase();
-                            change(cat as any);
-                        }}>
-                        <Chip
-                            color='sky'
-                            value={`${categoryS}`}
-                        />
-                    </button>
 
-                    <button
-                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                            const cat = e.currentTarget.innerText.toLowerCase();
-                            change(cat as any);
-                        }}>
-                        <Chip
-                            value={typeS}
-                            color={typeS === ServiceType.GET ? "orange" : "green"}
-                        />
+                    <Chip
+                        onClick={() => {
+                            change(categoryS as any);
+                        }}
+                        color='sky'
+                        value={`${categoryS}`}
+                    />
 
-                    </button>
+                    <Chip
+                        onClick={() => {
+                            change(typeS as any);
+                        }}
+                        value={typeS}
+                        color={typeS === ServiceType.GET ? "orange" : "green"}
+                    />
+
                     <Chip
                         value={statusS}
                         color={statusColor(statusS as ServiceStep).color as Md3Colors}
@@ -131,10 +129,10 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
             <CardMD.Subhead>
                 <GroupLink group={Group} />
             </CardMD.Subhead>
-
-            <CardMD.Chips className="pb-1  flex-row px-4  justify-start">
+            <CardMD.SupportingText>
 
                 <Chip
+                    className=" max-w-max"
                     value={`${points.join(' à ')} pts`}
                     icon={
                         <Icon
@@ -147,10 +145,11 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                         />
                     }
                 />
+            </CardMD.SupportingText>
 
-            </CardMD.Chips>
 
-            <CardMD.Footer className="justify-between items-center flex w-full">
+
+            <CardMD.Footer className="justify-between items-center flex max-h-max  w-full">
                 {mine && mines && (
                     <ModifBtnStack
                         actions={myActions}
@@ -171,10 +170,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                     <ProfileDiv profile={User} />
                 )}
 
-                <DateChip
-                    start={createdAt}
-                    prefix=" "
-                />
+
             </CardMD.Footer>
         </CardMD>
     )

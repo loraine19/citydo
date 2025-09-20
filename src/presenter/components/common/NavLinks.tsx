@@ -17,7 +17,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
     const location = useLocation()
     const type = new URLSearchParams(location.pathname.split("/")[1]).toString().replace("=", '');
     const { } = useNotificationStore((state) => state);
-    const { navBottom, setColor, color } = useUxStore((state) => state);
+    const { navBottom, setColor, color, hideNavBottom } = useUxStore((state) => state);
     const navigate = useNavigate()
 
     type NavItem = {
@@ -83,8 +83,9 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
 
             {/* CONTAINER */}
             <div className={
+                ` ${hideNavBottom ? 'md3-menu-leave' : 'h-full animSheetRev '}` +
                 (navBottom ?
-                    `anim wRespXLMargin px-0.5 ` :
+                    ` wRespXLMargin px-0.5 ` :
                     ' -mt-1.5   ') +
                 ` flex items-center w-full  `
             }>
@@ -92,6 +93,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                     value={navValue}
                     onValueChange={(value) => setNavValue(value)}
                     className={` 
+                    ${hideNavBottom ? '   ' : ' '}
                     ${navBottom ?
                             ' rounded-t-[2rem] py-2.5 px-3 !flex-1 md3-elevation-5 !max-w-full !border-b-0 justify-between md3-primary-container ' :
                             ` !shadow-none w-full md3-elevation-0 justify-around pb-2 md:pb-0  md:px-2`}

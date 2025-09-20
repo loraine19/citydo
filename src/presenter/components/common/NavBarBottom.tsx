@@ -10,19 +10,19 @@ interface NavBarBottomProps {
 
 export const NavBarBottom: React.FC<NavBarBottomProps> = ({ addBtn }) => {
     const { } = useNotificationStore((state) => state);
-    const { setNavBottom, navBottom, hideNavBottom } = useUxStore((state) => state)
+    const { setNavBottom, navBottom } = useUxStore((state) => state)
 
-    if (navBottom && !hideNavBottom) return (
+    if (navBottom) return (
         <>
 
-            <footer className={`!left-0 z-[0]  -mb-[1px] !fixed bottom-0 CTA`}
+            <footer className={`!left-0 z-[0]  -mb-[1px] !fixed bottom-0 CTA `}
                 onDragCapture={() => setNavBottom(!navBottom)}
                 onDoubleClick={() => setNavBottom(!navBottom)}
                 onDoubleClickCapture={(e) => {
                     e.stopPropagation(); e.preventDefault()
                     setNavBottom(!navBottom)
                 }}>
-                <NavBarSection addBtn={addBtn} />
+                {<NavBarSection addBtn={addBtn} />}
             </footer>
         </>
     );

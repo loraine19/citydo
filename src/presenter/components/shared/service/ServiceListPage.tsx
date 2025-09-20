@@ -181,7 +181,7 @@ export default function ServicesPage() {
     return (
 
         <main>
-            <div className="sectionHeader">
+            <div className={`sectionHeader ${hideNavBottom ? '' : ''} `}>
 
                 <div className={`flex items-center md:justify-end justify-between w-full gap-2`}>
 

@@ -28,7 +28,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
                 ref
                 blurBack
                 key={profile?.userId + size}
-                className={'px-2 overflow-auto  '}
+                className={'px-2 overflow-auto ml-4 -mr-8 '}
                 menuRef={divRef}
                 placement={size === 'xl' ? "auto" : "auto"}
                 trigger={
