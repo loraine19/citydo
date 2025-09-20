@@ -9,7 +9,6 @@
     height: 3.25rem; /* 52px */
     width: 3.25rem; /* 52px */
     border-radius: var(--md3-radius-large);
-    border: 1px solid var(--md3-outline);
     background-color: var(--md3-primary);
     color: var(--md3-on-primary);
     box-shadow: var(--md3-shadow-elevation-4);

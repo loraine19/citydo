@@ -71,7 +71,6 @@
 .md3-button-filled {
     background-color: var(--md3-primary);
     color: var(--md3-on-primary);
-    border: 0.0625rem solid var(--md3-outline);
 }
 .md3-button-filled:hover {
     @apply md3-button-hover-darkening;
@@ -116,8 +115,6 @@
 .md3-button-tonal {
     background-color: var(--md3-secondary-container);
     color: var(--md3-on-secondary-container);
-
-    border: 0.0625rem solid var(--md3-outline);
 }
 .md3-button-tonal:hover {
     @apply md3-button-hover-darkening;
