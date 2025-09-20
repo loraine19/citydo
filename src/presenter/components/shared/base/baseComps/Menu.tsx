@@ -51,13 +51,18 @@ export const Menu: React.FC<MenuProps> = ({
     // This allows you to easily find all menu elements using document.querySelectorAll('[data-md3-menu]')
     const openMenus: Set<() => void> = (window as any).__OPEN_MENUS__ || ((window as any).__OPEN_MENUS__ = new Set<() => void>());
 
-    // Register/unregister this menu's close handler
-    const handleClose = () => {
+    // Collect all divs with data-md3-menu attribute and store them globally
+    useEffect(() => {
+        const menuDivs = Array.from(document.querySelectorAll('div[data-md3-menu]'));
+        (window as any).__MD3_MENU_DIVS__ = menuDivs;
+    }, [open]);
 
+    // Register/unregister this menu's close handler
+    const handleClose = React.useCallback(() => {
         setOpen?.(false);
         setInternalOpen(false);
         onClose?.();
-    };
+    }, [setOpen, onClose]);
 
     useEffect(() => {
         if (open) {
@@ -290,7 +295,7 @@ export const Menu: React.FC<MenuProps> = ({
                 <BackDropBlur
                     open={open}
                     setOpen={handleClose}
-                    className="z-[1]" >
+                    className="z-[2]" >
 
                 </BackDropBlur>
             }
