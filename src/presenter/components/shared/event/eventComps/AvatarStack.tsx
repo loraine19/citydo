@@ -26,7 +26,7 @@ export function AvatarStack(props: AvatarStackProps) {
                 let calculated = 1;
                 if (avatarDatas.length > 1) {
                     calculated = Math.floor(
-                        ((containerWidth - 10) - AVATAR_WIDTH) / (AVATAR_WIDTH - AVATAR_OVERLAP)
+                        ((containerWidth - 14) - AVATAR_WIDTH) / (AVATAR_WIDTH - AVATAR_OVERLAP)
                     ) + 1;
                 }
                 calculated = Math.max(1, Math.min(calculated, avatarDatas.length));
@@ -37,8 +37,16 @@ export function AvatarStack(props: AvatarStackProps) {
         }
         updateMaxVisible();
         window.addEventListener("resize", updateMaxVisible);
+
+        // Listen for container size changes (not just window resize)
+        let resizeObserver: ResizeObserver | undefined;
+        if (containerRef.current) {
+            resizeObserver = new ResizeObserver(updateMaxVisible);
+            resizeObserver.observe(containerRef.current);
+        }
+
         return () => window.removeEventListener("resize", updateMaxVisible);
-    }, [avatarDatas.length]);
+    }, [avatarDatas.length, containerRef.current?.offsetWidth]);
 
     const visibleAvatars = avatarDatas.slice(0, maxVisible);
     const hiddenCount = avatarDatas.length - visibleAvatars.length > 0
