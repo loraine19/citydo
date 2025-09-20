@@ -486,7 +486,7 @@ CHIP
     color: var(--md3-on-primary);
 }
 .md3-chip-outlined {
-    background-color: transparent;
+    background-color: var(--md3-primary-container);
     color: var(--md3-on-surface-variant);
     border: 1px solid var(--md3-outline) !important;
 }
