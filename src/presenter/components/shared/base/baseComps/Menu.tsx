@@ -41,6 +41,53 @@ export const Menu: React.FC<MenuProps> = ({
     const open = isControlled ? controlledOpen : internalOpen;
     const menuRefAuto = useRef<HTMLDivElement>(null);
 
+    // Close all menus when navigating to a new page (route change)
+    // Keep track of all open menus globally
+    // Use a global Set to track open menus.
+    // To help identify menu divs in the DOM, add a unique data attribute (e.g., data-md3-menu) to each menu's root div.
+    // This allows you to easily find all menu elements using document.querySelectorAll('[data-md3-menu]')
+    // Keep track of all open menus globally using a Set on window
+    // To help identify menu divs in the DOM, add a unique data attribute (e.g., data-md3-menu) to each menu's root div.
+    // This allows you to easily find all menu elements using document.querySelectorAll('[data-md3-menu]')
+    const openMenus: Set<() => void> = (window as any).__OPEN_MENUS__ || ((window as any).__OPEN_MENUS__ = new Set<() => void>());
+
+    // Register/unregister this menu's close handler
+    const handleClose = () => {
+
+        setOpen?.(false);
+        setInternalOpen(false);
+        onClose?.();
+    };
+
+    useEffect(() => {
+        if (open) {
+            openMenus.add(handleClose);
+        } else {
+            openMenus.delete(handleClose);
+        }
+        return () => {
+            openMenus.delete(handleClose);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [open, handleClose]);
+
+    useEffect(() => {
+        const handlePageChange = () => {
+            openMenus.forEach((close: any) => close());
+        };
+
+        window.addEventListener('popstate', handlePageChange);
+        window.addEventListener('pushstate', handlePageChange);
+        window.addEventListener('replacestate', handlePageChange);
+
+        return () => {
+            window.removeEventListener('popstate', handlePageChange);
+            window.removeEventListener('pushstate', handlePageChange);
+            window.removeEventListener('replacestate', handlePageChange);
+        };
+    }, []);
+
+
     useEffect(() => {
         if (menuRefAuto.current) {
             const refDiv = document.getElementById('root');
@@ -152,30 +199,8 @@ export const Menu: React.FC<MenuProps> = ({
     }, [open, placement, menuWidth]);
 
 
-    const handleClose = () => {
-        if (isControlled) {
-            setOpen?.(false);
-        } else {
-            setInternalOpen(false);
-        }
-        onClose?.();
-    };
 
-    // Keep track of all open menus globally
-    const openMenus = (window as any).__OPEN_MENUS__ || ((window as any).__OPEN_MENUS__ = new Set<() => void>());
 
-    // Register/unregister this menu's close handler
-    useEffect(() => {
-        if (open) {
-            openMenus.add(handleClose);
-        } else {
-            openMenus.delete(handleClose);
-        }
-        return () => {
-            openMenus.delete(handleClose);
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [open]);
 
     const handleTriggerClick = () => {
         // Close all other open menus before opening this one
@@ -216,53 +241,58 @@ export const Menu: React.FC<MenuProps> = ({
                     }
                 )}
 
-                {visible && <div data-md3
-                    key={key}
-                    ref={menuRef || menuRefAuto}
-                    style={{
-                        ...menuStyle,
-                        maxWidth: fitMax ? `${triggerWidth}px` : ''
-                    }}
-                    className={` ${className || ""} 
+                {visible &&
+                    <div data-md3-menu
+                        aria-expanded={open} id='menu-button'
+
+
+                        key={key}
+                        ref={menuRef || menuRefAuto}
+                        style={{
+                            ...menuStyle,
+                            maxWidth: fitMax ? `${triggerWidth}px` : ''
+                        }}
+                        className={` ${className || ""} 
                     md3-menu md3-elevation 
                     ${visible ? "" : "invisible"}
                      ${open ? " md3-menu-enter " : ` md3-menu-leave `} `} >
 
 
-                    {<div className={`
+                        {<div className={`
                     ${(open) ? "!z-[999]" : " -z-10 "}`}
-                        ref={menuCurrent}>
+                            ref={menuCurrent}>
 
-                        <div
-                            onClick={handleClose}>
-                            {closeIcon ??
-                                <div className={`px-2 pt-2  -mb-7 flex justify-end w-full`}>
-                                    <Icon
-                                        icon='close'
-                                        bg color='slate'
-                                        size='sm'
-                                        style='place-self-end' />
-                                </div>}
-                        </div>
+                            <div
+                                onClick={handleClose}>
+                                {closeIcon ??
+                                    <div className={`px-2 pt-2 -mb-3 flex justify-end w-full`}>
+                                        <Icon
+                                            icon='close'
+                                            bg color='slate'
+                                            size='sm'
+                                            style='place-self-end' />
+                                    </div>}
+                            </div>
 
-                        <div onClick={handleClose}
-                            className={`md3-menu-list overflow-hidden `}>
-                            {title &&
-                                <div className="flex-1 font-medium text-slate-700 -mb-1 p-3 text-[0.95rem] ">
-                                    {title}
-                                </div>}
-                            {children}
-                        </div>
-                    </div>}
-                </div>
+                            <div onClick={handleClose}
+                                className={`md3-menu-list overflow-hidden `}>
+                                {title &&
+                                    <div className="flex-1 font-medium text-slate-700 -mb-1 p-3 text-[0.95rem] ">
+                                        {title}
+                                    </div>}
+                                {children}
+                            </div>
+                        </div>}
+                    </div>
                 }
             </div>
-            {blurBack && <BackDropBlur
-                open={open}
-                setOpen={handleClose}
-                className="" >
+            {blurBack &&
+                <BackDropBlur
+                    open={open}
+                    setOpen={handleClose}
+                    className="z-[1]" >
 
-            </BackDropBlur>
+                </BackDropBlur>
             }
         </>
     );

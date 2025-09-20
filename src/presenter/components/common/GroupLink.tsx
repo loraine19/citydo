@@ -4,24 +4,18 @@ import { groupCategories } from "../../constants"
 import { Group } from "../../../domain/entities/Group"
 import Chip from "./adaptatersComps/Chip"
 import { Menu, MenuItem } from "../shared/base/baseComps/Menu"
-import { useState } from "react"
 
 type GroupDivProps = { group: GroupView | Group, className?: string, menuRef?: React.RefObject<HTMLDivElement> }
-export const GroupLink: React.FC<GroupDivProps> = ({ group, className, menuRef }) => {
+export const GroupLink: React.FC<GroupDivProps> = ({ group, className }) => {
     const category: string = groupCategories.find(cat => cat.value === group?.category)?.label ?? 'Autre'
-    const [open, setOpen] = useState(false);
     return (
 
         <Menu
             ref
             closeIcon={<></>}
-            menuRef={menuRef}
-            open={open}
-            setOpen={setOpen}
-            placement="auto"
-            className={` ${className ?? ''} `}
+            placement="top-right"
+            className={` ${className ?? ''} ml-[30%] mr-[50%] `}
             key={group?.id}
-            fitMax
             trigger={
                 <div className={`${className ?? ''} max-w-full line-clamp-1 justify-start`}>
 
@@ -40,7 +34,7 @@ export const GroupLink: React.FC<GroupDivProps> = ({ group, className, menuRef }
 
                 <div className="whitespace-pre-line flex flex-col gap-2">
                     <h6>groupe : {group?.name}</h6>
-                    <i className="text-xs italic ">
+                    <i className="text-xs italic truncate ">
                         {group?.Address?.address}, {group?.Address?.zipcode} {group?.Address?.city}
                     </i>
                     <Chip
