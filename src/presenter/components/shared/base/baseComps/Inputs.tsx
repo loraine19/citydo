@@ -38,6 +38,7 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputPro
         const inputClasses = [
             "md3-input-wrapper",
             `md3-${variant}`,
+            multiline ? "md3-multiline" : '',
             isActive && "active",
             disabled && "disabled",
             error && "error",

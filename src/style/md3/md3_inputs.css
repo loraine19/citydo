@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 0 0 var(--md3-spacing-small);
+    padding: var(--md3-spacing-small) 0 var(--md3-spacing-small);
     border: none !important;
     font-family: "Roboto", sans-serif;
 }
@@ -150,6 +150,11 @@
 
 .md3-outlined .md3-label {
     top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.2s, font-size 0.2s, top 0.2s, left 0.2s, color 0.2s;
+}
+
+.md3-multiline .md3-label {
     transform: translateY(-50%);
     transition: transform 0.2s, font-size 0.2s, top 0.2s, left 0.2s, color 0.2s;
 }

@@ -1,4 +1,3 @@
-import { Input, Textarea, } from "@material-tailwind/react";
 import { useState } from "react";
 import SubHeader from "../../../common/SubHeader";
 import { ImageBtn } from "../../../common/ImageBtn";
@@ -12,6 +11,7 @@ import { Select } from "../../../common/adaptatersComps/Select";
 import CTAMines from "../../../common/CTA";
 import { CardLarge } from "../../base/baseComps/Cards";
 import { Checkbox } from "../../base/baseComps/Selectors";
+import { Input } from "../../base/baseComps/Inputs";
 
 
 interface PostFormCardProps {
@@ -77,36 +77,37 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                             </CardLarge.Chips>
 
                             <CardLarge.Headline >
-                                <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
-                                    placeholder={"Titre"}
+                                <Input
+                                    className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
+                                    label={"Titre"}
                                     name="title"
                                     onChange={formik.handleChange}
                                     value={formik.values.title}
+                                    error={!!formik.errors.title}
+                                    helperText={formik.errors.title ?? `${formik.values.title ? formik.values.title.length : 0}/100`}
                                 />
-                                <InputError mt error={formik.errors.title} />
                             </CardLarge.Headline>
                             <CardLarge.SupportingText className=" ">
-                                <div className=''>
-                                    <Textarea
-                                        isError={!!formik.errors.description}
-                                        className={`inputStandart`}
-                                        placeholder='Description'
-                                        rows={2}
-                                        resize={true}
-                                        name="description"
-                                        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                                            formik.handleChange(e);
-                                            const textarea = e.target as HTMLTextAreaElement;
+
+                                <Input
+                                    error={!!formik.errors.description}
+                                    className={``}
+                                    label='Description'
+                                    rows={4}
+                                    name="description"
+                                    multiline
+                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                                        formik.handleChange(e);
+                                        const textarea = e.target as HTMLTextAreaElement;
+                                        textarea.style.height = '2.5rem';
+                                        textarea.style.height = textarea.scrollHeight + 'px';
+                                        if (e.target.value === '') {
                                             textarea.style.height = '2.5rem';
-                                            textarea.style.height = textarea.scrollHeight + 'px';
-                                            if (e.target.value === '') {
-                                                textarea.style.height = '2.5rem';
-                                            }
-                                        }}
-                                        defaultValue={formik.values.description}
-                                    />
-                                    <InputError mt error={formik.errors.description} />
-                                </div>
+                                        }
+                                    }}
+                                    value={formik.values.description}
+                                    helperText={`${formik.errors.description ?? formik.values.description ? formik.values.description.length : 0}/500`}
+                                />
                             </CardLarge.SupportingText>
                             <CardLarge.Media className="flex pb-4 justify-center ">
                                 <div className="flex items-center gap-4 pb-1">
