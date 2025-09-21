@@ -58,7 +58,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
             <header className={`${!onBoard && 'md3-primary-container !static '}  `}>
                 {/* CONTAINER */}
                 <div id='navBarTop'
-                    className={` px-1 py-1 flex lg:px-0 slide  justify-between  items-center 
+                    className={` px-1 pb-1 pt-3  flex lg:px-0 slide  justify-between  items-center 
                 ${(hideNavBottom || title) ? 'md3-menu-leave' : 'animSheet  '}`} >
                     <div className={`flex items-center
                     ${(hideNavBottom || title) ? ' h-1 ' : 'h-full '}
@@ -68,7 +68,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
 
                         {/* PROFILE MENU  */}
                         <div className={`${hideNavBottom ? 'hidden' : ''}  md3-button-primary md3-button-${'tonal'}  rounded-full !min-w-max flex items-center md3-elevation-0 
-                            ${(navIcons && !navBottom) ? 'pl-4 p-2 max-h-max ' : ' px-3 py-1 '}`}>
+                            ${(navIcons && !navBottom) ? ' p-2.5 md:pl-4 max-h-max ' : ' px-3 py-1 '}`}>
                             <Menu
                                 key='profile-menu'
                                 closeIcon={

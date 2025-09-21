@@ -51,9 +51,9 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
 
     return (
         <div
-            className='flex flex-col flex-1 px-4 gap-2 relative'
+            className='flex flex-col flex-1 px-4 gap-2 min-h-full relative'
             data-cy="calendar">
-            <CardMD.Subhead className="flex overflow-auto w-full p-0 justify-between gap-2 items-center">
+            <CardMD.Subhead className="flex  w-full p-0 justify-between gap-2 items-center">
                 {logo &&
                     <div className='flex flex-1  w-full items-center '>
                         <Icon

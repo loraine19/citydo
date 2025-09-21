@@ -49,7 +49,7 @@ export default function DashboardPage() {
     // User div takes twice the height of notif div
     const userClasse = "row-start-1 row-end-3 col-start-1 col-end-2 flex animRev p-2 !max-h-max  ";
     const notifClasse = "row-start-1 row-end-2 col-start-2 col-end-3 animRev p-2 " + (notifs.length > 0 ? " min-h-[4rem] " : "min-h-[5rem]");
-    const eventClasse = " row-start-3 row-end-5 col-start-1 col-end-2  flex flex-col h-full min-h-[13rem] p-2 flex-1 ";
+    const eventClasse = " row-start-3 row-end-5 col-start-1 col-end-2  flex flex-col h-full min-h-fit p-2 flex-1 ";
     const mapClasse = "row-start-2 row-end-5 col-start-2 col-end-3 flex flex-1  flex-col h-full p-2";
 
     //// HANDLE SCROLL NOTIFICATIONS
@@ -257,7 +257,7 @@ export default function DashboardPage() {
 
                 {/* CALENDARD CARD  */}
                 <div className={eventClasse}>
-                    <CardMD className="  min-h-full max-h-full w-full   anim py-2">
+                    <CardMD className="  min-h-full w-full   anim py-2">
 
                         <CalendarComp logo={true} />
                     </CardMD>
