@@ -66,51 +66,60 @@ export function PostFormCard({ formik }: PostFormCardProps) {
 
                                 </CardLarge.Image>
                             }>
-                            <CardLarge.Chips className="justify-between  px-2 pt-1">
+                            <CardLarge.Chips className="justify-between  px-4">
+
                                 <ImageBtn
-                                    className="!relative -mt-1 mb-2 ml-2"
+                                    variant="outlined"
+                                    color={'slate'}
+                                    className={"relative pb-1"}
                                     formik={formik}
-                                    setImgBlob={setImgBlob} />
+                                    setImgBlob={setImgBlob}
+                                />
                                 <DateChip
                                     prefix="publié le"
                                     start={start} />
                             </CardLarge.Chips>
 
-                            <CardLarge.Headline >
-                                <Input
-                                    className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
-                                    label={"Titre"}
-                                    name="title"
-                                    onChange={formik.handleChange}
-                                    value={formik.values.title}
-                                    error={!!formik.errors.title}
-                                    helperText={formik.errors.title ?? `${formik.values.title ? formik.values.title.length : 0}/100`}
-                                />
-                            </CardLarge.Headline>
-                            <CardLarge.SupportingText className=" ">
+                            <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                                <span className="md3-card-subhead">Informations</span>
+                                <div className="flex flex-1 flex-col  gap-4">
 
-                                <Input
-                                    error={!!formik.errors.description}
-                                    className={``}
-                                    label='Description'
-                                    rows={4}
-                                    name="description"
-                                    multiline
-                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                                        formik.handleChange(e);
-                                        const textarea = e.target as HTMLTextAreaElement;
-                                        textarea.style.height = '2.5rem';
-                                        textarea.style.height = textarea.scrollHeight + 'px';
-                                        if (e.target.value === '') {
+                                    <Input
+                                        className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
+                                        label={"Titre"}
+                                        name="title"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.title}
+                                        error={!!formik.errors.title}
+                                        helperText={formik.errors.title ?? `${formik.values.title ? formik.values.title.length : 0}/40`}
+                                    />
+
+
+                                    <Input
+                                        error={!!formik.errors.description}
+                                        className={``}
+                                        label='Description'
+                                        rows={1}
+                                        name="description"
+                                        multiline
+                                        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                                            formik.handleChange(e);
+                                            const textarea = e.target as HTMLTextAreaElement;
                                             textarea.style.height = '2.5rem';
-                                        }
-                                    }}
-                                    value={formik.values.description}
-                                    helperText={`${formik.errors.description ?? formik.values.description ? formik.values.description.length : 0}/500`}
-                                />
-                            </CardLarge.SupportingText>
-                            <CardLarge.Media className="flex pb-4 justify-center ">
-                                <div className="flex items-center gap-4 pb-1">
+                                            textarea.style.height = textarea.scrollHeight + 'px';
+                                            if (e.target.value === '') {
+                                                textarea.style.height = '2.5rem';
+                                            }
+                                        }}
+                                        value={formik.values.description}
+                                        helperText={`${formik.errors.description ?? formik.values.description ? formik.values.description.length : 0}/500`}
+                                    />
+                                </div>
+                            </CardLarge.MidSection>
+                            <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                                <span className="md3-card-subhead">{formik?.errors?.shareA ?? 'Contact'}</span>
+                                <div className="flex flex-1   gap-4">
+
                                     <Checkbox
                                         color="rose"
                                         label="Téléphone"
@@ -134,11 +143,8 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                         checked={checkShare("email")}>
                                     </Checkbox>
                                 </div>
-                                <InputError
-                                    mt
-                                    tips="Choisir un moyen de contact"
-                                    error={formik.errors.shareA} />
-                            </CardLarge.Media>
+
+                            </CardLarge.MidSection>
                         </CardLarge>
                     </div>
                 </section>

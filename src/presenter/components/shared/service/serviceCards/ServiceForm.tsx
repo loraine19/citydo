@@ -105,7 +105,8 @@ export function ServiceForm(props: { formik: any }) {
                                 />
                             </CardLarge.Chips>
                             <CardLarge.Headline>
-                                <Input className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
+                                <Input
+                                    className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
                                     placeholder={"Titre"}
                                     name="title"
                                     onChange={formik.handleChange}
@@ -138,7 +139,7 @@ export function ServiceForm(props: { formik: any }) {
                             <CardLarge.Media className="flex flex-col py-3 mt-4 h-max">
                                 <span className="md3-card-supporting-text !pl-0">Difficulté du service: </span>
                                 <div className="flex  flex-col flex-1 h-full gap-6 md:flex-row ">
-                                    <div className="flex border  rounded-3xl  p-3 gap-[5vw]">
+                                    <div className="flex border  rounded-3xl border-[var(--md3-outline)] p-3 gap-[5vw]">
                                         <div>
                                             <Select
                                                 simple

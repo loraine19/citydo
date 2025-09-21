@@ -56,11 +56,9 @@ export const AuthForm: React.FC<AuthFormProps> = ({
     return (
         <form onSubmit={formik.handleSubmit}
             className='main flex-1 flex justify-center items-center'>
-            <div className={`${confirm ?
-                'md:grid-rows-[minmax(50px,calc(100dvh_-_17rem))]' :
-                'md:grid-rows-[minmax(50px,calc(100dvh_-_21rem))]'}
+            <div className={`
             grid grid-cols-[1fr] md:grid-cols-[1fr,1fr] 
-              items-center justify-between gap-[2%] wRespXL px-[2%] !py-4 w-full`}>
+              items-center justify-between gap-[2%] wRespXL px-[2%] !py-2 w-full`}>
                 {/* IMAGE CARDMD */}
                 <CardMD
                     className={` min-h-full !pb-0 grid-rows-[100%] !hidden md:!grid h-full w-full`}

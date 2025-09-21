@@ -14,6 +14,7 @@ import CTAMines from "../../../common/CTA";
 import { CardLarge } from "../../base/baseComps/Cards";
 import { Input } from "../../base/baseComps/Inputs";
 import { ProgressBar } from "../../base/baseComps/Sliders";
+import { Icon } from "../../../common/IconComp";
 
 interface EventFormProps {
     formik: any;
@@ -71,6 +72,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                 <section >
                     <div id="refDiv"
                         className={`DetailCardDiv hideCTAForm`}>
+
                         <CardLarge
                             form
                             expanded={expand}
@@ -79,69 +81,81 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                 <CardLarge.Image
                                     src={imgBlob ?? formik.values.image ?? formik.values.blob ?? imgCategory}
                                     alt={title || 'image'}
-                                />
+                                >
+
+                                </CardLarge.Image>
                             }
                         >
-                            <CardLarge.Chips className="justify-between px-2 pt-1">
-                                <ImageBtn
-                                    className="!relative mb-0 ml-2"
-                                    formik={formik}
-                                    setImgBlob={setImgBlob}
-                                    imgDef={imgCategory}
-                                />
+                            <CardLarge.Chips className="justify-between px-4">
+                                {
+                                    <ImageBtn
+                                        variant="outlined"
+                                        color={'slate'}
+                                        className={"relative pb-1"}
+                                        formik={formik}
+                                        setImgBlob={setImgBlob}
+                                        imgDef={imgCategory}
+                                    />}
                                 <DateChip
                                     prefix=" "
                                     start={formik.values.createdAt ?? new Date()}
                                 />
                             </CardLarge.Chips>
-                            <CardLarge.Headline>
-                                <Input
-                                    className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
-                                    label={"Titre"}
-                                    name="title"
-                                    onChange={formik.handleChange}
-                                    value={title}
-                                    error={!!formik.errors.title}
-                                    helperText={formik.errors.title ?? ''}
-                                />
-                            </CardLarge.Headline>
-                            <CardLarge.SupportingText>
-                                <Input
-                                    multiline
-                                    rows={1}
-                                    error={!!formik.errors.description}
-                                    className={`inputStandart`}
-                                    label='Description'
-                                    name="description"
-                                    helperText={formik.errors.description ?? ''}
-                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                                        formik.handleChange(e);
-                                        const textarea = e.target as HTMLTextAreaElement;
-                                        textarea.style.height = '2.5rem';
-                                        textarea.style.height = textarea.scrollHeight + 'px';
-                                        if (e.target.value === '') {
-                                            textarea.style.height = '2.5rem';
-                                        }
-                                    }}
-                                    value={description}
-                                />
-                            </CardLarge.SupportingText>
+                            <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                                <span className="md3-card-subhead">Informations</span>
+                                <div className="flex flex-1 flex-col  gap-4">
 
-                            <CardLarge.Media className="flex flex-col gap-8">
-                                {((Address?.lat && Address?.lng)) ?
-                                    <div className="flex-1 !max-h-[7rem]">
-                                        <AddressMapOpen address={Address} />
-                                    </div> : ''}
-                                <AddressInputOpen
-                                    address={Address}
-                                    setAddress={setAddress}
-                                    error={formik.errors.Address} />
-
-                            </CardLarge.Media>
-                            <CardLarge.Media>
-                                <div className="flex-1 flex flex-col gap-2">
                                     <Input
-                                        className={`inputStandart ${formik.errors.start ? 'error' : ''}`}
+
+                                        label={"Titre"}
+                                        name="title"
+                                        onChange={formik.handleChange}
+                                        value={title}
+                                        error={!!formik.errors.title}
+                                        helperText={formik.errors.title ?? `${formik.values.title ? formik.values?.title?.length : 0}/40`}
+                                    />
+                                    <Input
+                                        multiline
+                                        rows={1}
+                                        error={!!formik.errors.description}
+                                        label='Description'
+                                        name="description"
+                                        helperText={`${formik.errors.description ?? formik.values.description ? formik.values.description?.length : 0}/300`}
+                                        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                                            formik.handleChange(e);
+                                            const textarea = e.target as HTMLTextAreaElement;
+                                            textarea.style.height = '2.5rem';
+                                            textarea.style.height = textarea.scrollHeight + 'px';
+                                            if (e.target.value === '') {
+                                                textarea.style.height = '2.5rem';
+                                            }
+                                        }}
+                                        value={description}
+                                    />
+                                </div>
+                            </CardLarge.MidSection>
+
+                            <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                                <span className="md3-card-subhead">Lieu</span>
+                                <div className="flex flex-1 gap-4">
+                                    {((Address?.lat && Address?.lng)) ?
+                                        <div className="flex-1 mb-2 !max-h-[7rem]">
+                                            <AddressMapOpen address={Address} />
+                                        </div> : ''}
+                                    <AddressInputOpen
+                                        address={Address}
+                                        setAddress={setAddress}
+                                        error={formik.errors.Address} />
+                                </div>
+
+                            </CardLarge.MidSection>
+                            <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                                <span className="md3-card-subhead">Date</span>
+                                <div className="flex flex-1  gap-4">
+                                    <Input
+                                        error={!!formik.errors.start}
+                                        leadingIcon={<Icon icon='calendar_today' size='lg' />}
+                                        className={`!max-w-[50%]`}
                                         type='datetime-local'
                                         label={""}
                                         name="start"
@@ -151,7 +165,9 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         helperText={formik.errors.start ?? 'date de début prévue'}
                                     />
                                     <Input
-                                        className={`inputStandart  ${formik.errors.end ? 'error' : ''}`}
+                                        error={!!formik.errors.end}
+                                        leadingIcon={<Icon icon='calendar_today' size='lg' />}
+                                        className={`!max-w-[50%]`}
                                         type="datetime-local"
                                         min={today}
                                         defaultValue={end && formatDateForDB(end)}
@@ -161,22 +177,24 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         helperText={formik.errors.end ?? 'date de fin prévue'}
                                     />
                                 </div>
+                            </CardLarge.MidSection>
+                            <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                                <span className="md3-card-subhead">Participants</span>
+                                <div className="flex flex-1 gap-4">
+                                    <Input
+                                        leadingIcon={<Icon icon='person' size='lg' />}
+                                        error={!!formik.errors.participantsMin}
+                                        type='number'
+                                        label={""}
+                                        name="participantsMin"
+                                        onChange={formik.handleChange}
+                                        value={participantsMin}
+                                        helperText={formik.errors.participantsMin ?? 'participants minimum pour valider l\'évenement'}
+                                    />
 
-                                <div className='flex w-full gap-4 gap-y-6 flex-col md:flex-row justify-between'>
-                                    <div className='flex flex-col flex-1 min-w-fit '>
-                                        <Input
-                                            className={`inputStandart ${formik.errors.participantsMin ? 'error' : ''}`}
-                                            type='number'
-                                            label={""}
-                                            name="participantsMin"
-                                            onChange={formik.handleChange}
-                                            value={participantsMin}
-                                            helperText={formik.errors.participantsMin ?? 'participants minimum pour valider l\'évenement'}
-                                        />
-                                    </div>
-                                    <div className={"px-2 gap-4 pt-2 h-max justify-center flex flex-col max-w-[48%] w-full"}>
 
-                                        {<ProgressBar
+                                    {<div className="flex-col flex w-full gap-3">
+                                        <ProgressBar
                                             label={
                                                 <div className="justify-between flex-1 w-full px-6 flex flex-row">
                                                     <small>
@@ -192,10 +210,11 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                             max={participantsMin ?? 10}
                                             min={1}
                                             size="xxsmall">
-                                        </ProgressBar>}
-                                    </div>
+                                        </ProgressBar>
+                                    </div>}
+
                                 </div>
-                            </CardLarge.Media>
+                            </CardLarge.MidSection>
                         </CardLarge>
                     </div>
                 </section>

@@ -4,7 +4,15 @@
 input:-webkit-autofill,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:hover,
-input:-webkit-autofill:active {
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:active,
+input[type="number"]:-webkit-autofill,
+input[type="number"]:-webkit-autofill:focus,
+input[type="number"]:-webkit-autofill:hover,
+input[type="number"]:-webkit-autofill:active {
     @apply bg-slate-200 dark:bg-slate-600 !text-current dark:!text-slate-200 !outline-none !ring-0 !ring-current rounded !bg-opacity-0;
     box-shadow: 0 0 0px 1000px #00000000 inset !important;
     transition: background-color 5000s ease-in-out 0s;
@@ -23,18 +31,16 @@ input {
 }
 
 input[type="datetime-local"] {
-    @apply !opacity-95  !text-[0.8rem] min-w-24 max-w-max inputStandart pt-1 !min-h-[1.4rem] !h-full !flex focus:bg-slate-200;
+    @apply max-w-[9.2rem] placeholder:text-[0.9em] !pr-0;
     &::-webkit-calendar-picker-indicator {
-        @apply !text-slate-300 !opacity-50 p-2  rounded-full !scale-125 !flex -ml-8 md:-ml-2;
+        @apply !text-slate-300 !opacity-0;
     }
 }
 
 input[type="number"] {
-    @apply !opacity-95  !text-[0.8rem] min-w-24 min-h-[1.4rem] focus:!outline-none  !h-max !max-w-max inputStandart !flex !gap-4 md:!pr-2;
-
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
-        @apply !flex !items-center !justify-center !opacity-60 contrast-150  pr-5 !min-h-[0.6rem] py-2  gap-5 flex-col  -ml-2 bg-transparent  min-w-[0.8rem] appearance-none !border-0 !outline-0 md:appearance-auto;
+        @apply invisible;
     }
 }
 

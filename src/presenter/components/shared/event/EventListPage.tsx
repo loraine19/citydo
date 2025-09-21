@@ -247,8 +247,8 @@ export default function EventListPage() {
                 </>
             }
             {view === "event" && !isLoading &&
-                <section id='refDiv' className="!p-4  max-h-[calc(100dvh_-_10rem)]">
-                    <CardMD className="h-full"><CalendarComp /></CardMD>
+                <section id='refDiv' className="!p-4 flex max-h-[calc(100dvh_-_12.5rem)] ">
+                    <CardMD className="min-h-full grid pb-2"><CalendarComp /></CardMD>
                 </section>}
 
         </main>

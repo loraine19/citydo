@@ -606,3 +606,19 @@ CHIP
     background-color: var(--md3-slate-container);
     color: var(--md3-on-slate-container);
 }
+
+.md3-button-group {
+    @apply flex items-center max-w-max justify-center;
+    padding: var(--md3-spacing-small);
+    gap: var(--md3-spacing-small);
+    border-radius: var(--md3-radius-full);
+    text-transform: none;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--md3-anim-duration-short) var(--md3-anim-easing);
+    background-color: var(--md3-surface-variant);
+    color: var(--md3-on-surface-variant);
+    box-shadow: var(--md3-shadow-elevation-0);
+}

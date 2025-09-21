@@ -66,12 +66,8 @@ export default function SignUpPage() {
             </main>
 
             <footer
-                style={{
-                    bottom: 0,
-                    display: 'flex',
-                }}
-                className="  flex flex-col items-center gap-1 pb-[3rem] pt-[1rem] justify-center">
-                <i className="flex !text-slate-900 justify-center">
+                className=" !static flex flex-col items-center gap-1 justify-center  pb-[3rem] ">
+                <i className="flex  justify-center">
                     Vous avez deja un compte?
                 </i>
                 <Link to="/signin">

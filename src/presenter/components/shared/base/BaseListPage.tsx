@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Icon } from '../../common/IconComp';
-import { Button } from './baseComps/Buttons';
+import { Button, ButtonsDemo } from './baseComps/Buttons';
 import { CardExample, CardMD, } from './baseComps/Cards';
 import { Fab, FabMenu } from './baseComps/Fabs';
 import { Carousel } from './baseComps/Carrousel';
@@ -586,6 +586,7 @@ const MD3DemoPage: React.FC = () => {
 
             <CardExample />
             <InputDemo />
+            <ButtonsDemo />
         </div >
     );
 };

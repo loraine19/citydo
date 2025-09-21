@@ -401,22 +401,22 @@
 .md3-primary-outlined {
     background-color: transparent;
     color: var(--md3-primary);
-    border: 1px solid var(--md3-primary);
+    border: 1px solid var(--md3-outline);
 }
 .md3-secondary-outlined {
     background-color: transparent;
     color: var(--md3-secondary);
-    border: 1px solid var(--md3-secondary);
+    border: 1px solid var(--md3-outline);
 }
 .md3-tertiary-outlined {
     background-color: transparent;
     color: var(--md3-tertiary);
-    border: 1px solid var(--md3-tertiary);
+    border: 1px solid var(--md3-outline);
 }
 .md3-error-outlined {
     background-color: transparent;
     color: var(--md3-error);
-    border: 1px solid var(--md3-error);
+    border: 1px solid var(--md3-outline);
 }
 .md3-sky-outlined {
     background-color: transparent;
@@ -426,8 +426,7 @@
 .md3-cyan-outlined {
     background-color: transparent;
     color: var(--md3-cyan);
-    border: 1px solid var(--md3-cyan);
-    border-color: var(--md3-outline);
+    border: 1px solid var(--md3-outline);
 }
 .md3-rose-outlined {
     background-color: transparent;
@@ -442,12 +441,12 @@
 .md3-green-outlined {
     background-color: transparent;
     color: var(--md3-green);
-    border: 1px solid var(--md3-green);
+    border: 1px solid var(--md3-outline);
 }
 .md3-slate-outlined {
     background-color: transparent;
     color: var(--md3-slate);
-    border: 1px solid var(--md3-slate);
+    border: 1px solid var(--md3-outline);
 }
 
 /* Text color utility classes */

@@ -97,6 +97,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
+    z-index: 1;
 }
 
 .md3-leading-icon {
@@ -109,15 +110,15 @@
 
 .md3-input-wrapper.has-leading-icon .md3-label,
 .md3-input-wrapper.has-leading-icon .md3-input-element {
-    left: var(--md3-spacing-small);
+    left: 2.5em;
 }
 
 .md3-input-wrapper.has-leading-icon .md3-input-element {
-    padding-left: 0;
+    padding-left: 2.3em !important;
 }
 
 .md3-input-wrapper.has-trailing-icon .md3-input-element {
-    padding-right: 0;
+    padding-right: 2.3rem !important;
 }
 
 /* Styles pour la variante Filled */

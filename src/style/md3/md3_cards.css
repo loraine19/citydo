@@ -239,6 +239,10 @@
 
 /*** STYLES ***/
 
+.md3-card-section-border {
+    @apply border py-4  rounded-3xl border-[var(--md3-outline)];
+}
+
 .md3-card-elevated {
     @apply md3-primary-container;
     box-shadow: var(--md3-shadow-elevation-3);
