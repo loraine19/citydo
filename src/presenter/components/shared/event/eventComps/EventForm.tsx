@@ -47,7 +47,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
 
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
-            <main id="refDiv"  >
+            <main >
                 <div className="sectionHeader gap-2">
                     <div className="flex flex-col lg:flex-row lg:gap-4 pb-2 pt-2 gap-2">
                         <Select
@@ -69,7 +69,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                         closeBtn />
                 </div>
                 <section >
-                    <div
+                    <div id="refDiv"
                         className={`DetailCardDiv hideCTAForm`}>
                         <CardLarge
                             form
@@ -123,7 +123,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                             textarea.style.height = '2.5rem';
                                         }
                                     }}
-                                    defaultValue={description}
+                                    value={description}
                                 />
                             </CardLarge.SupportingText>
 
@@ -167,10 +167,10 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         <Input
                                             className={`inputStandart ${formik.errors.participantsMin ? 'error' : ''}`}
                                             type='number'
-                                            label={"Participants minimum"}
+                                            label={""}
                                             name="participantsMin"
                                             onChange={formik.handleChange}
-                                            defaultValue={participantsMin}
+                                            value={participantsMin}
                                             helperText={formik.errors.participantsMin ?? 'participants minimum pour valider l\'évenement'}
                                         />
                                     </div>
