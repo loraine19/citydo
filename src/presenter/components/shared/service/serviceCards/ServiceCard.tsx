@@ -92,15 +92,15 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
 
 
 
-            <CardMD.Headline className="flex flex-row justify-between w-full items-center">
-                <span className="line-clamp-1 sm:line-clamp-2">{title}</span>
+            <CardMD.Headline className="flex flex-row justify-between w-full ">
+                <span className={`${compact ? 'line-clamp-1' : 'line-clamp-2 '} "sm:line-clamp-2"`}>{title}</span>
                 <MoreButton
                     id={id}
                     type={'service'}
                     flagged={flagged}
                     title={title} />
             </CardMD.Headline>
-            <CardMD.Subhead className={`${compact ? 'line-clamp-2 !pr-[20%]' : 'line-clamp-1'} overflow-hidden "`}>
+            <CardMD.Subhead className={`${compact ? 'line-clamp-2 !pr-[20%]' : 'hidden'} overflow-hidden "`}>
                 {service?.description}
             </CardMD.Subhead>
             <CardMD.Chips>

@@ -73,7 +73,7 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
             trigger={
                 <Icon
                     fill
-                    style='-mr-0.5 mt-1'
+                    style='-mr-2 mt-1.5'
                     color={'slate'}
                     icon={isOpen ? "arrow_drop_up" : "more_vert"}
                     size="lg"
