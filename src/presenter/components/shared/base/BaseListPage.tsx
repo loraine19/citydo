@@ -14,6 +14,7 @@ import { Menu, MenuItem, Tabs } from './baseComps/Menu';
 import { Tooltip } from './baseComps/Dialogs';
 import { ProgressBar, ProgressRing, Slider } from './baseComps/Sliders';
 import { SegmentedButton } from './baseComps/ButtonSegmented';
+import { InputDemo } from './baseComps/Inputs';
 
 const MD3DemoPage: React.FC = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -479,6 +480,7 @@ const MD3DemoPage: React.FC = () => {
                 <div style={{ position: 'relative' }}>
 
                     <Menu
+                        key='demo-menu'
                         blurBack
                         placement='auto'
                         trigger={<Button variant="outlined" >Ouvrir le Menu</Button>} >
@@ -583,6 +585,7 @@ const MD3DemoPage: React.FC = () => {
             </section>
 
             <CardExample />
+            <InputDemo />
         </div >
     );
 };

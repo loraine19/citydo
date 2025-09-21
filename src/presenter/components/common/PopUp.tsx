@@ -13,6 +13,7 @@ export default function PopUp(props: popUpProps) {
     return (
         <>
             <Menu
+                key='open-popup'
                 menuRef={undefined}
                 open={true}
                 placement="auto"

@@ -25,7 +25,7 @@ export const Menu: React.FC<MenuProps> = ({
     setOpen,
     className,
     children,
-    placement = 'bottom',
+    placement: givenPlacement = 'bottom',
     onClose,
     trigger,
     closeIcon,
@@ -37,7 +37,7 @@ export const Menu: React.FC<MenuProps> = ({
     title
 }) => {
     const [internalOpen, setInternalOpen] = useState(false);
-    const isControlled = controlledOpen !== undefined && setOpen !== undefined;
+    const isControlled = controlledOpen;
     const open = isControlled ? controlledOpen : internalOpen;
     const menuRefAuto = useRef<HTMLDivElement>(null);
 
@@ -122,13 +122,15 @@ export const Menu: React.FC<MenuProps> = ({
 
 
     const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
+    const [placement, setPlacement] = useState<string | null>(givenPlacement);
+
     useLayoutEffect(() => {
         let style: React.CSSProperties = {};
 
         if (triggerRect && menuCurrent.current) {
             const viewportHeight = window.innerHeight;
             const viewportWidth = window.innerWidth;
-            const menuHeight = menuCurrent.current.offsetHeight;
+            const menuHeight = menuCurrent.current.clientHeight;
             const menuWidth = menuCurrent.current.offsetWidth;
 
             // Calculate available space
@@ -162,13 +164,14 @@ export const Menu: React.FC<MenuProps> = ({
                 style.left = `${triggerRect.left - menuWidth}px`;
                 style.transformOrigin = `top`
             }
-            else if ((placement === 'bottom-right' || placement === 'auto')
-                && (spaceRight >= menuWidth && spaceBelow >= menuHeight)
-            ) {
-                style.position = 'fixed';
-                style.top = `${triggerRect.bottom}px`;
-                style.left = `${triggerRect.left}px`;
-                style.transformOrigin = `top`
+            else if (placement === 'bottom-right' || placement === 'auto') {
+                if (spaceRight >= menuWidth && spaceBelow >= menuHeight) {
+                    style.position = 'fixed';
+                    style.top = `${triggerRect.bottom}px`;
+                    style.left = `${triggerRect.left}px`;
+                    style.transformOrigin = `top`
+                }
+                else (setPlacement('up-bottom-right'))
             }
 
             //Centrer on triiger center if no space
@@ -240,6 +243,7 @@ export const Menu: React.FC<MenuProps> = ({
                 key={key}
                 data-md3-menu
                 className={`md3-menu-container  ${(menuRef || menuRefAuto) ? "" : "relative"} `}>
+
                 {(trigger) && React.cloneElement(
                     trigger as React.ReactElement,
 
@@ -252,7 +256,9 @@ export const Menu: React.FC<MenuProps> = ({
                     }
                 )}
 
-                {visible &&
+
+
+                {
                     <div
                         data-md3-menu
                         aria-expanded={open}
@@ -269,8 +275,7 @@ export const Menu: React.FC<MenuProps> = ({
                      ${open ? " md3-menu-enter " : ` md3-menu-leave `} `} >
 
 
-                        {<div
-                            className={`
+                        {<div className={`
                     ${(open) ? "!z-[999]" : " -z-10 "}`}
                             ref={menuCurrent}>
 
@@ -297,6 +302,7 @@ export const Menu: React.FC<MenuProps> = ({
                         </div>}
                     </div>
                 }
+
             </div>
             {blurBack &&
                 <BackDropBlur
@@ -304,10 +310,9 @@ export const Menu: React.FC<MenuProps> = ({
 
                     open={open}
                     setOpen={handleClose}
-                    className="z-[2]" >
+                    className="z-[0]" >
 
-                </BackDropBlur>
-            }
+                </BackDropBlur>}
         </>
     );
 };

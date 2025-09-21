@@ -1,0 +1,201 @@
+.demo-container {
+    padding: 32px;
+    background-color: var(--md3-background);
+}
+
+.md3-input-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 0 var(--md3-spacing-small);
+    border: none !important;
+    font-family: "Roboto", sans-serif;
+}
+
+.md3-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: fit-content;
+    border-radius: 4px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.md3-input-element {
+    font-size: 1rem;
+    padding: var(--md3-spacing-medium);
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    resize: none;
+    color: var(--md3-on-surface);
+    transition: padding 0.2s;
+}
+
+.md3-input-element[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.md3-input-element[type="number"]::-webkit-inner-spin-button,
+.md3-input-element[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.md3-label {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: var(--md3-on-surface-variant);
+    pointer-events: none;
+    transition: transform 0.2s, font-size 0.2s, top 0.2s, left 0.2s, color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 2;
+}
+
+.md3-leading-icon,
+.md3-trailing-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+    color: var(--md3-on-surface-variant);
+    font-size: 1.25rem;
+    z-index: 2;
+}
+
+.md3-input-wrapper.has-leading-icon .md3-label,
+.md3-input-wrapper.has-leading-icon .md3-input-element {
+    left: 48px;
+}
+
+.md3-input-wrapper.has-leading-icon .md3-input-element {
+    padding-left: 0;
+}
+
+.md3-input-wrapper.has-trailing-icon .md3-input-element {
+    padding-right: 0;
+}
+
+/* Styles pour la variante Filled */
+.md3-filled .md3-input-container {
+    background-color: var(--md3-surface-container-highest);
+    border-bottom: 2px solid var(--md3-on-surface-variant);
+    border-radius: 4px 4px 0 0;
+
+    padding-top: var(--md3-spacing-medium);
+}
+
+.md3-filled.active .md3-input-container {
+    border-bottom-color: transparent;
+    border-bottom: 4px solid var(--md3-on-surface-variant);
+}
+
+.md3-filled .md3-label {
+    padding-top: var(--md3-spacing-medium);
+    top: 50%;
+}
+
+.md3-filled.active .md3-label {
+    top: var(--md3-spacing-medium);
+    font-size: 0.75rem;
+    transform: translateY(0);
+    padding-top: 0;
+}
+
+.md3-filled .md3-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: transparent;
+    transition: background-color 0.2s;
+    z-index: 3;
+}
+
+.md3-filled.active .md3-underline {
+    background-color: var(--md3-primary);
+}
+
+.md3-filled:hover .md3-input-container {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* Styles pour la variante Outlined */
+.md3-outlined .md3-input-container {
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 0;
+    min-height: 56px;
+    border: 1px solid var(--md3-outline);
+    transition: border 0.2s;
+}
+
+.md3-outlined.active .md3-input-container {
+    border: 2px solid var(--md3-primary);
+}
+
+.md3-outlined:hover .md3-input-container {
+    border-color: var(--md3-on-surface);
+}
+
+.md3-outlined .md3-label {
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.2s, font-size 0.2s, top 0.2s, left 0.2s, color 0.2s;
+}
+
+.md3-outlined.active .md3-label {
+    top: -8px;
+    font-size: 0.75rem;
+    transform: translateY(0);
+    left: 12px;
+    background-color: var(--md3-background);
+    padding: 0 4px;
+    margin: 0 -4px;
+}
+
+/* États d'erreur */
+.md3-input-wrapper.error .md3-label,
+.md3-input-wrapper.error .md3-helper-text,
+.md3-input-wrapper.error .md3-leading-icon,
+.md3-input-wrapper.error .md3-trailing-icon {
+    color: var(--md3-error);
+}
+
+.md3-input-wrapper.error.md3-filled .md3-underline {
+    background-color: var(--md3-error);
+}
+
+.md3-input-wrapper.error.md3-outlined .md3-input-container {
+    border-color: var(--md3-error);
+}
+
+/* État désactivé */
+.md3-input-wrapper.disabled {
+    opacity: 0.38;
+    pointer-events: none;
+}
+
+.md3-input-wrapper.disabled .md3-input-element {
+    cursor: not-allowed;
+}
+
+.md3-helper-text {
+    font-size: 0.75rem;
+    color: var(--md3-on-surface-variant);
+    margin: 4px 16px 0;
+}
+
+.md3-helper-text.error {
+    color: var(--md3-error);
+}

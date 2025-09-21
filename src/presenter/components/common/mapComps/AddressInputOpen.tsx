@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Input, List, ListItem } from '@material-tailwind/react';
 import { Address } from '../../../../domain/entities/Address';
-import { Skeleton } from '../Skeleton';
 import { AddressDTO } from '../../../../infrastructure/DTOs/AddressDTO';
 import DI from '../../../../di/ioc';
-import { InputError } from '../adaptatersComps/input';
 import { Icon } from '../IconComp';
+import { Input } from '../../shared/base/baseComps/Inputs';
+import { Menu, MenuItem } from '../../shared/base/baseComps/Menu';
 
 interface AddressSuggestion { label: string; value: Address }
 
@@ -32,6 +31,7 @@ export const AddressInputOpen = (props: {
         const q = event.target.value;
         setInputValue(q);
         setInputLoading(true)
+        setOpen(true)
         if (q.length > 2) {
             try {
                 const response = await axios.get(`https://nominatim.openstreetmap.org/search`, {
@@ -103,53 +103,74 @@ export const AddressInputOpen = (props: {
     const handleSuggestionSelect = (suggestion: AddressSuggestion) => {
         setInputValue(suggestion.label)
         setSuggestions([]);
+
     };
+    const [open, setOpen] = useState(true);
+    const [triggerElement, setTriggerElement] = useState<HTMLElement | null>(null);
+    useEffect(() => {
+        setTriggerElement(document.querySelector('[data-mapbox-id]') as HTMLElement);
+
+        if (triggerElement && (suggestions.length === 0) && open) {
+            setOpen(true);
+            (triggerElement as HTMLElement).click();
+        }
+
+    }, [suggestions, inputLoading]);
 
     return (
-        <div className='relative z-40 '>
+        <div className='flex relative flex-col flex-1 w-full'>
             <Input
-                className={`items-center flex-1 !relative inputStandart ${error ? 'error' : ''}`}
-                placeholder={"Adresse"}
+                className='!min-w-full'
+                label={"Adresse"}
                 type="text"
                 name='address'
                 value={inputValue}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     if (event.target.value.trim() !== '' || event.target.value === '') { handleInputChange(event) }
                 }}
-            >
-                <Icon
+                trailingIcon={<Icon
                     icon='close'
                     style={'!absolute top-[50%] translate-y-[-50%] right-2'}
-                    onClick={() => { setInputValue('') }}
+                    onClick={() => { setInputValue(''); setOpen(false) }}
                     size='sm'
-                    color='gray' />
+                    color='gray' />}
+                helperText={error ? Object.values(error).join(', ') : ""}
+                error={!!error}
+            >
             </Input>
-            <InputError error={error ? Object.values(error).join(', ') : ""} mt />
-            {inputValue.length > 1 && inputLoading && (
-                <div className='z-50 absolute px-0.5 w-full'
-                    ref={(el) => { if (el) el.scrollIntoView({ behavior: 'smooth', block: 'end' }); }}>
-                    <List className='bg-white rounded-2xl border border-gray-300 overflow-auto w-full shadow max-h-[7.5rem] '>
-                        {suggestions.length > 0 ? (
-                            suggestions.map((suggestion, index) => (
-                                suggestion.label !== suggestions[index - 1]?.label &&
-                                <ListItem
-                                    className="cursor-pointer hover:bg-gray-200 min-h-max text-sm py-1.5 rounded-3xl"
-                                    title='choisir cette adresse'
-                                    key={index}
-                                    onClick={() => {
-                                        handleSuggestionSelect(suggestion);
-                                        setInputLoading(false);
-                                        setAddress({ ...suggestion.value } as Address)
-                                    }}>
-                                    {suggestion.label}
-                                </ListItem>
-                            ))
-                        ) : (
-                            <Skeleton className='w-full h-6 my-1 rounded-full' />
-                        )}
-                    </List>
-                </div>
-            )}
+
+            <Menu
+                closeIcon={<></>}
+                open={open}
+                setOpen={setOpen}
+                title='Choisir dans la liste'
+                trigger={<div className=' max-w-max -mt-8 ' data-mapbox-id >&nbsp;</div>}
+                key='address-suggestion'
+                placement='bottom-right'
+                className='!absolute !top-12 !left-0 max-h-[11rem] overflow-y-scroll '>
+                {suggestions.length > 0 ?
+                    suggestions.map((suggestion, index) => (
+                        suggestion.label !== suggestions[index - 1]?.label &&
+                        <MenuItem
+                            className="cursor-pointer hover:bg-gray-200 min-h-max text-sm py-1.5 rounded-3xl"
+                            title='choisir cette adresse'
+                            key={index}
+                            onClick={() => {
+                                handleSuggestionSelect(suggestion);
+                                setInputLoading(false);
+                                setAddress({ ...suggestion.value } as Address)
+                            }}>
+                            {suggestion.label}
+                        </MenuItem>
+
+                    )) :
+                    <MenuItem>
+                        <span> Chargement...</span>
+                    </MenuItem>
+
+                }
+
+            </Menu>
         </div >
     );
 };

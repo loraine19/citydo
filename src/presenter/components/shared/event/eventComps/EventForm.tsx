@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Card, CardHeader, Typography, CardBody, Input, Textarea, Progress } from "@material-tailwind/react";
 import AddressMapOpen from "../../../common/mapComps/AddressMapOpen";
 import { AddressInputOpen } from "../../../common/mapComps/AddressInputOpen";
 import SubHeader from "../../../common/SubHeader";
@@ -10,9 +9,11 @@ import { AddressDTO } from "../../../../../infrastructure/DTOs/AddressDTO";
 import { DateChip } from "../../../common/ChipDate";
 import GroupSelect from "../../../common/GroupSelect";
 import { useUserStore } from "../../../../../application/stores/user.store";
-import { InputError } from "../../../common/adaptatersComps/input";
 import { Select } from "../../../common/adaptatersComps/Select";
 import CTAMines from "../../../common/CTA";
+import { CardLarge } from "../../base/baseComps/Cards";
+import { Input } from "../../base/baseComps/Inputs";
+import { ProgressBar } from "../../base/baseComps/Sliders";
 
 interface EventFormProps {
     formik: any;
@@ -26,11 +27,9 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
     const [groupId, setGroupId] = useState<number | String | undefined>(formik.values.Group?.id);
     const user = useUserStore((state) => state.user);
 
-    ///// BLOB FUNCTION ;
     const imgCategory = EventImage[formik.values.category as keyof typeof EventImage] || EventImage.default
     const [imgBlob, setImgBlob] = useState<string>(formik.values.image ?? formik.values.blob ?? imgCategory);
 
-    //// ADDRESS GPS FUNCTION
     useEffect(() => {
         setAddress(Address)
         if (Address) {
@@ -42,25 +41,20 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
         !formik.values.image && setImgBlob(EventImage[formik.values.category as keyof typeof EventImage || EventImage.default])
     }, [formik.values.category]);
 
-
-
-    const { title, category, description, start, end, participantsMin, Participants, id } = formik.values;
+    const { title, category, description, start, end, participantsMin, id } = formik.values;
     const label = category ? getLabel(category, eventCategories) : '';
+    const [expand, setExpand] = useState<boolean>(false);
 
     return (
-        <form
-            onSubmit={formik.handleSubmit}
-            className="flex flex-col h-full overflow-hidden">
-            <main>
+        <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
+            <main id="refDiv"  >
                 <div className="sectionHeader gap-2">
-                    <div className="w-respLarge h-full flex flex-col lg:flex-row lg:gap-4 gap-2 pt-2 pb-2">
-
+                    <div className="flex flex-col lg:flex-row lg:gap-4 pb-2 pt-2 gap-2">
                         <Select
                             options={eventCategories}
                             formik={formik}
                             name="category"
                             placeholder="Choisir la catégorie"
-
                         />
                         <GroupSelect
                             groupId={groupId?.toString()}
@@ -68,144 +62,144 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                             formik={formik}
                             user={user} />
                     </div>
-
                     <SubHeader
                         form
                         type={id ? 'Modifier mon évenement ' : 'Créer mon évenement '}
-                        place={category ? label : ''} closeBtn />
+                        place={category ? label : ''}
+                        closeBtn />
                 </div>
-                <section>
-                    <div className={`FormCardDiv`}>
-                        <Card className={` FormDetailGrid !-mb-2 !pb-2 `}>
-                            <CardHeader className={"FixCardHeader"} >
-                                <ImageBtn
-                                    className="!absolute z-40 !h-max bottom-0 !left-3 mb-1"
-                                    formik={formik}
-                                    setImgBlob={setImgBlob}
-                                    imgDef={imgCategory} />
-                                <img
-                                    onError={(e) => e.currentTarget.src = '/image/placeholder.jpg'}
+                <section >
+                    <div
+                        className={`DetailCardDiv hideCTAForm`}>
+                        <CardLarge
+                            form
+                            expanded={expand}
+                            setExpanded={setExpand}
+                            image={
+                                <CardLarge.Image
                                     src={imgBlob ?? formik.values.image ?? formik.values.blob ?? imgCategory}
                                     alt={title || 'image'}
-                                    width={100}
-                                    height={100}
-                                    className={'CardImage'} />
-                                <div className={`${start ? 'ChipDiv !justify-end' : 'hidden'}`}>
-                                    <DateChip
-                                        start={start}
-                                        end={start}
-                                        prefix={start ? 'Début' : ''} />
+                                />
+                            }
+                        >
+                            <CardLarge.Chips className="justify-between px-2 pt-1">
+                                <ImageBtn
+                                    className="!relative mb-0 ml-2"
+                                    formik={formik}
+                                    setImgBlob={setImgBlob}
+                                    imgDef={imgCategory}
+                                />
+                                <DateChip
+                                    prefix=" "
+                                    start={formik.values.createdAt ?? new Date()}
+                                />
+                            </CardLarge.Chips>
+                            <CardLarge.Headline>
+                                <Input
+                                    className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
+                                    label={"Titre"}
+                                    name="title"
+                                    onChange={formik.handleChange}
+                                    value={title}
+                                    error={!!formik.errors.title}
+                                    helperText={formik.errors.title ?? ''}
+                                />
+                            </CardLarge.Headline>
+                            <CardLarge.SupportingText>
+                                <Input
+                                    multiline
+                                    rows={1}
+                                    error={!!formik.errors.description}
+                                    className={`inputStandart`}
+                                    label='Description'
+                                    name="description"
+                                    helperText={formik.errors.description ?? ''}
+                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                                        formik.handleChange(e);
+                                        const textarea = e.target as HTMLTextAreaElement;
+                                        textarea.style.height = '2.5rem';
+                                        textarea.style.height = textarea.scrollHeight + 'px';
+                                        if (e.target.value === '') {
+                                            textarea.style.height = '2.5rem';
+                                        }
+                                    }}
+                                    defaultValue={description}
+                                />
+                            </CardLarge.SupportingText>
+
+                            <CardLarge.Media className="flex flex-col gap-8">
+                                {((Address?.lat && Address?.lng)) ?
+                                    <div className="flex-1 !max-h-[7rem]">
+                                        <AddressMapOpen address={Address} />
+                                    </div> : ''}
+                                <AddressInputOpen
+                                    address={Address}
+                                    setAddress={setAddress}
+                                    error={formik.errors.Address} />
+
+                            </CardLarge.Media>
+                            <CardLarge.Media>
+                                <div className="flex-1 flex flex-col gap-2">
+                                    <Input
+                                        className={`inputStandart ${formik.errors.start ? 'error' : ''}`}
+                                        type='datetime-local'
+                                        label={""}
+                                        name="start"
+                                        onChange={formik.handleChange}
+                                        min={today}
+                                        defaultValue={start && formatDateForDB(start)}
+                                        helperText={formik.errors.start ?? 'date de début prévue'}
+                                    />
+                                    <Input
+                                        className={`inputStandart  ${formik.errors.end ? 'error' : ''}`}
+                                        type="datetime-local"
+                                        min={today}
+                                        defaultValue={end && formatDateForDB(end)}
+                                        label={""}
+                                        name="end"
+                                        onChange={formik.handleChange}
+                                        helperText={formik.errors.end ?? 'date de fin prévue'}
+                                    />
                                 </div>
-                            </CardHeader>
-                            <CardBody className='DetailCardBody'>
-                                <div className='gap-y-3 md:gap-y-6 h-full flex-1 pb-8 !flex flex-col '>
 
-                                    <div className='flex flex-col lg:flex-row gap-3 md:gap-4 h-full'>
-                                        <div className="flex flex-1 flex-col h-full ">
-                                            <div>
-                                                <Input
-                                                    className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
-                                                    placeholder={"Titre"}
-                                                    name="title"
-                                                    onChange={formik.handleChange}
-                                                    defaultValue={title} />
-                                                <InputError mt error={formik.errors.title} />
-                                            </div>
-                                            <div className='flex flex-col flex-1'>
-                                                <Textarea
-                                                    rows={1}
-                                                    isError={!!formik.errors.description}
-                                                    className={`inputStandart max-h-fit min-h-full`}
-                                                    placeholder='Description'
-                                                    resize={true}
-                                                    name="description"
-                                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                                                        formik.handleChange(e);
-                                                        const textarea = e.target as HTMLTextAreaElement;
-                                                        textarea.style.height = 'fit-content';
-
-                                                        textarea.style.height = textarea.scrollHeight + 'px';
-                                                    }}
-                                                    defaultValue={description}
-                                                />
-                                                <InputError mt error={formik.errors.description} />
-                                            </div>
-                                        </div>
-                                        <div className="flex flex-1 flex-col pt-4 md:pt-0 ">
-                                            {((Address?.lat && Address?.lng)) ?
-                                                <AddressMapOpen address={Address} /> : ''}
-
-                                            <div className='relative z-50'>
-                                                <AddressInputOpen
-                                                    address={Address}
-                                                    setAddress={setAddress}
-                                                    error={formik.errors.Address} />
-                                            </div>
-                                        </div>
+                                <div className='flex w-full gap-4 gap-y-6 flex-col md:flex-row justify-between'>
+                                    <div className='flex flex-col flex-1 min-w-fit '>
+                                        <Input
+                                            className={`inputStandart ${formik.errors.participantsMin ? 'error' : ''}`}
+                                            type='number'
+                                            label={"Participants minimum"}
+                                            name="participantsMin"
+                                            onChange={formik.handleChange}
+                                            defaultValue={participantsMin}
+                                            helperText={formik.errors.participantsMin ?? 'participants minimum pour valider l\'évenement'}
+                                        />
                                     </div>
-                                    <div className='flex justify-between gap-2 py-2'>
-                                        <div className='flex flex-col flex-1 min-w-max '>
-                                            <input
-                                                className={`inputStandart ${formik.errors.start ? 'error' : ''}`}
-                                                type='datetime-local'
-                                                placeholder={"date de debut"}
-                                                name="start"
-                                                onChange={formik.handleChange}
-                                                min={today}
-                                                defaultValue={start && formatDateForDB(start)} />
-                                            <InputError error={formik.errors.start} tips={'Date de début'} mt />
-                                        </div>
-                                        <div className='flex flex-col flex-1 '>
-                                            <input
-                                                className={`inputStandart  ${formik.errors.end ? 'error' : ''}`}
-                                                type="datetime-local"
-                                                min={today}
-                                                defaultValue={end && formatDateForDB(end)}
-                                                placeholder={"date de fin"}
-                                                name="end"
-                                                onChange={formik.handleChange} />
-                                            <InputError mt error={formik.errors.end} tips={'Date de fin'} />
-                                        </div>
-                                    </div>
-                                    <div className='flex w-full gap-4 gap-y-6 flex-col md:flex-row justify-between'>
-                                        <div className='flex flex-col flex-1 min-w-fit '>
-                                            <input
-                                                className={`inputStandart ${formik.errors.participantsMin ? 'error' : ''}`}
-                                                type='number'
-                                                placeholder={""}
-                                                name="participantsMin"
-                                                onChange={formik.handleChange}
-                                                defaultValue={participantsMin} />
-                                            <InputError mt error={formik.errors.participantsMin} tips={'Participants minimum'} />
-                                        </div>
-                                        <div className={"flex items-center max-w-[48%] pt-2  gap-1 flex-col justify-center w-full"}>
-                                            <div className="mb-2 flex w-full items-center justify-between gap-4">
-                                                <InputError
-                                                    tips={
-                                                        pourcentParticipants > 0 && `Inscrits` ||
-                                                        pourcentParticipants >= 100 && `validé` || `aucun inscrit`
-                                                    }
-                                                />
-                                                <Typography
-                                                    variant="small"
-                                                    className={pourcentParticipants <= 0 || pourcentParticipants >= 100 ? 'hidden' : ''}>
-                                                    {Participants?.length}  /  {participantsMin}
-                                                </Typography>
-                                            </div>
-                                            <Progress
-                                                value={pourcentParticipants}
-                                                size="md">
-                                                <Progress.Bar className={`bg-${pourcentParticipants === 100 ? "green" : "cyan"}-500`} />
-                                            </Progress>
-                                        </div>
+                                    <div className={"px-2 gap-4 pt-2 h-max justify-center flex flex-col max-w-[48%] w-full"}>
+
+                                        {<ProgressBar
+                                            label={
+                                                <div className="justify-between flex-1 w-full px-6 flex flex-row">
+                                                    <small>
+                                                        {formik.values?.Participants?.length ?? 0} participant{formik.values?.Participants?.length > 1 ? 's' : ''}
+                                                    </small>
+                                                    <small className="opacity-50"> / &nbsp;
+                                                        {participantsMin ?? 1} min.
+                                                    </small>
+                                                </div>}
+                                            variant={pourcentParticipants >= 100 ? 'linear' : 'wavy'}
+                                            color="cyan"
+                                            value={pourcentParticipants}
+                                            max={participantsMin ?? 10}
+                                            min={1}
+                                            size="xxsmall">
+                                        </ProgressBar>}
                                     </div>
                                 </div>
-                            </CardBody>
-                        </Card>
+                            </CardLarge.Media>
+                        </CardLarge>
                     </div>
                 </section>
             </main>
-
             <CTAMines
                 actions={[{
                     type: 'submit',
@@ -213,7 +207,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                     icon: id ? 'Modifier' : 'Créer',
                     disabled: false,
                     direct: true,
-                    function: () => { console.log('CTA clicked') }
+                    function: () => { }
                 }]}
             />
         </form>

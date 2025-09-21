@@ -29,12 +29,12 @@ export function Select({
     const { color } = useUxStore(state => state);
 
     const error = formik?.errors[name ?? ''];
-    const selected = options.find(opt => opt.value === (formik?.values[name ?? ''] ?? value));
+    const selected = options?.find(opt => opt.value === (formik?.values[name ?? ''] ?? value));
     const displayLabel = selected?.label || placeholder;
 
     const handleSelect = (option: { label: string, value: string }) => {
-        if (formik) formik.setFieldValue(name, option.value);
-        setValue && setValue(option.value);
+        if (formik) formik.setFieldValue(name, option?.value);
+        setValue && setValue(option?.value);
         onChangeFunction && onChangeFunction();
     };
 
@@ -61,16 +61,16 @@ export function Select({
                         }
                         title={placeholder}
                     >
-                        {options.map((option) => (
+                        {options?.map((option) => (
                             <MenuItem
-                                key={option.value}
-                                value={option.value}
+                                key={option?.value}
+                                value={option?.value}
                                 onClick={() => handleSelect(option)}
-                                trailingIcon={selected?.value === option.value ? (
+                                trailingIcon={selected?.value === option?.value ? (
                                     <Icon style='-mr-1' color={color ?? 'slate'} size="lg" icon="check" />
                                 ) : <div className="w-3" />}
                             >
-                                {option.label}
+                                {option?.label}
                             </MenuItem>
                         ))}
                     </Menu>

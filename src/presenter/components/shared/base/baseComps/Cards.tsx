@@ -210,36 +210,49 @@ export const CardLarge: React.FC<CardLargeProps> & {
 
         const divRef = React.useRef<HTMLDivElement>(null);
         const [largeContent, setLargeContent] = useState<boolean>(false);
+        const [initialHeight, setInitialHeight] = useState<number | null>(null);
+        const [firstLoad, setFirstLoad] = useState<boolean>(true);
+
+        useEffect(() => {
+            if (divRef.current && initialHeight === null)
+                setInitialHeight(divRef.current.scrollHeight);
+
+
+        }, [divRef.current]);
 
         useEffect(() => {
             const checkContent = () => {
                 if (divRef.current) {
+                    if (divRef.current && initialHeight !== null && firstLoad) {
+                        setFirstLoad(initialHeight === divRef.current.scrollHeight);
+                    }
                     setLargeContent(
                         divRef.current.clientHeight !== divRef.current.scrollHeight
-                    );
+                    )
+
                 }
             };
 
             checkContent();
-            // Use ResizeObserver to detect divRef size/content changes instead of window resize
             let observer: ResizeObserver | null = null;
             if (divRef.current && "ResizeObserver" in window && form) {
                 observer = new ResizeObserver(() => {
+
+                    // Only trigger after first input (not on initial mount)
                     checkContent();
-                    // Expand if content is larger than container on content resize
 
                 });
-                observer.observe(divRef.current);
-                if (!expanded) {
-                    setExpanded(divRef.current.clientHeight !== divRef.current.scrollHeight);
-                };
-            }
 
-            // Cleanup
+                observer.observe(divRef.current);
+                if ((divRef.current.scrollHeight !== initialHeight) && !firstLoad) {
+                    setExpanded(divRef.current.clientHeight !== divRef.current.scrollHeight);
+                    setInitialHeight(divRef.current.scrollHeight);
+                }
+            }
             return () => {
                 if (observer) observer.disconnect();
             };
-        }, [divRef, children, form]);
+        }, [divRef, children, form, expanded, initialHeight, firstLoad]);
 
         // Extract image props if image is a React element
         const imageProps = (image as any)?.props || {};
@@ -247,6 +260,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
         // Card classes
         const cardClasses = `md3-card-large  !min-h-fit md3-card-${variant} ${className || ""}`;
         const [keepHandle, setKeepHandle] = useState(form ? true : false);
+
         return (
             <div
                 className={`${cardClasses}  !border-none relative min-h-full flex flex-1 overflow-hidden`} data-md3-card
@@ -254,7 +268,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
 
                 {/* Large Image */}
                 {imageProps.src &&
-                    <div className={`  absolute top-0 anim md3-card-large-image-container h-[55%] `}  >
+                    <div className={`absolute top-0 anim md3-card-large-image-container h-[55%]`}  >
 
                         <img
                             src={imageProps.src}
@@ -273,8 +287,6 @@ export const CardLarge: React.FC<CardLargeProps> & {
                 <div id='sheet'
                     ref={divRef}
                     className={` md3-card-large-sheet md3-card-${variant}  ${sheetClassName || ""}
-
-                       
                         ${(imageProps.src) ? `
                             ${(!expanded) ?
                                 " animSheetRev max-h-[60%] lg:max-h-[55%]  overflow-hidden " :
@@ -294,11 +306,11 @@ export const CardLarge: React.FC<CardLargeProps> & {
                                 }}
                                 tabIndex={0}
                                 aria-label="Expand card content" />}
-
                     </div>
                     {/* Expandable content */}
                     <div
                         className={`md3-sheet-content`}  >
+
                         {children}
                     </div>
                 </div>
