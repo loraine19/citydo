@@ -31,9 +31,9 @@ input {
 }
 
 input[type="datetime-local"] {
-    @apply max-w-max placeholder:text-[0.9em] !pr-0;
+    @apply !pr-0;
     &::-webkit-calendar-picker-indicator {
-        @apply !text-slate-300 !opacity-0;
+        @apply invisible absolute left-2 z-[4];
     }
 }
 

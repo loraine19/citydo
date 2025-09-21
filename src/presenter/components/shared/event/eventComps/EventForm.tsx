@@ -155,7 +155,9 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                 <div className="flex flex-1 flex-col md:flex-row gap-4">
                                     <Input
                                         error={!!formik.errors.start}
-                                        leadingIcon={<Icon icon='calendar_today' size='lg' />}
+                                        leadingIcon={<Icon icon='calendar_today' onClick={() => {
+                                            (document.getElementsByName("start")[0] as HTMLInputElement).showPicker();
+                                        }} fill size='lg' />}
                                         className={`!max-w-[50%]`}
                                         type='datetime-local'
                                         label={""}
@@ -167,7 +169,9 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                     />
                                     <Input
                                         error={!!formik.errors.end}
-                                        leadingIcon={<Icon icon='calendar_today' size='lg' />}
+                                        leadingIcon={<Icon icon='calendar_today' onClick={() => {
+                                            (document.getElementsByName("end")[0] as HTMLInputElement).showPicker();
+                                        }} fill size='lg' />}
                                         className={`!max-w-[50%]`}
                                         type="datetime-local"
                                         min={today}
@@ -184,7 +188,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
 
                                 <div className="flex flex-1 flex-col md:flex-row gap-4">
                                     <Input
-                                        leadingIcon={<Icon icon='person' size='lg' />}
+                                        leadingIcon={<Icon icon='person' fill={true} size='lg' />}
                                         error={!!formik.errors.participantsMin}
                                         type='number'
                                         label={""}

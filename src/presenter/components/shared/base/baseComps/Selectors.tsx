@@ -28,7 +28,7 @@ export const Switch: React.FC<SwitchProps> = ({ checked, onChange, ...props }) =
 interface CheckboxProps {
     checked: boolean;
     onChange: (e: any) => void;
-    label: string;
+    label: string | ReactNode;
     className?: string;
     size?: 'lg' | 'xl' | '2xl' | '3xl';
     color?: Md3Colors;

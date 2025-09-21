@@ -97,7 +97,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                         error={!!formik.errors.description}
                                         className={``}
                                         label='Description'
-                                        rows={1}
+                                        rows={3}
                                         name="description"
                                         multiline
                                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -110,18 +110,17 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                             }
                                         }}
                                         value={formik.values.description}
-
                                         helperText={`${formik.errors.description ?? (`${formik.values.description?.length ?? 0}/300`)}`}
                                     />
                                 </div>
                             </CardLarge.MidSection>
-                            <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                            <CardLarge.MidSection className="!mx-4 md3-card-section-border flex !max-h-max flex-col">
                                 <span className="md3-card-subhead">{formik?.errors?.shareA ?? 'Contact'}</span>
-                                <div className="flex flex-1   gap-4">
+                                <div className="flex py-1  px-4 gap-4">
 
                                     <Checkbox
                                         color="rose"
-                                        label="Téléphone"
+                                        label={"Téléphone"}
                                         id='phone-checkbox'
                                         name="shareA"
                                         value="PHONE"

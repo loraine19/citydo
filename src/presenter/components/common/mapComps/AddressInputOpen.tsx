@@ -128,6 +128,7 @@ export const AddressInputOpen = (props: {
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     if (event.target.value.trim() !== '' || event.target.value === '') { handleInputChange(event) }
                 }}
+                leadingIcon={inputLoading ? <Icon icon='progress_activity' size='lg' style='animate-spin' /> : <Icon icon='add_location' fill={true} onClick={() => setOpen(true)} size='lg' />}
                 trailingIcon={<Icon
                     icon='close'
                     style={'!absolute top-[50%] translate-y-[-50%] right-2'}
