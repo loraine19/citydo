@@ -63,7 +63,6 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
     return (
 
         <Menu
-            ref
             blurBack
             key={`more-menu-${id}`}
             className={className ?? '' + ''}

@@ -17,6 +17,7 @@ import NotifDiv from "../../common/NotifDiv";
 import { useUxStore } from "../../../../application/stores/ux.store";
 import { HandleHideParams, HandleScrollParams } from "../../../../application/useCases/utils.useCase";
 import SelectSearch from "../../common/SelectSearch";
+import { CardMD } from "../base/baseComps/Cards";
 
 export default function EventListPage() {
     const [filter, setFilter] = useState<string>('');
@@ -168,7 +169,8 @@ export default function EventListPage() {
     return (
         <main>
             <div className="sectionHeader " data-md3>
-                <div className={`flex items-center justify-center gap-2 `}>
+
+                <div className={`flex items-center justify-center gap-2 ${view === "view_agenda" ? '' : 'pb-2'}`}>
                     <SelectSearch
                         searchCat={searchCat}
                         setSearchCat={setSearchCat}
@@ -190,8 +192,9 @@ export default function EventListPage() {
                         style={(view !== "view_agenda" ? "hidden" : "flex sm:hidden lg:flex")}
                         title={compact ? "voir en mode liste" : "voir en mode grille"} />
                 </div>
+
                 {view === "view_agenda" &&
-                    <TabsMenu
+                    <>           <TabsMenu
                         labels={eventTabs}
                         defaultTab={params.filter || ''}
                         sortList={sortList}
@@ -200,10 +203,11 @@ export default function EventListPage() {
                         reverse={reverse}
                         setReverse={setReverse}
                         action={refetch}
-                    />}
-                <SubHeader
-                    qty={count > 0 ? count : 'pas d\''}
-                    type={` évènements ${filterName()} ${EventCategory[category as keyof typeof EventCategory] ?? ''}`} />
+                    />
+                        <SubHeader
+                            qty={count > 0 ? count : 'pas d\''}
+                            type={` évènements ${filterName()} ${EventCategory[category as keyof typeof EventCategory] ?? ''}`} />
+                    </>}
                 {(view === "view_agenda" && notif) &&
                     <NotifDiv
                         error={error}
@@ -243,8 +247,8 @@ export default function EventListPage() {
                 </>
             }
             {view === "event" && !isLoading &&
-                <section id='refDiv' className="!pt-14 pb-4  max-h-[calc(100dvh_-_11rem)]">
-                    <CalendarComp />
+                <section id='refDiv' className="!p-4  max-h-[calc(100dvh_-_10rem)]">
+                    <CardMD className="h-full"><CalendarComp /></CardMD>
                 </section>}
 
         </main>

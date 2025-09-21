@@ -185,7 +185,7 @@ export const Icon: React.FC<IconProps> = ({
     ${bg ? iconSize : textSize} ${style ?? ''} `
 
     const classActive = `hover:brightness-[0.95] active:brightness-[0.9] hover:scale-[1.03] `
-    const [isFill, setIsFill] = useState(fill);
+    const [isFill, setIsFill] = useState(fill ? true : false);
 
     return (
         <div

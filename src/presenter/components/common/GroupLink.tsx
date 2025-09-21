@@ -11,7 +11,6 @@ export const GroupLink: React.FC<GroupDivProps> = ({ group, className }) => {
     return (
 
         <Menu
-            ref
             closeIcon={<></>}
             placement="top-right"
             className={` ${className ?? ''} ml-[30%] mr-[50%] `}

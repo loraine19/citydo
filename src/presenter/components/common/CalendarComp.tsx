@@ -9,6 +9,7 @@ import { EventStatus } from '../../../domain/entities/Event';
 import { CardMD } from '../shared/base/baseComps/Cards';
 import { Menu } from '../shared/base/baseComps/Menu';
 import { useNavigate } from 'react-router';
+import NotifDiv from './NotifDiv';
 
 export default function CalendarCompLarge(props: { logo?: boolean, divRef?: React.RefObject<HTMLDivElement> }) {
     const { logo } = props || {}
@@ -42,14 +43,15 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
 
     useEffect(() => {
         hasNextPage && fetchNextPage()
-        if (!weeks) refetch()
+        if (!weeks && !loadingEvents) refetch()
 
     }, [startDate, numberOfwweks, loadingEvents, errorEvents])
 
     const colClass = ['grid-cols-1', 'grid-cols-2', 'grid-cols-3', 'grid-cols-4', 'grid-cols-5', 'grid-cols-6', 'grid-cols-7']
 
     return (
-        <div className='flex flex-col flex-1 px-4 gap-2'
+        <div
+            className='flex flex-col flex-1 px-4 gap-2 relative'
             data-cy="calendar">
             <CardMD.Subhead className="flex overflow-auto w-full p-0 justify-between gap-2 items-center">
                 {logo &&
@@ -126,61 +128,61 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
             </CardMD.Subhead>
 
             {/* CALENDAR */}
-            <div className='relative max-h-full w-full flex flex-1 '>
+            <div className=' max-h-full w-full flex flex-1 '>
 
-                (<div className='absolute flex flex-col flex-1 h-full p-1 gap-1 w-full rounded-xl bg-white shadow'>
-                    {weeks.map((week: any, key: number) => (
+                <div id='refDiv' className='flex flex-col flex-1 h-full py-1 gap-3 w-full rounded-xl  '>
+                    {(weeks && !loadingEvents && !errorEvents && weeks.length > 0) ? weeks.map((week: any, key: number) => (
                         <div
                             key={key}
-                            className={`grid rounded-xl h-full overflow-auto pb-3 border-slate-200 !bg-slate-200/50 border
+                            className={`grid rounded-xl h-full overflow-auto pb-3  !bg-[var(--md3-surface)] border
                                 ${colClass[col - 1]}`}>
                             {week.map((day: any, index: number) =>
-                                <div className={`flex flex-col text-center h-full border-r border-slate-100/50  `}
+                                <div className={`flex flex-col text-center h-full border-r  `}
                                     key={index}>
-                                    <p className={`${new Date(day.date).toDateString() === new Date().toDateString() && '!text-orange-500 underline underline-offset-4 text-font-bold'} 'w-full !text-xs pt-0 min-h-4 sticky top-0 text-center bg-slate-100`}>
+                                    <p className={`${new Date(day.date).toDateString() === new Date().toDateString() && '!text-orange-500 underline underline-offset-4 text-font-bold'} w-full !text-xs pt-0 min-h-4 sticky top-0 text-center bg-[var(--md3-surface)]`}>
                                         {day.date.toLocaleDateString('fr-FR', { weekday: 'narrow', month: 'numeric', day: 'numeric' })}
                                     </p>
-                                    <div className='min-h-4 h-full flex flex-col w-full items-center gap-0.5' key={index}>
+                                    <div className='min-h-4  h-full w-full flex flex-col flex-1 items-center gap-0.5' key={index}>
                                         {day.events.sort((a: any, b: any) => a.id - b.id).map((event: any, indexEvent: number) => {
                                             const eventDays = event.days.map((d: any) => new Date(d).toDateString());
                                             const currentDay = new Date(new Date(day.date).getTime()).toDateString();
                                             return (
+
+
                                                 <div
-                                                    key={indexEvent}
-                                                    className='w-full grid rounded-xl  '>
+                                                    data-cy='event-handler'
+                                                    title={'Voir événement' + ' ' + event.title}
+                                                    className='w-full grid  '
+
+                                                >
                                                     <Menu
-                                                        key={'event-menu' + event.id + currentDay}
+                                                        key={'event-menu' + event.id + indexEvent}
                                                         open={open}
+                                                        setOpen={setOpen}
 
                                                         closeIcon={
                                                             <Icon
                                                                 icon="close"
-                                                                bg style='self-start' color='slate' size="sm" />}
-                                                        className='-ml-2 px-2 pt-2 bg-slate-100'
-                                                        ref
+                                                                bg style='self-start'
+                                                                color='slate' size="sm" />}
+                                                        className={` ${logo && '!absolute !left-[5%] !right-[5%] !-top-[0%]'}  max-h-full !z-[99999]  px-2 pt-2  max-w-fit bg-[var(--md3-primary-container)] `}
                                                         blurBack
-                                                        placement='center'
-                                                        trigger={
-                                                            <button
-                                                                data-cy='event-handler'
-                                                                title={'Voir événement' + ' ' + event.title}
-                                                                className=' min-w-full rounded-xl'
-
-                                                            >
-                                                                <div
-                                                                    className=
-                                                                    {`${!event.actif && 'invisible'} 
-                                                                             ${event.status !== EventStatus.VALIDATED ? `!bg-slate-400/80` : `bg-cyan-500`} shadow-md px-[0.5rem] mb-[0.2rem]  text-white h-5 truncate flex items-center justify-center font-normal z-50  w-full
+                                                        placement={!logo ? 'center' : 'center'}
+                                                        trigger={<div
+                                                            className=
+                                                            {` ${!event.actif && 'invisible'} 
+                                                                             ${event.status !== EventStatus.VALIDATED ? `!bg-[--md3-slate-container]` : `bg-[--md3-cyan-container]`} shadow-md px-[0.5rem] mb-[0.2rem]  w-full flex-1  h-5 truncate flex items-center justify-center font-normal z-[4]
                                                         text-[0.80rem]
                                                         ${(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) ? 'rounded-l-xl !justify-start !z-50 pl-3 !font-medium capitalize' : 'italic text-opacity-70'}
                                                         ${(eventDays[eventDays.length - 1] === currentDay || new Date(day.date).getDay() === 0) && 'rounded-r-xl '}
                                                     `}>
-                                                                    {(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) ? getLabel(event.category, eventCategories) + '...' : `Jour ${eventDays.indexOf(currentDay) + 1}`}
-                                                                </div>
-                                                            </button>}>
+                                                            {(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) ? getLabel(event.category, eventCategories) + '...' : `Jour ${eventDays.indexOf(currentDay) + 1}`}
+                                                        </div>}>
 
 
                                                         <EventCard
+
+                                                            imagePosition={!logo ? 'top' : 'left'}
                                                             variant='outlined'
                                                             event={event}
                                                             change={() => {
@@ -201,8 +203,12 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                                 </div>
                             )}
                         </div>
-                    ))}
-                </div>)
+                    )) : <NotifDiv
+                        isLoading={loadingEvents}
+                        error={errorEvents}
+                        refetch={refetch}
+                        notif={loadingEvents ? 'Chargement...' : errorEvents ? 'Une erreur est survenue' : 'Aucun événement'} />}
+                </div>
             </div>
         </div>
     )

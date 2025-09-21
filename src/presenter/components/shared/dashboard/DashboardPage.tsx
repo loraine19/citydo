@@ -49,7 +49,7 @@ export default function DashboardPage() {
     // User div takes twice the height of notif div
     const userClasse = "row-start-1 row-end-3 col-start-1 col-end-2 flex animRev p-2 !max-h-max  ";
     const notifClasse = "row-start-1 row-end-2 col-start-2 col-end-3 animRev p-2 " + (notifs.length > 0 ? " min-h-[4rem] " : "min-h-[5rem]");
-    const eventClasse = "row-start-3 row-end-5 col-start-1 col-end-2  flex flex-col h-full min-h-[13rem] p-2 flex-1 ";
+    const eventClasse = " row-start-3 row-end-5 col-start-1 col-end-2  flex flex-col h-full min-h-[13rem] p-2 flex-1 ";
     const mapClasse = "row-start-2 row-end-5 col-start-2 col-end-3 flex flex-1  flex-col h-full p-2";
 
     //// HANDLE SCROLL NOTIFICATIONS
@@ -81,13 +81,14 @@ export default function DashboardPage() {
 
     return (
         <main
+
             className={` lg:!-mt-0 !overflow-hidden  wRespXL
             ${navBottom ? ' !max-h-[calc(100dvh_-_8rem)] lg:!max-h-[calc(100dvh_-_8rem)] ' :
                     ' !max-h-[calc(100dvh_-_3.5rem)] lg:!max-h-[calc(100dvh_-_2rem)] '} `}
             data-cy="dashboard-body" >
-            <div id='refDiv'
+            <div
                 ref={divRef}
-                className={`
+                className={` 
                     px-[1rem] flex-1 max-max overflow-auto flex flex-col
                     md:grid md:grid-cols-2 md:grid-rows-[max-content,max-content,1fr,1fr]
                     w-full place-content-start pt-6 rounded-b-[1rem] lg:pb-6 -mt-2 pb-3 
@@ -135,7 +136,7 @@ export default function DashboardPage() {
                                     size="md"
                                     color="orange"
                                     title="voir mes notifications" />
-                                <span className={notifsOther.length < 1 ? "hidden" : " absolute -top-0.5 right-0 w-3 h-3 rounded-full bg-orange-500 border-[2px] border-white"} />
+                                <span className={notifsOther.length < 1 ? "hidden" : " absolute -top-0.5 right-0 w-3 h-3 rounded-full bg-orange-500 border-[2px] border-[var(--md3-primary-container)]"} />
                             </div>
                             <div className="relative">
                                 < Icon
@@ -145,7 +146,7 @@ export default function DashboardPage() {
                                     size="md"
                                     color="cyan"
                                     title="voir mes messages" />
-                                <span className={notifsMsg.length < 1 ? "hidden" : " absolute -top-0.5 right-0 w-3 h-3 rounded-full bg-cyan-500 border-[2px] border-white"} />
+                                <span className={notifsMsg.length < 1 ? "hidden" : " absolute -top-0.5 right-0 w-3 h-3 rounded-full bg-cyan-500 border-[2px] border-[var(--md3-primary-container)]"} />
                             </div>
                             {count > 0 ?
                                 <>{count} {count > 1 ? 'notifications' : 'notification'} </> :
@@ -256,7 +257,7 @@ export default function DashboardPage() {
 
                 {/* CALENDARD CARD  */}
                 <div className={eventClasse}>
-                    <CardMD className=" min-h-full max-h-full w-full  anim py-2">
+                    <CardMD className="  min-h-full max-h-full w-full   anim py-2">
 
                         <CalendarComp logo={true} />
                     </CardMD>

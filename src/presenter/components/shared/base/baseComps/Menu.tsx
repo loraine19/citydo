@@ -16,7 +16,6 @@ interface MenuProps {
     menuRef?: React.RefObject<HTMLDivElement>;
     key: string | number;
     fitMax?: boolean;
-    ref?: boolean;
     title?: string
 }
 
@@ -32,7 +31,6 @@ export const Menu: React.FC<MenuProps> = ({
     blurBack = false,
     menuRef,
     fitMax,
-    ref,
     key,
     title
 }) => {
@@ -99,27 +97,11 @@ export const Menu: React.FC<MenuProps> = ({
 
 
 
-    useEffect(() => {
-        if (menuRefAuto.current) {
-            const refDiv = document.getElementById('root');
-            const blurDiv = document.getElementById('blurDiv');
-            if (refDiv && ref) {
-                refDiv.appendChild(menuRefAuto.current);
-            }
-            else if (blurDiv && blurBack && ref) {
-                blurDiv.appendChild(menuRefAuto.current);
-            }
-        }
-        console.log("menuRefAuto", menuRefAuto, menuRef);
-    }, [open]);
-
     const triggerRef = useRef<HTMLDivElement>(null);
     const menuCurrent = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const triggerWidth = triggerRef.current?.offsetWidth ?? 44;
     const triggerRect = containerRef.current ? containerRef.current.getBoundingClientRect() : null;
-    const menuWidth = ((menuCurrent?.current?.offsetWidth ?? 180) + triggerWidth).toString();
-
 
     const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
     const [placement, setPlacement] = useState<string | null>(givenPlacement);
@@ -208,9 +190,9 @@ export const Menu: React.FC<MenuProps> = ({
 
 
         }
-        setMenuStyle(style);
+        if (style !== menuStyle && open) setMenuStyle(style);
 
-    }, [open, placement, menuWidth]);
+    }, [open]);
 
 
 
@@ -294,7 +276,7 @@ export const Menu: React.FC<MenuProps> = ({
                             <div onClick={handleClose}
                                 className={`md3-menu-list overflow-hidden `}>
                                 {title &&
-                                    <div className="flex-1 font-medium text-slate-700 -mb-1 p-3 text-[0.95rem] ">
+                                    <div className="flex-1 font-medium  -mb-1 p-3 text-[0.95rem] ">
                                         {title}
                                     </div>}
                                 {children}

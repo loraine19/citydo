@@ -121,7 +121,7 @@ const sizeMapProgressBar = {
 const wavySizeMap = {
     xxsmall: {
         decoration: 'decoration-[6px] ',
-        height: 'h-[34px] ',
+        height: 'h-[33px] ',
         dotSize: 'h-[11.5px] w-[5px] -right-[3px] -bottom-[5px]',
         dot2Size: 'h-[10px] w-[5px] -left-[3px] -bottom-[5px] rotate-45',
         endIndicator: 'h-[5px] w-[4px] mr-[1px] mb-[0px]',

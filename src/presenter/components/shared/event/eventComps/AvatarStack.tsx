@@ -15,6 +15,7 @@ export function AvatarStack(props: AvatarStackProps) {
     // Dynamically calculate how many avatars fit in the container
     const AVATAR_WIDTH = 44; // px, ~2.65rem (actual avatar size)
     const AVATAR_OVERLAP = 12; // px, overlap due to -space-x-3
+    const [open, setOpen] = useState(false);
 
     const [maxVisible, setMaxVisible] = useState(1);
 
@@ -65,18 +66,19 @@ export function AvatarStack(props: AvatarStackProps) {
         >
             {visibleAvatars?.map((Participant: Participant, index) =>
                 <Menu
+                    open={open}
+                    setOpen={setOpen}
+                    key={Participant.userId + index + '_avatar'}
                     className="px-2"
-                    ref
                     blurBack
                     placement={'auto'}
-                    key={index}
                     trigger={
-                        <div className="relative !h-[2.65rem] !z-[1] !w-[2.65rem] flex hover:!z-[4] ">
-                            <div className="absolute hover:!z-[4] flex flex-1 top-0 left-0 h-[2.65rem] !w-[2.65rem] ">
+                        <div className="relative !h-[2.65rem] !w-[2.65rem] flex hover:!z-[1] ">
+                            <div className="absolute hover:!z-[1] flex flex-1 top-0 left-0 h-[2.65rem] !w-[2.65rem] ">
                                 <AvatarUser
                                     Profile={Participant?.User?.Profile}
-                                    avatarSize={'sm'}
-                                    avatarStyle="border-[4px] !h-[2.65rem] !w-[2.65rem] !border-[var(--md3-primary-container)] !hover:z-[2] !focus:z-[2]  top-0 left-0 " />
+                                    avatarSize={'md'}
+                                    avatarStyle="border-[4px] !h-[2.65rem] !w-[2.65rem] !border-[var(--md3-primary-container)] !hover:z-[2] !focus:z-[2] !shadow-none  top-0 left-0 " />
                             </div>
                         </div>}>
                     <MenuItem
@@ -85,8 +87,7 @@ export function AvatarStack(props: AvatarStackProps) {
                             <div className=" relative">
                                 <AvatarUser
                                     Profile={Participant.User?.Profile}
-                                    avatarSize={'lg'}
-                                    avatarStyle="border-2 border-[var(--md3-outlined)] scale-90" />
+                                    avatarSize={'2xl'} />
 
                                 <OnlineDot id={Participant?.userId} />
                             </div>}>
@@ -95,27 +96,29 @@ export function AvatarStack(props: AvatarStackProps) {
                         </span>
                     </MenuItem>
                     <MenuItem
-                        disabled
-                        className="pointer-events-none"
-                        leadingIcon={<Icon icon="groups" color='sky' bg />}>
-                        <div className="flex flex-col gap-1">
-                            <span>Groupes : </span>
-                            {Participant?.User?.GroupUser?.map((group, index) =>
-                                <span key={index}
-                                    className="!line-clamp-1">⌖ {group?.Group?.name.split(':')[0]}
-                                </span>)}
-                        </div>
-                    </MenuItem>
-                    <MenuItem
                         title={`Envoyer un message à ${Participant?.User?.Profile?.firstName}`}
                         onClick={() => navigate(`/chat?with=${Participant?.userId}`)}
-                        leadingIcon={<Icon icon="chat" color='sky' bg />}>
+                        leadingIcon={<Icon icon="chat" color='sky' fill size='lg' bg />}>
                         Envoyer un message
 
                     </MenuItem>
-                </Menu>
+                    <MenuItem
+                        disabled
+                        className="pointer-events-none"
+                        leadingIcon={<Icon icon="groups" fill size="lg" bg />}>
+                        <div className="flex flex-col">
+                            <span>Groupes : </span>
+                            {Participant?.User?.GroupUser?.map((group, index) =>
+                                <small key={index}
+                                    className="!line-clamp-1">⌖ {group?.Group?.name.split(':')[0]}
+                                </small>)}
+                        </div>
+                    </MenuItem >
 
-            )}
+                </Menu >
+
+            )
+            }
             <div className="relative !h-[2.65rem] !z-[1] !w-[2.65rem] flex hover:!z-[4] ">
                 <div className="absolute hover:!z-[4] flex flex-1 top-0 left-0 h-[2.65rem] !w-[2.65rem] ">
                     <div>{hiddenCount}</div>

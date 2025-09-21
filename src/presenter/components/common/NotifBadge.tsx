@@ -51,10 +51,10 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
 
 
     return (
-        <div className={`xs:gap-3 pb-0.5 pl-1 md:gap-4 md:pb-3 flex h-full `}>
+        <div className={`xs:gap-3 pb-0.5 pl-1 md:gap-3  flex  items-center `}>
             {badgeMap.map((list: NotifBadgeProps, index: number) =>
                 <div key={index}
-                    className={`relative  w-full flex items-center justify-center ${onBoard ? 'lg:hidden' : ''}`}>
+                    className={`relative w-full flex items-center justify-center ${onBoard ? 'lg:hidden' : ''}`}>
                     <Icon
                         reverse={!navBottom}
                         link={list.link}

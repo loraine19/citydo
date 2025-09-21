@@ -55,18 +55,20 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
     return (
         <>
 
-            <header className={`${!onBoard && 'md3-primary-container'}  `}>
+            <header className={`${!onBoard && 'md3-primary-container !static '}  `}>
                 {/* CONTAINER */}
-                <div id='navBarTop' className={` px-1 flex lg:px-0 slide  justify-between  
+                <div id='navBarTop'
+                    className={` px-1 py-1 flex lg:px-0 slide  justify-between  items-center 
                 ${(hideNavBottom || title) ? 'md3-menu-leave' : 'animSheet  '}`} >
-                    <div className={`flex duration-300 ease-in-out
-                    ${(hideNavBottom || title) ? ' h-1 ' : 'h-full !pt-3'}
+                    <div className={`flex items-center
+                    ${(hideNavBottom || title) ? ' h-1 ' : 'h-full '}
                          ${!navIcons || navBottom ? ' w-full ' : ' w-max'}
                          ${!navIcons ? 'gap-4 ' : 'gap-2'}
                          `}>
 
                         {/* PROFILE MENU  */}
-                        <div className={`${hideNavBottom ? 'hidden' : ''}  md3-button-primary md3-button-${'tonal'}  rounded-full !min-w-max flex items-center md3-elevation-0 ${navIcons ? ' p-2 max-h-max ' : ' px-3 py-1 '}`}>
+                        <div className={`${hideNavBottom ? 'hidden' : ''}  md3-button-primary md3-button-${'tonal'}  rounded-full !min-w-max flex items-center md3-elevation-0 
+                            ${(navIcons && !navBottom) ? 'pl-4 p-2 max-h-max ' : ' px-3 py-1 '}`}>
                             <Menu
                                 key='profile-menu'
                                 closeIcon={
@@ -153,7 +155,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                     }
 
                     {/* NOTIF BAGDES  */}
-                    <div className={`justify-end items-center flex h-full  
+                    <div className={`flex h-full  items-center
                     ${hideNavBottom || title ? 'hidden' : ''} 
                     ${navBottom ? ' w-max' : ''}`} >
                         <NotifBadge />

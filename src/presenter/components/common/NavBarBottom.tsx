@@ -15,7 +15,7 @@ export const NavBarBottom: React.FC<NavBarBottomProps> = ({ addBtn }) => {
     if (navBottom) return (
         <>
 
-            <footer className={`!left-0 z-[0]  -mb-[1px] !fixed bottom-0 CTA `}
+            <footer className={`!left-0 z-[0]  -mb-[1px] bottom-0 CTA `}
                 onDragCapture={() => setNavBottom(!navBottom)}
                 onDoubleClick={() => setNavBottom(!navBottom)}
                 onDoubleClickCapture={(e) => {

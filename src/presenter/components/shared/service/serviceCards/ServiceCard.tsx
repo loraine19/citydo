@@ -129,10 +129,12 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
             </CardMD.Chips>
             <CardMD.Chips>
                 <Chip
+                    variant="filled"
                     className=" max-w-max "
                     value={`${points.join(' à ')} pts`}
                     icon={
                         <Icon
+
                             style=" -ml-1"
                             icon="toll"
                             title={`Ce service ${service.typeS === ServiceType.GET ? 'vous fais gagner' : 'coute'} ${points.join(' à ')}pts`}

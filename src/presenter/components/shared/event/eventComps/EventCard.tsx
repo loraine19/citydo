@@ -20,10 +20,11 @@ type EventCardProps = {
     change: (e: any) => void,
     mines?: boolean,
     autoFit?: boolean,
-    variant?: 'outlined' | 'filled' | 'elevated'
+    variant?: 'outlined' | 'filled' | 'elevated',
+    imagePosition?: 'top' | 'left'
 }
 
-export function EventCard({ event: initialEvent, change, mines, refetch, autoFit, variant = 'elevated' }: EventCardProps) {
+export function EventCard({ event: initialEvent, change, mines, refetch, autoFit, variant = 'elevated', imagePosition = 'top' }: EventCardProps) {
     const [event, setEvent] = useState<EventView>(initialEvent);
     const { id, title, participantsMin, start, end, image, label, toogleParticipate, eventDateInfo } = event;
     const disabledDelete = new Date(start).getTime() < Date.now();
@@ -35,10 +36,10 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
 
     return (
         <CardMD
+            imagePosition={imagePosition}
             variant={variant}
             autoFit={autoFit}
             className={` min-h-full  `}
-            imagePosition={"top"}
             link={`/evenement/${id}`}
             image={
                 <CardMD.Image

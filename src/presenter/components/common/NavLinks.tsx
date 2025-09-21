@@ -83,7 +83,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
 
             {/* CONTAINER */}
             <div className={
-                ` ${hideNavBottom ? 'md3-menu-leave' : 'h-full animSheetRev '}` +
+                ` ${hideNavBottom ? 'md3-menu-leave' : 'md3-menu-enter'}` +
                 (navBottom ?
                     ` wRespXLMargin px-0.5 ` :
                     ' -mt-1.5   ') +
@@ -154,7 +154,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                         setOpen={setOpenFab}
                         className={`${navBottom ?
                             'bottom-[calc(100%_+_1rem)] fixed right-2' :
-                            'fixed bottom-[1rem] right-2 lg:mr-[calc(50dvw-550px)]'}`}
+                            'absolute top-[calc(100dvh_-_5rem)] ] '}`}
                         mainProps={{
                             className: ` rounded-[5rem]  `,
                             size: 'large',

@@ -18,7 +18,6 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
 
     return (
         <Menu
-            ref
             key={id + "add"}
             blurBack
             placement={'auto'}
