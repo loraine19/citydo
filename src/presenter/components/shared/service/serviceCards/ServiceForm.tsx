@@ -40,7 +40,6 @@ export function ServiceForm(props: { formik: any }) {
             className="flex flex-col h-full overflow-hidden">
             <main>
                 <div className="sectionHeader">
-
                     <div className=" flex flex-col grid-cols-[55%_auto] lg:grid grid-rows-1  gap-2 py-3">
                         <div className="flex gap-2 flex-1 w-full ">
                             <RadioGroup
