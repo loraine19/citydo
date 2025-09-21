@@ -95,12 +95,12 @@ export default function DashboardPage() {
 
                 {/* USER CARD  */}
                 <div className={`${userClasse}`}>
-                    <CardMD className=" !overflow-visible pt-12 flex-1 anim ">
+                    <CardMD className=" !overflow-visible pt-6 flex-1 anim ">
                         <CardMD.Media className="-top-[1.5rem]  w-full flex-1 items-center absolute ">
-                            <div className="relative !z-40 ">
+                            <div className="relative ">
                                 <AvatarUser
-                                    avatarSize="lg"
-                                    avatarStyle="!shadow -mt-0 border border-slate-900/10 w-[4.5rem] h-[4.5rem]"
+                                    avatarSize="6xl"
+                                    avatarStyle="!shadow -mt-0 border border-slate-900/10 "
                                     Profile={user?.Profile} />
                                 <OnlineDot
                                     id={user?.id} />

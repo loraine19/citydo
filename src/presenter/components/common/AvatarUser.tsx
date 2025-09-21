@@ -1,5 +1,4 @@
-import { Avatar } from '@material-tailwind/react';
-import { Icon } from './IconComp';
+import { Icon, sizeMap } from './IconComp';
 import { Profile } from '../../../domain/entities/Profile';
 import { Colors } from '../../../domain/entities/utilsEntity';
 import { useState } from 'react';
@@ -23,48 +22,37 @@ export const AvatarUser = ({ Profile, avatarSize = '', avatarStyle = '', style =
         )
     ]
 
-    const iconSize = () => {
-        switch (avatarSize) {
-            case 'xl':
-                return '4xl';
-            case 'lg':
-                return '3xl';
-            case 'md':
-                return '2xl';
-            case 'ms':
-                return 'ms';
-            case 'sm':
-                return 'md';
-            default:
-                return 'md';
-        }
-    }
+    const sizeArray = sizeMap
+
+
     const classicStyle = '!flex !shadow cursor-pointer min-w-max hover:!shadow hover:!scale-[1.02] hover:!saturate-[1.1] transition-all duration-200 ease-in-out'
 
     const [inError, setInError] = useState<boolean>(false);
     return (
-        <div className={`relative rounded-full overflow-hidden   w-max h-full min-w-max `}>
-            {Profile?.image && !inError ?
-                <Avatar
+        <div
+            className={`relative rounded-full overflow-hidden  max-w-max h-full min-w-max ${classicStyle} ${avatarStyle} ${style} ${sizeArray[avatarSize]?.class}`}
 
+        >
+            {Profile?.image && !inError ? (
+                <img
                     onError={() => setInError(true)}
                     referrerPolicy="unsafe-url"
-                    size={avatarStyle === 'ms' ? 'sm' : avatarSize as any ?? 'sm'}
-                    className={` !z-[1] ${classicStyle} ${avatarStyle} bg-${userColor}-100 text-white text-xs fadeIn min-w-max rounded-full  ${avatarSize === 'ms' ? '!w-[37px] !h-[37px]' : ''}`}
+                    className={`${sizeArray[avatarSize]?.class} object-cover w-full h-full rounded-full bg-${userColor}-100 text-white text-xs fadeIn`}
                     alt={Profile?.firstName || 'user'}
                     src={Profile?.image as string}
-                /> :
-
-                <div className='min-w-full hover:z-50 h-full flex '>
+                />
+            ) : (
+                <div className="w-full h-full flex items-center justify-center">
                     <Icon
                         bg
                         fill
-                        style={`${avatarStyle} ${classicStyle} ${style} leading-[1] pt-[0%] flex z-auto   !min-w-full font-semibold hover:z-50 bg-${userColor}-100 text-${userColor}-800  `}
+                        style={`leading-[1] pt-[0%] flex font-semibold bg-${userColor}-100 text-${userColor}-800 w-full h-full`}
                         color={userColor ?? 'slate'}
-                        size={iconSize()}
+                        size={avatarSize}
                         icon={Profile?.firstName?.charAt(0).toUpperCase() || '?'}
                     />
-                </div>}
+                </div>
+            )}
         </div>
     );
 };

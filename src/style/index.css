@@ -8,6 +8,7 @@
 @import "./md3/md3.css";
 @import "./card.css";
 @import "./color.css";
+@import "./inputs.css";
 @import "./animation.css";
 
 @tailwind base;
@@ -140,7 +141,7 @@ header {
 }
 
 .sectionHeader {
-    @apply flex flex-col gap-2 px-3 relative md3-card-header wRespXL;
+    @apply flex flex-col gap-2 px-3 relative md3-card-section-header wRespXL;
 }
 
 /* TEXT */

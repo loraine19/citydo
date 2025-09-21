@@ -75,7 +75,7 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                                         bg style='self-start'
                                         color='slate'
                                         size="sm" />}
-                                className={`px-4 py-2 !z-[9999999] -mt-6 -ml-1  `}
+                                className={`px-4 py-2 !z-[9999999] -mt-4 -ml-1  `}
                                 blurBack
                                 placement="up-bottom-right"
                                 trigger={
@@ -106,11 +106,11 @@ export default function NavBarTop({ addBtn, navIcons, title }: { addBtn?: boolea
                                         <div>
                                             <AvatarUser
                                                 style='!shadow-none'
-                                                avatarSize='md'
+                                                avatarSize='xl'
                                                 Profile={user?.Profile}
                                             />
                                         </div>}>
-                                    <div className="flex flex-1 flex-col">
+                                    <div className="flex -ml-2 flex-1 flex-col">
                                         <span className="font-semibold ">
                                             {user?.Profile?.firstName} {user?.Profile?.lastName}
                                         </span>

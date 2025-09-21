@@ -1,6 +1,5 @@
-import { Input, Checkbox, } from '@material-tailwind/react';
+
 import { useEffect, useState } from 'react';
-import PopUp from '../../../common/PopUp';
 import { Icon } from '../../../common/IconComp';
 import { FormikProps } from 'formik';
 import { useUserStore } from '../../../../../application/stores/user.store'
@@ -8,6 +7,10 @@ import DI from '../../../../../di/ioc';
 import { InputError } from '../../../common/adaptatersComps/input';
 import { Button } from '../../base/baseComps/Buttons';
 import { CardMD } from '../../base/baseComps/Cards';
+import { Input } from '../../base/baseComps/Inputs';
+import { Checkbox } from '../../base/baseComps/Selectors';
+import { Menu, MenuItem } from '../../base/baseComps/Menu';
+import { Link } from 'react-router-dom';
 
 type AuthFormProps = {
     lead: string;
@@ -26,9 +29,6 @@ type AuthFormProps = {
 export const AuthForm: React.FC<AuthFormProps> = ({
     lead,
     notif,
-    popOverContent,
-    popOverButtonText,
-    popOverClass,
     submitText,
     confirm,
     checkbox,
@@ -85,101 +85,99 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                             {notif}
                         </p>
                     </CardMD.Headline>
-                    <CardMD.Subhead className='flex flex-col h-full w-full justify-center overflow-auto gap-2 py-3 px-12 flex-1 '>
+                    <CardMD.Subhead className='flex flex-col h-full w-full justify-center overflow-auto   px-12 pb-2 flex-1 '>
                         <Input
-                            className={`inputStandart ${formik?.errors.email ? 'error' : ''}`}
-                            placeholder={"Email"}
+                            variant='filled'
+                            sizeInput="xs"
+                            type='email'
+                            label={"Email"}
                             name="email"
                             onChange={formik.handleChange}
+                            value={formik.values.email}
+                            error={!!formik?.errors.email}
+                            helperText={formik?.errors.email as string ?? ''}
                             data-cy="email-input" />
-                        <InputError error={formik?.errors.email} />
                         <Input
-                            className={` inputStandart !relative`}
-                            isError={!!formik?.errors.password}
-                            placeholder={"Mot de passe"}
+                            variant='filled'
+                            sizeInput="xs"
+                            error={!!formik?.errors.password}
+                            label={"Mot de passe"}
                             name="password"
                             onChange={formik.handleChange}
                             type={passWordInput.value}
-                            data-cy="password-input" >
-                            <Icon
-                                style={'!absolute top-[50%] translate-y-[-50%] right-2'}
-                                onClick={() => toggleInputStyle(passWordInput, setPassWordInput)}
-                                size='lg'
-                                icon={passWordInput.icon} />
+                            data-cy="password-input"
+                            value={formik.values.password}
+                            helperText={formik?.errors.password as string ?? ''}
+                            trailingIcon={
+                                <Icon
+                                    onClick={() => toggleInputStyle(passWordInput, setPassWordInput)}
+                                    size='lg'
+                                    icon={passWordInput.icon} />}>
                         </Input>
-                        <InputError error={formik?.errors.password} />
-                        <div className={!confirm ? "hidden" : " flex flex-1 flex-col w-full"}>
-                            <Input className={` inputStandart `}
-                                isError={!!formik?.errors.passwordConfirm}
-                                placeholder={"Confirmer le mot de passe"}
+                        <div className={!confirm ? "hidden" : "flex flex-1 flex-col w-full"}>
+                            <Input
+                                variant='filled'
+                                sizeInput='xs'
+                                error={!!formik?.errors.passwordConfirm}
+                                label={"Confirmer le mot de passe"}
                                 name="passwordConfirm"
                                 type={passWordInput2.value}
                                 onChange={formik.handleChange}
-                                data-cy="password-confirm-input" >
-                                <Icon
-                                    style={'!absolute top-[50%] translate-y-[-50%] right-2'}
+                                data-cy="password-confirm-input"
+                                value={formik.values.passwordConfirm}
+                                helperText={formik?.errors.passwordConfirm as string ?? ''}
+                                trailingIcon={<Icon
                                     onClick={() => toggleInputStyle(passWordInput2, setPassWordInput2)}
                                     icon={passWordInput2.icon}
-                                    size='lg' />
-                            </Input>
-                            <InputError mt error={formik?.errors.passwordConfirm} />
+                                    size='lg' />}
+                            />
                         </div>
                     </CardMD.Subhead>
-                    <CardMD.Media className="flex flex-1">
-                        <div className={`${!checkbox ? 'justify-between  gap-5' : 'justify-between'} flex flex-1 gap-2 h-full  items-end w-full  px-4`}>
-                            <div className='flex w-full flex-col-reverse h-full  gap-1 '>
-                                <div className='flex flex-1  justify-end flex-col w-full gap-2 '>
-                                    <Button
-                                        data-cy="submit-button"
-                                        type="submit"
-                                        size="large"
-                                        variant="filled"
-                                        color='cyan'
-                                        elevating>
-                                        {submitText}
-                                    </Button>
-                                </div>
-                                <div className={`${!checkbox ? "hidden" : "flex flex-1 items-center  "} `}>
-                                    <div className='flex items-center gap-1'>
-                                        <Checkbox
-                                            data-cy="terms-checkbox"
-                                            type="checkbox"
-                                            name="checkbox"
-                                            className={`border-none shadow-none hover:shadow-none data-[checked=true]:bg-transparent`}
-                                            onChange={(e: any) => { formik.values.checkbox = e.target.checked }} >
-                                            <Checkbox.Indicator
-                                                className="relative opacity-100 flex items-center justify-center">
-                                                <Icon style={'opacity-50 group-data-[checked=true]:opacity-100 !absolute  translate-y-[-50%] -left-1'}
-                                                    bg
-                                                    size='sm'
-                                                    color={formik.errors.checkbox ? 'error' : 'slate'}
-                                                    icon={""}
-                                                />
-                                                <Icon style={'opacity-100 group-data-[checked=true]:opacity-0 !absolute  translate-y-[-50%] -left-1'}
-                                                    bg
-                                                    size='sm'
-                                                    color={'cyan'}
-                                                    icon={"check"}
-                                                />
-                                            </Checkbox.Indicator>
-                                        </Checkbox>
-                                        <div className='!justify-start w-full  -ml-4 flex flex-col'>
-                                            <PopUp
-                                                variant={"text"}
-                                                classNames={`${popOverClass} !border-none scale-95 !flex ounded-full !z-[999]`}
-                                                text={popOverButtonText}
-                                                content={popOverContent} />
-                                        </div>
-                                    </div>
-                                    <InputError mt error={formik?.errors.checkbox} />
+                    <CardMD.Media className="flex flex-1 !py-0">
+                        <div className={`${!checkbox ? 'justify-between  gap-5' : 'justify-between'} flex flex-1 flex-col-reverse gap-2 h-full  w-full  px-4`}>
+                            <Button
+                                data-cy="submit-button"
+                                type="submit"
+                                variant="filled"
+                                color='cyan'
+                                elevating>
+                                {submitText}
+                            </Button>
+                            <div className={`${!checkbox ? "hidden" : "flex flex-col flex-1   px-4 "} `}>
+                                <InputError mt error={formik?.errors.checkbox} />
+                                <div className='flex flex-1 w-full items-center justify-between gap-1'>
+                                    <Checkbox
+                                        size='xl'
+                                        checked={formik.values.checkbox}
+                                        label="J'accepte les conditions générales"
+                                        data-cy="terms-checkbox"
+                                        name="checkbox"
+                                        onChange={formik.handleChange} >
+
+                                    </Checkbox>
+                                    <Menu
+                                        key='terms'
+                                        trigger={<Icon
+                                            size="md"
+                                            icon="expand_content" />}
+                                        placement="top-right">
+                                        <MenuItem>
+                                            <div className='flex flex-col'>
+                                                <span className='text-sm'>En cliquant sur "S'inscrire", vous acceptez nos</span>
+                                                <Link to="/terms" className='text-sm text-blue-500'>Conditions d'utilisation</Link>
+                                                <span className='text-sm'>et</span>
+                                                <Link to="/privacy" className='text-sm text-blue-500'>Politique de confidentialité</Link>
+                                            </div>
+                                        </MenuItem>
+                                    </Menu>
                                 </div>
                             </div>
+
                         </div>
                     </CardMD.Media>
                     <CardMD.Footer className="px-8 flex-col items-center justify-center  pb-4 gap-1 border-0">
                         <Button
                             type='button'
-                            size="large"
                             variant='outlined'
                             className="flex w-full"
                             onClick={async () => {

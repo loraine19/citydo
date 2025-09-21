@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { ServiceStep, ServiceType, ServiceUpdate } from "../../../../../domain/entities/Service";
 import ModifBtnStack from "../../../common/ModifBtnStack";
 import { Icon } from "../../../common/IconComp";
-import { DateChip } from "../../../common/ChipDate";
 import { Action } from "../../../../../domain/entities/frontEntities";
 import { useUserStore } from "../../../../../application/stores/user.store";
 import DI from "../../../../../di/ioc";
@@ -11,7 +10,6 @@ import { ServiceView } from "../../../../views/viewsEntities/serviceViewEntity";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import Chip from "../../../common/adaptatersComps/Chip";
 import { CardMD } from "../../base/baseComps/Cards";
-import { GroupLink } from "../../../common/GroupLink";
 import { MoreButton } from "../../../common/moreBtn";
 import { Md3Colors } from "../../base/baseComps/Buttons";
 
@@ -83,56 +81,55 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                     alt={title}
                     className=""
                 >
-                    <div className="flex w-full justify-end ">
+                    {/* <div className="flex w-full justify-end ">
                         <DateChip
                             start={createdAt}
                             prefix=" "
                         />
-                    </div>
+                    </div> */}
                 </CardMD.Image>
             }>
-            <CardMD.Chips>
-                <div className="md3-card-chips flex-1 ">
 
-                    <Chip
-                        onClick={() => {
-                            change(categoryS as any);
-                        }}
-                        color='sky'
-                        value={`${categoryS}`}
-                    />
 
-                    <Chip
-                        onClick={() => {
-                            change(typeS as any);
-                        }}
-                        value={typeS}
-                        color={typeS === ServiceType.GET ? "orange" : "green"}
-                    />
 
-                    <Chip
-                        value={statusS}
-                        color={statusColor(statusS as ServiceStep).color as Md3Colors}
-                    />
-                </div>
+            <CardMD.Headline className="flex flex-row justify-between w-full items-center">
+                <span className="line-clamp-1 sm:line-clamp-2">{title}</span>
                 <MoreButton
                     id={id}
                     type={'service'}
                     flagged={flagged}
                     title={title} />
-            </CardMD.Chips>
-
-            <CardMD.Headline className="line-clamp-1 sm:line-clamp-2">
-                {title}
             </CardMD.Headline>
-
-            <CardMD.Subhead>
-                <GroupLink group={Group} />
+            <CardMD.Subhead className={`${compact ? 'line-clamp-2 !pr-[20%]' : 'line-clamp-1'} overflow-hidden "`}>
+                {service?.description}
             </CardMD.Subhead>
-            <CardMD.SupportingText>
+            <CardMD.Chips>
 
                 <Chip
-                    className=" max-w-max"
+                    onClick={() => {
+                        change(categoryS as any);
+                    }}
+                    color='sky'
+                    value={`${categoryS}`}
+                />
+
+                <Chip
+                    onClick={() => {
+                        change(typeS as any);
+                    }}
+                    value={typeS}
+                    color={typeS === ServiceType.GET ? "orange" : "green"}
+                />
+
+                <Chip
+                    value={statusS}
+                    color={statusColor(statusS as ServiceStep).color as Md3Colors}
+                />
+
+            </CardMD.Chips>
+            <CardMD.Chips>
+                <Chip
+                    className=" max-w-max "
                     value={`${points.join(' à ')} pts`}
                     icon={
                         <Icon
@@ -145,11 +142,14 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                         />
                     }
                 />
-            </CardMD.SupportingText>
-
-
+            </CardMD.Chips>
 
             <CardMD.Footer className="justify-between items-center flex max-h-max  w-full">
+
+                {(!mines) && (
+                    <ProfileDiv profile={User} date={createdAt} group={Group} size='lg' />
+                )}
+
                 {mine && mines && (
                     <ModifBtnStack
                         actions={myActions}
@@ -166,9 +166,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                         disabled2={service.statusS !== ServiceStep.STEP_1}
                     />
                 )}
-                {(!mines) && (
-                    <ProfileDiv profile={User} />
-                )}
+
 
 
             </CardMD.Footer>

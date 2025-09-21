@@ -9,6 +9,7 @@ type CommonProps = {
     trailingIcon?: React.ReactNode;
     disabled?: boolean;
     error?: boolean;
+    sizeInput?: "xs" | "sm" | "md" | "lg";
 };
 
 type InputProps = (
@@ -28,6 +29,7 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputPro
             value,
             disabled,
             error,
+            sizeInput = "md",
             ...props
         },
         ref
@@ -39,6 +41,7 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputPro
             "md3-input-wrapper",
             `md3-${variant}`,
             multiline ? "md3-multiline" : '',
+            `md3-input-size-${sizeInput}`,
             isActive && "active",
             disabled && "disabled",
             error && "error",

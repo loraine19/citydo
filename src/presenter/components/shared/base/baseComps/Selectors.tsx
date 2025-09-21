@@ -64,7 +64,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({ checked, onChange, label, cl
                 size={size || 'medium'}
                 icon={isChecked ? "check_box" : "check_box_outline_blank"}
             />
-            <span className="md3-checkbox-label">{label}</span>
+            <span className={`md3-checkbox-label ${size ? `md3-checkbox-label-${size}` : ''} `}>{label}</span>
         </label>
     );
 };

@@ -142,6 +142,19 @@ export type IconProps = {
     target?: '_blank' | '_self'
     rel?: 'noopener noreferrer' | string
 }
+export const sizeMap: any = {
+    'xs': { text: 'text-[0.6875rem]', class: 'iconXs' },   // 11px
+    'sm': { text: 'text-[0.875rem]', class: 'iconSm' },     // 14px
+    'ms': { text: 'text-[1rem]', class: 'iconMs' },         // 16px
+    'md': { text: 'text-[1.125rem]', class: 'iconMd' },     // 18px
+    'lg': { text: 'text-[1.375rem]', class: 'iconLg' },     // 22px
+    'xl': { text: 'text-[1.625rem]', class: 'iconXl' },     // 26px
+    '2xl': { text: 'text-[1.875rem]', class: 'icon2xl' },   // 30px
+    '3xl': { text: 'text-[2.125rem]', class: 'icon3xl' },   // 34px
+    '4xl': { text: 'text-[2.375rem]', class: 'icon4xl' },   // 38px
+    '5xl': { text: 'text-[2.625rem]', class: 'icon5xl' },   // 42px
+    '6xl': { text: 'text-[2.875rem]', class: 'icon6xl' },   // 46px
+}
 
 export const Icon: React.FC<IconProps> = ({
     title,
@@ -158,19 +171,6 @@ export const Icon: React.FC<IconProps> = ({
     bg
 }) => {
 
-    const sizeMap: any = {
-        'xs': { text: 'text-[0.6875rem]', class: 'iconXs' },   // 11px
-        'sm': { text: 'text-[0.875rem]', class: 'iconSm' },     // 14px
-        'ms': { text: 'text-[1rem]', class: 'iconMs' },         // 16px
-        'md': { text: 'text-[1.125rem]', class: 'iconMd' },     // 18px
-        'lg': { text: 'text-[1.375rem]', class: 'iconLg' },     // 22px
-        'xl': { text: 'text-[1.625rem]', class: 'iconXl' },     // 26px
-        '2xl': { text: 'text-[1.875rem]', class: 'icon2xl' },   // 30px
-        '3xl': { text: 'text-[2.125rem]', class: 'icon3xl' },   // 34px
-        '4xl': { text: 'text-[2.375rem]', class: 'icon4xl' },   // 38px
-        '5xl': { text: 'text-[2.625rem]', class: 'icon5xl' },   // 42px
-        '6xl': { text: 'text-[2.875rem]', class: 'icon6xl' },   // 46px
-    }
 
     const iconSize = (sizeMap[size as keyof typeof sizeMap]?.class ?? 'icon2xl') + '';
     const textSize = sizeMap[size as keyof typeof sizeMap]?.text ?? 'text-[1.875rem]';

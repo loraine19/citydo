@@ -130,7 +130,7 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                 label={
                                     <span className={`hidden md:block
                                             ${navBottom ?
-                                            ' text-[0.7rem] md:!text-[0.9rem] ' :
+                                            ' text-[0.7rem] ' :
                                             ' !text-[0.8rem] pb-[4px] '
                                         } 
                                             ${active && !navBottom ? 'underline underline-offset-[6px] ' : ''} `}>
