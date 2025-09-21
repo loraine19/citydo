@@ -141,23 +141,25 @@ export function ServiceForm(props: { formik: any }) {
                                     />
                                 </div>
                             </CardLarge.MidSection>
-                            <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                            <CardLarge.MidSection className="!mx-4 md3-card-section-border max-h-max flex flex-col">
                                 <span className="md3-card-subhead">Niveaux</span>
-                                <div className="flex flex-1  gap-4">
-                                    <Select
-                                        variant="Input"
-                                        name={'skill'}
-                                        formik={formik}
-                                        value={formik.values.skill?.toString()}
-                                        options={skillLevels}
-                                        placeholder="Compétence" />
-                                    <Select
-                                        placeholder="Pénibilité"
-                                        variant="Input"
-                                        name={'hard'}
-                                        formik={formik}
-                                        value={formik.values.hard?.toString()}
-                                        options={hardLevels} />
+                                <div className="flex flex-1  !py-2 flex-col gap-4">
+                                    <div className="flex flex-col xs:flex-row gap-4 ">
+                                        <Select
+                                            variant="Input"
+                                            name={'skill'}
+                                            formik={formik}
+                                            value={formik.values.skill?.toString()}
+                                            options={skillLevels}
+                                            placeholder="Compétence" />
+                                        <Select
+                                            placeholder="Pénibilité"
+                                            variant="Input"
+                                            name={'hard'}
+                                            formik={formik}
+                                            value={formik.values.hard?.toString()}
+                                            options={hardLevels} />
+                                    </div>
                                     <Chip
                                         className="!px-3 h-[2.8rem] !rounded-md"
                                         size='medium'
