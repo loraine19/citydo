@@ -75,13 +75,12 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
             `}
         >
             {React.Children.map(children, (child) =>
-                React.isValidElement(child)
-                    ? React.cloneElement(child, {
-                        variant: child.props.variant || variant,
-                        color: child.props.color || color,
-                        size: child.props.size || size,
-                        fill: child.props.fill || true,
-                        className: `md3-button-group-item ${child.props.className || ''}`,
+                React.isValidElement(child) && (child.type === Button || (child.props && 'variant' in child.props))
+                    ? React.cloneElement(child as React.ReactElement<ButtonProps>, {
+                        variant: (child.props as ButtonProps).variant || variant,
+                        color: (child.props as ButtonProps).color || color,
+                        size: (child.props as ButtonProps).size || size,
+                        className: `md3-button-group-item ${(child.props as any).className || ''}`,
                         round: rounded,
                     })
                     : child

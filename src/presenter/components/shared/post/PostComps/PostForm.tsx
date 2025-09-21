@@ -6,7 +6,6 @@ import { postCategories } from "../../../../constants";
 import { PostCategory } from "../../../../../domain/entities/Post";
 import GroupSelect from "../../../common/GroupSelect";
 import { useUserStore } from "../../../../../application/stores/user.store";
-import { InputError } from "../../../common/adaptatersComps/input";
 import { Select } from "../../../common/adaptatersComps/Select";
 import CTAMines from "../../../common/CTA";
 import { CardLarge } from "../../base/baseComps/Cards";
