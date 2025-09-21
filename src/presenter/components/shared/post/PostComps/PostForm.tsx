@@ -89,7 +89,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                         name="title"
                                         onChange={formik.handleChange}
                                         value={formik.values.title}
-                                        helperText={formik.errors.title ?? `${formik.values.title.length ?? 0}/40`}
+                                        helperText={formik.errors.title ?? `${formik.values.title?.length ?? 0}/40`}
                                     />
 
 
@@ -111,7 +111,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                         }}
                                         value={formik.values.description}
 
-                                        helperText={`${formik.errors.description ?? (`${formik.values.description.length ?? 0}/300`)}`}
+                                        helperText={`${formik.errors.description ?? (`${formik.values.description?.length ?? 0}/300`)}`}
                                     />
                                 </div>
                             </CardLarge.MidSection>

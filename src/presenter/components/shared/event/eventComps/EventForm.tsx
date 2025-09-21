@@ -112,7 +112,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         onChange={formik.handleChange}
                                         value={title}
                                         error={!!formik.errors.title}
-                                        helperText={formik.errors.title ?? `${formik.values.title ? formik.values?.title?.length : 0}/40`}
+                                        helperText={formik.errors.title ?? `${formik.values?.title?.length ?? 0}/40`}
                                     />
                                     <Input
                                         multiline
@@ -120,7 +120,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         error={!!formik.errors.description}
                                         label='Description'
                                         name="description"
-                                        helperText={`${formik.errors.description ?? (`${formik.values.description.length ?? 0}/300`)}`}
+                                        helperText={`${formik.errors.description ?? (`${formik.values.description?.length ?? 0}/300`)}`}
                                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                                             formik.handleChange(e);
                                             const textarea = e.target as HTMLTextAreaElement;
