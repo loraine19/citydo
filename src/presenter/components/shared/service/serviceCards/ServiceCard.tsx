@@ -91,18 +91,6 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
             }>
 
 
-
-            <CardMD.Headline className="flex flex-row justify-between w-full ">
-                <span className={`${compact ? 'line-clamp-1' : 'line-clamp-2 '} "sm:line-clamp-2"`}>{title}</span>
-                <MoreButton
-                    id={id}
-                    type={'service'}
-                    flagged={flagged}
-                    title={title} />
-            </CardMD.Headline>
-            <CardMD.Subhead className={`${compact ? 'line-clamp-2 !pr-[20%]' : 'hidden'} overflow-hidden "`}>
-                {service?.description}
-            </CardMD.Subhead>
             <CardMD.Chips>
 
                 <Chip
@@ -127,11 +115,19 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                 />
 
             </CardMD.Chips>
-            <CardMD.Chips>
+            <CardMD.Headline className="flex flex-row justify-between w-full ">
+                <span className={`${compact ? 'line-clamp-1' : 'line-clamp-2 '} "sm:line-clamp-2"`}>{title}</span>
+                <MoreButton
+                    id={id}
+                    type={'service'}
+                    flagged={flagged}
+                    title={title} />
+            </CardMD.Headline>
+            <CardMD.Subhead className={` `}>
                 <Chip
-                    variant="filled"
+                    variant="tonal"
                     className=" max-w-max "
-                    value={`${points.join(' à ')} pts`}
+                    value={` ${service.typeS === ServiceType.GET ? 'vous fais gagner ' : 'coute '} ${points.join(' à ')} pts`}
                     icon={
                         <Icon
 
@@ -144,7 +140,9 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                         />
                     }
                 />
-            </CardMD.Chips>
+            </CardMD.Subhead>
+
+
 
             <CardMD.Footer className="justify-between items-center flex max-h-max  w-full">
 

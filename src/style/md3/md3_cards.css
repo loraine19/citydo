@@ -59,7 +59,7 @@
 }
 
 .md3-card-content {
-    padding: var(--md3-spacing-small) 0;
+    padding: var(--md3-spacing-medium) 0 var(--md3-spacing-small);
     gap: var(--md3-spacing-small);
     display: flex;
     flex-direction: column;
@@ -70,7 +70,7 @@
 }
 
 .md3-card-headline {
-    @apply text-[1.2rem] mt-1 line-clamp-2;
+    @apply text-[1.2rem]  line-clamp-2;
     font-weight: 600;
     padding: 0 var(--md3-spacing-medium);
     color: var(--md3-on-surface);
