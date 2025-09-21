@@ -120,7 +120,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         error={!!formik.errors.description}
                                         label='Description'
                                         name="description"
-                                        helperText={`${formik.errors.description ?? formik.values.description ? formik.values.description?.length : 0}/300`}
+                                        helperText={`${formik.errors.description ?? (`${formik.values.description.length ?? 0}/300`)}`}
                                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                                             formik.handleChange(e);
                                             const textarea = e.target as HTMLTextAreaElement;
@@ -137,7 +137,8 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
 
                             <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
                                 <span className="md3-card-subhead">Lieu</span>
-                                <div className="flex flex-1 gap-4">
+
+                                <div className="flex flex-1 flex-col md:flex-row gap-4">
                                     {((Address?.lat && Address?.lng)) ?
                                         <div className="flex-1 mb-2 !max-h-[7rem]">
                                             <AddressMapOpen address={Address} />
@@ -151,7 +152,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                             </CardLarge.MidSection>
                             <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
                                 <span className="md3-card-subhead">Date</span>
-                                <div className="flex flex-1  gap-4">
+                                <div className="flex flex-1 flex-col md:flex-row gap-4">
                                     <Input
                                         error={!!formik.errors.start}
                                         leadingIcon={<Icon icon='calendar_today' size='lg' />}
@@ -180,7 +181,8 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                             </CardLarge.MidSection>
                             <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
                                 <span className="md3-card-subhead">Participants</span>
-                                <div className="flex flex-1 gap-4">
+
+                                <div className="flex flex-1 flex-col md:flex-row gap-4">
                                     <Input
                                         leadingIcon={<Icon icon='person' size='lg' />}
                                         error={!!formik.errors.participantsMin}

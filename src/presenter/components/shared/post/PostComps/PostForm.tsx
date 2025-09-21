@@ -84,13 +84,12 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                 <div className="flex flex-1 flex-col  gap-4">
 
                                     <Input
-                                        className={`inputStandart ${formik.errors.title ? 'error' : ''}`}
+                                        error={!!formik.errors.title}
                                         label={"Titre"}
                                         name="title"
                                         onChange={formik.handleChange}
                                         value={formik.values.title}
-                                        error={!!formik.errors.title}
-                                        helperText={formik.errors.title ?? `${formik.values.title ? formik.values.title.length : 0}/40`}
+                                        helperText={formik.errors.title ?? `${formik.values.title.length ?? 0}/40`}
                                     />
 
 
@@ -111,7 +110,8 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                             }
                                         }}
                                         value={formik.values.description}
-                                        helperText={`${formik.errors.description ?? formik.values.description ? formik.values.description.length : 0}/500`}
+
+                                        helperText={`${formik.errors.description ?? (`${formik.values.description.length ?? 0}/300`)}`}
                                     />
                                 </div>
                             </CardLarge.MidSection>

@@ -31,7 +31,7 @@ input {
 }
 
 input[type="datetime-local"] {
-    @apply max-w-[9.2rem] placeholder:text-[0.9em] !pr-0;
+    @apply max-w-max placeholder:text-[0.9em] !pr-0;
     &::-webkit-calendar-picker-indicator {
         @apply !text-slate-300 !opacity-0;
     }
