@@ -29,7 +29,7 @@ export default function CheckCard(props: checkCardProps) {
     const { color } = useUxStore((state) => state);
 
     return (
-        <div className={`flex w-full h-full  ${style}  gap-3`}>
+        <div className={`flex w-full max-h-fit p-2  ${style}  gap-3`}>
             <div className="w-full !m-0 h-full !max-w-[calc(100vw)] overflow-y-hidden overflow-x-auto !flex items-center rounded-full ">
                 <List className="flex-row h-full flex w-full !min-w-max justify-evenly items-center  !p-0  ">
                     {categoriesArray.map((category, index) => (

@@ -1,10 +1,10 @@
-import { Icon } from "./IconComp";
-import { SortLabel } from "../../../domain/entities/frontEntities"
-import { useUxStore } from "../../../application/stores/ux.store";
+import { Icon, IconName } from "../IconComp";
+import { SortLabel } from "../../../../domain/entities/frontEntities"
+import { useUxStore } from "../../../../application/stores/ux.store";
 import { useState } from "react";
-import { Menu, MenuItem } from "../shared/base/baseComps/Menu";
+import { Menu, MenuItem } from "../../shared/base/baseComps/Menu";
 
-type SortButtonProps = {
+export type SortButtonProps = {
     sortList: SortLabel[],
     action: () => void,
     setSelectedSort: (value: string) => void,
@@ -21,7 +21,7 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
 
         <Menu
             key={'sort-menu' + color}
-            className="!mt-6 !ml-6"
+            className=""
             open={isOpen}
             setOpen={setIsOpen}
             blurBack
@@ -29,6 +29,7 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
             title="Trier par"
             trigger={
                 <Icon
+                    style=''
                     color={color ?? 'slate'}
                     icon={isOpen ? "arrow_drop_up" : "arrow_drop_down"}
                     size="2xl"
@@ -71,7 +72,7 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
                                 title={'Trier par ' + item.label}
                                 disabled={(selectedSort === (item.key ?? item.label))}
                                 color={selectedSort === (item.key ?? item.label) ? color : 'slate'}
-                                icon={item.icon}
+                                icon={item.icon as IconName}
                             />
                         </div>} >
                     {item.label}

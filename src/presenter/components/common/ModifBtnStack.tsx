@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Action } from "../../../domain/entities/frontEntities";
-import { Icon } from "./IconComp";
+import { Icon, IconName } from "./IconComp";
 import { useAlertStore } from "../../../application/stores/alert.store";
 
 type ModifBtnStackProps = {
@@ -47,7 +47,7 @@ export default function ModifBtnStack({ actions, disabled1, disabled2, update, i
                     <Icon
 
                         key={i}
-                        icon={btn.iconImage as string || ''}
+                        icon={btn.iconImage as IconName || ''}
                         color={color ?? 'slate'}
                         onClick={() => { setOpen(true); setIndex(i); }}
                         bg

@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom"
-import { useUxStore } from "../../../application/stores/ux.store"
-import { Fab } from "../shared/base/baseComps/Fabs";
-import { Md3Colors } from "../shared/base/baseComps/Buttons";
+import { useUxStore } from "../../../../application/stores/ux.store"
+import { Fab } from "../../shared/base/baseComps/Fabs";
+import { Md3Colors } from "../../shared/base/baseComps/Buttons";
 
 type SubHeaderProps = {
     type?: string,
@@ -14,7 +14,7 @@ type SubHeaderProps = {
 export default function SubHeader({ type, qty, place, closeBtn, link, form = false }: SubHeaderProps) {
 
 
-    const { color, hideNavBottom, setHideNavBottom, navIcons, haveTitle } = useUxStore((state) => state);
+    const { color, hideNavBottom, setHideNavBottom } = useUxStore((state) => state);
     let goBack = link ?? '/' + (new URLSearchParams(useLocation().pathname.split("/")[1])).toString().replace("=", '')
 
     const parentDiv = (document.querySelector('#root > div > main > section') as HTMLElement) ?? undefined
@@ -36,10 +36,10 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
             <div
                 style={{ transformOrigin: 'left' }}
                 className={`
-                    ${((!hideNavBottom || !navIcons)) ? `md3-fab-item-enter top-8
+                    ${((!hideNavBottom)) ? `md3-fab-item-enter top-8
                     ${!closeBtn ? '-ml-4' : '-ml-1'}` : ' md3-fab-item-leave'} 
                 
-                flex flex-1 h-full w-full px-[0rem] items-center absolute  z-[1]`}>
+                flex flex-1 h-full w-full px-[0rem] items-center absolute  left-48 z-[1]`}>
                 {closeBtn &&
                     <Fab
                         variant='elevated'
@@ -52,10 +52,10 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
                             }
                         }}
                         icon={closeBtn ? {
-                            reverse: hideNavBottom && !haveTitle && !form,
-                            style: (hideNavBottom && !haveTitle && !form) ? "shadow" : "",
+                            reverse: hideNavBottom && !form,
+                            style: (hideNavBottom && !form) ? "shadow" : "",
                             icon: form ? 'close' : 'close',
-                            size: (hideNavBottom && !haveTitle && !form) ? "2xl" : "lg",
+                            size: (hideNavBottom && !form) ? "2xl" : "lg",
                             link: goBack,
                         } : undefined}>
                     </Fab>}
@@ -79,7 +79,7 @@ export default function SubHeader({ type, qty, place, closeBtn, link, form = fal
 
             {/* BUTTON UP  */}
             {(hideNavBottom && !form) &&
-                <div className={`${(hideNavBottom && !haveTitle) ? '-bottom-9 ' : '-bottom-9 '} flex flex-1 absolute z-[2] right-0 top-4 `}>
+                <div className={`${(hideNavBottom) ? '-bottom-9 ' : '-bottom-9 '}  flex flex-1 absolute z-[2] right-0 top-4 `}>
                     <Fab
                         variant="elevated"
                         className="rounded-full"

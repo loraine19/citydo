@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { ServiceStep } from '../../../../domain/entities/Service';
 import CTAMines from '../../common/CTA';
-import SubHeader from '../../common/SubHeader';
 import ServiceDetailComp from './serviceCards/ServiceDetailCard';
 import { Action } from '../../../../domain/entities/frontEntities';
 import DI from '../../../../di/ioc';
@@ -11,10 +10,11 @@ import { ContactDiv } from '../../common/ContactDiv';
 import { User } from '../../../../domain/entities/User';
 import { useAlertStore } from '../../../../application/stores/alert.store';
 import { ServiceView } from '../../../views/viewsEntities/serviceViewEntity';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { HandleHideParams } from '../../../../application/useCases/utils.useCase';
-import NotifDiv from '../../common/NotifDiv';
 import { useUxStore } from '../../../../application/stores/ux.store';
+import FormHeadSection from '../base/baseComps/FormHeadSection';
+import { useNavStore } from '../../../../application/stores/nav.store';
 
 export default function ServiceDetailPage() {
 
@@ -240,22 +240,28 @@ export default function ServiceDetailPage() {
 
     //// HANDLE EXPAND CARD
     const [expanded, setExpanded] = useState<boolean>(false);
+    const { setDetailSection } = useNavStore((state) => state);
+
+    const SearchSection = useMemo(() => (
+        <FormHeadSection
+            isLoading={isLoading}
+            notif={notif}
+            refetch={refetch}
+            error={error}
+            infosChipValue={`services / ${typeS ?? ''} / ${categoryS ?? ''}`} >
+        </FormHeadSection>
+    ), [isLoading]);
+
+    useEffect(() => {
+        setDetailSection(SearchSection);
+        return () => {
+            setDetailSection(undefined);
+        }
+    }, [SearchSection, isLoading]);
 
     return (
         <>
             <main  >
-                <div className="sectionHeader">
-                    <SubHeader
-                        type={`services / ${typeS ?? ''} / ${categoryS ?? ''}`}
-                        closeBtn />
-                    {notif &&
-                        <NotifDiv
-                            isLoading={isLoading}
-                            refetch={refetch}
-                            notif={notif}
-                        />}
-
-                </div>
                 <section
                     id='refDiv'
                     className={`${expanded ? 'overflow-auto' : '!overflow-hidden '}`}

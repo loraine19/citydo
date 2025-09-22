@@ -1,6 +1,4 @@
 import React, { ReactNode, useRef, useState, useLayoutEffect, useEffect } from "react";
-// AJOUTÉ : Importer createPortal
-import { createPortal } from "react-dom";
 import { Icon } from "../../../common/IconComp";
 import BackDropBlur from "./BackDropBlur";
 
@@ -41,17 +39,6 @@ export const Menu: React.FC<MenuProps> = ({
     const open = isControlled ? controlledOpen : internalOpen;
     const menuRefAuto = useRef<HTMLDivElement>(null);
     const root = document.getElementById("root");
-
-    // AJOUTÉ : État pour stocker l'élément racine du portail
-    const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
-
-    // AJOUTÉ : Effet pour trouver la div#app après le premier rendu
-    useEffect(() => {
-        // On cherche l'élément #app. Si on ne le trouve pas, on utilise document.body comme solution de repli.
-        const rootEl = document.getElementById('app') || document.body;
-        setPortalRoot(rootEl);
-    }, []); // Le tableau vide signifie que cet effet ne s'exécute qu'une fois, après le premier rendu.
-
 
     // Global set to track open menus
     const openMenus: Set<() => void> = (window as any).__OPEN_MENUS__ || ((window as any).__OPEN_MENUS__ = new Set<() => void>());
@@ -201,10 +188,16 @@ export const Menu: React.FC<MenuProps> = ({
                     ((viewportWidth / 2 - (menuWidth / 2)) - (triggerWidth / 2))}px`;
                 style.transformOrigin = `top`
             }
+
+
         }
         if (style !== menuStyle && open) setMenuStyle(style);
 
     }, [open]);
+
+
+
+
 
     const handleTriggerClick = () => {
         // Close all other open menus before opening this one
@@ -226,52 +219,6 @@ export const Menu: React.FC<MenuProps> = ({
         setVisible(false);
     }, []);
 
-    // MODIFIÉ : Création d'une variable pour le contenu du menu pour plus de clarté
-    const menuContent = (
-        <div
-            data-md3-menu
-            aria-expanded={open}
-            id={'menu-button_' + key}
-            key={key}
-            ref={menuRef || menuRefAuto}
-            style={{
-                ...menuStyle,
-                maxWidth: fitMax ? `${triggerWidth}px` : ''
-            }}
-            className={` ${className || ""} 
-            md3-menu md3-elevation 
-            ${visible ? "" : "invisible"}
-             ${open ? " md3-menu-enter " : ` md3-menu-leave `} `} >
-
-            <div className={`
-            ${(open) ? "!z-auto" : " -z-10 "}`}
-                ref={menuCurrent}>
-
-                <div
-                    onClick={handleClose}>
-                    {closeIcon ??
-                        <div className={`px-2 pt-2 -mb-3 flex justify-end w-full`}>
-                            <Icon
-                                icon='close'
-                                bg color='slate'
-                                size='sm'
-                                style='place-self-end' />
-                        </div>}
-                </div>
-
-                <div
-                    onClick={handleClose}
-                    className={`md3-menu-list overflow-hidden `}>
-                    {title &&
-                        <div className="flex-1 font-medium  -mb-1 p-3 text-[0.95rem] ">
-                            {title}
-                        </div>}
-                    {children}
-                </div>
-            </div>
-        </div>
-    );
-
     return (
         <>
             <div
@@ -282,6 +229,7 @@ export const Menu: React.FC<MenuProps> = ({
 
                 {(trigger) && React.cloneElement(
                     trigger as React.ReactElement,
+
                     {
                         ref: root,
                         onClick: handleTriggerClick,
@@ -291,25 +239,66 @@ export const Menu: React.FC<MenuProps> = ({
                     }
                 )}
 
-                {/* MODIFIÉ : On utilise le portail pour afficher le menu */}
-                {open && portalRoot && createPortal(menuContent, portalRoot)}
-            </div>
 
-            {/* MODIFIÉ : On utilise aussi le portail pour le fond flou */}
-            {open && blurBack && portalRoot && createPortal(
+
+                {
+                    <div
+                        data-md3-menu
+                        aria-expanded={open}
+                        id={'menu-button_' + key}
+                        key={key}
+                        ref={menuRef || menuRefAuto}
+                        style={{
+                            ...menuStyle,
+                            maxWidth: fitMax ? `${triggerWidth}px` : ''
+                        }}
+                        className={` ${className || ""} 
+                    md3-menu md3-elevation 
+                    ${visible ? "" : "invisible"}
+                     ${open ? " md3-menu-enter " : ` md3-menu-leave `} `} >
+
+
+                        {<div className={`
+                    ${(open) ? "!z-auto" : " -z-10 "}`}
+                            ref={menuCurrent}>
+
+                            <div
+                                onClick={handleClose}>
+                                {closeIcon ??
+                                    <div className={`px-2 pt-2 -mb-3 flex justify-end w-full`}>
+                                        <Icon
+                                            icon='close'
+                                            bg color='slate'
+                                            size='sm'
+                                            style='place-self-end' />
+                                    </div>}
+                            </div>
+
+                            <div onClick={handleClose}
+                                className={`md3-menu-list overflow-hidden `}>
+                                {title &&
+                                    <div className="flex-1 font-medium  -mb-1 p-3 text-[0.95rem] ">
+                                        {title}
+                                    </div>}
+                                {children}
+                            </div>
+                        </div>}
+                    </div>
+                }
+
+            </div>
+            {blurBack &&
                 <BackDropBlur
                     key={'backdrop-blur' + key}
+
                     open={open}
                     setOpen={handleClose}
-                    className="z-[1]"
-                />,
-                portalRoot
-            )}
+                    className="z-[0]" >
+
+                </BackDropBlur>}
         </>
     );
 };
-
-
 
 interface MenuItemProps {
     children: ReactNode;

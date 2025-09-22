@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Home, KeyboardDoubleArrowDown, PartnerExchange, Search, Event, Dashboard, Ballot, Add, Person, CalendarAddOn, Flag2, ExitToApp, ExploreNearby, Visibility, ArrowCircleRight, Notifications, ArrowCircleRightFilled, ThumbUp, ThumbUpFilled, HomeFilled, PersonFilled, CircleNotifications, CircleNotificationsFilled, PersonEdit, PersonEditFilled, Diversity3, Diversity3Filled, TwoPager, TwoPagerFilled, AddCircleFilled, AddCircle, DoNotDisturbOnFilled, DoNotDisturbOn, ArrowForwardIos, ArrowBackIos, CalendarViewMonth, CalendarViewMonthFilled, SearchFilled, ArrowForwardIosFilled, ArrowBackIosFilled, NotificationsFilled, VisibilityFilled, ExploreNearbyFilled, ExitToAppFilled, Flag2Filled, CalendarAddOnFilled, AddFilled, BallotFilled, DashboardFilled, EventFilled, PartnerExchangeFilled, KeyboardDoubleArrowDownFilled, TollFilled, Toll, ArrowDropDownFilled, ArrowDropDown, CalendarMonth, CalendarMonthFilled, ListFilled, List, CancelFilled, Cancel, CheckCircleFilled, CheckCircle, SmartCardReaderFilled, SmartCardReader, SignalCellularAltFilled, SignalCellularAlt, DesignServicesFilled, DesignServices, CloseFilled, Close, ChevronRight, ChevronRightFilled, MoreUp, MoreUpFilled, ExpandContentFilled, ExpandContent, EditFilled, Edit, GroupsFilled, Groups, PersonCancelFilled, PersonCancel, AddAPhoto, AddAPhotoFilled, VisibilityOffFilled, VisibilityOff, DistanceFilled, Distance, PersonPinCircleFilled, PersonPinCircle, SyncProblemFilled, SyncProblem, KeyboardDoubleArrowUp, KeyboardDoubleArrowUpFilled, SendFilled, Send, ForumFilled, Forum, NearMeFilled, NearMe, Sms, SmsFilled, MoodFilled, Mood, MyLocationFilled, MyLocation, CallFilled, Call, Mail, MailFilled, TodayFilled, Today, LocationOn, LocationOnFilled, ClearAllFilled, ClearAll, CheckFilled, Check, Block, BlockFilled, SaveFilled, Save, SortFilled, Sort, SortByAlphaFilled, SortByAlpha, ArrowDropUpFilled, ArrowDropUp, DeleteFilled, Delete, UndoFilled, Undo, RefreshFilled, Refresh, MoveUpFilled, MoveUp, MoveDownFilled, MoveDown, ArrowUpward, ArrowUpwardFilled, ChatFilled, Chat, SaveAsFilled, SaveAs, RadioButtonCheckedFilled, RadioButtonChecked, PendingActions, PendingActionsFilled, CircleFilled, Circle, ArrowCircleUpFilled, ArrowCircleUp, PersonAddFilled, PersonAdd, KeyboardArrowRight, KeyboardArrowRightFilled, ArrowUpwardAlt, ArrowUpwardAltFilled, ArrowBack, ArrowBackFilled, GridView, GridViewFilled, ViewAgenda, ViewAgendaFilled, Output, OutputFilled, InputFilled, Input, EventBusyFilled, EventAvailableFilled, EventAvailable, EventBusy, PersonHeart, PersonHeartFilled, ViewColumn, ViewColumnFilled, Favorite, FavoriteFilled, HeartMinusFilled, HeartMinus, MoreVert, MoreVertFilled, VotingChip, VotingChipFilled, ListAltCheck, ListAltCheckFilled, ListAltAdd, ListAltAddFilled, FilterAlt, FilterAltFilled, FilterAltOff, FilterAltOffFilled, ShareFilled, Share, MoreHorizFilled, MoreHoriz, VerticalAlignTop, VerticalAlignTopFilled, CheckBox, CheckBoxFilled, CheckBoxOutlineBlank, CheckBoxOutlineBlankFilled, DarkMode, DarkModeFilled, LightMode, LightModeFilled, CalendarToday, CalendarTodayFilled, ImageFilled, Image, ImageArrowUp, ImageArrowUpFilled, HideImageFilled, HideImage, ImageSearchFilled, ImageSearch, AddLocationFilled, AddLocation, ProgressActivity, ProgressActivityFilled } from '@project-lary/react-material-symbols-400-rounded';
+import { Home, KeyboardDoubleArrowDown, PartnerExchange, Search, Event, Dashboard, Ballot, Add, Person, CalendarAddOn, Flag2, ExitToApp, ExploreNearby, Visibility, ArrowCircleRight, Notifications, ArrowCircleRightFilled, ThumbUp, ThumbUpFilled, HomeFilled, PersonFilled, CircleNotifications, CircleNotificationsFilled, PersonEdit, PersonEditFilled, Diversity3, Diversity3Filled, TwoPager, TwoPagerFilled, AddCircleFilled, AddCircle, DoNotDisturbOnFilled, DoNotDisturbOn, ArrowForwardIos, ArrowBackIos, CalendarViewMonth, CalendarViewMonthFilled, SearchFilled, ArrowForwardIosFilled, ArrowBackIosFilled, NotificationsFilled, VisibilityFilled, ExploreNearbyFilled, ExitToAppFilled, Flag2Filled, CalendarAddOnFilled, AddFilled, BallotFilled, DashboardFilled, EventFilled, PartnerExchangeFilled, KeyboardDoubleArrowDownFilled, TollFilled, Toll, ArrowDropDownFilled, ArrowDropDown, CalendarMonth, CalendarMonthFilled, ListFilled, List, CancelFilled, Cancel, CheckCircleFilled, CheckCircle, SmartCardReaderFilled, SmartCardReader, SignalCellularAltFilled, SignalCellularAlt, DesignServicesFilled, DesignServices, CloseFilled, Close, ChevronRight, ChevronRightFilled, MoreUp, MoreUpFilled, ExpandContentFilled, ExpandContent, EditFilled, Edit, GroupsFilled, Groups, PersonCancelFilled, PersonCancel, AddAPhoto, AddAPhotoFilled, VisibilityOffFilled, VisibilityOff, DistanceFilled, Distance, PersonPinCircleFilled, PersonPinCircle, SyncProblemFilled, SyncProblem, KeyboardDoubleArrowUp, KeyboardDoubleArrowUpFilled, SendFilled, Send, ForumFilled, Forum, NearMeFilled, NearMe, Sms, SmsFilled, MoodFilled, Mood, MyLocationFilled, MyLocation, CallFilled, Call, Mail, MailFilled, TodayFilled, Today, LocationOn, LocationOnFilled, ClearAllFilled, ClearAll, CheckFilled, Check, Block, BlockFilled, SaveFilled, Save, SortFilled, Sort, SortByAlphaFilled, SortByAlpha, ArrowDropUpFilled, ArrowDropUp, DeleteFilled, Delete, UndoFilled, Undo, RefreshFilled, Refresh, MoveUpFilled, MoveUp, MoveDownFilled, MoveDown, ArrowUpward, ArrowUpwardFilled, ChatFilled, Chat, SaveAsFilled, SaveAs, RadioButtonCheckedFilled, RadioButtonChecked, PendingActions, PendingActionsFilled, CircleFilled, Circle, ArrowCircleUpFilled, ArrowCircleUp, PersonAddFilled, PersonAdd, KeyboardArrowRight, KeyboardArrowRightFilled, ArrowUpwardAlt, ArrowUpwardAltFilled, ArrowBack, ArrowBackFilled, GridView, GridViewFilled, ViewAgenda, ViewAgendaFilled, Output, OutputFilled, InputFilled, Input, EventBusyFilled, EventAvailableFilled, EventAvailable, EventBusy, PersonHeart, PersonHeartFilled, ViewColumn, ViewColumnFilled, Favorite, FavoriteFilled, HeartMinusFilled, HeartMinus, MoreVert, MoreVertFilled, VotingChip, VotingChipFilled, ListAltCheck, ListAltCheckFilled, ListAltAdd, ListAltAddFilled, FilterAlt, FilterAltFilled, FilterAltOff, FilterAltOffFilled, ShareFilled, Share, MoreHorizFilled, MoreHoriz, VerticalAlignTop, VerticalAlignTopFilled, CheckBox, CheckBoxFilled, CheckBoxOutlineBlank, CheckBoxOutlineBlankFilled, DarkMode, DarkModeFilled, LightMode, LightModeFilled, CalendarToday, CalendarTodayFilled, ImageFilled, Image, ImageArrowUp, ImageArrowUpFilled, HideImageFilled, HideImage, ImageSearchFilled, ImageSearch, AddLocationFilled, AddLocation, ProgressActivity, ProgressActivityFilled, MenuFilled, Menu } from '@project-lary/react-material-symbols-400-rounded';
 import { FaFacebook, FaSnapchatGhost, FaTwitter, FaWhatsapp } from "react-icons/fa"
 import { IoLogoWhatsapp } from "react-icons/io";
 import { JSX, useState } from "react";
@@ -74,6 +74,7 @@ export const iconMap = {
     list_alt_check: { filled: ListAltCheckFilled, default: ListAltCheck },
     location_on: { filled: LocationOnFilled, default: LocationOn },
     mail: { filled: MailFilled, default: Mail },
+    menu: { filled: MenuFilled, default: Menu },
     mood: { filled: MoodFilled, default: Mood },
     more_up: { filled: MoreUpFilled, default: MoreUp },
     more_vert: { filled: MoreVertFilled, default: MoreVert },
@@ -123,18 +124,23 @@ export const iconMap = {
     snapchat: { filled: FaSnapchatGhost, default: FaSnapchatGhost },
     whatsapp: { filled: IoLogoWhatsapp, default: FaWhatsapp },
     twitter: { filled: FaTwitter, default: FaTwitter },
-
-
 };
 
-function searchIcon(icon: string, fill?: boolean): JSX.Element {
+// Export a type for all valid icon keys
+export type IconName = keyof typeof iconMap;
+
+function searchIcon(icon?: keyof typeof iconMap, fill?: boolean, textIcon?: string): JSX.Element {
     const IconComponent = iconMap[icon as keyof typeof iconMap];
-    if (!IconComponent) return <>{icon}</>;
+    if (!icon || textIcon)
+        return <>{textIcon}</>;
+    if (!IconComponent)
+        return <>{icon}</>;
     return fill ? <IconComponent.filled /> : <IconComponent.default />;
 }
 
 export type IconProps = {
-    icon: keyof typeof iconMap | string,
+    icon?: keyof typeof iconMap,
+    textIcon?: string,
     style?: string,
     fill?: boolean,
     size?: string,
@@ -175,17 +181,14 @@ export const Icon: React.FC<IconProps> = ({
     clear,
     reverse,
     color,
-    bg
+    bg,
+    textIcon,
 }) => {
 
 
     const iconSize = (sizeMap[size as keyof typeof sizeMap]?.class ?? 'icon2xl') + '';
     const textSize = sizeMap[size as keyof typeof sizeMap]?.text ?? 'text-[1.875rem]';
     const colorClass = (bg && clear) ? ' !bg-none ' : bg ? reverse ? `md3-${color ?? 'primary'}` : `md3-${color ?? 'primary'}-container` : color ? `md3-text-${color}` : ` text-current `;
-
-
-
-
     const classIcon = () => `
     flex items-center justify-center 
     ${colorClass}  
@@ -203,8 +206,8 @@ export const Icon: React.FC<IconProps> = ({
                     onMouseEnter={() => setIsFill(true)}
                     onMouseLeave={() => setIsFill(fill ?? false)}
                     to={link}
-                    target={'_blank'}
-                    rel={'noopener noreferrer'}
+                    target={link?.startsWith('http') ? '_blank' : '_self'}
+                    rel={link?.startsWith('http') ? 'noopener noreferrer' : undefined}
                     role={role}
                     tabIndex={0}
                     data-cy={icon}
@@ -214,7 +217,7 @@ export const Icon: React.FC<IconProps> = ({
                     aria-disabled={disabled}
                     style={{ cursor: disabled ? 'not-allowed' : 'pointer' }}
                 >
-                    {searchIcon(icon, isFill)}
+                    {searchIcon(icon as keyof typeof iconMap, isFill, textIcon)}
                 </Link>
             ) : (
                 <span
@@ -229,7 +232,7 @@ export const Icon: React.FC<IconProps> = ({
                     aria-disabled={disabled}
                     style={{ cursor: disabled ? 'not-allowed' : 'pointer' }}
                 >
-                    {searchIcon(icon, isFill)}
+                    {searchIcon(icon as keyof typeof iconMap, isFill, textIcon)}
                 </span>
             )}
         </>)

@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Card, Typography, CardBody, List } from '@material-tailwind/react';
-import SubHeader from '../../common/SubHeader';
+import { useEffect, useMemo, useState } from 'react';
+import { Typography, List } from '@material-tailwind/react';
 import { Skeleton } from '../../common/Skeleton';
 import DI from '../../../../di/ioc';
 import { MessageView } from '../../../views/viewsEntities/messageViewEntity';
@@ -11,6 +10,9 @@ import { useSearchParams } from 'react-router-dom';
 import { AvatarUser } from '../../common/AvatarUser';
 import NotifDiv from '../../common/NotifDiv';
 import { useUxStore } from '../../../../application/stores/ux.store';
+import { useNavStore } from '../../../../application/stores/nav.store';
+import FormHeadSection from '../base/baseComps/FormHeadSection';
+import { CardMD } from '../base/baseComps/Cards';
 
 
 export default function ChatPage() {
@@ -90,7 +92,17 @@ export default function ChatPage() {
         socketService.onNewMessage(handleNewMessage)
     }, [userRec.id, refetch, refetchConv, socketService]);
 
-
+    useEffect(() => {
+        if (params.with && params.with !== '0') {
+            setOpen(true);
+            setUserIdRec(parseInt(params.with || '0'));
+            getUserById(parseInt(params.with || '0')).then((user) => setUserRec(user));
+        } else {
+            setOpen(false);
+            setUserIdRec(0);
+            setUserRec({} as User);
+        }
+    }, [params.with]);
 
     const [message, setMessage] = useState(params?.text ?? '');
     const handleSendMessage = async () => {
@@ -128,17 +140,51 @@ export default function ChatPage() {
     }, [conversations, countConv, isLoadingConv, errorConv])
 
 
+    //// TO NAV BAR
+    const { setDetailSection } = useNavStore((state) => state);
+
+    const SearchSection = useMemo(() => (
+        <FormHeadSection
+            isLoading={isLoading}
+            notif={notif}
+            refetch={refetch}
+            error={error}
+            infosChipValue={`${open ? `Chat avec ${userRec?.Profile?.firstName ?? ''}` : 'Chat '}
+           ${open ? `${messages?.length} messages` : `${conversations?.length} conversations`}`} >
+            {open &&
+                <Icon
+                    reverse
+                    bg
+                    style='shadow-md absolute z-[999] top-8 !right-1 animSlide'
+                    color={'slate'}
+                    size='2xl'
+                    icon='close'
+                    title='fermer'
+                    onClick={() => {
+                        setParams({ with: '0' })
+                        setUserIdRec(0)
+                        setUserRec({} as User)
+                        setOpen(false)
+                    }}
+                />
+            }
+        </FormHeadSection>
+    ), [isLoading, open,]);
+
+    useEffect(() => {
+        setDetailSection(SearchSection);
+        return () => {
+            setDetailSection(undefined);
+        }
+    }, [SearchSection, isLoading, open]);
+
     return (
         <>
-            <main className='!max-h-[calc(100dvh-0.05rem)]'>
-                <div className='sectionHeader relative '>
-                    <SubHeader
-                        form
-                        place={open ? `${messages?.length} messages` : `${conversations?.length} conversations`}
-                        type={open ? `Chat avec ${userRec?.Profile?.firstName ?? ''}` : 'Chat '}
-                        closeBtn
-                        link='/' />
-                    {notif}
+            <main className='!max-h-[calc(100dvh-4rem)]'>
+
+                <section
+                    id='refDiv'
+                    className='flex !px-3 py-3  '>
                     {!connected &&
                         <Icon
                             fill
@@ -147,10 +193,6 @@ export default function ChatPage() {
                             title='actualiser'
                             onClick={() => connexion()} />}
 
-                </div>
-                <section
-                    id='refDiv'
-                    className='flex !px-0 pb-3 !pt-[4rem]  '>
                     {notifConv &&
                         <NotifDiv
                             notif={notifConv}
@@ -160,104 +202,87 @@ export default function ChatPage() {
                         />}
                     {isLoadingConv ?
                         <Skeleton className=' m-auto !h-full ' /> :
-                        <Card className='FixCardNoImage !flex !p-0 !px-0 h-full'>
-                            <CardBody className='!p-0 h-full !relative'>
-                                <div className='flex flex-1 h-full relative rounded-3xl'>
-                                    {open &&
-                                        <Icon
-                                            reverse
-                                            bg
-                                            style='shadow-md absolute z-[999] top-2 !right-2 animSlide'
-                                            color={'slate'}
-                                            size='2xl'
-                                            icon='close'
-                                            title='fermer'
-                                            onClick={() => {
-                                                setParams({ with: '0' })
-                                                setUserIdRec(0)
-                                                setUserRec({} as User)
-                                                setOpen(false)
-                                            }}
-                                        />
-                                    }
-                                    <div className='flex-1 p-2.5 overflow-y-auto overflow-x-hidden rounded-l-3xl !my-1 '>
-                                        <List className='flex-1 gap-1.5 !rounded-3xl'>
-                                            {conversations &&
-                                                conversations.map((message: MessageView, index: number) =>
-                                                    <div key={index + 'div'}>
-                                                        <List.Item
-                                                            className={`gap-1 rounded-full overflow-hidden ${(userIdRec === message?.isWith.id) ?
-                                                                '!bg-slate-100 border !border-slate-300 py-2.5 px-2.5 shadow-md my-0.5 -ml-2 ' :
-                                                                'bg-slate-200 py-1 '}`}
-                                                            key={index}
-                                                            onClick={() => {
-                                                                setOpen(true)
-                                                                const userRec = message?.IWrite ? message?.UserRec : message?.User
-                                                                setUserRec(userRec)
-                                                                setUserIdRec(userRec.id)
-                                                                setParams({ with: userRec.id.toString() })
-                                                            }} >
-                                                            <List.ItemStart className='relative flex min-w-max'>
-                                                                <AvatarUser
-                                                                    avatarSize={(userIdRec === message?.isWith.id) ? 'lg' : 'md'}
-                                                                    Profile={message?.isWith?.Profile}
-                                                                />
-                                                                {(online.length > 0 &&
-                                                                    online.includes(message.isWith.id)) &&
-                                                                    <span className='absolute top-0 -right-2 bg-green-500 rounded-full border-4 p-1.5 border-slate-50'>
-                                                                    </span>
-                                                                }
-                                                            </List.ItemStart>
-                                                            <div className="font-normal overflow-hidden w-full flex flex-col">
-                                                                <div className='flex justify-between items-center flex-1 w-full'>
-                                                                    <Typography as="h6" >
-                                                                        {message.isWith?.Profile?.firstName}
-                                                                    </Typography>
-                                                                    <span
-                                                                        className='px-4 !text-xs text-slate-400'>
-                                                                        {message.formatedDate}
-                                                                    </span>
-                                                                </div>
-                                                                <Typography
-                                                                    variant="small"
-                                                                    className="font-normal  !pr-2 !line-clamp-1">
-                                                                    {message.IWrite &&
-                                                                        <span className='text-slate-400'>
-                                                                            {message.read && '🗸'}
-                                                                            {' vous : '}
-                                                                        </span>}
-                                                                    {message?.message ?? '...'}
+                        <CardMD className='!min-h-full !p-0'>
+
+                            <div className='flex flex-1 h-full relative rounded-3xl'>
+
+                                <div className='flex-1 p-2.5 overflow-y-auto overflow-x-hidden rounded-l-3xl !my-1 '>
+                                    <List className='flex-1 gap-1.5 !rounded-3xl'>
+                                        {conversations &&
+                                            conversations.map((message: MessageView, index: number) =>
+                                                <div key={index + 'div'}>
+                                                    <List.Item
+                                                        className={`gap-1 rounded-full overflow-hidden ${(userIdRec === message?.isWith.id) ?
+                                                            '!bg-slate-100 border !border-slate-300 py-2.5 px-2.5 shadow-md my-0.5 -ml-2 ' :
+                                                            'bg-slate-200 py-1 '}`}
+                                                        key={index}
+                                                        onClick={() => {
+                                                            setOpen(true)
+                                                            const userRec = message?.IWrite ? message?.UserRec : message?.User
+                                                            setUserRec(userRec)
+                                                            setUserIdRec(userRec.id)
+                                                            setParams({ with: userRec.id.toString() })
+                                                        }} >
+                                                        <List.ItemStart className='relative flex min-w-max'>
+                                                            <AvatarUser
+                                                                avatarSize={(userIdRec === message?.isWith.id) ? 'lg' : 'md'}
+                                                                Profile={message?.isWith?.Profile}
+                                                            />
+                                                            {(online.length > 0 &&
+                                                                online.includes(message.isWith.id)) &&
+                                                                <span className='absolute top-0 -right-2 bg-green-500 rounded-full border-4 p-1.5 border-slate-50'>
+                                                                </span>
+                                                            }
+                                                        </List.ItemStart>
+                                                        <div className="font-normal overflow-hidden w-full flex flex-col">
+                                                            <div className='flex justify-between items-center flex-1 w-full'>
+                                                                <Typography as="h6" >
+                                                                    {message.isWith?.Profile?.firstName}
                                                                 </Typography>
+                                                                <span
+                                                                    className='px-4 !text-xs text-slate-400'>
+                                                                    {message.formatedDate}
+                                                                </span>
                                                             </div>
-                                                        </List.Item>
+                                                            <Typography
+                                                                variant="small"
+                                                                className="font-normal  !pr-2 !line-clamp-1">
+                                                                {message.IWrite &&
+                                                                    <span className='text-slate-400'>
+                                                                        {message.read && '🗸'}
+                                                                        {' vous : '}
+                                                                    </span>}
+                                                                {message?.message ?? '...'}
+                                                            </Typography>
+                                                        </div>
+                                                    </List.Item>
 
-                                                    </div>
-                                                )}
-                                        </List>
-                                    </div>
-                                    {/* CONVERSATION DIV */}
-                                    {open &&
-                                        <div className='absolute  right-0 flex-1 h-full rounded-l-3xl backdrop:opacity-5 -mr-[1px] -mb-[2px] !w-[calc(100%-4.4rem)] flex  bg-clip-border '>
-                                            <Chat
-                                                refetch={refetch}
-                                                setNewConv={setNewConv}
-                                                newConv={newConv}
-                                                isLoading={isLoading}
-                                                fetchNextPage={fetchNextPage}
-                                                hasNextPage={hasNextPage}
-                                                messages={messages}
-                                                message={message}
-                                                setMessage={setMessage}
-                                                handleSendMessage={handleSendMessage}
-                                                userRec={userRec}
-                                                error={error}
-                                            />
-
-                                        </div>
-                                    }
+                                                </div>
+                                            )}
+                                    </List>
                                 </div>
-                            </CardBody>
-                        </Card>}
+                                {/* CONVERSATION DIV */}
+                                {open &&
+                                    <div className='absolute right-0 flex-1 h-full rounded-l-3xl backdrop:opacity-5  !w-[calc(100%-4rem)] flex  bg-clip-border '>
+                                        <Chat
+                                            refetch={refetch}
+                                            setNewConv={setNewConv}
+                                            newConv={newConv}
+                                            isLoading={isLoading}
+                                            fetchNextPage={fetchNextPage}
+                                            hasNextPage={hasNextPage}
+                                            messages={messages}
+                                            message={message}
+                                            setMessage={setMessage}
+                                            handleSendMessage={handleSendMessage}
+                                            userRec={userRec}
+                                            error={error}
+                                        />
+
+                                    </div>
+                                }
+                            </div>
+                        </CardMD>}
                 </section>
             </main >
         </ >

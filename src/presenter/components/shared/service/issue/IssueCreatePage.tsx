@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { object, string } from 'yup';
 import { Issue } from '../../../../../domain/entities/Issue';
 import { ServiceType } from '../../../../../domain/entities/Service';
-import SubHeader from '../../../common/SubHeader';
+import SubHeader from '../../../common/appComps/SubHeader';
 import { IssueForm } from './IssueDetailCard';
 import { useUserStore } from '../../../../../application/stores/user.store';
 import { Skeleton } from '../../../common/Skeleton';

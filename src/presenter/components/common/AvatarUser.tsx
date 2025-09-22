@@ -49,7 +49,7 @@ export const AvatarUser = ({ Profile, avatarSize = '', avatarStyle = '', style =
                         style={`leading-[1] pt-[0%] flex font-semibold bg-${userColor}-100 text-${userColor}-800 w-full h-full`}
                         color={userColor ?? 'slate'}
                         size={avatarSize}
-                        icon={Profile?.firstName?.charAt(0).toUpperCase() || '?'}
+                        textIcon={Profile?.firstName?.charAt(0).toUpperCase() || '?'}
                     />
                 </div>
             )}

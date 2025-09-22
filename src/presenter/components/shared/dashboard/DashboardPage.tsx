@@ -38,15 +38,7 @@ export default function DashboardPage() {
     const { notifsMap, isLoadingMap, refetchMap, countMap } = notifMapViewModelFactory();
 
     //// CLASSES
-    // Responsive grid: 
-    // - On md and up: 2 columns, 4 rows
-    // - User: row 1, col 1
-    // - Notif: row 1, col 2
-    // - Event: rows 2-4, col 1
-    // - Map: rows 2-4, col 2
-    // User and Notif have max-content height, Event and Map fill remaining space
 
-    // User div takes twice the height of notif div
     const userClasse = "row-start-1 row-end-3 col-start-1 col-end-2 flex animRev p-2 !max-h-max  ";
     const notifClasse = "row-start-1 row-end-2 col-start-2 col-end-3 animRev p-2 " + (notifs.length > 0 ? " min-h-[4rem] " : "min-h-[5rem]");
     const eventClasse = " row-start-3 row-end-5 col-start-1 col-end-2  flex flex-col h-full  p-2 flex-1 ";
@@ -125,7 +117,7 @@ export default function DashboardPage() {
                 </div>
 
                 {/* NOTIF CARD  */}
-                <div className={`hidden lg:${notifClasse} grid-cols-1 h-full  lg:grid`}>
+                <div className={`hidden ${notifClasse} grid-cols-1 h-full  md:grid`}>
                     <CardMD className="!flex  pt-2">
                         <CardMD.Subhead className="flex gap-2 items-center">
                             <div className="relative">

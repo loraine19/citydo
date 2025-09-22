@@ -3,6 +3,7 @@ import { HTMLAttributes } from "react";
 interface ChipProps extends HTMLAttributes<HTMLDivElement> {
     variant?: 'filled' | 'outlined';
     label: string;
+
 }
 
 export const Chip: React.FC<ChipProps> = ({ variant = 'filled', label }) => {

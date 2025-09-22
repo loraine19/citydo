@@ -31,7 +31,7 @@ export function Select({
     const error = formik?.errors[name ?? ''];
     const selected = options?.find(opt => opt.value === (formik?.values[name ?? ''] ?? value));
     const displayLabel = selected?.label || placeholder;
-    const className = variant === 'Input' ? 'md3-input-container md3-outlined !rounded-md' : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
+    const className = variant === 'Input' ? `md3-input-container md3-outlined !rounded-md md3-input-size-md ` : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
 
     const handleSelect = (option: { label: string, value: string }) => {
         if (formik) formik.setFieldValue(name, option?.value);

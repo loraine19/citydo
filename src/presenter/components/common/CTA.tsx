@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Action } from "../../../domain/entities/frontEntities";
-import { Icon } from "./IconComp";
+import { Icon, IconName } from "./IconComp";
 import { useAlertStore } from "../../../application/stores/alert.store";
 import { useUxStore } from "../../../application/stores/ux.store";
 
@@ -76,7 +76,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                                                 reverse={!isPrimary(i) || isDisabled(i) || (showLabel.index === i && showLabel.value) ? false : true}
                                                 clear={!(showLabel.index === i && showLabel.value) || !(isPrimary(i) || isDisabled(i))}
                                                 color={isDisabled(i) ? 'slate' : action?.color ?? defColor}
-                                                icon={action?.iconImage}
+                                                icon={action?.iconImage as IconName}
                                                 disabled={isDisabled(i)}
                                                 bg fill
                                                 size="2xl"

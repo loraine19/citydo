@@ -66,10 +66,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                             end={end}
                             prefix="J-"
                         />
-                        <DateChip
-                            start={pool?.createdAt}
-                            prefix=" "
-                        />
+
                     </div>
                     {<MoreButton
                         id={pool?.id}
@@ -85,7 +82,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                         <ProfileDiv
                             divRef={divRef}
                             profile={pool?.UserBenef || {} as Partial<User>}
-                            size="xl"
+                            size="6xl"
                         />
                     </div>
                     <ProgressBar
@@ -116,6 +113,8 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                     {!mines ? (
                         <div className=" w-full flex-1 flex items-center ">
                             <ProfileDiv
+                                date={pool?.createdAt}
+                                group={pool?.Group}
                                 divRef={divRef}
                                 profile={pool?.User} />
                         </div>

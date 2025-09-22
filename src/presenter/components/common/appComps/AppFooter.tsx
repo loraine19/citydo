@@ -1,14 +1,16 @@
-import { useNotificationStore } from "../../../application/stores/notification.store";
-import { useUxStore } from "../../../application/stores/ux.store";
-import { NavBarSection } from "./NavLinks";
+import { useNotificationStore } from "../../../../application/stores/notification.store";
+import { useUxStore } from "../../../../application/stores/ux.store";
+import { NavLinks } from "./NavLinks";
 
-interface NavBarBottomProps {
+interface AppFooterProps {
     handleClick?: () => void;
-    addBtn?: boolean;
+    mainPage?: boolean;
+    listPage?: boolean;
+    detailPage?: boolean;
     color?: string;
 }
 
-export const NavBarBottom: React.FC<NavBarBottomProps> = ({ addBtn }) => {
+export const AppFooter: React.FC<AppFooterProps> = ({ mainPage, listPage }) => {
     const { } = useNotificationStore((state) => state);
     const { setNavBottom, navBottom } = useUxStore((state) => state)
 
@@ -22,7 +24,8 @@ export const NavBarBottom: React.FC<NavBarBottomProps> = ({ addBtn }) => {
                     e.stopPropagation(); e.preventDefault()
                     setNavBottom(!navBottom)
                 }}>
-                {<NavBarSection addBtn={addBtn} />}
+                {((mainPage || listPage) && navBottom) &&
+                    <NavLinks placement="bottom" />}
             </footer>
         </>
     );

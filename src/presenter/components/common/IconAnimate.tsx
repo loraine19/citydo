@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Icon } from "./IconComp";
+import { Icon, IconName } from "./IconComp";
 
 interface IconAnimateProps {
     active: boolean;
-    icon: string;
+    icon: IconName;
     size?: string;
     fill?: boolean;
     className?: string;

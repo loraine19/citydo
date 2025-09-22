@@ -19,9 +19,9 @@ const NotifDiv: React.FC<NotifDivProps> = ({ notif, isLoading, refetch, error })
     }, [notif, error]);
 
     return (
-        <div className={`absolute place-items-end !max-w-full  !top-[100%] h-fit w-full left-0 notif min-w-max !pt-8 z-[1] min-h-max !justify-start !text-${color}-500 `}>
+        <div className={`!max-w-full absolute  !top-[100%] h-fit w-full left-0 notif min-w-max !pt-8 z-[1] min-h-max !justify-start  `}>
             {error ? 'Une erreur est survenue : ' : ''}
-            <span className="wRespXLMargin w-full text-center pt-10">{notif !== error && notif} </span>
+            <span className="md3-card-subhead w-full text-center pt-10">{notif !== error && notif} </span>
             <div
                 style={{ display: 'inline-block', transition: 'transform 0.5s' }}
                 className={'py-3'}

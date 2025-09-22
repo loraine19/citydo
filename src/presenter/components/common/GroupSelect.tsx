@@ -7,12 +7,14 @@ interface GroupSelectProps {
     setGroupId?: (groupId: string) => void;
     groupId?: string;
     disabled?: boolean;
+    variant?: 'filled' | 'tonal' | 'text' | 'Input';
 }
 
-export default function GroupSelect({ formik, user, groupId, disabled }: GroupSelectProps) {
+export default function GroupSelect({ formik, user, groupId, disabled, variant = 'Input' }: GroupSelectProps) {
 
     return (
         <Select
+            variant={variant}
             formik={formik}
             value={groupId}
             name={"groupId"}

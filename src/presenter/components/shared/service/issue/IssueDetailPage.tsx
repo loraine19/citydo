@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { ServiceType } from '../../../../../domain/entities/Service'
 import CTAMines from '../../../common/CTA';
-import SubHeader from '../../../common/SubHeader';
+import SubHeader from '../../../common/appComps/SubHeader';
 import { IssueForm } from './IssueDetailCard';
 import { Action } from '../../../../../domain/entities/frontEntities';
 import { useUserStore } from '../../../../../application/stores/user.store';

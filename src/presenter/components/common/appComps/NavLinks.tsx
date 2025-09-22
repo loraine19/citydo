@@ -1,31 +1,36 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Icon } from "./IconComp";
-import { useNotificationStore } from "../../../application/stores/notification.store";
-import { useUxStore } from "../../../application/stores/ux.store";
-import { Fab, FabMenu } from "../shared/base/baseComps/Fabs";
-import { Md3Colors } from "../shared/base/baseComps/Buttons";
+import { Icon, IconName } from "../IconComp";
+import { useUxStore } from "../../../../application/stores/ux.store";
+import { Fab, FabMenu } from "../../shared/base/baseComps/Fabs";
+import { Md3Colors } from "../../shared/base/baseComps/Buttons";
 import { useState } from "react";
-import { NavigationBar, NavigationBarItem } from "../shared/base/baseComps/Navigations";
+import { NavigationBar, NavigationBarItem } from "../../shared/base/baseComps/Navigations";
 
 interface NavBarProps {
     handleClick?: () => void;
-    addBtn?: boolean;
+    listPage?: boolean;
+    placement?: "top" | "bottom";
     color?: string;
 }
 
-export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
+export const NavLinks: React.FC<NavBarProps> = ({ listPage, placement }) => {
     const location = useLocation()
     const type = new URLSearchParams(location.pathname.split("/")[1]).toString().replace("=", '');
-    const { } = useNotificationStore((state) => state);
-    const { navBottom, setColor, color, hideNavBottom } = useUxStore((state) => state);
+    const { setColor, color, hideNavBottom } = useUxStore((state) => state);
     const navigate = useNavigate()
 
     type NavItem = {
         to: string;
-        icon: string;
+        icon: IconName;
         label: string;
         color: { border: string, background: string, text: string, col: string } | any
     }
+
+    //// CONTAINER STYLE 
+    const isBottom = placement === "bottom"
+    const containerStyle = isBottom ? `rounded-t-[2rem] py-2.5 px-3 !flex-1 md3-elevation-5 !max-w-full !border-b-0 justify-between md3-primary-container
+    ` : `!shadow-none w-full md3-elevation-0 justify-around  md:pb-0  md:px-2`
+
 
     //// NAV ITEMS
     const navItems: NavItem[] = [
@@ -37,38 +42,38 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
     ]
 
     //// ADD BUTTON ITEM
-    const addBtnItem = type ? [{
+    const addBtnItem: NavItem[] = type && listPage ? [{
         to: `/${type}/create`,
-        icon: {
+        icon: ({
             service: "partner_exchange",
             evenement: "event",
             annonce: "dashboard",
             vote: "ballot",
             groupe: "groups"
-        }[type] || "add",
+        }[type] || "add") as IconName,
         label: `Ajouter un ${type}`,
         color: color,
     }] : [
         {
             to: `/service/create`,
-            icon: "partner_exchange",
+            icon: "partner_exchange" as IconName,
             label: `Ajouter un Service`,
             color: 'sky'
         }, {
             to: `/evenement/create`,
-            icon: "event",
+            icon: "event" as IconName,
             label: `Ajouter un Événement`,
             color: 'cyan'
         },
         {
             to: `/annonce/create`,
-            icon: "dashboard",
+            icon: "dashboard" as IconName,
             label: `Ajouter une Annonce`,
             color: 'rose'
         },
         {
             to: `/vote/create`,
-            icon: "ballot",
+            icon: "ballot" as IconName,
             label: `Créer un Vote`,
             color: 'orange'
         }
@@ -84,20 +89,14 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
             {/* CONTAINER */}
             <div className={
                 ` ${hideNavBottom ? 'md3-menu-leave' : 'md3-menu-enter'}` +
-                (navBottom ?
-                    ` wRespXLMargin px-0.5 ` :
-                    ' -mt-1.5   ') +
-                ` flex items-center w-full  `
+                (isBottom ? ` wRespXLMargin px-0.5 ` : ' -mt-1.5   ') +
+                ` flex items-center w-full `
             }>
                 <NavigationBar
                     value={navValue}
                     onValueChange={(value) => setNavValue(value)}
                     className={` 
-                    ${hideNavBottom ? '   ' : ' '}
-                    ${navBottom ?
-                            ' rounded-t-[2rem] py-2.5 px-3 !flex-1 md3-elevation-5 !max-w-full !border-b-0 justify-between md3-primary-container ' :
-                            ` !shadow-none w-full md3-elevation-0 justify-around pb-2 md:pb-0  md:px-2`}
-                    items-center overflow-x-auto  overflow-y-hidden flex h-full w-full `}>
+                    ${containerStyle} items-center overflow-x-auto overflow-y-hidden flex h-full w-full `}>
 
                     {navItems.map(({ to, icon, label, color }: NavItem, index) => {
                         const active = location.pathname === to;
@@ -105,10 +104,10 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                         return (
 
                             <NavigationBarItem
-                                row={!navBottom}
+                                row={!isBottom}
                                 className={`md3-text-${color} 
-                                    ${navBottom ? 'md:px-12  md:w-max ' : ' !rounded-none !p-0'}
-                                    ${navBottom ? active ?
+                                    ${isBottom ? 'md:px-12  md:w-max ' : ' !rounded-none !p-0'}
+                                    ${isBottom ? active ?
                                         `md3-${color}-container md3-elevation-0 animSlide  border-[1px] border-black/5 `
                                         : ` max-w-[50px] sm:max-w-maw last:mr-[2vw] first:ml-[2vw]` : ``}
                                     
@@ -117,23 +116,21 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                                 icon={
                                     <Icon
                                         disabled={active}
-                                        style={
-                                            `${(active && !navBottom) ? `` : ''}
-                                             ${!navBottom ? active ? ` border-b md3-border-${color} py-1 md:border-none md:py-0 px-2 ` : `px-1.5` : ``} `
+                                        style={`${!isBottom ? active ? ` border-b md3-border-${color} py-1 md:border-none md:py-0 px-2 ` : `px-1.5` : ``} `
                                         }
                                         reverse={false}
-                                        clear={navBottom}
-                                        size={navBottom ? '2xl' : 'xl'}
+                                        clear={isBottom}
+                                        size={isBottom ? '2xl' : 'xl'}
                                         icon={icon}
                                         fill={active} />
                                 }
                                 label={
                                     <span className={`hidden md:block
-                                            ${navBottom ?
+                                            ${isBottom ?
                                             ' text-[0.7rem] ' :
                                             ' !text-[0.8rem] pb-[4px] '
-                                        } 
-                                            ${active && !navBottom ? 'underline underline-offset-[6px] ' : ''} `}>
+                                        }
+                                            ${active && !isBottom ? 'underline underline-offset-[6px] ' : ''} `}>
                                         {label}
                                     </span>}
                                 value={label}
@@ -147,12 +144,12 @@ export const NavBarSection: React.FC<NavBarProps> = ({ addBtn }) => {
                         )
                     })}
                 </NavigationBar>
-                {addBtn &&
+                {
                     <FabMenu
                         backdropBlur={true}
                         open={openFab}
                         setOpen={setOpenFab}
-                        className={`${navBottom ?
+                        className={`${isBottom ?
                             'bottom-[calc(100%_+_1rem)] fixed right-2' :
                             'absolute top-[calc(100dvh_-_5rem)] ] '}`}
                         mainProps={{

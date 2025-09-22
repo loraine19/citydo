@@ -5,7 +5,7 @@ import { object, string } from 'yup';
 import { ServiceType } from '../../../../../domain/entities/Service';
 import { ModalValues } from '../../../../../domain/entities/frontEntities';
 import { ConfirmModal } from '../../../common/ConfirmModal';
-import SubHeader from '../../../common/SubHeader';
+import SubHeader from '../../../common/appComps/SubHeader';
 import { IssueForm } from './IssueDetailCard';
 import { useUserStore } from '../../../../../application/stores/user.store';
 import { Skeleton } from '../../../common/Skeleton';

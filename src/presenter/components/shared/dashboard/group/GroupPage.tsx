@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import SubHeader from '../../../common/SubHeader';
+import SubHeader from '../../../common/appComps/SubHeader';
 import DI from '../../../../../di/ioc';
 import { useSearchParams } from 'react-router-dom';
 import { GroupView } from '../../../../views/viewsEntities/GroupViewEntity';
 import { LoadMoreButton } from '../../../common/LoadMoreBtn';
 import { SkeletonGrid } from '../../../common/Skeleton';
 import { GroupCard } from "./GroupCard";
-import TabsMenu from "../../../common/TabsMenu";
+import TabsMenu from "../../../common/appComps/TabsMenu";
 import { TabLabel } from "../../../../../domain/entities/frontEntities";
 import { GroupCategory, GroupFilter } from "../../../../../domain/entities/Group";
 import { groupCategories } from "../../../../constants";

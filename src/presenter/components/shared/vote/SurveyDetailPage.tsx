@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CTAMines from '../../common/CTA';
-import SubHeader from '../../common/SubHeader';
+import SubHeader from '../../common/appComps/SubHeader';
 import SurveyDetailCard from './voteCards/SurveyDetailCard';
 import { Action } from '../../../../domain/entities/frontEntities';
 import { Skeleton, SkeletonGrid } from '../../common/Skeleton';

@@ -289,10 +289,10 @@ export const CardLarge: React.FC<CardLargeProps> & {
                     className={` md3-card-large-sheet md3-card-${variant}  ${sheetClassName || ""}
                         ${(imageProps.src) ? `
                             ${(!expanded) ?
-                                " animSheetRev max-h-[60%] lg:max-h-[55%]  overflow-hidden " :
+                                " animSheetRev max-h-[60%] lg:max-h-[55%]   overflow-hidden " :
                                 "  max-h-[calc(100%-4rem)] h-fit overflow-auto animSheet "}
                             `
-                            : `h-full `}
+                            : `h-full ${form && '!overflow-auto'} `}
                             `}>
 
                     <div className="md3-card-large-sheet-handle">

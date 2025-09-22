@@ -1,15 +1,17 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import CTAMines from '../../common/CTA';
-import SubHeader from '../../common/SubHeader';
 import PostDetailCard from './PostComps/PostDetailCard';
 import { Action } from '../../../../domain/entities/frontEntities';
 import { GenereMyActions, } from '../../../views/viewsEntities/utilsService';
 import DI from '../../../../di/ioc';
 import { Skeleton, SkeletonGrid } from '../../common/Skeleton';
 import { useAlertStore } from '../../../../application/stores/alert.store';
-import { useRef, useCallback, useState } from 'react';
+import { useRef, useCallback, useState, useEffect, useMemo } from 'react';
 import { HandleHideParams } from '../../../../application/useCases/utils.useCase';
 import { useUxStore } from '../../../../application/stores/ux.store';
+import { useNavStore } from '../../../../application/stores/nav.store';
+import FormHeadSection from '../base/baseComps/FormHeadSection';
+import { PostCategory } from '../../../../domain/entities/Post';
 
 export default function PostDetailPage() {
     //// PARAMS
@@ -18,7 +20,7 @@ export default function PostDetailPage() {
 
     //// VIEW MODEL
     const postIdViewModelFactory = DI.resolve('postIdViewModel');
-    const { post, isLoading, error } = postIdViewModelFactory(idS);
+    const { post, isLoading, error, refetch } = postIdViewModelFactory(idS);
     const deletePost = async (id: number) => await DI.resolve('deletePostUseCase').execute(id);
 
     const { setOpen, open } = useAlertStore(state => state);
@@ -26,6 +28,14 @@ export default function PostDetailPage() {
     const myActions = post && GenereMyActions(post, "annonce", deletePost)
     const navigate = useNavigate()
 
+
+    const [notif, setNotif] = useState<string>('');
+
+    //// NOTIFICATION
+    useEffect(() => {
+        if (error) setNotif(error.message)
+        else setNotif('');
+    }, [isLoading, error]);
 
     //// HANDLE SCROLL
     const utils = DI.resolve('utils')
@@ -70,14 +80,31 @@ export default function PostDetailPage() {
     //// HANDLE EXPAND
     const [expand, setExpand] = useState<boolean>(false);
 
+
+    //// TO NAV BAR
+    const { setDetailSection } = useNavStore((state) => state);
+
+    const SearchSection = useMemo(() => (
+        <FormHeadSection
+            isLoading={isLoading}
+            notif={notif}
+            refetch={refetch}
+            error={error}
+            infosChipValue={`annonce / ${PostCategory[post?.category as keyof typeof PostCategory] ?? '...'} `} >
+        </FormHeadSection>
+    ), [isLoading, hideNavBottom]);
+
+    useEffect(() => {
+        setDetailSection(SearchSection);
+        return () => {
+            setDetailSection(undefined);
+        }
+    }, [SearchSection, isLoading, hideNavBottom]);
+
     return (
         <>
             <main>
-                <div className="sectionHeader ">
-                    <SubHeader
-                        type={`annonce ${post?.categoryS ?? ""}`}
-                        closeBtn />
-                </div>
+
                 <section
                     id='refDiv'
                     className={`${expand ? 'overflow-auto' : ''} `}
@@ -86,7 +113,7 @@ export default function PostDetailPage() {
                         handleHideCallback()
                     }}>
 
-                    <div className={`DetailCardDiv ${!hideNavBottom ? post?.isMine ? "hideCTA" : "hideCTA2" : ""}`}>
+                    <div className={`DetailCardDiv ${!hideNavBottom ? post?.isMine ? "hideCTA2" : "hideCTA2" : ""}`}>
                         {!isLoading && post ?
                             <PostDetailCard
                                 expand={expand}

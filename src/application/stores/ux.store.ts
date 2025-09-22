@@ -13,10 +13,7 @@ interface UxStore {
   setNavBottom: (value: boolean) => void;
   hideNavBottom: boolean;
   setHideNavBottom: (value: boolean) => void;
-  navIcons: boolean;
-  setNavIcons: (value: boolean) => void;
-  haveTitle: boolean;
-  setHaveTitle: (value: boolean) => void;
+
 }
 
 const storage = new cryptedStorage();
@@ -32,10 +29,7 @@ export const useUxStore = create<UxStore, [['zustand/persist', UxStore]]>(
       setHideNavBottom: (value: boolean) => set(() => ({ hideNavBottom: value })),
       color: 'slate',
       setColor: (color: string) => set({ color }),
-      navIcons: false,
-      setNavIcons: (value: boolean) => set({ navIcons: value }),
-      haveTitle: false,
-      setHaveTitle: (value: boolean) => set({ haveTitle: value }),
+
       getColor: (path?: string) => {
         let color = 'slate';
         if (path) {

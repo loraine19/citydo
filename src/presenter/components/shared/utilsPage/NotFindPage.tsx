@@ -3,7 +3,7 @@ import { Typography, Button } from "@material-tailwind/react";
 import { AuthHeader } from "../auth/auth.Comps/AuthHeader";
 import { useAlertStore } from "../../../../application/stores/alert.store";
 import { useEffect } from "react";
-import { NavBarBottom } from "../../common/NavBarBottom";
+import { AppFooter } from "../../common/appComps/AppFooter";
 
 
 
@@ -36,7 +36,7 @@ export default function NotFindPage() {
                 </Typography>
                 <Button onClick={() => navigate('/')} className="rounded-full w-max p-5 text-sm !font-light">retour à l' acceuil</Button>
             </main>
-            <NavBarBottom addBtn={false} />
+            <AppFooter mainPage />
         </>
     );
 }

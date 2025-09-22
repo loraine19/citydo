@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import { Icon } from '../../../common/IconComp';
+import { Icon, IconName } from '../../../common/IconComp';
 import { FormikProps } from 'formik';
 import { useUserStore } from '../../../../../application/stores/user.store'
 import DI from '../../../../../di/ioc';
@@ -110,7 +110,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 <Icon
                                     onClick={() => toggleInputStyle(passWordInput, setPassWordInput)}
                                     size='lg'
-                                    icon={passWordInput.icon} />}>
+                                    icon={passWordInput.icon as IconName} />}>
                         </Input>
                         <div className={!confirm ? "hidden" : "flex flex-1 flex-col w-full"}>
                             <Input
@@ -126,7 +126,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 helperText={formik?.errors.passwordConfirm as string ?? ''}
                                 trailingIcon={<Icon
                                     onClick={() => toggleInputStyle(passWordInput2, setPassWordInput2)}
-                                    icon={passWordInput2.icon}
+                                    icon={passWordInput2.icon as IconName}
                                     size='lg' />}
                             />
                         </div>

@@ -1,5 +1,5 @@
 
-import SubHeader from "../../common/SubHeader";
+import SubHeader from "../../common/appComps/SubHeader";
 import { FlagCard } from "./flagCards/FlagCard";
 import { SkeletonGrid } from "../../common/Skeleton";
 import DI from "../../../../di/ioc";

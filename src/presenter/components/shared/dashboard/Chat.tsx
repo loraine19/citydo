@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Card, CardBody, CardFooter, CardHeader, Typography } from '@material-tailwind/react';
+import { Typography } from '@material-tailwind/react';
 import { MessageView } from '../../../views/viewsEntities/messageViewEntity';
 import { User } from '../../../../domain/entities/User';
 import { LoadMoreButton } from '../../common/LoadMoreBtn';
@@ -9,6 +9,7 @@ import EmojiPicker, { EmojiStyle } from 'emoji-picker-react';
 import DI from '../../../../di/ioc';
 import { useAlertStore } from '../../../../application/stores/alert.store';
 import NotifDiv from '../../common/NotifDiv';
+import { CardMD } from '../base/baseComps/Cards';
 
 
 type ChatProps = {
@@ -88,8 +89,8 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
     const [openEmoji, setOpenEmoji] = useState(false);
 
     return (
-        <Card className='FixCardNoImage !bg-slate-100  !flex-col rounded-3xl  !flex !border-slate-300 !border '>
-            <CardHeader className={`pt-4   FixCardHeaderNoImage !rounded-b-none w-full px-3  !relative !min-h-fit'`}>
+        <CardMD className='min-h-[calc(100%_-_2rem)] w-full -mt-3'>
+            <CardMD.Header className={` w-full px-3  !relative !min-h-fit'`}>
                 {newConv &&
                     <ProfileDiv profile={userRec} />}
                 {notif && <div className=' !w-[22rem] !flex  !justify-end border  absolute -translate-y-8 -translate-x-[50%] left-[50%]'>
@@ -99,8 +100,8 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                         isLoading={isLoading || messages.length !== 0}
                         refetch={refetch} />
                 </div>}
-            </CardHeader>
-            <CardBody
+            </CardMD.Header>
+            <div
                 ref={divRef}
                 onScroll={() => handleScroll()}
                 className='rounded-3xl !flex flex-1  !overflow-auto flex-col-reverse px-4 '>
@@ -135,10 +136,10 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                     isBottom={isBottom}
                     hasNextPage={hasNextPage}
                     handleScroll={handleScroll} />
-            </CardBody >
-            <CardFooter className=' !p-0'>
+            </div>
+            <CardMD.Footer className=''>
                 <div
-                    className={`${imTyping ? '-top-2' : '-top-1'} bg-white border border-slate-200 flex justify-between rounded-[2rem]  p-2 shadow-md m-2 min-h-min sticky `}>
+                    className={`${imTyping ? '-top-2' : '-top-1'} bg-white border border-slate-200 flex justify-between rounded-[2rem] w-full p-2 shadow-md m-2 min-h-min sticky `}>
                     <div className='flex-0 flex top-0 mt-1 ' >
                         <Icon
                             onClick={() => setOpenEmoji(!openEmoji)}
@@ -213,8 +214,8 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                         icon='send'
                         size='3xl' />
                 </div>
-            </CardFooter>
-        </Card >
+            </CardMD.Footer>
+        </CardMD >
     );
 
 };

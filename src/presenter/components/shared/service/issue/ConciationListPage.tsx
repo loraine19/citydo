@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import SubHeader from "../../../common/SubHeader";
-import TabsMenu from "../../../common/TabsMenu";
+import SubHeader from "../../../common/appComps/SubHeader";
+import TabsMenu from "../../../common/appComps/TabsMenu";
 import { Label, TabLabel } from "../../../../../domain/entities/frontEntities";
 import { SkeletonGrid } from "../../../common/Skeleton";
 import DI from '../../../../../di/ioc';
@@ -115,7 +115,7 @@ export default function ConciationListPage() {
                         {notif}
                         <Icon
                             bg={!isLoading}
-                            icon={isLoading ? '...' : 'refresh'}
+                            textIcon={isLoading ? '...' : 'refresh'}
                             onClick={() => refetch()} />
                     </div>}
             </div>

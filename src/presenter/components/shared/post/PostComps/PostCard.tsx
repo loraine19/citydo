@@ -9,7 +9,6 @@ import { Title } from "../../../common/CardTitle";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import Chip from "../../../common/adaptatersComps/Chip";
 import { CardMD } from "../../base/baseComps/Cards";
-import { GroupLink } from "../../../common/GroupLink";
 import { IconAnimate } from "../../../common/IconAnimate";
 import { Button } from "../../base/baseComps/Buttons";
 import { MoreButton } from "../../../common/moreBtn";
@@ -18,7 +17,7 @@ type PostCardProps = { post: PostView, mines?: boolean, change: (e: any) => void
 
 export default function PostCard({ post: initialPost, mines, change, update, short, autoFit }: PostCardProps) {
     const [post, setPost] = useState<PostView>(initialPost);
-    const { id, title, description, image, categoryS, createdAt, Likes, User, flagged, ILike, toogleLike, Group } = post ?? {} as PostView;
+    const { id, title, description, image, categoryS, createdAt, Likes, User, flagged, ILike, toogleLike } = post ?? {} as PostView;
     const deletePost = async (id: number) => await DI.resolve('deletePostUseCase').execute(id)
     const myActions: Action[] = GenereMyActions(post, "annonce", deletePost)
 
@@ -65,11 +64,8 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                 <Title title={title} />
             </CardMD.Headline>
 
-            <CardMD.Subhead>
-                <GroupLink group={Group} />
-            </CardMD.Subhead>
             <CardMD.SupportingText>
-                <span className={short ? " !line-clamp-1" : "!line-clamp-2"}>
+                <span className={short ? " !line-clamp-2" : "!line-clamp-3"}>
                     {description}
                 </span>
             </CardMD.SupportingText>
@@ -78,6 +74,8 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                 {!mines ?
                     <div className=" w-full flex-1 items-center flex truncate pl-2 -ml-2 ">
                         <ProfileDiv
+                            date={post?.createdAt}
+                            group={post?.Group}
                             profile={User} />
                     </div> :
                     <ModifBtnStack

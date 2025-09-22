@@ -11,8 +11,7 @@ import { LoadingPage } from "./presenter/components/shared/utilsPage/LoadingPage
 import { errorValues } from "./presenter/components/shared/utilsPage/erroValues";
 import { AlertModal } from "./presenter/components/common/AlertModal";
 import { useAlertStore } from "./application/stores/alert.store";
-import { WithTopNavPages } from "./presenter/components/shared/utilsPage/WithTopNavPages";
-import { WithBottomPages } from "./presenter/components/shared/utilsPage/WithBottomPages";
+import { ConfigPage } from "./presenter/components/shared/utilsPage/ConfigPage";
 import { useUxStore } from "./application/stores/ux.store";
 import { AlertNotif } from "./presenter/components/common/AlertNotif";
 
@@ -70,7 +69,9 @@ function App() {
             color={color} onRetry={handleRetry} retryCount={retryCount}>
             <AlertNotif />
             <BrowserRouter>
-                <div className={`App ${dark ? 'dark' : ''} md3-surface `}>
+                <div
+                    id='app'
+                    className={`App ${dark ? 'dark' : ''} md3-surface `}>
                     <Suspense fallback={<LoadingPage />}>
                         <Routes>
                             {/* Public routes */}
@@ -90,8 +91,9 @@ function App() {
 
 
                                 {/* Pages with top navigation */}
-                                <Route element={<WithTopNavPages />}>
+                                <Route element={<ConfigPage detailPage />}>
 
+                                    {/* FORMS  */}
                                     <Route path="/service/create" element={<ServiceCreatePage />} />
                                     <Route path="/service/edit/:id" element={<ServiceEditPage />} />
                                     <Route path="/conciliation/edit/:id" element={<IssueEditPage />} />
@@ -105,16 +107,17 @@ function App() {
                                     <Route path="/annonce/edit/:id" element={<PostEditPage />} />
                                     <Route path="/vote/:target/edit/:id" element={<VoteEditPage />} />
                                     <Route path="/flag/:target/:id" element={<FlagCreatePage />} />
+
+                                    {/* SINGLE PAGE  */}
                                     <Route path="/reglement" element={<RulesPage />} />
                                     <Route path="/msg" element={<DashboardPage />} />
                                     <Route path="/base/create" element={<BaseCreatePage />} />
                                     <Route path="/base/edit/:id" element={<BaseEditPage />} />
-                                </Route>
-
-                                <Route element={<WithTopNavPages title />}>
-                                    {/* DETAILS PAGES */}
                                     <Route path="/chat" element={<ChatPage />} />
                                     <Route path="/notification" element={<NotificationPage />} />
+
+
+                                    {/* DETAILS PAGES */}
                                     <Route path="/service/:id" element={<ServiceDetailPage />} />
                                     <Route path="/cagnotte/:id" element={<PoolDetailPage />} />
                                     <Route path="/annonce/:id" element={<PostDetailPage />} />
@@ -126,27 +129,24 @@ function App() {
                                     <Route path="/base/:id" element={<BaseDetailPage />} />
                                 </Route>
 
-                                <Route element={<WithTopNavPages addBtn navIcons />}>
+                                {/* DASHBOARD */}
+                                <Route element={<ConfigPage mainPage />}>
 
-                                    {/* Pages with bottom navigation */}
-                                    <Route element={<WithBottomPages addBtn={true} />}>
-                                        <Route path="/" element={<DashboardPage />} />
-                                    </Route>
-
-                                    {/* Pages with bottom navigation and add button */}
-                                    <Route element={<WithBottomPages addBtn />}>
-                                        <Route path="/groupe" element={<GroupPage />} />
-                                        <Route path="/service" element={<ServiceListPage />} />
-                                        <Route path="/evenement" element={<EventListPage />} />
-                                        <Route path="/flag" element={<FlagPage />} />
-                                        <Route path="/vote" element={<VoteListPage />} />
-                                        <Route path="/annonce" element={<PostListPage />} />
-                                        <Route path="/conciliation" element={<ConciliationListPage />} />
-
-                                    </Route>
+                                    <Route path="/" element={<DashboardPage />} />
                                 </Route>
 
 
+                                {/* LIST PAGES  */}
+                                <Route element={<ConfigPage listPage />}>
+
+                                    <Route path="/groupe" element={<GroupPage />} />
+                                    <Route path="/service" element={<ServiceListPage />} />
+                                    <Route path="/evenement" element={<EventListPage />} />
+                                    <Route path="/flag" element={<FlagPage />} />
+                                    <Route path="/vote" element={<VoteListPage />} />
+                                    <Route path="/annonce" element={<PostListPage />} />
+                                    <Route path="/conciliation" element={<ConciliationListPage />} />
+                                </Route>
                             </Route>
                         </Routes>
                     </Suspense>

@@ -1,5 +1,5 @@
 import { Card, CardBody, Typography, } from '@material-tailwind/react';
-import SubHeader from '../../common/SubHeader';
+import SubHeader from '../../common/appComps/SubHeader';
 import { Skeleton } from '../../common/Skeleton';
 import { useUserStore } from '../../../../application/stores/user.store';
 import { Group } from '../../../../domain/entities/Group';

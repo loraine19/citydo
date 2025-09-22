@@ -172,7 +172,7 @@
 .animSheet {
     @apply duration-700;
 
-    animation: upSheet 2s forwards, fadeIn 2s forwards;
+    animation: upSheet 2s forwards, fadeIn 0.7s forwards;
 }
 
 .animSheetRev {

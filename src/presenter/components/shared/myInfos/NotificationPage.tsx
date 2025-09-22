@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import SubHeader from "../../common/SubHeader";
-import TabsMenu from "../../common/TabsMenu";
+import SubHeader from "../../common/appComps/SubHeader";
+import TabsMenu from "../../common/appComps/TabsMenu";
 import { NotifCard } from "./NotifCard";
 import { TabLabel } from "../../../../domain/entities/frontEntities";
 import { SkeletonGrid } from "../../common/Skeleton";

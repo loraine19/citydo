@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import CTAMines from '../../../common/CTA';
-import SubHeader from '../../../common/SubHeader';
+import SubHeader from '../../../common/appComps/SubHeader';
 import { Action } from '../../../../../domain/entities/frontEntities';
 import { GenereMyActions, } from '../../../../views/viewsEntities/utilsService';
 import DI from '../../../../../di/ioc';

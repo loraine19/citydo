@@ -1,7 +1,7 @@
-import { Label } from "../../../domain/entities/frontEntities";
-import { Icon } from "./IconComp";
-import { useUxStore } from "../../../application/stores/ux.store";
-import { Menu, MenuItem } from "../shared/base/baseComps/Menu";
+import { Label } from "../../../../domain/entities/frontEntities";
+import { Icon } from "../IconComp";
+import { useUxStore } from "../../../../application/stores/ux.store";
+import { Menu, MenuItem } from "../../shared/base/baseComps/Menu";
 import { useState } from "react";
 
 type selectSearchProps = {
@@ -18,7 +18,7 @@ export default function SelectSearch(props: selectSearchProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className={`w-full relative pt-2 ${style} `} >
+        <div className={`w-full relative  ${style} `} >
             <div className={`flex items-center rounded-full md3-button-${color} md3-button-${'tonal'} !pr-[3px] pl-3 !h-[2.75rem] gap-2 `} >
                 <Menu
                     key={'select-menu' + (color)}
@@ -78,13 +78,15 @@ export default function SelectSearch(props: selectSearchProps) {
                     }}
                     onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && search(searchCat)}
                     autoComplete="on" />
-                <Icon
-                    bg
-                    reverse
-                    color={color ?? 'slate'}
-                    onClick={() => search(searchCat)}
-                    size="lg"
-                    icon="search" />
+                <div>
+                    <Icon
+                        bg
+                        reverse
+                        color={color ?? 'slate'}
+                        onClick={() => search(searchCat)}
+                        size="lg"
+                        icon="search" />
+                </div>
             </div>
         </div>
     );

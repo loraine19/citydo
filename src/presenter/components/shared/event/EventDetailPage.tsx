@@ -1,19 +1,19 @@
 import { useParams } from 'react-router-dom';
 //import parse from 'html-react-parser';
 import CTAMines from '../../common/CTA';
-import SubHeader from '../../common/SubHeader';
 import { EventDetailCard } from './eventComps/EventDetailCard';
 import { Action } from '../../../../domain/entities/frontEntities';
 import DI from '../../../../di/ioc';
 import { Skeleton, SkeletonGrid } from '../../common/Skeleton';
 import { GenereMyActions } from '../../../views/viewsEntities/utilsService';
 import { useAlertStore } from '../../../../application/stores/alert.store';
-import { EventStatus } from '../../../../domain/entities/Event';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import NotifDiv from '../../common/NotifDiv';
+import { EventCategory, EventStatus } from '../../../../domain/entities/Event';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { EventView } from '../../../views/viewsEntities/eventViewEntities';
 import { HandleHideParams } from '../../../../application/useCases/utils.useCase';
 import { useUxStore } from '../../../../application/stores/ux.store';
+import { useNavStore } from '../../../../application/stores/nav.store';
+import FormHeadSection from '../base/baseComps/FormHeadSection';
 
 
 export default function EventDetailPage() {
@@ -80,26 +80,32 @@ export default function EventDetailPage() {
     //// HANDLE EXPAND CARD 
     const [expanded, setExpanded] = useState<boolean>(false);
 
+    //// TO NAV BAR
+    const { setDetailSection } = useNavStore((state) => state);
+
+    const SearchSection = useMemo(() => (
+        <FormHeadSection
+            isLoading={isLoading}
+            notif={notif}
+            refetch={refetch}
+            error={error}
+            infosChipValue={`évenement / ${EventCategory[event?.category as keyof typeof EventCategory] ?? '...'} / ${event?.Address?.city ?? '...'} `} >
+        </FormHeadSection>
+    ), [isLoading]);
+
+    useEffect(() => {
+        setDetailSection(SearchSection);
+        return () => {
+            setDetailSection(undefined);
+        }
+    }, [SearchSection, isLoading]);
     return (
         <>
             <main
 
 
                 data-cy="event-details-page">
-                <div className="sectionHeader ">
-                    <SubHeader
-                        type={`évenement ${event?.label ?? ''}`}
-                        place={`${event?.Address?.address ?? ''} ${event?.Address?.city ?? ''}`}
-                        closeBtn />
 
-                    {notif &&
-                        <NotifDiv
-                            isLoading={isLoading}
-                            refetch={refetch}
-                            notif={notif}
-                        />}
-
-                </div>
                 <section
                     id='refDiv'
                     className={expanded ? 'overflow-auto' : 'overflow-hidden'}
@@ -108,7 +114,7 @@ export default function EventDetailPage() {
                         handleHideCallback();
                     }}>
                     <div
-                        className={`DetailCardDiv ${expanded ? 'expandedCardDiv' : 'hideCTA'}   `}>
+                        className={`DetailCardDiv hideCTA   `}>
                         {!isLoading && event ?
                             <EventDetailCard
 

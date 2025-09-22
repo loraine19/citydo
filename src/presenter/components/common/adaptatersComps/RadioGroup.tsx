@@ -18,6 +18,8 @@ type RadioGroupProps = {
     className?: string;
     formik?: any;
     name?: string;
+    variant?: 'filled' | 'tonal' | 'text' | 'Input';
+    size?: 'sm' | 'md' | 'lg';
 };
 
 export const RadioGroup: React.FC<RadioGroupProps> = ({
@@ -28,17 +30,20 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     disabled = false,
     className = "",
     formik,
-    name
+    name,
+    variant,
+    size
 }) => {
     const { color } = useUxStore(state => state)
+    const classVariant = variant === 'Input' ? ' max-h-[2.7rem] max-w-max !py-0 md3-input-container md3-outlined !rounded-md' : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
     return (
-        <div className={`flex ${orientation === "horizontal" ? "flex-row gap-2" : "flex-col gap-2"} ${className}`}>
+        <div className={`flex md3-input-size-${size ?? 'md'} ${orientation === "horizontal" ? "flex-row gap-2" : "flex-col gap-2"} ${className} ${classVariant}`}>
             {options.map((option) => (
                 <div
                     key={option.value}
-                    className={`md3-button-${option.color ?? color} md3-button-tonal rounded-full px-5 !pr-2 flex items-center flex-1 gap-2`}
+                    className={`  px-4 !pr-2 flex items-center flex-1 `}
                 >
-                    <div className="relative flex items-center justify-center  h-7 w-7">
+                    <div className="relative flex items-center justify-center  ">
                         <Icon
                             size='xl'
                             color={option.color ?? color}
@@ -63,7 +68,8 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
 
                     </div>
                     <label htmlFor={option.id}
-                        className={`text-sm font-normal relative -left-4 text-${option.color ?? color}-600 ${value === option.value ? '' : 'opacity-80'}`}>
+                        className={` md3-card-supporting-text relative -left-4 !px-0
+                        ${value === option.value ? '' : 'opacity-80'}`}>
                         {option.label}
                     </label>
                 </div>

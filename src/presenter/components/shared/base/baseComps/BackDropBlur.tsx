@@ -18,7 +18,7 @@ const BackDropBlur: React.FC<BackDropBlurProps> = ({
 
     if (typeof window === "undefined") return null;
 
-    const root = document.getElementById("refDiv");
+    const root = document.getElementById("app");
     if (!root || !root.parentNode) return null;
 
     return ReactDOM.createPortal(

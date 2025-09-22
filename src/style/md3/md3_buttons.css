@@ -370,7 +370,7 @@
     ----------------------------------------------------------- */
 /* Segmented Button Group */
 .md3-segmented-button-group {
-    @apply flex;
+    @apply flex divide-x;
     border: 0.0625rem solid;
     border-radius: var(--md3-radius-full);
     overflow: hidden;
@@ -385,7 +385,7 @@
     flex-grow: 1;
     min-width: 3rem;
     height: 2.5rem;
-    border-radius: var(--md3-radius-full);
+
     padding: 0 0.75rem;
     cursor: pointer;
     position: relative;

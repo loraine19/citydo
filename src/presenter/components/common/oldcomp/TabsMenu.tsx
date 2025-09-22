@@ -2,7 +2,7 @@ import { Tabs } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useUxStore } from "../../../../application/stores/ux.store";
 import { TabLabel, SortLabel } from "../../../../domain/entities/frontEntities";
-import { SortButton } from "../SortBtn";
+import { SortButton } from "../appComps/SortBtn";
 
 
 type TabProps = {

@@ -5,7 +5,7 @@ import { object, string } from 'yup';
 import { Switch, Typography } from '@material-tailwind/react';
 import { Flag, FlagTarget } from '../../../../domain/entities/Flag';
 import { ConfirmModal } from '../../common/ConfirmModal';
-import SubHeader from '../../common/SubHeader';
+import SubHeader from '../../common/appComps/SubHeader';
 import FlagDetailComp from './flagCards/FlagDetailComp';
 import { Skeleton } from '../../common/Skeleton';
 import { getLabel } from '../../../views/viewsEntities/utilsService';

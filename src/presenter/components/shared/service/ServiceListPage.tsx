@@ -1,10 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ServiceCategory, ServiceFilter, ServiceFindParams, ServiceSort, ServiceStep, ServiceStepFilter, ServiceType } from "../../../../domain/entities/Service";
 import CheckCard from "../../common/CheckCard";
-import SelectSearch from "../../common/SelectSearch";
-import SubHeader from "../../common/SubHeader";
-import TabsMenu from "../../common/TabsMenu";
+import SelectSearch from "../../common/appComps/SelectSearch";
+import TabsMenu from "../../common/appComps/TabsMenu";
 import ServiceComp from "./serviceCards/ServiceCard";
 import { Label, SortLabel, TabLabel } from "../../../../domain/entities/frontEntities";
 import { SkeletonGrid } from "../../common/Skeleton";
@@ -12,9 +11,12 @@ import DI from '../../../../di/ioc';
 import { LoadMoreButton } from "../../common/LoadMoreBtn";
 import { ServiceView } from "../../../views/viewsEntities/serviceViewEntity";
 import { serviceCategoriesS } from "../../../constants";
-import NotifDiv from "../../common/NotifDiv";
 import { useUxStore } from "../../../../application/stores/ux.store";
 import { HandleHideParams, HandleScrollParams } from "../../../../application/useCases/utils.useCase";
+import { useNavStore } from "../../../../application/stores/nav.store";
+import DetailsHeadSection from "../base/baseComps/DetailsHeadSection";
+import { SortButtonProps } from "../../common/appComps/SortBtn";
+import { ViewButtonProps } from "../../common/appComps/ViewBtn";
 import { Icon } from "../../common/IconComp";
 
 export default function ServicesPage() {
@@ -126,13 +128,11 @@ export default function ServicesPage() {
     //// NOTIFICATION & ERROR
     useEffect(() => {
         if (error) setNotif(error ?? 'Une erreur est survenue');
-        switch (true) {
-            case ((count === 0 || !services) && !isLoading && !error):
-                setNotif(`Aucun service ${filterName()} ${stepName()} n'a été trouvé`); break;
+        else if ((count === 0 || !services || services.length === 0) && !isLoading && !error)
+            setNotif(`Aucun service ${filterName()} ${stepName()} n'a été trouvé`);
+        else setNotif('');
 
-            default: setNotif('');
-        }
-    }, [isLoading, error, filter, step, category, count, services, type]);
+    }, [isLoading, error, filter, step, category, count, services.length, type]);
 
 
     //// HANDLE SCROLL
@@ -177,70 +177,109 @@ export default function ServicesPage() {
     const [compact, setCompact] = useState<boolean>(true);
 
 
+    ////FOR APPBAR
+    const { setSearchSection, setTabSection } = useNavStore((state) => state);
+
+    const SearchSection = useMemo(() => (
+
+        <div className={`flex items-center md:justify-end justify-between w-full gap-2`}>
+
+            {mine ?
+                <CheckCard
+                    categoriesArray={boxArray}
+                    boxSelected={boxSelected}
+                    setBoxSelected={setBoxSelected} />
+                :
+                <SelectSearch
+                    searchCat={searchCat}
+                    setSearchCat={setSearchCat}
+                    category={serviceCategoriesS}
+                    search={search} />
+            }
+        </div>
+
+    ), [mine, boxSelected, searchCat, serviceCategoriesS]);
+
+    const TabSection = useMemo(() => (
+        <TabsMenu
+            labels={serviceTabs}
+            selectedSort={sort}
+            setSelectedSort={setSort}
+            reverse={reverse}
+            setReverse={setReverse}
+        />
+
+    ), []);
+
+
+    useEffect(() => {
+        setSearchSection(SearchSection);
+        setTabSection(TabSection);
+        return () => {
+            setSearchSection(null);
+            setTabSection(null);
+        };
+    }, []);
+
+    const sortBtnProps: SortButtonProps = {
+        sortList: sortList,
+        setSelectedSort: (value: string) => setSort(value as ServiceSort),
+        selectedSort: sortList.find(item => item?.key === sort)?.label ?? '',
+        reverse: reverse,
+        setReverse: (value: boolean) => setReverse(value),
+        action: () => refetch()
+    }
+
+    const viewBtnProps: ViewButtonProps = {
+        viewList: [{ key: 'compact', label: 'Compact', icon: "grid_view", action: () => setCompact(true) }, { key: 'large', label: 'Large', icon: "view_agenda", action: () => setCompact(false) }],
+        view: compact ? 'compact' : 'large'
+    }
+
+    const [filterBox, setFilterBox] = useState<boolean>(false);
+
     //// RENDER
     return (
 
-        <main>
-            <div className={`sectionHeader ${hideNavBottom ? '' : ''} `}>
+        <main >
 
-                <div className={`flex items-center md:justify-end justify-between w-full gap-2`}>
-
-                    {mine ?
-                        <CheckCard
-                            categoriesArray={boxArray}
-                            boxSelected={boxSelected}
-                            setBoxSelected={setBoxSelected} />
-                        :
-                        <SelectSearch
-                            searchCat={searchCat}
-                            setSearchCat={setSearchCat}
-                            category={serviceCategoriesS}
-                            search={search} />
-                    }
-
-                    <Icon
-                        onClick={() => setCompact(!compact)}
-                        icon={compact ? "grid_view" : "view_agenda"}
-                        size="lg"
-                        color="sky"
-                        fill
-                        title={compact ? "voir en mode liste" : "voir en mode grille"} />
-
-                </div>
-
-                <TabsMenu
-                    labels={serviceTabs}
-                    sortList={sortList}
-                    selectedSort={sort}
-                    setSelectedSort={setSort}
-                    reverse={reverse}
-                    setReverse={setReverse}
-                />
-                <SubHeader
-                    qty={count}
-                    type={`services ${filterName() ? '/ ' + filterName() : ''} ${categoryName() ? '/ ' + categoryName() : ''}`} />
-                {(notif || error) &&
-                    <NotifDiv
-                        error={error}
-                        notif={notif}
-                        isLoading={isLoading}
-                        refetch={refetch} />}
-            </div>
+            <DetailsHeadSection
+                hidden={hideNavBottom && !isLoading && !error && !notif}
+                infosChipValue={`${count ?? 0} services ${filterName() ? '/ ' + filterName() : ''} ${categoryName() ? '/ ' + categoryName() : ''}`}
+                sortBtnProps={sortBtnProps}
+                viewBtnProps={viewBtnProps}
+                notif={notif}
+                error={error}
+                isLoading={isLoading}
+                refetch={refetch}
+            > {mine && services?.length > 0 &&
+                <Icon
+                    onClick={() => setFilterBox(!filterBox)}
+                    icon={!filterBox ? "filter_alt" : "filter_alt_off"}
+                    size="lg"
+                    color="sky"
+                    fill
+                    title={filterBox ? "reduire" : "voir les filtres"} />}
+            </DetailsHeadSection>
+            {filterBox && mine && (
+                <CheckCard
+                    categoriesArray={boxArray}
+                    boxSelected={boxSelected}
+                    setBoxSelected={setBoxSelected} />)}
             {isLoading ?
                 <SkeletonGrid />
                 : <section
-                    id='refDiv'
                     ref={divRef}
                     onScroll={() => {
                         onScroll();
                         handleHideCallback()
                     }}
-                    className={"Grid" + (!compact ? ' GridCompact' : '')}>
+                    className={"Grid" + (compact ? ' GridCompact' : '')}>
+
                     {services.map((service: ServiceView, index: number) => (
-                        service &&
+
                         <div className="SubGrid" key={index}>
                             <ServiceComp
-                                compact={compact}
+                                compact={!compact}
                                 key={service?.id}
                                 service={service}
                                 change={search as any}

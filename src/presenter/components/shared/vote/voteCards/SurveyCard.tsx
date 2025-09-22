@@ -58,10 +58,7 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                             className=""
                         >
                             <div className={`w-full flex flex-col items-end !h-full`}>
-                                <DateChip
-                                    start={survey?.createdAt}
-                                    prefix=" "
-                                />
+
                                 <IconAnimate
                                     active={survey?.IVoted}
                                     icon={'ballot'} />
@@ -126,6 +123,8 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                     {!mines ? (
                         <div className=" w-full flex-1 flex items-center truncate pl-2 -ml-2 ">
                             <ProfileDiv
+                                date={survey?.createdAt}
+                                group={survey?.Group}
                                 profile={survey?.User} />
                         </div>
                     ) : (

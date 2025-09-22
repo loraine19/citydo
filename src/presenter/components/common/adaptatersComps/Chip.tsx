@@ -9,6 +9,7 @@ type ChipProps = {
     color?: Md3Colors;
     value?: string | number;
     icon?: React.ReactNode;
+    iconPlacement?: "start" | "end";
     className?: string;
     size?: ChipSize;
     onClick?: React.MouseEventHandler<HTMLDivElement>;
@@ -31,6 +32,7 @@ const Chip: React.FC<ChipProps> = ({
     color = "slate",
     value,
     icon,
+    iconPlacement = "start",
     className = "",
     size = "small",
     onClick,
@@ -51,13 +53,17 @@ const Chip: React.FC<ChipProps> = ({
             onClick={onClick}
             tabIndex={onClick ? 0 : undefined}
             role={onClick ? "button" : undefined}>
-            {icon &&
+            {icon && iconPlacement === "start" &&
                 <span className="mr-2 flex items-center">
                     {icon}
                 </span>}
             <span className="truncate">
                 {value}
             </span>
+            {icon && iconPlacement === "end" &&
+                <span className="ml-2 flex items-center">
+                    {icon}
+                </span>}
         </div>
     );
 };

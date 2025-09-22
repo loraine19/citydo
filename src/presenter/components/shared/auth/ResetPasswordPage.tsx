@@ -5,7 +5,7 @@ import { AuthHeader } from './auth.Comps/AuthHeader';
 import { Typography, Button, Card, CardBody, Input, CardFooter, CardHeader } from '@material-tailwind/react';
 import { useSearchParams } from 'react-router-dom';
 import { User } from '../../../../domain/entities/User';
-import { Icon } from '../../common/IconComp';
+import { Icon, IconName } from '../../common/IconComp';
 import DI from '../../../../di/ioc';
 import { ResetDTO } from '../../../../infrastructure/DTOs/AuthDTO';
 import { InputError } from '../../common/adaptatersComps/input';
@@ -80,7 +80,7 @@ export default function ResetPasswordPage() {
                                             onClick={() => {
                                                 passWordInput.value === 'password' ? setPassWordInput(textType) : setPassWordInput(passwordType)
                                             }}
-                                            icon={passWordInput.icon}
+                                            icon={passWordInput.icon as IconName}
                                             style='!-mt-4 -ml-4' />
                                     </Input.Icon>
                                 </Input>

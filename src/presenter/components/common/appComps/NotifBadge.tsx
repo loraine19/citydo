@@ -1,15 +1,15 @@
 import { MenuItem, Dialog, Card } from "@material-tailwind/react"
-import { Icon } from "./IconComp"
-import { NotifView } from "../../views/viewsEntities/notifViewEntity";
+import { Icon, IconName } from "../IconComp"
+import { NotifView } from "../../../views/viewsEntities/notifViewEntity";
 import { useNavigate } from "react-router";
-import DI from "../../../di/ioc";
-import { LoadMoreButton } from "./LoadMoreBtn";
+import DI from "../../../../di/ioc";
+import { LoadMoreButton } from "../LoadMoreBtn";
 import { useEffect, useRef, useState } from "react";
-import { useNotificationStore } from "../../../application/stores/notification.store";
-import Chip from "./adaptatersComps/Chip";
-import NotifDiv from "./NotifDiv";
-import { useUxStore } from "../../../application/stores/ux.store";
-import { Md3Colors } from "../shared/base/baseComps/Buttons";
+import { useNotificationStore } from "../../../../application/stores/notification.store";
+import Chip from "../adaptatersComps/Chip";
+import NotifDiv from "../NotifDiv";
+import { useUxStore } from "../../../../application/stores/ux.store";
+import { Md3Colors } from "../../shared/base/baseComps/Buttons";
 
 export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
     const notifViewModelFactory = DI.resolve('notifViewModel');
@@ -51,14 +51,14 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
 
 
     return (
-        <div className={`xs:gap-3 pb-0.5 pl-1 md:gap-3  flex  items-center `}>
+        <div className={` pb-0.5 pl-2  md:gap-3  flex  items-center `}>
             {badgeMap.map((list: NotifBadgeProps, index: number) =>
                 <div key={index}
                     className={`relative w-full flex items-center justify-center ${onBoard ? 'lg:hidden' : ''}`}>
                     <Icon
                         reverse={!navBottom}
-                        link={list.link}
-                        icon={list.icon}
+                        onClick={() => navigate(list.link)}
+                        icon={list.icon as IconName}
                         color={'slate'}
                         bg={navBottom ? false : false}
                         fill={(navBottom) ? false : false}
@@ -76,7 +76,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                                 reverse
                                 // icon={list.count >= 99 ? '⁺99 ' :
                                 //     (list.count ? list.count.toString() : '0')}
-                                icon=''
+                                textIcon=''
                                 color={list.color}
                                 fill={!navBottom}
                                 size={'xs'} />

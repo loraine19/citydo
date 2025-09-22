@@ -1,8 +1,8 @@
 
-import { NavBarBottom } from '../../common/NavBarBottom';
-import NavBarTop from '../../common/NavBarTop';
+import { AppFooter } from '../../common/appComps/AppFooter';
+import AppBar from '../../common/appComps/AppBar';
 import { SkeletonGrid, } from '../../common/Skeleton';
-import SubHeader from '../../common/SubHeader';
+import SubHeader from '../../common/appComps/SubHeader';
 
 export const LoadingPage = () => {
 
@@ -11,7 +11,7 @@ export const LoadingPage = () => {
     return (
         <>
             <header>
-                <NavBarTop />
+                <AppBar />
 
             </header>
             <main>
@@ -20,7 +20,7 @@ export const LoadingPage = () => {
                 </div>
                 <SkeletonGrid />
             </main>
-            <NavBarBottom addBtn={true} />
+            <AppFooter />
         </>
 
     )

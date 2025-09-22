@@ -1,96 +1,61 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { PostCategory, PostFilter, PostFindParams, PostSort } from "../../../../domain/entities/Post";
-import SubHeader from "../../common/SubHeader";
-import TabsMenu from "../../common/TabsMenu";
-import PostGridComp from "./PostComps/PostGridComp";
-import { SkeletonGrid } from "../../common/Skeleton";
-import { getValue } from "../../../views/viewsEntities/utilsService";
-import DI from "../../../../di/ioc";
-import { PostView } from "../../../views/viewsEntities/postViewEntities";
-import { LoadMoreButton } from "../../common/LoadMoreBtn";
-import { postCategories, postCategoriesS } from "../../../constants";
-import PostCard from "./PostComps/PostCard";
 import { Label, SortLabel, TabLabel } from "../../../../domain/entities/frontEntities";
-import { Icon } from "../../common/IconComp";
-import NotifDiv from "../../common/NotifDiv";
+import { getValue } from "../../../views/viewsEntities/utilsService";
+import { postCategories, postCategoriesS } from "../../../constants";
+import { PostView } from "../../../views/viewsEntities/postViewEntities";
+import { SkeletonGrid } from "../../common/Skeleton";
+import DI from "../../../../di/ioc";
+import { LoadMoreButton } from "../../common/LoadMoreBtn";
 import { useUxStore } from "../../../../application/stores/ux.store";
 import { HandleHideParams, HandleScrollParams } from "../../../../application/useCases/utils.useCase";
-import SelectSearch from "../../common/SelectSearch";
+import { useNavStore } from "../../../../application/stores/nav.store";
+import DetailsHeadSection from "../base/baseComps/DetailsHeadSection";
+import SelectSearch from "../../common/appComps/SelectSearch";
+import TabsMenu from "../../common/appComps/TabsMenu";
+import PostCard from "./PostComps/PostCard";
+import { SortButtonProps } from "../../common/appComps/SortBtn";
+import { ViewButtonProps } from "../../common/appComps/ViewBtn";
+import PostGridComp from "./PostComps/PostGridComp";
 
 export default function PostListPage() {
-
-    //// INITIAL STATE
+    const [notif, setNotif] = useState<string>("");
+    const [tabSelected] = useState<string>('');
+    const [searchCat, setSearchCat] = useState<Label>({ label: 'tous', value: '' });
+    const [mines, setMines] = useState<boolean>(false);
     const [filter, setFilter] = useState<string>('');
     const [category, setCategory] = useState<string>('');
     const [sort, setSort] = useState<PostSort>(PostSort.CREATED_AT);
     const [reverse, setReverse] = useState<boolean>(true);
-    const [notif, setNotif] = useState<string>('')
-    const [mines, setMines] = useState<boolean>(false);
-    const [view, setView] = useState(window.innerWidth > 768 ? "dashboard" : "dashboard");
     const [searchString, setSearchString] = useState<string>('');
+    const [view, setView] = useState<'compact' | 'dashboard' | 'large'>("compact");
 
     //// PARAMS
     const [Params, setParams] = useSearchParams();
-    const params = { filter: Params.get("filter"), category: Params.get("category") }
-
-    useEffect(() => {
-        setCategory(params.category ?? '');
-        setFilter(params.filter ?? '');
-    }, [params]);
+    const params = {
+        filter: Params.get("filter"),
+        category: Params.get("category"),
+        postView: Params.get("postView")
+    };
 
     //// VIEW MODEL
-    const postViewModelFactory = (paramsFind: PostFindParams) => DI.resolve('postViewModel')(paramsFind);
-    const { posts, isLoading, error, refetch, count, fetchNextPage, hasNextPage } = postViewModelFactory(
-        {
-            filter: filter as PostFilter,
-            category: category as PostCategory,
-            sort: sort as PostSort,
-            reverse,
-            search: searchString
-        }
-    )
+    const postViewModelFactory = (params: PostFindParams) => DI.resolve('postViewModel')(params);
+    const { posts, isLoading, error, fetchNextPage, hasNextPage, refetch, count } = postViewModelFactory({
+        filter: filter as PostFilter,
+        category: category as PostCategory,
+        sort: sort as PostSort,
+        reverse,
+        search: searchString
+    });
 
-    //// FILTER TAB
-    const filterTab = async (value?: PostFilter) => {
-        setParams({ filter: value as string ?? '', category });
-        value !== filter && setCategory('')
-        setFilter(value || '')
-        value === PostFilter.MINE ? setMines(true) : setMines(false);
-        setParams({ filter: value as string ?? '', category })
-        await refetch();
-    }
-
-    const postTabs: TabLabel[] = [
-        { label: "tous", value: "", result: () => filterTab(), icon: { icon: "list" } },
-        { label: "J'aime", value: PostFilter.ILIKE, result: () => filterTab(PostFilter.ILIKE), icon: { icon: "favorite" } },
-        {
-            label: "Mes annonces", value: PostFilter.MINE, result: () => filterTab(PostFilter.MINE),
-            icon: { icon: "person" }
-        }
-    ]
-
-    const change = async (e: string | React.ChangeEvent<HTMLSelectElement> | any) => {
-        const selectedCategory = typeof e !== "object" ?
-            e.toUpperCase() : getValue(e.target.innerText.toLowerCase(), postCategories).toLowerCase();
-        setCategory(selectedCategory);
-        setParams({ filter: filter as string || '', category: selectedCategory });
-        alert('change category to ' + selectedCategory)
-        await refetch()
-    }
-
-    //// SEARCH
-    const [searchCat, setSearchCat] = useState<Label>({ label: 'tous', value: '' });
-    const [tabSelected] = useState<string>('');
-    const search = (searchLabel: Label) => {
-        const value = searchLabel.value;
-        const label = searchLabel.label;
-        if (value) {
-            setCategory(value);
-            setParams({ search: tabSelected, category: value });
-        }
-        else if (label !== 'tous') setSearchString(label)
-    };
+    useEffect(() => {
+        setCategory(params.category || '');
+        setFilter(params.filter || '');
+        setView(params.postView as 'compact' | 'dashboard' | 'large' || 'compact');
+        setParams({ filter: params.filter || '', category: params.category || '', postView: params.postView || 'compact' });
+        // eslint-disable-next-line
+    }, []);
 
     //// NAMING
     const filterName = (): string => {
@@ -102,33 +67,60 @@ export default function PostListPage() {
     }
     const categoryName = (): string => PostCategory[category as keyof typeof PostCategory] ?? '';
 
+    //// FILTER TAB
+    const filterTab = async (value?: PostFilter) => {
+        setParams({ filter: value as string || '', category: category, postView: view });
+        value !== filter && setCategory('');
+        setFilter(value || '');
+        setMines(value === PostFilter.MINE);
+        setParams({ filter: value as string || '', category: category, postView: view });
+        await refetch();
+    }
+
+    const postTabs: TabLabel[] = [
+        { label: "tous", value: "", result: () => filterTab(), icon: { icon: "list" } },
+        { label: "J'aime", value: PostFilter.ILIKE, result: () => filterTab(PostFilter.ILIKE), icon: { icon: "favorite" } },
+        { label: "Mes annonces", value: PostFilter.MINE, result: () => filterTab(PostFilter.MINE), icon: { icon: "person" } }
+    ];
+
+    //// SEARCH
+    const search = (searchLabel: Label) => {
+        const value = searchLabel.value;
+        const label = searchLabel.label;
+        if (value) {
+            setCategory(value);
+            setParams({ search: tabSelected, category: value, postView: view });
+        }
+        else if (label !== 'tous') setSearchString(label)
+    };
+
+    //// HANDLE CATEGORY CHANGE
+    const change = async (e: string | React.ChangeEvent<HTMLSelectElement> | any) => {
+        const selectedCategory = typeof e !== "object"
+            ? e.toUpperCase()
+            : getValue(e.target.innerText.toLowerCase(), postCategories).toLowerCase();
+        setCategory(selectedCategory);
+        setParams({ filter: filter as string || '', category: selectedCategory, postView: view });
+        await refetch();
+    }
+
     //// NOTIFICATION
     useEffect(() => {
-        if (error) {
-            setNotif(error.message || "Erreur inconnue");
-            return;
-        }
-        switch (true) {
-            case (count === 0 && !isLoading && !error): setNotif(`Aucune annonce ${filterName()} ${categoryName()} n'a été trouvé`); break;
-            default: setNotif('');
-        }
-    }, [isLoading, error, filter, category, sort, reverse, count]);
+        if (error) setNotif(error.message || 'Erreur inconnue');
+        else if ((count === 0 || !posts || posts.length === 0) && !isLoading && !error)
+            setNotif(`Aucune annonce ${filterName()} ${categoryName()} n'a été trouvée`);
+        else setNotif('');
+    }, [isLoading, error, filter, category, count, posts.length]);
 
 
-    //// HANDLE VIEW
-    useEffect(() => {
-        const handleResize = () => setView(window.innerWidth > 768 ? "list" : "dashboard");
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
 
+    //// FORMAT POSTS FOR GRID VIEW
     const AnnouncesByFour = (array: PostView[]) => {
         const arrayTotal: PostView[][] = [];
         for (let i = 0; i < array?.length; i += 4)  arrayTotal.push(array.slice(i, i + 4))
         return arrayTotal;
     }
     const announcesToGrid = AnnouncesByFour(posts);
-    const switchClick = () => setView(view === "dashboard" ? "list" : "dashboard");
 
 
     //// HANDLE SCROLL
@@ -141,10 +133,12 @@ export default function PostListPage() {
             divRef,
             hasNextPage,
             fetchNextPage,
-            setIsBottom,
+            setIsBottom
         }
         handleScroll(params)
     }, [divRef]);
+
+
 
     //// HANDLE HIDE  
     const handleHide = (params: HandleHideParams) => utils.handleHide(params)
@@ -154,10 +148,7 @@ export default function PostListPage() {
         handleHide(params)
     }, [divRef]);
     const [hide, setHide] = useState<boolean>(false);
-    useEffect(() => {
-        (hide !== hideNavBottom) && setHideNavBottom(hide)
-    }, [hide]);
-
+    useEffect(() => { (hide !== hideNavBottom) && setHideNavBottom(hide) }, [hide]);
 
     //// SORT LIST
     const sortList: SortLabel[] = [
@@ -165,60 +156,123 @@ export default function PostListPage() {
         { key: PostSort.CREATED_AT, label: "Créé le", icon: "event" },
         { key: PostSort.TITLE, label: "Titre", icon: "sort_by_alpha" },
         { key: PostSort.USER, label: "Utilisateur", icon: "person" }
-    ]
-
+    ];
 
     //// HANDLE COMPACT VIEW
     const [compact, setCompact] = useState<boolean>(true);
 
+    //// APPBAR SECTIONS
+    const { setSearchSection, setTabSection } = useNavStore((state) => state);
+
+    const SearchSection = useMemo(() => (
+        <SelectSearch
+            searchCat={searchCat}
+            setSearchCat={setSearchCat}
+            category={postCategoriesS}
+            search={search}
+        />
+    ), [searchCat, view, compact]);
+
+    const TabSection = useMemo(() => (
+        <TabsMenu
+            labels={postTabs}
+            defaultTab={params.filter || ''}
+            action={refetch}
+        />
+        // eslint-disable-next-line
+    ), [sort, reverse, params.filter]);
+
+    useEffect(() => {
+        setSearchSection(SearchSection);
+        setTabSection(TabSection);
+        return () => {
+            setSearchSection(null);
+            setTabSection(null);
+        };
+    }, [SearchSection, TabSection, setSearchSection, setTabSection]);
+
+    const sortBtnProps: SortButtonProps = {
+        sortList: sortList,
+        setSelectedSort: (value: string) => setSort(value as PostSort),
+        selectedSort: sortList.find(item => item?.key === sort)?.label ?? '',
+        reverse: reverse,
+        setReverse: (value: boolean) => setReverse(value),
+        action: () => refetch()
+    }
+
+    const [viewBtnProps, setViewBtnProps] = useState<ViewButtonProps>({
+        viewList: [
+            {
+                key: 'compact', label: 'Compact', icon: "grid_view", action: () => {
+                    setCompact(true);
+                    setView('compact')
+                }
+            },
+            {
+                key: 'large', label: 'Large', icon: "view_agenda", action: () => {
+                    setCompact(false);
+                    setView('large')
+                }
+            },
+        ],
+        view: view,
+    })
+
+    //// HANDLE VIEW
+    useEffect(() => {
+        setViewBtnProps(prev => ({
+            ...prev,
+            view: view
+        }));
+        const handleResize = () => {
+            setView(window.innerWidth > 768 ? "dashboard" : "compact");
+            setViewBtnProps(prev => {
+                const isDashboard = window.innerWidth > 768;
+                const hasDashboard = prev.viewList.some(v => v.key === 'dashboard');
+                if (isDashboard && !hasDashboard) {
+                    return {
+                        ...prev,
+                        viewList: [
+                            ...prev.viewList,
+                            {
+                                key: 'dashboard',
+                                label: 'Card',
+                                icon: "dashboard",
+                                action: () => {
+                                    setCompact(false);
+                                    setView('dashboard');
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (!isDashboard && hasDashboard) {
+                    return {
+                        ...prev,
+                        viewList: prev.viewList.filter(v => v.key !== 'dashboard')
+                    };
+                }
+                return prev;
+            });
+        };
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, [viewBtnProps.viewList, view]);
+
+
     //// RENDER
     return (
-
         <main>
-            <div className="sectionHeader">
-
-                <div className={` flex items-center justify-center  gap-1  `}>
-                    <SelectSearch
-                        searchCat={searchCat}
-                        setSearchCat={setSearchCat}
-                        category={postCategoriesS}
-                        search={search} />
-                    <Icon
-                        icon={view === "list" ? "grid_view" : "dashboard"}
-                        onClick={switchClick}
-                        size="lg"
-                        fill
-                        color="rose"
-                        style={"hidden sm:flex"}
-                    />
-                    <Icon
-                        onClick={() => setCompact(!compact)}
-                        icon={compact ? "view_column" : "view_agenda"}
-                        size="lg"
-                        color="rose"
-                        fill
-                        style={(view === "list" ? "hidden" : "flex sm:hidden lg:flex") + "  "}
-                        title={!compact ? "voir en mode liste" : "voir en mode grille"} />
-                </div>
-                <TabsMenu
-                    labels={postTabs}
-                    sortList={sortList}
-                    selectedSort={sort}
-                    setSelectedSort={setSort}
-                    reverse={reverse}
-                    setReverse={setReverse}
-                    action={refetch}
-                />
-                <SubHeader
-                    qty={count}
-                    type={`annonces ${filterName() ?? ''} ${PostCategory[category as keyof typeof PostCategory] ?? ''}`} />
-                {notif &&
-                    <NotifDiv
-                        error={error}
-                        notif={notif}
-                        isLoading={isLoading}
-                        refetch={refetch} />}
-            </div>
+            <DetailsHeadSection
+                hidden={hideNavBottom && !isLoading && !error && !notif}
+                infosChipValue={`${count ?? 0} annonces${filterName() ? ' / ' + filterName() : ''}${categoryName() ? ' / ' + categoryName() : ''}`}
+                sortBtnProps={sortBtnProps}
+                viewBtnProps={viewBtnProps}
+                notif={notif}
+                error={error}
+                isLoading={isLoading}
+                refetch={refetch}
+            />
             <section
                 id='refDiv'
                 ref={divRef}
@@ -231,10 +285,10 @@ export default function PostListPage() {
                 {isLoading ?
                     <SkeletonGrid />
                     : <>
-                        {view === "list" ?
+                        {(view === "dashboard" && !compact) ?
                             announcesToGrid.map((line, index) => (
                                 <PostGridComp
-                                    autoFit={!compact}
+                                    autoFit={false}
                                     key={index}
                                     line={line}
                                     update={refetch}
@@ -242,13 +296,13 @@ export default function PostListPage() {
                                     mines={mines}
                                     view={view} />))
                             :
-                            <div className={"Grid " + (!compact ? ' GridCompact' : '')}>
+                            <div className={"Grid " + ((compact && view !== 'dashboard') ? ' GridCompact' : '')}>
                                 {posts?.map((post: PostView, index: number) => (
                                     <div
                                         className="SubGrid"
                                         key={index}>
                                         <PostCard
-                                            autoFit={!compact}
+                                            autoFit={compact}
                                             short
                                             key={post?.id}
                                             post={post}
@@ -259,13 +313,12 @@ export default function PostListPage() {
                                 ))}
                             </div>
                         }
-                    </>
-                }
+                    </>}
                 <LoadMoreButton
-                    color={'rose'}
                     isBottom={isBottom}
-                    hasNextPage={true}
-                    handleScroll={onScroll} />
+                    hasNextPage={hasNextPage}
+                    handleScroll={onScroll}
+                />
             </section>
         </main>
     );
