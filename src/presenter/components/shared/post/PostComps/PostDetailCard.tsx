@@ -72,7 +72,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
             </CardLarge.SupportingText>
             <CardLarge.Media>
                 <Button
-                    className="max-w-max"
+                    className="max-w-max mb-2"
                     size='medium'
                     onClick={async () => { setPost(await toogleLike()) }}
                     variant={ILike ? "filled" : "tonal"}
@@ -90,8 +90,9 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
             </CardLarge.Media>
 
             <CardLarge.Footer className="md3-card-large-footer ">
-                <div className=" w-full flex-1 items-center flex truncate pl-2 -ml-2 ">
+                <div className=" w-full flex-1 items-center flex truncate pl-2 pb-4 -ml-2 ">
                     <ProfileDiv
+                        date={post?.createdAt}
                         profile={Author} />
                 </div>
             </CardLarge.Footer>

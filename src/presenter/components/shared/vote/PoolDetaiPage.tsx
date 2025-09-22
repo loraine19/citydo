@@ -1,8 +1,7 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Action } from '../../../../domain/entities/frontEntities';
 import CTAMines from '../../common/CTA';
-import SubHeader from '../../common/appComps/SubHeader';
 import PoolDetailCard from './voteCards/PoolDetailCard';
 import { GenereMyActions } from '../../../views/viewsEntities/utilsService';
 import DI from '../../../../di/ioc';
@@ -12,6 +11,8 @@ import { HandleHideParams } from '../../../../application/useCases/utils.useCase
 import { useUxStore } from '../../../../application/stores/ux.store';
 import { VoteValues } from './voteCards/VoteCard';
 import { useAlertStore } from '../../../../application/stores/alert.store';
+import { useNavStore } from '../../../../application/stores/nav.store';
+import FormHeadSection from '../base/baseComps/FormHeadSection';
 
 export default function PoolDetailPage() {
 
@@ -46,15 +47,29 @@ export default function PoolDetailPage() {
     //// HANDLE EXPAND CARD
     const [expand, setExpand] = useState(false);
 
+    //// TO NAV BAR
+    const { setDetailSection } = useNavStore((state) => state);
+
+    const SearchSection = useMemo(() => (
+        <FormHeadSection
+            isLoading={isLoading}
+            notif={error}
+            refetch={refetch}
+            error={error}
+            infosChipValue={`cagnotte / pour ${pool?.UserBenef?.Profile?.firstName ?? '...'} `} >
+        </FormHeadSection>
+    ), [isLoading, hideNavBottom]);
+
+    useEffect(() => {
+        setDetailSection(SearchSection);
+        return () => {
+            setDetailSection(undefined);
+        }
+    }, [SearchSection, isLoading, hideNavBottom]);
+
     return (<>
 
         <main>
-            <div className='sectionHeader'>
-                <SubHeader
-                    type={`Cagnotte `}
-                    link={`/vote`}
-                    closeBtn />
-            </div>
             <section
                 id='refDiv'
                 className={`${expand ? 'overflow-auto' : ''}`}

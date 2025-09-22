@@ -204,7 +204,7 @@ export const Icon: React.FC<IconProps> = ({
             {link ? (
                 <Link
                     onMouseEnter={() => setIsFill(true)}
-                    onMouseLeave={() => setIsFill(fill ?? false)}
+                    onMouseLeave={() => setIsFill(!fill ? false : true)}
                     to={link}
                     target={link?.startsWith('http') ? '_blank' : '_self'}
                     rel={link?.startsWith('http') ? 'noopener noreferrer' : undefined}
@@ -222,13 +222,16 @@ export const Icon: React.FC<IconProps> = ({
             ) : (
                 <span
                     onMouseEnter={() => setIsFill(true)}
-                    onMouseLeave={() => setIsFill(fill ?? false)}
+                    onMouseLeave={() => setIsFill(!fill ? false : true)}
                     role={role}
                     tabIndex={0}
                     data-cy={icon}
                     title={!disabled ? title : `${(title ?? 'cette action')} est indisponible`}
                     className={`group ${classIcon()} ${!disabled ? classActive : ''}`}
-                    onClick={onClick}
+                    onClick={() => {
+                        onClick && onClick();
+                        setIsFill(!fill ? false : true);
+                    }}
                     aria-disabled={disabled}
                     style={{ cursor: disabled ? 'not-allowed' : 'pointer' }}
                 >

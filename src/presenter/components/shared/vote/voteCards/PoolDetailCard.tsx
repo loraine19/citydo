@@ -59,7 +59,7 @@ export default function PoolDetailCard({ pool, setExpand }: PoolDetailCardProps)
             <CardLarge.Media className="h-full flex-1 justify-between gap-2">
                 <ProfileDiv
                     profile={pool?.UserBenef || {} as Partial<User>}
-                    size={'lg'} />
+                    size={'6xl'} />
             </CardLarge.Media>
             <CardLarge.Media className="h-full flex-1 justify-between gap-2">
                 <div className="flex flex-col py-2 gap-2 ">
@@ -93,6 +93,7 @@ export default function PoolDetailCard({ pool, setExpand }: PoolDetailCardProps)
                 <div className="flex flex-col gap-2 ">
                     <h6>Créé par</h6>
                     <ProfileDiv
+                        date={pool?.createdAt}
                         profile={pool?.User || {} as Partial<User>} />
                 </div>
 

@@ -20,14 +20,14 @@ export const IconAnimate: React.FC<IconAnimateProps> = ({
 
     useEffect(() => {
 
-        if (active) setFirstLoad(firstLoad + 1);
+        if (!active) setFirstLoad(firstLoad + 1);
 
     }, [active]);
 
     return (
         <div
             className={
-                (firstLoad < 2 || !active ? "opacity-0 " : "animate-pop ") +
+                (firstLoad < 1 || !active ? "opacity-0 " : "animate-pop ") +
                 "!text-white  absolute w-full h-full flex items-center justify-center" +
                 className
             }

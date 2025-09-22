@@ -100,6 +100,7 @@ export default function SurveyDetailCard({ survey, expand, setExpand }: Props) {
                 <div className="flex flex-col gap-2 ">
                     <h6>Créé par</h6>
                     <ProfileDiv
+                        date={survey?.createdAt}
                         profile={survey?.User || {} as Partial<User>} />
                 </div>
 

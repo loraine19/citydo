@@ -40,7 +40,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
         { icon: "exit_to_app", text: "Déconnexion", link: '/signin', color: "error" },
     ]
 
-    // if (!mainPage && !listPage) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate", divider: 'bottom' })
+    if (!listPage || hideNavBottom) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate", divider: 'bottom' })
 
     return (
         <div className={` md3-button-primary md3-button-tonal rounded-full !min-w-max flex items-center md3-elevation-0 
@@ -56,9 +56,9 @@ const AppMenu: React.FC<AppMenuProps> = ({
                         size="sm"
                     />
                 }
-                className="px-4 py-2 !z-[9999999] -mt-4 -ml-1"
+                className="px-4 py-2 !z-[9999999] -mt-4 ml-1 lg:ml-[calc(50dvw_-_500px)]"
                 blurBack
-                placement="up-bottom-right"
+                placement="bottom-right"
                 trigger={
                     <div className="flex items-center">
                         <div className={`h-full justify-center max-w-max grid items-center !p-0`}>

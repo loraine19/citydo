@@ -50,7 +50,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                 src={image as string}
                 alt={title}
                 className='md3-card-large-image' >
-                <CardLarge.Chips className="p-2 justify-end">
+                <CardLarge.Chips className="p-2 mt-1 justify-end">
                     <DateChip
                         start={service?.createdAt}
                         prefix=" " />
@@ -141,13 +141,15 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                         {statusValues(statusS as ServiceStep).text}
                     </i>
                     <div className="flex min-w-fit py-2 max-w-max h-max flex-col ">
-                        <ProfileDiv profile={UserResp ?? new Profile({
-                            firstName: "Mr",
-                            lastName: "?",
-                            userId: 0,
-                            userIdSp: 0,
-                            addressId: 0,
-                        } as Partial<Profile>)} size="sm" />
+                        <ProfileDiv
+
+                            profile={UserResp ?? new Profile({
+                                firstName: "Mr",
+                                lastName: "?",
+                                userId: 0,
+                                userIdSp: 0,
+                                addressId: 0,
+                            } as Partial<Profile>)} size="sm" />
                     </div>
                 </div>
             </CardLarge.MidSection>
@@ -156,7 +158,9 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
 
                 <div className="flex flex-col w-full gap-2 ">
                     <h6>Publié par</h6>
-                    <ProfileDiv profile={User} />
+                    <ProfileDiv
+                        date={service?.createdAt}
+                        profile={User} />
                 </div>
             </CardLarge.Footer>
 

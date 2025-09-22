@@ -37,7 +37,7 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                     src={image as string || '/image/placeholder.jpg'}
                     alt={title}
                     className='md3-card-large-image' >
-                    <CardLarge.Chips className="p-2 justify-end">
+                    <CardLarge.Chips className="p-2 mt-1 justify-end">
                         <DateChip
                             start={EventLoad?.createdAt}
                             prefix=" " />
@@ -121,7 +121,9 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
             <CardLarge.Footer className={`md3-card-large-footer `}>
                 <div className="flex flex-col gap-2 w-max justify-center ">
                     <h6>Organisateur</h6>
-                    <ProfileDiv profile={User} />
+                    <ProfileDiv
+                        date={EventLoad?.createdAt}
+                        profile={User} />
                 </div>
             </CardLarge.Footer>
         </CardLarge>

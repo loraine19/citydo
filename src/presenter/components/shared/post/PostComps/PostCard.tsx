@@ -84,15 +84,18 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
 
                 <Button
                     size='small'
-                    onClick={async () => { setPost(await toogleLike()) }}
+                    onClick={async () => {
+                        setPost(await toogleLike());
+                        post.ILike = !post.ILike
+                    }}
                     variant={ILike ? "filled" : "tonal"}
                     color="rose"
                     iconPosition="end"
                     icon={{
                         style: '-mt-[1px]',
                         icon: 'favorite',
-                        fill: ILike,
-                        title: ILike ? "retirer de mes favoris" : "j'aime"
+                        fill: post.ILike,
+                        title: post.ILike ? "retirer de mes favoris" : "j'aime"
                     }}>
                     {Likes?.length}
 
