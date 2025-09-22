@@ -51,28 +51,45 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputPro
             .filter(Boolean)
             .join(" ");
 
-        const Element = multiline ? "textarea" : "input";
 
         return (
             <div className={inputClasses}>
                 <div className="md3-input-container">
                     <label className="md3-label">{label}</label>
                     {leadingIcon && <div className="md3-leading-icon">{leadingIcon}</div>}
-                    <Element
-                        {...(props as any)}
-                        value={value}
-                        disabled={disabled}
-                        className="md3-input-element"
-                        onFocus={(e) => {
-                            setIsFocused(true);
-                            props.onFocus?.(e as any);
-                        }}
-                        onBlur={(e) => {
-                            setIsFocused(false);
-                            props.onBlur?.(e as any);
-                        }}
-                        ref={ref as any}
-                    />
+                    {multiline ? (
+                        <textarea
+                            {...(props as any)}
+                            value={value}
+                            disabled={disabled}
+                            className="md3-input-element"
+                            onFocus={(e) => {
+                                setIsFocused(true);
+                                props.onFocus?.(e as any);
+                            }}
+                            onBlur={(e) => {
+                                setIsFocused(false);
+                                props.onBlur?.(e as any);
+                            }}
+                            ref={ref as any}
+                        />
+                    ) : (
+                        <input
+                            {...(props as any)}
+                            value={value}
+                            disabled={disabled}
+                            className="md3-input-element"
+                            onFocus={(e) => {
+                                setIsFocused(true);
+                                props.onFocus?.(e as any);
+                            }}
+                            onBlur={(e) => {
+                                setIsFocused(false);
+                                props.onBlur?.(e as any);
+                            }}
+                            ref={ref as any}
+                        />
+                    )}
                     {trailingIcon && <div className="md3-trailing-icon">{trailingIcon}</div>}
                 </div>
                 {helperText && (

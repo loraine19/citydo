@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardBody, Typography, Input, List, } from "@material-tailwind/react";
+import { Typography, List, } from "@material-tailwind/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { assistanceLevel, mailSubscriptions } from "../../../../../domain/entities/Profile";
@@ -13,6 +13,8 @@ import { InputError } from "../../../common/adaptatersComps/input";
 import { Select } from "../../../common/adaptatersComps/Select";
 import CTAMines from "../../../common/CTA";
 import { Skeleton } from "../../../common/Skeleton";
+import { Input } from "../../base/baseComps/Inputs";
+import { CardMD } from "../../base/baseComps/Cards";
 
 type ProfileFormProps = {
     formik: any,
@@ -43,57 +45,67 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
     const { groups, error, isLoading } = DI.resolve('groupViewModel')()
 
     return (
-        <form onSubmit={formik.handleSubmit} className='flex h-full flex-col ' >
+        <form onSubmit={formik.handleSubmit} className="">
             <main>
-                <div className="FormCardDiv">
+
+                <div className={`DetailCardDiv hideCTAForm wRespXL`}>
                     {error || isLoading ? <Skeleton /> :
-                        <Card className="FormDetailGrid !grid-rows-[auto_1fr] ">
-                            <CardHeader
-                                className="-mt-3 !mx-0 flex flex-col w-full relative items-center justify-center max-h-fit">
-                                <div className="relative max-w-fit h-full -mt-4">
-                                    <ImageBtn
-                                        setImgBlob={setImgBlob}
-                                        formik={formik}
-                                        className="-ml-5 -bottom-1" />
-                                    <AvatarUser
-                                        Profile={{
-                                            firstName: formik.values?.firstName, image: imgBlob as string,
-                                            userId: user?.id || 0
-                                        } as any}
-                                        avatarSize={'lg'}
-                                        avatarStyle="shadow-md !rounded-full !h-[5rem] !w-[5rem]" />
-                                </div>
-                                <div className="w-full z-0 absolute  px-4 top-6 flex justify-between">
-                                    <Typography
-                                        className="!text-[0.8rem] !font-light   !whitespace-break-spaces max-w-[30vw] !text-xs !text-left">
-                                        {user?.email}
-                                    </Typography>
-                                    <div className="relative flex flex-col gap-1">
-                                        <Link
-                                            to="/motdepasse_oublie"
-                                            className="!text-[0.8rem] !font-light   !whitespace-break-spaces max-w-[30vw] !text-right hover:underline hover:text-orange-500"
-                                        >modifier le mot de passe ?
-                                        </Link>
-                                        <button
-                                            type="button"
-                                            onClick={async () => {
-                                                const sendEmail = await deleteAccountUseCase.execute();
-                                                if (sendEmail?.message) {
-                                                    window.location.href = '/msg?msg=' + sendEmail.message
-                                                }
-                                            }}
-                                            className="!text-[0.8rem] !font-light  !whitespace-break-spaces max-w-[30vw] !text-right hover:underline hover:text-red-500"
-                                            title="supprimer le compte"
-                                        >
-                                            supprimer le compte
-                                        </button>
+                        <CardMD className="w-respLarge pb-4 overflow-auto px-8" >
+                            <CardMD.Headline className="flex flex-col items-center justify-center w-full ">
+                                <div className="relative flex flex-col items-center">
+                                    <div className="flex flex-col gap-4 items-center">
+                                        <AvatarUser
+                                            Profile={{
+                                                firstName: formik.values?.firstName,
+                                                image: imgBlob as string,
+                                                userId: user?.id || 0
+                                            } as any}
+                                            avatarSize="6xl"
+                                            avatarStyle="!shadow-none z-[8] "
+                                        />
+                                        <ImageBtn
+                                            variant="outlined"
+                                            color='primary'
+                                            setImgBlob={setImgBlob}
+                                            formik={formik}
+                                            className="-mt-7"
+                                        />
                                     </div>
+                                    <span >
+                                        {formik.values?.firstName} {formik.values?.lastName}
+                                    </span>
+                                    <span
+                                        className="md3-card-supporting-text"
+                                    >
+                                        {user?.email}
+                                    </span>
                                 </div>
-                            </CardHeader>
-                            <CardBody className="px-6 pb-8 -mt-1 flex flex-1 flex-col h-full gap-3 overflow-auto ">
+                                <div className="flex flex-row gap-4 ">
+                                    <Link
+                                        to="/motdepasse_oublie"
+                                        className="text-xs font-medium md3-card-supporting-text  hover:underline  transition opacity-90"
+                                    >
+                                        Modifier le mot de passe ?
+                                    </Link>
+                                    <button
+                                        type="button"
+                                        onClick={async () => {
+                                            const sendEmail = await deleteAccountUseCase.execute();
+                                            if (sendEmail?.message) {
+                                                window.location.href = '/msg?msg=' + sendEmail.message
+                                            }
+                                        }}
+                                        className="text-xs font-medium md3-error-text hover:underline hover:text-red-700 transition"
+                                        title="Supprimer le compte"
+                                    >
+                                        Supprimer le compte
+                                    </button>
+                                </div>
+                            </CardMD.Headline>
+                            <CardMD.MidSection className="flex-col py-4 gap-4 flex overflow-auto ">
                                 <Input
                                     className={`inputStandart ${formik.errors.firstName ? 'error' : ''}`}
-                                    placeholder={"Prénom"}
+                                    label={"Prénom"}
                                     name="firstName"
                                     onChange={formik.handleChange}
                                     value={formik.values.firstName}
@@ -102,7 +114,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
 
                                 <Input
                                     className={`inputStandart ${formik.errors.lastName ? 'error' : ''}`}
-                                    placeholder={"Nom"}
+                                    label={"Nom"}
                                     name="lastName"
                                     onChange={formik.handleChange}
                                     value={formik.values.lastName}
@@ -111,7 +123,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
 
                                 <Input
                                     className={`inputStandart ${formik.errors.phone ? 'error' : ''}`}
-                                    placeholder={"Télephone"}
+                                    label={"Télephone"}
                                     name="phone"
                                     onChange={formik.handleChange}
                                     value={formik.values.phone}
@@ -124,7 +136,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                                     error={formik.errors.Address}
                                 />
                                 <Select
-                                    simple
+                                    variant="Input"
                                     formik={formik}
                                     value={formik.values.mailSub}
                                     setValue={setMailSub}
@@ -133,7 +145,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                                     options={mailSubscriptions}
                                 />
                                 <Select
-                                    simple
+                                    variant="Input"
                                     formik={formik}
                                     value={formik.values.assistance}
                                     setValue={setAssistance}
@@ -152,41 +164,46 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
 
 
                                 {/* SKILLS  */}
-                                <Input
-                                    className={`inputStandart ${formik.errors.skills ? 'error' : ''}`}
-                                    placeholder="Ajouter une compétences"
-                                    name="skills"
-                                    value={newSkill}
-                                    onChange={(e: any) => { e.preventDefault(); setNewSkill(e.target.value) }}
-                                    onSubmit={addSkill} >
-                                    <Icon
-                                        color='slate'
-                                        icon='add'
-                                        size='lg'
-                                        onClick={addSkill}
-                                        style={` ${newSkill && 'error bg-red-100 rounded-full'} absolute right-1 top-1`} />
-                                </Input>
-                                <List className='flex p-0'>
-                                    <Typography className='text-xs text-gray-400 -mt-1 font-normal'>
-                                        {skillList.length > 0 && 'Liste des compétences'}
-                                    </Typography>
-                                    {skillList.map((skill: string, index: number) =>
-                                        <List.Item
-                                            ripple={true}
-                                            key={index}
-                                            className="!py-1 pl-4 rounded-full text-sm">
-                                            {skill}
-                                            <List.ItemEnd>
-                                                <Icon
-                                                    onClick={() => { removeSkill(skill) }}
-                                                    icon="close"
-                                                    size="xl" />
-                                            </List.ItemEnd>
-                                        </List.Item>
-                                    )}
-                                </List>
-                            </CardBody>
-                        </Card>}
+                                <>
+                                    <Input
+                                        className={`inputStandart ${formik.errors.skills ? 'error' : ''}`}
+                                        label="Ajouter une compétences"
+                                        name="skills"
+                                        value={newSkill}
+                                        onChange={(e: any) => { e.preventDefault(); setNewSkill(e.target.value) }}
+                                        onSubmit={addSkill}
+                                        trailingIcon={
+                                            <Icon
+                                                color='slate'
+                                                icon='add'
+                                                size='lg'
+                                                onClick={addSkill}
+                                                style={` ${newSkill && 'error bg-red-100 rounded-full'} absolute right-1 top-1`}
+                                            />
+                                        }
+                                    />
+                                    <List className='flex p-0'>
+                                        <Typography className='text-xs text-gray-400 -mt-1 font-normal'>
+                                            {skillList.length > 0 && 'Liste des compétences'}
+                                        </Typography>
+                                        {skillList.map((skill: string, index: number) =>
+                                            <List.Item
+                                                ripple={true}
+                                                key={index}
+                                                className="!py-1 pl-4 rounded-full text-sm">
+                                                {skill}
+                                                <List.ItemEnd>
+                                                    <Icon
+                                                        onClick={() => { removeSkill(skill) }}
+                                                        icon="close"
+                                                        size="xl" />
+                                                </List.ItemEnd>
+                                            </List.Item>
+                                        )}
+                                    </List>
+                                </>
+                            </CardMD.MidSection>
+                        </CardMD>}
                 </div>
             </main>
 

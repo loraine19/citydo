@@ -204,9 +204,8 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 
                                 style={{ width: `${percent}%`, color: customColor || `var(--md3-${color})` || 'var(--md3-primary)' }}>
 
-                                {line.map((index) => (
-                                    <span
-                                        key={index} className='w-full flex -scale-y-[0.65] !font-comfortaa  h-full text-transparent '  >
+                                {line.map((_) => (
+                                    <span className='w-full flex -scale-y-[0.65] !font-comfortaa  h-full text-transparent '  >
                                         _______________________________________________________________________________________________
                                     </span>
                                 ))}

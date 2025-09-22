@@ -87,7 +87,7 @@ export default function MyInfosPage() {
 
     return (
         <>
-            <header className="w-respLarge relative flex-col flex">
+            <header className="">
                 <div className="flex absolute justify-between items-center top-4 z-50 w-full pr-4">
                     <LogOutButton />
                     <Icon

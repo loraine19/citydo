@@ -193,46 +193,44 @@ export const Icon: React.FC<IconProps> = ({
 
     const classActive = `hover:brightness-[0.95] active:brightness-[0.9] hover:scale-[1.03] `
     const [isFill, setIsFill] = useState(fill ? true : false);
+    const role = onClick ? link ? 'link' : 'button' : 'img';
 
     return (
-        <div
-            onMouseEnter={() => setIsFill(true)}
-            onMouseLeave={() => setIsFill(fill ?? false)}
-        >
-            {onClick ?
-                <button
+        < >
+
+            {link ? (
+                <Link
+                    onMouseEnter={() => setIsFill(true)}
+                    onMouseLeave={() => setIsFill(fill ?? false)}
+                    to={link}
+                    target={'_blank'}
+                    rel={'noopener noreferrer'}
+                    role={role}
+                    tabIndex={0}
                     data-cy={icon}
-                    type="button"
-                    onClick={onClick}
                     title={!disabled ? title : `${(title ?? 'cette action')} est indisponible`}
-                    className={`group ${classIcon()} ${!disabled ? classActive : ''} `}
-                    disabled={disabled}>
-                    <span>
-                        {searchIcon(icon, isFill)}
-                    </span>
-                </button>
-                : link ?
-                    <Link
-                        data-cy={icon}
-                        to={link}
-                        title={!disabled ? title : `${(title ?? 'cette action')} est indisponible`}
-                        target={link.startsWith('http') ? "_blank" : ""}
-                        rel="noopener noreferrer"
-                        className={`group ${classIcon()} ${!disabled && classActive}`}>
-                        <span>
-                            {searchIcon(icon, isFill)}
-                        </span>
-                    </Link> :
-                    <span
-
-                        data-cy={icon}
-                        title={!disabled ? title : `${(title ?? 'cette action')} est indisponible`}
-                        className={`group ${classIcon()}  `}>
-                        <span>
-                            {searchIcon(icon, isFill)}
-                        </span>
-
-                    </span>
-            }
-        </div>)
+                    className={`group ${classIcon()} ${!disabled ? classActive : ''}`}
+                    onClick={onClick}
+                    aria-disabled={disabled}
+                    style={{ cursor: disabled ? 'not-allowed' : 'pointer' }}
+                >
+                    {searchIcon(icon, isFill)}
+                </Link>
+            ) : (
+                <span
+                    onMouseEnter={() => setIsFill(true)}
+                    onMouseLeave={() => setIsFill(fill ?? false)}
+                    role={role}
+                    tabIndex={0}
+                    data-cy={icon}
+                    title={!disabled ? title : `${(title ?? 'cette action')} est indisponible`}
+                    className={`group ${classIcon()} ${!disabled ? classActive : ''}`}
+                    onClick={onClick}
+                    aria-disabled={disabled}
+                    style={{ cursor: disabled ? 'not-allowed' : 'pointer' }}
+                >
+                    {searchIcon(icon, isFill)}
+                </span>
+            )}
+        </>)
 }
