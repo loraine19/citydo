@@ -14,7 +14,7 @@ interface NavBarProps {
     color?: string;
 }
 
-export const NavLinks: React.FC<NavBarProps> = ({ listPage=true, placement, mainPage = true}) => 
+export const NavLinks: React.FC<NavBarProps> = ({ listPage, placement, mainPage }) => 
     const location = useLocation()
     const type = new URLSearchParams(location.pathname.split("/")[1]).toString().replace("=", '');
     const { setColor, color, hideNavBottom } = useUxStore((state) => state);
@@ -145,7 +145,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ listPage=true, placement, main
                         )
                     })}
                 </NavigationBar>
-                {(listPage || mainPage) &&
+                {(listPage || mainPage || type ) &&
                     <FabMenu
                         backdropBlur={true}
                         open={openFab}
