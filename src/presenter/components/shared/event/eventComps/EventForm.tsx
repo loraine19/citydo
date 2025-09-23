@@ -51,18 +51,26 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
     const label = formik.values.category ? getLabel(formik.values.category, eventCategories) : '';
     const SearchSection = useMemo(() => (
         <FormHeadSection
-            showProps={{ show, setShow }}
+            showProps={{
+                show, setShow,
+                text: (formik.errors.groupId || formik.errors.category) ? "Veuillez choisir une catégorie et un groupe" : 'modifier groupe et catégorie',
+                color: (formik.errors.groupId || formik.errors.category) ? "error" : "slate"
+            }}
             infosChipValue={
                 (formik.values.id ? "Modifier mon évenement " : "Créer mon évenement ")
                 + (label ? " / " + label : "...")
             }
         />
-    ), [show, formik.values.id, label]);
+    ), [show, formik.values.id, label, formik.errors.groupId, formik.errors.category]);
 
     useEffect(() => {
         setDetailSection(SearchSection);
         return () => setDetailSection(undefined);
-    }, [SearchSection, setDetailSection]);
+    }, [SearchSection, setDetailSection, formik.values.id, label, formik.errors.groupId, formik.errors.category]);
+
+    useEffect(() => {
+        show && setShow(!expand)
+    }, [expand]);
 
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
@@ -70,7 +78,8 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                 <section>
                     <div className="DetailCardDiv hideCTAForm">
                         <div className="flex flex-col gap-2">
-                            <div className={`p-2 max-h-max w-full flex flex-col grid-cols-[auto_auto] lg:grid grid-rows-1 gap-2 ${show ? 'md3-menu-enter' : 'md3-menu-leave h-0.5'}`}>
+                            <div className={`p-2 max-h-max w-full flex flex-col grid-cols-[auto_auto] lg:grid grid-rows-1 gap-2 
+                                ${show ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0.5'}`}>
                                 <div className="flex flex-wrap gap-2 flex-1 w-full">
                                     <Select
                                         variant="Input"
@@ -110,7 +119,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         imgDef={EventImage[formik.values.category as keyof typeof EventImage] || EventImage.default}
                                     />
                                     <DateChip
-                                        prefix="publié le"
+                                        prefix=" "
                                         start={formik.values.createdAt ?? new Date()}
                                     />
                                 </CardLarge.Chips>

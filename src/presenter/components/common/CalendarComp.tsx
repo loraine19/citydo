@@ -183,8 +183,6 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
 
 
                                                     <EventCard
-
-                                                        imagePosition={!logo ? 'top' : 'left'}
                                                         variant='outlined'
                                                         event={event}
                                                         change={() => {

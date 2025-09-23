@@ -15,7 +15,6 @@ import DetailsHeadSection from "../base/baseComps/DetailsHeadSection";
 import SelectSearch from "../../common/appComps/SelectSearch";
 import TabsMenu from "../../common/appComps/TabsMenu";
 import PostCard from "./PostComps/PostCard";
-import { SortButtonProps } from "../../common/appComps/SortBtn";
 import { ViewButtonProps } from "../../common/appComps/ViewBtn";
 import PostGridComp from "./PostComps/PostGridComp";
 
@@ -191,14 +190,8 @@ export default function PostListPage() {
         };
     }, [SearchSection, TabSection, setSearchSection, setTabSection]);
 
-    const sortBtnProps: SortButtonProps = {
-        sortList: sortList,
-        setSelectedSort: (value: string) => setSort(value as PostSort),
-        selectedSort: sortList.find(item => item?.key === sort)?.label ?? '',
-        reverse: reverse,
-        setReverse: (value: boolean) => setReverse(value),
-        action: () => refetch()
-    }
+
+
 
     const [viewBtnProps, setViewBtnProps] = useState<ViewButtonProps>({
         viewList: [
@@ -263,10 +256,18 @@ export default function PostListPage() {
     //// RENDER
     return (
         <main>
+
             <DetailsHeadSection
                 hidden={hideNavBottom && !isLoading && !error && !notif}
                 infosChipValue={`${count ?? 0} annonces${filterName() ? ' / ' + filterName() : ''}${categoryName() ? ' / ' + categoryName() : ''}`}
-                sortBtnProps={sortBtnProps}
+                sortBtnProps={{
+                    sortList: sortList,
+                    setSelectedSort: setSort,
+                    selectedSort: sort,
+                    reverse: reverse,
+                    setReverse: setReverse,
+                    action: () => refetch()
+                }}
                 viewBtnProps={viewBtnProps}
                 notif={notif}
                 error={error}

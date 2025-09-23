@@ -223,10 +223,10 @@ export default function ServicesPage() {
 
     const sortBtnProps: SortButtonProps = {
         sortList: sortList,
-        setSelectedSort: (value: string) => setSort(value as ServiceSort),
-        selectedSort: sortList.find(item => item?.key === sort)?.label ?? '',
+        setSelectedSort: setSort,
+        selectedSort: sort,
         reverse: reverse,
-        setReverse: (value: boolean) => setReverse(value),
+        setReverse: setReverse,
         action: () => refetch()
     }
 

@@ -110,7 +110,7 @@ export default function EventListPage() {
     //// NOTIFICATION
     useEffect(() => {
         if (error) setNotif('Erreur de chargement');
-        else if ((count === 0 || !events || events.length === 0) && !isLoading && !error)
+        else if ((count === 0 || !events || events.length === 0) && !isLoading && !error && view !== "event")
             setNotif(`Aucun événement ${filterName()} trouvé`);
         else setNotif('');
     }, [isLoading, error, filter, category, count, events.length]);
@@ -169,10 +169,8 @@ export default function EventListPage() {
         <TabsMenu
             labels={eventTabs}
             defaultTab={params.filter || ''}
-
             action={refetch}
         />
-        // eslint-disable-next-line
     ), [sort, reverse, params.filter]);
 
     useEffect(() => {
@@ -186,10 +184,10 @@ export default function EventListPage() {
 
     const sortBtnProps: SortButtonProps = {
         sortList: sortList,
-        setSelectedSort: (value: string) => setSort(value as EventSort),
-        selectedSort: sortList.find(item => item?.key === sort)?.label ?? '',
+        setSelectedSort: setSort,
+        selectedSort: sort,
         reverse: reverse,
-        setReverse: (value: boolean) => setReverse(value),
+        setReverse: setReverse,
         action: () => refetch()
     }
 

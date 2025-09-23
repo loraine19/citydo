@@ -2,6 +2,7 @@ import { useUxStore } from "../../../../application/stores/ux.store";
 import { InputError } from "./input";
 import { Icon } from "../IconComp";
 import { Menu, MenuItem } from "../../shared/base/baseComps/Menu";
+import { useState } from "react";
 
 interface SelectProps {
     formik?: any;
@@ -39,6 +40,8 @@ export function Select({
         onChangeFunction && onChangeFunction();
     };
 
+    const [open, setOpen] = useState(false)
+
     return (
         <div className="flex-1">
             <div className={`w-full relative`}>
@@ -49,6 +52,8 @@ export function Select({
                         {error ?? displayLabel}
                     </div>
                     <Menu
+                        open={open}
+                        setOpen={setOpen}
                         key={'select-menu' + (color)}
                         closeIcon={<></>}
                         className="mt-2 w-max"
@@ -64,9 +69,10 @@ export function Select({
                     >
                         {options?.map((option) => (
                             <MenuItem
+
                                 key={option?.value}
                                 value={option?.value}
-                                onClick={() => handleSelect(option)}
+                                onClick={() => { handleSelect(option); setOpen(false) }}
                                 trailingIcon={selected?.value === option?.value ? (
                                     <Icon style='-mr-1' color={color ?? 'slate'} size="lg" icon="check" />
                                 ) : <div className="w-3" />}

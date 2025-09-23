@@ -45,7 +45,7 @@ const DetailsHeadSection: React.FC<DetailsHeadSectionProps> = ({
                         className=""
                         variant="outlined"
                         size="medium"
-                        value={`${sortBtnProps.selectedSort ?? "Trier"}`}
+                        value={`${sortBtnProps.sortList.find(v => v.key === sortBtnProps.selectedSort)?.label ?? "Trier"}`}
                         iconPlacement="end"
                         icon={
                             <SortButton

@@ -25,7 +25,7 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage }: {
 
                 {/* CONTAINER */}
                 <div id='AppBar'
-                    className={`px-1 gap-2 ${!detailPage ? 'pt-3' : 'pt-1'} flex lg:px-0 slide justify-between items-center `} >
+                    className={`pr-1 gap-2 ${!detailPage ? 'pt-3' : 'pt-1'} flex lg:px-0 slide justify-between items-center `} >
 
 
                     {/* PROFILE MENU  */}
@@ -57,7 +57,7 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage }: {
                 {(searchSection && !hideNavBottom && !navBottom) &&
                     <div className="w-full">{searchSection}</div>}
                 {tabSection &&
-                    <div className={`"w-full  ${listPage && ' pt-2 sm:pt-4'}`}>{tabSection}</div>
+                    <div className={`"w-full  ${searchSection && ' pt-2 sm:pt-4'}`}>{tabSection}</div>
                 }
                 {detailSection &&
                     <div>{detailSection}</div>

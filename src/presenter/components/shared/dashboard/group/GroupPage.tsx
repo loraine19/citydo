@@ -1,24 +1,23 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import SubHeader from '../../../common/appComps/SubHeader';
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import DI from '../../../../../di/ioc';
 import { useSearchParams } from 'react-router-dom';
 import { GroupView } from '../../../../views/viewsEntities/GroupViewEntity';
 import { LoadMoreButton } from '../../../common/LoadMoreBtn';
 import { SkeletonGrid } from '../../../common/Skeleton';
 import { GroupCard } from "./GroupCard";
-import TabsMenu from "../../../common/appComps/TabsMenu";
 import { TabLabel } from "../../../../../domain/entities/frontEntities";
 import { GroupCategory, GroupFilter } from "../../../../../domain/entities/Group";
 import { groupCategories } from "../../../../constants";
 import { getValue } from "../../../../views/viewsEntities/utilsService";
 import { useUxStore } from "../../../../../application/stores/ux.store";
 import { HandleHideParams, HandleScrollParams } from "../../../../../application/useCases/utils.useCase";
-import NotifDiv from "../../../common/NotifDiv";
 import { Select } from "../../../common/adaptatersComps/Select";
+import TabsMenu from "../../../common/appComps/TabsMenu";
+import { useNavStore } from "../../../../../application/stores/nav.store";
+import DetailsHeadSection from "../../base/baseComps/DetailsHeadSection";
 
 export default function GroupPage() {
     const [notif, setNotif] = useState<string>('');
-    const [selectedSort, setSelectedSort] = useState<string>('');
     const [filter, setFilter] = useState<string>('');
     const [category, setCategory] = useState<string>('');
 
@@ -106,37 +105,50 @@ export default function GroupPage() {
     }, [groups, isLoading, error, filter, category]);
 
     //// RENDER
+    //// APPBAR SECTIONS
+    const { setSearchSection, setTabSection } = useNavStore((state) => state);
+
+    const SearchSection = useMemo(() => (
+        <Select
+            setValue={change}
+            options={groupCategories}
+            placeholder="Choisir une catégorie"
+            name={"category"}
+            value={category} />
+    ), [category]);
+
+    const TabSection = useMemo(() => (
+        <TabsMenu
+            labels={Tabs}
+            defaultTab={params.filter || ''}
+            action={refetch}
+        />
+    ), [params.filter]);
+
+    useEffect(() => {
+        setTabSection(TabSection);
+        setSearchSection(SearchSection);
+        return () => {
+            setSearchSection(null);
+            setTabSection(null);
+        };
+    }, [TabSection, setTabSection]);
+
+
+
+
+    //// RENDER
     return (
         <main>
-            <div className="sectionHeader ">
+            <DetailsHeadSection
+                hidden={hideNavBottom && !isLoading && !error && !notif}
+                infosChipValue={`${count > 0 ? 'Groupes' : 'aucun groupe'} / ${filterName() ?? '...'} / ${categorieName(category) ?? '...'}`}
 
-                <div className={` flex flex-col gap-1 pb-1 flex-1 w-full  items-center justify-center `}>
-                    <TabsMenu
-                        labels={Tabs}
-                        selectedSort={selectedSort}
-                        setSelectedSort={setSelectedSort} />
-                    <div className="flex-1 w-full">  <Select
-                        setValue={change}
-                        options={groupCategories}
-                        placeholder="Choisir une catégorie"
-                        name={"category"}
-                        value={category} /></div>
-                </div>
-                <SubHeader
-                    closeBtn
-                    link={`/`}
-                    qty={count}
-                    type={`Groupes `}
-                    place={`${filterName() ?? 'proche de chez vous'}`}
-                />
-
-                {notif &&
-                    <NotifDiv
-                        error={error}
-                        notif={notif}
-                        isLoading={isLoading}
-                        refetch={refetch} />}
-            </div>
+                notif={notif}
+                error={error}
+                isLoading={isLoading}
+                refetch={refetch}
+            />
             {isLoading || error ?
                 <SkeletonGrid />
                 : <section

@@ -11,7 +11,7 @@ import { Fab } from "./Fabs";
 
 interface FormHeadSectionProps {
     infosChipValue?: string;
-    showProps?: { show: boolean, setShow: (value: boolean) => void };
+    showProps?: { show: boolean, setShow: (value: boolean) => void, text?: string, color?: Md3Colors };
     notif?: string;
     error?: string;
     isLoading?: boolean;
@@ -51,7 +51,8 @@ const FormHeadSection: React.FC<FormHeadSectionProps> = ({
     }
 
     return (
-        <div className={`flex flex-col gap-2 z-[99]  w-full wRespXLMargin ${hidden ? 'md3-menu-leave h-0.5' : 'md3-menu-enter p-2  '}`}>
+        <div className={`flex flex-col gap-2 z-[99]  w-full wRespXLMargin 
+        ${hidden ? 'md3-menu-leave h-0.5' : 'md3-menu-enter p-2  '}`}>
             <div className="flex overflow-auto gap-2 justify-between w-full ">
                 <div className="flex flex-wrap w-full gap-2">
                     <Chip
@@ -68,21 +69,23 @@ const FormHeadSection: React.FC<FormHeadSectionProps> = ({
                                 size="medium"
                                 value={infosChipValue} />
                         </div>}
-                    {showProps && <Chip
-                        className=""
-                        variant="outlined"
-                        size="medium"
-                        value={`${showProps.show ? "Masquer" : "Afficher"} `}
-                        iconPlacement="end"
-                        icon={
-                            <Icon
-                                onClick={() => showProps.setShow(!showProps.show)}
-                                icon={!showProps.show ? "arrow_drop_down" : "arrow_drop_up"}
-                                size="2xl"
-                                fill
-                                title={showProps.show ? "reduire" : "voir "} />}
+                    {showProps &&
+                        <Chip
+                            color={showProps.color}
+                            className=""
+                            variant="outlined"
+                            size="medium"
+                            value={`${showProps.text ?? showProps.show ? "Masquer" : "Afficher"} `}
+                            iconPlacement="end"
+                            icon={
+                                <Icon
+                                    onClick={() => showProps.setShow(!showProps.show)}
+                                    icon={!showProps.show ? "arrow_drop_down" : "arrow_drop_up"}
+                                    size="2xl"
+                                    fill
+                                    title={showProps.show ? "reduire" : "voir "} />}
 
-                    />}
+                        />}
                     {/* BUTTON UP  */}
                     {(hideNavBottom) &&
                         <div className={`  flex flex-1 absolute z-[2] right-0 top-6 `}>

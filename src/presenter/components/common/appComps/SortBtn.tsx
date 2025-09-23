@@ -7,7 +7,7 @@ import { Menu, MenuItem } from "../../shared/base/baseComps/Menu";
 export type SortButtonProps = {
     sortList: SortLabel[],
     action: () => void,
-    setSelectedSort: (value: string) => void,
+    setSelectedSort: (value: any) => void,
     selectedSort: string
     reverse: boolean
     setReverse: (value: boolean) => void
@@ -42,6 +42,7 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
                     data-cy={item.key ?? item.label}
                     onClick={() => {
                         action()
+
                         setSelectedSort(item.key ?? item.label)
                         setReverse(!reverse)
                         setIsOpen(!isOpen);
@@ -54,7 +55,7 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
                                         action()
                                         setSelectedSort(item.key ?? item.label)
                                         setReverse(!reverse)
-                                        setIsOpen(!isOpen);
+                                        setIsOpen(false);
                                     }}
                                     color={color}
                                     title={'Trier par inverse ' + item.label}
@@ -63,10 +64,11 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
                                 fill={selectedSort === (item.key ?? item.label)}
                                 size={'lg'}
                                 onClick={() => {
+                                    setIsOpen(false);
                                     action();
                                     setSelectedSort(item.key ?? item.label)
                                     setReverse(!reverse)
-                                    setIsOpen(!isOpen);
+
 
                                 }}
                                 title={'Trier par ' + item.label}
@@ -76,8 +78,6 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
                             />
                         </div>} >
                     {item.label}
-
-
                 </MenuItem>
             )}
         </Menu>

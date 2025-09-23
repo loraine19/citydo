@@ -41,20 +41,24 @@ export function ServiceForm(props: { formik: any }) {
     const [show, setShow] = useState(true);
     const SearchSection = useMemo(() => (
         <FormHeadSection
-            showProps={{ show, setShow }}
+            showProps={{
+                show, setShow,
+                text: (formik.errors.groupId || formik.errors.category) ? "Veuillez choisir une catégorie et un groupe" : 'modifier groupe et catégorie',
+                color: (formik.errors.groupId || formik.errors.category) ? "error" : "slate"
+            }}
             infosChipValue={formik.values.id ?
                 `Modifier votre service ` : "Créer votre service "
                 + '/ ' + (formik.values.typeS ?? '...')
                 + ' / ' + (ServiceCategory[formik.values.category as keyof typeof ServiceCategory] ?? '...')} >
         </FormHeadSection>
-    ), [show, formik, formik.values.typeS, formik.values.categoryS]);
+    ), [show, formik.values, formik.errors]);
 
     useEffect(() => {
         setDetailSection(SearchSection);
         return () => {
             setDetailSection(undefined);
         }
-    }, [SearchSection, show, formik]);
+    }, [SearchSection, show, formik.values, formik.errors]);
 
     return (
         <form

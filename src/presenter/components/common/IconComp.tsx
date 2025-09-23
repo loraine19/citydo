@@ -204,6 +204,7 @@ export const Icon: React.FC<IconProps> = ({
 
             {link ? (
                 <Link
+
                     onMouseEnter={() => setIsFill(true)}
                     onMouseLeave={() => setIsFill(!fill ? false : true)}
                     to={link}
@@ -222,6 +223,7 @@ export const Icon: React.FC<IconProps> = ({
                 </Link>
             ) : (
                 <span
+
                     onMouseEnter={() => setIsFill(true)}
                     onMouseLeave={() => setIsFill(!fill ? false : true)}
                     role={role}

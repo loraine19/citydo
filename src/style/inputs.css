@@ -17,7 +17,7 @@ input[type="email"]:-webkit-autofill,
 input[type="email"]:-webkit-autofill:focus,
 input[type="email"]:-webkit-autofill:hover,
 input[type="email"]:-webkit-autofill:active {
-    @apply !outline-none !ring-0 !ring-current rounded !bg-opacity-0;
+    @apply !outline-none !ring-0 !ring-current  !bg-opacity-0 !rounded-3xl;
     box-shadow: 0 0 0px 1000px #00000000 inset !important;
     transition: background-color 5000s ease-in-out 0s;
     -webkit-text-fill-color: var(--md3-on-surface) !important;
@@ -54,7 +54,7 @@ input[data-cy="input-search"]::placeholder {
 }
 
 textarea {
-    @apply focus:bg-slate-200 !opacity-95   !outline-0 !ring-0 !ring-current;
+    @apply focus:bg-transparent;
 }
 
 [role="option"] {

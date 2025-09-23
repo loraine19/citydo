@@ -21,29 +21,35 @@ const AppMenu: React.FC<AppMenuProps> = ({
     const navigate = useNavigate();
 
     ///// MENU ITEMS
+    const [open, setOpen] = React.useState(false);
     const menuItems = [
         { icon: "toll", text: ` ${user?.Profile?.points} points`, color: 'sky', divider: 'bottom' },
         { icon: "person_edit", text: "Modifier mon profil", link: '/myprofile', color: "cyan", divider: 'top' },
         {
             icon: dark ? "light_mode" : "dark_mode",
             text: dark ? "Désactiver le mode sombre" : "Activer le mode sombre",
-            onClick: () => setDark(!dark),
+            onClick: () => { setDark(!dark); setOpen(false); },
             color: "cyan", divider: "none", style: 'rounded-none'
         },
         {
             icon: navBottom ? 'move_up' : 'move_down',
             text: navBottom ? "Cacher la barre" : "Afficher la barre",
-            onClick: () => { setNavBottom(!navBottom) },
+            onClick: () => { setNavBottom(!navBottom); setOpen(false); },
             color: 'cyan', divider: 'bottom'
+        }, {
+            icon: 'groups', text: "Groupes",
+            onClick: () => { setOpen(false); navigate('/groupe') }, color: "orange", divider: 'top',
+        }, {
+            icon: 'diversity_3', text: "Conciliation",
+            onClick: () => { setOpen(false); navigate('/conciliation'); }, color: 'orange', divider: 'bottom',
         },
-
-        { icon: 'groups', text: "Groupes", link: '/groupe', color: "orange", divider: 'top', },
-
-        { icon: 'diversity_3', text: "Conciliation", link: '/conciliation', color: 'orange', divider: 'bottom', },
-        { icon: "exit_to_app", text: "Déconnexion", link: '/signin', color: "error" },
+        {
+            icon: "exit_to_app", text: "Déconnexion",
+            onClick: () => { setOpen(false); navigate('/signin'); }, color: "error"
+        },
     ]
 
-    if (!listPage || hideNavBottom) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate", divider: 'none', style: 'rounded-none' })
+    if (!listPage || hideNavBottom) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => { setOpen(false); navigate('/') }, color: "slate", divider: 'none', style: 'rounded-none' })
 
 
     const menuIcon = hideNavBottom || singlePage
@@ -57,6 +63,8 @@ const AppMenu: React.FC<AppMenuProps> = ({
         <div className={` md3-button-primary md3-button-tonal rounded-full !min-w-max flex items-center md3-elevation-0 
             ${roundedStyle ? " p-2.5 md:pl-4 max-h-max " : " md:px-3 md:py-1 p-2.5 "}`}>
             <Menu
+                open={open}
+                setOpen={setOpen}
                 blurBack
                 left
                 key="profile-menu"
@@ -82,7 +90,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                             <h1 className={`
                                 ${listPage
                                     ? "lg:flex hidden"
-                                    : "sm:flex"
+                                    : `${!navBottom ? "hidden md:flex" : "sm:flex"}`
                                 }  items-center h-full pb-1 px-2 !font-quicksand !text-[1.5rem] font-[600]`}>
                                 City'do
                             </h1>
@@ -116,6 +124,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                 {/* LIST ITEM */}
                 {menuItems.map((item, index) => (
                     <MenuItem
+
                         bg
                         className={item.style}
                         divider={item.divider as any}

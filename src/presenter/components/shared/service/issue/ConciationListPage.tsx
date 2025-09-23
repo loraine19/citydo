@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import SubHeader from "../../../common/appComps/SubHeader";
 import TabsMenu from "../../../common/appComps/TabsMenu";
 import { Label, TabLabel } from "../../../../../domain/entities/frontEntities";
 import { SkeletonGrid } from "../../../common/Skeleton";
@@ -11,9 +10,10 @@ import { IssueView } from "../../../../views/viewsEntities/issueViewEntity";
 import { useUserStore } from "../../../../../application/stores/user.store";
 import { Role } from "../../../../../domain/entities/GroupUser";
 import { IssueFilter } from '../../../../../domain/entities/Issue';
-import { Icon } from "../../../common/IconComp";
 import { useUxStore } from "../../../../../application/stores/ux.store";
 import { HandleHideParams, HandleScrollParams } from "../../../../../application/useCases/utils.useCase";
+import { useNavStore } from "../../../../../application/stores/nav.store";
+import DetailsHeadSection from "../../base/baseComps/DetailsHeadSection";
 
 export default function ConciationListPage() {
     const [notif, setNotif] = useState<string>('');
@@ -100,25 +100,44 @@ export default function ConciationListPage() {
     const [hide, setHide] = useState<boolean>(false);
     useEffect(() => { (hide !== hideNavBottom) && setHideNavBottom(hide) }, [hide]);
 
+
+    //// APPBAR SECTIONS
+    const { setSearchSection, setTabSection } = useNavStore((state) => state);
+
+
+
+    const TabSection = useMemo(() => (
+        <TabsMenu
+            labels={serviceTabs}
+            defaultTab={params.filter || ''}
+            action={refetch}
+        />
+    ), [params.filter]);
+
+    useEffect(() => {
+        setTabSection(TabSection);
+        return () => {
+            setSearchSection(null);
+            setTabSection(null);
+        };
+    }, [TabSection, setTabSection]);
+
+
+
+
     //// RENDER
     return (
         <main>
-            <div className="sectionHeader">
-                <TabsMenu labels={serviceTabs} />
-                <SubHeader
+            <DetailsHeadSection
+                hidden={hideNavBottom && !isLoading && !error && !notif}
+                infosChipValue={`${count > 0 ? 'conciliations' : 'aucune conciliation'} ${filterName()}`}
 
-                    qty={count}
-                    link="/"
-                    type={`${count > 0 ? 'conciliations' : 'aucune conciliation'} ${filterName()}`} />
-                {notif &&
-                    <div className={'notif'}>
-                        {notif}
-                        <Icon
-                            bg={!isLoading}
-                            textIcon={isLoading ? '...' : 'refresh'}
-                            onClick={() => refetch()} />
-                    </div>}
-            </div>
+                notif={notif}
+                error={error}
+                isLoading={isLoading}
+                refetch={refetch}
+            />
+
             {isLoading ?
                 <SkeletonGrid />
                 : <section

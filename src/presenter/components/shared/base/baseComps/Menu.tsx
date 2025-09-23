@@ -39,10 +39,16 @@ export const Menu: React.FC<MenuProps> = ({
     left = false
 }) => {
     const [internalOpen, setInternalOpen] = useState(false);
-    const isControlled = controlledOpen;
+    const isControlled = setOpen !== undefined;
     const open = isControlled ? controlledOpen : internalOpen;
     const menuRefAuto = useRef<HTMLDivElement>(null);
     const root = document.getElementById("root");
+
+    useEffect(() => {
+        if (isControlled) {
+            setInternalOpen(controlledOpen ?? false);
+        }
+    }, [controlledOpen, isControlled]);
 
     // AJOUTÉ : État pour stocker l'élément racine du portail
     const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);

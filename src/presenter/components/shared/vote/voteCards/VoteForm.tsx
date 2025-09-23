@@ -35,17 +35,21 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
     const label = formik.values.typeS === 'POOL' ? 'Cagnotte' : formik.values.typeS === 'SURVEY' ? 'Sondage' : '...';
     const HeadSection = useMemo(() => (
         <FormHeadSection
-            showProps={{ show, setShow }}
+            showProps={{
+                show, setShow,
+                text: (formik.errors.groupId || formik.errors.category) ? "Veuillez choisir une catégorie et un groupe" : 'modifier groupe et catégorie',
+                color: (formik.errors.groupId || formik.errors.category) ? "error" : "slate"
+            }}
             infosChipValue={
                 (formik.values.id ? "Modifier " : "Créer ") + 'un vote / ' + (label ?? '...')
             }
         />
-    ), [show, formik.values.id, label]);
+    ), [show, formik.values, formik.errors, label]);
 
     useEffect(() => {
         setDetailSection(HeadSection);
         return () => setDetailSection(undefined);
-    }, [HeadSection, setDetailSection]);
+    }, [HeadSection, setDetailSection, formik.errors, formik.values]);
 
     useEffect(() => {
         refetch();

@@ -28,17 +28,22 @@ export function PostFormCard({ formik }: PostFormCardProps) {
     const label = formik.values.category ? postCategories.find((c: any) => c.value === formik.values.category)?.label : '';
     const SearchSection = useMemo(() => (
         <FormHeadSection
-            showProps={{ show, setShow }}
+            showProps={{
+                show, setShow,
+                text: (formik.errors.groupId || formik.errors.category) ? "Veuillez choisir une catégorie et un groupe" : 'modifier groupe et catégorie',
+                color: (formik.errors.groupId || formik.errors.category) ? "error" : "slate"
+            }}
+
             infosChipValue={
                 (formik.values.id ? "Modifier mon annonce " : "Créer mon annonce ") + " / " + (label ?? "...")
             }
         />
-    ), [show, formik.values.id, label]);
+    ), [show, formik.values.id, label, formik.errors]);
 
     useEffect(() => {
         setDetailSection(SearchSection);
         return () => setDetailSection(undefined);
-    }, [SearchSection, setDetailSection]);
+    }, [SearchSection, setDetailSection, formik.errors]);
 
     const checkShare = (word: string) => formik.values?.shareA?.toString().toLowerCase().includes(word);
     const start = formik.values.createdAt ? new Date(formik.values.createdAt) : new Date();
