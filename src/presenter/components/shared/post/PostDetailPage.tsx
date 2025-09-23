@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import CTAMines from '../../common/CTA';
 import PostDetailCard from './PostComps/PostDetailCard';
 import { Action } from '../../../../domain/entities/frontEntities';
@@ -26,7 +26,6 @@ export default function PostDetailPage() {
     const { setOpen, open } = useAlertStore(state => state);
     const handleOpen = () => setOpen(!open)
     const myActions = post && GenereMyActions(post, "annonce", deletePost)
-    const navigate = useNavigate()
 
 
     const [notif, setNotif] = useState<string>('');
@@ -73,7 +72,10 @@ export default function PostDetailPage() {
             icon: 'Chat',
             title: "Envoyer le message suivant à " + post?.User?.Profile?.firstName,
             body: ` Bonjour ${post?.User?.Profile?.firstName}, je suis intéressé par votre annonce "${post?.title}`,
-            function: () => { handleOpen(); navigate(`/chat?with=${post?.User?.Profile?.userId ?? 0}&text=${ContactActions[2].body}`) }
+            function: () => {
+                handleOpen();
+                window.location.replace(`/chat?with=${post?.User?.Profile?.userId ?? 0}&text=${ContactActions[2].body}`)
+            }
         },
     ]
 
