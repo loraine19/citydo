@@ -55,7 +55,7 @@
 }
 
 html {
-    @apply md3-surface dark;
+    @apply md3-surface dark max-h-[100dvh];
     background-color: var(--md3-on-surface);
     font-size: 16px;
     @media (max-width: 1024px) {

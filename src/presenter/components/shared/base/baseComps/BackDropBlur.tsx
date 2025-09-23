@@ -18,13 +18,13 @@ const BackDropBlur: React.FC<BackDropBlurProps> = ({
 
     if (typeof window === "undefined") return null;
 
-    const root = document.getElementById("app");
+    const root = document.getElementById("root");
     if (!root || !root.parentNode) return null;
 
     return ReactDOM.createPortal(
         <div
             id='blurDiv'
-            className={`fixed z-[0] inset-0  backdrop-blur bg-black/30 animate-fade 
+            className={`fixed z-[1] inset-0  backdrop-blur bg-black/30 animate-fade 
                 ${className}`}
             onClick={() => setOpen && setOpen(false)}
             style={{}}

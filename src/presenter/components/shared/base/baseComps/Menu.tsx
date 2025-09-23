@@ -10,7 +10,7 @@ interface MenuProps {
     anchorEl?: HTMLElement | null;
     className?: string;
     children: ReactNode;
-    placement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'auto' | 'center-trigger' | 'center' | 'up-bottom-right';
+    placement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'auto' | 'center-trigger' | 'center' | 'up-bottom-right' | 'free';
     onClose?: () => void;
     trigger?: ReactNode;
     closeIcon?: ReactNode;
@@ -18,7 +18,8 @@ interface MenuProps {
     menuRef?: React.RefObject<HTMLDivElement>;
     key: string | number;
     fitMax?: boolean;
-    title?: string
+    title?: string;
+    left?: boolean;
 }
 
 export const Menu: React.FC<MenuProps> = ({
@@ -34,7 +35,8 @@ export const Menu: React.FC<MenuProps> = ({
     menuRef,
     fitMax,
     key,
-    title
+    title,
+    left = false
 }) => {
     const [internalOpen, setInternalOpen] = useState(false);
     const isControlled = controlledOpen;
@@ -47,10 +49,9 @@ export const Menu: React.FC<MenuProps> = ({
 
     // AJOUTÉ : Effet pour trouver la div#app après le premier rendu
     useEffect(() => {
-        // On cherche l'élément #app. Si on ne le trouve pas, on utilise document.body comme solution de repli.
         const rootEl = document.getElementById('app') || document.body;
         setPortalRoot(rootEl);
-    }, []); // Le tableau vide signifie que cet effet ne s'exécute qu'une fois, après le premier rendu.
+    }, []);
 
 
     // Global set to track open menus
@@ -109,14 +110,11 @@ export const Menu: React.FC<MenuProps> = ({
     }, [open, handleClose]);
 
 
-
-
     const triggerRef = useRef<HTMLDivElement>(null);
     const menuCurrent = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const triggerWidth = triggerRef.current?.offsetWidth ?? 44;
     const triggerRect = containerRef.current ? containerRef.current.getBoundingClientRect() : null;
-
     const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
     const [placement, setPlacement] = useState<string | null>(givenPlacement);
 
@@ -135,6 +133,8 @@ export const Menu: React.FC<MenuProps> = ({
             const spaceRight = viewportWidth - triggerRect.right;
             const spaceLeft = triggerRect.left;
 
+            if (placement === 'free') {
+            }
             if ((placement === 'top-left'
                 || placement === 'auto') && (spaceLeft >= menuWidth
                     && (spaceAbove >= menuHeight) && spaceAbove >= 250)) {
@@ -221,10 +221,16 @@ export const Menu: React.FC<MenuProps> = ({
     };
 
     const [visible, setVisible] = useState(false);
+    const [openPortal, setOpenPortal] = useState(open);
 
     useEffect(() => {
         setVisible(false);
     }, []);
+
+    useEffect(() => {
+        if (open) setOpenPortal(true);
+        if (visible && !open) setTimeout(() => setOpenPortal(false), 500);
+    }, [open, visible]);
 
     // MODIFIÉ : Création d'une variable pour le contenu du menu pour plus de clarté
     const menuContent = (
@@ -241,17 +247,17 @@ export const Menu: React.FC<MenuProps> = ({
             className={` ${className || ""} 
             md3-menu md3-elevation 
             ${visible ? "" : "invisible"}
-             ${open ? " md3-menu-enter " : ` md3-menu-leave `} `} >
+            ${left && (!open ? "md3-animation-slide-out-left" : "md3-animation-slide-left")}
+            ${!left && (open ? "md3-menu-enter" : "md3-menu-leave")}
+            `} >
 
             <div className={`
-            ${(open) ? "!z-auto" : " -z-10 "}`}
+            ${(open) ? "!z-auto" : " z-0 "}`}
                 ref={menuCurrent}>
 
-                <div>
-
-
-                    <div className="md3-menu-header flex w-full items-center py-1 px-2 justify-between">
-
+                <div className="md3-menu-list">
+                    <div onClick={handleClose}
+                        className="md3-menu-header flex w-full items-center py-1 px-2 justify-between">
                         {title &&
                             <div className="flex-1 font-medium  -mb-1 p-3 text-[0.95rem] ">
                                 {title}
@@ -267,12 +273,6 @@ export const Menu: React.FC<MenuProps> = ({
                     </div>
 
                     {children}
-                </div>
-
-                <div
-                    // onClick={handleClose}
-                    className={`md3-menu-list overflow-hidden `}>
-
                 </div>
             </div>
         </div>
@@ -298,14 +298,14 @@ export const Menu: React.FC<MenuProps> = ({
                 )}
 
                 {/* MODIFIÉ : On utilise le portail pour afficher le menu */}
-                {open && portalRoot && createPortal(menuContent, portalRoot)}
+                {(openPortal || open) && portalRoot && createPortal(menuContent, portalRoot)}
             </div>
 
             {/* MODIFIÉ : On utilise aussi le portail pour le fond flou */}
-            {open && blurBack && portalRoot && createPortal(
+            {openPortal && blurBack && portalRoot && createPortal(
                 <BackDropBlur
                     key={'backdrop-blur' + key}
-                    open={open}
+                    open={openPortal}
                     setOpen={handleClose}
                     className="z-[1]"
                 />,

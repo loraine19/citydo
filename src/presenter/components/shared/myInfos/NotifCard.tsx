@@ -1,7 +1,7 @@
-import { Card, CardBody, CardFooter, CardHeader } from "@material-tailwind/react";
 import { Icon } from "../../common/IconComp";
 import { NotifView } from "../../../views/viewsEntities/notifViewEntity";
 import Chip from "../../common/adaptatersComps/Chip";
+import { CardMD } from "../base/baseComps/Cards";
 
 
 type notifCardProps = { notif: any, handleClick: (notif: NotifView) => void }
@@ -12,45 +12,41 @@ export function NotifCard(props: notifCardProps) {
 
 
     return (
-        <Card className={`${!read ? 'FixCardNoImage w-resp w-full !flex !flex-col  !justify-start' : 'hidden'}`}>
-            <CardHeader className={"FixCardHeaderNoImage !flex !w-full  !my-0 "} >
-                <div className="ChipDivNoImage w-full ">
-                    <Chip
-                        value={typeS}
-                        className="cyanChip text-ellipsis  " >
-                    </Chip>
-                    <Icon
-                        icon="close"
-                        onClick={() => handleClick(notif)}
-                        color="red"
-                        title="fermer la notification"
-                        size="xl" />
-                </div>
-            </CardHeader>
-            <CardBody className="FixCardBody max-h-max !-mt-3 !py-0">
-                <h6
-                    className=" truncate ">
-                    {notif.title}
-                </h6>
-                <p
-                    className="description">
-                    {notif.description}
-                </p>
-            </CardBody>
-            <CardFooter className="justify-between  !flex !max-h-max items-center !my-0 !py-0  ">
+        <CardMD className={`anim ${!read ? '' : 'hidden'}`}>
+            <CardMD.Chips className="justify-between px-3">
+                <Chip
+                    value={typeS}>
+                </Chip>
+                <Icon
+                    bg reverse fill={true}
+                    icon="close"
+                    onClick={() => handleClick(notif)}
+                    color="error"
+                    title="fermer la notification"
+                    size="sm" />
+            </CardMD.Chips>
+
+            <CardMD.Subhead>
+                {notif.title}
+            </CardMD.Subhead>
+            <CardMD.SupportingText>
+                {notif.description}
+            </CardMD.SupportingText>
+            <CardMD.Footer className="justify-between  ">
                 <i
                     className="font-normal truncate">
                     {update}
                 </i>
                 {notif.link &&
                     <Icon
+                        color='slate'
                         icon="keyboard_arrow_right"
                         link={notif.link}
                         title={`voir les details de ${notif.title}`}
-                        bg clear
+                        bg size='sm'
                         fill />}
-            </CardFooter>
-        </Card>
+            </CardMD.Footer>
+        </CardMD>
 
     );
 }

@@ -273,11 +273,11 @@ export default function ServicesPage() {
                         onScroll();
                         handleHideCallback()
                     }}
-                    className={"Grid" + (compact ? ' GridCompact' : '')}>
+                    className={"Grid " + (compact ? ' GridCompact' : '')}>
 
                     {services.map((service: ServiceView, index: number) => (
 
-                        <div className="SubGrid" key={index}>
+                        <div className={`SubGrid `} key={index}>
                             <ServiceComp
                                 compact={!compact}
                                 key={service?.id}

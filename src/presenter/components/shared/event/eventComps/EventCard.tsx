@@ -39,7 +39,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
             imagePosition={imagePosition}
             variant={variant}
             autoFit={autoFit}
-            className={` min-h-full  `}
+            className={` min-h-full anim `}
             link={`/evenement/${id}`}
             image={
                 <CardMD.Image

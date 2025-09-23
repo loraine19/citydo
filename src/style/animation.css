@@ -5,10 +5,27 @@
     animation: up 2s forwards;
 }
 .anim {
-    @apply duration-1000;
-
+    @apply duration-700;
     animation: up 2s forwards, fadeIn 2s forwards;
 }
+
+.anim-delay-1 {
+    animation-delay: 0.5s;
+}
+.anim-delay-2 {
+    animation-delay: 1s;
+}
+.anim-delay-3 {
+    animation-delay: 2s;
+}
+.anim-delay-4 {
+    animation-delay: 3s;
+}
+.anim-delay-5 {
+    animation-delay: 4s;
+}
+
+/* Ajoutez plus si besoin */
 
 .animRev {
     @apply duration-700;
@@ -73,9 +90,11 @@
 
 @keyframes up {
     from {
+        opacity: 0;
         transform: translateY(100%);
     }
     to {
+        opacity: 1;
         transform: translateY(0);
     }
 }

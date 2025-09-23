@@ -142,8 +142,7 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
             <div id='refDiv'
                 className={`grid ${rowClass[row - 1]} gap-4 w-full rounded-xl h-[100%]  overflow-hidden`}>
                 {(weeks && !loadingEvents && !errorEvents && weeks.length > 0) ? weeks.map((week: any, key: number) => (
-                    <div
-                        key={key}
+                    <div key={key}
                         className={`grid rounded-xl overflow-auto !bg-[var(--md3-surface)] border border-[var(--md3-outline)] ${colClass[col - 1]}`}>
                         {week.map((day: any, index: number) =>
                             <div className={`flex flex-col text-center h-full border-r border-[var(--md3-primary-container)] `}
@@ -156,14 +155,9 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                                         const eventDays = event.days.map((d: any) => new Date(d).toDateString());
                                         const currentDay = new Date(new Date(day.date).getTime()).toDateString();
                                         return (
-
-
-                                            <div
-                                                data-cy='event-handler'
+                                            <div data-cy='event-handler'
                                                 title={'Voir événement' + ' ' + event.title}
-                                                className='w-full grid  '
-
-                                            >
+                                                className='w-full grid ' >
                                                 <Menu
                                                     key={'event-menu' + event.id + indexEvent}
                                                     open={open}

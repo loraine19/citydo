@@ -17,14 +17,8 @@ export const AppFooter: React.FC<AppFooterProps> = ({ mainPage, listPage }) => {
 
     if (navBottom) return (
         <>
-
-            <footer className={`!left-0 z-[0]  -mb-[1px] bottom-0 CTA `}
-                onDragCapture={() => setNavBottom(!navBottom)}
-                onDoubleClick={() => setNavBottom(!navBottom)}
-                onDoubleClickCapture={(e) => {
-                    e.stopPropagation(); e.preventDefault()
-                    setNavBottom(!navBottom)
-                }}>
+            <footer className={`!left-0 -mb-[1px] bottom-0 CTA `}
+                onDrag={() => setNavBottom(!navBottom)}>
                 {((mainPage || listPage) && navBottom) &&
                     <NavLinks placement="bottom" />}
             </footer>

@@ -83,9 +83,8 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                             {notif}
                         </p>
                     </CardMD.Headline>
-                    <CardMD.Subhead className='flex flex-col h-full w-full justify-center overflow-auto   px-12 pb-2 flex-1 '>
+                    <CardMD.Subhead className='flex flex-col h-full w-full justify-center overflow-auto   px-12  pt-2 flex-1 gap-2 '>
                         <Input
-                            variant='filled'
                             sizeInput="xs"
                             type='email'
                             label={"Email"}
@@ -96,7 +95,6 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                             helperText={formik?.errors.email as string ?? ''}
                             data-cy="email-input" />
                         <Input
-                            variant='filled'
                             sizeInput="xs"
                             error={!!formik?.errors.password}
                             label={"Mot de passe"}
@@ -114,7 +112,6 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                         </Input>
                         <div className={!confirm ? "hidden" : "flex flex-1 flex-col w-full"}>
                             <Input
-                                variant='filled'
                                 sizeInput='xs'
                                 error={!!formik?.errors.passwordConfirm}
                                 label={"Confirmer le mot de passe"}
@@ -131,9 +128,10 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                             />
                         </div>
                     </CardMD.Subhead>
-                    <CardMD.Media className="flex flex-1 !py-0">
-                        <div className={`${!checkbox ? 'justify-between  gap-5' : 'justify-between'} flex flex-1 flex-col-reverse gap-2 h-full  w-full  px-4`}>
+                    <CardMD.Media className="flex flex-1 ">
+                        <div className={`${!checkbox ? 'justify-between  gap-5' : 'justify-between'} flex flex-1 flex-col-reverse gap-1 h-full  w-full  px-4`}>
                             <Button
+                                size='medium'
                                 data-cy="submit-button"
                                 type="submit"
                                 variant="filled"
@@ -141,8 +139,8 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 elevating>
                                 {submitText}
                             </Button>
-                            <div className={`${!checkbox ? "hidden" : "flex flex-col flex-1   px-4 "} `}>
-                                <InputError mt error={formik?.errors.checkbox} />
+                            <div className={`${!checkbox ? "hidden" : "flex flex-col flex-1 pt-1  px-4 "} `}>
+                                <InputError error={formik?.errors.checkbox} />
                                 <div className='flex flex-1 w-full items-center justify-between gap-1'>
                                     <Checkbox
                                         size='xl'
@@ -173,7 +171,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                         </div>
                     </CardMD.Media>
                     <CardMD.Footer className="px-8 flex-col items-center justify-center pb-4 gap-1 border-0">
-                        <div className="flex items-center w-full my-2">
+                        <div className="flex items-center w-full my-1">
                             <hr className="flex-grow border-t border-[var(--md3-outlined)]" />
                             <span className="mx-2 opcity-50text-sm">ou</span>
                             <hr className="flex-grow border-t border-[var(--md3-outlined)]" />

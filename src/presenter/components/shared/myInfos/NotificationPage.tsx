@@ -1,6 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import SubHeader from "../../common/appComps/SubHeader";
-import TabsMenu from "../../common/appComps/TabsMenu";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { NotifCard } from "./NotifCard";
 import { TabLabel } from "../../../../domain/entities/frontEntities";
 import { SkeletonGrid } from "../../common/Skeleton";
@@ -12,9 +10,11 @@ import { LoadMoreButton } from "../../common/LoadMoreBtn";
 import { PathElement } from "../../../constants";
 import { ReadAllButton } from "../../common/ReadAllBtn";
 import { useNotificationStore } from "../../../../application/stores/notification.store";
-import NotifDiv from "../../common/NotifDiv";
 import { useUxStore } from "../../../../application/stores/ux.store";
 import { HandleHideParams, HandleScrollParams } from "../../../../application/useCases/utils.useCase";
+import TabsMenu from "../../common/appComps/TabsMenu";
+import DetailsHeadSection from "../base/baseComps/DetailsHeadSection";
+import { useNavStore } from "../../../../application/stores/nav.store";
 
 export default function NotificationPage() {
     const [notifFind, setNotifFind] = useState<string>('');
@@ -92,31 +92,42 @@ export default function NotificationPage() {
     const [hide, setHide] = useState<boolean>(false);
     useEffect(() => { (hide !== hideNavBottom) && setHideNavBottom(hide) }, [hide]);
 
+
+
+    ////FOR APPBAR
+    const { setTabSection } = useNavStore((state) => state);
+
+    const TabSection = useMemo(() => (
+        <div className="grid  overflow-y-hidden overflow-x-auto max-w-[190%]">
+            <TabsMenu
+                labels={notifTabs} />
+        </div>
+    ), [filter]);
+
+    useEffect(() => {
+        setTabSection(TabSection);
+        return () => {
+            setTabSection(null);
+        };
+    }, [TabSection]);
+
+
+
+
+
     return (
 
         <main>
-            <div className="sectionHeader gap-1">
-                <div className="relative justify-center flex pr-4 ">
-                    <div className="justify-center overflow-auto py-1 flex pr-6 rounded-full">
-                        <TabsMenu
-                            labels={notifTabs} />
-                    </div>
-                    <ReadAllButton
-                        update={refetch} />
-                </div>
-                <SubHeader
-                    form
-                    qty={count}
-                    type={"Notifications" + ` ${PathElement[filter as keyof typeof PathElement] ?? ""}`}
-                    closeBtn
-                    link={'/'} />
-
-                {notifFind &&
-                    <NotifDiv
-                        notif={notifFind}
-                        isLoading={isLoading}
-                        refetch={refetch} />}
-            </div>
+            <DetailsHeadSection
+                hidden={hideNavBottom && !isLoading && !error && !notifFind}
+                infosChipValue={"Notifications " + `/ ${PathElement[filter as keyof typeof PathElement] ?? ""}`} notif={notifFind}
+                error={error}
+                isLoading={isLoading}
+                refetch={refetch}
+            >
+                <ReadAllButton
+                    update={refetch} />
+            </DetailsHeadSection>
             {isLoading ?
                 <SkeletonGrid small /> :
                 <section
@@ -125,16 +136,16 @@ export default function NotificationPage() {
                     className="GridSmall ">
                     {
                         notifs?.map((notif: NotifView, index: number) => notif.read === false &&
-                            <div className="SubGrid" key={'div' + index}>
-                                <NotifCard
-                                    key={index}
-                                    notif={notif}
-                                    handleClick={async (notif: NotifView) => {
-                                        readNotif(notif.id)
-                                        setUnReadNotif(count - 1);
-                                        await refetch();
-                                    }} />
-                            </div>)}
+
+                            <NotifCard
+                                key={index}
+                                notif={notif}
+                                handleClick={async (notif: NotifView) => {
+                                    readNotif(notif.id)
+                                    setUnReadNotif(count - 1);
+                                    await refetch();
+                                }} />
+                        )}
                     <LoadMoreButton
                         isBottom={isBottom}
                         hasNextPage={hasNextPage}

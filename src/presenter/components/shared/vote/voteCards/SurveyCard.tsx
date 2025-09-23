@@ -47,7 +47,7 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
 
             <CardMD
                 autoFit={autoFit}
-                className="min-h-full"
+                className="min-h-full anim"
                 imagePosition="top"
                 link={`/sondage/${survey?.id}`}
                 image={

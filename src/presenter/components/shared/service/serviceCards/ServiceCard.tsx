@@ -72,7 +72,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
     return (
         <CardMD
             autoFit={!compact}
-            className={`min-h-full ${compact ? '' : ''} `}
+            className={`min-h-full anim ${compact ? '' : ''} `}
             imagePosition="top"
             link={`/service/${id}`}
             image={
@@ -91,7 +91,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
             }>
 
 
-            <CardMD.Chips>
+            <CardMD.Chips className="overflow-x-auto ">
 
                 <Chip
                     onClick={() => {

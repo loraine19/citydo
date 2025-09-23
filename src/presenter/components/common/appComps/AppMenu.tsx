@@ -50,25 +50,18 @@ const AppMenu: React.FC<AppMenuProps> = ({
     const showAppName = !hideNavBottom || !listPage
     const roundedStyle = !showAppName
 
+
     ///// RETURN COMPONENT
 
     return (
         <div className={` md3-button-primary md3-button-tonal rounded-full !min-w-max flex items-center md3-elevation-0 
             ${roundedStyle ? " p-2.5 md:pl-4 max-h-max " : " md:px-3 md:py-1 p-2.5 "}`}>
             <Menu
-                key="profile-menu"
-                closeIcon={
-                    <Icon
-                        icon="close"
-                        bg
-                        style="self-start"
-                        color="slate"
-                        size="sm"
-                    />
-                }
-                className="px-4 py-2 !z-[9999999] max-h-[calc(100dvh_-_0.5rem)] overflow-auto -mt-4 ml-1 lg:ml-[calc((50dvw_-_450px)/2)]"
                 blurBack
-                placement="up-bottom-right"
+                left
+                key="profile-menu"
+                className={`rounded-l-none !absolute !top-0 !left-0 px-4 py-2 !z-[9999999] h-[100dvh]  overflow-auto  !min-w-[70vw]"`}
+                placement="free"
                 trigger={
                     <div className="flex items-center ">
                         <div className={`h-full justify-center max-w-max grid items-center !p-0`}>
@@ -106,8 +99,8 @@ const AppMenu: React.FC<AppMenuProps> = ({
                     leadingIcon={
                         <div>
                             <AvatarUser
-                                style="!shadow-none"
-                                avatarSize="xl"
+                                style="!shadow-none "
+                                avatarSize="2xl"
                                 Profile={user?.Profile}
                             />
                         </div>
@@ -133,7 +126,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                                 disabled={!item.onClick}
                                 bg
                                 fill
-                                size="lg"
+                                size="xl"
                                 color={item.color ?? color}
                                 icon={item.icon as IconName}
                             />

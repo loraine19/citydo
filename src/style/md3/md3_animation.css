@@ -1,127 +1,147 @@
-/*
-  Animations de Material Design 3
-  Utilise les variables CSS pour la personnalisation
-*/
-
-/* --- Variables de base pour les animations --- */
+/* --- Variables de base --- */
 :root {
-    --md3-anim-duration-short: 150ms;
-    --md3-anim-duration-medium: 250ms;
-    --md3-anim-duration-long: 400ms;
-
-    /* Fonctions de timing pour un mouvement naturel */
-    --md3-anim-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+    --md3-anim-duration-short: 2s;
+    --md3-anim-duration-medium: 4s;
     --md3-anim-easing-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
     --md3-anim-easing-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
-    --md3-anim-easing-sharp: cubic-bezier(0.4, 0, 0.6, 1);
 }
 
 /* ------------------------------------------- */
-/* --- 1. Ondulation (Ripple) et survol --- */
+/* --- Glissement (Slide) - LOGIQUE CORRIGÉE --- */
 /* ------------------------------------------- */
 
-/* L'effet d'ondulation (ripple) au clic */
-/* Utilisé pour: Button, Segmented Button, List Item, Card, etc. */
-.md3-animation-ripple {
-    animation: md3-ripple var(--md3-anim-duration-medium)
-        var(--md3-anim-easing-standard) forwards;
-}
-
-@keyframes md3-ripple {
-    0% {
-        opacity: 0.1;
-        transform: translate(-50%, -50%) scale(0.1);
-    }
-    100% {
-        opacity: 0.25;
-        transform: translate(-50%, -50%) scale(1.2);
-    }
-}
-
-/* ------------------------------------------- */
-/* --- 2. Fondu (Fade) --- */
-/* ------------------------------------------- */
-
-/* Fondu simple pour l'apparition ou la disparition d'un élément */
-/* Utilisé pour: Menu, Tooltip, Dialog, etc. */
-.md3-animation-fade-in {
-    animation: md3-fade-in var(--md3-anim-duration-medium)
-        var(--md3-anim-easing-standard);
-}
-
-@keyframes md3-fade-in {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.md3-animation-fade-out {
-    animation: md3-fade-out var(--md3-anim-duration-medium)
-        var(--md3-anim-easing-standard);
-}
-
-@keyframes md3-fade-out {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
-}
-
-/* ------------------------------------------- */
-/* --- 3. Glissement (Slide) --- */
-/* ------------------------------------------- */
-
-/* Glissement de la droite vers la gauche (pour les notifications, les menus) */
-/* Utilisé pour: Bottom Sheet, Side Sheet, SnackBar, etc. */
+/* Arrive DEPUIS LA GAUCHE */
 .md3-animation-slide-left {
-    animation: md3-slide-left var(--md3-anim-duration-long)
-        var(--md3-anim-easing-decelerate);
+    animation: slide-in-from-left var(--md3-anim-duration-medium)
+        var(--md3-anim-easing-decelerate) forwards;
 }
-
-@keyframes md3-slide-left {
-    from {
-        transform: translateX(100%);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-/* Glissement de la gauche vers la droite */
-/* Utilisé pour: Side Sheet, Carousel (transition) */
-.md3-animation-slide-right {
-    animation: md3-slide-right var(--md3-anim-duration-long)
-        var(--md3-anim-easing-decelerate);
-}
-
-@keyframes md3-slide-right {
+@keyframes slide-in-from-left {
     from {
         transform: translateX(-100%);
+        opacity: 0;
     }
     to {
         transform: translateX(0);
+        opacity: 1;
+    }
+}
+/* Sort VERS LA GAUCHE */
+.md3-animation-slide-out-left {
+    animation: slide-out-to-left var(--md3-anim-duration-short)
+        var(--md3-anim-easing-accelerate) forwards;
+}
+@keyframes slide-out-to-left {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
     }
 }
 
-/* ------------------------------------------- */
-/* --- 4. Mise à l'échelle (Scale) --- */
-/* ------------------------------------------- */
-
-/* Apparition en zoomant depuis le centre (pour les boîtes de dialogue) */
-/* Utilisé pour: Dialog, Fab (quand il s'agrandit pour devenir un menu) */
-.md3-animation-scale-in {
-    @apply duration-700;
-    animation: md3-scale-in 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+/* Arrive DEPUIS LA DROITE */
+.md3-animation-slide-right {
+    animation: slide-in-from-right var(--md3-anim-duration-medium)
+        var(--md3-anim-easing-decelerate) forwards;
+}
+@keyframes slide-in-from-right {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+/* Sort VERS LA DROITE */
+.md3-animation-slide-out-right {
+    animation: slide-out-to-right var(--md3-anim-duration-short)
+        var(--md3-anim-easing-accelerate) forwards;
+}
+@keyframes slide-out-to-right {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
 }
 
+/* Arrive DEPUIS LE BAS */
+.md3-animation-slide-up {
+    animation: slide-in-from-bottom var(--md3-anim-duration-medium)
+        var(--md3-anim-easing-decelerate) forwards;
+}
+@keyframes slide-in-from-bottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+/* Sort VERS LE BAS */
+.md3-animation-slide-out-down {
+    animation: slide-out-to-bottom var(--md3-anim-duration-short)
+        var(--md3-anim-easing-accelerate) forwards;
+}
+@keyframes slide-out-to-bottom {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+/* Arrive DEPUIS LE HAUT */
+.md3-animation-slide-down {
+    animation: slide-in-from-top var(--md3-anim-duration-medium)
+        var(--md3-anim-easing-decelerate) forwards;
+}
+@keyframes slide-in-from-top {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+/* Sort VERS LE HAUT */
+.md3-animation-slide-out-up {
+    animation: slide-out-to-top var(--md3-anim-duration-short)
+        var(--md3-anim-easing-accelerate) forwards;
+}
+@keyframes slide-out-to-top {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+/* --- Autres animations --- */
+.md3-animation-scale-in {
+    animation: md3-scale-in var(--md3-anim-duration-medium)
+        var(--md3-anim-easing-decelerate) forwards;
+}
 @keyframes md3-scale-in {
     from {
-        transform: scale(0.95);
+        transform: scale(0.8);
         opacity: 0;
     }
     to {
@@ -130,64 +150,17 @@
     }
 }
 
-/* Disparition en dézoomant vers le centre */
-/* Utilisé pour: Dialog, Fab (quand il se rétracte) */
 .md3-animation-scale-out {
     animation: md3-scale-out var(--md3-anim-duration-short)
-        var(--md3-anim-easing-accelerate);
+        var(--md3-anim-easing-accelerate) forwards;
 }
-
 @keyframes md3-scale-out {
     from {
         transform: scale(1);
         opacity: 1;
     }
     to {
-        transform: scale(0.95);
+        transform: scale(0.8);
         opacity: 0;
-    }
-}
-
-/* ------------------------------------------- */
-/* --- 5. Rotation et Mouvement de l'icône --- */
-/* ------------------------------------------- */
-
-/* Rotation simple d'une icône (ex: fermer/ouvrir un menu) */
-/* Utilisé pour: Boutons, Icônes de menu, FAB Menu */
-.md3-animation-rotate {
-    transition: transform var(--md3-anim-duration-medium)
-        var(--md3-anim-easing-standard);
-}
-
-.md3-animation-rotate-90 {
-    transform: rotate(90deg);
-}
-
-.md3-animation-rotate-180 {
-    transform: rotate(180deg);
-}
-
-/* ------------------------------------------- */
-/* --- 6. Mouvement de l'indicateur --- */
-/* ------------------------------------------- */
-
-/* Mouvement de l'indicateur actif dans une liste ou un carrousel */
-/* Utilisé pour: Segmented Button, Caroussel, Tabs */
-.md3-animation-indicator {
-    transition: transform var(--md3-anim-duration-short)
-        var(--md3-anim-easing-standard);
-}
-.md3-pop-icon-animation {
-    animation: pop 0.3s ease-out;
-}
-@keyframes pop {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.5);
-    }
-    100% {
-        transform: scale(1);
     }
 }

@@ -6,15 +6,18 @@
 /* Input sizes */
 .md3-input-size-xs .md3-input-container,
 .md3-input-size-xs .md3-input-element {
-    min-height: 2rem;
-    font-size: 0.9rem;
-    padding: var(--md3-spacing-small) var(--md3-spacing-small);
+    min-height: 1.9rem;
+    font-size: 0.7rem;
+    padding: 6px var(--md3-spacing-small);
+    &::placeholder {
+        font-size: 0.7rem;
+    }
 }
 
 .md3-input-size-sm .md3-input-container,
 .md3-input-size-sm .md3-input-element {
     min-height: 2.5rem;
-    font-size: 0.1rem;
+    font-size: 0.9rem;
     padding: var(--md3-spacing-small) var(--md3-spacing-medium);
 }
 

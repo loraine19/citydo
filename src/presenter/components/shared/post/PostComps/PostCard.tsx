@@ -17,14 +17,14 @@ type PostCardProps = { post: PostView, mines?: boolean, change: (e: any) => void
 
 export default function PostCard({ post: initialPost, mines, change, update, short, autoFit }: PostCardProps) {
     const [post, setPost] = useState<PostView>(initialPost);
-    const { id, title, description, image, categoryS, createdAt, Likes, User, flagged, ILike, toogleLike } = post ?? {} as PostView;
+    const { id, title, description, image, categoryS, createdAt, Likes, User, flagged, toogleLike } = post ?? {} as PostView;
     const deletePost = async (id: number) => await DI.resolve('deletePostUseCase').execute(id)
     const myActions: Action[] = GenereMyActions(post, "annonce", deletePost)
 
     return (
         <CardMD
             autoFit={autoFit}
-            className="min-h-full"
+            className="min-h-full anim"
             imagePosition="top"
             link={`/annonce/${id}`}
             image={
@@ -86,16 +86,16 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                     size='small'
                     onClick={async () => {
                         setPost(await toogleLike());
-                        post.ILike = !post.ILike
+                        post.ILike = !post?.ILike
                     }}
-                    variant={ILike ? "filled" : "tonal"}
+                    variant={post?.ILike ? "filled" : "tonal"}
                     color="rose"
                     iconPosition="end"
                     icon={{
                         style: '-mt-[1px]',
                         icon: 'favorite',
-                        fill: post.ILike,
-                        title: post.ILike ? "retirer de mes favoris" : "j'aime"
+                        fill: post?.ILike,
+                        title: post?.ILike ? "retirer de mes favoris" : "j'aime"
                     }}>
                     {Likes?.length}
 

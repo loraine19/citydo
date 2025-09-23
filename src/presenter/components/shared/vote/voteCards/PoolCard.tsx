@@ -49,7 +49,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
         <>
             <CardMD
                 autoFit
-                className="min-h-full"
+                className="min-h-full anim"
                 imagePosition="top"
                 link={`/cagnotte/${pool?.id}`}
             >

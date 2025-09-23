@@ -26,7 +26,13 @@ const MD3DemoPage: React.FC = () => {
     const [buttonValue, setButtonValue] = useState('1');
     const [openBlur, setOpenBlur] = useState(false);
     const [navValue, setNavValue] = useState('Accueil');
+    const [animationKey, setAnimationKey] = useState(0);
+    const [animationClass, setAnimationClass] = useState('');
 
+    const handleAnimate = (className: string) => {
+        setAnimationClass(className);
+        setAnimationKey(prevKey => prevKey + 1);
+    };
 
 
     return (
@@ -587,6 +593,39 @@ const MD3DemoPage: React.FC = () => {
             <CardExample />
             <InputDemo />
             <ButtonsDemo />
+            <div style={{ padding: '2rem', textAlign: 'center', fontFamily: 'sans-serif', border: '1px solid #ddd', borderRadius: '12px', maxWidth: '800px', margin: 'auto' }}>
+                <h2>Testeur d'Animations Logiques</h2>
+
+                <div style={{ margin: '2rem auto', width: '250px', height: '150px', border: '1px solid #eee', overflow: 'hidden', position: 'relative' }}>
+                    <div
+                        key={animationKey}
+                        className={animationClass}
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            background: 'linear-gradient(135deg, #6e8efb, #a777e3)',
+                            color: 'white',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontSize: '1.2rem'
+                        }}
+                    >
+                        Cible
+                    </div>
+                </div>
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
+                    <button onClick={() => handleAnimate('md3-animation-slide-left')}>Slide In (from LEFT)</button>
+                    <button onClick={() => handleAnimate('md3-animation-slide-out-left')}>Slide Out (to LEFT)</button>
+                    <button onClick={() => handleAnimate('md3-animation-slide-right')}>Slide In (from RIGHT)</button>
+                    <button onClick={() => handleAnimate('md3-animation-slide-out-right')}>Slide Out (to RIGHT)</button>
+                    <button onClick={() => handleAnimate('md3-animation-slide-up')}>Slide In (from BOTTOM)</button>
+                    <button onClick={() => handleAnimate('md3-animation-slide-out-down')}>Slide Out (to BOTTOM)</button>
+                    <button onClick={() => handleAnimate('md3-animation-slide-down')}>Slide In (from TOP)</button>
+                    <button onClick={() => handleAnimate('md3-animation-slide-out-up')}>Slide Out (to TOP)</button>
+                </div>
+            </div>
         </div >
     );
 };
