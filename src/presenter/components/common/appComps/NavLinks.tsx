@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+‹import { useLocation, useNavigate } from 'react-router-dom';
 import { Icon, IconName } from "../IconComp";
 import { useUxStore } from "../../../../application/stores/ux.store";
 import { Fab, FabMenu } from "../../shared/base/baseComps/Fabs";
@@ -14,7 +14,7 @@ interface NavBarProps {
     color?: string;
 }
 
-export const NavLinks: React.FC<NavBarProps> = ({ listPage, placement, mainPage }) => {
+export const NavLinks: React.FC<NavBarProps> = ({ listPage=true, placement, mainPage = true}) = 
     const location = useLocation()
     const type = new URLSearchParams(location.pathname.split("/")[1]).toString().replace("=", '');
     const { setColor, color, hideNavBottom } = useUxStore((state) => state);
