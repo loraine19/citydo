@@ -122,7 +122,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                                     ${msg.isDeleted ? 'italic opacity-50' : ''} 
                                     ${msg.IWrite ?
                                         'md3-cyan-container !text-right justify-end rounded-s-[1.5rem] rounded-tr-[1.5rem] !ml-[28%] ' :
-                                        'md3-primary-container rounded-ss-[1.5rem] rounded-r-[1.5rem] !mr-[28%]'}`}>
+                                        'md3-surface rounded-ss-[1.5rem] rounded-r-[1.5rem] !mr-[28%]'}`}>
                                     <div className='text-xs font-light items-center flex flex-row-reverse justify-between'>
                                         {msg.formatedDate}
                                         {(msg.IWrite && !msg.isDeleted) &&

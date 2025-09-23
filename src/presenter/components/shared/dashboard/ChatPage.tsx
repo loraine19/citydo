@@ -141,7 +141,7 @@ export default function ChatPage() {
 
 
     //// TO NAV BAR
-    const { setDetailSection } = useNavStore((state) => state);
+    const { setSearchSection } = useNavStore((state) => state);
 
     const SearchSection = useMemo(() => (
         <FormHeadSection
@@ -172,9 +172,9 @@ export default function ChatPage() {
     ), [isLoading, open,]);
 
     useEffect(() => {
-        setDetailSection(SearchSection);
+        setSearchSection(SearchSection);
         return () => {
-            setDetailSection(undefined);
+            setSearchSection(undefined);
         }
     }, [SearchSection, isLoading, open]);
 

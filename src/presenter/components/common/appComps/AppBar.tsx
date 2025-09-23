@@ -5,7 +5,7 @@ import { NavLinks } from "./NavLinks";
 import AppMenu from "./AppMenu";
 import { useNavStore } from "../../../../application/stores/nav.store";
 
-export default function AppBar({ mainPage, listPage, detailPage }: { mainPage?: boolean, listPage?: boolean, detailPage?: boolean, }) {
+export default function AppBar({ mainPage, listPage, detailPage, singlePage }: { mainPage?: boolean, listPage?: boolean, detailPage?: boolean, singlePage?: boolean }) {
     const { hideNavBottom, setHideNavBottom, navBottom, getColor, } = useUxStore((state) => state);
     const { searchSection, tabSection, detailSection } = useNavStore((state) => state)
 
@@ -28,11 +28,11 @@ export default function AppBar({ mainPage, listPage, detailPage }: { mainPage?: 
 
 
                     {/* PROFILE MENU  */}
-                    {!detailPage && <AppMenu listPage={listPage} />}
+                    {!detailPage && <AppMenu listPage={listPage || singlePage} />}
 
 
                     {/* INSERTION NAVLINK TOP  */}
-                    {(mainPage || listPage) && !navBottom && !hideNavBottom && (
+                    {(mainPage || listPage || singlePage) && !navBottom && !hideNavBottom && (
                         <NavLinks listPage={listPage} placement="top" />
                     )}
 
@@ -43,7 +43,7 @@ export default function AppBar({ mainPage, listPage, detailPage }: { mainPage?: 
 
                     {/* NOTIF BAGDES  */}
                     <div className={`flex h-full  items-center
-                    ${hideNavBottom || detailPage ? 'hidden' : ''} 
+                    ${hideNavBottom || detailPage || singlePage ? 'hidden' : ''} 
                     ${navBottom ? ' w-max' : ''}`} >
                         <NotifBadge />
                     </div>

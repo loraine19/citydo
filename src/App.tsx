@@ -89,7 +89,6 @@ function App() {
                             <Route path="/" element={<PrivateRoute />}>
                                 <Route path="/myprofile" element={<MyInfosPage />} />
 
-
                                 {/* Pages with top navigation */}
                                 <Route element={<ConfigPage detailPage />}>
 
@@ -107,16 +106,6 @@ function App() {
                                     <Route path="/annonce/edit/:id" element={<PostEditPage />} />
                                     <Route path="/vote/:target/edit/:id" element={<VoteEditPage />} />
                                     <Route path="/flag/:target/:id" element={<FlagCreatePage />} />
-
-                                    {/* SINGLE PAGE  */}
-                                    <Route path="/reglement" element={<RulesPage />} />
-                                    <Route path="/msg" element={<DashboardPage />} />
-                                    <Route path="/base/create" element={<BaseCreatePage />} />
-                                    <Route path="/base/edit/:id" element={<BaseEditPage />} />
-                                    <Route path="/chat" element={<ChatPage />} />
-                                    <Route path="/notification" element={<NotificationPage />} />
-
-
                                     {/* DETAILS PAGES */}
                                     <Route path="/service/:id" element={<ServiceDetailPage />} />
                                     <Route path="/cagnotte/:id" element={<PoolDetailPage />} />
@@ -128,6 +117,20 @@ function App() {
                                     <Route path="/sondage/:id" element={<SurveyDetailPage />} />
                                     <Route path="/base/:id" element={<BaseDetailPage />} />
                                 </Route>
+
+                                {/* Pages with top navigation */}
+                                <Route element={<ConfigPage singlePage />}>
+                                    {/* SINGLE PAGE  */}
+                                    <Route path="/reglement" element={<RulesPage />} />
+                                    <Route path="/msg" element={<DashboardPage />} />
+                                    <Route path="/base/create" element={<BaseCreatePage />} />
+                                    <Route path="/base/edit/:id" element={<BaseEditPage />} />
+                                    <Route path="/chat" element={<ChatPage />} />
+                                    <Route path="/notification" element={<NotificationPage />} />
+                                </Route>
+
+
+
 
                                 {/* DASHBOARD */}
                                 <Route element={<ConfigPage mainPage />}>

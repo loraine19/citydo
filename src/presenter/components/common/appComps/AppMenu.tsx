@@ -58,14 +58,14 @@ const AppMenu: React.FC<AppMenuProps> = ({
                 }
                 className="px-4 py-2 !z-[9999999] max-h-[calc(100dvh_-_0.5rem)] overflow-auto -mt-4 ml-1 lg:ml-[calc((50dvw_-_450px)/2)]"
                 blurBack
-                placement="bottom-right"
+                placement="up-bottom-right"
                 trigger={
                     <div className="flex items-center">
                         <div className={`h-full justify-center max-w-max grid items-center !p-0`}>
                             {!hideNavBottom ?
-                                <div className="flex w-[2rem] flex-1 items-center">
+                                <div className="flex w-[2.2rem] flex-1 items-center">
                                     <img
-                                        className="!w-[2rem] !h-[2rem] object-cover object-center"
+                                        className="!w-[2.2rem] !h-[2.2rem] object-cover object-center"
                                         src="/image/logo.svg"
                                         alt="logo"
                                     />
@@ -108,7 +108,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                         <span className="font-semibold ">
                             {user?.Profile?.firstName} {user?.Profile?.lastName}
                         </span>
-                        <i className="text-xs text-slate-500">{user?.email}</i>
+                        <i className="text-xs opacity-70">{user?.email}</i>
                     </div>
                 </MenuItem>
                 {/* LIST ITEM */}
