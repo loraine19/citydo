@@ -91,7 +91,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                             label={"Email"}
                             name="email"
                             onChange={formik.handleChange}
-                            value={formik.values.email}
+                            value={formik?.values?.email}
                             error={!!formik?.errors.email}
                             helperText={formik?.errors.email as string ?? ''}
                             data-cy="email-input" />
@@ -104,7 +104,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                             onChange={formik.handleChange}
                             type={passWordInput.value}
                             data-cy="password-input"
-                            value={formik.values.password}
+                            value={formik?.values?.password}
                             helperText={formik?.errors.password as string ?? ''}
                             trailingIcon={
                                 <Icon
@@ -170,14 +170,18 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                     </Menu>
                                 </div>
                             </div>
-
                         </div>
                     </CardMD.Media>
-                    <CardMD.Footer className="px-8 flex-col items-center justify-center  pb-4 gap-1 border-0">
+                    <CardMD.Footer className="px-8 flex-col items-center justify-center pb-4 gap-1 border-0">
+                        <div className="flex items-center w-full my-2">
+                            <hr className="flex-grow border-t border-[var(--md3-outlined)]" />
+                            <span className="mx-2 opcity-50text-sm">ou</span>
+                            <hr className="flex-grow border-t border-[var(--md3-outlined)]" />
+                        </div>
                         <Button
                             type='button'
-                            variant='outlined'
-                            className="flex w-full"
+                            variant='tonal'
+                            className="flex w-full relative"
                             onClick={async () => {
                                 setIsLoggedIn(true)
                                 await googleAuth()
@@ -185,13 +189,14 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                         >
                             <img
                                 src="image/google.svg"
-                                alt="metamask"
+                                alt="google"
                                 className="h-6 w-6 absolute left-3" />
-                            <div className='pl-8'>{submitText} avec Google &nbsp;</div>
+                            <div className='pl-8'>{submitText} avec Google&nbsp;</div>
                         </Button>
                     </CardMD.Footer>
+
                 </CardMD>
-            </div>
-        </form>
+            </div >
+        </form >
     )
 }

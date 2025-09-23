@@ -9,6 +9,7 @@ import { useNavigate } from "react-router";
 type AppMenuProps = {
     listPage?: boolean;
     singlePage?: boolean;
+
 };
 
 const AppMenu: React.FC<AppMenuProps> = ({
@@ -44,15 +45,16 @@ const AppMenu: React.FC<AppMenuProps> = ({
 
     if (!listPage || hideNavBottom) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate", divider: 'none', style: 'rounded-none' })
 
-    const roundedStyle = listPage && !navBottom || singlePage
+
     const menuIcon = hideNavBottom || singlePage
     const showAppName = !hideNavBottom || !listPage
+    const roundedStyle = !showAppName
 
     ///// RETURN COMPONENT
 
     return (
         <div className={` md3-button-primary md3-button-tonal rounded-full !min-w-max flex items-center md3-elevation-0 
-            ${roundedStyle ? " p-2.5 md:pl-4 max-h-max " : " px-3 py-1 "}`}>
+            ${roundedStyle ? " p-2.5 md:pl-4 max-h-max " : " md:px-3 md:py-1 p-2.5 "}`}>
             <Menu
                 key="profile-menu"
                 closeIcon={
@@ -84,10 +86,11 @@ const AppMenu: React.FC<AppMenuProps> = ({
                                 />}
                         </div>
                         {showAppName && (
-                            <h1 className={`${!navBottom && listPage
-                                ? "lg:flex"
-                                : "sm:flex  "
-                                } hidden items-center h-full pb-1 px-2 !font-quicksand !text-[1.5rem] font-[600]`}>
+                            <h1 className={`
+                                ${listPage
+                                    ? "lg:flex hidden"
+                                    : "sm:flex"
+                                }  items-center h-full pb-1 px-2 !font-quicksand !text-[1.5rem] font-[600]`}>
                                 City'do
                             </h1>
 

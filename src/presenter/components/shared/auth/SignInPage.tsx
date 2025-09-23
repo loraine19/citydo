@@ -5,10 +5,10 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
 import { AuthForm } from './auth.Comps/AuthForm';
 import { AuthHeader } from './auth.Comps/AuthHeader';
-import { Typography, Button } from '@material-tailwind/react';
 import DI from '../../../../di/ioc';
 import { useUserStore } from '../../../../application/stores/user.store';
 import { AccessDTO, VerifyDTO } from '../../../../infrastructure/DTOs/AuthDTO';
+import { Button } from '../base/baseComps/Buttons';
 
 export default function SignInPage() {
     const [searchParams] = useSearchParams();
@@ -94,17 +94,19 @@ export default function SignInPage() {
             />
             <footer className=" !static flex flex-col items-center gap-1 justify-center  pb-[3rem] pt-[1rem] ">
                 <Link to="/motdepasse_oublie">
-                    <Typography
-                        className="text pb-4 nowrap text-center underline underline-offset-8 ">
+                    <p
+                        className="text pb-4 md3-card-subhead nowrap text-center underline underline-offset-8 ">
                         Mot de pass oublié
-                    </Typography>
+                    </p>
                 </Link>
-                <i className="flex !text-slate-900 justify-center">
+                <i className="flex opacity-90  justify-center">
                     Pas encore de compte ?
                 </i>
                 <Link to="/signup">
                     <Button
-                        className="btn slateChip">
+                        color='slate'
+                        type="button"
+                        variant="outlined">
                         inscrivez-vous
                     </Button>
                 </Link>

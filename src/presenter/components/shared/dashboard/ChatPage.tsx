@@ -154,9 +154,9 @@ export default function ChatPage() {
             {open &&
                 <Icon
                     bg
-                    style='shadow-md absolute z-[999] -bottom-[4.5rem] !right-2 animSlide'
+                    style='absolute z-[999] -bottom-[3.8rem] !right-4 animSlide'
                     color={'slate'}
-                    size='2xl'
+                    size='lg'
                     icon='close'
                     title='fermer'
                     onClick={() => {

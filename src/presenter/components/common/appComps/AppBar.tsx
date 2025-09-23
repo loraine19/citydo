@@ -25,7 +25,7 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage }: {
 
                 {/* CONTAINER */}
                 <div id='AppBar'
-                    className={`px-1 gap-2 ${!detailPage && !singlePage && 'pt-3'} flex lg:px-0 slide justify-between items-center`} >
+                    className={`px-1 gap-2 ${!detailPage && !singlePage ? 'pt-3' : 'pt-1'} flex lg:px-0 slide justify-between items-center`} >
 
 
                     {/* PROFILE MENU  */}
@@ -37,7 +37,7 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage }: {
 
                     {/* INSERTION NAVLINK TOP  */}
                     {(mainPage || listPage || singlePage) && !navBottom && !hideNavBottom && (
-                        <NavLinks listPage={listPage} placement="top" />
+                        <NavLinks listPage={listPage} mainPage={mainPage} placement="top" />
                     )}
 
                     {/* INSERTION SEARCH BAR */}

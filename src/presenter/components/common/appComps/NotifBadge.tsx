@@ -1,4 +1,3 @@
-import { MenuItem, Dialog, Card } from "@material-tailwind/react"
 import { Icon, IconName } from "../IconComp"
 import { NotifView } from "../../../views/viewsEntities/notifViewEntity";
 import { useNavigate } from "react-router";
@@ -10,11 +9,12 @@ import Chip from "../adaptatersComps/Chip";
 import NotifDiv from "../NotifDiv";
 import { useUxStore } from "../../../../application/stores/ux.store";
 import { Md3Colors } from "../../shared/base/baseComps/Buttons";
+import { Menu, MenuItem } from "../../shared/base/baseComps/Menu";
 
 export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
-    const notifViewModelFactory = DI.resolve('notifViewModel');
     const readNotif = async (id: number) => await DI.resolve('readNotifUseCase').execute(id);
-    const { isLoading, refetch, fetchNextPage, hasNextPage, countMsg, countOther, notifsMsg, notifsOther, error } = notifViewModelFactory()
+    const notifViewModelFactory = DI.resolve('notifViewModel');
+    const { notifsMsg, notifsOther, refetch, countMsg, countOther, fetchNextPage, hasNextPage, isLoading, error } = notifViewModelFactory();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate()
 
@@ -51,7 +51,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
 
 
     return (
-        <div className={` pb-0.5 pl-2  md:gap-3  flex  items-center `}>
+        <div className={` pb-0.5  gap-4  flex  items-center `}>
             {badgeMap.map((list: NotifBadgeProps, index: number) =>
                 <div key={index}
                     className={`relative w-full flex items-center justify-center ${onBoard ? 'lg:hidden' : ''}`}>
@@ -65,81 +65,84 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                         size={navBottom ? '2xl' : '2xl'}
                         title={'ouvrir la page'} />
 
-                    <Dialog >
-                        <Dialog.Trigger
-                            className={` ${list.count > 0 ? '' : 'invisible'} 
-                            ${navBottom ? '-ml-3 pr-2' : '-ml-4 pr-0.5 '} h-max w-full -mt-6  relative  flex`}>
-                            <Icon
-                                title={'ouvrir le popup'}
-                                style={(' border-[5px] !border-current') + ' !font-semibold scale-[0.8] !pt-[1px]'}
-                                bg
-                                reverse
-                                // icon={list.count >= 99 ? '⁺99 ' :
-                                //     (list.count ? list.count.toString() : '0')}
-                                textIcon=''
-                                color={list.color}
-                                fill={!navBottom}
-                                size={'xs'} />
-                        </Dialog.Trigger>
-                        <Dialog.Content className="h-[calc(100dvh-8rem)] top-[calc(50vh-1rem)] !w-screen mx-auto flex-1 backdropBlur !bg-transparent border-none px-4 !flex">
+                    <Menu
+                        title="Notifications"
+                        key='notif-menu'
+                        className={` min-h-[12rem] max-h-[80vh] overflow-y-auto  w-respLarge max-w-[80vw] `}
+                        trigger={<Icon
+                            title={'ouvrir le popup'}
+                            fill
+                            style='absolute -top-2 -right-2 !bg-[var(--md3-primary-container)] rounded-full !p-[0.5px]'
+                            reverse
+                            icon='fiber_manual_record'
+                            color={list.color}
+                            size={'md'} />}>
 
-                            <Card className="wRespXL bg-slate-50 overflow-hidden w-full h-full !flex card p-8 ">
-                                <div className="flex flex-1 py-4 w-full h-full"
-                                    id='notifList'
-                                    key={index + '1'}
-                                    ref={divRef}>
-                                    <div onScroll={handleScroll}
-                                        className="relative overflow-auto !border-none hover:!border-none flex flex-1 divide-y !divide-slate-300 p-4 w-full h-full flex-col">
-                                        {(error || !list.notifs) && <NotifDiv
-                                            isLoading={isLoading}
-                                            refetch={refetch}
-                                            notif={error ?? "Aucune notification"} />}
-                                        {list.notifs.map((notif: NotifView, index2: number) => notif?.read === false &&
-                                            <MenuItem className="flex flex-col  flex-1  "
-                                                key={index2 + list.color}>
-                                                <div className="flex w-full py-1 gap-4">
-                                                    <Chip
-                                                        value={notif.typeS}
-                                                        color={`${list.color}` as Md3Colors}>
-                                                    </Chip>
-                                                    <Chip
-                                                        value={notif.update}>
-                                                    </Chip>
-                                                </div>
-                                                <div className="flex items-center w-full justify-between gap-1 pt-1">
-                                                    <i className="max-w-[calc(100%-2rem)] truncate">
-                                                        {notif.description}
-                                                    </i>
-                                                    {notif.link &&
-                                                        <Icon
-                                                            style={'-mt-6'}
-                                                            icon="keyboard_arrow_right"
-                                                            fill
-                                                            onClick={
-                                                                async () => {
-                                                                    await readNotif(notif.id);
-                                                                    await refetch();
-                                                                    setUnReadNotif(list.notifs.length - 1);
-                                                                    notif.link && navigate(notif.link)
-                                                                }}
-                                                            size="2xl"
-                                                        />}
-                                                </div>
-                                            </MenuItem>)}
-                                    </div>
-                                    <LoadMoreButton
-                                        color={list.color}
-                                        style="-mb-3"
+                        {/* <div className="flex flex-1 py-4 w-full h-full"
+                            id='notifList'
+                            key={index + '1'}
+                            ref={divRef}>
+                            <div onScroll={handleScroll}
+                                className="relative overflow-auto !border-none hover:!border-none flex flex-1 divide-y !divide-slate-300 p-4 w-full h-full flex-col">*/}
+                        {(error || list.notifs.length === 0) &&
+
+
+                            <NotifDiv
+                                className="!relative"
+                                isLoading={isLoading}
+                                refetch={refetch}
+                                notif={error ?? "Aucune notification"} />
+                        }
+                        {list.notifs.map((notif: NotifView, index2: number) => notif?.read === false &&
+                            <MenuItem
+                                className="flex -ml-4 !pl-0 overflow-hidden"
+                                key={index2 + list.color}
+                                leadingIcon={
+                                    <></>}
+                                trailingIcon={notif.link &&
+                                    <Icon
+                                        style={'-mt-6'}
+                                        icon="keyboard_arrow_right"
+                                        fill
+                                        onClick={
+                                            async () => {
+                                                await readNotif(notif.id);
+                                                await refetch();
+                                                setUnReadNotif(list.notifs.length - 1);
+                                                notif.link && navigate(notif.link)
+                                            }}
                                         size="2xl"
-                                        isBottom={isBottom}
-                                        hasNextPage={hasNextPage}
-                                        handleScroll={() => handleScroll()} />
+                                    />}
+                            >
 
+                                <div className=" flex flex-col gap-1 line-clamp-3 ">
+                                    <div className="flex max-w-max gap-2 ">
+
+                                        <Chip
+                                            value={notif.typeS}
+                                            color={`${list.color}` as Md3Colors}>
+                                        </Chip>
+                                        <Chip
+                                            value={notif.update}>
+                                        </Chip>
+
+                                    </div>
+                                    <span className="md3-card-subhead">{notif.title}</span>
+                                    <span className="md3-card-supporting-text line-clamp-1">{notif.description}</span>
 
                                 </div>
-                            </Card>
-                        </Dialog.Content>
-                    </Dialog>
+
+                            </MenuItem>)}
+                        {/* </div>
+                            <LoadMoreButton
+                                color={list.color}
+                                style="-mb-3"
+                                size="2xl"
+                                isBottom={isBottom}
+                                hasNextPage={hasNextPage}
+                                handleScroll={() => handleScroll()} />
+                        </div> */}
+                    </Menu>
                 </div>
             )}
         </div >

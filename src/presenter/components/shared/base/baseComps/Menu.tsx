@@ -247,26 +247,32 @@ export const Menu: React.FC<MenuProps> = ({
             ${(open) ? "!z-auto" : " -z-10 "}`}
                 ref={menuCurrent}>
 
-                <div
-                    onClick={handleClose}>
-                    {closeIcon ??
-                        <div className={`px-2 pt-2 -mb-3 flex justify-end w-full`}>
+                <div>
+
+
+                    <div className="md3-menu-header flex w-full items-center py-1 px-2 justify-between">
+
+                        {title &&
+                            <div className="flex-1 font-medium  -mb-1 p-3 text-[0.95rem] ">
+                                {title}
+                            </div>}
+                        {closeIcon ??
+
                             <Icon
+                                onClick={handleClose}
                                 icon='close'
                                 bg color='slate'
-                                size='sm'
-                                style='place-self-end' />
-                        </div>}
+                                size='sm' />
+                        }
+                    </div>
+
+                    {children}
                 </div>
 
                 <div
-                    onClick={handleClose}
+                    // onClick={handleClose}
                     className={`md3-menu-list overflow-hidden `}>
-                    {title &&
-                        <div className="flex-1 font-medium  -mb-1 p-3 text-[0.95rem] ">
-                            {title}
-                        </div>}
-                    {children}
+
                 </div>
             </div>
         </div>

@@ -9,11 +9,12 @@ import { NavigationBar, NavigationBarItem } from "../../shared/base/baseComps/Na
 interface NavBarProps {
     handleClick?: () => void;
     listPage?: boolean;
+    mainPage?: boolean;
     placement?: "top" | "bottom";
     color?: string;
 }
 
-export const NavLinks: React.FC<NavBarProps> = ({ listPage, placement }) => {
+export const NavLinks: React.FC<NavBarProps> = ({ listPage, placement, mainPage }) => {
     const location = useLocation()
     const type = new URLSearchParams(location.pathname.split("/")[1]).toString().replace("=", '');
     const { setColor, color, hideNavBottom } = useUxStore((state) => state);
@@ -42,7 +43,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ listPage, placement }) => {
     ]
 
     //// ADD BUTTON ITEM
-    const addBtnItem: NavItem[] = type && listPage ? [{
+    const addBtnItem: NavItem[] = type || listPage ? [{
         to: `/${type}/create`,
         icon: ({
             service: "partner_exchange",
@@ -144,14 +145,14 @@ export const NavLinks: React.FC<NavBarProps> = ({ listPage, placement }) => {
                         )
                     })}
                 </NavigationBar>
-                {
+                {(listPage || mainPage) &&
                     <FabMenu
                         backdropBlur={true}
                         open={openFab}
                         setOpen={setOpenFab}
                         className={`${isBottom ?
                             'bottom-[calc(100%_+_1rem)] fixed right-2' :
-                            'absolute top-[calc(100dvh_-_5rem)] ] '}`}
+                            'absolute top-[calc(100dvh_-_5rem)] -right-[7rem]'} `}
                         mainProps={{
                             className: ` rounded-[5rem]  `,
                             size: 'large',

@@ -1,4 +1,4 @@
-import React, { useState, InputHTMLAttributes, TextareaHTMLAttributes, forwardRef } from "react";
+import React, { useState, InputHTMLAttributes, TextareaHTMLAttributes, forwardRef, useEffect } from "react";
 
 // Types pour les props
 type CommonProps = {
@@ -35,7 +35,7 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputPro
         ref
     ) => {
         const [isFocused, setIsFocused] = useState(false);
-        const isActive = isFocused || (!!value && `${value}`.length > 0);
+        const [isActive, setIsActive] = useState(false);
 
         const inputClasses = [
             "md3-input-wrapper",
@@ -51,9 +51,13 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputPro
             .filter(Boolean)
             .join(" ");
 
+        useEffect(() => {
+            const hasValue = value !== undefined && value !== "";
+            setIsActive(hasValue);
+        }, [value, ref]);
 
         return (
-            <div className={inputClasses}>
+            <div className={`${inputClasses} ${value ? 'active' : ''}`}>
                 <div className="md3-input-container">
                     <label className="md3-label">{label}</label>
                     {leadingIcon && <div className="md3-leading-icon">{leadingIcon}</div>}
@@ -78,7 +82,7 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputPro
                             {...(props as any)}
                             value={value}
                             disabled={disabled}
-                            className="md3-input-element"
+                            className={`md3-input-element ${value ? 'active' : ''}`}
                             onFocus={(e) => {
                                 setIsFocused(true);
                                 props.onFocus?.(e as any);
