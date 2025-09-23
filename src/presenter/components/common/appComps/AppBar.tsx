@@ -15,20 +15,24 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage }: {
     }, [window.location.pathname])
 
     useEffect(() => {
-        setHideNavBottom(!listPage && !detailPage)
-    }, [listPage, detailPage])
+        setHideNavBottom(!listPage && !detailPage && !singlePage)
+    }, [listPage, detailPage, singlePage])
 
     return (
         <>
             <header className={`
                 ${!mainPage && 'md3-primary-container md3-elevation-2 rounded-b-3xl mx-[3px] !w-[calc(100%-6px)] border-b border-[var(--md3-outline)]'}   !static flex-col flex gap-2 `}>
+
                 {/* CONTAINER */}
                 <div id='AppBar'
-                    className={`px-1 gap-2 ${!detailPage && 'pt-3'} flex lg:px-0 slide justify-between items-center`} >
+                    className={`px-1 gap-2 ${!detailPage && !singlePage && 'pt-3'} flex lg:px-0 slide justify-between items-center`} >
 
 
                     {/* PROFILE MENU  */}
-                    {!detailPage && <AppMenu listPage={listPage || singlePage} />}
+                    {!detailPage &&
+                        <AppMenu
+                            listPage={listPage}
+                            singlePage={singlePage} />}
 
 
                     {/* INSERTION NAVLINK TOP  */}

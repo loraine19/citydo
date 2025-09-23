@@ -11,7 +11,7 @@ export const LoadMoreButton: React.FC<LoadMoreButtonProps> = ({ handleScroll, ha
                 icon={revers ? "keyboard_double_arrow_up" : "keyboard_double_arrow_down"}
                 size={size}
                 title="voir plus"
-                style={(isBottom && hasNextPage) ? `${style} bounce` : "hidden"}
+                style={(isBottom && hasNextPage) ? `${style} animate-bounce` : "hidden"}
                 onClick={handleScroll} />
         </div>
 

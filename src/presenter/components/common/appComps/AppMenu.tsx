@@ -8,10 +8,12 @@ import { useNavigate } from "react-router";
 
 type AppMenuProps = {
     listPage?: boolean;
+    singlePage?: boolean;
 };
 
 const AppMenu: React.FC<AppMenuProps> = ({
     listPage = false,
+    singlePage = false,
 }) => {
     const { dark, setDark, setNavBottom, navBottom, hideNavBottom, color } = useUxStore((state) => state);
     const { user } = useUserStore((state) => state);
@@ -42,9 +44,15 @@ const AppMenu: React.FC<AppMenuProps> = ({
 
     if (!listPage || hideNavBottom) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate", divider: 'none', style: 'rounded-none' })
 
+    const roundedStyle = listPage && !navBottom || singlePage
+    const menuIcon = hideNavBottom || singlePage
+    const showAppName = !hideNavBottom || !listPage
+
+    ///// RETURN COMPONENT
+
     return (
         <div className={` md3-button-primary md3-button-tonal rounded-full !min-w-max flex items-center md3-elevation-0 
-            ${listPage && !navBottom ? " p-2.5 md:pl-4 max-h-max " : " px-3 py-1 "}`}>
+            ${roundedStyle ? " p-2.5 md:pl-4 max-h-max " : " px-3 py-1 "}`}>
             <Menu
                 key="profile-menu"
                 closeIcon={
@@ -60,9 +68,9 @@ const AppMenu: React.FC<AppMenuProps> = ({
                 blurBack
                 placement="up-bottom-right"
                 trigger={
-                    <div className="flex items-center">
+                    <div className="flex items-center ">
                         <div className={`h-full justify-center max-w-max grid items-center !p-0`}>
-                            {!hideNavBottom ?
+                            {!menuIcon ?
                                 <div className="flex w-[2.2rem] flex-1 items-center">
                                     <img
                                         className="!w-[2.2rem] !h-[2.2rem] object-cover object-center"
@@ -75,16 +83,14 @@ const AppMenu: React.FC<AppMenuProps> = ({
                                     size="xl"
                                 />}
                         </div>
-                        {(!hideNavBottom || !listPage) && (
-                            <div className={`${!navBottom && listPage
-                                ? "hidden lg:flex"
-                                : " w-full !flex-1 "
-                                } items-center flex h-full pb-1 md:px-2`}>
-                                <h1 className={`drop-shadow-sm flex !font-quicksand !text-[1.5rem] 
-                                ${!listPage ? "pl-0 " : ""} hidden sm:block md3-text-slate font-[600]`}>
-                                    City'do
-                                </h1>
-                            </div>
+                        {showAppName && (
+                            <h1 className={`${!navBottom && listPage
+                                ? "lg:flex"
+                                : "sm:flex  "
+                                } hidden items-center h-full pb-1 px-2 !font-quicksand !text-[1.5rem] font-[600]`}>
+                                City'do
+                            </h1>
+
                         )}
                     </div>
                 }

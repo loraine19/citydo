@@ -72,7 +72,7 @@ html {
     }
     @media (max-width: 475px) {
         /* xs */
-        font-size: 15px;
+        font-size: 16px;
     }
     @media (max-width: 375px) {
         /* xxs */

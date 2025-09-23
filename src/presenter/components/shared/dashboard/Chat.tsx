@@ -87,18 +87,26 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
     const handleScroll = () => {
         if (divRef.current) {
             const { scrollTop, scrollHeight, clientHeight } = divRef.current
-            if ((scrollHeight + scrollTop) <= clientHeight + 4) {
+            // alert('scrollTop: ' + scrollTop + ' scrollHeight: ' + scrollHeight + ' clientHeight: ' + clientHeight)
+            if ((scrollHeight + scrollTop) > (clientHeight)) {
                 setIsBottom(true);
                 if (hasNextPage) fetchNextPage()
+                setTimeout(() => {
+                    setIsBottom(false);
+                }, 1000)
+
+
+
             } else setIsBottom(false)
         }
     }
+    useEffect(() => { handleScroll() }, [userRec]);
 
     const [openEmoji, setOpenEmoji] = useState(false);
 
     return (
-        <div className='flex  flex-col h-full  '>
-            <CardMD className='min-h-full grid w-full border border-[var(--md3-outline)] '>
+        <div className='flex flex-col h-full  '>
+            <CardMD className='md3-elevation-1 min-h-full grid w-full border border-[var(--md3-outline)] '>
                 <CardMD.Header className={` w-full px-3  !relative !min-h-fit'`}>
                     {newConv &&
                         <ProfileDiv profile={userRec} />}
@@ -143,7 +151,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                     <LoadMoreButton
                         revers
                         isBottom={isBottom}
-                        hasNextPage={hasNextPage}
+                        hasNextPage={isBottom}
                         handleScroll={handleScroll} />
                 </div>
                 <div className='pr-4'>

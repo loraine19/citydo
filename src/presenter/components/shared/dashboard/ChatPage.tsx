@@ -85,12 +85,12 @@ export default function ChatPage() {
             console.log('new message received', newMessage);
             if (newMessage?.users) { setOnline(newMessage.users); return }
             refetchConv()
-            if (newMessage.userIdRec === userRec.id || newMessage.userId === userRec.id) {
+            if (newMessage.userIdRec === userRec?.id || newMessage.userId === userRec?.id) {
                 await refetch()
             }
         }
         socketService.onNewMessage(handleNewMessage)
-    }, [userRec.id, refetch, refetchConv, socketService]);
+    }, [userRec?.id, refetch, refetchConv, socketService]);
 
     useEffect(() => {
         if (params.with && params.with !== '0') {
@@ -153,9 +153,8 @@ export default function ChatPage() {
            ${open ? `${messages?.length} messages` : `${conversations?.length} conversations`}`} >
             {open &&
                 <Icon
-                    reverse
                     bg
-                    style='shadow-md absolute z-[999] top-8 !right-1 animSlide'
+                    style='shadow-md absolute z-[999] -bottom-[4.5rem] !right-2 animSlide'
                     color={'slate'}
                     size='2xl'
                     icon='close'
@@ -180,11 +179,10 @@ export default function ChatPage() {
 
     return (
         <>
-            <main className='!max-h-[calc(100dvh-4rem)]'>
-
+            <main className=' '>
                 <section
                     id='refDiv'
-                    className='flex !px-3 py-3  '>
+                    className='flex !px-3 py-3  !overflow-hidden '>
                     {!connected &&
                         <Icon
                             fill
@@ -202,9 +200,9 @@ export default function ChatPage() {
                         />}
                     {isLoadingConv ?
                         <Skeleton className=' m-auto !h-full ' /> :
-                        <CardMD className='!min-h-full box-border !h-[100%] p-0 grid !static '>
-                            <div className='  grid max-h-full h-full relative'>
-
+                        <CardMD className={`${open ? 'bg-[var(--md3-surface)]' : ''} 
+                        '!min-h-full !min-h-[100%] p!-0 grid !static '`}>
+                            <div className=' my-0  grid max-h-full h-full relative'>
                                 <div className=' overflow-y-auto overflow-x-hidden  '>
                                     <List className='px-3 gap-1.5  flex   !rounded-3xl'>
                                         {conversations &&
@@ -212,8 +210,8 @@ export default function ChatPage() {
                                                 <div key={index + 'div'}>
                                                     <List.Item
                                                         className={`gap-1 rounded-full overflow-hidden ${(userIdRec === message?.isWith.id) ?
-                                                            '!bg-[var(--md3-surface)] !border border-[var(--md3-outline)] py-2.5 px-2.5 shadow-md my-0.5 -ml-2 ' :
-                                                            '!bg-[var(--md3-surface)]  py-1 '}`}
+                                                            '!bg-[var(--md3-primary-container)] !border border-[var(--md3-outline)] py-2.5 px-2.5 md3-elevation-1 my-0.5 -ml-2 ' :
+                                                            '!bg-[var(--md3-surface)] -ml-1.5 py-1 '}`}
                                                         key={index}
                                                         onClick={() => {
                                                             setOpen(true)
@@ -224,7 +222,7 @@ export default function ChatPage() {
                                                         }} >
                                                         <List.ItemStart className='relative flex min-w-max'>
                                                             <AvatarUser
-                                                                avatarSize={(userIdRec === message?.isWith.id) ? 'lg' : 'md'}
+                                                                avatarSize={(userIdRec === message?.isWith.id) ? '2xl' : 'lg'}
                                                                 Profile={message?.isWith?.Profile}
                                                             />
                                                             {(online.length > 0 &&
@@ -262,7 +260,7 @@ export default function ChatPage() {
                                 </div>
                                 {/* CONVERSATION DIV */}
                                 {open &&
-                                    <div className='absolute left-[4rem] right-0 flex-1 h-[calc(100%_+_1rem)] bg-[var(--md3-surface)] rounded-l-3xl backdrop:opacity-5 -mt-3 flex  bg-clip-border '>
+                                    <div className='absolute left-[4rem] right-0 flex-1 h-[calc(100%_+_1.25rem)] bg-[var(--md3-surface)] rounded-l-3xl backdrop:opacity-5 -mt-3 flex  bg-clip-border '>
                                         <Chat
                                             refetch={refetch}
                                             setNewConv={setNewConv}

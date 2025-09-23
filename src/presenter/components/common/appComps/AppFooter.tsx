@@ -7,6 +7,7 @@ interface AppFooterProps {
     mainPage?: boolean;
     listPage?: boolean;
     detailPage?: boolean;
+    singlePage?: boolean;
     color?: string;
 }
 
