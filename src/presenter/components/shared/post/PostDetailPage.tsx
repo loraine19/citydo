@@ -73,7 +73,7 @@ export default function PostDetailPage() {
             icon: 'Chat',
             title: "Envoyer le message suivant à " + post?.User?.Profile?.firstName,
             body: ` Bonjour ${post?.User?.Profile?.firstName}, je suis intéressé par votre annonce "${post?.title}`,
-            function: () => { navigate(`/chat?with=${post?.User?.Profile?.userId ?? 0}&text=${ContactActions[2].body}`) }
+            function: () => { handleOpen(); navigate(`/chat?with=${post?.User?.Profile?.userId ?? 0}&text=${ContactActions[2].body}`) }
         },
     ]
 

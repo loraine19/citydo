@@ -224,7 +224,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
             const checkContent = () => {
                 if (divRef.current) {
                     if (divRef.current && initialHeight !== null && firstLoad) {
-                        setFirstLoad(initialHeight === divRef.current.scrollHeight ? true : false);
+                        initialHeight === divRef.current.scrollHeight ? setFirstLoad(true) : setFirstLoad(false);
                     }
                     setLargeContent(
                         divRef.current.clientHeight !== divRef.current.scrollHeight
