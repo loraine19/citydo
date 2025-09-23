@@ -21,7 +21,7 @@ export default function AppBar({ mainPage, listPage, detailPage }: { mainPage?: 
     return (
         <>
             <header className={`
-                ${!mainPage && 'md3-primary-container md3-elevation-2 rounded-b-3xl mx-[2px] !w-[calc(100%-4px)] border-b'}  !static flex-col flex gap-2 `}>
+                ${!mainPage && 'md3-primary-container md3-elevation-2 rounded-b-3xl mx-[3px] !w-[calc(100%-6px)] border-b border-[var(--md3-outline)]'}   !static flex-col flex gap-2 `}>
                 {/* CONTAINER */}
                 <div id='AppBar'
                     className={`px-1 gap-2 ${!detailPage && 'pt-3'} flex lg:px-0 slide justify-between items-center`} >

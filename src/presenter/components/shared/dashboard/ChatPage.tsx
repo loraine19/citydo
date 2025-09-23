@@ -202,19 +202,18 @@ export default function ChatPage() {
                         />}
                     {isLoadingConv ?
                         <Skeleton className=' m-auto !h-full ' /> :
-                        <CardMD className='!min-h-full !p-0'>
+                        <CardMD className='!min-h-full box-border !h-[100%] p-0 grid !static '>
+                            <div className='  grid max-h-full h-full relative'>
 
-                            <div className='flex flex-1 h-full relative rounded-3xl'>
-
-                                <div className='flex-1 p-2.5 overflow-y-auto overflow-x-hidden rounded-l-3xl !my-1 '>
-                                    <List className='flex-1 gap-1.5 !rounded-3xl'>
+                                <div className=' overflow-y-auto overflow-x-hidden  '>
+                                    <List className='px-3 gap-1.5  flex   !rounded-3xl'>
                                         {conversations &&
                                             conversations.map((message: MessageView, index: number) =>
                                                 <div key={index + 'div'}>
                                                     <List.Item
                                                         className={`gap-1 rounded-full overflow-hidden ${(userIdRec === message?.isWith.id) ?
-                                                            '!bg-slate-100 border !border-slate-300 py-2.5 px-2.5 shadow-md my-0.5 -ml-2 ' :
-                                                            'bg-slate-200 py-1 '}`}
+                                                            '!bg-[var(--md3-surface)] !border border-[var(--md3-outline)] py-2.5 px-2.5 shadow-md my-0.5 -ml-2 ' :
+                                                            '!bg-[var(--md3-surface)]  py-1 '}`}
                                                         key={index}
                                                         onClick={() => {
                                                             setOpen(true)
@@ -230,7 +229,7 @@ export default function ChatPage() {
                                                             />
                                                             {(online.length > 0 &&
                                                                 online.includes(message.isWith.id)) &&
-                                                                <span className='absolute top-0 -right-2 bg-green-500 rounded-full border-4 p-1.5 border-slate-50'>
+                                                                <span className='absolute top-0 -right-2 bg-green-500 rounded-full border-4 p-1.5 border-[var(--md3-surface)] '>
                                                                 </span>
                                                             }
                                                         </List.ItemStart>
@@ -240,7 +239,7 @@ export default function ChatPage() {
                                                                     {message.isWith?.Profile?.firstName}
                                                                 </Typography>
                                                                 <span
-                                                                    className='px-4 !text-xs text-slate-400'>
+                                                                    className='px-4 !text-xs opcatity-70'>
                                                                     {message.formatedDate}
                                                                 </span>
                                                             </div>
@@ -248,7 +247,7 @@ export default function ChatPage() {
                                                                 variant="small"
                                                                 className="font-normal  !pr-2 !line-clamp-1">
                                                                 {message.IWrite &&
-                                                                    <span className='text-slate-400'>
+                                                                    <span className='opacity-70'>
                                                                         {message.read && '🗸'}
                                                                         {' vous : '}
                                                                     </span>}
@@ -263,7 +262,7 @@ export default function ChatPage() {
                                 </div>
                                 {/* CONVERSATION DIV */}
                                 {open &&
-                                    <div className='absolute right-0 flex-1 h-full rounded-l-3xl backdrop:opacity-5  !w-[calc(100%-4rem)] flex  bg-clip-border '>
+                                    <div className='absolute left-[4rem] right-0 flex-1 h-[calc(100%_+_1rem)] bg-[var(--md3-surface)] rounded-l-3xl backdrop:opacity-5 -mt-3 flex  bg-clip-border '>
                                         <Chat
                                             refetch={refetch}
                                             setNewConv={setNewConv}
@@ -282,7 +281,8 @@ export default function ChatPage() {
                                     </div>
                                 }
                             </div>
-                        </CardMD>}
+                        </CardMD>
+                    }
                 </section>
             </main >
         </ >

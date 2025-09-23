@@ -40,7 +40,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
         { icon: "exit_to_app", text: "Déconnexion", link: '/signin', color: "error" },
     ]
 
-    if (!listPage || hideNavBottom) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate", divider: 'bottom' })
+    if (!listPage || hideNavBottom) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => navigate('/'), color: "slate", divider: 'none', style: 'rounded-none' })
 
     return (
         <div className={` md3-button-primary md3-button-tonal rounded-full !min-w-max flex items-center md3-elevation-0 
@@ -56,7 +56,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                         size="sm"
                     />
                 }
-                className="px-4 py-2 !z-[9999999] -mt-4 ml-1 lg:ml-[calc(50dvw_-_500px)]"
+                className="px-4 py-2 !z-[9999999] max-h-[calc(100dvh_-_0.5rem)] overflow-auto -mt-4 ml-1 lg:ml-[calc((50dvw_-_450px)/2)]"
                 blurBack
                 placement="bottom-right"
                 trigger={

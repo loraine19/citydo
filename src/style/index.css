@@ -82,8 +82,8 @@ html {
 
 :root {
     @apply scroll-smooth font-montserrat;
-
-    line-height: 1.5;
+    box-sizing: border-box;
+    line-height: 1.3;
     font-weight: 400;
     display: flex;
     flex-direction: column;

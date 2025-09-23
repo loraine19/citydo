@@ -224,7 +224,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
             const checkContent = () => {
                 if (divRef.current) {
                     if (divRef.current && initialHeight !== null && firstLoad) {
-                        setFirstLoad(initialHeight === divRef.current.scrollHeight);
+                        setFirstLoad(initialHeight === divRef.current.scrollHeight ? true : false);
                     }
                     setLargeContent(
                         divRef.current.clientHeight !== divRef.current.scrollHeight
@@ -252,7 +252,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
             return () => {
                 if (observer) observer.disconnect();
             };
-        }, [divRef, children, form, expanded, initialHeight, firstLoad]);
+        }, [children, form, expanded, initialHeight, firstLoad]);
 
         // Extract image props if image is a React element
         const imageProps = (image as any)?.props || {};
