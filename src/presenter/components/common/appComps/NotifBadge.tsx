@@ -2,8 +2,7 @@ import { Icon, IconName } from "../IconComp"
 import { NotifView } from "../../../views/viewsEntities/notifViewEntity";
 import { useNavigate } from "react-router";
 import DI from "../../../../di/ioc";
-import { LoadMoreButton } from "../LoadMoreBtn";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNotificationStore } from "../../../../application/stores/notification.store";
 import Chip from "../adaptatersComps/Chip";
 import NotifDiv from "../NotifDiv";
@@ -14,8 +13,8 @@ import { Menu, MenuItem } from "../../shared/base/baseComps/Menu";
 export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
     const readNotif = async (id: number) => await DI.resolve('readNotifUseCase').execute(id);
     const notifViewModelFactory = DI.resolve('notifViewModel');
-    const { notifsMsg, notifsOther, refetch, countMsg, countOther, fetchNextPage, hasNextPage, isLoading, error } = notifViewModelFactory();
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { notifsMsg, notifsOther, refetch, countMsg, countOther, isLoading, error } = notifViewModelFactory();
+    // const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate()
 
     const { navBottom } = useUxStore()
@@ -25,18 +24,18 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
 
 
     //// HANDLE SCROLL
-    const divRef = useRef<HTMLDivElement>(null);
-    const [isBottom, setIsBottom] = useState(false);
-    const handleScroll = () => {
-        setIsMenuOpen(true);
-        if (isMenuOpen && divRef.current) {
-            const { scrollTop, scrollHeight, clientHeight } = divRef.current;
-            if (scrollTop + clientHeight + 2 >= scrollHeight) {
-                setIsBottom(true);
-                if (hasNextPage) fetchNextPage()
-            } else setIsBottom(false)
-        }
-    };
+    // const divRef = useRef<HTMLDivElement>(null);
+    // const [isBottom, setIsBottom] = useState(false);
+    // const handleScroll = () => {
+    //     setIsMenuOpen(true);
+    //     if (isMenuOpen && divRef.current) {
+    //         const { scrollTop, scrollHeight, clientHeight } = divRef.current;
+    //         if (scrollTop + clientHeight + 2 >= scrollHeight) {
+    //             setIsBottom(true);
+    //             if (hasNextPage) fetchNextPage()
+    //         } else setIsBottom(false)
+    //     }
+    // };
     type NotifBadgeProps = { count: number, notifs: NotifView[], color: string, icon: string, link: string }
 
     const badgeMapGenerator = () => [

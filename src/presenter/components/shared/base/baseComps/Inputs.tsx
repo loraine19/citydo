@@ -54,6 +54,7 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputPro
         useEffect(() => {
             const hasValue = value !== undefined && value !== "";
             setIsActive(hasValue);
+            console.log(isFocused)
         }, [value, ref]);
 
         return (
