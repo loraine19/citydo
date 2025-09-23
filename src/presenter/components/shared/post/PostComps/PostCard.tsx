@@ -28,7 +28,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
             imagePosition="top"
             link={`/annonce/${id}`}
             image={
-                <CardMD.Image
+                image && <CardMD.Image
                     src={image as string}
                     alt={title}
                     className="relative"

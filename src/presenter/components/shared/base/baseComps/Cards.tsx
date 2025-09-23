@@ -245,7 +245,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
 
                 observer.observe(divRef.current);
                 if ((divRef.current.scrollHeight !== initialHeight) && !firstLoad) {
-                    setExpanded(divRef.current.clientHeight !== divRef.current.scrollHeight);
+                    if (!expanded) setExpanded(divRef.current.clientHeight !== divRef.current.scrollHeight);
                     setInitialHeight(divRef.current.scrollHeight);
                 }
             }
