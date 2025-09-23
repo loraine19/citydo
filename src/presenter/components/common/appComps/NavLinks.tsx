@@ -145,7 +145,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ listPage, placement, mainPage 
                         )
                     })}
                 </NavigationBar>
-                {(listPage || mainPage) &&
+                {(listPage || mainPage || type ) &&
                     <FabMenu
                         backdropBlur={true}
                         open={openFab}
