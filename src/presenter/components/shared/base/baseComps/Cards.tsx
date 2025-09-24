@@ -38,7 +38,7 @@ export const CardImage: React.FC<{
     >
         <img
             onError={(e: any) => { e.target.onerror = null; }}
-            className={`md3-card-image`}
+            className={`md3-card-image fadIn`}
             src={src}
             alt={alt}
         />

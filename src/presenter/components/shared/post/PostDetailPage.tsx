@@ -4,7 +4,7 @@ import PostDetailCard from './PostComps/PostDetailCard';
 import { Action } from '../../../../domain/entities/frontEntities';
 import { GenereMyActions, } from '../../../views/viewsEntities/utilsService';
 import DI from '../../../../di/ioc';
-import { Skeleton, SkeletonGrid } from '../../common/Skeleton';
+import { Skeleton } from '../../common/Skeleton';
 import { useAlertStore } from '../../../../application/stores/alert.store';
 import { useRef, useCallback, useState, useEffect, useMemo } from 'react';
 import { HandleHideParams } from '../../../../application/useCases/utils.useCase';
@@ -125,12 +125,6 @@ export default function PostDetailPage() {
                                 change={() => { }} /> :
                             <Skeleton />}
                     </div>
-
-                    {/* ARTICLES */}
-                    <article className='grid grid-rows-[auto,1fr] py-5  lg:-ml-5'>
-                        <h3>Articles</h3>
-                        <SkeletonGrid count={3} />
-                    </article>
                 </section>
             </main>
             <footer className={`footer ${hideNavBottom ? 'hidden' : ''}`} >

@@ -133,7 +133,8 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                         <ProfileDiv profile={formik.values?.UserBenef} />
                                     )}
                                 </CardLarge.Chips>
-                                <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                                <CardLarge.Divider />
+                                <CardLarge.MidSection className="md:px-8 flex flex-col">
                                     <span className="md3-card-subhead">Informations</span>
                                     <div className="flex flex-1 flex-col gap-4">
                                         <Input

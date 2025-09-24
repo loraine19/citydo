@@ -122,11 +122,11 @@ export function ServiceForm(props: { formik: any }) {
                                         setImgBlob={setImgBlob}
                                     />
                                     <DateChip
-                                        prefix="publié le"
+                                        prefix=" "
                                         start={start} />
                                 </CardLarge.Chips>
-
-                                <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                                <CardLarge.Divider />
+                                <CardLarge.MidSection className=" md:px-8 flex flex-col">
                                     <span className="md3-card-subhead">Informations</span>
                                     <div className="flex flex-1 flex-col  gap-4">
                                         <Input
@@ -157,7 +157,8 @@ export function ServiceForm(props: { formik: any }) {
                                         />
                                     </div>
                                 </CardLarge.MidSection>
-                                <CardLarge.MidSection className="!mx-4 md3-card-section-border max-h-max flex flex-col">
+                                <CardLarge.Divider />
+                                <CardLarge.MidSection className=" md:px-8 max-h-max flex flex-col">
                                     <span className="md3-card-subhead">Niveaux</span>
                                     <div className="flex flex-1  !py-2 flex-col gap-4">
                                         <div className="flex flex-col xs:flex-row gap-4 ">

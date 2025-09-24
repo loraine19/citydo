@@ -4,7 +4,7 @@ import CTAMines from '../../common/CTA';
 import { EventDetailCard } from './eventComps/EventDetailCard';
 import { Action } from '../../../../domain/entities/frontEntities';
 import DI from '../../../../di/ioc';
-import { Skeleton, SkeletonGrid } from '../../common/Skeleton';
+import { Skeleton } from '../../common/Skeleton';
 import { GenereMyActions } from '../../../views/viewsEntities/utilsService';
 import { useAlertStore } from '../../../../application/stores/alert.store';
 import { EventCategory, EventStatus } from '../../../../domain/entities/Event';
@@ -126,11 +126,7 @@ export default function EventDetailPage() {
                             <Skeleton />}
                     </div>
 
-                    {/* ARTICLES */}
-                    <article className='grid grid-rows-[auto,1fr] py-5  lg:-ml-5'>
-                        <h3>Articles</h3>
-                        <SkeletonGrid count={3} />
-                    </article>
+
 
                 </section>
             </main >

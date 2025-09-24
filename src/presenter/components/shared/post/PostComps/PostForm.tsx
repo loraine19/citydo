@@ -97,7 +97,8 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                         start={start}
                                     />
                                 </CardLarge.Chips>
-                                <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                                <CardLarge.Divider />
+                                <CardLarge.MidSection className="md:px-8 flex flex-col">
                                     <span className="md3-card-subhead">Informations</span>
                                     <div className="flex flex-1 flex-col gap-4">
                                         <Input
@@ -128,7 +129,8 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                         />
                                     </div>
                                 </CardLarge.MidSection>
-                                <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                                <CardLarge.Divider />
+                                <CardLarge.MidSection className="md:px-8 flex flex-col">
                                     <span className="md3-card-subhead">{formik?.errors?.shareA ?? 'Contact'}</span>
                                     <div className="flex py-1 px-4 gap-4">
                                         <Checkbox

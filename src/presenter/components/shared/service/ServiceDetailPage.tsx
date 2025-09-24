@@ -4,7 +4,7 @@ import CTAMines from '../../common/CTA';
 import ServiceDetailComp from './serviceCards/ServiceDetailCard';
 import { Action } from '../../../../domain/entities/frontEntities';
 import DI from '../../../../di/ioc';
-import { Skeleton, SkeletonGrid } from '../../common/Skeleton';
+import { Skeleton } from '../../common/Skeleton';
 import { generateContact, GenereMyActions, getEnumVal, isLate } from '../../../views/viewsEntities/utilsService';
 import { ContactDiv } from '../../common/ContactDiv';
 import { User } from '../../../../domain/entities/User';
@@ -284,13 +284,6 @@ export default function ServiceDetailPage() {
                         }
 
                     </div>
-
-
-                    {/* ARTICLES */}
-                    <article className='grid grid-rows-[auto,1fr] py-5  lg:-ml-5'>
-                        <h3>Articles</h3>
-                        <SkeletonGrid count={3} />
-                    </article>
 
                 </section>
             </main>

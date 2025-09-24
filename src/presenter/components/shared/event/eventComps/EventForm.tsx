@@ -122,7 +122,8 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         start={formik.values.createdAt ?? new Date()}
                                     />
                                 </CardLarge.Chips>
-                                <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                                <CardLarge.Divider />
+                                <CardLarge.MidSection className="md:!px-8  flex flex-col">
                                     <span className="md3-card-subhead">Informations</span>
                                     <div className="flex flex-1 flex-col gap-4">
                                         <Input
@@ -153,7 +154,8 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         />
                                     </div>
                                 </CardLarge.MidSection>
-                                <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                                <CardLarge.Divider />
+                                <CardLarge.MidSection className="md:px-8 flex flex-col">
                                     <span className="md3-card-subhead">Lieu</span>
                                     <div className="flex flex-1 flex-col md:flex-row gap-4">
                                         {(Address?.lat && Address?.lng) ?
@@ -167,7 +169,8 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         />
                                     </div>
                                 </CardLarge.MidSection>
-                                <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                                <CardLarge.Divider />
+                                <CardLarge.MidSection className="md:px-8 flex flex-col">
                                     <span className="md3-card-subhead">Date</span>
                                     <div className="flex flex-1 flex-col md:flex-row gap-4">
                                         <Input
@@ -200,7 +203,8 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         />
                                     </div>
                                 </CardLarge.MidSection>
-                                <CardLarge.MidSection className="!mx-4 md3-card-section-border flex flex-col">
+                                <CardLarge.Divider />
+                                <CardLarge.MidSection className="md:px-8 flex flex-col">
                                     <span className="md3-card-subhead">Participants</span>
                                     <div className="flex flex-1 flex-col md:flex-row gap-4">
                                         <Input
