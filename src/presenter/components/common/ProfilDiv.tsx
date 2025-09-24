@@ -39,7 +39,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
             return ` quelques secondes`
         }
     }
-    const textSize = size === "xl" && "h6" || size === "lg" && "h6" || "h6"
+    const textSize = size === "xl" && "h6" || size === "lg" && "h6" || "text-sm"
     // const texteSize2 = size === "xl" && "text-sm" || size === "lg" && "text-sm" || "!hidden"
     const user = useUserStore(state => state.user)
     const [isOpen, setIsOpen] = useState(false)

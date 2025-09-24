@@ -32,13 +32,24 @@ const FormHeadSection: React.FC<FormHeadSectionProps> = ({
 
 }) => {
     const navigate = useNavigate();
+
     const back = () => {
-        if (window.history.length > 1 && document.referrer && document.referrer !== window.location.href) {
-            navigate(-1);
-        } else {
-            navigate('/');
+        let goBack = '/' + (new URLSearchParams(window.location.pathname.split("/")[1] ?? '').toString().replace("=", ''));
+        // Check if there are params after "?" in the pathname
+        let goBack2 = new URLSearchParams(window.location.search).toString().includes("=")
+            ? window.location.pathname.split("?")[0]
+            : null;
+        if (goBack2) {
+            navigate(goBack2);
+
         }
+        else if (goBack && goBack !== window.location.pathname) {
+            navigate(goBack);
+        }
+
+        else navigate('/');
     }
+
     const { hideNavBottom, setHideNavBottom, color } = useUxStore()
 
     const parentDiv = (document.querySelector('#root > div > main > section') as HTMLElement) ?? undefined
@@ -53,10 +64,11 @@ const FormHeadSection: React.FC<FormHeadSectionProps> = ({
     return (
         <div className={`flex flex-col gap-2 z-[99]  w-full wRespXLMargin 
         ${hidden ? 'md3-menu-leave h-0.5' : 'md3-menu-enter p-2  '}`}>
+
             <div className="flex overflow-auto gap-2 justify-between w-full ">
                 <div className="flex flex-wrap w-full gap-2">
                     <Chip
-                        value={'Retour'}
+                        value={'retour ' + new URLSearchParams(window.location.search).toString()}
                         onClick={back}
                         icon={
                             <Icon icon="arrow_back" size="md" />}

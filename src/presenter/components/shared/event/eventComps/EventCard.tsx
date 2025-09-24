@@ -5,7 +5,6 @@ import { DateChip } from "../../../common/ChipDate";
 import DI from "../../../../../di/ioc";
 import { GenereMyActions } from "../../../../views/viewsEntities/utilsService";
 import { EventView } from "../../../../views/viewsEntities/eventViewEntities";
-import { Title } from "../../../common/CardTitle";
 import { EventStatus } from "../../../../../domain/entities/Event";
 import Chip from "../../../common/adaptatersComps/Chip";
 import EventCalAddBtn from "./EventCalAddBtn";
@@ -46,17 +45,28 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                     src={image as string || '/image/placeholder.jpg'}
                     alt={title}
                     className={''} >
-                    <div className={`w-full flex flex-col items-end !h-full`}>
 
 
+                    <IconAnimate
+                        active={event?.Igo}
+                        icon={'person'} />
+                    <CardMD.Chips className="px-1 max-h-max w-full justify-end">
                         <DateChip
                             start={event?.createdAt}
-                            prefix=" "
-                        />
-                        <IconAnimate
-                            active={event?.Igo}
-                            icon={'person'} />
-                    </div>
+                            prefix=" " />
+                        <MoreButton
+                            id={id}
+                            type={'evenement'}
+                            flagged={event?.flagged}
+                            title={title} />
+
+
+
+                    </CardMD.Chips>
+
+
+
+
                 </CardMD.Image>}>
             <CardMD.Chips className="justify-between">
                 <div className="md3-card-chips">
@@ -77,11 +87,10 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                         value={eventDateInfo.start}
                     />
                 </div>
-                {<MoreButton
-                    id={id} type={'evenement'} flagged={event?.flagged} title={title} />}
+
             </CardMD.Chips>
-            <CardMD.Headline>
-                <Title title={title} />
+            <CardMD.Headline className="line-clamp-1">
+                {title}
             </CardMD.Headline>
 
             <CardMD.Media className="flex-1" >

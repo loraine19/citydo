@@ -105,7 +105,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
     const [openEmoji, setOpenEmoji] = useState(false);
 
     return (
-        <div className='flex flex-col h-full  '>
+        <div className='flex flex-col h-full w-full  '>
             <CardMD className='md3-elevation-1 min-h-full grid w-full border border-[var(--md3-outline)] '>
                 <CardMD.Header className={` w-full px-3  !relative !min-h-fit'`}>
                     {newConv &&

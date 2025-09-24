@@ -16,14 +16,14 @@
     padding: 0 !important;
     display: grid;
     flex-shrink: 0;
-    grid-template-rows: minmax(22vh, auto) minmax(max-content, 50%);
+    grid-template-rows: minmax(24vh, auto) minmax(max-content, 40%);
 }
 
 .md3-card-with-image-left {
     @apply md3-card;
     padding: 0 !important;
     display: grid;
-    grid-template-columns: minmax(auto, 1fr) minmax(auto, 60%);
+    grid-template-columns: minmax(auto, 1fr) minmax(auto, 65%);
 }
 
 .md3-card-image-container {
@@ -49,7 +49,7 @@
 }
 
 .md3-card-image-children {
-    padding: var(--md3-spacing-sm);
+    padding: var(--md3-spacing-small);
     position: absolute;
     top: 0;
     left: 0;
@@ -81,18 +81,17 @@
 
 .md3-card-subhead {
     @apply min-h-fit  flex items-center;
-    padding: 0 var(--md3-spacing-medium);
     font-weight: 500;
     color: var(--md3-on-surface-variant);
+    padding: 0 var(--md3-spacing-medium);
 }
 .md3-card-large .md3-card-subhead {
     @apply text-[1.1rem];
 }
 
 .md3-card-supporting-text {
-    @apply flex-1 text-[0.9rem]  opacity-90;
+    @apply flex-1 text-[0.9rem] flex opacity-90;
     display: flex;
-    flex-direction: column;
     font-weight: 400;
     color: var(--md3-on-surface-variant);
     padding: 0 var(--md3-spacing-medium);
@@ -106,7 +105,7 @@
     padding: 0.25rem var(--md3-spacing-medium) 0;
 }
 .md3-card-chips {
-    @apply flex gap-2 overflow-auto rounded-2xl !py-0.5;
+    @apply flex gap-2 overflow-x-auto overflow-y-hidden items-center rounded-2xl !py-0.5;
     padding: 0 var(--md3-spacing-small) 0;
 }
 

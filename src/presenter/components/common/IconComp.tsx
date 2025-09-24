@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Home, KeyboardDoubleArrowDown, PartnerExchange, Search, Event, Dashboard, Ballot, Add, Person, CalendarAddOn, Flag2, ExitToApp, ExploreNearby, Visibility, ArrowCircleRight, Notifications, ArrowCircleRightFilled, ThumbUp, ThumbUpFilled, HomeFilled, PersonFilled, CircleNotifications, CircleNotificationsFilled, PersonEdit, PersonEditFilled, Diversity3, Diversity3Filled, TwoPager, TwoPagerFilled, AddCircleFilled, AddCircle, DoNotDisturbOnFilled, DoNotDisturbOn, ArrowForwardIos, ArrowBackIos, CalendarViewMonth, CalendarViewMonthFilled, SearchFilled, ArrowForwardIosFilled, ArrowBackIosFilled, NotificationsFilled, VisibilityFilled, ExploreNearbyFilled, ExitToAppFilled, Flag2Filled, CalendarAddOnFilled, AddFilled, BallotFilled, DashboardFilled, EventFilled, PartnerExchangeFilled, KeyboardDoubleArrowDownFilled, TollFilled, Toll, ArrowDropDownFilled, ArrowDropDown, CalendarMonth, CalendarMonthFilled, ListFilled, List, CancelFilled, Cancel, CheckCircleFilled, CheckCircle, SmartCardReaderFilled, SmartCardReader, SignalCellularAltFilled, SignalCellularAlt, DesignServicesFilled, DesignServices, CloseFilled, Close, ChevronRight, ChevronRightFilled, MoreUp, MoreUpFilled, ExpandContentFilled, ExpandContent, EditFilled, Edit, GroupsFilled, Groups, PersonCancelFilled, PersonCancel, AddAPhoto, AddAPhotoFilled, VisibilityOffFilled, VisibilityOff, DistanceFilled, Distance, PersonPinCircleFilled, PersonPinCircle, SyncProblemFilled, SyncProblem, KeyboardDoubleArrowUp, KeyboardDoubleArrowUpFilled, SendFilled, Send, ForumFilled, Forum, NearMeFilled, NearMe, Sms, SmsFilled, MoodFilled, Mood, MyLocationFilled, MyLocation, CallFilled, Call, Mail, MailFilled, TodayFilled, Today, LocationOn, LocationOnFilled, ClearAllFilled, ClearAll, CheckFilled, Check, Block, BlockFilled, SaveFilled, Save, SortFilled, Sort, SortByAlphaFilled, SortByAlpha, ArrowDropUpFilled, ArrowDropUp, DeleteFilled, Delete, UndoFilled, Undo, RefreshFilled, Refresh, MoveUpFilled, MoveUp, MoveDownFilled, MoveDown, ArrowUpward, ArrowUpwardFilled, ChatFilled, Chat, SaveAsFilled, SaveAs, RadioButtonCheckedFilled, RadioButtonChecked, PendingActions, PendingActionsFilled, CircleFilled, Circle, ArrowCircleUpFilled, ArrowCircleUp, PersonAddFilled, PersonAdd, KeyboardArrowRight, KeyboardArrowRightFilled, ArrowUpwardAlt, ArrowUpwardAltFilled, ArrowBack, ArrowBackFilled, GridView, GridViewFilled, ViewAgenda, ViewAgendaFilled, Output, OutputFilled, InputFilled, Input, EventBusyFilled, EventAvailableFilled, EventAvailable, EventBusy, PersonHeart, PersonHeartFilled, ViewColumn, ViewColumnFilled, Favorite, FavoriteFilled, HeartMinusFilled, HeartMinus, MoreVert, MoreVertFilled, VotingChip, VotingChipFilled, ListAltCheck, ListAltCheckFilled, ListAltAdd, ListAltAddFilled, FilterAlt, FilterAltFilled, FilterAltOff, FilterAltOffFilled, ShareFilled, Share, MoreHorizFilled, MoreHoriz, VerticalAlignTop, VerticalAlignTopFilled, CheckBox, CheckBoxFilled, CheckBoxOutlineBlank, CheckBoxOutlineBlankFilled, DarkMode, DarkModeFilled, LightMode, LightModeFilled, CalendarToday, CalendarTodayFilled, ImageFilled, Image, ImageArrowUp, ImageArrowUpFilled, HideImageFilled, HideImage, ImageSearchFilled, ImageSearch, AddLocationFilled, AddLocation, ProgressActivity, ProgressActivityFilled, MenuFilled, Menu, FiberManualRecordFilled, FiberManualRecord, HeartPlusFilled, HeartPlus, HeartCheckFilled, HeartCheck } from '@project-lary/react-material-symbols-400-rounded';
 import { FaFacebook, FaSnapchatGhost, FaTwitter, FaWhatsapp } from "react-icons/fa"
 import { IoLogoWhatsapp } from "react-icons/io";
-import { JSX, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 
 
 export const iconMap = {
@@ -200,6 +200,9 @@ export const Icon: React.FC<IconProps> = ({
     const classActive = `hover:brightness-[0.95] active:brightness-[0.9] hover:scale-[1.03] `
     const [isFill, setIsFill] = useState(fill ? true : false);
     const role = onClick ? link ? 'link' : 'button' : 'img';
+    useEffect(() => {
+        setIsFill(fill ? true : false);
+    }, [fill])
 
     return (
         < >
@@ -221,11 +224,10 @@ export const Icon: React.FC<IconProps> = ({
                     aria-disabled={disabled}
                     style={{ cursor: disabled ? 'not-allowed' : 'pointer' }}
                 >
-                    {searchIcon(icon as keyof typeof iconMap, isFill, textIcon)}
+                    {searchIcon(icon as keyof typeof iconMap, isFill && fill, textIcon)}
                 </Link>
             ) : (
                 <span
-
                     onMouseEnter={() => setIsFill(true)}
                     onMouseLeave={() => setIsFill(!fill ? false : true)}
                     role={role}
@@ -235,7 +237,8 @@ export const Icon: React.FC<IconProps> = ({
                     className={`group ${classIcon()} ${!disabled ? classActive : ''}`}
                     onClick={() => {
                         onClick && onClick();
-                        setIsFill(!fill ? false : true);
+                        !fill && setIsFill(false);
+
                     }}
                     aria-disabled={disabled}
                     style={{ cursor: disabled ? 'not-allowed' : 'pointer' }}

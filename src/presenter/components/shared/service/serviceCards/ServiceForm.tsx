@@ -202,10 +202,13 @@ export function ServiceForm(props: { formik: any }) {
                 actions={[
                     {
                         disabled: formik.values.statusValue > 0,
-                        type: 'submit',
+                        type: 'button',
                         icon: formik.values.statusValue > 0 ? 'Non modifiable : ' + formik.values.statusS : `enregistrer`,
                         iconImage: formik.values?.id ? "save_as" : "save",
-                        function: () => { }
+                        function: () => {
+
+                            formik.handleSubmit();
+                        }
                     }
                 ]} />
         </form >

@@ -27,21 +27,28 @@ export const CardImage: React.FC<{
     onClick?: () => void;
     children?: ReactNode;
 }> = ({ src, alt, className, children, onClick }) => (
-    <div className={`md3-card-image-container flex-1
-        ${className} 
-        ${onClick ? "cursor-pointer" : ""}  `}
-        onClick={() => onClick && onClick()}>
+    <div
+        className={`md3-card-image-container flex-1 ${className} ${onClick ? "cursor-pointer" : ""}`}
+        onClick={
+            e => { e.stopPropagation(); if (onClick) onClick() }
+        }
+    >
         <img
             onError={(e: any) => { e.target.onerror = null; }}
             className={`md3-card-image`}
             src={src}
             alt={alt}
         />
-        {children &&
-            <div className="md3-card-image-children">
+        {
+            children &&
+            <div className="md3-card-image-children text-white "
+                onClick={e => e.stopPropagation()}
+            >
                 {children}
-            </div>}
-    </div>
+            </div>
+        }
+    </div >
+
 );
 
 //// CARD HEADER
@@ -153,6 +160,10 @@ export const CardMD: React.FC<CardMDProps> & {
         return (
             <div className={cardClasses} data-md3-card {...props}>
                 <div className={` !image md3-card-content pt-3`}>
+                    {image && !(image as any).props?.src &&
+                        <div className={`md3-card-content-inner -mb-4 px-4`}>
+                            {(image as any).props?.children}
+                        </div>}
                     {children}
                 </div>
             </div>
@@ -269,7 +280,6 @@ export const CardLarge: React.FC<CardLargeProps> & {
                 {/* Large Image */}
                 {imageProps.src &&
                     <div className={`absolute top-0 anim md3-card-large-image-container h-[55%]`}  >
-
                         <img
                             src={imageProps.src}
                             alt={imageProps.alt}

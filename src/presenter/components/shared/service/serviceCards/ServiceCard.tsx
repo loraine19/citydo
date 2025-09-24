@@ -12,6 +12,7 @@ import Chip from "../../../common/adaptatersComps/Chip";
 import { CardMD } from "../../base/baseComps/Cards";
 import { MoreButton } from "../../../common/moreBtn";
 import { Md3Colors } from "../../base/baseComps/Buttons";
+import { GroupLink } from "../../../common/GroupLink";
 
 
 type ServiceProps = { service: ServiceView, mines?: boolean, change: (e: React.MouseEvent<HTMLButtonElement>) => void, update?: () => void, compact?: boolean }
@@ -81,12 +82,17 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                     alt={title}
                     className=""
                 >
-                    {/* <div className="flex w-full justify-end ">
-                        <DateChip
+                    <div className="flex w-full justify-end ">
+                        {/* <DateChip
                             start={createdAt}
                             prefix=" "
-                        />
-                    </div> */}
+                        /> */}
+                        <MoreButton
+                            id={id}
+                            type={'service'}
+                            flagged={flagged}
+                            title={title} />
+                    </div>
                 </CardMD.Image>
             }>
 
@@ -116,38 +122,35 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
 
             </CardMD.Chips>
             <CardMD.Headline className="flex flex-row justify-between w-full ">
-                <span className={`${compact ? 'line-clamp-1' : 'line-clamp-2 '} "sm:line-clamp-2"`}>{title}</span>
-                <MoreButton
-                    id={id}
-                    type={'service'}
-                    flagged={flagged}
-                    title={title} />
+                <span className={`${!compact ? 'line-clamp-1' : 'line-clamp-2 '} "sm:line-clamp-2"`}>
+                    {title}
+                </span>
             </CardMD.Headline>
-            <CardMD.Subhead className={` `}>
-                <Chip
-                    variant="tonal"
-                    className=" max-w-max "
-                    value={` ${service.typeS === ServiceType.GET ? 'vous fais gagner ' : 'coute '} ${points.join(' à ')} pts`}
-                    icon={
-                        <Icon
 
-                            style=" -ml-1"
-                            icon="toll"
-                            title={`Ce service ${service.typeS === ServiceType.GET ? 'vous fais gagner' : 'coute'} ${points.join(' à ')}pts`}
-                            fill={user?.Profile?.points > points[0]}
-                            color={service.typeS === ServiceType.GET ? "green" : "orange"}
-                            size="md"
-                        />
-                    }
-                />
+            <CardMD.Subhead className={`flex items-center gap-2`}>
+                <GroupLink group={Group} />
             </CardMD.Subhead>
 
+            <CardMD.SupportingText className={`flex  gap-3`}>
+                <Icon
+
+                    style='max-h-max'
+                    icon="fiber_manual_record"
+                    title={`Ce service ${service.typeS === ServiceType.GET ? 'vous fais gagner' : 'coute'} ${points.join(' à ')}pts`}
+                    fill={user?.Profile?.points > points[0]}
+                    color={service.typeS === ServiceType.GET ? "green" : "orange"}
+                    size="md"
+                />
+                {` ${points.join(' à ')} pts`}
+
+            </CardMD.SupportingText>
 
 
-            <CardMD.Footer className="justify-between items-center flex max-h-max  w-full">
+
+            <CardMD.Footer className="justify-between items-center flex max-h-max   w-full">
 
                 {(!mines) && (
-                    <ProfileDiv profile={User} date={createdAt} group={Group} size='lg' />
+                    <ProfileDiv profile={User} date={createdAt} size='md' />
                 )}
 
                 {mine && mines && (

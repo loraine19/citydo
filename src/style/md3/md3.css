@@ -296,6 +296,12 @@
 }
 
 /* color schemes */
+.md3-stroke {
+    color: var(--md3-suface);
+    /* Text stroke utility using text-shadow for fallback */
+    text-shadow: 0 0 2px var(--md3-outline), 0 0 1px var(--md3-outline),
+        0 0 1px var(--md3-outline), 0 0 1px var(--md3-outline);
+}
 
 .md3-primary {
     background-color: var(--md3-primary);

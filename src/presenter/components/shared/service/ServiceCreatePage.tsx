@@ -30,10 +30,17 @@ export default function ServiceCreatePage() {
         const postData: ServiceDTO = new ServiceDTO(formik.values as ServiceDTO);
         try {
             const data = await postService(postData)
-            if (data?.id) navigate(`/service/${data?.id}`)
-            else handleApiError("Erreur lors de la création du service");
+            console.log('created service', data);
+            if (data?.id) {
+                navigate(`/service/${data?.id}`);
+            } else {
+                handleApiError("Erreur lors de la création du service");
+                formik.setSubmitting(false);
+            }
         } catch (error) {
+            formik.setSubmitting(false);
             handleApiError(error ?? "Erreur lors de la création du service");
+
         }
     }
 
@@ -44,7 +51,9 @@ export default function ServiceCreatePage() {
         onSubmit: values => {
             values.status = 'STEP_0' as ServiceStep;
             const valuesAlert: AlertValues = {
-                handleConfirm: async () => await postFunction(),
+                handleConfirm: async () => {
+                    await postFunction()
+                },
                 confirmString: "Enregistrer ",
                 title: "Confimrer la modification",
                 element: (

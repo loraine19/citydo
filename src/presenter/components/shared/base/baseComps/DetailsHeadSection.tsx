@@ -55,18 +55,19 @@ const DetailsHeadSection: React.FC<DetailsHeadSectionProps> = ({
                     />}
                 </div>
                 <div className="flex gap-2">
-                    {viewBtnProps && <Chip
-                        className=""
-                        variant="outlined"
-                        size="medium"
-                        value={`${viewBtnProps.viewList.find(v => v.key === viewBtnProps.view)?.label ?? "Vue"}`}
-                        iconPlacement="end"
-                        icon={
-                            <ViewButton
-                                {...viewBtnProps}
-                            />
-                        }
-                    />}
+                    {viewBtnProps &&
+                        <Chip
+                            className=""
+                            variant="outlined"
+                            size="medium"
+                            value={`${viewBtnProps.viewList.find(v => v.key === viewBtnProps.view)?.label ?? "Vue"}`}
+                            iconPlacement="end"
+                            icon={
+                                <ViewButton
+                                    {...viewBtnProps}
+                                />
+                            }
+                        />}
                     {children}
                 </div>
 

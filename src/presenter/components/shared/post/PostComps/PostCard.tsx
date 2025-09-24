@@ -12,12 +12,13 @@ import { CardMD } from "../../base/baseComps/Cards";
 import { IconAnimate } from "../../../common/IconAnimate";
 import { Button } from "../../base/baseComps/Buttons";
 import { MoreButton } from "../../../common/moreBtn";
+import { GroupLink } from "../../../common/GroupLink";
 
 type PostCardProps = { post: PostView, mines?: boolean, change: (e: any) => void, update?: () => void, short?: boolean, autoFit?: boolean }
 
-export default function PostCard({ post: initialPost, mines, change, update, short, autoFit }: PostCardProps) {
+export default function PostCard({ post: initialPost, mines, change, update, autoFit }: PostCardProps) {
     const [post, setPost] = useState<PostView>(initialPost);
-    const { id, title, description, image, categoryS, createdAt, Likes, User, flagged, toogleLike } = post ?? {} as PostView;
+    const { id, title, image, categoryS, createdAt, Likes, User, flagged, toogleLike, Group } = post;
     const deletePost = async (id: number) => await DI.resolve('deletePostUseCase').execute(id)
     const myActions: Action[] = GenereMyActions(post, "annonce", deletePost)
 
@@ -64,18 +65,15 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                 <Title title={title} />
             </CardMD.Headline>
 
-            <CardMD.SupportingText>
-                <span className={short ? " !line-clamp-2" : "!line-clamp-3"}>
-                    {description}
-                </span>
-            </CardMD.SupportingText>
+            <CardMD.Subhead className={`flex items-center gap-1`}>
+                <GroupLink group={Group} />
+            </CardMD.Subhead>
 
             <CardMD.Footer className="justify-between  items-center flex w-full">
                 {!mines ?
                     <div className=" w-full flex-1 items-center flex truncate pl-2 -ml-2 ">
                         <ProfileDiv
                             date={post?.createdAt}
-                            group={post?.Group}
                             profile={User} />
                     </div> :
                     <ModifBtnStack

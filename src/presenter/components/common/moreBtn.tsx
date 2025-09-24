@@ -61,49 +61,51 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
 
 
     return (
+        <div className="relative">
+            <Menu
+                blurBack
+                key={`more-menu-${id}`}
+                className={className ?? '' + ' '}
+                open={isOpen}
+                setOpen={setIsOpen}
+                placement={'bottom-left'}
+                trigger={
+                    <Icon
 
-        <Menu
-            blurBack
-            key={`more-menu-${id}`}
-            className={className ?? '' + ''}
-            open={isOpen}
-            setOpen={setIsOpen}
-            placement={'bottom-left'}
-            trigger={
-                <Icon
-                    fill
-                    style='-mr-2 mt-1.5'
-                    color={'slate'}
-                    icon={isOpen ? "arrow_drop_up" : "more_vert"}
-                    size="lg"
-                />}>
+                        fill
+                        style='!p-0 z-40  h-[2rem] md3-stroke   max-h-max'
+                        color={''}
+                        textIcon="⋮"
+                        size={'3xl'}
+                    />}>
 
 
-            {iconList.map((item: any, index: number) =>
-                <MenuItem
-                    key={index}
-                    data-cy={item.key ?? item.label}
-                    onClick={() => {
-                        item.action();
-                        setIsOpen(!isOpen);
-                    }}
-                    leadingIcon={
-                        <Icon
-                            bg
-                            color={item.flagged ? 'error' : 'slate'}
-                            fill={item.fill ?? false}
-                            size={'md'}
-                            onClick={() => {
-                                item.action();
-                                setIsOpen(!isOpen);
-                            }}
-                            title={item.label}
-                            icon={item.icon}
-                        />}
-                    className="flex !pr-12 " >
-                    {item.label}
-                </MenuItem>
-            )}
-        </Menu>
+                {iconList.map((item: any, index: number) =>
+                    <MenuItem
+                        key={index}
+                        data-cy={item.key ?? item.label}
+                        onClick={() => {
+                            item.action();
+                            setIsOpen(!isOpen);
+                        }}
+                        leadingIcon={
+                            <Icon
+                                bg
+                                color={item.flagged ? 'error' : 'slate'}
+                                fill={item.fill ?? false}
+                                size={'md'}
+                                onClick={() => {
+                                    item.action();
+                                    setIsOpen(!isOpen);
+                                }}
+                                title={item.label}
+                                icon={item.icon}
+                            />}
+                        className="flex !pr-12 " >
+                        {item.label}
+                    </MenuItem>
+                )}
+            </Menu>
+        </div>
     )
 }

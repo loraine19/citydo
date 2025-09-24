@@ -39,10 +39,11 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
     if (!value) return null;
     return (
         <div className="max-h-max opacity-80 ">
-            {value && <Chip
-                value={value}
-                color={dateClass}>
-            </Chip>}
+            {value &&
+                <Chip
+                    value={value}
+                    color={dateClass}>
+                </Chip>}
         </div>
     )
 }
