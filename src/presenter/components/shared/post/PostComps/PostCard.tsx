@@ -34,17 +34,18 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
                     alt={title}
                     className="relative"
                 >
+                    <IconAnimate
+                        active={post?.ILike}
+                        icon={'favorite'} />
 
-                    <div className={`w-full flex flex-col items-end !h-full`}>
+                    <CardMD.Chips className={`w-full flex justify-end gap-2 h-max`}>
                         <DateChip
                             start={createdAt}
                             prefix=" "
                         />
 
-                        <IconAnimate
-                            active={post?.ILike}
-                            icon={'favorite'} />
-                    </div>
+                        {<MoreButton id={id} type={'annonce'} flagged={flagged} />}
+                    </CardMD.Chips>
                 </CardMD.Image>
             }
         >
@@ -58,7 +59,6 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
                     />
                 </div>
 
-                {<MoreButton id={id} type={'annonce'} flagged={flagged} />}
             </CardMD.Chips>
 
             <CardMD.Headline>
@@ -81,7 +81,6 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
                         update={update} />}
 
                 <Button
-                    size='small'
                     onClick={async () => {
                         setPost(await toogleLike());
                         post.ILike = !post?.ILike

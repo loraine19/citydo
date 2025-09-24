@@ -4,7 +4,6 @@ import { dayMS } from "../../../../../domain/entities/frontEntities";
 import { DateChip } from "../../../common/ChipDate";
 import { PoolSurveyView } from "../../../../views/viewsEntities/poolSurveyViewEntity";
 import DI from "../../../../../di/ioc"
-import { Title } from "../../../common/CardTitle";
 import { PoolSurveyStatus } from "../../../../../domain/entities/PoolSurvey";
 import Chip from "../../../common/adaptatersComps/Chip";
 import { VoteValues } from "./VoteCard";
@@ -15,6 +14,7 @@ import { Button, Md3Colors } from "../../base/baseComps/Buttons";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { MoreButton } from "../../../common/moreBtn";
 import { IconAnimate } from "../../../common/IconAnimate";
+import { GroupLink } from "../../../common/GroupLink";
 
 
 type SurveyCardProps = {
@@ -57,12 +57,17 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                             alt={survey?.title}
                             className=""
                         >
-                            <div className={`w-full flex flex-col items-end !h-full`}>
+                            <IconAnimate
+                                active={survey?.IVoted}
+                                icon={'ballot'} />
+                            <CardMD.Chips className="justify-end absolute top-2 right-2">
+                                <MoreButton
+                                    id={survey?.id}
+                                    type={'vote/sondage'}
+                                    flagged={survey?.flagged}
+                                    title={survey?.title} />
+                            </CardMD.Chips>
 
-                                <IconAnimate
-                                    active={survey?.IVoted}
-                                    icon={'ballot'} />
-                            </div>
                         </CardMD.Image>
                     ) : undefined
                 }
@@ -87,11 +92,14 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                             prefix="J-"
                         />
                     </div>
-                    {<MoreButton id={survey?.id} type={'vote/sondage'} flagged={survey?.flagged} title={survey?.title} />}
+
                 </CardMD.Chips>
-                <CardMD.Headline>
-                    <Title title={survey?.title} />
+                <CardMD.Headline className="line-clamp-1">
+                    {survey?.title}
                 </CardMD.Headline>
+                <CardMD.Subhead className={`flex items-center gap-2`}>
+                    <GroupLink group={survey?.Group} />
+                </CardMD.Subhead>
                 <CardMD.Media>
                     <ProgressBar
                         color="orange"
@@ -124,7 +132,6 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                         <div className=" w-full flex-1 flex items-center truncate pl-2 -ml-2 ">
                             <ProfileDiv
                                 date={survey?.createdAt}
-                                group={survey?.Group}
                                 profile={survey?.User} />
                         </div>
                     ) : (

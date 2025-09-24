@@ -12,9 +12,8 @@ export function AvatarStack(props: AvatarStackProps) {
     const { avatarDatas } = props;
     const navigate = useNavigate();
     const containerRef = useRef<HTMLDivElement>(null);
-    // Dynamically calculate how many avatars fit in the container
-    const AVATAR_WIDTH = 44; // px, ~2.65rem (actual avatar size)
-    const AVATAR_OVERLAP = 12; // px, overlap due to -space-x-3
+    const AVATAR_WIDTH = 44;
+    const AVATAR_OVERLAP = 12;
     const [open, setOpen] = useState(false);
 
     const [maxVisible, setMaxVisible] = useState(1);
@@ -23,7 +22,6 @@ export function AvatarStack(props: AvatarStackProps) {
         function updateMaxVisible() {
             if (containerRef.current) {
                 const containerWidth = containerRef.current.offsetWidth;
-                // First avatar takes full width, each next overlaps
                 let calculated = 1;
                 if (avatarDatas.length > 1) {
                     calculated = Math.floor(
@@ -38,8 +36,6 @@ export function AvatarStack(props: AvatarStackProps) {
         }
         updateMaxVisible();
         window.addEventListener("resize", updateMaxVisible);
-
-        // Listen for container size changes (not just window resize)
         let resizeObserver: ResizeObserver | undefined;
         if (containerRef.current) {
             resizeObserver = new ResizeObserver(updateMaxVisible);
@@ -55,7 +51,7 @@ export function AvatarStack(props: AvatarStackProps) {
             onClick={() => setMaxVisible(avatarDatas.length)}
             color='cyan'
             value={`+${avatarDatas.length - visibleAvatars.length}`}
-            className="border-[4px] !h-[2.65rem] !w-[2.65rem] flex items-center justify-center !rounded-full  shrink-0 font-semibold !border-[var(--md3-primary-container)] text-[1rem] pt-0.5 pr-0.5 p-0"
+            className=" !border-[4px] !h-[2.65rem] !w-[2.65rem] flex items-center justify-center !rounded-full md3-cyan-container shrink-0 font-semibold !border-[var(--md3-primary-container)] text-[1rem] pt-0.5 pr-0.5 p-0"
         />
         : null;
 

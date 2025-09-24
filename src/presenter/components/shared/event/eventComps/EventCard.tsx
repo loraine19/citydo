@@ -138,7 +138,6 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                             fill: event?.Igo,
                             title: event?.Igo ? "retirer de l'evenement" : "je participe"
                         }}
-                        size='small'
                         disabled={event?.status === EventStatus.REJECTED || event?.isPast}
                         data-cy='btn-participate'
                         onClick={async () => {

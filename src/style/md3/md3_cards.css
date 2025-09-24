@@ -115,8 +115,8 @@
     justify-content: space-between;
     align-items: center;
     gap: var(--md3-spacing-medium);
-    padding: var(--md3-spacing-small) var(--md3-spacing-medium) 0;
-    border-top: 0.5px solid #00000015;
+    padding: var(--md3-spacing-small) var(--md3-spacing-medium);
+    border-top: 0px solid #00000015;
     color: var(--md3-on-surface-variant);
     overflow: hidden;
 }
