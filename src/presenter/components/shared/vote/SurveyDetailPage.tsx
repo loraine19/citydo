@@ -72,7 +72,7 @@ export default function SurveyDetailPage() {
             <main >
                 <section
                     id='refDiv'
-                    className={`${expand ? 'overflow-auto' : ''}`}
+                    className={`${expand ? 'overflow-auto' : 'overflow-hidden'}`}
                     ref={divRef}
                     onScroll={() => {
                         handleHideCallback()

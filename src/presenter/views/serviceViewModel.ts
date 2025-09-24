@@ -21,12 +21,12 @@ export const serviceViewModel = () => {
 
         queryFn: async ({ pageParam = 1 }) => await getServices.execute(pageParam, params) || [],
         initialPageParam: 1,
-        getNextPageParam: (lastPage, pages) => lastPage?.services?.length ? pages.length + 1 : undefined
+        getNextPageParam: (lastPage: any, pages: any) => lastPage?.services?.length ? pages.length + 1 : undefined
       });
 
 
     const count = isLoading || error ? 0 : (data?.pages[data?.pages.length - 1].count)
-    const flat = error || isLoading || !data ? [] : data?.pages.flat().map(page => page.services).flat()
+    const flat = error || isLoading || !data ? [] : data?.pages.flat().map((page: any) => page.services).flat()
     const services = (userLoading || isLoading || !flat || !data) ? [] : flat?.map((service: Service) => service && new ServiceView(service, user))
 
 
@@ -58,7 +58,7 @@ export const serviceIdViewModel = () => {
     const { data, isLoading, error, refetch } = useQuery({
       queryKey: ['serviceById', id],
       staleTime: 600000,
-      queryFn: async () => await getServiceById.execute(id),
+      queryFn: async () => id && await getServiceById.execute(id),
     })
     const service = userLoading || isLoading ? {} : data ? new ServiceView(data, user) : {} as ServiceView;
 

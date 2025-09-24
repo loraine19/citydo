@@ -280,10 +280,11 @@ export default function PostListPage() {
                             :
                             <div className={"Grid anim " + ((compact && view !== 'dashboard') ? ' GridCompact' : '')}>
                                 {posts?.map((post: PostView, index: number) => (
-                                    <div
+                                    post && <div
                                         className="SubGrid"
                                         key={index}>
                                         <PostCard
+
                                             autoFit={compact}
                                             short
                                             key={post?.id}

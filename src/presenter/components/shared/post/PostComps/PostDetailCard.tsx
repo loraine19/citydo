@@ -94,7 +94,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
 
                 </Button>
             </CardLarge.Media>
-
+            <CardLarge.Divider />
             <CardLarge.Footer className="md3-card-large-footer ">
                 <div className=" w-full flex-1 items-center flex truncate pl-2 pb-4 -ml-2 ">
                     <ProfileDiv

@@ -102,7 +102,9 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                 </CardLarge.Media>
             </CardLarge.MidSection>
 
+            <CardLarge.Divider />
             <CardLarge.Media className="gap-2 pb-2">
+                <h6>Participants</h6>
                 <AvatarStack ref avatarDatas={Participants} />
                 <ProgressBar
                     size='xxsmall'
@@ -121,6 +123,8 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                         </div>}
                 />
             </CardLarge.Media>
+
+            <CardLarge.Divider />
             <CardLarge.Footer className={`md3-card-large-footer `}>
                 <div className="flex flex-col gap-2 w-max justify-center ">
                     <h6>Organisateur</h6>

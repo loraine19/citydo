@@ -39,14 +39,11 @@ const FormHeadSection: React.FC<FormHeadSectionProps> = ({
         let goBack2 = new URLSearchParams(window.location.search).toString().includes("=")
             ? window.location.pathname.split("/")[0]
             : null;
-        alert(goBack + ' ' + goBack2)
         if (goBack2) {
-            alert('goBack2')
             navigate(goBack2);
 
         }
         else if (goBack && goBack !== window.location.pathname) {
-            alert('goBack' + goBack)
             navigate(goBack);
         }
 

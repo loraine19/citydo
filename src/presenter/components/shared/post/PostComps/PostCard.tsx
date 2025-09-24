@@ -31,7 +31,9 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
             image={
                 post?.image &&
                 <CardMD.Image
-                    onClick={() => navigate(`/annonce/${post?.id}`)}
+                    onClick={() => {
+                        navigate(`/annonce/${post?.id}`);
+                    }}
                     src={post?.image as string}
                     alt={post?.title}
                     className="relative"
@@ -40,7 +42,7 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
                         active={post?.ILike}
                         icon={'favorite'} />
 
-                    <CardMD.Chips className={`w-full flex bg-red-200 absolute justify-end gap-2 right-1 h-max`}>
+                    <CardMD.Chips className={`w-max right-0 flex absolute justify-end gap-2  h-max`}>
                         <DateChip
                             start={post?.createdAt}
                             prefix=" "

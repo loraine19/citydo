@@ -26,12 +26,15 @@ export const CardImage: React.FC<{
     children?: ReactNode;
 }> = ({ src, alt, className, children, onClick }) => (
     <div
-        className={`md3-card-image-container items-start flex-1 ${className} ${onClick ? "cursor-pointer" : ""}`}
-        onClick={
-            () => {
-                onClick && onClick()
-            }
-        }
+        role='button'
+        onClick={e => {
+            e.preventDefault();
+            onClick && onClick()
+        }}
+
+        className={`md3-card-image-container  items-start flex-1 ${className} 
+            `}
+
     >
         <img
             onError={(e: any) => { e.target.onerror = null; }}
@@ -39,12 +42,12 @@ export const CardImage: React.FC<{
             src={src}
             alt={alt}
         />
+
         {
             children &&
-            <div className="md3-card-image-children max-h-max relative text-white"
-                onClick={e => {
+            <div className="md3-card-image-children  relative text-white"
+                onClick={(e) => {
                     e.stopPropagation();
-
                 }}
             >
                 {children}
@@ -94,6 +97,11 @@ export const CardMidSection: React.FC<{ children: ReactNode; className?: string 
     <div className={`md3-card-mid-section   ${className}`}>{children}</div>
 );
 
+//// CARD DIVIDER
+export const CardDivider: React.FC<{ className?: string }> = ({ className }) => (
+    <div className={`md3-card-divider ${className}`} />
+);
+
 //// MAIN CARD COMPONENT
 export const CardMD: React.FC<CardMDProps> & {
     Header: typeof CardHeader;
@@ -105,6 +113,7 @@ export const CardMD: React.FC<CardMDProps> & {
     Media: typeof CardMedia;
     Chips: typeof CardChips;
     MidSection: typeof CardMidSection;
+    Divider: typeof CardDivider;
 } = ({
     variant = "elevated",
     color,
@@ -142,8 +151,7 @@ export const CardMD: React.FC<CardMDProps> & {
                 <div
                     data-md3-card className={`${cardClasses} `} {...props}>
                     <CardImage
-                        onClick={
-                            imageProps.onClick ? imageProps.onClick() : undefined}
+                        onClick={imageProps.onClick}
                         src={imageProps.src}
                         alt={imageProps.alt}
                         position={imagePosition}
@@ -163,7 +171,7 @@ export const CardMD: React.FC<CardMDProps> & {
             <div className={cardClasses} data-md3-card {...props}>
                 <div className={` !image md3-card-content pt-3`}>
                     {image && !(image as any).props?.src &&
-                        <div className={`md3-card-content-inner relative pr-6`}>
+                        <div className={`md3-card-content-inner relative -mb-1`}>
                             {(image as any).props?.children}
                         </div>}
                     {children}
@@ -181,6 +189,7 @@ CardMD.SupportingText = CardSupportingText;
 CardMD.Media = CardMedia;
 CardMD.Chips = CardChips;
 CardMD.MidSection = CardMidSection;
+CardMD.Divider = CardDivider;
 
 
 interface CardLargeProps extends Omit<CardMDProps, "imagePosition"> {
@@ -202,6 +211,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
     Media: typeof CardMedia;
     Chips: typeof CardChips;
     MidSection: typeof CardMidSection;
+    Divider: typeof CardDivider;
     expanded?: boolean;
     form?: boolean;
     setExpanded?: (expanded: boolean) => void;
@@ -319,9 +329,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
                                 aria-label="Expand card content" />}
                     </div>
                     {/* Expandable content */}
-                    <div
-                        className={`md3-sheet-content`}  >
-
+                    <div className={`md3-sheet-content`}  >
                         {children}
                     </div>
                 </div>
@@ -347,5 +355,6 @@ CardLarge.SupportingText = CardSupportingText;
 CardLarge.Media = CardMedia;
 CardLarge.Chips = CardChips;
 CardLarge.MidSection = CardMidSection;
+CardLarge.Divider = CardDivider;
 
 

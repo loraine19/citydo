@@ -22,13 +22,15 @@ export default function ServiceDetailPage() {
 
     //// PARAMS
     const { id } = useParams();
-    const idS = id ? parseInt(id) : 0;
+    const [idS, setIdS] = useState<number>(id ? parseInt(id) : 0);
+    useEffect(() => { setIdS(id ? parseInt(id) : 0) }, [id]);
 
     //// HANDLE API ERROR
     const { handleApiError } = useAlertStore()
     const navigate = useNavigate()
 
     //// VIEW MODEL
+
     const serviceIdViewModelFactory = DI.resolve('serviceIdViewModel');
     const { service, isLoading, error, update, refetch } = serviceIdViewModelFactory(idS);
 

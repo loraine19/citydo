@@ -46,20 +46,25 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
         <CardLarge
             expanded={expanded}
             setExpanded={setExpanded}
-            image={<img
-                onError={(e) => e.currentTarget.src = '/image/placeholder.jpg'}
-                src={image as string}
-                alt={title}
-                className='md3-card-large-image' >
-                <CardLarge.Chips className="p-2 mt-1 justify-end">
-                    <DateChip
-                        start={service?.createdAt}
-                        prefix=" " />
+            image={
 
-                    <BtnExpandImg
-                        image={image as any} />
-                </CardLarge.Chips>
-            </img>}>
+                <img
+                    onError={(e) => e.currentTarget.src = '/image/placeholder.jpg'}
+                    src={image as string}
+                    alt={title}
+                    className='md3-card-large-image'
+                >
+                    <CardLarge.Chips className="p-2 mt-1 justify-end">
+                        <DateChip
+                            start={service?.createdAt}
+                            prefix=" "
+                        />
+                        <BtnExpandImg
+                            image={image as any}
+                        />
+                    </CardLarge.Chips>
+                </img>
+            }>
             <CardLarge.Chips className=" px-2 md:-mt-1">
                 <div className="md3-card-chips w-full">
                     <Chip
@@ -96,7 +101,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
             <CardLarge.SupportingText>
                 {service?.description}
             </CardLarge.SupportingText>
-
+            <CardLarge.Divider />
             <CardLarge.Media className="gap-8 w-full flex-row justify-start ">
                 <div className="flex flex-col gap-2 ">
                     <h6 className="">Difficulté</h6>
@@ -120,24 +125,18 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                                 style="pointer-events-none"
                                 title="Difficulté" />}>
                         </Chip>
-                    </div>
-                </div>
-                <div className="flex flex-col gap-2 ">
-                    <h6>Points</h6>
-                    <div className="slateChip w Chip min-w-8 flex items-center justify-center">
-                        <div className={`flex pt-1 items-center gap-1 px-2 ${points?.length > 0 && "sm:w-full"}`} >
-
-                            {points[0]}
-                            {points[1] && <>
-                                &nbsp;à&nbsp;
-                                {points[1]}</>}
-
-                        </div>
+                        <Chip
+                            value={
+                                points[1]
+                                    ? `points : ${points[0]} à ${points[1]} `
+                                    : `points : ${points[0]} `
+                            }
+                        />
                     </div>
                 </div>
 
             </CardLarge.Media>
-
+            <CardLarge.Divider />
             <CardLarge.MidSection className="flex h-full flex-col ">
                 <div className="flex flex-col flex-1">
                     <h6>Réponse</h6>
@@ -157,7 +156,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                     </div>
                 </div>
             </CardLarge.MidSection>
-
+            <CardLarge.Divider />
             <CardLarge.Footer className={`md3-card-large-footer `}>
 
                 <div className="flex flex-col w-full gap-2 ">

@@ -149,8 +149,8 @@ function App() {
                                     <Route path="/evenement" element={<EventListPage />} />
                                     <Route path="/flag" element={<FlagPage />} />
                                     <Route path="/vote" element={<VoteListPage />} />
-                                    {/* <Route path="/sondage" element={<VoteListPage />} />
-                                    <Route path="/cagnotte" element={<VoteListPage />} /> */}
+                                    <Route path="/sondage" element={<VoteListPage />} />
+                                    <Route path="/cagnotte" element={<VoteListPage />} />
                                     <Route path="/annonce" element={<PostListPage />} />
                                     <Route path="/conciliation" element={<ConciliationListPage />} />
                                 </Route>

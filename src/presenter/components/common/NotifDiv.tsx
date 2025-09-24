@@ -14,13 +14,13 @@ const NotifDiv: React.FC<NotifDivProps> = ({ notif, isLoading, refetch, error, c
     let [attempt, setAttempt] = useState<number>(0);
 
     useEffect(() => {
-        if (attempt < 2 && !isLoading && !error) setTimeout(() => {
+        if (attempt < 3) setTimeout(() => {
             notif; refetch(); attempt++
         }, 1000);
     }, [notif, error]);
 
     useEffect(() => {
-        if (error === 'session expirée') window.location.replace('/signin');
+        if (error === 'session expirée' && attempt > 3) window.location.replace('/signin');
     }, [error]);
 
     return (
@@ -41,7 +41,7 @@ const NotifDiv: React.FC<NotifDivProps> = ({ notif, isLoading, refetch, error, c
                 <Icon
 
                     reverse
-                    style={(attempt > 2 || isLoading || error) ? '!hidden' : 'md3-elevation-2'}
+                    style={(attempt > 3 || error) ? '!hidden' : 'md3-elevation-1'}
                     color={color}
                     size='3xl'
                     title="Recharger la liste"

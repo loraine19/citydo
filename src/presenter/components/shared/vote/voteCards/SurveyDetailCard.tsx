@@ -67,10 +67,12 @@ export default function SurveyDetailCard({ survey, expand, setExpand }: Props) {
                     <GroupLink group={Group} />
                 </div>
             </CardLarge.Subhead>
-            <CardLarge.SupportingText>
+            <CardLarge.SupportingText className="flex flex-col gap-2">
                 <h6>Description</h6>
                 {survey?.description}
             </CardLarge.SupportingText>
+
+            <CardLarge.Divider />
             <CardLarge.Media className="h-full flex-1 justify-between gap-2">
                 <div className="flex flex-col py-2 gap-2 ">
                     <h6>Progression des Votes</h6>
@@ -99,6 +101,8 @@ export default function SurveyDetailCard({ survey, expand, setExpand }: Props) {
                     />
                 </div>
             </CardLarge.Media>
+
+            <CardLarge.Divider />
             <CardLarge.Footer className="md3-card-large-footer gap-2">
                 <div className="flex flex-col gap-2 ">
                     <h6>Créé par</h6>

@@ -53,14 +53,18 @@ export default function PoolDetailCard({ pool, setExpand }: PoolDetailCardProps)
                 </div>
             </CardLarge.Subhead>
             <CardLarge.SupportingText>
-                <h6>Description</h6>
                 {pool?.description}
             </CardLarge.SupportingText>
+
+            <CardLarge.Divider />
             <CardLarge.Media className="h-full flex-1 justify-between gap-2">
+                <h6>Bénéficiaire</h6>
                 <ProfileDiv
                     profile={pool?.UserBenef || {} as Partial<User>}
                     size={'6xl'} />
             </CardLarge.Media>
+
+            <CardLarge.Divider />
             <CardLarge.Media className="h-full flex-1 justify-between gap-2">
                 <div className="flex flex-col py-2 gap-2 ">
                     <h6>Progression des Votes</h6>
@@ -89,6 +93,8 @@ export default function PoolDetailCard({ pool, setExpand }: PoolDetailCardProps)
                     />
                 </div>
             </CardLarge.Media>
+
+            <CardLarge.Divider />
             <CardLarge.Footer className="md3-card-large-footer gap-2">
                 <div className="flex flex-col gap-2 ">
                     <h6>Créé par</h6>

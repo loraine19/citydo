@@ -135,8 +135,8 @@ export default function VoteListPage() {
     //// NOTIFICATION & ERROR
     useEffect(() => {
         if (error) setNotif(error.message || "Erreur inconnue");
-        else if ((count === 0 || !poolsSurveys || poolsSurveys.length === 0) && !isLoading && !error)
-            setNotif(`Aucun ${filterName()} ${stepName()} n'a été trouvé`);
+        else if ((count === 0 || poolsSurveys.length === 0) && !isLoading && !error)
+            setNotif(`Aucun vote ${filterName()} ${stepName()} n'a été trouvé`);
         else setNotif('');
     }, [isLoading, error, filter, step, category, count, poolsSurveys.length]);
 
