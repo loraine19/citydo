@@ -11,6 +11,7 @@ import { CardLarge } from "../../base/baseComps/Cards";
 import { GroupLink } from "../../../common/GroupLink";
 import { ProgressBar } from "../../base/baseComps/Sliders";
 import { useRef } from "react";
+import BtnExpandImg from "../../../common/BtnExpandImg";
 
 type EventCardProps = {
     EventLoad: EventView,
@@ -41,6 +42,8 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                         <DateChip
                             start={EventLoad?.createdAt}
                             prefix=" " />
+                        <BtnExpandImg
+                            image={image as any} />
                     </CardLarge.Chips>
                 </img>}>
 

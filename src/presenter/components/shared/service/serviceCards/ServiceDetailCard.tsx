@@ -10,6 +10,7 @@ import { MoreButton } from "../../../common/moreBtn";
 import { CardLarge } from "../../base/baseComps/Cards";
 import { GroupLink } from "../../../common/GroupLink";
 import { Md3Colors } from "../../base/baseComps/Buttons";
+import BtnExpandImg from "../../../common/BtnExpandImg";
 
 export default function ServiceDetailComp(props: { service: ServiceView, mines?: boolean, expanded: boolean, setExpanded: (e: boolean) => void }) {
     const { service, expanded, setExpanded } = props
@@ -54,6 +55,9 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                     <DateChip
                         start={service?.createdAt}
                         prefix=" " />
+
+                    <BtnExpandImg
+                        image={image as any} />
                 </CardLarge.Chips>
             </img>}>
             <CardLarge.Chips className=" px-2 md:-mt-1">

@@ -13,12 +13,13 @@ import { CardMD } from "../../base/baseComps/Cards";
 import { MoreButton } from "../../../common/moreBtn";
 import { Md3Colors } from "../../base/baseComps/Buttons";
 import { GroupLink } from "../../../common/GroupLink";
+import { DateChip } from "../../../common/ChipDate";
 
 
 type ServiceProps = { service: ServiceView, mines?: boolean, change: (e: React.MouseEvent<HTMLButtonElement>) => void, update?: () => void, compact?: boolean }
 const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, compact }) => {
     const { user } = useUserStore()
-    const { id, title, image, createdAt, User, flagged, mine, IResp, points, typeS, categoryS, statusS, Group } = service
+    const { id, title, image, createdAt, User, mine, IResp, points, typeS, categoryS, statusS, Group } = service
     const navigate = useNavigate();
     const statusSInt = getEnumVal(service.statusS, ServiceStep)
     const isLateValue = isLate(createdAt, 15) && statusSInt < 3
@@ -82,17 +83,15 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                     alt={title}
                     className=""
                 >
-                    <div className="flex w-full justify-end ">
-                        {/* <DateChip
-                            start={createdAt}
+
+                    <CardMD.Chips className={`w-full flex absolute justify-end gap-2 px-4 h-max`}>
+                        <DateChip
+                            start={service?.createdAt}
                             prefix=" "
-                        /> */}
-                        <MoreButton
-                            id={id}
-                            type={'service'}
-                            flagged={flagged}
-                            title={title} />
-                    </div>
+                        />
+
+                        {<MoreButton id={service?.id} type={'service'} flagged={service?.flagged} />}
+                    </CardMD.Chips>
                 </CardMD.Image>
             }>
 

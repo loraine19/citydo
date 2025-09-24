@@ -13,6 +13,7 @@ import { GroupLink } from "../../../common/GroupLink";
 import { Button } from "../../base/baseComps/Buttons";
 import { Link } from "react-router-dom";
 import { IconAnimate } from "../../../common/IconAnimate";
+import BtnExpandImg from "../../../common/BtnExpandImg";
 
 export default function PostDetailCard(props: { post: PostView, mines?: boolean, change: (e: any) => void, expand: boolean, setExpand: (expand: boolean) => void }) {
     const [post, setPost] = useState<PostView>(props.post)
@@ -33,14 +34,19 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                 src={image as any}
                 alt={title}
                 className="CardImage" >
-                <CardLarge.Chips className="justify-end !p-2">
-                    <DateChip
-                        start={createdAt}
-                        prefix="publié le " />
-                </CardLarge.Chips>
                 <IconAnimate
                     active={post?.ILike}
                     icon={'favorite'} />
+
+                <CardLarge.Chips className="justify-end !p-2">
+
+                    <DateChip
+                        start={createdAt}
+                        prefix="publié le " />
+                    <BtnExpandImg
+                        image={image as any} />
+                </CardLarge.Chips>
+
 
             </img>}>
             <CardLarge.Chips className="justify-between">

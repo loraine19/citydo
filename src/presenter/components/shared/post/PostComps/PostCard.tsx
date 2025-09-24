@@ -37,7 +37,7 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
                         active={post?.ILike}
                         icon={'favorite'} />
 
-                    <CardMD.Chips className={`w-full flex justify-end gap-2 h-max`}>
+                    <CardMD.Chips className={`w-full flex absolute justify-end gap-2 right-1 h-max`}>
                         <DateChip
                             start={post?.createdAt}
                             prefix=" "

@@ -10,6 +10,7 @@ import { MoreButton } from "../../../common/moreBtn";
 import { CardLarge } from "../../base/baseComps/Cards";
 import { GroupLink } from "../../../common/GroupLink";
 import { ProgressBar } from "../../base/baseComps/Sliders";
+import BtnExpandImg from "../../../common/BtnExpandImg";
 
 type Props = { survey: PoolSurveyView, setOpen: (open: boolean) => void, expand: boolean, setExpand: (expand: boolean) => void }
 
@@ -29,10 +30,12 @@ export default function SurveyDetailCard({ survey, expand, setExpand }: Props) {
                 alt={title}
                 className="CardImage"
             >
-                <CardLarge.Chips className="justify-end p-2">
+                <CardLarge.Chips className="justify-end py-3">
                     <DateChip
                         start={createdAt}
                         prefix="publié le " />
+                    <BtnExpandImg
+                        image={image as any} />
                 </CardLarge.Chips>
             </img>}
         >

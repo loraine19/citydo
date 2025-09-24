@@ -28,9 +28,11 @@ export const CardImage: React.FC<{
     children?: ReactNode;
 }> = ({ src, alt, className, children, onClick }) => (
     <div
-        className={`md3-card-image-container flex-1 ${className} ${onClick ? "cursor-pointer" : ""}`}
+        className={`md3-card-image-container items-start flex-1 ${className} ${onClick ? "cursor-pointer" : ""}`}
         onClick={
-            e => { e.stopPropagation(); if (onClick) onClick() }
+            () => {
+                onClick && onClick()
+            }
         }
     >
         <img
@@ -41,8 +43,11 @@ export const CardImage: React.FC<{
         />
         {
             children &&
-            <div className="md3-card-image-children text-white "
-                onClick={e => e.stopPropagation()}
+            <div className="md3-card-image-children max-h-max relative text-white"
+                onClick={e => {
+                    e.stopPropagation();
+
+                }}
             >
                 {children}
             </div>
@@ -161,7 +166,7 @@ export const CardMD: React.FC<CardMDProps> & {
             <div className={cardClasses} data-md3-card {...props}>
                 <div className={` !image md3-card-content pt-3`}>
                     {image && !(image as any).props?.src &&
-                        <div className={`md3-card-content-inner -mb-4 px-4`}>
+                        <div className={`md3-card-content-inner relative pr-6`}>
                             {(image as any).props?.children}
                         </div>}
                     {children}

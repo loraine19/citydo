@@ -1,6 +1,8 @@
 import { useAlertStore } from "../../../application/stores/alert.store";
 import { Button, ButtonGroup, Md3Colors } from "../shared/base/baseComps/Buttons";
 import { useUxStore } from "../../../application/stores/ux.store";
+import { useState } from "react";
+import DialogImage from "../shared/base/baseComps/DialogImage";
 
 export const ImageBtn = (props: { formik: any; setImgBlob: any; imgDef?: string; className?: string, color?: Md3Colors, variant?: any }) => {
     const { formik, imgDef, setImgBlob, className, color: colorComp, variant } = props;
@@ -21,6 +23,7 @@ export const ImageBtn = (props: { formik: any; setImgBlob: any; imgDef?: string;
     };
 
     const { setAlertValues, setOpen } = useAlertStore();
+    const [open, setOpenDialog] = useState(false);
 
     return (
         <div className={` ${className || ''}`}>
@@ -78,22 +81,42 @@ export const ImageBtn = (props: { formik: any; setImgBlob: any; imgDef?: string;
                         />
                     </label>
                 </Button>
-                {formik?.values?.image && (
-                    <Button
-                        color={colorComp ?? color as any}
-                        icon={{
-                            fill: true,
-                            icon: "hide_image",
-                            title: "Supprimer l'image",
-                            onClick: () => {
-                                formik.values.image = "";
-                                setImgBlob(imgDef || "");
-                            },
+                {formik?.values?.image &&
+                    <>
+                        <Button
+                            type="button"
 
-                        }}
-                    >
+                            color={colorComp ?? color as any}
+                            icon={{
+                                fill: true,
+                                icon: "hide_image",
+                                title: "Supprimer l'image",
+                                onClick: () => {
+                                    formik.values.image = "";
+                                    setImgBlob(imgDef || "");
+                                },
 
-                    </Button>)}
+                            }}
+                        >
+
+                        </Button>
+                        <Button
+                            type="button"
+                            color={colorComp ?? color as any}
+                            icon={{
+                                fill: true,
+                                icon: "expand_content",
+                                title: "Aperçu de l'image",
+                                onClick: () => setOpenDialog(true)
+                            }}
+                        >
+                        </Button>
+                        {open && <DialogImage onClose={() => setOpenDialog(false)} image={formik?.values?.image} />}
+
+
+                    </>
+
+                }
                 {!formik?.values?.image &&
                     <span className={`md3-card-subhead px-4 `}> ajouter une image</span>}
             </ButtonGroup>

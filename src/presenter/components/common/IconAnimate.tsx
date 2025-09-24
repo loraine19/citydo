@@ -12,7 +12,7 @@ interface IconAnimateProps {
 export const IconAnimate: React.FC<IconAnimateProps> = ({
     active,
     icon,
-    size = "6xl",
+    size = "5xl",
     fill = true,
     className = "",
 }) => {
@@ -27,8 +27,9 @@ export const IconAnimate: React.FC<IconAnimateProps> = ({
     return (
         <div
             className={
-                (firstLoad < 1 || !active ? "opacity-0 " : "animate-pop ") +
-                "!text-white  absolute w-full h-full flex items-center justify-center" +
+                (firstLoad < 1 || !active ? "opacity-0 h-1" : " animate-pop h-max") +
+
+                " absolute w-max top-[100%] left-[50%] translate-x-[-50%] translate-y-[-0%] " +
                 className
             }
         >

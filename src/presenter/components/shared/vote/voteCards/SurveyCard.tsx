@@ -105,11 +105,11 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                         color="orange"
                         size='xxsmall'
                         variant={survey?.pourcent >= 100 ? 'linear' : 'wavy'}
-                        className=" pb-2 lg:pb-2"
+                        className="pb-0.5"
                         value={survey?.pourcent}
                         max={100}
                         label={
-                            <div className="md3-card-supporting-text pb-1 justify-between flex-row">
+                            <div className="md3-card-supporting-text justify-between flex-row">
                                 {survey?.status !== PoolSurveyStatus.PENDING ?
                                     <span>Sondage cloturé</span> :
                                     <>

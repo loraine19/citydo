@@ -138,7 +138,10 @@ function searchIcon(icon?: keyof typeof iconMap, fill?: boolean, textIcon?: stri
         return <>{textIcon}</>;
     if (!IconComponent)
         return <>{icon}</>;
-    return fill ? <IconComponent.filled /> : <IconComponent.default />;
+    return fill ? <IconComponent.filled
+
+
+    /> : <IconComponent.default />;
 }
 
 export type IconProps = {
