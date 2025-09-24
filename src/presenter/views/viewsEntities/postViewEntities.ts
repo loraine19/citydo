@@ -16,7 +16,6 @@ export class PostView extends Post {
 
     constructor(post: Post, userId: number) {
         super(post)
-        console.log(post)
         if (!post) throw new Error('Impossible de récupérer les annonces')
         this.flagged = post?.Flags?.find((flag: Flag) => flag?.userId === userId) ? true : false;
         this.ILike = post?.Likes?.find((like: Like) => like?.userId === userId) ? true : false;

@@ -18,7 +18,6 @@ type PostCardProps = { post: PostView, mines?: boolean, change: (e: any) => void
 
 export default function PostCard({ post: initialPost, mines, change, update, autoFit }: PostCardProps) {
     const [post, setPost] = useState<PostView>(initialPost);
-    const { id, title, image, categoryS, createdAt, Likes, User, flagged, toogleLike, Group } = post;
     const deletePost = async (id: number) => await DI.resolve('deletePostUseCase').execute(id)
     const myActions: Action[] = GenereMyActions(post, "annonce", deletePost)
 
@@ -27,11 +26,11 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
             autoFit={autoFit}
             className="min-h-full fadeIn"
             imagePosition="top"
-            link={`/annonce/${id}`}
+            link={`/annonce/${post?.id}`}
             image={
-                image && <CardMD.Image
-                    src={image as string}
-                    alt={title}
+                post?.image && <CardMD.Image
+                    src={post?.image as string}
+                    alt={post?.title}
                     className="relative"
                 >
                     <IconAnimate
@@ -40,11 +39,11 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
 
                     <CardMD.Chips className={`w-full flex justify-end gap-2 h-max`}>
                         <DateChip
-                            start={createdAt}
+                            start={post?.createdAt}
                             prefix=" "
                         />
 
-                        {<MoreButton id={id} type={'annonce'} flagged={flagged} />}
+                        {<MoreButton id={post?.id} type={'annonce'} flagged={post?.flagged} />}
                     </CardMD.Chips>
                 </CardMD.Image>
             }
@@ -54,7 +53,7 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
                 <div className="md3-card-chips flex-1 !overflow-auto">
                     <Chip
                         onClick={() => change(post?.category as string)}
-                        value={`${categoryS}`}
+                        value={`${post?.categoryS}`}
                         color="rose"
                     />
                 </div>
@@ -62,11 +61,11 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
             </CardMD.Chips>
 
             <CardMD.Headline>
-                <Title title={title} />
+                <Title title={post?.title} />
             </CardMD.Headline>
 
             <CardMD.Subhead className={`flex items-center gap-1`}>
-                <GroupLink group={Group} />
+                <GroupLink group={post?.Group} />
             </CardMD.Subhead>
 
             <CardMD.Footer className="justify-between  items-center flex w-full">
@@ -74,7 +73,7 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
                     <div className=" w-full flex-1 items-center flex truncate pl-2 -ml-2 ">
                         <ProfileDiv
                             date={post?.createdAt}
-                            profile={User} />
+                            profile={post?.User} />
                     </div> :
                     <ModifBtnStack
                         actions={myActions}
@@ -82,7 +81,7 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
 
                 <Button
                     onClick={async () => {
-                        setPost(await toogleLike());
+                        setPost(await post?.toogleLike());
                         post.ILike = !post?.ILike
                     }}
                     variant={post?.ILike ? "filled" : "tonal"}
@@ -94,7 +93,7 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
                         fill: post?.ILike,
                         title: post?.ILike ? "retirer de mes favoris" : "j'aime"
                     }}>
-                    {Likes?.length}
+                    {post?.Likes?.length}
 
                 </Button>
             </CardMD.Footer>

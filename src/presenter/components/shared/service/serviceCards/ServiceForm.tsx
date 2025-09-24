@@ -116,8 +116,7 @@ export function ServiceForm(props: { formik: any }) {
                             >
                                 <CardLarge.Chips className="justify-between  px-4">
                                     <ImageBtn
-                                        variant="outlined"
-                                        color={'slate'}
+                                        variant="tonal"
                                         className={"relative pb-1"}
                                         formik={formik}
                                         setImgBlob={setImgBlob}

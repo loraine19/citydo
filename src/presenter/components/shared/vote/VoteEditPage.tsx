@@ -9,11 +9,9 @@ import { useUserStore } from '../../../../application/stores/user.store';
 import { PoolDTO, SurveyDTO } from '../../../../infrastructure/DTOs/PoolSurveyDTO';
 import { PoolSurveyView } from '../../../views/viewsEntities/poolSurveyViewEntity';
 import { VoteTarget } from '../../../../domain/entities/Vote';
-import { Typography } from '@material-tailwind/react';
-import { PoolCard } from './voteCards/PoolCard';
-import { SurveyCard } from './voteCards/SurveyCard';
 import { useAlertStore } from '../../../../application/stores/alert.store';
 import { TextLength } from '../../../../domain/entities/utilsEntity';
+import { CardConfirmForm } from '../../common/CardConfirmForm';
 
 export default function VoteEditPage() {
     //// PARAMS
@@ -91,29 +89,33 @@ export default function VoteEditPage() {
             formik.values.UserBenef = values?.UserBenef
             setOpen(true)
             setAlertValues({
+                button2: {
+                    text: "Annuler",
+                    onClick: () => setOpen(false)
+                },
+                disableCancel: true,
                 handleConfirm: async () => await updateFunction(values),
                 confirmString: "Enregistrer ",
                 title: "Confimrer la modification",
-                element: (
-                    <div className='flex flex-col gap-8 max-h-[70vh] bg-gray-200 rounded-3xl p-5'>
-                        <Typography variant='h6'>
-                            {type === VoteTarget.SURVEY ? 'Sondage' : 'Cagnotte'}
-                        </Typography>
-                        {type === VoteTarget.SURVEY ?
-                            <SurveyCard
-                                survey={new PoolSurveyView({ ...values, image: values?.blob || values?.image }, user)}
-                                change={() => { }}
-                                update={() => { }}
-                                vote={() => { }}
-                            /> :
-                            <PoolCard
-                                pool={new PoolSurveyView({ ...values }, user)}
-                                change={() => { }}
-                                update={() => { }}
-                                vote={() => { }}
-                            />}
-                    </div>
-                )
+                element: <CardConfirmForm
+                    title={values.title}
+                    content={
+                        <>
+                            <div className='font-semibold'>Description:</div>
+                            <div>{values.description}</div>
+
+                            {type === VoteTarget.SURVEY && <>
+                                <div className='font-semibold'>Catégorie:</div>
+                                <div>{values.category}</div>
+                            </>}
+                            {type === VoteTarget.POOL && <>
+                                <div className='font-semibold'>Bénéficiaire:</div>
+                                <div>{values.UserBenef}</div>
+                            </>}
+
+                        </>
+                    }
+                />
             })
         }
     })

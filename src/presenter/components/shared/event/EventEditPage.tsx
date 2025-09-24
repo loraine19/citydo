@@ -8,10 +8,9 @@ import { Skeleton } from '../../common/Skeleton';
 import { AddressDTO } from '../../../../infrastructure/DTOs/AddressDTO';
 import { EventDTO, EventUpdateDTO } from '../../../../infrastructure/DTOs/EventDTO';
 import { EventView } from '../../../views/viewsEntities/eventViewEntities';
-import { EventCard } from './eventComps/EventCard';
-import { Typography } from '@material-tailwind/react';
 import { useAlertStore } from '../../../../application/stores/alert.store';
 import { TextLength } from '../../../../domain/entities/utilsEntity';
+import { CardConfirmForm } from '../../common/CardConfirmForm';
 
 export default function EventDetailPage() {
 
@@ -65,18 +64,34 @@ export default function EventDetailPage() {
             formik.values.Address = Address as AddressDTO
             setOpen(true)
             setAlertValues({
+                button2: {
+                    text: "Annuler",
+                    onClick: () => setOpen(false)
+                },
+                disableCancel: true,
                 handleConfirm: async () => await updateFunction(),
-                confirmString: "Enregistrer les modifications",
+                confirmString: "Enregistrer",
                 title: "Confimrer la modification",
                 element: (
-                    <div className='flex flex-col gap-8 min-h-max bg-gray-100 rounded-3xl p-5'>
-                        <Typography variant='h6'> Évenement au : {formik.values?.Address?.address} le {new Date(formik.values?.start).toLocaleDateString('fr-FR')}</Typography>
-                        <EventCard
-                            event={new EventView({ ...formik.values, image: formik.values?.blob || formik.values?.image }, 0)}
-                            refetch={() => { }}
-                            change={() => { }}
-                        />
-                    </div>
+                    <CardConfirmForm
+                        title={values.title}
+                        content={
+                            <>
+                                <div className='font-semibold'>Description:</div>
+                                <div>{values.description}</div>
+                                <div className='font-semibold'>Catégorie:</div>
+                                <div>{values.category}</div>
+                                <div className='font-semibold'>Participants:</div>
+                                <div>{values.participantsMin}</div>
+                                <div className='font-semibold'>Date de début:</div>
+                                <div>{new Date(values.start).toLocaleString()}</div>
+                                <div className='font-semibold'>Date de fin:</div>
+                                <div>{new Date(values.end).toLocaleString()}</div>
+                                <div className='font-semibold'>Adresse:</div>
+                                <div>{Address?.address ? Address.address + ', ' : ''}{Address?.city ? Address.city + ', ' : ''}{Address?.zipcode ? Address.zipcode : ''}</div>
+                            </>
+                        }
+                    />
                 )
             })
         }

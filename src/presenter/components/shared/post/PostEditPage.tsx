@@ -9,8 +9,8 @@ import { PostDTO } from '../../../../infrastructure/DTOs/PostDTO';
 import { Share } from '../../../../domain/entities/Post';
 import { PostView } from '../../../views/viewsEntities/postViewEntities';
 import { useAlertStore } from '../../../../application/stores/alert.store';
-import PostCard from './PostComps/PostCard';
 import { TextLength } from '../../../../domain/entities/utilsEntity';
+import { CardConfirmForm } from '../../common/CardConfirmForm';
 
 export default function PostEditPage() {
     //// PARAMS
@@ -64,16 +64,28 @@ export default function PostEditPage() {
             setOpen(true)
             setAlertValues({
                 handleConfirm: async () => await updateFunction(),
+                button2: {
+                    text: "Annuler",
+                    onClick: () => setOpen(false)
+                },
+                disableCancel: true,
                 confirmString: "Enregistrer ",
                 title: "Confimrer la modification",
                 element: (
-                    <div className='flex flex-col gap-8 max-h-[80vh]  bg-gray-200 rounded-3xl pt-10 p-5'>
-                        <PostCard
-                            post={new PostView({ ...formik.values, image: formik.values?.blob || formik.values?.image }, post.userId ?? 0)}
-                            change={() => { }}
-                            update={() => { }}
-                        />
-                    </div>
+                    <CardConfirmForm
+                        title={values.title}
+                        content={
+                            <>
+                                <div className='font-semibold'>Description:</div>
+                                <div>{values.description}</div>
+                                <div className='font-semibold'>Catégorie:</div>
+                                <div>{values.category}</div>
+                                <div className='font-semibold'>Partagé par:</div>
+                                <div>{values.shareA.join(', ')}</div>
+
+                            </>
+                        }
+                    />
                 )
             })
         }

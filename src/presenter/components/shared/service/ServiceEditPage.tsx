@@ -9,8 +9,7 @@ import { Skeleton } from '../../common/Skeleton';
 import { ServiceView } from '../../../views/viewsEntities/serviceViewEntity';
 import { useUserStore } from '../../../../application/stores/user.store';
 import { useAlertStore } from '../../../../application/stores/alert.store';
-import ServiceCard from './serviceCards/ServiceCard';
-import { User } from '../../../../domain/entities/User';
+import { CardConfirmForm } from '../../common/CardConfirmForm';
 
 export default function ServiceEditPage() {
     const { id } = useParams()
@@ -51,17 +50,30 @@ export default function ServiceEditPage() {
             formik.values = values
             setOpen(true)
             setAlertValues({
+                button2: {
+                    text: "Annuler",
+                    onClick: () => setOpen(false)
+                },
+                disableCancel: true,
                 handleConfirm: async () => await postFunction(),
                 confirmString: "Enregistrer ",
                 title: "Confimrer la modification",
                 element: (
-                    <div className=' !pt-10 max-h-[70vh]   bg-gray-200 border px-4 rounded-3xl pb-4'>
-                        <ServiceCard
-                            service={new ServiceView({ ...formik.values, image: formik.values?.blob || formik.values?.image }, {} as User)}
-                            change={() => { }}
-                            update={() => { }}
-                        />
-                    </div>
+                    <CardConfirmForm
+                        title={values.title}
+                        content={
+                            <>
+                                <div className='font-semibold'>Description:</div>
+                                <div>{values.description}</div>
+                                <div className='font-semibold'>Catégorie:</div>
+                                <div>{values.category}</div>
+                                <div className='font-semibold'>Compétence:</div>
+                                <div>{values.skill}</div>
+                                <div className='font-semibold'>Difficulté:</div>
+                                <div>{values.hard}</div>
+                            </>
+                        }
+                    />
                 )
             })
         }

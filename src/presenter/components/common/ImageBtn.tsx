@@ -4,6 +4,7 @@ import { useUxStore } from "../../../application/stores/ux.store";
 
 export const ImageBtn = (props: { formik: any; setImgBlob: any; imgDef?: string; className?: string, color?: Md3Colors, variant?: any }) => {
     const { formik, imgDef, setImgBlob, className, color: colorComp, variant } = props;
+    const { color } = useUxStore((state) => state);
 
     const getImageBlob = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files ? event.target.files[0] : null;
@@ -15,19 +16,19 @@ export const ImageBtn = (props: { formik: any; setImgBlob: any; imgDef?: string;
             reader.onload = () => {
                 const result = reader.result as string;
                 setImgBlob(result);
-                formik.values.blob = result;
             };
         }
     };
 
     const { setAlertValues, setOpen } = useAlertStore();
-    const { color } = useUxStore((state) => state);
 
     return (
         <div className={` ${className || ''}`}>
             <ButtonGroup
                 variant={variant || "filled"}
-                size="medium" rounded color={colorComp ?? color as any}>
+                size="medium"
+                rounded
+                color={colorComp ?? color as any}>
                 {/* <Button
                     disabled
                     variant={formik?.values?.image ? "tonal" : "filled"}
@@ -38,6 +39,7 @@ export const ImageBtn = (props: { formik: any; setImgBlob: any; imgDef?: string;
                 /> */}
 
                 <Button
+                    color={colorComp ?? color as any}
                     variant={"filled"}
                     icon={{
                         fill: true,
@@ -78,13 +80,13 @@ export const ImageBtn = (props: { formik: any; setImgBlob: any; imgDef?: string;
                 </Button>
                 {formik?.values?.image && (
                     <Button
+                        color={colorComp ?? color as any}
                         icon={{
                             fill: true,
                             icon: "hide_image",
                             title: "Supprimer l'image",
                             onClick: () => {
                                 formik.values.image = "";
-                                formik.values.blob = "";
                                 setImgBlob(imgDef || "");
                             },
 

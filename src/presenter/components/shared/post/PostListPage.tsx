@@ -15,7 +15,6 @@ import DetailsHeadSection from "../base/baseComps/DetailsHeadSection";
 import SelectSearch from "../../common/appComps/SelectSearch";
 import TabsMenu from "../../common/appComps/TabsMenu";
 import PostCard from "./PostComps/PostCard";
-import { ViewButtonProps } from "../../common/appComps/ViewBtn";
 import PostGridComp from "./PostComps/PostGridComp";
 
 export default function PostListPage() {
@@ -193,64 +192,41 @@ export default function PostListPage() {
 
 
 
-    const [viewBtnProps, setViewBtnProps] = useState<ViewButtonProps>({
-        viewList: [
-            {
-                key: 'compact', label: 'Compact', icon: "grid_view", action: () => {
-                    setCompact(true);
-                    setView('compact')
-                }
-            },
-            {
-                key: 'large', label: 'Large', icon: "view_agenda", action: () => {
-                    setCompact(false);
-                    setView('large')
-                }
-            },
-        ],
-        view: view,
-    })
+    const dashboardViewItem = {
+
+        key: 'dashboard',
+        label: 'Card',
+        icon: "dashboard",
+        action: () => {
+            setCompact(false);
+            setView('dashboard');
+        }
+
+    }
 
     //// HANDLE VIEW
+    const viewList: any[] = [
+        {
+            key: 'compact', label: 'Compact', icon: "grid_view", action: () => {
+                setCompact(true);
+                setView('compact')
+            }
+        },
+        {
+            key: 'large', label: 'Large', icon: "view_agenda", action: () => {
+                setCompact(false);
+                setView('large')
+            }
+        },
+    ]
     useEffect(() => {
-        setViewBtnProps(prev => ({
-            ...prev,
-            view: view
-        }));
+
         const handleResize = () => {
             setView(window.innerWidth > 768 ? "dashboard" : "compact");
-            setViewBtnProps(prev => {
-                const isDashboard = window.innerWidth > 768;
-                const hasDashboard = prev.viewList.some(v => v.key === 'dashboard');
-                if (isDashboard && !hasDashboard) {
-                    return {
-                        ...prev,
-                        viewList: [
-                            ...prev.viewList,
-                            {
-                                key: 'dashboard',
-                                label: 'Card',
-                                icon: "dashboard",
-                                action: () => {
-                                    setCompact(false);
-                                    setView('dashboard');
-                                }
-                            }
-                        ]
-                    };
-                }
-                if (!isDashboard && hasDashboard) {
-                    return {
-                        ...prev,
-                        viewList: prev.viewList.filter(v => v.key !== 'dashboard')
-                    };
-                }
-                return prev;
-            });
         };
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
-    }, [viewBtnProps.viewList, view]);
+    }, [view]);
 
 
     //// RENDER
@@ -268,7 +244,12 @@ export default function PostListPage() {
                     setReverse: setReverse,
                     action: () => refetch()
                 }}
-                viewBtnProps={viewBtnProps}
+                viewBtnProps={{
+                    viewList: viewList.concat(window.innerWidth > 768 && dashboardViewItem ? [dashboardViewItem] : []),
+                    view: view,
+                }
+
+                }
                 notif={notif}
                 error={error}
                 isLoading={isLoading}

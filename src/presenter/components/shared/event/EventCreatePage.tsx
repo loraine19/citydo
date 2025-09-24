@@ -7,10 +7,8 @@ import DI from '../../../../di/ioc';
 import { AddressDTO } from '../../../../infrastructure/DTOs/AddressDTO';
 import { EventDTO } from '../../../../infrastructure/DTOs/EventDTO';
 import { useAlertStore } from '../../../../application/stores/alert.store';
-import { Typography } from '@material-tailwind/react';
-import { EventView } from '../../../views/viewsEntities/eventViewEntities';
-import { EventCard } from './eventComps/EventCard';
 import { TextLength } from '../../../../domain/entities/utilsEntity';
+import { CardConfirmForm } from '../../common/CardConfirmForm';
 
 
 export default function EventCreatePage() {
@@ -58,20 +56,34 @@ export default function EventCreatePage() {
         onSubmit: async values => {
             setOpen(true)
             setAlertValues({
+                button2: {
+                    text: "Annuler",
+                    onClick: () => setOpen(false)
+                },
+                disableCancel: true,
                 handleConfirm: async () => await postFunction(),
-                confirmString: "Enregistrer la création de l'événement",
+                confirmString: "Enregistrer",
                 title: "Confimrer la création de l'événement",
                 element: (
-                    <div className='flex flex-col gap-8 max-h-[80vh] bg-gray-100 rounded-3xl px-5 py-4'>
-                        <Typography variant='h6'>
-                            Évenement au : {values?.Address?.address} le {new Date(values?.start).toLocaleDateString('fr-FR')}
-                        </Typography>
-                        <EventCard
-                            event={new EventView({ ...values, image: values?.blob || values?.image }, 0)}
-                            refetch={() => { }}
-                            change={() => { }}
-                        />
-                    </div>
+                    <CardConfirmForm
+                        title={values.title}
+                        content={
+                            <>
+                                <div className='font-semibold'>Description:</div>
+                                <div>{values.description}</div>
+                                <div className='font-semibold'>Catégorie:</div>
+                                <div>{values.category}</div>
+                                <div className='font-semibold'>Participants:</div>
+                                <div>{values.participantsMin}</div>
+                                <div className='font-semibold'>Date de début:</div>
+                                <div>{new Date(values.start).toLocaleString()}</div>
+                                <div className='font-semibold'>Date de fin:</div>
+                                <div>{new Date(values.end).toLocaleString()}</div>
+                                <div className='font-semibold'>Adresse:</div>
+                                <div>{Address?.address ? Address.address + ', ' : ''}{Address?.city ? Address.city + ', ' : ''}{Address?.zipcode ? Address.zipcode : ''}</div>
+                            </>
+                        }
+                    />
                 )
             })
         }

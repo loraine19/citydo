@@ -8,10 +8,8 @@ import { PoolDTO, SurveyDTO } from '../../../../infrastructure/DTOs/PoolSurveyDT
 import { PoolSurveyView } from '../../../views/viewsEntities/poolSurveyViewEntity';
 import { VoteTarget } from '../../../../domain/entities/Vote';
 import { useAlertStore } from '../../../../application/stores/alert.store';
-import { SurveyCard } from './voteCards/SurveyCard';
-import { PoolCard } from './voteCards/PoolCard';
 import { TextLength } from '../../../../domain/entities/utilsEntity';
-import { useUserStore } from '../../../../application/stores/user.store';
+import { CardConfirmForm } from '../../common/CardConfirmForm';
 
 export default function VoteCreatePage() {
     const [initialValues] = useState<PoolSurveyView>({} as PoolSurveyView);
@@ -19,7 +17,6 @@ export default function VoteCreatePage() {
     const postPool = async (data: PoolDTO) => await DI.resolve('postPoolUseCase').execute(data)
     const [type, setType] = useState<VoteTarget>(VoteTarget.SURVEY)
     const { setOpen, setAlertValues, handleApiError } = useAlertStore()
-    const { user } = useUserStore(state => state)
 
     const navigate = useNavigate();
     const formSchemaSurvey = object({
@@ -73,27 +70,33 @@ export default function VoteCreatePage() {
             values.groupId = parseInt(formik.values.groupId)
             setOpen(true)
             setAlertValues({
-                disableCancel: false,
+                button2: {
+                    text: "Annuler",
+                    onClick: () => setOpen(false)
+                },
+                disableCancel: true,
                 handleConfirm: async () => await createFunction(values),
                 confirmString: "Enregistrer ",
                 title: "Confimrer la création",
-                element: (
-                    <div className='flex flex-col gap-8 max-h-[80vh] bg-gray-100 rounded-3xl pt-12 p-5'>
-                        {type === VoteTarget.SURVEY ?
-                            <SurveyCard
-                                survey={new PoolSurveyView({ ...values, Votes: [], image: values?.blob || values?.image }, user)}
-                                change={() => { }}
-                                update={() => { }}
-                                vote={() => { }}
-                            /> :
-                            <PoolCard
-                                pool={new PoolSurveyView({ ...values, Votes: [] }, user)}
-                                change={() => { }}
-                                update={() => { }}
-                                vote={() => { }}
-                            />}
-                    </div>
-                )
+                element: <CardConfirmForm
+                    title={values.title}
+                    content={
+                        <>
+                            <div className='font-semibold'>Description:</div>
+                            <div>{values.description}</div>
+
+                            {type === VoteTarget.SURVEY && <>
+                                <div className='font-semibold'>Catégorie:</div>
+                                <div>{values.category}</div>
+                            </>}
+                            {type === VoteTarget.POOL && <>
+                                <div className='font-semibold'>Bénéficiaire:</div>
+                                <div>{values.UserBenef}</div>
+                            </>}
+
+                        </>
+                    }
+                />
             })
         }
     })

@@ -3,13 +3,11 @@ import { object, string } from 'yup';
 import { useNavigate, } from 'react-router-dom';
 import { ServiceForm } from './serviceCards/ServiceForm';
 import DI from '../../../../di/ioc';
-import { ServiceView } from '../../../views/viewsEntities/serviceViewEntity';
 import { ServiceDTO } from '../../../../infrastructure/DTOs/ServiceDTO';
 import { useAlertStore } from '../../../../application/stores/alert.store';
-import { User } from '../../../../domain/entities/User';
-import ServiceCard from './serviceCards/ServiceCard';
 import { AlertValues } from '../../../../domain/entities/Error';
 import { ServiceStep } from '../../../../domain/entities/Service';
+import { CardConfirmForm } from '../../common/CardConfirmForm';
 
 
 export default function ServiceCreatePage() {
@@ -51,19 +49,33 @@ export default function ServiceCreatePage() {
         onSubmit: values => {
             values.status = 'STEP_0' as ServiceStep;
             const valuesAlert: AlertValues = {
+                button2: {
+                    text: "Annuler",
+                    onClick: () => setOpen(false)
+                },
+                disableCancel: true,
                 handleConfirm: async () => {
                     await postFunction()
                 },
                 confirmString: "Enregistrer ",
-                title: "Confimrer la modification",
+                title: "Confirmer la création du service",
                 element: (
-                    <div className='flex flex-col gap-8 max-h-[80vh] bg-gray-100 rounded-3xl pt-12 p-5'>
-                        <ServiceCard
-                            service={new ServiceView({ ...values, image: values?.blob || values?.image } as ServiceView, {} as User)}
-                            change={() => { }}
-                            update={() => { }}
-                        />
-                    </div>
+
+                    <CardConfirmForm
+                        title={values.title}
+                        content={
+                            <>
+                                <div className='font-semibold'>Description:</div>
+                                <div>{values.description}</div>
+                                <div className='font-semibold'>Catégorie:</div>
+                                <div>{values.category}</div>
+                                <div className='font-semibold'>Compétence:</div>
+                                <div>{values.skill}</div>
+                                <div className='font-semibold'>Difficulté:</div>
+                                <div>{values.hard}</div>
+                            </>
+                        }
+                    />
                 )
             }
             setAlertValues({ ...valuesAlert });

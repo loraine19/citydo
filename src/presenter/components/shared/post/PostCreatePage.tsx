@@ -8,8 +8,7 @@ import { PostView } from '../../../views/viewsEntities/postViewEntities';
 import DI from '../../../../di/ioc';
 import { TextLength } from '../../../../domain/entities/utilsEntity';
 import { useAlertStore } from '../../../../application/stores/alert.store';
-import { Typography } from '@material-tailwind/react';
-import PostCard from './PostComps/PostCard';
+import { CardConfirmForm } from '../../common/CardConfirmForm';
 
 
 export default function PostCreatePage() {
@@ -33,19 +32,29 @@ export default function PostCreatePage() {
             formik.values = values
             setOpen(true)
             setAlertValues({
+                button2: {
+                    text: "Annuler",
+                    onClick: () => setOpen(false)
+                },
+                disableCancel: true,
                 handleConfirm: async () => await postFunction(),
-                confirmString: "Enregistrer les modifications",
-                title: "Confimrer la modification",
+                confirmString: "Enregistrer ",
+                title: "Confimrer la création de l'annonce",
                 element: (
-                    <div className='flex flex-col gap-8 max-h-[80vh] bg-gray-100 rounded-3xl p-5'>
-                        <Typography variant='h6'>
-                            annonce : {formik.values?.title}
-                        </Typography>
-                        <PostCard
-                            post={new PostView({ ...formik.values, image: formik.values?.blob || formik.values?.image }, 0)}
-                            change={() => { }}
-                        />
-                    </div>
+                    <CardConfirmForm
+                        title={values.title}
+                        content={
+                            <>
+                                <div className='font-semibold'>Description:</div>
+                                <div>{values.description}</div>
+                                <div className='font-semibold'>Catégorie:</div>
+                                <div>{values.category}</div>
+                                <div className='font-semibold'>Partagé par:</div>
+                                <div>{values.shareA.join(', ')}</div>
+
+                            </>
+                        }
+                    />
                 )
             })
         }
