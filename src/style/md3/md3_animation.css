@@ -1,7 +1,7 @@
 /* --- Variables de base --- */
 :root {
-    --md3-anim-duration-short: 2s;
-    --md3-anim-duration-medium: 4s;
+    --md3-anim-duration-short: 4s;
+    --md3-anim-duration-medium: 8s;
     --md3-anim-easing-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
     --md3-anim-easing-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
 }

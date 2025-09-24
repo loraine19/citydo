@@ -128,7 +128,7 @@ export default function ServicesPage() {
     //// NOTIFICATION & ERROR
     useEffect(() => {
         if (error) setNotif(error ?? 'Une erreur est survenue');
-        else if ((count === 0 || !services || services.length === 0) && !isLoading && !error)
+        else if ((count === 0 || services.length === 0) && !isLoading && !error)
             setNotif(`Aucun service ${filterName()} ${stepName()} n'a été trouvé`);
         else setNotif('');
 

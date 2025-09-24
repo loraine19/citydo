@@ -58,9 +58,11 @@ export const AlertNotif = () => {
             socketService.onNewMessage(async (newMessage: Notif | { users: number[] }) => {
                 if (newMessage && typeof newMessage === 'object' && 'description' in newMessage) {
                     const notifMessage = newMessage as Notif;
-                    setNotif(notifMessage.description);
+                    setHidden(false);
+                    setTimeout(() => { setNotif(notifMessage.description), 2000 });
                     notifMessage.link && setLink(notifMessage.link);
                     setTimeout(() => { setNotif('') }, 7000);
+                    setTimeout(() => { setHidden(true) }, 8000);
                     if (notifMessage.type === 'MESSAGE') {
                         await refetch();
                         setUnReadMsgNotif(countMsg + 1);
@@ -76,12 +78,12 @@ export const AlertNotif = () => {
         socketService.onNewMessage(handleNewMessage);
     }, [refetch, setUnReadMsgNotif, socketService]);
 
-
+    const [hidden, setHidden] = useState(true);
 
     return (
         <div className={`h-max w-full z-[1000] absolute left-0 top-0 flex justify-center `}>
             <div className="relative z-50 w-[90%] max-w-[600px] mx-auto justify-center items-center">
-                <CardMD className={`w-full  h-max mt-6  transition-all duration-1000 ease-in-out transform  
+                <CardMD className={`${hidden ? 'hidden' : ''} w-full  h-max mt-6  transition-all duration-1000 ease-in-out transform  
                  ${notif ?
                         'md3-animation-slide-down' :
                         'md3-animation-slide-out-up '} `}>
@@ -101,7 +103,7 @@ export const AlertNotif = () => {
                         style='absolute right-3 top-3 '
                         icon='close'
                         size='sm'
-                        onClick={() => setNotif(null)}
+                        onClick={() => { setNotif(null); setTimeout(() => { setHidden(true) }, 7000) }}
                     />
                 </CardMD>
             </div>

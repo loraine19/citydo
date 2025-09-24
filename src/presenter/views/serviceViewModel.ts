@@ -16,7 +16,6 @@ export const serviceViewModel = () => {
     const { data, isLoading, error, fetchNextPage, hasNextPage, refetch }
       = useInfiniteQuery({
         queryKey: ['services', params],
-        staleTime: 600000,
         retry: true,
         queryFn: async ({ pageParam = 1 }) => await getServices.execute(pageParam, params) || [],
         initialPageParam: 1,
@@ -26,7 +25,7 @@ export const serviceViewModel = () => {
 
     const count = isLoading || error ? 0 : (data?.pages[data?.pages.length - 1].count)
     const flat = error || isLoading || !data ? [] : data?.pages.flat().map((page: any) => page.services).flat()
-    const services = (userLoading || isLoading || !flat || !data) ? [] : flat?.map((service: Service) => service && new ServiceView(service, user))
+    const services = (userLoading || !flat) ? [] : flat?.map((service: Service) => service && new ServiceView(service, user))
 
 
 
