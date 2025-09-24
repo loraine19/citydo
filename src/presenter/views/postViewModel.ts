@@ -19,6 +19,7 @@ export const postViewModel = () => {
         queryKey: ['Posts', params],
         refetchOnWindowFocus: false,
         staleTime: 600000, // 10 minutes,
+        retry: true,
         queryFn: async ({ pageParam = 1 }) => await getPosts.execute(pageParam, params) || { Posts: [], count: 0 },
         initialPageParam: 1,
         getNextPageParam: (lastPage, pages) => lastPage.posts?.length ? pages.length + 1 : undefined
@@ -50,6 +51,7 @@ export const postIdViewModel = () => {
       queryKey: ['user'],
       staleTime: 600000,
       refetchOnWindowFocus: false,
+
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
     const userId = user?.id
@@ -60,6 +62,7 @@ export const postIdViewModel = () => {
       staleTime: 600000,
       refetchOnMount: true,
       refetchOnWindowFocus: false,
+      retry: true,
       queryFn: async () => await getPostById.execute(id),
     })
 

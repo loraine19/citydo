@@ -17,8 +17,7 @@ export const serviceViewModel = () => {
       = useInfiniteQuery({
         queryKey: ['services', params],
         staleTime: 600000,
-        retry: 2,
-
+        retry: true,
         queryFn: async ({ pageParam = 1 }) => await getServices.execute(pageParam, params) || [],
         initialPageParam: 1,
         getNextPageParam: (lastPage: any, pages: any) => lastPage?.services?.length ? pages.length + 1 : undefined
@@ -58,6 +57,7 @@ export const serviceIdViewModel = () => {
     const { data, isLoading, error, refetch } = useQuery({
       queryKey: ['serviceById', id],
       staleTime: 600000,
+      retry: true,
       queryFn: async () => id && await getServiceById.execute(id),
     })
     const service = userLoading || isLoading ? {} : data ? new ServiceView(data, user) : {} as ServiceView;

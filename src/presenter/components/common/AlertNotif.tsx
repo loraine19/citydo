@@ -60,7 +60,7 @@ export const AlertNotif = () => {
                     const notifMessage = newMessage as Notif;
                     setNotif(notifMessage.description);
                     notifMessage.link && setLink(notifMessage.link);
-                    setTimeout(() => { setNotif('') }, 5000);
+                    setTimeout(() => { setNotif('') }, 7000);
                     if (notifMessage.type === 'MESSAGE') {
                         await refetch();
                         setUnReadMsgNotif(countMsg + 1);
@@ -81,19 +81,23 @@ export const AlertNotif = () => {
     return (
         <div className={`h-max w-full z-[1000] absolute left-0 top-0 flex justify-center `}>
             <div className="relative z-50 w-[90%] max-w-[600px] mx-auto justify-center items-center">
-                <CardMD className={`w-full rounded-3xl h-max  shadow transition-all duration-1000 ease-in-out transform bg-opacity-95 py-9 px-6 mt-2 animRev
+                <CardMD className={`w-full  h-max mt-6  transition-all duration-1000 ease-in-out transform  
                  ${notif ?
-                        'scale-100 opacity-100 top-0 slide ' :
-                        'scale-80 opacity-90 -top-48 absolute '} `}>
+                        'md3-animation-slide-down' :
+                        'md3-animation-slide-out-up '} `}>
                     <CardMD.Subhead
-                        className="underline underline-offset-8  decoration-gray-300">
-                        {link && <Chip onClick={() => navigate(link)} value='Voir' />}
+                        className=" gap-4 flex   decoration-gray-300">
+
                         {notif}
 
                     </CardMD.Subhead>
+                    <CardMD.Divider />
+                    <CardMD.Footer className="px-4 !pt-0">
+                        {link && <Chip onClick={() => navigate(link)} value='Voir' />}
+                    </CardMD.Footer>
                     <Icon
                         bg
-
+                        color='error'
                         style='absolute right-3 top-3 '
                         icon='close'
                         size='sm'

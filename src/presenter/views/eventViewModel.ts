@@ -21,8 +21,8 @@ export const eventViewModel = () => {
     const { data, isLoading, error, fetchNextPage, hasNextPage, refetch }
       = useInfiniteQuery({
         queryKey: ['events', params],
-        staleTime: 600000,
-        retry: 2,
+        staleTime: 6000,
+        retry: true,
         queryFn: async ({ pageParam = 1 }) => await getEvents.execute(pageParam, params) || { events: [], count: 0 },
         initialPageParam: 1,
         getNextPageParam: (lastPage, pages) => lastPage.events?.length ? pages.length + 1 : undefined
@@ -53,6 +53,7 @@ export const eventIdViewModel = () => {
       queryKey: ['user'],
       refetchOnWindowFocus: false,
       staleTime: 600000, // 10 minutes,
+      retry: true,
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
 
     })
@@ -102,7 +103,7 @@ export const eventsWeekViewModel = () => {
       = useInfiniteQuery({
         queryKey: ['events'],
         refetchOnWindowFocus: true,
-
+        retry: true,
         queryFn: async ({ pageParam = 1 }) => await getEvents.execute(pageParam) || { events: [], count: 0 },
         initialPageParam: 1,
         getNextPageParam: (lastPage, pages) => lastPage.events?.length ? pages.length + 1 : undefined
