@@ -111,8 +111,8 @@ export interface ProgressBarProps {
 }
 
 const sizeMapProgressBar = {
-    xxsmall: { trackHeight: '6px', textSize: 'text-xs' },
-    xsmall: { trackHeight: '10px', textSize: 'text-sm' },
+    xxsmall: { trackHeight: '4px', textSize: 'text-xs' },
+    xsmall: { trackHeight: '8px', textSize: 'text-sm' },
     small: { trackHeight: '14px', textSize: 'text-base' },
     medium: { trackHeight: '16px', textSize: 'text-lg' },
     large: { trackHeight: '20px', textSize: 'text-xl' },
@@ -120,24 +120,24 @@ const sizeMapProgressBar = {
 
 const wavySizeMap = {
     xxsmall: {
-        decoration: 'decoration-[6px] ',
-        height: 'h-[33px] ',
-        dotSize: 'h-[11.5px] w-[5px] -right-[3px] -bottom-[5px]',
-        dot2Size: 'h-[10px] w-[5px] -left-[3px] -bottom-[5px] rotate-45',
-        endIndicator: 'h-[5px] w-[4px] mr-[1px] mb-[0px]',
+        decoration: 'decoration-[4px] ',
+        height: 'h-[35px] ',
+        dotSize: 'h-[11px] w-[3.5px] -right-[3px] -bottom-[5px]',
+        dot2Size: 'h-[7px] w-[3.5px] -left-[2px] -bottom-[3.5px] rotate-[55deg]',
+        endIndicator: 'h-[3px] w-[3px] mr-[1px] mb-[0px]',
     },
     xsmall: {
-        decoration: 'decoration-[10px] ',
+        decoration: 'decoration-[8px] ',
         height: 'h-[48px] ',
-        dotSize: 'h-[18px] w-[8.5px] -right-[4px] -bottom-[8.5px]',
-        dot2Size: 'h-[15px] w-[8px] -left-[4.5px] -bottom-[7.5px] rotate-45',
-        endIndicator: 'h-[6px] w-[6px] mr-[2.5px] mb-[0px]',
+        dotSize: 'h-[16px] w-[6px] -right-[4px] -bottom-[8.5px]',
+        dot2Size: 'h-[12px] w-[6px] -left-[4.5px] -bottom-[7.5px] rotate-[55deg]',
+        endIndicator: 'h-[5px] w-[5px] mr-[2.5px] mb-[0px]',
     },
     small: {
         decoration: 'decoration-[14px]',
         height: 'h-[58px]',
         dotSize: 'h-[25.5px] w-[9px] -right-[4.5px] -bottom-[11px] ',
-        dot2Size: 'h-[24px] w-[10.5px] -left-[3px] -bottom-[10px] rotate-[50deg] ',
+        dot2Size: 'h-[20px] w-[12px] -left-[3px] -bottom-[6.5px] rotate-[55deg] ',
         endIndicator: 'h-[8px] w-[8px] mr-[3px] mb-[0.5px]',
     },
     medium: {
@@ -179,9 +179,9 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
     }
 
     return (
-        <>
+        <div className='w-full flex flex-col gap-2'>
             <div className='-ml-4 -mr-2 pb-1'>{label}</div>
-            <div className={`${variant === 'wavy' ? '-ml-[4px] pl-[12.5px] ' : ''} relative w-full`}>
+            <div className={`${variant === 'wavy' ? '-ml-[4px] pl-[12.5px] ' : ''} relative w-full h-full`}>
 
                 <div className={`md3-progressbar-container 
                     ${className}  ${sizeMapProgressBar[size]?.textSize}`}
@@ -193,22 +193,24 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
                         <>  <div className={` absolute z-0 md3-progressbar-track-active-wavy `}
                             style={{ width: `${percent}%` }}>
                             <div className={` ${mainColor} ${wavySizeMap[size].dot2Size} 
-                     absolute rounded-full  `} />
+                     absolute rounded-full    `} />
                             <div className={` ${mainColor} ${wavySizeMap[size].dotSize} 
                      absolute rounded-full  `} />
                         </div>
                             <div className={` md3-progressbar-track-active-wavy 
-                        absolute left-0 flex w-full underline underline-offset-1 whitespace-nowrap overflow-hidden decoration-wavy animate-wavy 
+                        absolute left-0 flex w-full underline underline-offset-1 whitespace-nowrap overflow-hidden decoration-wavy animate-wavy
                             ${wavySizeMap[size].decoration}
                             ${wavySizeMap[size].height} `}
 
                                 style={{ width: `${percent}%`, color: customColor || `var(--md3-${color})` || 'var(--md3-primary)' }}>
 
-                                {line.map((_) => (
-                                    <span className='w-full flex -scale-y-[0.65] !font-comfortaa  h-full text-transparent '  >
-                                        _______________________________________________________________________________________________
-                                    </span>
-                                ))}
+
+                                <span
+                                    className={` w-full flex !font-comfortaa h-full text-transparent text-left line-clamp-1 relative`}
+                                    style={{ transform: 'scaleX(1.38) scaleY(-0.80)', transformOrigin: 'left' }}
+                                >
+                                    &nbsp;___________________________________________________________________________________________________________________
+                                </span>
 
                             </div>
 
@@ -238,7 +240,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
                 </div>
 
             </div>
-        </>
+        </div>
     );
 };
 

@@ -11,7 +11,7 @@ import { VoteValues } from "./VoteCard";
 import { AlertValues } from "../../../../../domain/entities/Error";
 import { CardMD } from "../../base/baseComps/Cards";
 import { ProgressBar } from "../../base/baseComps/Sliders";
-import { Button } from "../../base/baseComps/Buttons";
+import { Button, Md3Colors } from "../../base/baseComps/Buttons";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import { MoreButton } from "../../../common/moreBtn";
 import { IconAnimate } from "../../../common/IconAnimate";
@@ -34,7 +34,7 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
     const color = (): string => {
         switch (survey.myOpinion) {
             case 'OK': return 'green';
-            case 'NO': return 'red';
+            case 'NO': return 'error';
             case 'WO': return 'slate';
             default: return 'orange';
         }
@@ -47,7 +47,7 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
 
             <CardMD
                 autoFit={autoFit}
-                className="min-h-full anim"
+                className="min-h-full fade-in"
                 imagePosition="top"
                 link={`/sondage/${survey?.id}`}
                 image={
@@ -144,8 +144,8 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                         size='medium'
                         disabled={survey?.status !== PoolSurveyStatus.PENDING}
                         onClick={() => vote(values)}
-                        variant={!survey?.IVoted ? "tonal" : "filled"}
-                        color={color() as any}
+                        variant={!survey?.IVoted ? "tonal" : "tonal"}
+                        color={color() as Md3Colors}
                     />
 
                 </CardMD.Footer>

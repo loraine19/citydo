@@ -229,7 +229,7 @@ export default function EventListPage() {
                             onScroll();
                             handleHideCallback();
                         }}
-                        className={"Grid" + (compact ? ' GridCompact' : '')}
+                        className={"Grid anim " + (compact ? ' GridCompact' : '')}
                     >
                         {events.map((event: EventView, index: number) => (
                             <div className="SubGrid" key={index + 'div'}>

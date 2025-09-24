@@ -12,7 +12,7 @@ import { AlertValues } from "../../../../../domain/entities/Error";
 import { VoteValues } from "./VoteCard";
 import { CardMD } from "../../base/baseComps/Cards";
 import { ProgressBar } from "../../base/baseComps/Sliders";
-import { Button } from "../../base/baseComps/Buttons";
+import { Button, Md3Colors } from "../../base/baseComps/Buttons";
 import { MoreButton } from "../../../common/moreBtn";
 import { Link } from "react-router-dom";
 
@@ -36,7 +36,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
     const color = (): string => {
         switch (pool?.myOpinion) {
             case 'OK': return 'green';
-            case 'NO': return 'red';
+            case 'NO': return 'error';
             case 'WO': return 'slate';
             default: return 'orange';
         }
@@ -49,7 +49,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
         <>
             <CardMD
                 autoFit
-                className="min-h-full anim"
+                className="min-h-full fade-in"
                 imagePosition="top"
                 link={`/cagnotte/${pool?.id}`}
             >
@@ -135,8 +135,8 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                         size='medium'
                         disabled={pool?.status !== PoolSurveyStatus.PENDING}
                         onClick={() => vote(values)}
-                        variant={!pool?.IVoted ? "tonal" : "filled"}
-                        color={color() as any}
+                        variant={!pool?.IVoted ? "tonal" : "tonal"}
+                        color={color() as Md3Colors}
                     />
                 </CardMD.Footer>
             </CardMD>

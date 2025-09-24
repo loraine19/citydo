@@ -551,9 +551,9 @@ const MD3DemoPage: React.FC = () => {
             {/* PROGRESS BAR */}
             <section id="progress-bar" className="md3-section w-[50%] gap-12 py-11">
                 <h2>Barre de progression</h2>
-                <ProgressBar value={sliderValue} size='xxsmall' />
+                <ProgressBar value={sliderValue} variant="wavy" size='xxsmall' />
                 <ProgressBar value={sliderValue2} variant="wavy" color="rose" size='xsmall' />
-                <ProgressBar value={sliderValue} color="orange" size='small' />
+                <ProgressBar value={sliderValue} color="orange" variant="wavy" size='small' />
                 <ProgressBar value={sliderValue} variant="wavy" color="secondary" size='medium' />
                 <ProgressBar value={78} color="cyan" variant="wavy" size='large' />
             </section>

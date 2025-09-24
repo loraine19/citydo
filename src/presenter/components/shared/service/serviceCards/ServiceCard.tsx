@@ -72,7 +72,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
     return (
         <CardMD
             autoFit={!compact}
-            className={`min-h-full anim ${compact ? '' : ''} `}
+            className={`min-h-full fade-in ${compact ? '' : ''} `}
             imagePosition="top"
             link={`/service/${id}`}
             image={

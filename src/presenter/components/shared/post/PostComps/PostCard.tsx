@@ -24,7 +24,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
     return (
         <CardMD
             autoFit={autoFit}
-            className="min-h-full anim"
+            className="min-h-full fadeIn"
             imagePosition="top"
             link={`/annonce/${id}`}
             image={
@@ -93,7 +93,7 @@ export default function PostCard({ post: initialPost, mines, change, update, sho
                     iconPosition="end"
                     icon={{
                         style: '-mt-[1px]',
-                        icon: 'favorite',
+                        icon: post?.ILike ? "favorite" : "heart_plus",
                         fill: post?.ILike,
                         title: post?.ILike ? "retirer de mes favoris" : "j'aime"
                     }}>

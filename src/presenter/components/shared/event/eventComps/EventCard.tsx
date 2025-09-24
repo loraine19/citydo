@@ -39,7 +39,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
             imagePosition={imagePosition}
             variant={variant}
             autoFit={autoFit}
-            className={` min-h-full anim `}
+            className={` min-h-full fadeIn `}
             link={`/evenement/${id}`}
             image={
                 <CardMD.Image
@@ -89,12 +89,12 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                 <ProgressBar
                     size='xxsmall'
                     variant={event.Participants.length >= (participantsMin) ? 'linear' : 'wavy'}
-                    className=" pb-1 lg:pb-2"
+                    className=" "
                     value={event.Participants.length}
                     max={participantsMin || 10}
                     color="cyan"
                     label={
-                        <div className="md3-card-supporting-text pb-1 justify-between flex-row">
+                        <div className="md3-card-supporting-text  justify-between flex-row">
                             <span>
                                 {event.Participants.length} participant{event.Participants.length > 1 ? 's' : ''}
                             </span>

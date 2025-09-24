@@ -263,7 +263,7 @@ export default function VoteListPage() {
                         onScroll();
                         handleHideCallback()
                     }}
-                    className={"Grid" + (compact ? ' GridCompact' : '')}>
+                    className={"Grid anim " + (compact ? ' GridCompact' : '')}>
                     {poolsSurveys.map((element: PoolSurveyView, index: number) =>
                         <div className="SubGrid" key={element.id || index}>
                             {element.type === VoteTarget.SURVEY ?

@@ -273,7 +273,7 @@ export default function ServicesPage() {
                         onScroll();
                         handleHideCallback()
                     }}
-                    className={"Grid " + (compact ? ' GridCompact' : '')}>
+                    className={"Grid anim " + (compact ? ' GridCompact' : '')}>
 
                     {services.map((service: ServiceView, index: number) => (
 

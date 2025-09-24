@@ -19,6 +19,10 @@ const NotifDiv: React.FC<NotifDivProps> = ({ notif, isLoading, refetch, error, c
         }, 1000);
     }, [notif, error]);
 
+    useEffect(() => {
+        if (error === 'session expirée') window.location.replace('/signin');
+    }, [error]);
+
     return (
         <div className={`!max-w-full absolute  !top-[100%] h-fit w-full left-0 notif min-w-max !pt-8 z-[1] min-h-max !justify-start  ${className}`}>
             {error ? 'Une erreur est survenue : ' : ''}

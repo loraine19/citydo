@@ -297,7 +297,7 @@ export default function PostListPage() {
                                     mines={mines}
                                     view={view} />))
                             :
-                            <div className={"Grid " + ((compact && view !== 'dashboard') ? ' GridCompact' : '')}>
+                            <div className={"Grid anim " + ((compact && view !== 'dashboard') ? ' GridCompact' : '')}>
                                 {posts?.map((post: PostView, index: number) => (
                                     <div
                                         className="SubGrid"
