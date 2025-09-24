@@ -57,6 +57,13 @@ export function AvatarStack(props: AvatarStackProps) {
 
     return (
         <div
+            onScroll={
+                (e) => {
+                    if (e.currentTarget.scrollLeft === 0) {
+                        setMaxVisible(visibleAvatars.length);
+                    }
+                }
+            }
             ref={containerRef}
             className={` ${maxVisible === avatarDatas.length ? 'overflow-y-auto' : ''} flex flex-1 items-center -space-x-3 overflow-x-auto w-full !rounded-full pr-3 `}
         >
