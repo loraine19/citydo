@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useAlertStore } from "../../../application/stores/alert.store";
 import { Flag } from "../../../domain/entities/Flag";
 import { Action, Label } from "../../../domain/entities/frontEntities";

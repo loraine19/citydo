@@ -3,7 +3,7 @@ import { Icon } from "../../../common/IconComp";
 import { OnlineDot } from "../../../common/onlineDot";
 import { AvatarUser } from "../../../common/AvatarUser";
 import { Menu, MenuItem } from "../../base/baseComps/Menu";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Chip from "../../../common/adaptatersComps/Chip";
 

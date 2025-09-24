@@ -1,6 +1,6 @@
 import { Icon, IconName } from "../IconComp"
 import { NotifView } from "../../../views/viewsEntities/notifViewEntity";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import DI from "../../../../di/ioc";
 import { useEffect, useState } from "react";
 import { useNotificationStore } from "../../../../application/stores/notification.store";

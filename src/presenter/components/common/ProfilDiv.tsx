@@ -8,7 +8,7 @@ import { User } from "../../../domain/entities/User"
 import { ProfileView } from "../../views/viewsEntities/profileViewEntity"
 import { AvatarUser } from "./AvatarUser"
 import { Menu, MenuItem } from "../shared/base/baseComps/Menu"
-import { useNavigate } from "react-router"
+import { useNavigate } from "react-router-dom"
 import { Group } from "../../../domain/entities/Group"
 import { useState } from "react"
 

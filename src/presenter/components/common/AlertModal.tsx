@@ -1,9 +1,11 @@
-import { Button, Card, CardBody, CardFooter, CardHeader, Typography } from "@material-tailwind/react";
+
 import parse from 'html-react-parser';
 import { Icon } from "./IconComp";
 import { useAlertStore } from "../../../application/stores/alert.store";
 import { AlertValues } from "../../../domain/entities/Error";
 import { useUxStore } from "../../../application/stores/ux.store";
+import { CardMD } from "../shared/base/baseComps/Cards";
+import { Button } from '../shared/base/baseComps/Buttons';
 
 
 export const AlertModal = ({ values }: { values: AlertValues }) => {
@@ -17,8 +19,8 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
         <div key={title ?? 'alert-modal'}
             className={`!absolute top-0 left-0 h-screen px-[3rem] py-[10vh] lg:py-[20vh] w-screen z-[1500] !flex flex-1 justify-center items-center backdropBlur   `} >
             <div>
-                <Card className="relative FixCardNoImage min-h-min !p-4 w-resp m-auto flex max-h-[400px] ">
-                    <CardHeader
+                <CardMD className="relative FixCardNoImage min-h-min !p-4 w-resp m-auto flex max-h-[400px] ">
+                    <CardMD.Headline
                         className="FixCardHeaderNoImage flex justify-between p-4 text-center text-xl gap-6">
                         <h4 className="md3-card-headline">{title ?? 'Alerte'}</h4>
                         {!disableCancel &&
@@ -31,23 +33,24 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                                 icon="cancel"
                                 size="xl"
                                 color="red" />}
-                    </CardHeader>
-                    <CardBody className="FixCardBody max-h-[70vh] h-max items-center flex flex-col ">
+                    </CardMD.Headline>
+                    <CardMD.MidSection className="FixCardBody max-h-[70vh] h-max items-center flex flex-col ">
                         <hr className="pb-1"></hr>
                         {notif && <p className="text-center italic text-red-800">{notif}</p>}
                         <div className="overflow-auto flex w-full max-h-max justify-center ">
                             {element && typeof element === 'string' ?
-                                <Typography as='h5' className="pt-[2vh] pb-[8vh] my-6">  {parse(element as string)}</Typography> :
+                                <p className="md3-card-subheadpt-[2vh] pb-[8vh] my-6">
+                                    {parse(element as string)}</p> :
                                 <>{element}</>
                             }
                         </div>
-                    </CardBody>
-                    <CardFooter className=" !justify-end FixCardFooter !items-end  flex flex-wrap gap-y-4 gap-x-8 py-6">
+                    </CardMD.MidSection>
+                    <CardMD.Footer className=" !justify-end FixCardFooter !items-end  flex flex-wrap gap-y-4 gap-x-8 py-6">
                         {button2 &&
                             <Button
-                                className={`btn ${'redStyle'}  `}
+                                variant='outlined'
+                                color='error'
                                 type="button"
-                                size='lg'
                                 onClick={() => {
                                     button2.onClick()
                                     close && close() || setOpen(false);
@@ -56,10 +59,10 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                                 {button2.text ?? '-'}
                             </Button>}
                         <Button
+                            color={color as any}
                             type="button"
                             disabled={notif ? true : false}
-                            size='lg'
-                            className={`btn ${color ?? 'slate'}StyleInv ${disableConfirm ? ' hidden' : ''} `}
+                            className={` ${!disableConfirm ? '' : 'hidden'} `}
                             onClick={() => {
                                 values.handleConfirm && values.handleConfirm();
                                 close && close() || setOpen(false);
@@ -68,8 +71,8 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                             }>
                             {confirmString || 'OK'}
                         </Button>
-                    </CardFooter>
-                </Card></div>
+                    </CardMD.Footer>
+                </CardMD></div>
         </div>
     );
 }

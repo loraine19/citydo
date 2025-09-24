@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Typography, Button } from "@material-tailwind/react";
 import { AuthHeader } from "../auth/auth.Comps/AuthHeader";
 import { useAlertStore } from "../../../../application/stores/alert.store";
 import { useEffect } from "react";
 import { AppFooter } from "../../common/appComps/AppFooter";
+import { Button } from "../base/baseComps/Buttons";
 
 
 
@@ -19,6 +19,7 @@ export default function NotFindPage() {
             element: `Veuillez vérifier l\'élement ${url} ou retourner à la page d\'accueil.`,
             confirmString: 'Retour à l\'accueil',
             disableCancel: true,
+            disableConfirm: false,
             handleConfirm: () => { navigate('/'); setOpen(false) },
         });
         setOpen(true)
@@ -31,10 +32,11 @@ export default function NotFindPage() {
                 <AuthHeader />
             </header>
             <main className="flex items-center justify-evenly h-full py-10">
-                <Typography variant="lead" className="flex items-center justify-center mt-2">
+                <p className="md3-card-subhead flex items-center justify-center mt-2">
                     {`élements ${url} non trouvés désolé`}
-                </Typography>
-                <Button onClick={() => navigate('/')} className="rounded-full w-max p-5 text-sm !font-light">retour à l' acceuil</Button>
+                </p>
+                <Button onClick={() => navigate('/')}
+                    className="rounded-full w-max p-5 text-sm !font-light">retour à l' acceuil</Button>
             </main>
             <AppFooter mainPage />
         </>

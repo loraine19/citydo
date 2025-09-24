@@ -1,4 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Suspense, lazy, useEffect, useState } from "react";
 import { PrivateRoute } from "./presenter/components/shared/utilsPage/PrivateRouter";
 import NotFindPage from "./presenter/components/shared/utilsPage/NotFindPage";
@@ -67,11 +68,12 @@ function App() {
 
         <ErrorBoundary
             color={color} onRetry={handleRetry} retryCount={retryCount}>
-            <AlertNotif />
+
             <BrowserRouter>
                 <div
                     id='app'
                     className={`App ${dark ? 'dark' : ''} md3-surface `}>
+                    <AlertNotif />
                     <Suspense fallback={<LoadingPage />}>
                         <Routes>
                             {/* Public routes */}
@@ -147,6 +149,8 @@ function App() {
                                     <Route path="/evenement" element={<EventListPage />} />
                                     <Route path="/flag" element={<FlagPage />} />
                                     <Route path="/vote" element={<VoteListPage />} />
+                                    {/* <Route path="/sondage" element={<VoteListPage />} />
+                                    <Route path="/cagnotte" element={<VoteListPage />} /> */}
                                     <Route path="/annonce" element={<PostListPage />} />
                                     <Route path="/conciliation" element={<ConciliationListPage />} />
                                 </Route>

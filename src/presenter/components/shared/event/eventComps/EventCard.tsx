@@ -13,6 +13,7 @@ import { Button } from "../../base/baseComps/Buttons";
 import { IconAnimate } from "../../../common/IconAnimate";
 import { ProgressBar } from "../../base/baseComps/Sliders";
 import { MoreButton } from "../../../common/moreBtn";
+import { useNavigate } from "react-router-dom";
 
 type EventCardProps = {
     event: EventView, refetch?: () => void,
@@ -30,7 +31,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
     const disabledEdit = new Date(start).getTime() < Date.now();
     const deleteEvent = async (id: number) => await DI.resolve('deleteEventUseCase').execute(id)
     const actions = GenereMyActions(event, "evenement", deleteEvent);
-
+    const navigate = useNavigate();
 
 
     return (
@@ -39,9 +40,9 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
             variant={variant}
             autoFit={autoFit}
             className={` min-h-full fadeIn `}
-            link={`/evenement/${id}`}
             image={
                 <CardMD.Image
+                    onClick={() => navigate(`/evenement/${id}`)}
                     src={image as string || '/image/placeholder.jpg'}
                     alt={title}
                     className={''} >

@@ -15,6 +15,7 @@ import { ProfileDiv } from "../../../common/ProfilDiv";
 import { MoreButton } from "../../../common/moreBtn";
 import { IconAnimate } from "../../../common/IconAnimate";
 import { GroupLink } from "../../../common/GroupLink";
+import { useNavigate } from "react-router-dom";
 
 
 type SurveyCardProps = {
@@ -41,6 +42,9 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
     }
     const values = VoteValues(survey, update);
 
+    const navigate = useNavigate();
+
+
     return (
         <>
 
@@ -49,10 +53,10 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                 autoFit={autoFit}
                 className="min-h-full fade-in"
                 imagePosition="top"
-                link={`/sondage/${survey?.id}`}
                 image={
                     survey?.image ? (
                         <CardMD.Image
+                            onClick={() => navigate(`/sondage/${survey?.id}`)}
                             src={survey?.image as string}
                             alt={survey?.title}
                             className=""

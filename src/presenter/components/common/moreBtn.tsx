@@ -1,7 +1,7 @@
 import { Icon } from "./IconComp";
 import { useState } from "react";
 import { Menu, MenuItem } from "../shared/base/baseComps/Menu";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useAlertStore } from "../../../application/stores/alert.store";
 import { AlertValues } from "../../../domain/entities/Error";
 import ShareDiv from "./shareDiv";

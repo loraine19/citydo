@@ -1,4 +1,4 @@
-import { Outlet } from "react-router"
+import { Outlet } from "react-router-dom"
 import AppBar from "../../common/appComps/AppBar"
 import { AppFooter } from "../../common/appComps/AppFooter"
 

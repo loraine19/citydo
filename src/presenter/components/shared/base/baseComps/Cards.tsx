@@ -1,5 +1,4 @@
 import { ReactNode, HTMLAttributes, useState, useEffect } from "react";
-import { useNavigate } from "react-router";
 import React from "react";
 import { Icon } from "../../../common/IconComp";
 
@@ -12,7 +11,6 @@ interface CardMDProps extends HTMLAttributes<HTMLDivElement> {
     children?: ReactNode;
     image?: ReactNode;
     imagePosition?: ImagePosition;
-    link?: string;
     autoFit?: boolean;
 }
 
@@ -114,7 +112,6 @@ export const CardMD: React.FC<CardMDProps> & {
     className,
     image,
     imagePosition = "top",
-    link,
     autoFit = false,
     ...props
 }) => {
@@ -129,7 +126,7 @@ export const CardMD: React.FC<CardMDProps> & {
             return () => window.removeEventListener("resize", handleResize);
         }, []);
 
-        const navigate = useNavigate();
+
         //// CARD CSS
         const cardClasses = `md3-card-${variant} 
         ${image && (image as any).props?.src ?
@@ -146,7 +143,7 @@ export const CardMD: React.FC<CardMDProps> & {
                     data-md3-card className={`${cardClasses} `} {...props}>
                     <CardImage
                         onClick={
-                            imageProps.onClick ? imageProps.onClick : link ? () => navigate(link) : undefined}
+                            imageProps.onClick ? imageProps.onClick() : undefined}
                         src={imageProps.src}
                         alt={imageProps.alt}
                         position={imagePosition}
@@ -214,7 +211,6 @@ export const CardLarge: React.FC<CardLargeProps> & {
     children,
     className,
     image,
-    link,
     autoFit = false,
     sheetClassName,
     expanded,
@@ -351,45 +347,5 @@ CardLarge.SupportingText = CardSupportingText;
 CardLarge.Media = CardMedia;
 CardLarge.Chips = CardChips;
 CardLarge.MidSection = CardMidSection;
-/**
- * Example usage of CardMD and CardLarge components
- */
-
-export const CardExample = () => (
-    <div style={{ display: "flex", gap: 32, flexWrap: "wrap" }}>
-        {/* Simple CardMD example */}
-        <CardMD variant="outlined" style={{ width: 320 }}>
-            <CardMD.Header>
-                <CardMD.Headline>Card Headline</CardMD.Headline>
-                <CardMD.Subhead>Subhead</CardMD.Subhead>
-            </CardMD.Header>
-            <CardMD.SupportingText>
-                This is some supporting text for the card.
-            </CardMD.SupportingText>
-            <CardMD.Footer>
-                <button>Action</button>
-            </CardMD.Footer>
-        </CardMD>
-
-        {/* CardMD with image */}
-        <CardMD
-            variant="elevated"
-            image={
-                <CardMD.Image
-                    src="https://placekitten.com/400/200"
-                    alt="Kitten"
-                />
-            }
-            style={{ width: 320 }}
-        >
-            <CardMD.Header>
-                <CardMD.Headline>Card with Image</CardMD.Headline>
-            </CardMD.Header>
-            <CardMD.SupportingText>
-                This card has an image at the top.
-            </CardMD.SupportingText>
-        </CardMD>
 
 
-    </div>
-);

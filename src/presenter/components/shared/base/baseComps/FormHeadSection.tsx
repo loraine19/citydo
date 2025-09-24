@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import Chip from "../../../common/adaptatersComps/Chip";
 import { Icon } from "../../../common/IconComp";
 import NotifDiv from "../../../common/NotifDiv";
@@ -37,13 +37,16 @@ const FormHeadSection: React.FC<FormHeadSectionProps> = ({
         let goBack = '/' + (new URLSearchParams(window.location.pathname.split("/")[1] ?? '').toString().replace("=", ''));
         // Check if there are params after "?" in the pathname
         let goBack2 = new URLSearchParams(window.location.search).toString().includes("=")
-            ? window.location.pathname.split("?")[0]
+            ? window.location.pathname.split("/")[0]
             : null;
+        alert(goBack + ' ' + goBack2)
         if (goBack2) {
+            alert('goBack2')
             navigate(goBack2);
 
         }
         else if (goBack && goBack !== window.location.pathname) {
+            alert('goBack' + goBack)
             navigate(goBack);
         }
 
@@ -51,7 +54,6 @@ const FormHeadSection: React.FC<FormHeadSectionProps> = ({
     }
 
     const { hideNavBottom, setHideNavBottom, color } = useUxStore()
-
     const parentDiv = (document.querySelector('#root > div > main > section') as HTMLElement) ?? undefined
 
     const scrollToTop = () => {

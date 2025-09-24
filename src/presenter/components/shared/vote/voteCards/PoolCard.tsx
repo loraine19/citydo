@@ -51,7 +51,6 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                 autoFit
                 className="min-h-full fade-in"
                 imagePosition="top"
-                link={`/cagnotte/${pool?.id}`}
             >
                 <CardMD.Chips className="justify-between flex-wrap">
                     <div className="md3-card-chips overflow-hidden !py-0">

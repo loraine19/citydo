@@ -9,7 +9,7 @@ import Chip from "../../common/adaptatersComps/Chip";
 import { Icon } from "../../common/IconComp";
 import { GroupView } from "../../../views/viewsEntities/GroupViewEntity";
 import { GroupLink } from "../../common/GroupLink";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { InputError } from "../../common/adaptatersComps/input";
 //kk

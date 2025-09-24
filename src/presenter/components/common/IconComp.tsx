@@ -215,7 +215,7 @@ export const Icon: React.FC<IconProps> = ({
 
                     onMouseEnter={() => setIsFill(true)}
                     onMouseLeave={() => setIsFill(!fill ? false : true)}
-                    to={link}
+                    to={link ?? '/'}
                     target={link?.startsWith('http') ? '_blank' : '_self'}
                     rel={link?.startsWith('http') ? 'noopener noreferrer' : undefined}
                     role={role}

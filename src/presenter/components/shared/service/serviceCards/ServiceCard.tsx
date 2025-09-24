@@ -76,9 +76,9 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
             autoFit={!compact}
             className={`min-h-full fade-in ${compact ? '' : ''} `}
             imagePosition="top"
-            link={`/service/${id}`}
             image={
                 <CardMD.Image
+                    onClick={() => navigate(`/service/${service?.id}`)}
                     src={image as string}
                     alt={title}
                     className=""

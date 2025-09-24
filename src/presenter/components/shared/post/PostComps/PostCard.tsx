@@ -13,6 +13,7 @@ import { IconAnimate } from "../../../common/IconAnimate";
 import { Button } from "../../base/baseComps/Buttons";
 import { MoreButton } from "../../../common/moreBtn";
 import { GroupLink } from "../../../common/GroupLink";
+import { useNavigate } from "react-router-dom";
 
 type PostCardProps = { post: PostView, mines?: boolean, change: (e: any) => void, update?: () => void, short?: boolean, autoFit?: boolean }
 
@@ -20,15 +21,17 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
     const [post, setPost] = useState<PostView>(initialPost);
     const deletePost = async (id: number) => await DI.resolve('deletePostUseCase').execute(id)
     const myActions: Action[] = GenereMyActions(post, "annonce", deletePost)
+    const navigate = useNavigate();
 
     return (
         <CardMD
             autoFit={autoFit}
             className="min-h-full fadeIn"
             imagePosition="top"
-            link={`/annonce/${post?.id}`}
             image={
-                post?.image && <CardMD.Image
+                post?.image &&
+                <CardMD.Image
+                    onClick={() => navigate(`/annonce/${post?.id}`)}
                     src={post?.image as string}
                     alt={post?.title}
                     className="relative"
@@ -37,7 +40,7 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
                         active={post?.ILike}
                         icon={'favorite'} />
 
-                    <CardMD.Chips className={`w-full flex absolute justify-end gap-2 right-1 h-max`}>
+                    <CardMD.Chips className={`w-full flex bg-red-200 absolute justify-end gap-2 right-1 h-max`}>
                         <DateChip
                             start={post?.createdAt}
                             prefix=" "

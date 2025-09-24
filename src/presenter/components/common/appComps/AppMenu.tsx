@@ -4,7 +4,7 @@ import { Icon, IconName } from "../IconComp";
 import { AvatarUser } from "../AvatarUser";
 import { useUxStore } from "../../../../application/stores/ux.store";
 import { useUserStore } from "../../../../application/stores/user.store";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 type AppMenuProps = {
     listPage?: boolean;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Icon } from '../../common/IconComp';
 import { Button, ButtonsDemo } from './baseComps/Buttons';
-import { CardExample, CardMD, } from './baseComps/Cards';
+import { CardMD, } from './baseComps/Cards';
 import { Fab, FabMenu } from './baseComps/Fabs';
 import { Carousel } from './baseComps/Carrousel';
 import { AppBar, NavigationBar, NavigationBarItem, NavigationDrawer } from './baseComps/Navigations';
@@ -590,7 +590,6 @@ const MD3DemoPage: React.FC = () => {
                 </Tooltip>
             </section>
 
-            <CardExample />
             <InputDemo />
             <ButtonsDemo />
             <div style={{ padding: '2rem', textAlign: 'center', fontFamily: 'sans-serif', border: '1px solid #ddd', borderRadius: '12px', maxWidth: '800px', margin: 'auto' }}>
