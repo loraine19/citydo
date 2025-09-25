@@ -4,8 +4,8 @@ import { useUxStore } from "../../../application/stores/ux.store";
 import { useState } from "react";
 import DialogImage from "../shared/base/baseComps/DialogImage";
 
-export const ImageBtn = (props: { formik: any; setImgBlob: any; imgDef?: string; className?: string, color?: Md3Colors, variant?: any }) => {
-    const { formik, imgDef, setImgBlob, className, color: colorComp, variant } = props;
+export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; imgDef?: string; className?: string, color?: Md3Colors, variant?: any }) => {
+    const { formik, imgBlob, imgDef, setImgBlob, className, color: colorComp, variant } = props;
     const { color } = useUxStore((state) => state);
 
     const getImageBlob = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -112,7 +112,10 @@ export const ImageBtn = (props: { formik: any; setImgBlob: any; imgDef?: string;
                                 onClick: () => setOpenDialog(true)
                             }}
                         />
-                        {open && <DialogImage onClose={() => setOpenDialog(false)} image={formik?.values?.image} />}
+                        {open &&
+                            <DialogImage
+                                onClose={() => setOpenDialog(false)} image={
+                                    imgBlob ?? formik?.values?.image ?? imgDef} />}
 
 
                     </>

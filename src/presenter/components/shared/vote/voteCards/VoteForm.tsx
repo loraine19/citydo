@@ -139,6 +139,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                     >
                         <CardLarge.Chips className="justify-between px-4">
                             <ImageBtn
+                                imgBlob={imgBlob || formik.values.image}
                                 variant="tonal"
                                 className="relative pb-1"
                                 formik={formik}

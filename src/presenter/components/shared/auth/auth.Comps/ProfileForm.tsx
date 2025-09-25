@@ -64,6 +64,8 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ formik, setAssistance,
                                             avatarStyle="!shadow-none z-[8] "
                                         />
                                         <ImageBtn
+                                            imgDef={formik.values?.image}
+                                            imgBlob={imgBlob}
                                             variant="outlined"
                                             color='primary'
                                             setImgBlob={setImgBlob}

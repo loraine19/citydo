@@ -68,7 +68,7 @@ export function ServiceForm(props: { formik: any }) {
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
             <main className="wRespXLMargin">
                 <section className={`"DetailCardDiv  " ${show ? 'overflow-hidden' : 'overflow-auto hideCTAForm'} `}>
-                    <div className={`p-2 max-h-max w-full flex flex-col grid-cols-[auto_auto] lg:grid grid-rows-1 gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
+                    <div className={`p-2 max-h-max w-full flex flex-col gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
                         <h6 className="md3-card-subhead pt-4">Informations principales</h6>
                         <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
                             <RadioGroup
@@ -133,6 +133,7 @@ export function ServiceForm(props: { formik: any }) {
                                 variant="tonal"
                                 className={"relative pb-1"}
                                 formik={formik}
+                                imgBlob={imgBlob}
                                 setImgBlob={setImgBlob}
                             />
                             <DateChip

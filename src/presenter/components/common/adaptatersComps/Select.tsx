@@ -49,7 +49,7 @@ export function Select({
                     className={`flex items-center rounded-full md3-button-${error ? 'error' : color} ${className} !px-[1rem] !min-h-[42px] gap-2 ${disabled ? 'opacity-50 pointer-events-none' : ''}`}
                 >
                     <div className={`flex-1 flex w-full px-1 truncate`}>
-                        {error ?? displayLabel}
+                        {(error && variant === 'Input') ? placeholder : displayLabel}
                     </div>
                     <Menu
                         open={open}

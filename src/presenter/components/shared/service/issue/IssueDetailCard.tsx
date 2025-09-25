@@ -96,6 +96,7 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, mo
                                 </div>
                                 <div className={formik ? 'flex absolute bottom-14 right-14' : `hidden`}>
                                     <ImageBtn
+                                        imgBlob={imgBlob}
                                         setImgBlob={setImgBlob}
                                         formik={formik}
                                     />
