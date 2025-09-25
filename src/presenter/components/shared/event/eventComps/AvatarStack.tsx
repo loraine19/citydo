@@ -71,7 +71,7 @@ export function AvatarStack(props: AvatarStackProps) {
                 <Menu
                     open={open}
                     setOpen={setOpen}
-                    key={Participant.userId + index + '_avatar'}
+                    MenuKey={Participant.userId + index + '_avatar'}
                     className="px-2"
                     blurBack
                     placement={'auto'}

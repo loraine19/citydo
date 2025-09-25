@@ -50,7 +50,6 @@ export default function ServicesPage() {
     });
     useEffect(() => { setCategory(params.category || ''); setFilter(params.filter || '') }, []);
 
-
     //// NAMING
     const filterName = (): string => {
         switch (filter) {
@@ -134,7 +133,6 @@ export default function ServicesPage() {
 
     }, [isLoading, error, filter, step, category, count, services.length, type]);
 
-
     //// HANDLE SCROLL
     const utils = DI.resolve('utils')
     const handleScroll = (params: HandleScrollParams) => utils.handleScroll(params)
@@ -172,18 +170,13 @@ export default function ServicesPage() {
         { key: ServiceSort.HARD, label: "Difficulté", icon: "signal_cellular_alt" }
     ]
 
-
     //// HANDLE VIEW CHANGE
     const [compact, setCompact] = useState<boolean>(false);
 
-
     ////FOR APPBAR
     const { setSearchSection, setTabSection } = useNavStore((state) => state);
-
     const SearchSection = useMemo(() => (
-
         <div className={`flex items-center md:justify-end justify-between w-full gap-2`}>
-
             {mine ?
                 <CheckCard
                     categoriesArray={boxArray}
@@ -197,7 +190,6 @@ export default function ServicesPage() {
                     search={search} />
             }
         </div>
-
     ), [mine, boxSelected, searchCat, serviceCategoriesS]);
 
     const TabSection = useMemo(() => (
@@ -208,8 +200,7 @@ export default function ServicesPage() {
             reverse={reverse}
             setReverse={setReverse}
         />
-
-    ), []);
+    ), [reverse, setReverse]);
 
 
     useEffect(() => {
@@ -219,7 +210,7 @@ export default function ServicesPage() {
             setSearchSection(null);
             setTabSection(null);
         };
-    }, []);
+    }, [notif, SearchSection, TabSection]);
 
     const sortBtnProps: SortButtonProps = {
         sortList: sortList,
@@ -241,7 +232,6 @@ export default function ServicesPage() {
     return (
 
         <main >
-
             <DetailsHeadSection
                 hidden={hideNavBottom && !isLoading && !error && !notif}
                 infosChipValue={`${count ?? 0} services ${filterName() ? '/ ' + filterName() : ''} ${categoryName() ? '/ ' + categoryName() : ''}`}

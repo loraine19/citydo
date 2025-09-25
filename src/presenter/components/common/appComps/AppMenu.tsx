@@ -67,7 +67,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                 setOpen={setOpen}
                 blurBack
                 left
-                key="profile-menu"
+                MenuKey="profile-menu"
                 className={`rounded-l-none !absolute !top-0 !left-0 px-4 py-2 !z-[9999999] h-[100dvh]  overflow-auto  !min-w-[70vw]"`}
                 placement="free"
                 trigger={

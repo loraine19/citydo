@@ -66,7 +66,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
 
                     <Menu
                         title="Notifications"
-                        key='notif-menu'
+                        MenuKey='notif-menu'
                         className={` min-h-[12rem] max-h-[80vh] overflow-y-auto  w-respLarge max-w-[80vw] `}
                         trigger={<Icon
                             title={'ouvrir le popup'}

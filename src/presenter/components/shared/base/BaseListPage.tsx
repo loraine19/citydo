@@ -486,7 +486,7 @@ const MD3DemoPage: React.FC = () => {
                 <div style={{ position: 'relative' }}>
 
                     <Menu
-                        key='demo-menu'
+                        MenuKey='demo-menu'
                         blurBack
                         placement='auto'
                         trigger={<Button variant="outlined" >Ouvrir le Menu</Button>} >

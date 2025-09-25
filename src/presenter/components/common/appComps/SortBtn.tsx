@@ -20,7 +20,7 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
     return (
 
         <Menu
-            key={'sort-menu' + color}
+            MenuKey={'sort-menu' + color}
             className=""
             open={isOpen}
             setOpen={setIsOpen}

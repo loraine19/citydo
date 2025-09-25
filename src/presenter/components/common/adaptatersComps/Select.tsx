@@ -54,7 +54,7 @@ export function Select({
                     <Menu
                         open={open}
                         setOpen={setOpen}
-                        key={'select-menu' + (color)}
+                        MenuKey={'select-menu' + (color)}
                         closeIcon={<></>}
                         className="mt-2 w-max"
                         blurBack

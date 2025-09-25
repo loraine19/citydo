@@ -43,7 +43,7 @@ const NotifDiv: React.FC<NotifDivProps> = ({ notif, isLoading, refetch, error, c
                 <Icon
 
                     reverse
-                    style={(attempt > 3 || error) ? '!hidden' : 'md3-elevation-1'}
+                    style={(attempt > 30) ? '!hidden' : 'md3-elevation-1'}
                     color={color}
                     size='3xl'
                     title="Recharger la liste"

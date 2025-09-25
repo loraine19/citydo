@@ -100,7 +100,10 @@ export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; im
                                 },
 
                             }}
-                        ></Button>
+                        >
+
+                        </Button>
+
                         <Button
                             className="px-2 !py-2 min-h-max  w-max !min-w-max "
                             round
@@ -115,8 +118,9 @@ export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; im
                         />
                         {open &&
                             <DialogImage
-                                onClose={() => setOpenDialog(false)} image={
-                                    imgBlob ?? formik?.values?.image ?? imgDef} />}
+                                open={open}
+                                onClose={() => setOpenDialog(false)}
+                                image={imgBlob ?? formik?.values?.image ?? imgDef} />}
 
 
                     </>

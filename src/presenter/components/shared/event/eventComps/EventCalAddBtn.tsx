@@ -20,7 +20,7 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
         <Menu
             open={open}
             setOpen={setOpen}
-            key={id + "add"}
+            MenuKey={id + "_add"}
             blurBack
             placement={'auto'}
             onClose={() => { }}

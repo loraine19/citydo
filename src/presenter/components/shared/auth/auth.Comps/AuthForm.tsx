@@ -152,7 +152,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
                                     </Checkbox>
                                     <Menu
-                                        key='terms'
+                                        MenuKey='terms'
                                         trigger={<Icon
                                             size="md"
                                             icon="expand_content" />}

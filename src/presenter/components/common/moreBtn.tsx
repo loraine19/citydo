@@ -64,7 +64,7 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
         <div className="relative">
             <Menu
                 blurBack
-                key={`more-menu-${id}`}
+                MenuKey={`more-menu-${id}`}
                 className={className ?? '' + ' '}
                 open={isOpen}
                 setOpen={setIsOpen}

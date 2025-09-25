@@ -34,7 +34,7 @@ const Chip: React.FC<ChipProps> = ({
     icon,
     iconPlacement = "start",
     className = "",
-    size = "medium",
+    size = "small",
     onClick,
 }) => {
     const classes = [

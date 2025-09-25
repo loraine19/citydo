@@ -148,9 +148,9 @@ export const AddressInputOpen = (props: {
                 setOpen={setOpen}
                 title='Choisir dans la liste'
                 trigger={<div className=' max-w-max -mt-8 ' data-mapbox-id >&nbsp;</div>}
-                key='address-suggestion'
+                MenuKey='address-suggestion'
                 placement='bottom-right'
-                className='!absolute !top-12 !left-0 max-h-[11rem] overflow-y-scroll '>
+                className=' max-h-[11rem] overflow-y-scroll '>
                 {suggestions.length > 0 ?
                     suggestions.map((suggestion, index) => (
                         suggestion.label !== suggestions[index - 1]?.label &&

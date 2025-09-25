@@ -159,15 +159,15 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                                                 title={'Voir événement' + ' ' + event.title}
                                                 className='w-full grid ' >
                                                 <Menu
-                                                    key={'event-menu' + event.id + indexEvent}
-                                                    open={open}
+                                                    MenuKey={'event-menu' + event.id + '_' + indexEvent}
+                                                    open={open && (eventDays[indexEvent] === currentDay)}
                                                     setOpen={setOpen}
                                                     closeIcon={
                                                         <Icon
                                                             icon="close"
                                                             bg style='self-start'
                                                             color='slate' size="sm" />}
-                                                    className={` -ml-[1rem] mr-[1rem] max-h-full !z-[9]  px-2 pt-2  max-w-fit bg-[var(--md3-primary-container)] `}
+                                                    className={`-ml-[0.5rem] max-h-full !z-[9]  px-2 pt-2  max-w-fit  `}
                                                     blurBack
                                                     placement={'center'}
                                                     trigger={<button
@@ -203,11 +203,13 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                             </div>
                         )}
                     </div>
-                )) : <NotifDiv
-                    isLoading={loadingEvents}
-                    error={errorEvents}
-                    refetch={refetch}
-                    notif={loadingEvents ? 'Chargement...' : errorEvents ? 'Une erreur est survenue' : 'Aucun événement'} />}
+                )) :
+                    <NotifDiv
+                        className='!relative'
+                        isLoading={loadingEvents}
+                        error={errorEvents}
+                        refetch={refetch}
+                        notif={loadingEvents ? 'Chargement...' : errorEvents ? 'Une erreur est survenue' : ''} />}
             </div>
         </div>
     )

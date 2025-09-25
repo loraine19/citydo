@@ -16,7 +16,7 @@ export const ViewButton = ({ viewList, view }: ViewButtonProps) => {
     return (
 
         <Menu
-            key={'sort-menu' + color}
+            MenuKey={'sort-menu' + color}
             className=""
             open={isOpen}
             setOpen={setIsOpen}

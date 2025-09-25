@@ -14,7 +14,7 @@ export const GroupLink: React.FC<GroupDivProps> = ({ group, className }) => {
             closeIcon={<></>}
             placement="top-right"
             className={` ${className ?? ''} ml-[30%] mr-[50%] `}
-            key={group?.id}
+            MenuKey={group?.id}
             trigger={
                 <div className={`${className ?? ''}  flex gap-2  max-w-full line-clamp-1 justify-start`}>
                     <Icon icon="groups" fill size="lg" />

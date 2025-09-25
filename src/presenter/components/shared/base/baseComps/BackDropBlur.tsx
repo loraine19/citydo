@@ -6,6 +6,7 @@ interface BackDropBlurProps {
     setOpen?: (open: boolean) => void;
     className?: string;
     children?: React.ReactNode;
+    key: string | number;
 }
 
 const BackDropBlur: React.FC<BackDropBlurProps> = ({
@@ -13,19 +14,30 @@ const BackDropBlur: React.FC<BackDropBlurProps> = ({
     setOpen,
     className = "",
     children,
+    key
 }) => {
     if (!open) return null;
 
     if (typeof window === "undefined") return null;
+
+    // Ensure only one BackDropBlur is rendered at a time
+    const [existing, setExisting] = React.useState<boolean>(false);
+    React.useEffect(() => {
+        const elements = document.querySelectorAll("#blurDiv");
+        console.log(elements);
+        if (elements.length > 1) return setExisting(true)
+    }, []);
+
+    if (existing) return null;
 
     const root = document.getElementById("root");
     if (!root || !root.parentNode) return null;
 
     return ReactDOM.createPortal(
         <div
-            id='blurDiv'
-            className={`fixed z-[1] inset-0  backdrop-blur bg-black/30 animate-fade 
-                ${className}`}
+            key={key}
+            id="blurDiv"
+            className={`fixed inset-0 backdrop-blur animate-fade ${className}`}
             onClick={() => setOpen && setOpen(false)}
             style={{}}
         >

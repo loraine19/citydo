@@ -16,7 +16,7 @@ interface MenuProps {
     closeIcon?: ReactNode;
     blurBack?: boolean;
     menuRef?: React.RefObject<HTMLDivElement>;
-    key: string | number;
+    MenuKey: string | number;
     fitMax?: boolean;
     title?: string;
     left?: boolean;
@@ -34,10 +34,11 @@ export const Menu: React.FC<MenuProps> = ({
     blurBack = false,
     menuRef,
     fitMax,
-    key,
+    MenuKey,
     title,
     left = false
 }) => {
+    if (!MenuKey) return null;
     const [internalOpen, setInternalOpen] = useState(false);
     const isControlled = setOpen !== undefined;
     const open = isControlled ? controlledOpen : internalOpen;
@@ -243,8 +244,8 @@ export const Menu: React.FC<MenuProps> = ({
         <div
             data-md3-menu
             aria-expanded={open}
-            id={'menu-button_' + key}
-            key={key}
+            id={'menu-button_' + MenuKey}
+            key={MenuKey}
             ref={menuRef || menuRefAuto}
             style={{
                 ...menuStyle,
@@ -288,7 +289,7 @@ export const Menu: React.FC<MenuProps> = ({
         <>
             <div
                 ref={containerRef}
-                key={key}
+                key={MenuKey}
                 data-md3-menu
                 className={`md3-menu-container  ${(menuRef || menuRefAuto) ? "" : "relative"} `}>
 
@@ -310,7 +311,7 @@ export const Menu: React.FC<MenuProps> = ({
             {/* MODIFIÉ : On utilise aussi le portail pour le fond flou */}
             {openPortal && blurBack && portalRoot && createPortal(
                 <BackDropBlur
-                    key={'backdrop-blur' + key}
+                    key={'menu-blur' + MenuKey}
                     open={openPortal}
                     setOpen={handleClose}
                     className="z-[1]"
