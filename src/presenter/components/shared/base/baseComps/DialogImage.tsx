@@ -13,7 +13,7 @@ const DialogImage: React.FC<DialogImageProps> = ({ image, alt = '', onClose }) =
         open={!!image} >
         <div className="md3-card  !py-0 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] overflow-hidden  bg-clip">
             <img
-                src={image} alt={alt} className="w-full h-full  !max-w-[90vw] !max-h-[80dvh] object-contain" />
+                src={image} alt={alt} className="w-full h-full  !max-w-[99vw] !max-h-[90dvh] object-contain" />
         </div>
     </BackDropBlur>
 );
