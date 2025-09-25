@@ -84,16 +84,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                     { value: VoteTarget.POOL, label: "Cagnotte", id: 'cagnotte-radio' }
                                 ]}
                             />
-                            {type === VoteTarget.POOL && (
-                                <Select
-                                    variant="Input"
-                                    value={formik.values.beneficiary}
-                                    options={users}
-                                    placeholder={formik.errors.beneficiary ?? `Bénéficiaire`}
-                                    name="beneficiary"
-                                    formik={formik}
-                                />
-                            )}
+
                             {type === VoteTarget.SURVEY && (
                                 <Select
                                     variant="Input"
@@ -108,6 +99,16 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                 formik={formik}
                                 user={user}
                             />
+                            {(type === VoteTarget.POOL && formik.values.groupId) && (
+                                <Select
+                                    variant="Input"
+                                    value={formik.values.beneficiary}
+                                    options={users}
+                                    placeholder={formik.errors.beneficiary ?? `Bénéficiaire`}
+                                    name="beneficiary"
+                                    formik={formik}
+                                />
+                            )}
                             {
                                 (!formik.errors.groupId && !formik.errors.category && formik.values.groupId && (type === VoteTarget.POOL && formik.values.beneficiary || type === VoteTarget.SURVEY && formik.values.category)) &&
                                 <Button
@@ -186,7 +187,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                     </CardLarge>
                 </section>
             </main>
-            {(showCard && !show && (!formik.errors || Object.keys(formik.errors).length === 0)) &&
+            {(showCard && !show) &&
                 <CTAMines
                     actions={[
                         {

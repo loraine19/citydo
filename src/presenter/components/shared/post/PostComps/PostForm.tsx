@@ -175,7 +175,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                     </CardLarge>
                 </section>
             </main>
-            {(showCard && !show && (!formik.errors || Object.keys(formik.errors).length === 0)) &&
+            {(showCard && !show) &&
                 <CTAMines
                     actions={[
                         {

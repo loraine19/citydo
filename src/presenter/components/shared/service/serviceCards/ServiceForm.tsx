@@ -214,7 +214,7 @@ export function ServiceForm(props: { formik: any }) {
                     </CardLarge>
                 </section>
             </main>
-            {(showCard && !show && (!formik.errors || Object.keys(formik.errors).length === 0)) &&
+            {(showCard && !show) &&
                 <CTAMines
                     actions={[
                         {

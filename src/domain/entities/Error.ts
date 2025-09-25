@@ -8,7 +8,8 @@ export class Error {
     }
 }
 
-export class AlertValues {
+export class
+    AlertValues {
     handleConfirm: () => void = () => { };
     title: string = 'Une erreur est survenue';
     element: string | Element | React.ReactNode = ''
