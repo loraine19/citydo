@@ -69,7 +69,13 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
 
 
                 {openShare ?
-                    <>{openShare ? <Icon onClick={() => setOpenShare(false)} bg fill size="md" icon="arrow_back" /> : undefined}<ShareDiv url={window.location.href} text={title} /></> :
+                    <><MenuItem leadingIcon={
+                        <Icon onClick={() => setOpenShare(false)} bg fill size="md" icon="arrow_back" />}>
+                        Retour
+                    </MenuItem>
+                        <ShareDiv url={window.location.href} text={title} />
+
+                    </> :
                     iconList.map((item: any, index: number) =>
                         <MenuItem
                             key={index}
