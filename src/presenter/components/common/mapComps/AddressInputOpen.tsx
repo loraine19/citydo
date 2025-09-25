@@ -13,8 +13,9 @@ export const AddressInputOpen = (props: {
     address: AddressDTO | Address,
     setAddress: any,
     error?: any,
+    formik?: any
 }) => {
-    const { address, setAddress, error } = props;
+    const { address, setAddress, error, formik } = props;
     const [inputLoading, setInputLoading] = useState(false)
     const [inputValue, setInputValue] = useState(`${address?.address || ''} ${address?.zipcode || ''} ${address?.city || ''}`.trim());
     const [suggestions, setSuggestions] = useState<AddressSuggestion[]>([]);
@@ -103,6 +104,7 @@ export const AddressInputOpen = (props: {
     const handleSuggestionSelect = (suggestion: AddressSuggestion) => {
         setInputValue(suggestion.label)
         setSuggestions([]);
+        formik.setFieldValue('address', suggestion.value.address);
 
     };
     const [open, setOpen] = useState(true);
@@ -148,7 +150,7 @@ export const AddressInputOpen = (props: {
                         setOpen={((open) => address ? setOpen(open) : setOpen(false))}
                         title='Choisir dans la liste'
                         placement='bottom-right'
-                        className=' !mt-[2rem] mx-[1rem] max-h-[11rem] overflow-y-scroll '
+                        className=' w-[calc(100dvw-2rem)] absolute wRespXLMargin !right-0  !mt-[2rem] mx-[1rem] max-h-[11rem] overflow-y-scroll '
                         trigger={
                             <button id="mapbox-trigger">
                                 <Icon

@@ -26,7 +26,7 @@ interface EventFormProps {
 
 export function EventForm({ formik, Address, setAddress }: EventFormProps) {
     const user = useUserStore((state) => state.user);
-    const [imgBlob, setImgBlob] = useState<string>(formik.values.image ?? formik.values.blob ?? EventImage[formik.values.category as keyof typeof EventImage] ?? EventImage.default);
+    const [imgBlob, setImgBlob] = useState<string>(formik.values.image ?? formik.values.blob ?? EventImage[formik.values.category as keyof typeof EventImage] ?? EventImage.default ?? '');
     const [groupId, setGroupId] = useState<string | number | undefined>(formik.values.Group?.id);
     const [expand, setExpand] = useState<boolean>(false);
 
@@ -119,7 +119,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                         image={
                             <CardLarge.Image
                                 className="md3-cyan-container"
-                                src={imgBlob ?? formik.values.image ?? formik.values.blob ?? EventImage.default ?? undefined}
+                                src={imgBlob ?? formik.values.image ?? null}
                                 alt={formik.values.title || 'image'}
                             />
                         }
@@ -179,6 +179,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         <AddressMapOpen address={Address} />
                                     </div> : null}
                                 <AddressInputOpen
+                                    formik={formik}
                                     address={Address}
                                     setAddress={setAddress}
                                     error={formik.errors.Address}

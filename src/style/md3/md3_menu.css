@@ -20,7 +20,7 @@
 
 .md3-menu-item {
     @apply flex items-center gap-4;
-    padding: var(--md3-spacing-small) var(--md3-spacing-small);
+    padding: var(--md3-spacing-small) var(--md3-spacing-medium);
     cursor: pointer;
     border-radius: var(--md3-radius-large);
     transition: background-color 80ms linear;

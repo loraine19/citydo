@@ -2,8 +2,6 @@ import { Icon } from "./IconComp";
 import { useState } from "react";
 import { Menu, MenuItem } from "../shared/base/baseComps/Menu";
 import { useNavigate } from "react-router-dom";
-import { useAlertStore } from "../../../application/stores/alert.store";
-import { AlertValues } from "../../../domain/entities/Error";
 import ShareDiv from "./shareDiv";
 
 type moreButtonProps = {
@@ -19,18 +17,7 @@ type moreButtonProps = {
 
 export const MoreButton = ({ id, type, flagged, title, className }: moreButtonProps) => {
     const navigate = useNavigate()
-    const { setAlertValues, setOpen } = useAlertStore((state) => state);
-    const shareValues: AlertValues = {
-        isOpen: true,
-        title: 'Partager',
-        element: <ShareDiv text={title} url={window.location.origin + `/${type}/${id}`} />,
-        disableConfirm: true,
-        close: () => setOpen(false),
-        handleConfirm() {
-            setAlertValues({ isOpen: false, title: '', })
-        },
 
-    }
 
     const iconList: any[] = [
         {
@@ -40,21 +27,20 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
             fill: flagged,
             flagged: flagged,
             color: flagged ? 'red' : 'slate',
-            action: () => { navigate(`/flag/${type}/${id}`) },
+            action: () => { setIsOpen(false); navigate(`/flag/${type}/${id}`) },
         },
         {
             icon: 'share',
             label: 'Partager',
-            key: 'share',
-            action: () => {
-                setAlertValues(shareValues)
-            }
+            key: `share${id}`,
+            action: () => { setOpenShare(true) }
+        },
 
-        }
 
     ]
 
     const [isOpen, setIsOpen] = useState(false);
+    const [openShare, setOpenShare] = useState(false);
 
     // If you need to manipulate the menu DOM node, use a ref and useEffect
     // Otherwise, remove menuRef if not needed
@@ -63,11 +49,13 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
     return (
         <div className="relative">
             <Menu
+                title={!openShare ? "Plus d'options" : undefined}
+                closeIcon={openShare ? <> </> : undefined}
                 blurBack
                 MenuKey={`more-menu-${id}`}
                 className={className ?? '' + ' '}
                 open={isOpen}
-                setOpen={setIsOpen}
+                setOpen={(open: boolean) => { setIsOpen(open); setOpenShare(false) }}
                 placement={'bottom-left'}
                 trigger={
                     <Icon
@@ -80,31 +68,32 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
                     />}>
 
 
-                {iconList.map((item: any, index: number) =>
-                    <MenuItem
-                        key={index}
-                        data-cy={item.key ?? item.label}
-                        onClick={() => {
-                            item.action();
-                            setIsOpen(!isOpen);
-                        }}
-                        leadingIcon={
-                            <Icon
-                                bg
-                                color={item.flagged ? 'error' : 'slate'}
-                                fill={item.fill ?? false}
-                                size={'md'}
-                                onClick={() => {
-                                    item.action();
-                                    setIsOpen(!isOpen);
-                                }}
-                                title={item.label}
-                                icon={item.icon}
-                            />}
-                        className="flex !pr-12 " >
-                        {item.label}
-                    </MenuItem>
-                )}
+                {openShare ?
+                    <>{openShare ? <Icon onClick={() => setOpenShare(false)} bg fill size="md" icon="arrow_back" /> : undefined}<ShareDiv url={window.location.href} text={title} /></> :
+                    iconList.map((item: any, index: number) =>
+                        <MenuItem
+                            key={index}
+                            data-cy={item.key ?? item.label}
+                            onClick={() => {
+                                item.action();
+                            }}
+                            leadingIcon={
+                                <Icon
+                                    bg
+                                    color={item.flagged ? 'error' : 'slate'}
+                                    fill={item.fill ?? false}
+                                    size={'md'}
+                                    onClick={() => {
+                                        item.action();
+                                    }}
+                                    title={item.label}
+                                    icon={item.icon}
+                                />}
+                            className="flex !pr-12 " >
+                            {item.label}
+                        </MenuItem>
+                    )}
+
             </Menu>
         </div>
     )

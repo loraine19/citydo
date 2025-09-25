@@ -18,63 +18,48 @@ const shareLinks = (url: string, text?: string) => ({
 export const ShareDiv: React.FC<ShareDivProps> = ({ url, text }) => {
     const links = shareLinks(url, text);
     const { color } = useUxStore(state => state)
+    const menuItems = [
+        {
+            label: 'Email',
+            icon: <Icon size="lg" bg fill color={color ?? 'slate'} icon="mail" />,
+            link: links.email
+        },
+        {
+            label: 'SMS',
+            icon: <Icon size="lg" bg fill color={color ?? 'slate'} icon="sms" />,
+            link: links.sms
+        },
+        {
+            label: 'WhatsApp',
+            icon: <Icon size="lg" bg fill color="green" icon="whatsapp" />,
+            link: links.whatsapp
+        },
+        {
+            label: 'Snapchat',
+            icon: <Icon size="lg" bg fill color="orange" icon="snapchat" />,
+            link: links.snapchat
+        }
+    ];
 
     return (
-        <div className="flex  flex-col  gap-2 pt-2">
-            <p className="md3-card-subhead">  {text}</p>
 
 
-            <MenuItem className=" "
-                leadingIcon={
+        <>
+            {menuItems.map((item) => (
+                <MenuItem
+                    className="px-4"
+                    leadingIcon={item.icon}
+                    key={item.label}
+                    onClick={() => {
+                        window.open(item.link, "_blank");
+                    }}
+                >
 
-                    <Icon bg fill
-                        color={color ?? 'slate'} icon="mail" />}>
+                    {item.label}
+                </MenuItem>
+            ))}
 
-                <a
-                    href={links.email}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ textDecoration: "none", color: "inherit" }}
-                >     <span >Email</span>
-                </a>
-            </MenuItem>
-            <MenuItem
-                leadingIcon={
-                    <Icon
-                        bg fill
-                        color={color ?? 'slate'}
-                        link={links.sms}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        icon={'sms'} />
-                }
-            >
-                <span >SMS</span>
-            </MenuItem>
-            <MenuItem leadingIcon={
-
-                <Icon
-                    bg fill
-                    color="green"
-                    link={links.whatsapp}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    icon={'whatsapp'} />}>
-                <span >WhatsApp</span>
-            </MenuItem>
-            <MenuItem
-                leadingIcon={
-                    <Icon
-                        bg fill
-                        color="orange"
-                        link={links.snapchat}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        icon={'snapchat'} />}>
-                <span >Snapchat</span>
-            </MenuItem>
-
-        </div>
+        </>
     );
 };
 

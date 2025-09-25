@@ -67,11 +67,12 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
                     <div className="flex flex-col ">
 
                         <span
-                            className={`flex gap-1 items-center  ${textSize} `}>
+                            className={`flex gap-x-1 flex-wrap items-center  ${textSize} `}>
                             <span>  {profile?.firstName}</span>
-                            {date && '•'}
+
                             {date &&
-                                <span className="opacity-80 text-[0.8em] flex items-center ">{getAgoString(date)}
+                                <span className="opacity-80 text-[0.8em] flex items-center gap-1">
+                                    {date && '•'}{getAgoString(date)}
                                 </span>}
                         </span>
                         {group &&
