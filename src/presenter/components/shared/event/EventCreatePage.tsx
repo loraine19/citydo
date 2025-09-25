@@ -72,8 +72,8 @@ export default function EventCreatePage() {
                                 <div className='font-semibold'>Description:</div>
                                 <div>{values.description}</div>
                                 <div className='font-semibold'>Catégorie:</div>
-                                <div>{values.category}</div>
-                                <div className='font-semibold'>Participants:</div>
+                                <div>{values.categoryS}</div>
+                                <div className='font-semibold'>Participants minimum:</div>
                                 <div>{values.participantsMin}</div>
                                 <div className='font-semibold'>Date de début:</div>
                                 <div>{new Date(values.start).toLocaleString()}</div>

@@ -79,7 +79,7 @@ export default function PostEditPage() {
                                 <div className='font-semibold'>Description:</div>
                                 <div>{values.description}</div>
                                 <div className='font-semibold'>Catégorie:</div>
-                                <div>{values.category}</div>
+                                <div>{values.categoryS}</div>
                                 <div className='font-semibold'>Partagé par:</div>
                                 <div>{values.shareA.join(', ')}</div>
 

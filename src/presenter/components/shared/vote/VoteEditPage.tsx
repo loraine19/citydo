@@ -106,11 +106,11 @@ export default function VoteEditPage() {
 
                             {type === VoteTarget.SURVEY && <>
                                 <div className='font-semibold'>Catégorie:</div>
-                                <div>{values.category}</div>
+                                <div>{values.categoryS}</div>
                             </>}
                             {type === VoteTarget.POOL && <>
                                 <div className='font-semibold'>Bénéficiaire:</div>
-                                <div>{values.UserBenef}</div>
+                                <div>{values.UserBenef.firstName}</div>
                             </>}
 
                         </>

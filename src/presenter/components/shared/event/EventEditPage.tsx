@@ -80,7 +80,7 @@ export default function EventDetailPage() {
                                 <div className='font-semibold'>Description:</div>
                                 <div>{values.description}</div>
                                 <div className='font-semibold'>Catégorie:</div>
-                                <div>{values.category}</div>
+                                <div>{values.categoryS}</div>
                                 <div className='font-semibold'>Participants:</div>
                                 <div>{values.participantsMin}</div>
                                 <div className='font-semibold'>Date de début:</div>

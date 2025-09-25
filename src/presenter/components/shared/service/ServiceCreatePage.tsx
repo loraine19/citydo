@@ -6,7 +6,7 @@ import DI from '../../../../di/ioc';
 import { ServiceDTO } from '../../../../infrastructure/DTOs/ServiceDTO';
 import { useAlertStore } from '../../../../application/stores/alert.store';
 import { AlertValues } from '../../../../domain/entities/Error';
-import { ServiceStep } from '../../../../domain/entities/Service';
+import { ServiceCategory, ServiceStep } from '../../../../domain/entities/Service';
 import { CardConfirmForm } from '../../common/CardConfirmForm';
 
 
@@ -68,11 +68,11 @@ export default function ServiceCreatePage() {
                                 <div className='font-semibold'>Description:</div>
                                 <div>{values.description}</div>
                                 <div className='font-semibold'>Catégorie:</div>
-                                <div>{values.category}</div>
+                                <div>{ServiceCategory[values.category as unknown as keyof typeof ServiceCategory] ?? values.category}</div>
                                 <div className='font-semibold'>Compétence:</div>
-                                <div>{values.skill}</div>
+                                <div>{values.skill?.replace('LEVEL_', ' ')}</div>
                                 <div className='font-semibold'>Difficulté:</div>
-                                <div>{values.hard}</div>
+                                <div>{values.hard?.replace('LEVEL_', ' ')}</div>
                             </>
                         }
                     />

@@ -12,14 +12,14 @@ export const CardConfirmForm: React.FC<CardConfirmFormProps> = ({
     title,
     content,
 }) => (
-    <CardMD variant="outlined">
+    <CardMD className="!w-full" variant="outlined">
         <CardMD.Header>
             <Icon color="green" bg icon="check" />
         </CardMD.Header>
         <CardMD.Headline>
             {title}
         </CardMD.Headline>
-        <CardMD.SupportingText className="flex !max-h-[25vh]  overflow-auto flex-col gap-2">
+        <CardMD.SupportingText className="flex !max-h-[35vh]   overflow-auto flex-col gap-2">
             {content}
         </CardMD.SupportingText>
     </CardMD>
