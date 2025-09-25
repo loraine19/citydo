@@ -173,10 +173,10 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                                         formik.handleChange(e);
                                         const textarea = e.target as HTMLTextAreaElement;
-                                        textarea.style.height = '2.5rem';
+                                        textarea.style.height = '8rem';
                                         textarea.style.height = textarea.scrollHeight + 'px';
                                         if (e.target.value === '') {
-                                            textarea.style.height = '2.5rem';
+                                            textarea.style.height = '8rem';
                                         }
                                     }}
                                     value={formik.values.description}
