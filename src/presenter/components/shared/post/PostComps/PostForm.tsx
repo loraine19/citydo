@@ -50,7 +50,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
         return () => setDetailSection(undefined);
     }, [SearchSection, setDetailSection, formik.errors, formik.values, show]);
 
-    const checkShare = (word: string) => formik.values?.shareA?.toString().toLowerCase().includes(word);
+    const checkShare = (word: string) => formik.values?.shareA?.toString().includes(word);
     const start = formik.values.createdAt ? new Date(formik.values.createdAt) : new Date();
 
     return (
@@ -160,7 +160,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                     name="shareA"
                                     value="PHONE"
                                     onChange={formik.handleChange}
-                                    checked={checkShare("phone")}
+                                    checked={checkShare("PHONE")}
                                 />
                                 <Checkbox
                                     color="rose"
@@ -169,7 +169,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                     name="shareA"
                                     value="EMAIL"
                                     onChange={formik.handleChange}
-                                    checked={checkShare("email")}
+                                    checked={checkShare("EMAIL")}
                                 />
                             </div>
                         </CardLarge.MidSection>

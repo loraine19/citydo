@@ -94,8 +94,9 @@ export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; im
                                 icon: "hide_image",
                                 title: "Supprimer l'image",
                                 onClick: () => {
+                                    formik.setFieldValue("image", "");
                                     formik.values.image = "";
-                                    setImgBlob(imgDef || "");
+                                    setImgBlob("");
                                 },
 
                             }}

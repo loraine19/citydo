@@ -110,10 +110,10 @@ export default function EventListPage() {
     //// NOTIFICATION
     useEffect(() => {
         if (error) setNotif('Erreur de chargement');
-        else if ((count === 0 || !events || events.length === 0) && !isLoading && !error && view !== "event")
+        else if ((count === 0 || !events || events?.length === 0) && !isLoading && !error && view !== "event")
             setNotif(`Aucun événement ${filterName()} trouvé`);
         else setNotif('');
-    }, [isLoading, error, filter, category, count, events.length]);
+    }, [isLoading, error, filter, category, count, events?.length]);
 
     //// HANDLE SCROLL
     const utils = DI.resolve('utils')

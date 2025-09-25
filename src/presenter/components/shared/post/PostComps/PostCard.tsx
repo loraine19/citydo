@@ -29,7 +29,6 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
             className="min-h-full fadeIn"
             imagePosition="top"
             image={
-                post?.image &&
                 <CardMD.Image
                     onClick={() => {
                         navigate(`/annonce/${post?.id}`);
@@ -53,15 +52,12 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
                 </CardMD.Image>
             }
         >
-            <CardMD.Chips className="justify-between">
-
-                <div className="md3-card-chips flex-1 !overflow-auto">
-                    <Chip
-                        onClick={() => change(post?.category as string)}
-                        value={`${post?.categoryS}`}
-                        color="rose"
-                    />
-                </div>
+            <CardMD.Chips className="justify-between flex-1 min-h-max">
+                <Chip
+                    onClick={() => change(post?.category as string)}
+                    value={`${post?.categoryS}`}
+                    color="rose"
+                />
 
             </CardMD.Chips>
 
@@ -69,7 +65,7 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
                 <Title title={post?.title} />
             </CardMD.Headline>
 
-            <CardMD.Subhead className={`flex items-center gap-1`}>
+            <CardMD.Subhead className={`flex items-start flex-1 gap-1`}>
                 <GroupLink group={post?.Group} />
             </CardMD.Subhead>
 

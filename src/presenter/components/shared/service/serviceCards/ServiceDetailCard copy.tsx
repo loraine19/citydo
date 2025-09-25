@@ -157,7 +157,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                     <h6 className="text-end ">Points</h6>
                     <h4
                         className={`text-end ${points?.length > 0 && "sm:w-full"}`} >
-                        {points.length > 0 && points[1] &&
+                        {points?.length > 0 && points[1] &&
                             <span className="!text-[1.2rem] font-light">de </span>}
                         {points[0]}
                         {points[1] && <>

@@ -47,7 +47,7 @@ export default function PostEditPage() {
         const updateData = new PostDTO({ ...formik.values as PostDTO, share });
         try {
             const data = await updatePost(post.id, updateData)
-            if (data?.id) { navigate(`/annonce/${data?.id}`); refetch(); setOpen(false); }
+            if (data?.id) { refetch(); navigate(`/annonce/${data?.id}`); setOpen(false); }
             else handleApiError("Erreur lors de la modification de l'annonce");
         } catch (error) {
             handleApiError(error ?? "Erreur lors de la modification de l'annonce");
@@ -81,7 +81,7 @@ export default function PostEditPage() {
                                 <div className='font-semibold'>Catégorie:</div>
                                 <div>{values.categoryS}</div>
                                 <div className='font-semibold'>Partagé par:</div>
-                                <div>{values.shareA.join(', ')}</div>
+                                <div>{values.shareA.includes('EMAIL') && 'email' + ' '}{values.shareA.includes('PHONE') && 'telephone'}</div>
 
                             </>
                         }

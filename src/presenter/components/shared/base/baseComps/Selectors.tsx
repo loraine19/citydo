@@ -44,26 +44,26 @@ export const Checkbox: React.FC<CheckboxProps> = ({ checked, onChange, label, cl
     return (
         <label
             className="md3-checkbox-container" data-md3>
-            <input
-                id={id}
-                name={name}
-                value={value}
-                type="checkbox"
-                className="md3-checkbox-input invisible"
-                checked={checked}
-                onChange={(e: any) => {
-                    setIsChecked(e.target.checked);
-                    onChange(e);
-                }} />
+
             <Icon
 
                 style={className}
                 color={color || 'primary'}
                 reverse={variant === 'filled' ? false : true}
-                fill={isChecked}
+                fill={isChecked || checked}
                 size={size || 'medium'}
-                icon={isChecked ? "check_box" : "check_box_outline_blank"}
-            />
+                icon={(isChecked || checked) ? "check_box" : "check_box_outline_blank"}
+            /> <input
+                id={id}
+                name={name}
+                value={value}
+                type="checkbox"
+                className="md3-checkbox-input invisible"
+                checked={checked || isChecked}
+                onChange={(e: any) => {
+                    setIsChecked(e.target.checked);
+                    onChange(e);
+                }} />
             <span className={`md3-checkbox-label ${size ? `md3-checkbox-label-${size}` : ''} `}>{label}</span>
         </label>
     );

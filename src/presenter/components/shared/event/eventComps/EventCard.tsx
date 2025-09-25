@@ -69,25 +69,23 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
 
 
                 </CardMD.Image>}>
-            <CardMD.Chips className="justify-between">
-                <div className="md3-card-chips">
-                    <button
-                        onClick={change}>
-                        <Chip
-                            data-cy={`chip-${label}`}
-                            value={label}
-                            color='cyan' />
-                    </button>
-                    {new Date(end).getTime() > Date.now() &&
-                        <DateChip
-                            start={start}
-                            end={end}
-                            ended={new Date(end).getTime() < Date.now()}
-                            prefix=" j-" />}
+            <CardMD.Chips >
+                <button
+                    onClick={change}>
                     <Chip
-                        value={eventDateInfo.start}
-                    />
-                </div>
+                        data-cy={`chip-${label}`}
+                        value={label}
+                        color='cyan' />
+                </button>
+                {new Date(end).getTime() > Date.now() &&
+                    <DateChip
+                        start={start}
+                        end={end}
+                        ended={new Date(end).getTime() < Date.now()}
+                        prefix=" j-" />}
+                <Chip
+                    value={eventDateInfo.start}
+                />
 
             </CardMD.Chips>
             <CardMD.Headline className="line-clamp-1">
@@ -98,15 +96,15 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
 
                 <ProgressBar
                     size='xxsmall'
-                    variant={event.Participants.length >= (participantsMin) ? 'linear' : 'wavy'}
+                    variant={event.Participants?.length >= (participantsMin) ? 'linear' : 'wavy'}
                     className=" "
-                    value={event.Participants.length}
+                    value={event.Participants?.length}
                     max={participantsMin || 10}
                     color="cyan"
                     label={
                         <div className="md3-card-supporting-text  justify-between flex-row">
                             <span>
-                                {event.Participants.length} participant{event.Participants.length > 1 ? 's' : ''}
+                                {event.Participants?.length} participant{event.Participants?.length > 1 ? 's' : ''}
                             </span>
                             <span className="opacity-50"> / &nbsp;
                                 {participantsMin}

@@ -54,53 +54,51 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                 className="min-h-full fade-in"
                 imagePosition="top"
                 image={
-                    survey?.image ? (
-                        <CardMD.Image
-                            onClick={() => navigate(`/sondage/${survey?.id}`)}
-                            src={survey?.image as string}
-                            alt={survey?.title}
-                            className=""
-                        >
-                            <IconAnimate
-                                active={survey?.IVoted}
-                                icon={'ballot'} />
-                            <CardMD.Chips className="justify-end absolute top-2 right-2">
-                                <MoreButton
-                                    id={survey?.id}
-                                    type={'vote/sondage'}
-                                    flagged={survey?.flagged}
-                                    title={survey?.title} />
-                            </CardMD.Chips>
+                    <CardMD.Image
+                        onClick={() => navigate(`/sondage/${survey?.id}`)}
+                        src={survey?.image as string}
+                        alt={survey?.title}
+                        className=""
+                    >
+                        <IconAnimate
+                            active={survey?.IVoted}
+                            icon={'ballot'} />
+                        <CardMD.Chips className="justify-end absolute top-2 right-2">
+                            <MoreButton
+                                id={survey?.id}
+                                type={'vote/sondage'}
+                                flagged={survey?.flagged}
+                                title={survey?.title} />
+                        </CardMD.Chips>
 
-                        </CardMD.Image>
-                    ) : undefined
+                    </CardMD.Image>
+
                 }
             >
-                <CardMD.Chips className="justify-between">
-                    <div className="md3-card-chips ">
-                        <button onClick={() => change()}>
-                            <Chip
-                                value="Sondage"
-                                color="orange"
-                            />
-                        </button>
+                <CardMD.Chips >
+                    <button onClick={() => change()}>
                         <Chip
-                            value={survey?.categoryS}
+                            value="Sondage"
                             color="orange"
                         />
+                    </button>
+                    <Chip
+                        value={survey?.categoryS}
+                        color="orange"
+                    />
 
-                        <DateChip
-                            start={survey?.createdAt}
-                            ended={ended}
-                            end={end}
-                            prefix="J-"
-                        />
-                    </div>
-
+                    <DateChip
+                        start={survey?.createdAt}
+                        ended={ended}
+                        end={end}
+                        prefix="J-"
+                    />
                 </CardMD.Chips>
+
                 <CardMD.Headline className="line-clamp-1">
                     {survey?.title}
                 </CardMD.Headline>
+
                 <CardMD.Subhead className={`flex items-center gap-2`}>
                     <GroupLink group={survey?.Group} />
                 </CardMD.Subhead>

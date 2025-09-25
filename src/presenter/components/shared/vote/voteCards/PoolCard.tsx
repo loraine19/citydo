@@ -53,7 +53,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                 imagePosition="top"
             >
                 <CardMD.Chips className="justify-between flex-wrap">
-                    <div className="md3-card-chips overflow-hidden !py-0">
+                    <div className="flex gap-2 py-1.5">
                         <button onClick={change}>
                             <Chip
                                 value="Cagnotte"
@@ -76,7 +76,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                 <CardMD.Headline className="mb:pb-6">
                     <Link to={`/cagnotte/${pool?.id}`}>{pool?.title}</Link>
                 </CardMD.Headline>
-                <CardMD.Media className="h-full flex-1 justify-between gap-2">
+                <CardMD.Media className="h-full flex-1  justify-between gap-4">
                     <div className="grid truncate flex-1 ">
                         <ProfileDiv
                             divRef={divRef}

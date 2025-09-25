@@ -105,10 +105,10 @@ export default function PostListPage() {
     //// NOTIFICATION
     useEffect(() => {
         if (error) setNotif(error.message || 'Erreur inconnue');
-        else if ((count === 0 || !posts || posts.length === 0) && !isLoading && !error)
+        else if ((count === 0 || !posts || posts?.length === 0) && !isLoading && !error)
             setNotif(`Aucune annonce ${filterName()} ${categoryName()} n'a été trouvée`);
         else setNotif('');
-    }, [isLoading, error, filter, category, count, posts.length]);
+    }, [isLoading, error, filter, category, count, posts?.length]);
 
 
 
