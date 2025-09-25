@@ -22,7 +22,7 @@ export default function GroupSelect({ formik, user, groupId, disabled, variant =
             disabled={disabled}
             options={user?.GroupUser?.map((group: any) => ({
                 label: group.Group.name,
-                value: group.Group.id.toString()
+                value: group.Group.id
             }))} />
 
     )

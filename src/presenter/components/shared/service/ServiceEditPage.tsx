@@ -34,6 +34,7 @@ export default function ServiceEditPage() {
         description: string().required("Description est obligatoire").min(2, "minmum 2 lettres"),
         skill: string().required("obligatoire").notOneOf(["0"], "obligatoire"),
         hard: string().required("obligatoire").notOneOf(["0"], "obligatoire"),
+        groupId: string().required("obligatoire").notOneOf(["0"], "obligatoire"),
     })
 
     useEffect(() => {

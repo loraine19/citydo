@@ -255,7 +255,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                     </CardLarge>
                 </section>
             </main>
-            {(showCard && !show && !formik.errors) &&
+            {(showCard && !show && (!formik.errors || Object.keys(formik.errors).length === 0)) &&
                 <CTAMines
                     actions={[
                         {

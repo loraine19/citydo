@@ -175,17 +175,18 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                     </CardLarge>
                 </section>
             </main>
-            {(showCard && !show && !formik.errors) && <CTAMines
-                actions={[
-                    {
-                        type: 'submit',
-                        iconImage: formik.isSubmitting ? "progress_activity" : formik.values?.id ? "check" : "send",
-                        icon: formik.values?.id ? "Modifier l'annonce" : "Créer l'annonce",
-                        direct: true,
-                        function: () => { }
-                    }
-                ]}
-            />}
+            {(showCard && !show && (!formik.errors || Object.keys(formik.errors).length === 0)) &&
+                <CTAMines
+                    actions={[
+                        {
+                            type: 'submit',
+                            iconImage: formik.isSubmitting ? "progress_activity" : formik.values?.id ? "check" : "send",
+                            icon: formik.values?.id ? "Modifier l'annonce" : "Créer l'annonce",
+                            direct: true,
+                            function: () => { }
+                        }
+                    ]}
+                />}
         </form>
     );
 }

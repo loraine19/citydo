@@ -186,20 +186,21 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                     </CardLarge>
                 </section>
             </main>
-            {(showCard && !show && !formik.errorst) && <CTAMines
-                actions={[
-                    {
-                        title: formik.values?.id ? 'Modifier' : 'Enregistrer',
-                        iconImage: formik.isSubmitting ? "progress_activity" : formik.values?.id ? "check" : "send",
-                        icon: formik.values?.pourcent > 1
-                            ? 'Non modifiable votes en cours  ' + formik.values.pourcent + '%'
-                            : (formik.values?.id ? 'Modifier' : 'Enregistrer'),
-                        type: "submit",
-                        disabled: formik.values?.pourcent > 1,
-                        function: () => { }
-                    }
-                ]}
-            />}
+            {(showCard && !show && (!formik.errors || Object.keys(formik.errors).length === 0)) &&
+                <CTAMines
+                    actions={[
+                        {
+                            title: formik.values?.id ? 'Modifier' : 'Enregistrer',
+                            iconImage: formik.isSubmitting ? "progress_activity" : formik.values?.id ? "check" : "send",
+                            icon: formik.values?.pourcent > 1
+                                ? 'Non modifiable votes en cours  ' + formik.values.pourcent + '%'
+                                : (formik.values?.id ? 'Modifier' : 'Enregistrer'),
+                            type: "submit",
+                            disabled: formik.values?.pourcent > 1,
+                            function: () => { }
+                        }
+                    ]}
+                />}
         </form>
     );
 }

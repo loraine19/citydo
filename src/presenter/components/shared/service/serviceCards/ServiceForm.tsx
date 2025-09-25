@@ -92,6 +92,7 @@ export function ServiceForm(props: { formik: any }) {
                                 placeholder="Catégorie"
                                 formik={formik}
                             />
+
                             <GroupSelect
                                 groupId={groupId}
                                 setGroupId={setGroupId}
@@ -213,18 +214,19 @@ export function ServiceForm(props: { formik: any }) {
                     </CardLarge>
                 </section>
             </main>
-            {(showCard && !show && !formik.errors) && <CTAMines
-                actions={[
-                    {
-                        disabled: formik.values.statusValue > 0,
-                        type: 'submit',
-                        icon: formik.values.statusValue > 0 ? 'Non modifiable : ' + formik.values.statusS : `enregistrer`,
-                        iconImage: formik.isSubmitting ? "progress_activity" : formik.values?.id ? "check" : "send",
-                        direct: true,
-                        function: () => { }
-                    }
-                ]}
-            />}
+            {(showCard && !show && (!formik.errors || Object.keys(formik.errors).length === 0)) &&
+                <CTAMines
+                    actions={[
+                        {
+                            disabled: formik.values.statusValue > 0,
+                            type: 'submit',
+                            icon: formik.values.statusValue > 0 ? 'Non modifiable : ' + formik.values.statusS : `enregistrer`,
+                            iconImage: formik.isSubmitting ? "progress_activity" : formik.values?.id ? "check" : "send",
+                            direct: true,
+                            function: () => { }
+                        }
+                    ]}
+                />}
         </form>
     );
 }
