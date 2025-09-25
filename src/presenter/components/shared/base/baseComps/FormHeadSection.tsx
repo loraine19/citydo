@@ -87,8 +87,8 @@ const FormHeadSection: React.FC<FormHeadSectionProps> = ({
                             className=""
                             variant="outlined"
                             size="medium"
-                            value={`${showProps.text ?? showProps.show ? "Masquer" : "Afficher"} `}
-                            iconPlacement="end"
+                            value={`${showProps.text ?? (showProps.show ? "Réduire" : "Voir plus")}`}
+                            iconPlacement="start"
                             icon={
                                 <Icon
                                     onClick={() => showProps.setShow(!showProps.show)}

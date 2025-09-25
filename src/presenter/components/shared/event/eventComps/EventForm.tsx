@@ -16,6 +16,7 @@ import { ProgressBar } from "../../base/baseComps/Sliders";
 import { Icon } from "../../../common/IconComp";
 import { useNavStore } from "../../../../../application/stores/nav.store";
 import FormHeadSection from "../../base/baseComps/FormHeadSection";
+import { Button } from "../../base/baseComps/Buttons";
 
 interface EventFormProps {
     formik: any;
@@ -28,6 +29,10 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
     const [imgBlob, setImgBlob] = useState<string>(formik.values.image ?? formik.values.blob ?? EventImage[formik.values.category as keyof typeof EventImage] ?? EventImage.default);
     const [groupId, setGroupId] = useState<string | number | undefined>(formik.values.Group?.id);
     const [expand, setExpand] = useState<boolean>(false);
+
+    // Stepper logic
+    const [show, setShow] = useState(true);
+    const [showCard, setShowCard] = useState(false);
 
     const pourcentParticipants = Math.floor((formik.values.Participants?.length) / (formik.values.participantsMin || 1) * 100) || 0;
     const today = new Date(new Date().getTime() + (1 * dayMS)).toISOString().slice(0, 16).replace('Z', '');
@@ -47,13 +52,12 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
 
     // AppBar Section
     const { setDetailSection } = useNavStore((state) => state);
-    const [show, setShow] = useState(true);
     const label = formik.values.category ? getLabel(formik.values.category, eventCategories) : '';
     const SearchSection = useMemo(() => (
         <FormHeadSection
-            showProps={{
+            showProps={(!showCard) ? undefined : {
                 show, setShow,
-                text: (formik.errors.groupId || formik.errors.category) ? "Veuillez choisir une catégorie et un groupe" : 'modifier groupe et catégorie',
+                text: show ? "Saisir Informations principales" : "Modifier Informations principales",
                 color: (formik.errors.groupId || formik.errors.category) ? "error" : "slate"
             }}
             infosChipValue={
@@ -61,16 +65,14 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                 + (label ? " / " + label : "...")
             }
         />
-    ), [show, formik.values.id, label, formik.errors.groupId, formik.errors.category]);
+    ), [show, formik.values.id, label, formik.errors.groupId, formik.errors.category, showCard]);
 
     useEffect(() => {
         setDetailSection(SearchSection);
         return () => setDetailSection(undefined);
-    }, [SearchSection, setDetailSection, formik.values.id, label, formik.errors.groupId, formik.errors.category]);
+    }, [SearchSection, setDetailSection, formik.values.id, label, formik.errors.groupId, formik.errors.category, show, showCard]);
 
-    useEffect(() => {
-        show && setShow(!expand)
-    }, [expand]);
+
 
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
@@ -78,9 +80,9 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                 <section>
                     <div className="DetailCardDiv hideCTAForm">
                         <div className="flex flex-col gap-2">
-                            <div className={`p-2 max-h-max w-full flex flex-col grid-cols-[auto_auto] lg:grid grid-rows-1 gap-2 
-                                ${show ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0.5'}`}>
-                                <div className="flex flex-wrap gap-2 flex-1 w-full">
+                            <div className={`p-2 max-h-max w-full flex flex-col grid-cols-[auto_auto] lg:grid grid-rows-1 gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
+                                <h6 className="md3-card-subhead pt-4">Informations principales</h6>
+                                <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
                                     <Select
                                         variant="Input"
                                         value={formik.values.category}
@@ -89,16 +91,30 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         name="category"
                                         placeholder="Choisir la catégorie"
                                     />
+                                    <GroupSelect
+                                        groupId={groupId?.toString()}
+                                        setGroupId={setGroupId}
+                                        formik={formik}
+                                        user={user}
+                                    />
+                                    {
+                                        (!formik.errors.groupId && !formik.errors.category && formik.values.groupId && formik.values.category) &&
+                                        <Button
+                                            color='cyan'
+                                            type='button'
+                                            onClick={() => {
+                                                setShowCard(true);
+                                                setShow(false);
+                                                setExpand(true);
+                                            }}>
+                                            Continuer
+                                        </Button>
+                                    }
                                 </div>
-                                <GroupSelect
-                                    groupId={groupId?.toString()}
-                                    setGroupId={setGroupId}
-                                    formik={formik}
-                                    user={user}
-                                />
                             </div>
                             <CardLarge
-                                className={`${!show ? "animSheet" : "animSheetRev"}`}
+                                className={` ${(showCard && !show) ?
+                                    ` md3-animation-slide-up ` : ' md3-animation-slide-out-down '}`}
                                 form
                                 expanded={expand}
                                 setExpanded={setExpand}
@@ -243,7 +259,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                     </div>
                 </section>
             </main>
-            <CTAMines
+            {(showCard && !show) && <CTAMines
                 actions={[
                     {
                         type: 'submit',
@@ -254,7 +270,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                         function: () => { }
                     }
                 ]}
-            />
+            />}
         </form>
     );
 }

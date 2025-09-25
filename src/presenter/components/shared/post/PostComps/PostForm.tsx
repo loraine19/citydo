@@ -11,6 +11,7 @@ import { ImageBtn } from "../../../common/ImageBtn";
 import { DateChip } from "../../../common/ChipDate";
 import { useNavStore } from "../../../../../application/stores/nav.store";
 import FormHeadSection from "../../base/baseComps/FormHeadSection";
+import { Button } from "../../base/baseComps/Buttons";
 
 interface PostFormCardProps {
     formik: any;
@@ -25,25 +26,29 @@ export function PostFormCard({ formik }: PostFormCardProps) {
     // AppBar Section
     const { setDetailSection } = useNavStore((state) => state);
     const [show, setShow] = useState(true);
+    const [showCard, setShowCard] = useState<boolean>(false);
+
+
     const label = formik.values.category ? postCategories.find((c: any) => c.value === formik.values.category)?.label : '';
     const SearchSection = useMemo(() => (
-        <FormHeadSection
-            showProps={{
-                show, setShow,
-                text: (formik.errors.groupId || formik.errors.category) ? "Veuillez choisir une catégorie et un groupe" : 'modifier groupe et catégorie',
-                color: (formik.errors.groupId || formik.errors.category) ? "error" : "slate"
-            }}
+        <>
+            <FormHeadSection
+                showProps={(!showCard) ? undefined : {
+                    show, setShow,
+                    text: show ? "Saisir Informations principales" : "Modifier Informations principales",
+                    color: (formik.errors.groupId || formik.errors.category) ? "error" : "slate"
+                }}
 
-            infosChipValue={
-                (formik.values.id ? "Modifier mon annonce " : "Créer mon annonce ") + " / " + (label ?? "...")
-            }
-        />
-    ), [show, formik.values.id, label, formik.errors]);
+                infosChipValue={(formik.values.id ?
+                    "Modifier mon annonce " : "Créer mon annonce ") + " / " + (label ?? "...")} />
+
+        </>
+    ), [show, formik.values, label, formik.errors, showCard]);
 
     useEffect(() => {
         setDetailSection(SearchSection);
         return () => setDetailSection(undefined);
-    }, [SearchSection, setDetailSection, formik.errors]);
+    }, [SearchSection, setDetailSection, formik.errors, formik.values, show]);
 
     const checkShare = (word: string) => formik.values?.shareA?.toString().toLowerCase().includes(word);
     const start = formik.values.createdAt ? new Date(formik.values.createdAt) : new Date();
@@ -51,11 +56,13 @@ export function PostFormCard({ formik }: PostFormCardProps) {
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
             <main className="wRespXLMargin">
+
                 <section>
                     <div className="DetailCardDiv hideCTAForm">
                         <div className="flex flex-col gap-2">
-                            <div className={`p-2 max-h-max w-full flex flex-col grid-cols-[auto_auto] lg:grid grid-rows-1 gap-2 ${show ? 'md3-menu-enter' : 'md3-menu-leave h-0.5'}`}>
-                                <div className="flex flex-wrap gap-2 flex-1 w-full">
+                            <div className={`p-2 max-h-max w-full flex flex-col grid-cols-[auto_auto] lg:grid grid-rows-1 gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
+                                <h6 className="md3-card-subhead pt-4">Informations principales</h6>
+                                <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
                                     <Select
                                         variant="Input"
                                         value={formik.values.category}
@@ -64,16 +71,30 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                         name="category"
                                         placeholder="Choisir la catégorie"
                                     />
+                                    <GroupSelect
+                                        groupId={groupId?.toString()}
+                                        setGroupId={setGroupId}
+                                        formik={formik}
+                                        user={user}
+                                    />
+                                    {
+                                        (!formik.errors.groupId && !formik.errors.category &&
+                                            formik.values.groupId && formik.values.category) &&
+                                        <Button
+                                            color='rose'
+                                            type='button'
+                                            onClick={() => {
+                                                setShowCard(true);
+                                                setShow(false);
+                                            }}>
+                                            Continuer
+                                        </Button>}
+
                                 </div>
-                                <GroupSelect
-                                    groupId={groupId?.toString()}
-                                    setGroupId={setGroupId}
-                                    formik={formik}
-                                    user={user}
-                                />
                             </div>
                             <CardLarge
-                                className={`${!show ? "animSheet" : "animSheetRev"}`}
+                                className={` ${(showCard && !show) ?
+                                    `md3-animation-slide-up ` : 'md3-animation-slide-out-down'}`}
                                 form
                                 expanded={expand}
                                 setExpanded={setExpand}
@@ -158,7 +179,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                     </div>
                 </section>
             </main>
-            <CTAMines
+            {showCard && <CTAMines
                 actions={[
                     {
                         type: 'submit',
@@ -168,7 +189,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                         function: () => { }
                     }
                 ]}
-            />
+            />}
         </form>
     );
 }

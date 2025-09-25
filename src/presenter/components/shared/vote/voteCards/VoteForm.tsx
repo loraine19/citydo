@@ -14,6 +14,7 @@ import { ImageBtn } from "../../../common/ImageBtn";
 import { DateChip } from "../../../common/ChipDate";
 import FormHeadSection from "../../base/baseComps/FormHeadSection";
 import { useNavStore } from "../../../../../application/stores/nav.store";
+import { Button } from "../../base/baseComps/Buttons";
 
 type PoolSurveyFormProps = {
     formik: any;
@@ -29,27 +30,30 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
     const [users, setUsers] = useState<{ value: any, label: any }[]>([]);
     const [expand, setExpand] = useState<boolean>(false);
 
+    // Stepper logic
+    const [show, setShow] = useState(true);
+    const [showCard, setShowCard] = useState(false);
+
     // Header section with useMemo
     const { setDetailSection } = useNavStore((state) => state);
-    const [show, setShow] = useState(true);
     const label = formik.values.typeS === 'POOL' ? 'Cagnotte' : formik.values.typeS === 'SURVEY' ? 'Sondage' : '...';
     const HeadSection = useMemo(() => (
         <FormHeadSection
-            showProps={{
+            showProps={(!showCard) ? undefined : {
                 show, setShow,
-                text: (formik.errors.groupId || formik.errors.category) ? "Veuillez choisir une catégorie et un groupe" : 'modifier groupe et catégorie',
+                text: show ? "Saisir Informations principales" : "Modifier Informations principales",
                 color: (formik.errors.groupId || formik.errors.category) ? "error" : "slate"
             }}
             infosChipValue={
                 (formik.values.id ? "Modifier " : "Créer ") + 'un vote / ' + (label ?? '...')
             }
         />
-    ), [show, formik.values, formik.errors, label]);
+    ), [show, formik.values, formik.errors, label, showCard]);
 
     useEffect(() => {
         setDetailSection(HeadSection);
         return () => setDetailSection(undefined);
-    }, [HeadSection, setDetailSection, formik.errors, formik.values]);
+    }, [HeadSection, setDetailSection, formik.errors, formik.values, show]);
 
     useEffect(() => {
         refetch();
@@ -68,11 +72,14 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                 <section>
                     <div className="DetailCardDiv hideCTAForm">
                         <div className="flex flex-col gap-2">
-                            <div className={`p-2 max-h-max w-full flex flex-col grid-cols-[auto_auto] lg:grid grid-rows-1 gap-2 ${show ? 'md3-menu-enter' : 'md3-menu-leave h-0.5'}`}>
-                                <div className="flex flex-wrap gap-2 flex-1 w-full">
+                            <div className={`p-2 max-h-max w-full flex flex-col grid-cols-[auto_auto] lg:grid grid-rows-1 gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
+                                <h6 className="md3-card-subhead pt-4">Informations principales</h6>
+                                <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
                                     <RadioGroup
                                         variant="Input"
                                         value={formik.values.typeS ?? type}
+                                        name="typeS"
+                                        orientation="horizontal"
                                         onChange={(val) => { formik.setFieldValue("typeS", val); setType(val); }}
                                         options={[
                                             { value: VoteTarget.SURVEY, label: "Sondage", id: 'sondage-radio' },
@@ -81,11 +88,11 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                     />
                                     {type === VoteTarget.POOL && (
                                         <Select
-
                                             variant="Input"
                                             value={formik.values.beneficiary}
                                             options={users}
-                                            placeholder={formik.errors.beneficiary ?? `Bénéficiaire`} name="beneficiary"
+                                            placeholder={formik.errors.beneficiary ?? `Bénéficiaire`}
+                                            name="beneficiary"
                                             formik={formik}
                                         />
                                     )}
@@ -99,14 +106,27 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                             formik={formik}
                                         />
                                     )}
+                                    <GroupSelect
+                                        formik={formik}
+                                        user={user}
+                                    />
+                                    {
+                                        (!formik.errors.groupId && !formik.errors.category && formik.values.groupId && (type === VoteTarget.POOL && formik.values.beneficiary || type === VoteTarget.SURVEY && formik.values.category)) &&
+                                        <Button
+                                            color='orange'
+                                            type='button'
+                                            onClick={() => {
+                                                setShowCard(true);
+                                                setShow(false);
+                                            }}>
+                                            Continuer
+                                        </Button>
+                                    }
                                 </div>
-                                <GroupSelect
-                                    formik={formik}
-                                    user={user}
-                                />
                             </div>
                             <CardLarge
-                                className={`${!show ? "animSheet" : "animSheetRev"}`}
+                                className={` ${(showCard && !show) ?
+                                    `md3-animation-slide-up ` : 'md3-animation-slide-out-down'}`}
                                 form
                                 expanded={expand}
                                 setExpanded={setExpand}
@@ -126,7 +146,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                         setImgBlob={setImgBlob}
                                     />
                                     <DateChip
-                                        prefix="publié le"
+                                        prefix=" "
                                         start={start}
                                     />
                                     {formik.values?.UserBenef && formik.values?.typeS === VoteTarget.POOL && (
@@ -170,7 +190,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                     </div>
                 </section>
             </main>
-            <CTAMines
+            {(showCard && !show) && <CTAMines
                 actions={[
                     {
                         title: formik.values?.id ? 'Modifier' : 'Enregistrer',
@@ -183,7 +203,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                         function: () => { }
                     }
                 ]}
-            />
+            />}
         </form>
     );
 }

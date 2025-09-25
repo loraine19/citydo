@@ -35,7 +35,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     size
 }) => {
     const { color } = useUxStore(state => state)
-    const classVariant = variant === 'Input' ? ' max-h-[2.7rem] max-w-max !py-0 md3-input-container md3-outlined !rounded-md' : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
+    const classVariant = variant === 'Input' ? ' max-h-[2.7rem] max-w-max !py-2 md3-input-container md3-outlined !rounded-md' : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
     return (
         <div className={`flex md3-input-size-${size ?? 'md'} ${orientation === "horizontal" ? "flex-row gap-2" : "flex-col gap-2"} ${className} ${classVariant}`}>
             {options.map((option) => (

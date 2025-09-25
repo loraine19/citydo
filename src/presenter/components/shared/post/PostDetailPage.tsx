@@ -82,7 +82,6 @@ export default function PostDetailPage() {
     //// HANDLE EXPAND
     const [expand, setExpand] = useState<boolean>(false);
 
-
     //// TO NAV BAR
     const { setDetailSection } = useNavStore((state) => state);
 
@@ -94,6 +93,7 @@ export default function PostDetailPage() {
             error={error}
             infosChipValue={`annonce / ${PostCategory[post?.category as keyof typeof PostCategory] ?? '...'} `} >
         </FormHeadSection>
+
     ), [isLoading, hideNavBottom]);
 
     useEffect(() => {

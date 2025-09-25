@@ -15,63 +15,64 @@ import { CardLarge } from "../../base/baseComps/Cards";
 import { Input } from "../../base/baseComps/Inputs";
 import { useNavStore } from "../../../../../application/stores/nav.store";
 import FormHeadSection from "../../base/baseComps/FormHeadSection";
-import { ServiceCategory } from "../../../../../domain/entities/Service";
+import { Button } from "../../base/baseComps/Buttons";
 
 export function ServiceForm(props: { formik: any }) {
     const { formik } = props;
     const { user } = useUserStore();
+    const userProfile: Profile = user.Profile;
+    const [imgBlob, setImgBlob] = useState<string | undefined>(formik.values.image);
+    const [groupId, setGroupId] = useState<string | undefined>(formik.values.groupId);
+    const [expand, setExpand] = useState<boolean>(false);
 
+    // Stepper logic
+    const [show, setShow] = useState(true);
+    const [showCard, setShowCard] = useState(false);
+
+    // Points calculation
     const [points, setPoints] = useState<string>(formik.values.points?.join(' à ') || '0 à 1');
-
     useEffect(() => {
         const updatedValues = new ServiceView(formik.values as ServiceView, user)
         formik.setValues(updatedValues);
         setPoints(updatedValues?.points?.join(' à ') || '0 à 1');
     }, [formik.values.hard, formik.values.skill, formik.values.type]);
 
-    const userProfile: Profile = user.Profile;
-    const start = formik.values.createdAt || new Date();
-    const [imgBlob, setImgBlob] = useState<string | undefined>(formik.values.image);
-    const [groupId, setGroupId] = useState<string | undefined>(formik.values.groupId);
-    const [expand, setExpand] = useState<boolean>(false);
-
-
-    ////FOR APPBAR
+    // AppBar Section
     const { setDetailSection } = useNavStore((state) => state);
-    const [show, setShow] = useState(true);
+    const label = formik.values.category
+        ? serviceCategories.find((c: any) => c.value === formik.values.category)?.label
+        : '';
     const SearchSection = useMemo(() => (
         <FormHeadSection
-            showProps={{
+            showProps={(!showCard) ? undefined : {
                 show, setShow,
-                text: (formik.errors.groupId || formik.errors.category) ? "Veuillez choisir une catégorie et un groupe" : 'modifier groupe et catégorie',
+                text: show ? "Saisir Informations principales" : "Modifier Informations principales",
                 color: (formik.errors.groupId || formik.errors.category) ? "error" : "slate"
             }}
-            infosChipValue={formik.values.id ?
-                `Modifier votre service ` : "Créer votre service "
-                + '/ ' + (formik.values.typeS ?? '...')
-                + ' / ' + (ServiceCategory[formik.values.category as keyof typeof ServiceCategory] ?? '...')} >
-        </FormHeadSection>
-    ), [show, formik.values, formik.errors]);
+            infosChipValue={
+                (formik.values.id ? "Modifier votre service " : "Créer votre service ")
+                + " / " + (formik.values.typeS ?? '...')
+                + " / " + (label ?? '...')
+            }
+        />
+    ), [show, formik.values, label, formik.errors, showCard]);
 
     useEffect(() => {
         setDetailSection(SearchSection);
-        return () => {
-            setDetailSection(undefined);
-        }
-    }, [SearchSection, show, formik.values, formik.errors]);
+        return () => setDetailSection(undefined);
+    }, [SearchSection, setDetailSection, formik.errors, formik.values, show]);
+
+    const start = formik.values.createdAt || new Date();
 
     return (
-        <form
-            onSubmit={formik.handleSubmit}
-            className="flex flex-col h-full overflow-hidden">
+        <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
             <main className="wRespXLMargin">
-
                 <section>
                     <div className="DetailCardDiv hideCTAForm">
                         <div className="flex flex-col gap-2">
-                            {<div className={`p-2 max-h-max w-full flex flex-col grid-cols-[auto_auto] lg:grid grid-rows-1 gap-2
-                                 ${show ? 'md3-menu-enter' : 'md3-menu-leave h-0.5'} `}>
-                                <div className="flex flex-wrap gap-2 flex-1 w-full ">
+                            <div className={`p-2 max-h-max w-full flex flex-col grid-cols-[auto_auto] lg:grid grid-rows-1 gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
+                                <h6 className="md3-card-subhead pt-4">Informations principales</h6>
+                                <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
                                     <RadioGroup
                                         variant="Input"
                                         name={"type"}
@@ -93,28 +94,42 @@ export function ServiceForm(props: { formik: any }) {
                                         placeholder="Catégorie"
                                         formik={formik}
                                     />
+                                    <GroupSelect
+                                        groupId={groupId}
+                                        setGroupId={setGroupId}
+                                        formik={formik}
+                                        user={user}
+                                        disabled={formik.values.statusValue > 0}
+                                    />
+                                    {
+                                        (!formik.errors.groupId && !formik.errors.category && formik.values.groupId && formik.values.category) &&
+                                        <Button
+                                            color='sky'
+                                            type='button'
+                                            onClick={() => {
+                                                setShowCard(true);
+                                                setShow(false);
+                                            }}>
+                                            Continuer
+                                        </Button>
+                                    }
                                 </div>
-                                <GroupSelect
-                                    groupId={groupId}
-                                    setGroupId={setGroupId}
-                                    formik={formik}
-                                    user={user}
-                                    disabled={formik.values.statusValue > 0} />
-                            </div>}
+                            </div>
                             <CardLarge
-                                className={`${!show ? "animSheet" : "animSheetRev"}`}
+                                className={` ${(showCard && !show) ?
+                                    `md3-animation-slide-up ` : 'md3-animation-slide-out-down'}`}
                                 form
                                 expanded={expand}
                                 setExpanded={setExpand}
                                 image={
                                     <CardLarge.Image
-                                        className="md3-rose-container"
+                                        className="md3-sky-container"
                                         src={imgBlob || formik.values.image || undefined}
                                         alt={formik.values.title || 'image'}
                                     />
                                 }
                             >
-                                <CardLarge.Chips className="justify-between  px-4">
+                                <CardLarge.Chips className="justify-between px-4">
                                     <ImageBtn
                                         variant="tonal"
                                         className={"relative pb-1"}
@@ -123,19 +138,21 @@ export function ServiceForm(props: { formik: any }) {
                                     />
                                     <DateChip
                                         prefix=" "
-                                        start={start} />
+                                        start={start}
+                                    />
                                 </CardLarge.Chips>
                                 <CardLarge.Divider />
-                                <CardLarge.MidSection className=" md:px-8 flex flex-col">
+                                <CardLarge.MidSection className="md:px-8 flex flex-col">
                                     <span className="md3-card-subhead">Informations</span>
-                                    <div className="flex flex-1 flex-col  gap-4">
+                                    <div className="flex flex-1 flex-col gap-4">
                                         <Input
                                             error={!!formik.errors.title}
                                             label={"Titre"}
                                             name="title"
                                             onChange={formik.handleChange}
                                             value={formik.values.title}
-                                            helperText={formik.errors.title ?? `${formik.values.title?.length ?? 0}/40`} />
+                                            helperText={formik.errors.title ?? `${formik.values.title?.length ?? 0}/40`}
+                                        />
                                         <Input
                                             error={!!formik.errors.description}
                                             className={``}
@@ -158,9 +175,9 @@ export function ServiceForm(props: { formik: any }) {
                                     </div>
                                 </CardLarge.MidSection>
                                 <CardLarge.Divider />
-                                <CardLarge.MidSection className=" md:px-8 max-h-max flex flex-col">
+                                <CardLarge.MidSection className="md:px-8 max-h-max flex flex-col">
                                     <span className="md3-card-subhead">Niveaux</span>
-                                    <div className="flex flex-1  !py-2 flex-col gap-4">
+                                    <div className="flex flex-1 !py-2 flex-col gap-4">
                                         <div className="flex flex-col xs:flex-row gap-4 ">
                                             <Select
                                                 variant="Input"
@@ -168,14 +185,16 @@ export function ServiceForm(props: { formik: any }) {
                                                 formik={formik}
                                                 value={formik.values.skill?.toString()}
                                                 options={skillLevels}
-                                                placeholder="Compétence" />
+                                                placeholder="Compétence"
+                                            />
                                             <Select
                                                 placeholder="Pénibilité"
                                                 variant="Input"
                                                 name={'hard'}
                                                 formik={formik}
                                                 value={formik.values.hard?.toString()}
-                                                options={hardLevels} />
+                                                options={hardLevels}
+                                            />
                                         </div>
                                         <Chip
                                             className="!px-3 h-[2.8rem] !rounded-md"
@@ -198,19 +217,18 @@ export function ServiceForm(props: { formik: any }) {
                     </div>
                 </section>
             </main>
-            <CTAMines
+            {(showCard && !show) && <CTAMines
                 actions={[
                     {
                         disabled: formik.values.statusValue > 0,
-                        type: 'button',
+                        type: 'submit',
                         icon: formik.values.statusValue > 0 ? 'Non modifiable : ' + formik.values.statusS : `enregistrer`,
-                        iconImage: formik.values?.id ? "save_as" : "save",
-                        function: () => {
-
-                            formik.handleSubmit();
-                        }
+                        iconImage: formik.values?.id ? "check" : "send",
+                        direct: true,
+                        function: () => { }
                     }
-                ]} />
-        </form >
+                ]}
+            />}
+        </form>
     );
 }
