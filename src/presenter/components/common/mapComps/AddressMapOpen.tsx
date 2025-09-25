@@ -20,8 +20,8 @@ function ZoomControls() {
     const handleZoomOut = () => map.zoomOut()
 
     return (
-        <div className='flex absolute top-[9px] left-[9px] z-[1000]'>
-            <div className='border bg-slate-50 border-slate-300 rounded-full shadow p-[5px] flex flex-col gap-[1px]'>
+        <div className='flex absolute top-[9px] left-[9px] z-[400]'>
+            <div className='md3-slate-container border-[var(--md3-outline)] rounded-full shadow p-[5px] flex flex-col gap-[1px]'>
                 <Icon
                     style={'!text-slate-400/80 hover:!text-slate-600'}
                     title='Zoomer'
@@ -136,7 +136,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
     const zoom = getZoomFromArea(aera);
 
     const IntenaryChip = () => (
-        <div style={{ position: 'absolute', bottom: '10px', right: '10px', zIndex: 1000 }}>
+        <div style={{ position: 'absolute', bottom: '10px', right: '10px', zIndex: 400 }}>
             <Icon
                 style='!text-orange-500 !shadow-md'
                 link={`${googleMapsLink}`}
@@ -148,10 +148,10 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
         </div>)
 
     const FlyButton = () => (
-        <div style={{ position: 'absolute', bottom: '10px', left: '10px', zIndex: 1000 }}>
+        <div style={{ position: 'absolute', bottom: '10px', left: '10px', zIndex: 400 }}>
             <Icon
                 color='cyan'
-                style='!shadow-md'
+                style='!shadow-md '
                 bg fill
                 title='Zoomer sur la position'
                 onClick={() => setFly(true)}
@@ -195,7 +195,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
             zoomControl={false}
             attributionControl={false}
             scrollWheelZoom={false}
-            className=' flex flex-1 items-center justify-center !rounded-3xl ' >
+            className=' flex flex-1 items-center justify-center !z-[0] !rounded-3xl ' >
             <TileLayer
                 url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}" />
             <ZoomControls />
@@ -234,7 +234,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
                 <MapDiv />
 
                 <Dialog>
-                    <Dialog.Trigger className='z-[50] absolute top-2.5 right-2.5'>
+                    <Dialog.Trigger className='z-[5] absolute top-2.5 right-2.5'>
                         <ExpandButton />
                     </Dialog.Trigger>
                     <Dialog.Overlay className='backdropBlur !bg-transparent'>
@@ -242,7 +242,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message
                             <div className='w-full h-full flex flex-1 rounded-3xl shadow border border-slate-400'>
                                 <MapDiv />
                             </div>
-                            <Dialog.DismissTrigger className='z-[600] absolute top-5 right-5'>
+                            <Dialog.DismissTrigger className='z-[6] absolute top-5 right-5'>
                                 <CloseButton />
                             </Dialog.DismissTrigger>
                         </Dialog.Content>

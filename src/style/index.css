@@ -296,7 +296,7 @@ button {
 }
 
 .Map {
-    @apply w-full h-full flex flex-1 rounded-3xl;
+    @apply w-full h-full flex flex-1  rounded-3xl;
 }
 .FixedCenter {
     position: fixed;
@@ -310,7 +310,7 @@ button {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    z-index: 1000 !important;
+    z-index: 3 !important;
     border: none !important;
     box-shadow: none !important;
     background: none !important;

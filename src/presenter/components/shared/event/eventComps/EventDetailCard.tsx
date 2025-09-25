@@ -49,7 +49,7 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
 
             <CardLarge.Chips
 
-                className="!relative !z-[999]">
+                className="!relative !z-[3]">
                 <div
                     className="md3-card-chips w-full ">
                     <Chip
