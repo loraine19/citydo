@@ -20,6 +20,7 @@ interface MenuProps {
     fitMax?: boolean;
     title?: string;
     left?: boolean;
+    isVisible?: boolean;
 }
 
 export const Menu: React.FC<MenuProps> = ({
@@ -36,6 +37,7 @@ export const Menu: React.FC<MenuProps> = ({
     fitMax,
     MenuKey,
     title,
+    isVisible = false,
     left = false
 }) => {
     if (!MenuKey) return null;
@@ -227,7 +229,7 @@ export const Menu: React.FC<MenuProps> = ({
         }
     };
 
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(isVisible ?? false);
     const [openPortal, setOpenPortal] = useState(open);
 
     useEffect(() => {
@@ -245,7 +247,7 @@ export const Menu: React.FC<MenuProps> = ({
             data-md3-menu
             aria-expanded={open}
             id={'menu-button_' + MenuKey}
-            key={MenuKey}
+            key={'menu-button_' + MenuKey}
             ref={menuRef || menuRefAuto}
             style={{
                 ...menuStyle,
@@ -350,6 +352,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     title
 }) => (
     <div
+        key={value || (typeof children === 'string' ? children : undefined)}
         title={title}
         onClick={disabled ? undefined : onClick}
         data-value={value}

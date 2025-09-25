@@ -108,10 +108,9 @@ export const AddressInputOpen = (props: {
     const [open, setOpen] = useState(true);
     const [triggerElement, setTriggerElement] = useState<HTMLElement | null>(null);
     useEffect(() => {
-        setTriggerElement(document.querySelector('[data-mapbox-id]') as HTMLElement);
-
+        setTriggerElement(document.getElementById('menu-button') as HTMLElement);
+        console.log("triggerElement", triggerElement)
         if (triggerElement && (suggestions.length === 0) && open) {
-            setOpen(true);
             (triggerElement as HTMLElement).click();
         }
 
@@ -120,7 +119,8 @@ export const AddressInputOpen = (props: {
     return (
         <div className='flex relative flex-col flex-1 w-full'>
             <Input
-                className='!min-w-full'
+
+                className='relative !min-w-full '
                 label={"Adresse"}
                 type="text"
                 name='address'
@@ -128,52 +128,64 @@ export const AddressInputOpen = (props: {
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     if (event.target.value.trim() !== '' || event.target.value === '') { handleInputChange(event) }
                 }}
-                leadingIcon={inputLoading ?
-                    <Icon icon='progress_activity' size='lg' /> :
-                    <Icon icon='add_location' fill={true} onClick={() => setOpen(true)} size='lg' />}
                 trailingIcon={<Icon
                     icon='close'
                     style={'!absolute top-[50%] translate-y-[-50%] right-2'}
-                    onClick={() => { setInputValue(''); setOpen(false) }}
+                    onClick={() => {
+                        setInputValue('');
+                        setOpen(false)
+                    }}
                     size='sm'
                     color='gray' />}
                 helperText={error ? Object.values(error).join(', ') : ""}
                 error={!!error}
+                leadingIcon={
+                    <Menu
+                        isVisible={open}
+                        MenuKey='address-suggestion'
+                        closeIcon={<></>}
+                        open={open}
+                        setOpen={((open) => address ? setOpen(open) : setOpen(false))}
+                        title='Choisir dans la liste'
+                        placement='bottom-right'
+                        className=' !mt-[2rem] mx-[1rem] max-h-[11rem] overflow-y-scroll '
+                        trigger={
+                            <button id="mapbox-trigger">
+                                <Icon
+                                    style='mt-1'
+                                    icon={inputLoading ? 'progress_activity' : 'my_location'}
+                                    fill={true}
+                                    size='lg' />
+                            </button>}
+
+                    >
+                        {suggestions.length > 0 ?
+                            suggestions.map((suggestion, index) => (
+                                suggestion.label !== suggestions[index - 1]?.label &&
+                                <MenuItem
+                                    className="cursor-pointer hover:bg-gray-200 min-h-max text-sm py-1.5 rounded-3xl"
+                                    title='choisir cette adresse'
+                                    key={index}
+                                    onClick={() => {
+                                        handleSuggestionSelect(suggestion);
+                                        setInputLoading(false);
+                                        setAddress({ ...suggestion.value } as Address)
+                                    }}>
+                                    {suggestion.label}
+                                </MenuItem>
+
+                            )) :
+                            <MenuItem>
+                                <span> Chargement...</span>
+                            </MenuItem>
+
+                        }
+
+                    </Menu>}
             >
             </Input>
 
-            <Menu
-                closeIcon={<></>}
-                open={open}
-                setOpen={setOpen}
-                title='Choisir dans la liste'
-                trigger={<div className=' max-w-max -mt-8 ' data-mapbox-id >&nbsp;</div>}
-                MenuKey='address-suggestion'
-                placement='bottom-right'
-                className=' max-h-[11rem] overflow-y-scroll '>
-                {suggestions.length > 0 ?
-                    suggestions.map((suggestion, index) => (
-                        suggestion.label !== suggestions[index - 1]?.label &&
-                        <MenuItem
-                            className="cursor-pointer hover:bg-gray-200 min-h-max text-sm py-1.5 rounded-3xl"
-                            title='choisir cette adresse'
-                            key={index}
-                            onClick={() => {
-                                handleSuggestionSelect(suggestion);
-                                setInputLoading(false);
-                                setAddress({ ...suggestion.value } as Address)
-                            }}>
-                            {suggestion.label}
-                        </MenuItem>
 
-                    )) :
-                    <MenuItem>
-                        <span> Chargement...</span>
-                    </MenuItem>
-
-                }
-
-            </Menu>
         </div >
     );
 };

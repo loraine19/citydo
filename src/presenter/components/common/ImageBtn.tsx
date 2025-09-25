@@ -127,7 +127,7 @@ export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; im
 
                 }
                 {!formik?.values?.image &&
-                    <span className={`md3-card-subhead px-4 `}> ajouter une image</span>}
+                    <span className={`md3-card-supporting-text pl-2 pr-4 flex-1 whitespace-nowrap`}> ajouter une image</span>}
             </ButtonGroup>
         </div>
     );

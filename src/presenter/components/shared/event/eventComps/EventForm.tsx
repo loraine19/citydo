@@ -118,6 +118,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                         setExpanded={setExpand}
                         image={
                             <CardLarge.Image
+                                className="md3-cyan-container"
                                 src={imgBlob ?? formik.values.image ?? formik.values.blob ?? EventImage.default ?? undefined}
                                 alt={formik.values.title || 'image'}
                             />
