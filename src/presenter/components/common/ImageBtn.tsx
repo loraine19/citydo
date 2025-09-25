@@ -42,11 +42,12 @@ export const ImageBtn = (props: { formik: any; setImgBlob: any; imgDef?: string;
                 /> */}
 
                 <Button
+                    round
+                    className="px-2 !py-2 min-h-max  w-max !min-w-max "
                     color={colorComp ?? color as any}
                     variant={"filled"}
                     icon={{
                         fill: true,
-                        size: 'lg',
                         icon: formik?.values?.image ? "image_search" : "image_arrow_up"
                     }}
                     type="button">
@@ -84,8 +85,9 @@ export const ImageBtn = (props: { formik: any; setImgBlob: any; imgDef?: string;
                 {formik?.values?.image &&
                     <>
                         <Button
+                            round
+                            className="px-2 !py-2 min-h-max  w-max !min-w-max "
                             type="button"
-
                             color={colorComp ?? color as any}
                             icon={{
                                 fill: true,
@@ -97,10 +99,10 @@ export const ImageBtn = (props: { formik: any; setImgBlob: any; imgDef?: string;
                                 },
 
                             }}
-                        >
-
-                        </Button>
+                        ></Button>
                         <Button
+                            className="px-2 !py-2 min-h-max  w-max !min-w-max "
+                            round
                             type="button"
                             color={colorComp ?? color as any}
                             icon={{
@@ -109,8 +111,7 @@ export const ImageBtn = (props: { formik: any; setImgBlob: any; imgDef?: string;
                                 title: "Aperçu de l'image",
                                 onClick: () => setOpenDialog(true)
                             }}
-                        >
-                        </Button>
+                        />
                         {open && <DialogImage onClose={() => setOpenDialog(false)} image={formik?.values?.image} />}
 
 

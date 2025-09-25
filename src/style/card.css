@@ -155,8 +155,8 @@
     }
 
     .hideCTAForm {
-        @apply min-h-fit  max-h-[calc(100dvh_-_8rem)] 
-        grid-rows-[minmax(calc(100dvh-9rem),calc(100dvh-8rem))]
-        sm:grid-rows-[minmax(calc(100dvh-9rem),calc(100dvh-8rem))];
+        @apply min-h-fit  sm:max-h-[calc(100dvh_-_6rem)] max-h-[calc(100dvh_-_9rem)]
+        grid-rows-[minmax(calc(100dvh-8rem),calc(100dvh-6rem))]
+        sm:grid-rows-[minmax(calc(100dvh-9rem),calc(100dvh-9rem))];
     }
 }

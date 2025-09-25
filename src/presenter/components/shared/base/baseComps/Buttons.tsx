@@ -69,20 +69,21 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
                 ${variant === 'filled' && `md3-${color} `}
                 ${variant === 'outlined' && `md3-${color ?? 'slate'}-outlined`}
                 md3-button-group
-                flex
-                ${rounded ? 'rounded-full overflow-hidden' : ''}
+                inline-flex
+                ${rounded ? 'rounded-full overflow-hidden ' : ''}
                 ${className || ''}
             `}
         >
             {React.Children.map(children, (child) =>
                 React.isValidElement(child) && (child.type === Button || (child.props && 'variant' in child.props))
-                    ? React.cloneElement(child as React.ReactElement<ButtonProps>, {
-                        variant: (child.props as ButtonProps).variant || variant,
-                        color: (child.props as ButtonProps).color || color,
-                        size: (child.props as ButtonProps).size || size,
-                        className: `md3-button-group-item ${(child.props as any).className || ''}`,
-                        round: rounded,
-                    })
+                    ? <Button
+                        {...child.props}
+                        variant={(child.props as ButtonProps).variant || variant}
+                        color={(child.props as ButtonProps).color || color}
+                        size={(child.props as ButtonProps).size || size}
+                        className={`md3-button-group-item flex-1 ${(child.props as any).className || ''} ${rounded ? 'rounded-full px-0' : ''}`}
+                        round={rounded}
+                    >{child.props.children}</Button>
                     : child
             )}
         </div>

@@ -57,133 +57,129 @@ export function PostFormCard({ formik }: PostFormCardProps) {
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
             <main className="wRespXLMargin">
 
-                <section>
-                    <div className="DetailCardDiv hideCTAForm">
-                        <div className="flex flex-col gap-2">
-                            <div className={`p-2 max-h-max w-full flex flex-col grid-cols-[auto_auto] lg:grid grid-rows-1 gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
-                                <h6 className="md3-card-subhead pt-4">Informations principales</h6>
-                                <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
-                                    <Select
-                                        variant="Input"
-                                        value={formik.values.category}
-                                        options={postCategories}
-                                        formik={formik}
-                                        name="category"
-                                        placeholder="Choisir la catégorie"
-                                    />
-                                    <GroupSelect
-                                        groupId={groupId?.toString()}
-                                        setGroupId={setGroupId}
-                                        formik={formik}
-                                        user={user}
-                                    />
-                                    {
-                                        (!formik.errors.groupId && !formik.errors.category &&
-                                            formik.values.groupId && formik.values.category) &&
-                                        <Button
-                                            color='rose'
-                                            type='button'
-                                            onClick={() => {
-                                                setShowCard(true);
-                                                setShow(false);
-                                            }}>
-                                            Continuer
-                                        </Button>}
+                <section className={`"DetailCardDiv  " ${show ? 'overflow-hidden' : 'overflow-auto hideCTAForm'} `}>
+                    <div className={`p-2 max-h-max w-full flex flex-col grid-cols-[auto_auto] lg:grid grid-rows-1 gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
+                        <h6 className="md3-card-subhead pt-4">Informations principales</h6>
+                        <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
+                            <Select
+                                variant="Input"
+                                value={formik.values.category}
+                                options={postCategories}
+                                formik={formik}
+                                name="category"
+                                placeholder="Choisir la catégorie"
+                            />
+                            <GroupSelect
+                                groupId={groupId?.toString()}
+                                setGroupId={setGroupId}
+                                formik={formik}
+                                user={user}
+                            />
+                            {
+                                (!formik.errors.groupId && !formik.errors.category &&
+                                    formik.values.groupId && formik.values.category) &&
+                                <Button
+                                    color='rose'
+                                    type='button'
+                                    onClick={() => {
+                                        setShowCard(true);
+                                        setShow(false);
+                                    }}>
+                                    Continuer
+                                </Button>}
 
-                                </div>
-                            </div>
-                            <CardLarge
-                                className={` ${(showCard && !show) ?
-                                    `md3-animation-slide-up ` : 'md3-animation-slide-out-down'}`}
-                                form
-                                expanded={expand}
-                                setExpanded={setExpand}
-                                image={
-                                    <CardLarge.Image
-                                        className="md3-rose-container"
-                                        src={imgBlob || formik.values.image || null}
-                                        alt={formik.values.title || 'image'}
-                                    />
-                                }
-                            >
-                                <CardLarge.Chips className="justify-between px-4">
-                                    <ImageBtn
-                                        variant="tonal"
-                                        className={"relative pb-1"}
-                                        formik={formik}
-                                        setImgBlob={setImgBlob}
-                                    />
-                                    <DateChip
-                                        prefix=" "
-                                        start={start}
-                                    />
-                                </CardLarge.Chips>
-                                <CardLarge.Divider />
-                                <CardLarge.MidSection className="md:px-8 flex flex-col">
-                                    <span className="md3-card-subhead">Informations</span>
-                                    <div className="flex flex-1 flex-col gap-4">
-                                        <Input
-                                            label={"Titre"}
-                                            name="title"
-                                            onChange={formik.handleChange}
-                                            value={formik.values.title}
-                                            error={!!formik.errors.title}
-                                            helperText={formik.errors.title ?? `${formik.values.title?.length ?? 0}/40`}
-                                        />
-                                        <Input
-                                            multiline
-                                            rows={3}
-                                            error={!!formik.errors.description}
-                                            label='Description'
-                                            name="description"
-                                            helperText={`${formik.errors.description ?? (`${formik.values.description?.length ?? 0}/300`)}`}
-                                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                                                formik.handleChange(e);
-                                                const textarea = e.target as HTMLTextAreaElement;
-                                                textarea.style.height = '2.5rem';
-                                                textarea.style.height = textarea.scrollHeight + 'px';
-                                                if (e.target.value === '') {
-                                                    textarea.style.height = '2.5rem';
-                                                }
-                                            }}
-                                            value={formik.values.description}
-                                        />
-                                    </div>
-                                </CardLarge.MidSection>
-                                <CardLarge.Divider />
-                                <CardLarge.MidSection className="md:px-8 flex flex-col">
-                                    <span className="md3-card-subhead">{formik?.errors?.shareA ?? 'Contact'}</span>
-                                    <div className="flex py-1 px-4 gap-4">
-                                        <Checkbox
-                                            color="rose"
-                                            label={"Téléphone"}
-                                            id='phone-checkbox'
-                                            name="shareA"
-                                            value="PHONE"
-                                            onChange={formik.handleChange}
-                                            checked={checkShare("phone")}
-                                        />
-                                        <Checkbox
-                                            color="rose"
-                                            label="Email"
-                                            id='email-checkbox'
-                                            name="shareA"
-                                            value="EMAIL"
-                                            onChange={formik.handleChange}
-                                            checked={checkShare("email")}
-                                        />
-                                    </div>
-                                </CardLarge.MidSection>
-                            </CardLarge>
                         </div>
                     </div>
+                    <CardLarge
+                        className={` ${(showCard && !show) ?
+                            `md3-animation-slide-up ` : 'md3-animation-slide-out-down'}`}
+                        form
+                        expanded={expand}
+                        setExpanded={setExpand}
+                        image={
+                            <CardLarge.Image
+                                className="md3-rose-container"
+                                src={imgBlob || formik.values.image || null}
+                                alt={formik.values.title || 'image'}
+                            />
+                        }
+                    >
+                        <CardLarge.Chips className="justify-between px-4">
+                            <ImageBtn
+                                variant="tonal"
+                                className={"relative pb-1"}
+                                formik={formik}
+                                setImgBlob={setImgBlob}
+                            />
+                            <DateChip
+                                prefix=" "
+                                start={start}
+                            />
+                        </CardLarge.Chips>
+                        <CardLarge.Divider />
+                        <CardLarge.MidSection className="md:px-8 flex flex-col">
+                            <span className="md3-card-subhead">Informations</span>
+                            <div className="flex flex-1 flex-col gap-4">
+                                <Input
+                                    label={"Titre"}
+                                    name="title"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.title}
+                                    error={!!formik.errors.title}
+                                    helperText={formik.errors.title ?? `${formik.values.title?.length ?? 0}/40`}
+                                />
+                                <Input
+                                    multiline
+                                    rows={3}
+                                    error={!!formik.errors.description}
+                                    label='Description'
+                                    name="description"
+                                    helperText={`${formik.errors.description ?? (`${formik.values.description?.length ?? 0}/300`)}`}
+                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                                        formik.handleChange(e);
+                                        const textarea = e.target as HTMLTextAreaElement;
+                                        textarea.style.height = '2.5rem';
+                                        textarea.style.height = textarea.scrollHeight + 'px';
+                                        if (e.target.value === '') {
+                                            textarea.style.height = '2.5rem';
+                                        }
+                                    }}
+                                    value={formik.values.description}
+                                />
+                            </div>
+                        </CardLarge.MidSection>
+                        <CardLarge.Divider />
+                        <CardLarge.MidSection className="md:px-8 flex flex-col">
+                            <span className="md3-card-subhead">{formik?.errors?.shareA ?? 'Contact'}</span>
+                            <div className="flex py-1 px-4 gap-4">
+                                <Checkbox
+                                    color="rose"
+                                    label={"Téléphone"}
+                                    id='phone-checkbox'
+                                    name="shareA"
+                                    value="PHONE"
+                                    onChange={formik.handleChange}
+                                    checked={checkShare("phone")}
+                                />
+                                <Checkbox
+                                    color="rose"
+                                    label="Email"
+                                    id='email-checkbox'
+                                    name="shareA"
+                                    value="EMAIL"
+                                    onChange={formik.handleChange}
+                                    checked={checkShare("email")}
+                                />
+                            </div>
+                        </CardLarge.MidSection>
+                    </CardLarge>
                 </section>
             </main>
-            {showCard && <CTAMines
+            {(showCard && !show && !formik.errors) && <CTAMines
                 actions={[
                     {
                         type: 'submit',
-                        iconImage: formik.values?.id ? "save_as" : "save",
+                        iconImage: formik.isSubmitting ? "progress_activity" : formik.values?.id ? "check" : "send",
                         icon: formik.values?.id ? "Modifier l'annonce" : "Créer l'annonce",
                         direct: true,
                         function: () => { }

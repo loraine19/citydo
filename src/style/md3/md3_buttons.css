@@ -608,7 +608,7 @@ CHIP
 }
 
 .md3-button-group {
-    @apply flex items-center max-w-max justify-center;
+    @apply flex items-center w-max justify-center;
     padding: var(--md3-spacing-small);
     gap: var(--md3-spacing-small);
     border-radius: var(--md3-radius-full);

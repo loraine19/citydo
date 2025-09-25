@@ -85,7 +85,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                     </CardMD.Headline>
                     <CardMD.Subhead className='flex flex-col h-full w-full justify-center overflow-auto   px-12  pt-2 flex-1 gap-2 '>
                         <Input
-                            sizeInput="xs"
+                            sizeInput={confirm ? "xs" : "md"}
                             type='email'
                             label={"Email"}
                             name="email"
@@ -95,7 +95,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                             helperText={formik?.errors.email as string ?? ''}
                             data-cy="email-input" />
                         <Input
-                            sizeInput="xs"
+                            sizeInput={confirm ? "xs" : "md"}
                             error={!!formik?.errors.password}
                             label={"Mot de passe"}
                             name="password"
@@ -112,7 +112,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                         </Input>
                         <div className={!confirm ? "hidden" : "flex flex-1 flex-col w-full"}>
                             <Input
-                                sizeInput='xs'
+                                sizeInput={confirm ? "xs" : "md"}
                                 error={!!formik?.errors.passwordConfirm}
                                 label={"Confirmer le mot de passe"}
                                 name="passwordConfirm"

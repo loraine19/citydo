@@ -196,7 +196,8 @@ export const Icon: React.FC<IconProps> = ({
     const textSize = sizeMap[size as keyof typeof sizeMap]?.text ?? 'text-[1.875rem]';
     const colorClass = (bg && clear) ? ' !bg-none ' : bg ? reverse ? `md3-${color ?? 'primary'}` : `md3-${color ?? 'primary'}-container` : color ? `md3-text-${color}` : ` text-current `;
     const classIcon = () => `
-    flex items-center justify-center 
+    flex items-center justify-center
+    ${icon === 'progress_activity' ? 'animate-spin' : ''}
     ${colorClass}  
     ${bg ? iconSize : textSize} ${style ?? ''} `
 

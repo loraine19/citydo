@@ -45,10 +45,10 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
     }, [Address]);
 
     useEffect(() => {
-        if (!formik.values.image) {
+        if (!formik.values.image || formik.values.image === '') {
             setImgBlob(EventImage[formik.values.category as keyof typeof EventImage] || EventImage.default);
         }
-    }, [formik.values.category]);
+    }, [formik.values.category, show]);
 
     // AppBar Section
     const { setDetailSection } = useNavStore((state) => state);
@@ -77,200 +77,198 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
             <main className="wRespXLMargin">
-                <section>
-                    <div className="DetailCardDiv hideCTAForm">
-                        <div className="flex flex-col gap-2">
-                            <div className={`p-2 max-h-max w-full flex flex-col grid-cols-[auto_auto] lg:grid grid-rows-1 gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
-                                <h6 className="md3-card-subhead pt-4">Informations principales</h6>
-                                <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
-                                    <Select
-                                        variant="Input"
-                                        value={formik.values.category}
-                                        options={eventCategories}
-                                        formik={formik}
-                                        name="category"
-                                        placeholder="Choisir la catégorie"
-                                    />
-                                    <GroupSelect
-                                        groupId={groupId?.toString()}
-                                        setGroupId={setGroupId}
-                                        formik={formik}
-                                        user={user}
-                                    />
-                                    {
-                                        (!formik.errors.groupId && !formik.errors.category && formik.values.groupId && formik.values.category) &&
-                                        <Button
-                                            color='cyan'
-                                            type='button'
-                                            onClick={() => {
-                                                setShowCard(true);
-                                                setShow(false);
-                                                setExpand(true);
-                                            }}>
-                                            Continuer
-                                        </Button>
-                                    }
-                                </div>
-                            </div>
-                            <CardLarge
-                                className={` ${(showCard && !show) ?
-                                    ` md3-animation-slide-up ` : ' md3-animation-slide-out-down '}`}
-                                form
-                                expanded={expand}
-                                setExpanded={setExpand}
-                                image={
-                                    <CardLarge.Image
-                                        src={imgBlob ?? formik.values.image ?? formik.values.blob ?? EventImage.default}
-                                        alt={formik.values.title || 'image'}
-                                    />
-                                }
-                            >
-                                <CardLarge.Chips className="justify-between px-4">
-                                    <ImageBtn
-                                        variant="tonal"
-                                        className={"relative pb-1"}
-                                        formik={formik}
-                                        setImgBlob={setImgBlob}
-                                        imgDef={EventImage[formik.values.category as keyof typeof EventImage] || EventImage.default}
-                                    />
-                                    <DateChip
-                                        prefix=" "
-                                        start={formik.values.createdAt ?? new Date()}
-                                    />
-                                </CardLarge.Chips>
-                                <CardLarge.Divider />
-                                <CardLarge.MidSection className="md:!px-8  flex flex-col">
-                                    <span className="md3-card-subhead">Informations</span>
-                                    <div className="flex flex-1 flex-col gap-4">
-                                        <Input
-                                            label={"Titre"}
-                                            name="title"
-                                            onChange={formik.handleChange}
-                                            value={formik.values.title}
-                                            error={!!formik.errors.title}
-                                            helperText={formik.errors.title ?? `${formik.values?.title?.length ?? 0}/40`}
-                                        />
-                                        <Input
-                                            multiline
-                                            rows={1}
-                                            error={!!formik.errors.description}
-                                            label='Description'
-                                            name="description"
-                                            helperText={`${formik.errors.description ?? (`${formik.values.description?.length ?? 0}/300`)}`}
-                                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                                                formik.handleChange(e);
-                                                const textarea = e.target as HTMLTextAreaElement;
-                                                textarea.style.height = '2.5rem';
-                                                textarea.style.height = textarea.scrollHeight + 'px';
-                                                if (e.target.value === '') {
-                                                    textarea.style.height = '2.5rem';
-                                                }
-                                            }}
-                                            value={formik.values.description}
-                                        />
-                                    </div>
-                                </CardLarge.MidSection>
-                                <CardLarge.Divider />
-                                <CardLarge.MidSection className="md:px-8 flex flex-col">
-                                    <span className="md3-card-subhead">Lieu</span>
-                                    <div className="flex flex-1 flex-col md:flex-row gap-4">
-                                        {(Address?.lat && Address?.lng) ?
-                                            <div className="flex-1 mb-2 !max-h-[7rem]">
-                                                <AddressMapOpen address={Address} />
-                                            </div> : null}
-                                        <AddressInputOpen
-                                            address={Address}
-                                            setAddress={setAddress}
-                                            error={formik.errors.Address}
-                                        />
-                                    </div>
-                                </CardLarge.MidSection>
-                                <CardLarge.Divider />
-                                <CardLarge.MidSection className="md:px-8 flex flex-col">
-                                    <span className="md3-card-subhead">Date</span>
-                                    <div className="flex flex-1 flex-col md:flex-row gap-4">
-                                        <Input
-                                            error={!!formik.errors.start}
-                                            leadingIcon={<Icon icon='calendar_today' onClick={() => {
-                                                (document.getElementsByName("start")[0] as HTMLInputElement).showPicker();
-                                            }} fill size='lg' />}
-                                            className={`!max-w-[50%]`}
-                                            type='datetime-local'
-                                            label={""}
-                                            name="start"
-                                            onChange={formik.handleChange}
-                                            min={today}
-                                            defaultValue={formik.values.start && formatDateForDB(formik.values.start)}
-                                            helperText={formik.errors.start ?? 'date de début prévue'}
-                                        />
-                                        <Input
-                                            error={!!formik.errors.end}
-                                            leadingIcon={<Icon icon='calendar_today' onClick={() => {
-                                                (document.getElementsByName("end")[0] as HTMLInputElement).showPicker();
-                                            }} fill size='lg' />}
-                                            className={`!max-w-[50%]`}
-                                            type="datetime-local"
-                                            min={today}
-                                            defaultValue={formik.values.end && formatDateForDB(formik.values.end)}
-                                            label={""}
-                                            name="end"
-                                            onChange={formik.handleChange}
-                                            helperText={formik.errors.end ?? 'date de fin prévue'}
-                                        />
-                                    </div>
-                                </CardLarge.MidSection>
-                                <CardLarge.Divider />
-                                <CardLarge.MidSection className="md:px-8 flex flex-col">
-                                    <span className="md3-card-subhead">Participants</span>
-                                    <div className="flex flex-1 flex-col md:flex-row gap-4">
-                                        <Input
-                                            leadingIcon={<Icon icon='person' fill={true} size='lg' />}
-                                            error={!!formik.errors.participantsMin}
-                                            type='number'
-                                            label={""}
-                                            name="participantsMin"
-                                            onChange={formik.handleChange}
-                                            value={formik.values.participantsMin}
-                                            helperText={formik.errors.participantsMin ?? 'participants minimum pour valider l\'évenement'}
-                                        />
-                                        <div className="flex-col flex w-full gap-3">
-                                            <ProgressBar
-                                                label={
-                                                    <div className="justify-between flex-1 w-full px-6 flex flex-row">
-                                                        <small>
-                                                            {formik.values?.Participants?.length ?? 0} participant{formik.values?.Participants?.length > 1 ? 's' : ''}
-                                                        </small>
-                                                        <small className="opacity-50"> / &nbsp;
-                                                            {formik.values.participantsMin ?? 1} min.
-                                                        </small>
-                                                    </div>}
-                                                variant={pourcentParticipants >= 100 ? 'linear' : 'wavy'}
-                                                color="cyan"
-                                                value={pourcentParticipants}
-                                                max={formik.values.participantsMin ?? 10}
-                                                min={1}
-                                                size="xxsmall"
-                                            />
-                                        </div>
-                                    </div>
-                                </CardLarge.MidSection>
-                            </CardLarge>
+                <section className={`"DetailCardDiv  " ${show ? 'overflow-hidden' : 'overflow-auto hideCTAForm'} `}>
+                    <div className={`p-2 max-h-max w-full flex flex-col grid-cols-[auto_auto] lg:grid grid-rows-1 gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
+                        <h6 className="md3-card-subhead pt-4">Informations principales</h6>
+                        <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
+                            <Select
+                                variant="Input"
+                                value={formik.values.category}
+                                options={eventCategories}
+                                formik={formik}
+                                name="category"
+                                placeholder="Choisir la catégorie"
+                            />
+                            <GroupSelect
+                                groupId={groupId?.toString()}
+                                setGroupId={setGroupId}
+                                formik={formik}
+                                user={user}
+                            />
+                            {
+                                (!formik.errors.groupId && !formik.errors.category && formik.values.groupId && formik.values.category) &&
+                                <Button
+                                    color='cyan'
+                                    type='button'
+                                    onClick={() => {
+                                        setShowCard(true);
+                                        setShow(false);
+                                        setExpand(true);
+                                    }}>
+                                    Continuer
+                                </Button>
+                            }
                         </div>
                     </div>
+                    <CardLarge
+                        className={` ${(showCard && !show) ?
+                            ` md3-animation-slide-up ` : ' md3-animation-slide-out-down '}`}
+                        form
+                        expanded={expand}
+                        setExpanded={setExpand}
+                        image={
+                            <CardLarge.Image
+                                src={imgBlob ?? formik.values.image ?? formik.values.blob ?? EventImage.default ?? undefined}
+                                alt={formik.values.title || 'image'}
+                            />
+                        }
+                    >
+                        <CardLarge.Chips className="justify-between px-4">
+                            <ImageBtn
+                                variant="tonal"
+                                className={"relative pb-1"}
+                                formik={formik}
+                                setImgBlob={setImgBlob}
+                                imgDef={EventImage[formik.values.category as keyof typeof EventImage] || EventImage.default}
+                            />
+                            <DateChip
+                                prefix=" "
+                                start={formik.values.createdAt ?? new Date()}
+                            />
+                        </CardLarge.Chips>
+                        <CardLarge.Divider />
+                        <CardLarge.MidSection className="md:!px-8  flex flex-col">
+                            <span className="md3-card-subhead">Informations</span>
+                            <div className="flex flex-1 flex-col gap-4">
+                                <Input
+                                    label={"Titre"}
+                                    name="title"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.title}
+                                    error={!!formik.errors.title}
+                                    helperText={formik.errors.title ?? `${formik.values?.title?.length ?? 0}/40`}
+                                />
+                                <Input
+                                    multiline
+                                    rows={1}
+                                    error={!!formik.errors.description}
+                                    label='Description'
+                                    name="description"
+                                    helperText={`${formik.errors.description ?? (`${formik.values.description?.length ?? 0}/300`)}`}
+                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                                        formik.handleChange(e);
+                                        const textarea = e.target as HTMLTextAreaElement;
+                                        textarea.style.height = '2.5rem';
+                                        textarea.style.height = textarea.scrollHeight + 'px';
+                                        if (e.target.value === '') {
+                                            textarea.style.height = '2.5rem';
+                                        }
+                                    }}
+                                    value={formik.values.description}
+                                />
+                            </div>
+                        </CardLarge.MidSection>
+                        <CardLarge.Divider />
+                        <CardLarge.MidSection className="md:px-8 flex flex-col">
+                            <span className="md3-card-subhead">Lieu</span>
+                            <div className="flex flex-1 flex-col md:flex-row gap-4">
+                                {(Address?.lat && Address?.lng) ?
+                                    <div className="flex-1 mb-2 !max-h-[7rem]">
+                                        <AddressMapOpen address={Address} />
+                                    </div> : null}
+                                <AddressInputOpen
+                                    address={Address}
+                                    setAddress={setAddress}
+                                    error={formik.errors.Address}
+                                />
+                            </div>
+                        </CardLarge.MidSection>
+                        <CardLarge.Divider />
+                        <CardLarge.MidSection className="md:px-8 flex flex-col">
+                            <span className="md3-card-subhead">Date</span>
+                            <div className="flex flex-1 flex-col md:flex-row gap-4">
+                                <Input
+                                    error={!!formik.errors.start}
+                                    leadingIcon={<Icon icon='calendar_today' onClick={() => {
+                                        (document.getElementsByName("start")[0] as HTMLInputElement).showPicker();
+                                    }} fill size='lg' />}
+                                    className={`!max-w-[50%]`}
+                                    type='datetime-local'
+                                    label={""}
+                                    name="start"
+                                    onChange={formik.handleChange}
+                                    min={today}
+                                    defaultValue={formik.values.start && formatDateForDB(formik.values.start)}
+                                    helperText={formik.errors.start ?? 'date de début prévue'}
+                                />
+                                <Input
+                                    error={!!formik.errors.end}
+                                    leadingIcon={<Icon icon='calendar_today' onClick={() => {
+                                        (document.getElementsByName("end")[0] as HTMLInputElement).showPicker();
+                                    }} fill size='lg' />}
+                                    className={`!max-w-[50%]`}
+                                    type="datetime-local"
+                                    min={today}
+                                    defaultValue={formik.values.end && formatDateForDB(formik.values.end)}
+                                    label={""}
+                                    name="end"
+                                    onChange={formik.handleChange}
+                                    helperText={formik.errors.end ?? 'date de fin prévue'}
+                                />
+                            </div>
+                        </CardLarge.MidSection>
+                        <CardLarge.Divider />
+                        <CardLarge.MidSection className="md:px-8 flex flex-col">
+                            <span className="md3-card-subhead">Participants</span>
+                            <div className="flex flex-1 flex-col md:flex-row gap-4">
+                                <Input
+                                    leadingIcon={<Icon icon='person' fill={true} size='lg' />}
+                                    error={!!formik.errors.participantsMin}
+                                    type='number'
+                                    label={""}
+                                    name="participantsMin"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.participantsMin}
+                                    helperText={formik.errors.participantsMin ?? 'participants minimum pour valider l\'évenement'}
+                                />
+                                <div className="flex-col flex w-full gap-3">
+                                    <ProgressBar
+                                        label={
+                                            <div className="justify-between flex-1 w-full px-6 flex flex-row">
+                                                <small>
+                                                    {formik.values?.Participants?.length ?? 0} participant{formik.values?.Participants?.length > 1 ? 's' : ''}
+                                                </small>
+                                                <small className="opacity-50"> / &nbsp;
+                                                    {formik.values.participantsMin ?? 1} min.
+                                                </small>
+                                            </div>}
+                                        variant={pourcentParticipants >= 100 ? 'linear' : 'wavy'}
+                                        color="cyan"
+                                        value={pourcentParticipants}
+                                        max={formik.values.participantsMin ?? 10}
+                                        min={1}
+                                        size="xxsmall"
+                                    />
+                                </div>
+                            </div>
+                        </CardLarge.MidSection>
+                    </CardLarge>
                 </section>
             </main>
-            {(showCard && !show) && <CTAMines
-                actions={[
-                    {
-                        type: 'submit',
-                        iconImage: formik.values.id ? 'save_as' : 'save',
-                        icon: formik.values.id ? 'Modifier' : 'Créer',
-                        disabled: false,
-                        direct: true,
-                        function: () => { }
-                    }
-                ]}
-            />}
+            {(showCard && !show && !formik.errors) &&
+                <CTAMines
+                    actions={[
+                        {
+
+                            type: 'submit',
+                            iconImage: formik.isSubmitting ? 'progress_activity' : formik.values.id ? 'check' : 'send',
+                            icon: formik.values.id ? 'Modifier' : 'Créer',
+                            disabled: false,
+                            direct: true,
+                            function: () => { }
+                        }
+                    ]}
+                />}
         </form>
     );
 }

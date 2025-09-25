@@ -7,10 +7,10 @@
 .md3-input-size-xs .md3-input-container,
 .md3-input-size-xs .md3-input-element {
     min-height: 1.9rem;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     padding: 6px var(--md3-spacing-small);
     &::placeholder {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 }
 
