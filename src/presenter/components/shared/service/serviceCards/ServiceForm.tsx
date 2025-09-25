@@ -156,7 +156,7 @@ export function ServiceForm(props: { formik: any }) {
                                     error={!!formik.errors.description}
                                     className={``}
                                     label='Description'
-                                    rows={3}
+                                    rows={6}
                                     name="description"
                                     multiline
                                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {

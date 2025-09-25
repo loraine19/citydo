@@ -59,15 +59,17 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputPro
 
         return (
             <div className={`${inputClasses} ${value ? 'active' : ''}`}>
-                <div className="md3-input-container">
-                    <label className="md3-label">{label}</label>
-                    {leadingIcon && <div className="md3-leading-icon">{leadingIcon}</div>}
+                <div className="md3-input-container ">
+                    <label className={multiline ? "md3-label md3-label-multiline" : "md3-label"}>{label}</label>
+                    {leadingIcon &&
+                        <div className="md3-leading-icon">{leadingIcon}</div>}
                     {multiline ? (
                         <textarea
                             {...(props as any)}
                             value={value}
                             disabled={disabled}
-                            className="md3-input-element"
+                            className="md3-input-element
+                            "
                             onFocus={(e) => {
                                 setIsFocused(true);
                                 props.onFocus?.(e as any);

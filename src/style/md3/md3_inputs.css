@@ -93,6 +93,9 @@
     text-overflow: ellipsis;
     z-index: 2;
 }
+.md3-label-multiline {
+    top: 1.5rem !important;
+}
 
 .md3-leading-icon,
 .md3-trailing-icon {

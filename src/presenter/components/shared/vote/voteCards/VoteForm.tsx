@@ -166,7 +166,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                 <Input
                                     error={!!formik.errors.description}
                                     label="Description"
-                                    rows={4}
+                                    rows={6}
                                     name="description"
                                     multiline
                                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {

@@ -130,7 +130,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                                 />
                                 <Input
                                     multiline
-                                    rows={3}
+                                    rows={6}
                                     error={!!formik.errors.description}
                                     label='Description'
                                     name="description"

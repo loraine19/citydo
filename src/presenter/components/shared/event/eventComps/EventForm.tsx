@@ -150,7 +150,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                 />
                                 <Input
                                     multiline
-                                    rows={1}
+                                    rows={6}
                                     error={!!formik.errors.description}
                                     label='Description'
                                     name="description"
