@@ -33,7 +33,7 @@ export default function EventDetailPage() {
 
     //// NOTIFICATION
     useEffect(() => {
-        if (error) setNotif(error.message)
+        if (error) setNotif(error?.message)
         else setNotif('');
         event && setButtons(buttonsGenerator(event));
     }, [isLoading, error]);
@@ -101,10 +101,7 @@ export default function EventDetailPage() {
     }, [SearchSection, isLoading]);
     return (
         <>
-            <main
-
-
-                data-cy="event-details-page">
+            <main data-cy="event-details-page">
 
                 <section
                     id='refDiv'

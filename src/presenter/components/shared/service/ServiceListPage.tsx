@@ -131,7 +131,7 @@ export default function ServicesPage() {
             setNotif(`Aucun service ${filterName()} ${stepName()} n'a été trouvé`);
         else setNotif('');
 
-    }, [isLoading, error, filter, step, category, count, services.length, type]);
+    }, [isLoading, error, filter, step, category, count, services?.length, type]);
 
     //// HANDLE SCROLL
     const utils = DI.resolve('utils')
