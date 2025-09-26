@@ -20,7 +20,7 @@ export const CardConfirmForm: React.FC<CardConfirmFormProps> = ({
                 <Icon color={color ?? "green"} bg icon="check" />
             </CardMD.Header>
             <CardMD.Headline>
-                {title}xxx
+                {title}
             </CardMD.Headline>
             <CardMD.SupportingText className="flex !max-h-[35vh]   overflow-auto flex-col gap-2">
                 {content}

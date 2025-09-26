@@ -107,7 +107,6 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
                             <CardLarge.Header className="flex justify-start items-start flex-col pt-0 gap-2">
                                 <ImageBtn
                                     size={"small"}
-                                    imgDef={formik.values?.image}
                                     imgBlob={imgBlob}
                                     variant="tonal"
                                     color='slate'
@@ -185,6 +184,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
                             <CardLarge.MidSection className="flex-col py-4 gap-4 flex ">
                                 <h6>Préférences</h6>
                                 <Select
+                                    bgColor='var(--md3-primary-container)'
                                     variant="Input"
                                     formik={formik}
                                     value={formik.values?.assistance}
@@ -194,6 +194,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
                                     options={assistanceLevel}
                                 />
                                 <Select
+                                    bgColor='var(--md3-primary-container)'
                                     variant="Input"
                                     formik={formik}
                                     value={formik.values?.mailSub}
@@ -210,6 +211,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
                                 {!isLoading &&
 
                                     <MultiSelect
+                                        bgColor='var(--md3-primary-container)'
                                         variant="Input"
                                         formik={formik}
                                         setValue={(val: any) => {

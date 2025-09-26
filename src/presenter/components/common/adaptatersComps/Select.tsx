@@ -14,6 +14,7 @@ interface SelectProps {
     options: { label: string, value: string }[],
     variant?: 'filled' | 'tonal' | 'text' | 'Input';
     onChangeFunction?: () => void;
+    bgColor?: string;
 }
 
 interface MultiSelectProps extends Omit<SelectProps, 'value' | 'setValue'> {
@@ -30,7 +31,8 @@ export function Select({
     disabled,
     options,
     variant,
-    onChangeFunction
+    onChangeFunction,
+    bgColor
 }: SelectProps) {
     const { color } = useUxStore(state => state);
 
@@ -50,32 +52,36 @@ export function Select({
     return (
         <div className={`flex-1 relative ${variant === 'Input' ? ' !font-roboto' : ''}`}>
             <div className={`w-full relative`}>
-                <div className={`flex items-center rounded-full md3-button-${error ? 'error' : color} 
+                <div className={` !relative flex items-center rounded-full md3-button-${error ? 'error' : color} 
                 ${className} !px-[1rem] !min-h-[42px] gap-2 
                 ${displayLabel ? 'active border-2' : ''}
                 ${disabled ? 'opacity-50 pointer-events-none' : ''}`} >
-                    <div className={`${variant === 'Input' ? '' : ''} 
-                        flex-1 flex w-full px-1 py-3 truncate`}>
-                        {(error && variant === 'Input') ? placeholder : displayLabel}
-                    </div>
+
                     <Menu
+                        fitMax
                         open={open}
                         setOpen={setOpen}
                         MenuKey={'select-menu' + (color)}
                         closeIcon={<></>}
-                        className="mt-2 w-max"
+                        className=''
+                        containerClassName="w-full"
                         blurBack
-                        placement="bottom-left"
+                        placement="bottom"
                         trigger={
-                            <Icon
-                                icon="arrow_drop_down"
-                                size='2xl' />
+                            <div className="flex items-center justify-between flex-1 w-full">
+                                <div className={`${variant === 'Input' ? '' : ''} 
+                        flex-1 flex w-full px-1 py-3 truncate`}>
+                                    {(error && variant === 'Input') ? placeholder : displayLabel}
+                                </div>
+                                <Icon
+                                    icon="arrow_drop_down"
+                                    size='2xl' />
+                            </div>
                         }
                         title={placeholder}
                     >
                         {options?.map((option) => (
                             <MenuItem
-
                                 key={option?.value}
                                 value={option?.value}
                                 onClick={() => { handleSelect(option); setOpen(false) }}
@@ -91,7 +97,7 @@ export function Select({
             </div>
             {displayLabel && variant === 'Input' && !error && placeholder !== displayLabel &&
                 <InputError
-                    style="absolute mx-2 px-1 h-max pb-1 top-1 -mt-1 !z-[999] rounded bg-[var(--md3-primary-container)]"
+                    style={`absolute mx-2 px-1 h-max pb-1 top-1 -mt-1 !z-[999] rounded bg-[${bgColor ?? 'var(--md3-surface)'}]`}
                     tips={placeholder} />}
             {variant === 'Input' &&
                 <InputError

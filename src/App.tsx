@@ -153,8 +153,6 @@ function App() {
 
                                 {/* LIST PAGES  */}
                                 <Route element={<ConfigPage listPage addFab />}>
-
-                                    <Route path="/groupe" element={<GroupPage />} />
                                     <Route path="/service" element={<ServiceListPage />} />
                                     <Route path="/evenement" element={<EventListPage />} />
                                     <Route path="/vote" element={<VoteListPage />} />
@@ -165,7 +163,7 @@ function App() {
                                 </Route>
                                 {/* LIST PAGES NO FAB */}
                                 <Route element={<ConfigPage listPage />}>
-
+                                    <Route path="/groupe" element={<GroupPage />} />
                                 </Route>
                             </Route>
                         </Routes>

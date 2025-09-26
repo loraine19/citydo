@@ -78,7 +78,7 @@ export function GroupCard({
                 <CardMD.Headline className="line-clamp-1">
                     <Title title={name ?? ''} />
                 </CardMD.Headline>
-                <CardMD.Subhead className="flex flex-col gap-1 justify-start items-start" >
+                <CardMD.Subhead className="flex flex-col flex-1 gap-1 justify-start items-start" >
                     <p > {(fullAddress || '')}  </p>
                     <i> {area ? ` ${area} mètres` : ''}</i>
 
@@ -93,15 +93,15 @@ export function GroupCard({
                             update={refetch}
                         />
                         :
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-4">
                             <Button
+                                variant={'tonal'}
                                 icon={{
                                     icon: ImModo ? 'diversity_3' : 'diversity_3',
                                     fill: ImModo,
 
                                     title: ImModo ? 'Je suis conciliateur' : 'Je ne suis pas conciliateur',
                                 }}
-                                variant={ImModo ? 'filled' : 'tonal'}
                                 color="orange"
                                 onClick={async () => {
                                     const groupUpdated = toogleModo && (await toogleModo());
@@ -116,7 +116,7 @@ export function GroupCard({
                                     fill: ImIn,
                                     title: ImIn ? 'Je suis membre' : 'Je ne suis pas membre',
                                 }}
-                                variant={ImIn ? 'filled' : 'tonal'}
+                                variant={'tonal'}
                                 color="cyan"
                                 onClick={() => navigate(`/groupe/${id}`)}
                             >{ImIn ? '✓' : '+'}
@@ -126,8 +126,6 @@ export function GroupCard({
                         icon="keyboard_arrow_right"
                         link={`/groupe/${id}`}
                         title={`voir les details de ${name}`}
-                        bg
-                        clear
                         fill
                     />
                 </CardMD.Footer>

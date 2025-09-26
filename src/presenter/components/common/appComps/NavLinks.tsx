@@ -43,7 +43,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
     ]
 
     //// ADD BUTTON ITEM
-    const addBtnItem: NavItem[] = mainPage ? [{
+    const addBtnItem: NavItem[] = !mainPage ? [{
         to: `/${type}/create`,
         icon: ({
             service: "partner_exchange",

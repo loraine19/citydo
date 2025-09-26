@@ -8,7 +8,7 @@ import DI from '../../../../di/ioc';
 import { useUserStore } from '../../../../application/stores/user.store';
 import { AddressDTO } from '../../../../infrastructure/DTOs/AddressDTO';
 import { useAlertStore } from '../../../../application/stores/alert.store';
-import { ProfileDiv } from '../../common/ProfilDiv';
+import { CardConfirmForm } from '../../common/CardConfirmForm';
 
 export default function MyInfosPage() {
     const { setUser, user } = useUserStore()
@@ -60,7 +60,6 @@ export default function MyInfosPage() {
         onSubmit: async values => {
             values.assistance = assistance;
             values.mailSub = mailSub;
-            const image = values.blob ?? values.image
             setOpen(true)
             setAlertValues({
                 close: () => setOpen(false),
@@ -69,11 +68,11 @@ export default function MyInfosPage() {
                 confirmString: "Enregistrer les modifications",
                 title: "Confimrer la modification : ",
                 element: (
-                    <div className='flex flex-col gap-8 max-h-[80vh] bg-gray-100 rounded-3xl p-5'>
-                        <ProfileDiv
-                            profile={{ ...user, Profile: { ...values, image } }}
-                        />
-                    </div>
+                    <CardConfirmForm
+                        title={undefined}
+                        content={<div>
+                            Vous confirmez la modification de votre profil ?
+                        </div>} />
                 )
             })
         }

@@ -14,7 +14,7 @@ const NotifDiv: React.FC<NotifDivProps> = ({ notif, isLoading, refetch, error, c
     let [attempt, setAttempt] = useState<number>(0);
 
     useEffect(() => {
-        if (attempt < 3) setTimeout(() => {
+        if (attempt < 2) setTimeout(() => {
             notif;
             refetch();
             attempt++
@@ -26,12 +26,14 @@ const NotifDiv: React.FC<NotifDivProps> = ({ notif, isLoading, refetch, error, c
     }, [error]);
 
     return (
-        <div className={`!max-w-full absolute  !top-[100%] h-fit w-full left-0 notif min-w-max !pt-8 z-[1] min-h-max !justify-start  ${className}`}>
+        <div
+            id='notifDiv'
+            className={`!max-w-full absolute !top-[1rem] h-fit w-full left-0 notif min-w-max  min-h-max !justify-start  ${className}`}>
             {error ? 'Une erreur est survenue : ' : ''}
-            <span className="md3-card-subhead w-full text-center pt-10">{notif !== error && notif} </span>
+            <span className="md3-card-subhead opacity-70 w-full text-center pt-4 ">{notif !== error && notif} </span>
             <div
                 style={{ display: 'inline-block', transition: 'transform 0.5s' }}
-                className={'py-3'}
+                className={'py-3 '}
                 onClick={e => {
                     const el = e.currentTarget;
                     el.classList.add('spin');
@@ -41,9 +43,8 @@ const NotifDiv: React.FC<NotifDivProps> = ({ notif, isLoading, refetch, error, c
                 }}
             >
                 <Icon
-
                     reverse
-                    style={(attempt > 30) ? '!hidden' : 'md3-elevation-1'}
+                    style={(attempt > 3) ? '!hidden' : 'md3-elevation-1'}
                     color={color}
                     size='3xl'
                     title="Recharger la liste"

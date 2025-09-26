@@ -10,7 +10,7 @@ interface MenuProps {
     anchorEl?: HTMLElement | null;
     className?: string;
     children: ReactNode;
-    placement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'auto' | 'center-trigger' | 'center' | 'up-bottom-right' | 'free';
+    placement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'auto' | 'center-trigger' | 'center' | 'up-bottom-right' | 'free' | 'bottom';
     onClose?: () => void;
     trigger?: ReactNode;
     closeIcon?: ReactNode;
@@ -21,6 +21,7 @@ interface MenuProps {
     title?: string;
     left?: boolean;
     isVisible?: boolean;
+    containerClassName?: string;
 }
 
 export const Menu: React.FC<MenuProps> = ({
@@ -38,7 +39,8 @@ export const Menu: React.FC<MenuProps> = ({
     MenuKey,
     title,
     isVisible = false,
-    left = false
+    left = false,
+    containerClassName
 }) => {
     if (!MenuKey) return null;
     const [internalOpen, setInternalOpen] = useState(false);
@@ -122,8 +124,8 @@ export const Menu: React.FC<MenuProps> = ({
     const triggerRef = useRef<HTMLDivElement>(null);
     const menuCurrent = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const triggerWidth = triggerRef.current?.offsetWidth ?? 44;
     const triggerRect = containerRef.current ? containerRef.current.getBoundingClientRect() : null;
+    const triggerWidth = triggerRef.current?.offsetWidth ?? 44;
     const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
     const [placement, setPlacement] = useState<string | null>(givenPlacement);
 
@@ -142,9 +144,15 @@ export const Menu: React.FC<MenuProps> = ({
             const spaceRight = viewportWidth - triggerRect.right;
             const spaceLeft = triggerRect.left;
 
-            if (placement === 'free') {
+
+            if (placement === 'bottom') {
+                style.position = 'fixed';
+                style.top = `${triggerRect.bottom}px`;
+                style.left = `${triggerRect.left}px`;
+                style.transformOrigin = `top`
+
             }
-            if ((placement === 'top-left'
+            else if ((placement === 'top-left'
                 || placement === 'auto') && (spaceLeft >= menuWidth
                     && (spaceAbove >= menuHeight) && spaceAbove >= 250)) {
                 style.position = 'fixed';
@@ -251,7 +259,7 @@ export const Menu: React.FC<MenuProps> = ({
             ref={menuRef || menuRefAuto}
             style={{
                 ...menuStyle,
-                maxWidth: fitMax ? `${triggerWidth}px` : ''
+                width: fitMax ? `${triggerRect?.width}px` : '',
             }}
             className={` ${className || ""} 
             md3-menu md3-elevation 
@@ -261,7 +269,7 @@ export const Menu: React.FC<MenuProps> = ({
             `} >
 
             <div className={`
-            ${(open) ? "!z-auto" : " z-0 "}`}
+            ${(open) ? "!z-auto " : " z-0 "}`}
                 ref={menuCurrent}>
 
                 <div className="md3-menu-list">
@@ -293,7 +301,7 @@ export const Menu: React.FC<MenuProps> = ({
                 ref={containerRef}
                 key={MenuKey}
                 data-md3-menu
-                className={`md3-menu-container  ${(menuRef || menuRefAuto) ? "" : "relative"} `}>
+                className={`md3-menu-container ${containerClassName ?? ''}  ${(menuRef || menuRefAuto) ? "" : "relative"} `}>
 
                 {(trigger) && React.cloneElement(
                     trigger as React.ReactElement,

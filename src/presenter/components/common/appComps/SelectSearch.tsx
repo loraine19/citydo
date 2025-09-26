@@ -19,18 +19,18 @@ export default function SelectSearch(props: selectSearchProps) {
 
     return (
         <div className={`w-full relative  ${style} `} >
-            <div className={`flex items-center rounded-full md3-button-${color} md3-button-${'tonal'} !pr-[5px] pl-3 !h-[2.95rem] gap-2 `} >
+            <div className={`flex items-center rounded-full md3-button-${color} md3-button-${'tonal'} !pr-[7px] pl-3 !h-[3.2rem] gap-2 md:gap-4`} >
                 <Menu
                     MenuKey={'select-menu' + (color)}
                     blurBack
                     title="Catégorie"
-                    className="mt-3 -ml-3"
+                    className="mt-3 -ml-3 !flex-0  !max-w-max"
                     open={isOpen}
                     setOpen={setIsOpen}
                     placement="bottom-right"
                     trigger={
-                        <div className={category.length > 0 ? '' : 'invisible w-0'}>
-                            <div className="flex">
+                        <div className={category.length > 0 ? 'max-w-max ' : 'invisible w-0'}>
+                            <div className="flex ">
                                 <Icon
                                     data-cy="select"
                                     icon="arrow_drop_down"
@@ -70,7 +70,7 @@ export default function SelectSearch(props: selectSearchProps) {
                     data-cy="input-search"
                     type="search"
                     placeholder="Rechercher"
-                    className={`md3-${color}-container hover:brightness-90 focus:brightness-80 pb-0 pt-0.5 rounded-full min-h-9 px-4 w-full placeholder:!text-current`}
+                    className={`md3-${color}-container hover:brightness-90 focus:brightness-80 pb-0 pt-0.5 rounded-full min-h-9 px-4 w-full placeholder:!text-current truncate`}
                     key={searchCat.value}
                     value={searchCat.label}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

@@ -119,10 +119,8 @@ const FormHeadSection: React.FC<FormHeadSectionProps> = ({
                 </div>
                 {children}
             </div>
-            {notif || error &&
-
+            {((notif || error) && !isLoading) &&
                 <NotifDiv
-
                     error={error}
                     notif={notif ?? ''}
                     isLoading={isLoading ?? false}

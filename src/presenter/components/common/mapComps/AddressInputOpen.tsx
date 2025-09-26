@@ -111,7 +111,6 @@ export const AddressInputOpen = (props: {
     const [triggerElement, setTriggerElement] = useState<HTMLElement | null>(null);
     useEffect(() => {
         setTriggerElement(document.getElementById('menu-button') as HTMLElement);
-        console.log("triggerElement", triggerElement)
         if (triggerElement && (suggestions.length === 0) && open) {
             (triggerElement as HTMLElement).click();
         }
@@ -121,7 +120,6 @@ export const AddressInputOpen = (props: {
     return (
         <div className='flex relative flex-col flex-1 w-full'>
             <Input
-
                 className='relative !min-w-full '
                 label={"Adresse"}
                 type="text"
@@ -130,15 +128,16 @@ export const AddressInputOpen = (props: {
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     if (event.target.value.trim() !== '' || event.target.value === '') { handleInputChange(event) }
                 }}
-                trailingIcon={<Icon
-                    icon='close'
-                    style={'!absolute top-[50%] translate-y-[-50%] right-2'}
-                    onClick={() => {
-                        setInputValue('');
-                        setOpen(false)
-                    }}
-                    size='sm'
-                    color='gray' />}
+                trailingIcon={
+                    <Icon
+                        icon='close'
+                        style={'!absolute top-[50%] translate-y-[-50%] right-2'}
+                        onClick={() => {
+                            setInputValue('');
+                            setOpen(false)
+                        }}
+                        size='sm'
+                        color='gray' />}
                 helperText={error ? Object.values(error).join(', ') : ""}
                 error={!!error}
                 leadingIcon={
@@ -152,7 +151,7 @@ export const AddressInputOpen = (props: {
                         placement='bottom-right'
                         className=' w-[calc(100dvw-2rem)] absolute wRespXLMargin !right-0  !mt-[2rem] mx-[1rem] max-h-[11rem] overflow-y-scroll '
                         trigger={
-                            <button id="mapbox-trigger">
+                            <button type="button" id="mapbox-trigger">
                                 <Icon
                                     style='mt-1'
                                     icon={inputLoading ? 'progress_activity' : 'my_location'}
@@ -169,8 +168,8 @@ export const AddressInputOpen = (props: {
                                     title='choisir cette adresse'
                                     key={index}
                                     onClick={() => {
-                                        handleSuggestionSelect(suggestion);
                                         setInputLoading(false);
+                                        handleSuggestionSelect(suggestion);
                                         setAddress({ ...suggestion.value } as Address)
                                     }}>
                                     {suggestion.label}

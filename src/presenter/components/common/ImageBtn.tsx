@@ -33,17 +33,17 @@ export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; im
                 rounded
                 color={colorComp ?? color as any}>
                 <Button
+                    type='button'
                     round
                     size={size || "medium"}
-                    className={`${size === "small" ? "!p-1.5" : "!p-2"} min-h-max  w-max !min-w-max `}
+                    className={` min-h-max  w-max !min-w-max `}
                     color={colorComp ?? color as any}
                     variant={"filled"}
                     icon={{
-                        fill: true,
-                        size: size === "small" ? "md" : "lg",
+                        bg: true,
+                        clear: true,
                         icon: formik?.values?.image ? "image_search" : "image_arrow_up"
-                    }}
-                    type="button">
+                    }}>
                     <label
                         htmlFor="image"
                         className=" absolute flex flex-col items-center justify-center w-full h-full cursor-pointer">
@@ -78,14 +78,15 @@ export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; im
                 {formik?.values?.image &&
                     <>
                         <Button
+                            type="button"
                             size={size || "medium"}
                             round
-                            className={`${size === "small" ? "!p-1.5" : "!p-2"} min-h-max  w-max !min-w-max `}
-                            type="button"
+                            className={` min-h-max  w-max !min-w-max `}
                             color={colorComp ?? color as any}
+                            variant={"filled"}
                             icon={{
-                                size: size === "small" ? "md" : "lg",
-                                fill: true,
+                                bg: true,
+                                clear: true,
                                 icon: "hide_image",
                                 title: "Supprimer l'image",
                                 onClick: () => {
@@ -100,14 +101,15 @@ export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; im
                         </Button>
 
                         <Button
-                            size={size || "medium"}
-                            className={`${size === "small" ? "!p-1.5" : "!p-2"} min-h-max  w-max !min-w-max `}
-                            round
                             type="button"
+                            size={size || "medium"}
+                            round
+                            className={` min-h-max  w-max !min-w-max `}
                             color={colorComp ?? color as any}
+                            variant={"filled"}
                             icon={{
-                                size: size === "small" ? "md" : "lg",
-                                fill: true,
+                                bg: true,
+                                clear: true,
                                 icon: "expand_content",
                                 title: "Aperçu de l'image",
                                 onClick: () => setOpenDialog(true)
