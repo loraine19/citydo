@@ -4,8 +4,8 @@ import { useUxStore } from "../../../application/stores/ux.store";
 import { useState } from "react";
 import DialogImage from "../shared/base/baseComps/DialogImage";
 
-export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; imgDef?: string; className?: string, color?: Md3Colors, variant?: any }) => {
-    const { formik, imgBlob, imgDef, setImgBlob, className, color: colorComp, variant } = props;
+export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; imgDef?: string; className?: string, color?: Md3Colors, variant?: any, size?: any }) => {
+    const { formik, imgBlob, imgDef, setImgBlob, className, color: colorComp, variant, size } = props;
     const { color } = useUxStore((state) => state);
 
     const getImageBlob = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +29,7 @@ export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; im
         <div className={` ${className || ''}`}>
             <ButtonGroup
                 variant={variant || "filled"}
-                size="medium"
+                size={size || "medium"}
                 rounded
                 color={colorComp ?? color as any}>
                 {/* <Button
@@ -43,6 +43,7 @@ export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; im
 
                 <Button
                     round
+                    size={size || "medium"}
                     className="px-2 !py-2 min-h-max  w-max !min-w-max "
                     color={colorComp ?? color as any}
                     variant={"filled"}
@@ -85,6 +86,7 @@ export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; im
                 {formik?.values?.image &&
                     <>
                         <Button
+                            size={size || "medium"}
                             round
                             className="px-2 !py-2 min-h-max  w-max !min-w-max "
                             type="button"
@@ -105,6 +107,7 @@ export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; im
                         </Button>
 
                         <Button
+                            size={size || "medium"}
                             className="px-2 !py-2 min-h-max  w-max !min-w-max "
                             round
                             type="button"

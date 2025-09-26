@@ -6,6 +6,15 @@ import { Profile } from '../../domain/entities/Profile';
 import { cryptedCookie } from '../../infrastructure/services/cookiService';
 import { ProfileView } from '../../presenter/views/viewsEntities/profileViewEntity';
 
+// ERROR TRACE 
+//user.store.ts: 51 Cannot update a component(`AlertNotif`) while rendering a different component(`PrivateRoute`).To locate the bad setState() call inside`PrivateRoute`, follow the stack trace as described in https://react.dev/link/setstate-in-render
+// setIsLoggedIn	@	user.store.ts:51
+// PrivateRoute	@	PrivateRouter.tsx:10
+// <PrivateRoute>		
+// App	@	App.tsx:91
+// <App>		
+// (anonymous)	@	main.tsx:14
+
 interface UserStore {
     user: User;
     profile: Profile;

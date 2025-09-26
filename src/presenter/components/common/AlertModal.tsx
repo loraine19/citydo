@@ -17,7 +17,7 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
 
     if (isOpen || open) return (
         <div key={title ?? 'alert-modal'}
-            className={`!absolute top-0 left-0 h-screen px-[3rem] py-[10vh] lg:py-[20vh] w-screen z-[1500] !flex flex-1 justify-center items-center backdropBlur   `} >
+            className={`!absolute top-0 left-0 h-screen px-[3rem] py-[10vh] lg:py-[20vh] w-screen z-[150] !flex flex-1 justify-center items-center backdropBlur   `} >
             <div>
                 <CardMD className="relative FixCardNoImage min-h-min !p-4 w-resp m-auto flex max-h-[400px] ">
                     <CardMD.Headline
@@ -34,12 +34,12 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                                 size="xl"
                                 color="red" />}
                     </CardMD.Headline>
-                    <CardMD.MidSection className="FixCardBody max-h-[70vh] h-max items-center flex flex-col ">
+                    <CardMD.MidSection className=" max-h-[70vh] h-max items-center flex flex-col ">
                         <hr className="pb-1"></hr>
                         {notif && <p className="text-center italic text-red-800">{notif}</p>}
                         <div className="overflow-auto flex w-full max-h-max justify-center ">
                             {element && typeof element === 'string' ?
-                                <p className="md3-card-subheadpt-[2vh] pb-[8vh] my-6">
+                                <p className="md3-card-subhead pt-[2vh] pb-[8vh] my-6">
                                     {parse(element as string)}</p> :
                                 <>{element}</>
                             }
@@ -48,6 +48,8 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                     <CardMD.Footer className=" !justify-end FixCardFooter !items-end  flex flex-wrap gap-y-4 gap-x-8 py-6">
                         {button2 &&
                             <Button
+                                size='large'
+                                className='w-full'
                                 variant='outlined'
                                 color='error'
                                 type="button"
@@ -59,10 +61,11 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                                 {button2.text ?? '-'}
                             </Button>}
                         <Button
+                            size='large'
                             color={color as any}
                             type="button"
                             disabled={notif ? true : false}
-                            className={` ${!disableConfirm ? '' : 'hidden'} `}
+                            className={`w-full ${!disableConfirm ? '' : 'hidden'} `}
                             onClick={() => {
                                 values.handleConfirm && values.handleConfirm();
                                 close && close() || setOpen(false);

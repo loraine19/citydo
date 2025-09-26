@@ -67,8 +67,7 @@ const FormHeadSection: React.FC<FormHeadSectionProps> = ({
             <div className="flex overflow-auto gap-2 justify-between w-full ">
                 <div className="flex flex-wrap w-full gap-2">
                     <Chip
-
-                        value={'retour ' + new URLSearchParams(window.location.search).toString()}
+                        value={'retour '}
                         onClick={() => back()}
                         icon={
                             <Icon icon="arrow_back" size="md" />}

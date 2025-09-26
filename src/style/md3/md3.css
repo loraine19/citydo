@@ -773,6 +773,10 @@
 }
 
 /* Utilitaires pour le layout de la démo */
+.md3-border {
+    border: 1px solid var(--md3-outline);
+}
+
 .md3-demo-page {
     padding: 2rem;
 }
@@ -785,44 +789,6 @@
     gap: 1rem;
     padding: 1rem;
     align-items: center;
-}
-
-/* Inputs */
-.md3-input-container {
-    position: relative;
-    width: 100%;
-}
-.md3-input-field {
-    width: 100%;
-    padding: 16px;
-    font-size: 1rem;
-    border: none;
-    outline: none;
-    transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
-}
-.md3-input-filled .md3-input-field {
-    background-color: var(--md3-surface-variant);
-    border-radius: var(--md3-radius-small);
-}
-.md3-input-outlined .md3-input-field {
-    background-color: transparent;
-    border: 1px solid var(--md3-outline);
-    border-radius: var(--md3-radius-small);
-}
-.md3-input-label {
-    position: absolute;
-    left: 16px;
-    top: 16px;
-    font-size: 1rem;
-    color: var(--md3-on-surface-variant);
-    pointer-events: none;
-    transition: all var(--md3-anim-duration-medium) var(--md3-anim-easing);
-}
-.md3-input-field:focus + .md3-input-label,
-.md3-input-field:not(:placeholder-shown) + .md3-input-label {
-    transform: scale(0.75) translateY(-50%) translateX(-2px);
-    top: 8px;
-    left: 12px;
 }
 
 /* Switch */

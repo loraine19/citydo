@@ -67,7 +67,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                                         onMouseEnter={() => setShowLabel({ index: i, value: true })}
                                         onMouseLeave={() => setShowLabel({ index: i, value: false })}
                                         type={action?.type ?? "button"}
-                                        className={` showUp ${action?.color ?? defColor ?? 'slate'}${(isPrimary(i) && !isDisabled(i)) ? 'StyleInv ' : 'Style'} !min-w-max  lgBtn !mr-0 flex-1 flex !py-1 !px-1.5 anim border border-slate-900/10 md3-elevation-4`}
+                                        className={` showUp md3-${action?.color ?? defColor ?? 'slate'}${(isPrimary(i) && !isDisabled(i)) ? '' : '-container'} !min-w-max  lgBtn !mr-0 flex-1 flex !py-1 !px-1.5 anim md3-elevation-4`}
                                     >
                                         {action?.iconImage && (
                                             <Icon

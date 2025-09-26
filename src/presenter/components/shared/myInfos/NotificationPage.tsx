@@ -13,8 +13,8 @@ import { useNotificationStore } from "../../../../application/stores/notificatio
 import { useUxStore } from "../../../../application/stores/ux.store";
 import { HandleHideParams, HandleScrollParams } from "../../../../application/useCases/utils.useCase";
 import TabsMenu from "../../common/appComps/TabsMenu";
-import DetailsHeadSection from "../base/baseComps/DetailsHeadSection";
 import { useNavStore } from "../../../../application/stores/nav.store";
+import FormHeadSection from "../base/baseComps/FormHeadSection";
 
 export default function NotificationPage() {
     const [notifFind, setNotifFind] = useState<string>('');
@@ -98,7 +98,8 @@ export default function NotificationPage() {
     const { setTabSection } = useNavStore((state) => state);
 
     const TabSection = useMemo(() => (
-        <div className="grid  overflow-y-hidden overflow-x-auto max-w-[190%]">
+        <div className="grid overflow-y-hidden overflow-x-auto max-w-[190%]">
+
             <TabsMenu
                 labels={notifTabs} />
         </div>
@@ -118,16 +119,19 @@ export default function NotificationPage() {
     return (
 
         <main>
-            <DetailsHeadSection
+            <FormHeadSection
                 hidden={hideNavBottom && !isLoading && !error && !notifFind}
-                infosChipValue={"Notifications " + `/ ${PathElement[filter as keyof typeof PathElement] ?? ""}`} notif={notifFind}
                 error={error}
-                isLoading={isLoading}
+                notif={notifFind}
                 refetch={refetch}
-            >
+                isLoading={isLoading}
+                infosChipValue={`
+                ${count ?? notifs.length ?? 'aucune'}  
+            ${count === 1 ? 'notification' : 'notifications'} /
+            ${notifTabs.find(tab => tab.value === filter)?.label ?? ''}`} >
                 <ReadAllButton
                     update={refetch} />
-            </DetailsHeadSection>
+            </FormHeadSection>
             {isLoading ?
                 <SkeletonGrid small /> :
                 <section
@@ -136,14 +140,15 @@ export default function NotificationPage() {
                     className="GridSmall ">
                     {
                         notifs?.map((notif: NotifView, index: number) => notif.read === false &&
-
                             <NotifCard
+                                read={notif.read}
                                 key={index}
                                 notif={notif}
                                 handleClick={async (notif: NotifView) => {
                                     readNotif(notif.id)
                                     setUnReadNotif(count - 1);
-                                    await refetch();
+                                    // setTimeout(async () =>
+                                    //     await refetch(), 5000);
                                 }} />
                         )}
                     <LoadMoreButton

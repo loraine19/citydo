@@ -28,7 +28,7 @@ export const serviceViewModel = () => {
     const services = (userLoading || !flat) ? [] : flat?.map((service: Service) => service && new ServiceView(service, user))
 
 
-
+    console.log(services)
 
     return {
       count,

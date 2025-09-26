@@ -1,47 +1,38 @@
-import { Card, CardHeader, Typography, CardBody, CardFooter, } from "@material-tailwind/react";
+
 import { Icon } from "../../../common/IconComp";
 import { FlagView } from "../../../../views/viewsEntities/flagViewEntities";
 import { FlagTarget } from "../../../../../domain/entities/Flag";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import Chip from "../../../common/adaptatersComps/Chip";
+import { CardMD } from "../../base/baseComps/Cards";
 
 export default function FlagDetailComp(props: { flag: FlagView, element?: any, label?: string }) {
-    const { flag } = props
+    const flag = new FlagView(props.flag)
 
     const { createdAt, element, target, title } = flag
     const now = Date.now();
     const id = flag.targetId
 
     return (
-        <Card className="CardDetailGridNoImage" >
-            <CardHeader className="FixCardHeaderNoImage">
-                <div className="ChipDivNoImage">
-                    <Chip className="cyanChip"
-                        value={FlagTarget[flag.target as unknown as keyof typeof FlagTarget]
-                            || FlagTarget[props.label as unknown as keyof typeof FlagTarget]}
+        <CardMD variant="outlined" color='error' >
+            <CardMD.Chips>
+                <Chip color='cyan' value={FlagTarget[flag.target as unknown as keyof typeof FlagTarget]
+                    || props.label || ''}
 
-                    />
+                />
 
-                    <Chip
-                        value={(new Date(createdAt ? createdAt : now)).toLocaleDateString('fr-FR')}
-                        className={`rounded-full grayChip `}
-                    />
-                </div>
-            </CardHeader>
-            <CardBody
-                className="FixCardBody">
-                <div className="flex w-full items-center justify-between">
-                    <Typography as="h5" className="mb-2">
-                        {title}
-                    </Typography>
-                </div>
-                <div className="CardOverFlow">
-                    <Typography className="mb-2">
-                        {element?.description}
-                    </Typography>
-                </div>
-            </CardBody>
-            <CardFooter className="CardFooter">
+                <Chip
+                    value={(new Date(createdAt ? createdAt : now)).toLocaleDateString('fr-FR')}
+                />
+            </CardMD.Chips>
+            <CardMD.Subhead>
+                {element?.title}
+            </CardMD.Subhead>
+
+            <CardMD.SupportingText>
+                {element?.description}
+            </CardMD.SupportingText>
+            <CardMD.Footer>
                 <ProfileDiv
                     profile={element?.User} />
 
@@ -49,9 +40,9 @@ export default function FlagDetailComp(props: { flag: FlagView, element?: any, l
                     icon="arrow_circle_right"
                     link={`/${target}/${id}`}
                     title={`voir les details de ${title}`}
-                    bg clear />
+                    bg />
 
-            </CardFooter>
-        </Card>
+            </CardMD.Footer>
+        </CardMD>
     )
 }

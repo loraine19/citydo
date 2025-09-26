@@ -2,21 +2,18 @@ import { useFormik } from 'formik';
 import { object, string } from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { AuthHeader } from '../auth/auth.Comps/AuthHeader';
 import { ProfileForm } from '../auth/auth.Comps/ProfileForm';
 import { ProfileDTO, } from '../../../../domain/entities/Profile';
 import DI from '../../../../di/ioc';
 import { useUserStore } from '../../../../application/stores/user.store';
 import { AddressDTO } from '../../../../infrastructure/DTOs/AddressDTO';
-import { LogOutButton } from '../../common/LogOutBtn';
-import { Icon } from '../../common/IconComp';
 import { useAlertStore } from '../../../../application/stores/alert.store';
 import { ProfileDiv } from '../../common/ProfilDiv';
 
 export default function MyInfosPage() {
     const { setUser, user } = useUserStore()
 
-    const { Profile, user: userUpdated, refetch } = DI.resolve('meViewModel')();
+    const { Profile, user: userUpdated } = DI.resolve('meViewModel')();
     const navigate = useNavigate();
     const [assistance, setAssistance] = useState<string | undefined>(Profile?.assistance)
     const [mailSub, setMailSub] = useState<string | undefined>(Profile?.mailSub)
@@ -43,12 +40,13 @@ export default function MyInfosPage() {
     const updateFunction = async () => {
         const { blob, ...rest } = formik.values;
         const updateData = new ProfileDTO({ assistance, ...rest })
-        const updated = await updateProfile(updateData, address)
+
         try {
+            const updated = await updateProfile(updateData, address)
+
+            setOpen(false);
+            setUser({ ...user, Profile: updated });
             navigate("/");
-            setOpen(false)
-            setUser({ ...user, Profile: updated })
-            refetch()
         } catch (error) {
             console.error(error)
             handleApiError(error ?? 'Erreur lors de la mise à jour du profil')
@@ -87,20 +85,7 @@ export default function MyInfosPage() {
 
     return (
         <>
-            <header className="">
-                <div className="flex absolute justify-between items-center top-4 z-50 w-full pr-4">
-                    <LogOutButton />
-                    <Icon
-                        bg clear
-                        fill
-                        size='3xl'
-                        icon='cancel'
-                        title='fermer'
-                        link='/' />
 
-                </div>
-                <AuthHeader />
-            </header>
 
             <ProfileForm
                 formik={formik}

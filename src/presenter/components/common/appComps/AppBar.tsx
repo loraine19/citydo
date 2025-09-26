@@ -5,7 +5,8 @@ import { NavLinks } from "./NavLinks";
 import AppMenu from "./AppMenu";
 import { useNavStore } from "../../../../application/stores/nav.store";
 
-export default function AppBar({ mainPage, listPage, detailPage, singlePage }: { mainPage?: boolean, listPage?: boolean, detailPage?: boolean, singlePage?: boolean }) {
+export default function AppBar({ mainPage, listPage, detailPage, singlePage, addFab }:
+    { mainPage?: boolean, listPage?: boolean, detailPage?: boolean, singlePage?: boolean, addFab?: boolean }) {
     const { hideNavBottom, setHideNavBottom, navBottom, getColor, } = useUxStore((state) => state);
     const { searchSection, tabSection, detailSection } = useNavStore((state) => state)
 
@@ -37,7 +38,7 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage }: {
 
                     {/* INSERTION NAVLINK TOP  */}
                     {(mainPage || listPage) && !navBottom && !hideNavBottom && (
-                        <NavLinks listPage={listPage} mainPage={mainPage} placement="top" />
+                        <NavLinks addFab={addFab} mainPage={mainPage} placement="top" />
                     )}
 
                     {/* INSERTION SEARCH BAR */}

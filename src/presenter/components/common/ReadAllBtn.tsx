@@ -1,30 +1,30 @@
 import { Icon } from "./IconComp";
 import DI from "../../../di/ioc";
 import { useNotificationStore } from "../../../application/stores/notification.store";
+import Chip from "./adaptatersComps/Chip";
 
 export const ReadAllButton = ({ update }: { update?: any }) => {
     const { fetchNotif, setUnReadNotif } = useNotificationStore();
     const readAll = () => DI.resolve('readAllNotifUseCase').execute();
     return (
-        <div className="absolute top-0 right-0 z-10 rounded-full m-1 shadow-md">
-            <Icon
-                reverse
-                bg
-                color='red'
-                icon="delete"
-                size="lg"
-                onClick={
-                    async () => {
-                        const notifs = await readAll();
-                        if (notifs) {
-                            //// TODO verifier 
-                            fetchNotif();
-                            update();
-                        }
-                        setUnReadNotif(0);
-                    }}
-                title="marquer tout comme lu , vous ne verrez plus de notifications"
-            />
-        </div>
+
+        <Chip
+            size="medium"
+            iconPlacement="end"
+            value='Tout lire'
+            color='error'
+            icon={<Icon title="marquer tout comme lu , vous ne verrez plus de notifications" size='md' icon="delete" />}
+            onClick={
+                async () => {
+                    const notifs = await readAll();
+                    if (notifs) {
+                        //// TODO verifier 
+                        fetchNotif();
+                        update();
+                    }
+                    setUnReadNotif(0);
+                }}
+
+        />
     );
 }

@@ -2,133 +2,148 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
-import { Switch, Typography } from '@material-tailwind/react';
-import { Flag, FlagTarget } from '../../../../domain/entities/Flag';
-import { ConfirmModal } from '../../common/ConfirmModal';
-import SubHeader from '../../common/appComps/SubHeader';
-import FlagDetailComp from './flagCards/FlagDetailComp';
-import { Skeleton } from '../../common/Skeleton';
-import { getLabel } from '../../../views/viewsEntities/utilsService';
+import { Flag, FlagReason, FlagTarget } from '../../../../domain/entities/Flag';
 import DI from '../../../../di/ioc';
+import { FlagView } from '../../../views/viewsEntities/flagViewEntities'
+import FlagForm from './flagCards/FlagForm';
+import { FlagDTO } from '../../../../infrastructure/DTOs/FlagDTO';
+import { useAlertStore } from '../../../../application/stores/alert.store';
+import { CardConfirmForm } from '../../common/CardConfirmForm';
 import { flagReasons } from '../../../constants';
-import { FlagView } from '../../../views/viewsEntities/flagViewEntities';
-import { Select } from '../../common/adaptatersComps/Select';
-import CTAMines from '../../common/CTA';
-
 export default function FlagCreatePage() {
     const { id, target } = useParams();
-    const targetKey: FlagTarget = Object.keys(FlagTarget).find(key => FlagTarget[key as keyof typeof FlagTarget] === target) as FlagTarget;
+    const targetKey = (target: string) => Object.keys(FlagTarget).find(key => FlagTarget[key as keyof typeof FlagTarget] === target);
+    const reasonKey = (reason: string) => Object.keys(FlagReason).find(key => FlagReason[key as keyof typeof FlagReason] === reason);
     const [loading, setLoading] = useState<boolean>(true);
-    const navigate = useNavigate();
     const [flag, setFlag] = useState<Flag>({} as Flag);
+    const navigate = useNavigate();
     const postFlag = async (data: any) => DI.resolve('postFlagUseCase').execute(data);
     const getEventById = (id: number) => DI.resolve('getEventByIdUseCase').execute(id);
     const getServiceById = (id: number) => DI.resolve('getServiceByIdUseCase').execute(id);
     const getPostById = (id: number) => DI.resolve('getPostByIdUseCase').execute(id);
 
-    const fetch = async () => {
+    const { flag: alreadyFlag, isLoading } = DI.resolve('flagByIdViewModel')(parseInt(id || '0'), targetKey)
+    const [isAlreadyFlag, setIsAlreadyFlag] = useState<boolean>(false);
+
+    const fetch = async (): Promise<FlagView> => {
         setLoading(true);
         const idS = id ? parseInt(id) : 0;
+        if (alreadyFlag && alreadyFlag.id) {
+            alert('Vous avez déjà signalé cet élément. Vous allez être redirigé vers la page de modification de votre signalement.');
+            setFlag(alreadyFlag);
+            setIsAlreadyFlag(true);
+            return new FlagView(alreadyFlag);
+        }
         let fetchedElement: any = {};
-        switch (target) {
-            case 'evenement':
+        switch (target as string) {
+            case FlagTarget.EVENT:
                 fetchedElement = await getEventById(idS);
                 break;
-            case 'service':
+            case FlagTarget.SERVICE:
                 fetchedElement = await getServiceById(idS);
                 break;
-            case 'annonce':
+            case FlagTarget.POST:
                 fetchedElement = await getPostById(idS);
                 break;
-            // target === "survey" && setElement(await getSurveyById(idS))
         }
         flag.element = fetchedElement;
-        formik.setValues({ ...fetchedElement, element: fetchedElement, target: targetKey, targetId: idS });
-        setLoading(false);
+        formik.setValues(
+            new FlagView({
+                ...flag,
+                element: fetchedElement,
+                target: targetKey(target ?? '') as any,
+                targetId: idS
+            })
+        );
+        return new FlagView(flag);
     };
 
-    useEffect(() => { fetch(); }, []);
 
-    const formSchema = object({ reason: string().required("Le type de signalement est obligatoire"), });
+
+    const formSchema = object(
+        {
+            reason: string().required("La raison est obligatoire"),
+            target: string().required("Le type d'élément est obligatoire"),
+            targetId: string().required("L'élément à signaler est obligatoire"),
+
+
+        });
+
+    const { setAlertValues, setOpen, handleApiError } = useAlertStore(state => state)
+
+    const postFunction = async () => {
+        const dataDTO = new FlagDTO(formik.values)
+        console.log(dataDTO)
+        let data: any
+        try {
+            data = await postFlag(dataDTO);
+            if (data?.id) {
+                setOpen(false);
+                navigate("/flag");
+            }
+        }
+        catch (error: any) {
+            handleApiError(error ?? "Erreur lors de la création de l'événement");
+        }
+
+    }
 
     const formik = useFormik({
         initialValues: new FlagView(flag),
         validationSchema: formSchema,
-        onSubmit: values => {
-            formik.setValues(values);
-            setFlag(values);
-            setOpen(true);
+        onSubmit: async values => {
+
+            const idS = id ? parseInt(id) : 0;
+            formik.setValues(
+                new FlagView({
+                    ...flag,
+                    target: targetKey(target ?? '') as FlagTarget,
+                    targetId: idS,
+                    reason: reasonKey(values.reason ?? '') as FlagReason,
+                })
+            );
+            setOpen(true)
+            setAlertValues({
+                button2: {
+                    text: "Annuler",
+                    onClick: () => setOpen(false)
+                },
+                disableCancel: true,
+                disableConfirm: false,
+                handleConfirm: async () => await postFunction(),
+                confirmString: "Enregistrer",
+                title: "Confimrer la création de l'événement",
+                element: (
+                    <CardConfirmForm
+                        title={values.title}
+                        content={
+                            <>
+                                <div className='font-semibold'> Motif</div>
+                                <div>{flagReasons.find((c: any) => c.value === values.reason)?.label ?? values.reason}</div>
+                                <div className='font-semibold'>{target}:</div>
+                                <div>{values.element?.title}</div>
+
+                            </>
+                        }
+                    />
+                )
+            })
         }
     });
 
-    const [open, setOpen] = useState(false);
+    useEffect(() => {
+        fetch().then(() => setFlag(new FlagView(flag))).finally(() => setLoading(false));
+    }, [id, target, isLoading]);
+
 
     return (
         <>
-            <ConfirmModal
-                open={open}
-                handleCancel={() => { setOpen(false); }}
-                handleConfirm={async () => {
-                    const PostData = { ...formik.values };
-                    const ok = new FlagView(await postFlag(PostData));
-                    if (ok) { setOpen(false); navigate(`/flag/edit/${ok.targetS}/${ok.targetId}`); }
-                }}
-                title={"Confimrer le Flag"}
-                element={` Vous confirmez le signalement </br>
-                    sur  <br>${target} ${flag?.element?.title} <br> pour le motif <b>${getLabel(flag.reason, flagReasons)}</b>`} />
 
-            <form onSubmit={formik.handleSubmit} className="flex flex-col h-full">
-                <main>
-                    <div className="sectionHeader">
-                        <SubHeader
-                            type={`Signaler `}
-                            place={'un ' + target}
-                            closeBtn />
-                        <div className='w-respLarge h-full flex flex-col py-2 gap-2'>
-                            <div className='flex justify-between items-center px-2'>
-                                <Switch
-                                    color='error'
-                                    id='active'
-                                    className=''
-                                    name="active" />
-                                <Typography
-                                    as="label"
-                                    htmlFor="active"
-                                    className="cursor-pointer text-foreground"
-                                >
-                                    {flag.reason ? "signalé" : "non signalé"}
-                                </Typography>
-                            </div>
-                            <Select
-                                value={formik.values.reason}
-                                options={flagReasons}
-                                placeholder='Choisir une raison'
-                                formik={formik}
-                                name="reason"
-
-                            />
-                        </div>
-                    </div>
-
-                    <section>
-                        <div className='h-[calc(100vh_-_11rem)] pt-6 flex '>
-                            {loading ?
-                                <Skeleton
-                                    className='w-respLarge m-auto !h-full !rounded-3xl' /> :
-                                <FlagDetailComp
-                                    flag={new FlagView(flag)}
-                                    label={targetKey} />}
-                        </div>
-                    </section>
-                </main>
-
-                <CTAMines
-                    actions={[{
-                        color: 'red',
-                        iconImage: 'flag_2',
-                        icon: 'Signaler', title: 'Signaler', function: () => { }, direct: true, type: 'submit',
-                    }]} />
-            </form>
+            <FlagForm
+                alreadyFlag={isAlreadyFlag}
+                flag={flag}
+                loading={loading}
+                formik={formik} />
         </>
     );
 }

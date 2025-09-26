@@ -97,17 +97,23 @@ function App() {
                                     {/* FORMS  */}
                                     <Route path="/service/create" element={<ServiceCreatePage />} />
                                     <Route path="/service/edit/:id" element={<ServiceEditPage />} />
+
                                     <Route path="/conciliation/edit/:id" element={<IssueEditPage />} />
                                     <Route path="/conciliation/create/:id" element={<IssueCreatePage />} />
+
                                     <Route path="/evenement/create" element={<EventCreatePage />} />
                                     <Route path="/evenement/edit/:id" element={<EventEditPage />} />
-                                    <Route path="/flag/edit/:target/:id" element={<FlagEditPage />} />
+
                                     <Route path="/vote/:target/edit/:id" element={<VoteEditPage />} />
                                     <Route path="/vote/create" element={<VoteCreatePage />} />
+                                    <Route path="/vote/:target/edit/:id" element={<VoteEditPage />} />
+
                                     <Route path="/annonce/create" element={<PostCreatePage />} />
                                     <Route path="/annonce/edit/:id" element={<PostEditPage />} />
-                                    <Route path="/vote/:target/edit/:id" element={<VoteEditPage />} />
+
+                                    <Route path="/flag/edit/:target/:id" element={<FlagEditPage />} />
                                     <Route path="/flag/:target/:id" element={<FlagCreatePage />} />
+
                                     {/* DETAILS PAGES */}
                                     <Route path="/service/:id" element={<ServiceDetailPage />} />
                                     <Route path="/cagnotte/:id" element={<PoolDetailPage />} />
@@ -129,30 +135,34 @@ function App() {
                                     <Route path="/base/edit/:id" element={<BaseEditPage />} />
                                     <Route path="/chat" element={<ChatPage />} />
                                     <Route path="/notification" element={<NotificationPage />} />
+                                    <Route path="/flag" element={<FlagPage />} />
                                 </Route>
 
 
 
 
                                 {/* DASHBOARD */}
-                                <Route element={<ConfigPage mainPage />}>
+                                <Route element={<ConfigPage mainPage addFab />}>
 
                                     <Route path="/" element={<DashboardPage />} />
                                 </Route>
 
 
                                 {/* LIST PAGES  */}
-                                <Route element={<ConfigPage listPage />}>
+                                <Route element={<ConfigPage listPage addFab />}>
 
                                     <Route path="/groupe" element={<GroupPage />} />
                                     <Route path="/service" element={<ServiceListPage />} />
                                     <Route path="/evenement" element={<EventListPage />} />
-                                    <Route path="/flag" element={<FlagPage />} />
                                     <Route path="/vote" element={<VoteListPage />} />
                                     <Route path="/sondage" element={<VoteListPage />} />
                                     <Route path="/cagnotte" element={<VoteListPage />} />
                                     <Route path="/annonce" element={<PostListPage />} />
                                     <Route path="/conciliation" element={<ConciliationListPage />} />
+                                </Route>
+                                {/* LIST PAGES NO FAB */}
+                                <Route element={<ConfigPage listPage />}>
+
                                 </Route>
                             </Route>
                         </Routes>

@@ -8,13 +8,13 @@ import { NavigationBar, NavigationBarItem } from "../../shared/base/baseComps/Na
 
 interface NavBarProps {
     handleClick?: () => void;
-    listPage?: boolean;
     mainPage?: boolean;
     placement?: "top" | "bottom";
     color?: string;
+    addFab?: boolean;
 }
 
-export const NavLinks: React.FC<NavBarProps> = ({ listPage, placement, mainPage }) => {
+export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab }) => {
     const location = useLocation()
     const type = new URLSearchParams(location.pathname.split("/")[1]).toString().replace("=", '');
     const { setColor, color, hideNavBottom } = useUxStore((state) => state);
@@ -43,7 +43,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ listPage, placement, mainPage 
     ]
 
     //// ADD BUTTON ITEM
-    const addBtnItem: NavItem[] = type || listPage ? [{
+    const addBtnItem: NavItem[] = mainPage ? [{
         to: `/${type}/create`,
         icon: ({
             service: "partner_exchange",
@@ -145,7 +145,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ listPage, placement, mainPage 
                         )
                     })}
                 </NavigationBar>
-                {(listPage || mainPage || type ) &&
+                {addFab &&
                     <FabMenu
                         backdropBlur={true}
                         open={openFab}

@@ -25,7 +25,6 @@ export const notifViewModel = () => {
     const notifs = isLoading || !flat || error || !data ? [] : flat?.map((notif: Notif) => notif && new NotifView(notif))
     const notifsMsg = notifs.filter((notif) => notif.type === 'MESSAGE')
     const notifsOther = notifs.filter((notif) => notif.type !== 'MESSAGE')
-    console.log(data, error, notifs, 'notifs')
     return {
       count,
       countMsg,

@@ -19,7 +19,6 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
     const { weeks, loadingEvents, errorEvents, fetchNextPage, hasNextPage, refetch } = DI.resolve('eventsWeekViewModel')(startDate, numberOfwweks)
 
     const navigate = useNavigate();
-    const [open, setOpen] = useState(false);
 
     //// NAVIGATE WEEK BTN 
     const addWeek = () => { setStartDate((new Date(new Date(startDate).getTime() + 7 * dayMS)).toDateString()) }
@@ -155,25 +154,22 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                                         const eventDays = event.days.map((d: any) => new Date(d).toDateString());
                                         const currentDay = new Date(new Date(day.date).getTime()).toDateString();
                                         return (
-                                            <div data-cy='event-handler'
+                                            <div
+                                                key={indexEvent + event.id}
+                                                data-cy='event-handler'
                                                 title={'Voir événement' + ' ' + event.title}
                                                 className='w-full grid ' >
                                                 <Menu
+                                                    closeIcon={<Icon icon='close' size='md' />}
                                                     MenuKey={'event-menu' + event.id + '_' + indexEvent}
-                                                    open={open && (eventDays[indexEvent] === currentDay)}
-                                                    setOpen={setOpen}
-                                                    closeIcon={
-                                                        <Icon
-                                                            icon="close"
-                                                            bg style='self-start'
-                                                            color='slate' size="sm" />}
-                                                    className={`-ml-[0.5rem] max-h-full !z-[9]  px-2 pt-2  max-w-fit  `}
+
+                                                    className={`-ml-[0.5rem] max-h-full !z-[9]  px-2 pt-2  max-w-fit bg-[var(--md3-surface-variant)]  md3-border `}
                                                     blurBack
                                                     placement={'center'}
                                                     trigger={<button
                                                         className=
                                                         {` ${!event.actif && 'invisible'} 
-                                                                             ${event.status !== EventStatus.VALIDATED ? `!bg-[--md3-slate-container]` : `bg-[--md3-cyan-container]`} shadow-md px-[0.5rem] mb-[0.2rem]  w-full flex-1  h-5 truncate flex items-center justify-center font-normal z-[4]
+                                                                             ${event.status !== EventStatus.VALIDATED ? `!bg-[--md3-slate-container]` : `bg-[--md3-cyan-container]`} md3-elevation-1 px-[0.5rem] mb-[0.2rem]  w-full flex-1  h-5 truncate flex items-center justify-center font-normal z-[4]
                                                         text-[0.80rem]
                                                         ${(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) ? 'rounded-l-xl !justify-start !z-50 pl-3 !font-medium capitalize' : 'italic text-opacity-70'}
                                                         ${(eventDays[eventDays.length - 1] === currentDay || new Date(day.date).getDay() === 0) && 'rounded-r-xl '}
@@ -186,7 +182,6 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                                                         variant='outlined'
                                                         event={event}
                                                         change={() => {
-                                                            setOpen(false);
                                                             setInterval(() => {
                                                                 navigate(
                                                                     `/evenement?category=${event.category}`

@@ -2,17 +2,25 @@ import { Icon } from "../../common/IconComp";
 import { NotifView } from "../../../views/viewsEntities/notifViewEntity";
 import Chip from "../../common/adaptatersComps/Chip";
 import { CardMD } from "../base/baseComps/Cards";
+import { useEffect, useState } from "react";
 
 
-type notifCardProps = { notif: any, handleClick: (notif: NotifView) => void }
+type notifCardProps = { notif: any, handleClick: (notif: NotifView) => void, read?: boolean }
 
 export function NotifCard(props: notifCardProps) {
     const { handleClick, notif } = props
-    const { update, read, typeS, } = notif
-
+    const [read, setRead] = useState(props.read ?? false)
+    const { update, typeS, } = notif
+    const [className, setClassName] = useState('md3-menu-enter')
+    useEffect(() => {
+        setClassName(!read ? 'md3-menu-enter' : ' md3-animation-scale-out')
+        setTimeout(() => {
+            setClassName(read ? 'hidden' : '')
+        }, 1000);
+    }, [read])
 
     return (
-        <CardMD className={`anim ${!read ? '' : 'hidden'}`}>
+        <CardMD className={` ${className}`}>
             <CardMD.Chips className="justify-between px-3">
                 <Chip
                     value={typeS}>
@@ -20,7 +28,11 @@ export function NotifCard(props: notifCardProps) {
                 <Icon
                     bg reverse fill={true}
                     icon="close"
-                    onClick={() => handleClick(notif)}
+                    onClick={() => {
+                        notif.read = true
+                        setRead(true);
+                        handleClick(notif)
+                    }}
                     color="error"
                     title="fermer la notification"
                     size="sm" />
@@ -29,7 +41,7 @@ export function NotifCard(props: notifCardProps) {
             <CardMD.Subhead>
                 {notif.title}
             </CardMD.Subhead>
-            <CardMD.SupportingText>
+            <CardMD.SupportingText className="line-clamp-2">
                 {notif.description}
             </CardMD.SupportingText>
             <CardMD.Footer className="justify-between  ">

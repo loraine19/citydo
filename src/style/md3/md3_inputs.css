@@ -91,7 +91,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    z-index: 2;
+    z-index: 1;
 }
 .md3-label-multiline {
     top: 1.5rem;

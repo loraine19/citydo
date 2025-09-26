@@ -30,9 +30,9 @@ export function Select({
     const { color } = useUxStore(state => state);
 
     const error = formik?.errors[name ?? ''];
-    const selected = options?.find(opt => opt.value === (formik?.values[name ?? ''] ?? value));
+    const selected = options?.find(opt => opt.value === (formik?.values?.[name ?? ''] ?? value));
     const displayLabel = selected?.label || placeholder;
-    const className = variant === 'Input' ? `md3-input-container md3-outlined !rounded-md md3-input-size-md ` : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
+    const className = variant === 'Input' ? `md3-input-container md3-outlined active !rounded-md md3-input-size-lg ` : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
 
     const handleSelect = (option: { label: string, value: string }) => {
         if (formik) formik.setFieldValue(name, option?.value);
@@ -46,7 +46,7 @@ export function Select({
         <div className="flex-1">
             <div className={`w-full relative`}>
                 <div
-                    className={`flex items-center rounded-full md3-button-${error ? 'error' : color} ${className} !px-[1rem] !min-h-[42px] gap-2 ${disabled ? 'opacity-50 pointer-events-none' : ''}`}
+                    className={`flex items-center rounded-full md3-button-${error ? 'error' : color} ${className}  !px-[1rem] !min-h-[42px] gap-2 ${disabled ? 'opacity-50 pointer-events-none' : ''}`}
                 >
                     <div className={`flex-1 flex w-full px-1 truncate`}>
                         {(error && variant === 'Input') ? placeholder : displayLabel}

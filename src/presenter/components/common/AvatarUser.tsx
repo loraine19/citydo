@@ -25,7 +25,7 @@ export const AvatarUser = ({ Profile, avatarSize = '', avatarStyle = '', style =
     const sizeArray = sizeMap
 
 
-    const classicStyle = '!flex !shadow cursor-pointer min-w-max hover:!shadow hover:!scale-[1.02] hover:!saturate-[1.1] transition-all duration-200 ease-in-out'
+    const classicStyle = '!flex cursor-pointer min-w-max hover:scale-[1.02]  transition-all duration-200 ease-in-out'
 
     const [inError, setInError] = useState<boolean>(false);
     return (

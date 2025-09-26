@@ -59,7 +59,7 @@ export const useUxStore = create<UxStore, [['zustand/persist', UxStore]]>(
 
             case 'sign':
             case 'flag':
-              color = 'slate';
+              color = 'error';
               break;
             default:
               color = 'slate';

@@ -8,10 +8,11 @@ interface AppFooterProps {
     listPage?: boolean;
     detailPage?: boolean;
     singlePage?: boolean;
+    addFab?: boolean;
     color?: string;
 }
 
-export const AppFooter: React.FC<AppFooterProps> = ({ mainPage, listPage}) => {
+export const AppFooter: React.FC<AppFooterProps> = ({ mainPage, listPage, addFab }) => {
     const { } = useNotificationStore((state) => state);
     const { setNavBottom, navBottom } = useUxStore((state) => state)
 
@@ -20,7 +21,7 @@ export const AppFooter: React.FC<AppFooterProps> = ({ mainPage, listPage}) => {
             <footer className={`!left-0 -mb-[1px] bottom-0 CTA `}
                 onDrag={() => setNavBottom(!navBottom)}>
                 {((mainPage || listPage) && navBottom) &&
-                    <NavLinks mainPage={mainPage} listPage={listPage} placement="bottom" />}
+                    <NavLinks mainPage={mainPage} addFab={addFab} placement="bottom" />}
             </footer>
         </>
     );
