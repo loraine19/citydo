@@ -16,6 +16,11 @@ interface SelectProps {
     onChangeFunction?: () => void;
 }
 
+interface MultiSelectProps extends Omit<SelectProps, 'value' | 'setValue'> {
+    value?: string[];
+    setValue?: (value: string[]) => void;
+}
+
 export function Select({
     formik,
     setValue,
@@ -32,7 +37,7 @@ export function Select({
     const error = formik?.errors[name ?? ''];
     const selected = options?.find(opt => opt.value === (formik?.values?.[name ?? ''] ?? value));
     const displayLabel = selected?.label || placeholder;
-    const className = variant === 'Input' ? `md3-input-container md3-outlined active !rounded-md md3-input-size-lg ` : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
+    const className = variant === 'Input' ? `md3-input-container md3-outlined  !rounded-md md3-input-size-lg ` : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
 
     const handleSelect = (option: { label: string, value: string }) => {
         if (formik) formik.setFieldValue(name, option?.value);
@@ -43,12 +48,14 @@ export function Select({
     const [open, setOpen] = useState(false)
 
     return (
-        <div className="flex-1">
+        <div className={`flex-1 relative ${variant === 'Input' ? ' !font-roboto' : ''}`}>
             <div className={`w-full relative`}>
-                <div
-                    className={`flex items-center rounded-full md3-button-${error ? 'error' : color} ${className}  !px-[1rem] !min-h-[42px] gap-2 ${disabled ? 'opacity-50 pointer-events-none' : ''}`}
-                >
-                    <div className={`flex-1 flex w-full px-1 truncate`}>
+                <div className={`flex items-center rounded-full md3-button-${error ? 'error' : color} 
+                ${className} !px-[1rem] !min-h-[42px] gap-2 
+                ${displayLabel ? 'active border-2' : ''}
+                ${disabled ? 'opacity-50 pointer-events-none' : ''}`} >
+                    <div className={`${variant === 'Input' ? '' : ''} 
+                        flex-1 flex w-full px-1 py-3 truncate`}>
                         {(error && variant === 'Input') ? placeholder : displayLabel}
                     </div>
                     <Menu
@@ -58,7 +65,6 @@ export function Select({
                         closeIcon={<></>}
                         className="mt-2 w-max"
                         blurBack
-
                         placement="bottom-left"
                         trigger={
                             <Icon
@@ -83,10 +89,106 @@ export function Select({
                     </Menu>
                 </div>
             </div>
-            {variant === 'Input' && (
-                <InputError mt error={error} tips={placeholder} />
-            )}
+            {displayLabel && variant === 'Input' && !error && placeholder !== displayLabel &&
+                <InputError
+                    style="absolute mx-2 px-1 h-max pb-1 top-1 -mt-1 !z-[999] rounded bg-[var(--md3-primary-container)]"
+                    tips={placeholder} />}
+            {variant === 'Input' &&
+                <InputError
+                    style="mt-1"
+                    error={error} />}
         </div >
 
+    );
+}
+
+// MultiSelect component
+export function MultiSelect({
+    formik,
+    setValue,
+    value = [],
+    name,
+    placeholder,
+    disabled,
+    options,
+    variant,
+    onChangeFunction
+}: MultiSelectProps) {
+    const { color } = useUxStore(state => state);
+
+    const error = formik?.errors[name ?? ''];
+    const selectedValues: string[] = formik?.values?.[name ?? ''] ?? value;
+    const selectedOptions = options.filter(opt => selectedValues.includes(opt.value));
+    const displayLabel = selectedOptions.length
+        ? selectedOptions.map(opt => opt.label).join(', ')
+        : placeholder;
+    const className = variant === 'Input' ?
+        `md3-input md3-input-size-lg md3-outlined active md3-input-container !rounded-md  ` :
+        `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
+
+    const handleSelect = (option: { label: string, value: string }) => {
+        let newValues: string[];
+        if (selectedValues.includes(option.value)) {
+            newValues = selectedValues.filter(v => v !== option.value);
+        } else {
+            newValues = [...selectedValues, option.value];
+        }
+        if (formik) formik.setFieldValue(name, newValues);
+        setValue && setValue(newValues);
+        onChangeFunction && onChangeFunction();
+    };
+
+    const [open, setOpen] = useState(false)
+
+    return (
+        <>
+            <div className={`flex-1 relative ${variant === 'Input' ? ' !font-roboto' : ''}`}>
+                <div className={`w-full relative`}>
+                    <div className={`flex items-center rounded-full md3-button-${error ? 'error' : color} 
+                        ${className}  !px-[1rem] !min-h-[42px] gap-2 
+                          ${displayLabel ? 'active border-2' : ''}
+                        ${disabled ? 'opacity-50 pointer-events-none' : ''}`} >
+
+                        <div className={` flex-1 flex w-full py-3 px-1 truncate`}>
+                            {(error && variant === 'Input') ? placeholder : displayLabel}
+                        </div>
+
+                        <Menu
+                            open={open}
+                            setOpen={setOpen}
+                            MenuKey={'multiselect-menu' + (color)}
+                            closeIcon={<></>}
+                            className="mt-2 w-max"
+                            blurBack
+                            placement="bottom-left"
+                            trigger={
+                                <Icon
+                                    icon="arrow_drop_down"
+                                    size='2xl' />
+                            }
+                            title={placeholder} >
+                            {options?.map((option) => (
+                                <MenuItem
+                                    key={option?.value}
+                                    value={option?.value}
+                                    onClick={() => handleSelect(option)}
+                                    trailingIcon={selectedValues.includes(option?.value) ? (
+                                        <Icon style='-mr-1' color={color ?? 'slate'} size="lg" icon="check" />
+                                    ) : <div className="w-3" />}
+                                >
+                                    {option?.label}
+                                </MenuItem>
+                            ))}
+                        </Menu>
+                    </div>
+                </div>
+                {variant === 'Input' &&
+                    <InputError
+                        style="absolute mx-2 px-1 top-1 -mt-1 !z-[999] bg-[var(--md3-primary-container)]"
+                        error={error}
+                        tips={placeholder} />}
+            </div>
+
+        </>
     );
 }

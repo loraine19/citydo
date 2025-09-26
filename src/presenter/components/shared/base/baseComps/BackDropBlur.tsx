@@ -6,7 +6,7 @@ interface BackDropBlurProps {
     setOpen?: (open: boolean) => void;
     className?: string;
     children?: React.ReactNode;
-    key: string | number;
+    blurKey: string | number;
 }
 
 const BackDropBlur: React.FC<BackDropBlurProps> = ({
@@ -14,7 +14,7 @@ const BackDropBlur: React.FC<BackDropBlurProps> = ({
     setOpen,
     className = "",
     children,
-    key
+    blurKey
 }) => {
     if (!open) return null;
 
@@ -25,7 +25,7 @@ const BackDropBlur: React.FC<BackDropBlurProps> = ({
     React.useEffect(() => {
         const elements = document.querySelectorAll("#blurDiv");
         console.log(elements);
-        if (elements.length > 1) return setExisting(true)
+        if (elements.length > 2) return setExisting(true)
     }, []);
 
     if (existing) return null;
@@ -35,7 +35,7 @@ const BackDropBlur: React.FC<BackDropBlurProps> = ({
 
     return ReactDOM.createPortal(
         <div
-            key={key}
+            key={blurKey}
             id="blurDiv"
             className={`fixed bg-black/50 inset-0 backdrop-blur animate-fade ${className}`}
             onClick={() => setOpen && setOpen(false)}

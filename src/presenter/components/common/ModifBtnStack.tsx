@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Action } from "../../../domain/entities/frontEntities";
-import { Icon, IconName } from "./IconComp";
+import { IconName } from "./IconComp";
 import { useAlertStore } from "../../../application/stores/alert.store";
+import { Button, ButtonGroup } from "../shared/base/baseComps/Buttons";
 
 type ModifBtnStackProps = {
     actions: Action[];
@@ -33,7 +34,11 @@ export default function ModifBtnStack({ actions, disabled1, disabled2, update, i
 
 
     return (
-        <div className="flex gap-3 px-1 items-center w-full flex-1">
+        <ButtonGroup
+            variant="tonal"
+            rounded
+            size="small"
+            className="overflow-x-auto gap-2 ">
             {buttons.map((btn, i) => {
                 // Only render the third icon if icon3 is true, otherwise skip index 2
                 if (i === 2 && !icon3) return null;
@@ -44,20 +49,20 @@ export default function ModifBtnStack({ actions, disabled1, disabled2, update, i
                         ? (disabled2 ? 'gray' : 'orange')
                         : 'cyan';
                 return (
-                    <Icon
-
+                    <Button
+                        variant="tonal"
+                        size='medium'
+                        className=" !min-w-max"
                         key={i}
-                        icon={btn.iconImage as IconName || ''}
-                        color={color ?? 'slate'}
+                        icon={{ icon: btn.iconImage as IconName || '', size: 'lg', }}
+                        color={color as any ?? 'slate'}
                         onClick={() => { setOpen(true); setIndex(i); }}
-                        bg
-                        size="lg"
                         disabled={disabled}
                         title={btn.title as string}
                     />
                 );
             })}
-        </div>
+        </ButtonGroup>
     );
 }
 

@@ -89,12 +89,14 @@ function App() {
 
                             {/* Private routes */}
                             <Route path="/" element={<PrivateRoute />}>
-                                <Route path="/myprofile" element={<MyInfosPage />} />
+
 
                                 {/* Pages with top navigation */}
                                 <Route element={<ConfigPage detailPage />}>
 
                                     {/* FORMS  */}
+                                    <Route path="/myprofile" element={<MyInfosPage />} />
+
                                     <Route path="/service/create" element={<ServiceCreatePage />} />
                                     <Route path="/service/edit/:id" element={<ServiceEditPage />} />
 
@@ -115,6 +117,7 @@ function App() {
                                     <Route path="/flag/:target/:id" element={<FlagCreatePage />} />
 
                                     {/* DETAILS PAGES */}
+
                                     <Route path="/service/:id" element={<ServiceDetailPage />} />
                                     <Route path="/cagnotte/:id" element={<PoolDetailPage />} />
                                     <Route path="/annonce/:id" element={<PostDetailPage />} />

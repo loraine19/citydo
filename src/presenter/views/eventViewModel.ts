@@ -7,9 +7,6 @@ import { EventFindParams } from '../../domain/entities/Event';
 
 export const eventViewModel = () => {
   return (params: EventFindParams) => {
-
-    // console.log('eventViewModel called', { caller: (new Error().stack?.split('\n')[2] || '').trim() });
-
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
       refetchOnWindowFocus: false,
@@ -21,7 +18,6 @@ export const eventViewModel = () => {
     const { data, isLoading, error, fetchNextPage, hasNextPage, refetch }
       = useInfiniteQuery({
         queryKey: ['events', params],
-        staleTime: 6000,
         retry: true,
         queryFn: async ({ pageParam = 1 }) => await getEvents.execute(pageParam, params) || { events: [], count: 0 },
         initialPageParam: 1,
@@ -31,7 +27,7 @@ export const eventViewModel = () => {
     const count = isLoading ? 0 : (data?.pages[data?.pages.length - 1].count)
     const userId = user?.id || 0
     const flat = !data || error || isLoading ? [] : data?.pages.flat().map(page => page.events).flat()
-    const events = (userLoading || isLoading || !data) ? [] : flat?.map(event => event && new EventView(event, userId))
+    const events = (userLoading || !flat) ? [] : flat?.map(event => event && new EventView(event, userId))
 
 
     return {

@@ -60,23 +60,14 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                             type={'evenement'}
                             flagged={event?.flagged}
                             title={title} />
-
-
-
                     </CardMD.Chips>
-
-
-
-
                 </CardMD.Image>}>
             <CardMD.Chips >
-                <button
-                    onClick={change}>
-                    <Chip
-                        data-cy={`chip-${label}`}
-                        value={label}
-                        color='cyan' />
-                </button>
+                <Chip
+                    onClick={change}
+                    data-cy={`chip-${label}`}
+                    value={label}
+                    color='cyan' />
                 {new Date(end).getTime() > Date.now() &&
                     <DateChip
                         start={start}

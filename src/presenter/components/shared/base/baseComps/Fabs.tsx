@@ -69,7 +69,7 @@ export const FabMenu: React.FC<FabMenuProps> = ({ mainProps, children, placement
             </div>
             {backdropBlur &&
                 <BackDropBlur
-                    key={'fab-menu-blur' + (mainProps?.text || mainProps?.icon?.icon || 'default')}
+                    blurKey={'fab-menu-blur' + (mainProps?.text || mainProps?.icon?.icon || 'default')}
                     open={isOpen}
                     setOpen={setIsOpen}
                     className="z-0" />}

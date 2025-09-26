@@ -5,7 +5,7 @@ import { useUxStore } from "../../../application/stores/ux.store";
 import { Fab } from "../shared/base/baseComps/Fabs";
 interface BtnExpandImgProps {
     colorComp?: Md3Colors;
-    image?: string;
+    image: string;
 }
 
 const BtnExpandImg: React.FC<BtnExpandImgProps> = ({ colorComp, image }) => {
@@ -27,10 +27,12 @@ const BtnExpandImg: React.FC<BtnExpandImgProps> = ({ colorComp, image }) => {
                     onClick: () => setOpenDialog(true),
                 }}
             />
-            {open && image && (
+            {open && (
                 <DialogImage
+                    open={open}
+                    alt="Aperçu de l'image"
                     onClose={() => setOpenDialog(false)}
-                    image={image}
+                    image={image ?? ''}
                 />
             )}
         </>

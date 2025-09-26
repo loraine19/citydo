@@ -1,107 +1,151 @@
 import { useParams } from 'react-router-dom';
 import CTAMines from '../../../common/CTA';
-import SubHeader from '../../../common/appComps/SubHeader';
-import { Action } from '../../../../../domain/entities/frontEntities';
-import { GenereMyActions, } from '../../../../views/viewsEntities/utilsService';
-import DI from '../../../../../di/ioc';
-import { Skeleton, SkeletonGrid } from '../../../common/Skeleton';
-import { useAlertStore } from '../../../../../application/stores/alert.store';
 import GroupDetailCard from './GroupDetailCard';
-import { useRef, useCallback } from 'react';
-import { useUxStore } from '../../../../../application/stores/ux.store';
+import { Action } from '../../../../../domain/entities/frontEntities';
+import DI from '../../../../../di/ioc';
+import { Skeleton } from '../../../common/Skeleton';
+import { GenereMyActions } from '../../../../views/viewsEntities/utilsService';
+import { useAlertStore } from '../../../../../application/stores/alert.store';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { HandleHideParams } from '../../../../../application/useCases/utils.useCase';
+import { useUxStore } from '../../../../../application/stores/ux.store';
+import { useNavStore } from '../../../../../application/stores/nav.store';
+import FormHeadSection from '../../base/baseComps/FormHeadSection';
 
 export default function GroupDetailPage() {
+    // PARAMS
     const { id } = useParams();
     const idS = id ? parseInt(id) : 0;
+
+    // VIEW MODEL
     const groupIdViewModelFactory = DI.resolve('groupIdViewModel');
-    const { group, isLoading, error, refetch } = groupIdViewModelFactory(idS);
+    const { group, isLoading, error, refetch, update } = groupIdViewModelFactory(idS);
     const deleteGroup = async (id: number) => await DI.resolve('deleteGroupUseCase').execute(id);
-    const { setOpen, open } = useAlertStore(state => state);
-    const handleOpen = () => setOpen(!open)
-    const myActions = group && GenereMyActions(group, "groupe", deleteGroup)
+    const myActions = group && GenereMyActions(group, "groupe", deleteGroup);
 
+    // HANDLE API ERROR
+    const { handleApiError } = useAlertStore(state => state);
+    const [notif, setNotif] = useState<string>('');
 
+    // NOTIFICATION
+    useEffect(() => {
+        if (error) setNotif(error.message);
+        else setNotif('');
+        group && setButtons(buttonsGenerator(group));
+    }, [isLoading, error]);
 
-    //// CONTACT ACTIONS
-    const MemberShipActions: Action[] = !group ? [] : [
+    // UPDATE GROUP
+    const updateGroup = async () => {
+        const data = await update();
+        const array = buttonsGenerator(data);
+        setButtons([...array]);
+    };
+
+    // ACTIONS
+    const buttonsGenerator = (groupUp: any): Action[] => [
         {
-            iconImage: 'diversity_3',
-            icon: group.ImModo ? 'Je suis conciliateur' : 'Devenir conciliateur',
-            title: "Confirmer mon rôle " + group?.name,
-            body: `En tant que membre du groupe, vous pouvez devenir conciliateur pour aider à résoudre les litiges et les différends  liés aux services au sein du groupe.`,
+            iconImage: groupUp?.ImModo ? 'person_cancel' : 'person_add',
+            icon: groupUp?.ImModo ? 'Quitter conciliateur' : 'Devenir conciliateur',
+            title: groupUp?.ImModo ? `Quitter le rôle de conciliateur` : `Devenir conciliateur`,
+            body: groupUp?.ImModo
+                ? `Voulez-vous vraiment quitter le rôle de conciliateur dans ${groupUp?.name} ?`
+                : `Confirmer votre rôle de conciliateur dans ${groupUp?.name}`,
             function: async () => {
-                await group.toogleModo();
-                await refetch();
-                handleOpen()
-            },
-            color: group.ImModo ? 'red' : 'orange',
+                try {
+                    await groupUp?.toogleModo();
+                    await updateGroup();
+                } catch (error) {
+                    handleApiError(error ?? 'Erreur lors de la mise à jour de votre rôle');
+                }
+            }
         },
         {
-            iconImage: 'groups',
-            icon: group.ImIn ? 'Je suis membre' : 'Rejoindre le groupe',
-            title: "Rejoindre le groupe " + group?.name,
-            body: `En tant que membre du groupe, vous pouvez participer aux discussions, aux décisions et aux activités du groupe.`,
+            iconImage: groupUp?.ImIn ? 'person_cancel' : 'person_add',
+            icon: groupUp?.ImIn ? 'Quitter le groupe' : 'Rejoindre le groupe',
+            title: groupUp?.ImIn ? `Quitter le groupe` : `Rejoindre le groupe`,
+            body: groupUp?.ImIn
+                ? `Voulez-vous vraiment quitter le groupe ${groupUp?.name} ?`
+                : `Confirmer votre participation au groupe ${groupUp?.name}`,
             function: async () => {
-                await group.toogleMember();
-                await refetch();
-                handleOpen()
-            },
-            color: group.ImIn ? 'red' : 'cyan'
+                try {
+                    await groupUp?.toogleMember();
+                    await updateGroup();
+                } catch (error) {
+                    handleApiError(error ?? 'Erreur lors de la mise à jour de votre participation');
+                }
+            }
         }
-    ]
-    //// HANDLE SCROLL
-    const utils = DI.resolve('utils')
+    ];
+    const [buttons, setButtons] = useState<Action[]>(buttonsGenerator(group));
+
+    // HANDLE SCROLL
+    const utils = DI.resolve('utils');
     const divRef = useRef(null);
 
-    //// HANDLE HIDE 
-    const { hideNavBottom, setHideNavBottom } = useUxStore()
-    const handleHide = (params: HandleHideParams) => utils.handleHide(params)
+    // HANDLE HIDE
+    const { hideNavBottom, setHideNavBottom } = useUxStore();
+    const handleHide = (params: HandleHideParams) => utils.handleHide(params);
     const handleHideCallback = useCallback(() => {
-        const params: HandleHideParams = { divRef, setHide: setHideNavBottom }
-        handleHide(params)
+        const params: HandleHideParams = { divRef, setHide: setHideNavBottom };
+        handleHide(params);
     }, [divRef]);
 
+    // HANDLE EXPAND CARD
+    const [expanded, setExpanded] = useState<boolean>(false);
+
+    // TO NAV BAR
+    const { setDetailSection } = useNavStore((state) => state);
+
+    const SearchSection = useMemo(() => (
+        <FormHeadSection
+            isLoading={isLoading}
+            notif={notif}
+            refetch={refetch}
+            error={error}
+            infosChipValue={` groupe  ${group?.categoryS ? ('/' + group?.categoryS) : ''} `} >
+        </FormHeadSection>
+    ), [isLoading, notif, refetch, error]);
+
+    useEffect(() => {
+        setDetailSection(SearchSection);
+        return () => {
+            setDetailSection(undefined);
+        }
+    }, [SearchSection, isLoading]);
 
     return (
         <>
-            <main>
-                <div className="sectionHeader ">
-                    <SubHeader
-                        type={`Groupes ${group?.categoryS ?? ""}`} closeBtn />
-                </div>
+            <main data-cy="group-details-page">
                 <section
+                    id='refDiv'
+                    className={expanded ? 'overflow-auto' : 'overflow-hidden'}
                     ref={divRef}
                     onScroll={() => {
-                        handleHideCallback()
+                        handleHideCallback();
                     }}>
-                    <div className={`DetailCardDiv ${!hideNavBottom ? "hideCTA" : ""}`}>
-                        {!isLoading && !error && group ?
+                    <div className={`DetailCardDiv hideCTA`}>
+                        {!isLoading && group && !error ?
                             <GroupDetailCard
+                                group={group}
+                                refetch={async () => await updateGroup()}
+                                expand={expanded}
+                                setExpand={setExpanded}
                                 actions={myActions}
-                                refetch={refetch}
-                                group={group} /> :
+                            />
+                            :
                             <Skeleton />}
                     </div>
-                    {/* ARTICLES */}
-                    <article className='grid grid-rows-[auto,1fr] py-5  lg:-ml-5'>
-                        <h3>Articles</h3>
-                        <SkeletonGrid count={3} />
-                    </article>
                 </section>
             </main>
-            {(!isLoading && !error && group) &&
-                <footer className={` ${hideNavBottom ? 'hidden' : ''}`}>
-                    {group?.ImModo ?
-                        <CTAMines
-                            actions={myActions} /> :
-                        <CTAMines
-                            actions={MemberShipActions}
-                        />
-                    }
-                </footer>}
-
+            <footer className={`footer ${hideNavBottom ? 'hidden' : ''}`}>
+                {(!isLoading && group && !error) && (
+                    <CTAMines
+                        actions={buttons}
+                        disabled1={false}
+                        disabled2={group?.ImModo}
+                    />
+                )}
+            </footer>
         </>
-    )
+    );
 }
-

@@ -43,7 +43,7 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                             start={EventLoad?.createdAt}
                             prefix=" " />
                         <BtnExpandImg
-                            image={image as any} />
+                            image={EventLoad?.image as string} />
                     </CardLarge.Chips>
                 </img>}>
 
@@ -79,28 +79,33 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                 <div>
                     <GroupLink group={Group} />
                 </div>
+
             </CardLarge.Subhead>
 
-            <CardLarge.MidSection className="px-0 gap-3">
-                <CardLarge.SupportingText className="flex sm:flex-1 flex-col gap-1 ">
-                    <div className="flex items-center -mt-3 justify-between border-b border-slate-400">
-                        <i>{eventDateInfo?.start} - {eventDateInfo?.end}</i>
-                        <EventCalAddBtn
-                            ref
-                            event={EventLoad}
-                            iconClass="!-mb-1.5 md:-mr-6 relative" />
-                    </div>
-                    {description}
+            <CardLarge.Divider />
 
-                </CardLarge.SupportingText>
-                <CardLarge.Media className="flex-1  sm:-mb-4 ">
-                    {Address ?
-                        <AddressMapOpen
-                            address={Address}
-                            message={`${Address?.address}, ${Address?.zipcode} ${Address?.city}`} /> :
-                        <Skeleton />}
-                </CardLarge.Media>
-            </CardLarge.MidSection>
+            <CardLarge.SupportingText className="flex flex-col gap-2 pb-2">
+                <h6>Description</h6>
+                <div className="flex items-center -mt-3 justify-between border-b border-slate-400">
+                    <i>{eventDateInfo?.start} - {eventDateInfo?.end}</i>
+                    <EventCalAddBtn
+                        ref
+                        event={EventLoad}
+                        iconClass="relative" />
+                </div>
+                {description}
+            </CardLarge.SupportingText>
+
+            <CardLarge.Divider />
+
+            <CardLarge.Media className="flex-1 flex flex-col gap-2 pb-2">
+                <h6>Localisation</h6>
+                {Address ?
+                    <AddressMapOpen
+                        address={Address}
+                        message={`${Address?.address}, ${Address?.zipcode} ${Address?.city}`} /> :
+                    <Skeleton />}
+            </CardLarge.Media>
 
             <CardLarge.Divider />
             <CardLarge.Media className="gap-2 pb-2">

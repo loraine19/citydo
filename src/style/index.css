@@ -129,7 +129,7 @@ footer {
     width: 100%;
     margin: 0 auto;
     flex-shrink: 0;
-    z-index: 2;
+    z-index: 1;
 }
 
 header {
@@ -155,7 +155,7 @@ h5 {
     @apply text-lg text-[0.95rem] font-normal;
 }
 h6 {
-    @apply font-medium;
+    @apply font-semibold;
 }
 
 i {

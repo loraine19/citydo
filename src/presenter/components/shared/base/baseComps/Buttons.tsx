@@ -65,6 +65,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
     return (
         <div
             className={`
+                ${size ? `md3-button-group-${size}` : 'md3-button-group-medium'}
                ${variant === 'tonal' && `md3-${color}-container`}
                 ${variant === 'filled' && `md3-${color} `}
                 ${variant === 'outlined' && `md3-${color ?? 'slate'}-outlined`}

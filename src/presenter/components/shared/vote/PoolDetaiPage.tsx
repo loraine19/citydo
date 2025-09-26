@@ -78,7 +78,7 @@ export default function PoolDetailPage() {
                     handleHideCallback()
                 }}>
 
-                <div className={`DetailCardDiv ${!hideNavBottom ? pool.isMine ? "hideCTA" : "hideCTA" : ""}`}>
+                <div className={`DetailCardDiv hideCTA`}>
                     {isLoading || !pool || error ?
                         <Skeleton /> :
                         <PoolDetailCard

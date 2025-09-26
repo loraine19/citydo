@@ -1,36 +1,37 @@
-import { Card, CardHeader, CardBody, Typography, CardFooter } from "@material-tailwind/react"
-import { useState } from "react"
-import { DateChip } from "../../../common/ChipDate"
-import { Title } from "../../../common/CardTitle"
-import { Icon } from "../../../common/IconComp"
-import { GroupView } from "../../../../views/viewsEntities/GroupViewEntity"
-import AddressMapOpen from "../../../common/mapComps/AddressMapOpen"
-import ModifBtnStack from "../../../common/ModifBtnStack"
-import { Action, Label } from "../../../../../domain/entities/frontEntities"
-import { useAlertStore } from "../../../../../application/stores/alert.store"
-import { AlertValues } from "../../../../../domain/entities/Error"
-import Chip from "../../../common/adaptatersComps/Chip"
+import { useState, useRef } from "react";
+import { DateChip } from "../../../common/ChipDate";
+import { Icon } from "../../../common/IconComp";
+import { GroupView } from "../../../../views/viewsEntities/GroupViewEntity";
+import AddressMapOpen from "../../../common/mapComps/AddressMapOpen";
+import { Action, Label } from "../../../../../domain/entities/frontEntities";
+import { useAlertStore } from "../../../../../application/stores/alert.store";
+import { AlertValues } from "../../../../../domain/entities/Error";
+import Chip from "../../../common/adaptatersComps/Chip";
+import { CardLarge } from "../../base/baseComps/Cards";
+import { MoreButton } from "../../../common/moreBtn";
+import { Role } from "../../../../../domain/entities/GroupUser";
 
 type groupDetailCardProps = {
     group: GroupView,
-    mines?: boolean,
     refetch: () => Promise<void>,
-    actions: Action[]
-}
-export default function GroupDetailCard({ group: initGroup, mines, refetch, actions }: groupDetailCardProps) {
+    actions: Action[],
+    expand: boolean,
+    setExpand: (expand: boolean) => void
+};
 
-    const { setOpen, setAlertValues } = useAlertStore()
-    const [group, setGroup] = useState<GroupView>(initGroup)
-    const { name, categoryS, Address, createdAt, toogleMember, toogleModo } = group
-    const member = group?.GroupUser?.length
-    const modo = group?.GroupUser?.filter(gu => gu.role === 'MODO').length
+export default function GroupDetailCard({ group: initGroup, refetch, expand, setExpand }: groupDetailCardProps) {
+    const { setOpen, setAlertValues } = useAlertStore();
+    const [group, setGroup] = useState<GroupView>(initGroup);
+    const { name, categoryS, Address, createdAt, toogleMember, toogleModo } = group;
+    const member = group?.GroupUser?.length;
+    const modo = group?.GroupUser?.filter(gu => gu.role === 'MODO').length;
+    const [dot, setDot] = useState<number>(0);
+    const refMore = useRef(null);
 
-    //// MAP GROUP INFO
-    const [infos] = useState<Label[]>(
-        [{ label: 'Règlement', value: group?.rules },
-        { label: 'Participants', value: `${member} membres dont ${modo} conciliateurs` }]
-    )
-    const [dot, setDot] = useState<number>(0)
+    const infos: Label[] = [
+        { label: 'Règlement', value: group?.rules },
+        { label: 'Participants', value: `${member} membres dont ${modo} conciliateurs` }
+    ];
 
     const toogleModoValues: AlertValues = {
         title: group?.ImModo ?
@@ -40,14 +41,14 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
             `Vous ne serez plus conciliateur, vous ne pourrez plus gérer les conflits dans le groupe ${name}` :
             `Vous allez rejoindre le rôle de conciliateur, vous pourrez gérer les conflits dans le groupe ${name}`,
         handleConfirm: async () => {
-            const data = await toogleModo()
+            const data = await toogleModo();
             if (data) {
-                setGroup(data)
-                await refetch()
-                setOpen(false)
+                setGroup(data);
+                await refetch();
+                setOpen(false);
             }
         },
-    }
+    };
 
     const toogleMemberValues: AlertValues = {
         title: group?.ImIn ?
@@ -57,47 +58,94 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
             `Vous ne serez plus membre, vous ne pourrez plus intervenir dans le groupe ${name}` :
             `Vous allez rejoindre le groupe ${name}, vous pourrez intervenir dans le groupe`,
         handleConfirm: async () => {
-            const data = await toogleMember()
+            const data = await toogleMember();
             if (data) {
-                setGroup(data)
-                await refetch()
-                setOpen(false)
+                setGroup(data);
+                await refetch();
+                setOpen(false);
             }
         },
-    }
+    };
 
     return (
+        <CardLarge
+            expanded={expand}
+            setExpanded={setExpand}
+            image={
+                <CardLarge.Image
+                    src={'/image/placeholder.jpg'}
+                    alt={name}
+                    className="md3-card-large-image flex"
+                > {Address && (
+                    <div className="md3-slate-container grid inset-0 !min-h-[100%] flex-1 !max-h-[100%]  h-full">
+                        <AddressMapOpen
+                            address={Address}
+                            message={`${Address?.address}, ${Address?.zipcode} ${Address?.city}`} />
+                    </div>)}
+                </CardLarge.Image>}
+        >
 
-        <Card className="CardDetailGrid" >
-            <CardHeader className={"DetailCardHeader"}>
-                {!Address ?
-                    <img
-                        src={'image/placeholder.jpg'}
-                        onError={(e) => { e.currentTarget.src = '/image/placeholder.jpg'; }}
-                        alt={name}
-                        className="CardImage flex" /> :
-                    <AddressMapOpen
-                        color='#0092b8'
-                        aera={group?.area}
-                        address={Address} />}
-                <div className={"ChipDiv"}>
-                    <Chip
-                        value={categoryS}
-                        className={'cyanChip'}>
-                    </Chip>
-                    <DateChip
-                        start={createdAt}
-                        prefix="publié le " />
+
+            <CardLarge.Chips className="!relative !z-[3]">
+                <div className="md3-card-chips w-full">
+                    <Chip value={categoryS} color='cyan' />
+                    <DateChip start={createdAt} prefix="publié le " />
                 </div>
-
-            </CardHeader>
-            <CardBody className="DetailCardBody max-h-full">
-                <Title
-                    title={name ?? ''}
-
+                <MoreButton
+                    divRef={refMore}
+                    ref
+                    id={group.id}
+                    type={'groupe'}
+                    flagged={false}
                 />
-                <p>{'⌖ ' + group?.fullAddress + ' - ' + group?.area + ', metres'}</p>
-                <div className=' w-full grid grid-cols-1 gap-x-4 grid-rows-1 overflow-x-hidden'>
+            </CardLarge.Chips>
+
+            <CardLarge.Headline>
+                {name}
+            </CardLarge.Headline>
+
+            <CardLarge.Subhead>
+                {group?.fullAddress} <br /> {group?.area} mètres
+            </CardLarge.Subhead>
+            <CardLarge.Divider />
+            <CardLarge.Chips className='flex-col items-start'>
+                <h6>Composition du groupe</h6>
+                <div className="flex gap-2 flex-col ">
+                    <Chip
+                        onClick={() => {
+                            setOpen(true);
+                            setAlertValues(toogleModoValues);
+                        }}
+                        value={group?.GroupUser.filter(gu => gu.role === Role.MODO).length + ' conciliateurs' + (group?.ImModo ? '⠀✓' : '⠀')}
+                        icon={
+                            <Icon
+                                size="md"
+                                icon="diversity_3"
+                                fill={group?.ImModo}
+                                color={group?.ImModo ? "orange" : "gray"}
+                                title={group?.ImModo ? "Je suis conciliateur" : "Je ne suis pas conciliateur"} />}
+                    />
+                    <Chip
+                        onClick={() => {
+                            setOpen(true);
+                            setAlertValues(toogleMemberValues);
+                        }}
+                        value={group?.GroupUser?.length + ' membres' + (group?.ImIn ? '⠀✓' : '⠀')}
+                        icon={
+                            <Icon
+                                size="md"
+                                icon="groups"
+                                fill={group?.ImIn}
+                                color={group?.ImIn ? "cyan" : "gray"}
+                                title={group?.ImIn ? "Je suis membre" : "Je ne suis pas membre"} />}
+                    />
+                </div>
+            </CardLarge.Chips>
+            <CardLarge.Divider />
+            <CardLarge.SupportingText className="flex-0 gap-3 pb-8">
+
+
+                <div className='w-full grid grid-cols-1 gap-x-4 grid-rows-1 overflow-x-hidden'>
                     <div className='flex overflow-x-auto scrollbar-hide snap-x snap-mandatory py-2'>
                         {infos.map((info: Label, index: number) => (
                             <div key={index} className='gap-1 flex w-full flex-col pt-2 snap-center shrink-0 '>
@@ -105,10 +153,7 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
                                     {info.label} :
                                 </h6>
                                 <div className="overflow-auto ">
-                                    <Typography
-                                        className=" leading-[1.3rem] ">
-                                        {info.value}
-                                    </Typography>
+                                    {info.value}
                                 </div>
                             </div>
                         ))}
@@ -123,7 +168,7 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
                                         const scrollAmount = scrollContainer.clientWidth * index;
                                         scrollContainer.scrollTo({
                                             left: scrollAmount, behavior: 'smooth'
-                                        })
+                                        });
                                         setDot(index);
                                     }
                                 }}
@@ -133,64 +178,8 @@ export default function GroupDetailCard({ group: initGroup, mines, refetch, acti
                         ))}
                     </div>
                 </div>
-            </CardBody>
-            <CardFooter className="DetailCardFooter">
-                {!mines ? (
-                    <div className="flex w-full items-center gap-2 ">
-                        <Chip
-                            value={group?.categoryS}
-                            className="cyanChip text-ellipsis  " >
-                        </Chip>
-                    </div>
-                ) : (
-                    <ModifBtnStack
-                        disabled1={false}
-                        disabled2={false}
-                        actions={actions}
-                        update={refetch} />
-                )}
-                <div className="flex items-center gap-2">
-                    <button
-                        onClick={() => {
-                            setOpen(true);
-                            setAlertValues(toogleModoValues)
-                        }}>
-                        <Chip
-                            value={group?.ImModo ? '⠀✓' : '⠀'}
 
-                            className="rounded-full h-max  grayChip flex items-center  !min-w-max "
-                            icon={
-                                <Icon
-                                    size="md"
-                                    icon="diversity_3"
-                                    fill={group?.ImModo}
-                                    color={group?.ImModo ? "orange" : "gray"}
-                                    title={group?.ImModo ? "Je suis conciliateur" : "Je ne suis pas conciliateur"} />}
-                        />
-                    </button>
-                    <button
-                        onClick={() => {
-                            setOpen(true);
-                            setAlertValues(toogleMemberValues)
-                        }}>
-                        <Chip
-                            value={group?.GroupUser?.length}
-
-                            className="rounded-full grayChip h-max flex items-center pl-6 !min-w-max "
-                            icon={
-                                <Icon
-                                    size="md"
-                                    icon="groups"
-                                    fill={group?.ImIn}
-                                    color={group?.ImIn ? "cyan" : "gray"}
-                                    title={group?.ImIn ? "Je suis membre" : "Je ne suis pas membre"} />}
-                        />
-                    </button>
-                </div>
-            </CardFooter>
-        </Card>
-    )
+            </CardLarge.SupportingText>
+        </CardLarge>
+    );
 }
-
-
-

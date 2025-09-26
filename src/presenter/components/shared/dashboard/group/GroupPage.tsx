@@ -142,8 +142,7 @@ export default function GroupPage() {
         <main>
             <DetailsHeadSection
                 hidden={hideNavBottom && !isLoading && !error && !notif}
-                infosChipValue={`${count > 0 ? 'Groupes' : 'aucun groupe'} / ${filterName() ?? '...'} / ${categorieName(category) ?? '...'}`}
-
+                infosChipValue={`${count > 0 ? (count + ' Groupes') : 'aucun groupe'}  ${filterName() ? ('/ ' + filterName()) : ''}  ${categorieName(category) ? ('/ ' + categorieName(category)) : ''}`}
                 notif={notif}
                 error={error}
                 isLoading={isLoading}

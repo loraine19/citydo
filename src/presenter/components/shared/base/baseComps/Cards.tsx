@@ -313,7 +313,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
                                 " animSheetRev max-h-[60%] lg:max-h-[55%]   overflow-hidden " :
                                 "  max-h-[calc(100%-4rem)] h-fit overflow-auto animSheet "}
                             `
-                            : `h-full ${form && '!overflow-auto'} `}
+                            : `h-full overflow-auto `}
                             `}>
 
                     <div className="md3-card-large-sheet-handle">

@@ -385,7 +385,6 @@
     flex-grow: 1;
     min-width: 3rem;
     height: 2.5rem;
-
     padding: 0 0.75rem;
     cursor: pointer;
     position: relative;
@@ -609,11 +608,9 @@ CHIP
 
 .md3-button-group {
     @apply flex items-center w-max justify-center;
-    padding: var(--md3-spacing-small);
-    gap: var(--md3-spacing-small);
     border-radius: var(--md3-radius-full);
     text-transform: none;
-    cursor: pointer;
+    font-weight: 600;
     border: none;
     position: relative;
     overflow: hidden;
@@ -621,4 +618,25 @@ CHIP
     background-color: var(--md3-surface-variant);
     color: var(--md3-on-surface-variant);
     box-shadow: var(--md3-shadow-elevation-0);
+}
+
+/* Size variations */
+.md3-button-group-small {
+    font-size: 0.875rem;
+    padding: 4px;
+    gap: 4px;
+}
+.md3-button-group-medium {
+    font-size: 0.875rem;
+
+    gap: var(--md3-spacing-small);
+    padding: var(--md3-spacing-small);
+    gap: var(--md3-spacing-small);
+}
+.md3-button-group-large {
+    font-size: 1rem;
+
+    gap: var(--md3-spacing-medium);
+    padding: var(--md3-spacing-medium);
+    gap: var(--md3-spacing-medium);
 }

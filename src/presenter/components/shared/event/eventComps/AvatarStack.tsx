@@ -23,12 +23,12 @@ export function AvatarStack(props: AvatarStackProps) {
             if (containerRef.current) {
                 const containerWidth = containerRef.current.offsetWidth;
                 let calculated = 1;
-                if (avatarDatas.length > 1) {
+                if (avatarDatas?.length > 1) {
                     calculated = Math.floor(
                         ((containerWidth - 14) - AVATAR_WIDTH) / (AVATAR_WIDTH - AVATAR_OVERLAP)
                     ) + 1;
                 }
-                calculated = Math.max(1, Math.min(calculated, avatarDatas.length));
+                calculated = Math.max(1, Math.min(calculated, avatarDatas?.length));
                 setMaxVisible(calculated);
             } else {
                 setMaxVisible(1);
@@ -46,11 +46,11 @@ export function AvatarStack(props: AvatarStackProps) {
     }, [avatarDatas.length, containerRef.current?.offsetWidth]);
 
     const visibleAvatars = avatarDatas.slice(0, maxVisible);
-    const hiddenCount = avatarDatas.length - visibleAvatars.length > 0
+    const hiddenCount = avatarDatas?.length - visibleAvatars.length > 0
         ? <Chip
-            onClick={() => setMaxVisible(avatarDatas.length)}
+            onClick={() => setMaxVisible(avatarDatas?.length)}
             color='cyan'
-            value={`+${avatarDatas.length - visibleAvatars.length}`}
+            value={`+${avatarDatas?.length - visibleAvatars?.length}`}
             className=" !border-[4px] !h-[2.65rem] !w-[2.65rem] flex items-center justify-center !rounded-full md3-cyan-container shrink-0 font-semibold !border-[var(--md3-primary-container)] text-[1rem] pt-0.5 pr-0.5 p-0"
         />
         : null;
@@ -60,18 +60,18 @@ export function AvatarStack(props: AvatarStackProps) {
             onScroll={
                 (e) => {
                     if (e.currentTarget.scrollLeft === 0) {
-                        setMaxVisible(visibleAvatars.length);
+                        setMaxVisible(visibleAvatars?.length);
                     }
                 }
             }
             ref={containerRef}
-            className={` ${maxVisible === avatarDatas.length ? 'overflow-y-auto' : ''} flex flex-1 items-center -space-x-3 overflow-x-auto w-full !rounded-full pr-3 `}
+            className={` ${maxVisible === avatarDatas?.length ? 'overflow-y-auto' : ''} flex flex-1 items-center -space-x-3 overflow-x-auto w-full !rounded-full pr-3 `}
         >
             {visibleAvatars?.map((Participant: Participant, index) =>
                 <Menu
                     open={open}
                     setOpen={setOpen}
-                    MenuKey={Participant.userId + index + '_avatar'}
+                    MenuKey={Participant?.userId + index + '_avatar'}
                     className="px-2"
                     blurBack
                     placement={'auto'}

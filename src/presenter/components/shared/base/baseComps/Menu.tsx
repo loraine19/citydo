@@ -313,7 +313,7 @@ export const Menu: React.FC<MenuProps> = ({
             {/* MODIFIÉ : On utilise aussi le portail pour le fond flou */}
             {openPortal && blurBack && portalRoot && createPortal(
                 <BackDropBlur
-                    key={'menu-blur' + MenuKey}
+                    blurKey={'menu-blur' + MenuKey}
                     open={openPortal}
                     setOpen={handleClose}
                     className="z-[1]"
