@@ -64,11 +64,7 @@ export default function EventDetailPage() {
             formik.values.Address = Address as AddressDTO
             setOpen(true)
             setAlertValues({
-                button2: {
-                    text: "Annuler",
-                    onClick: () => setOpen(false)
-                },
-                disableCancel: true,
+                disableConfirm: false,
                 handleConfirm: async () => await updateFunction(),
                 confirmString: "Enregistrer",
                 title: "Confimrer la modification",

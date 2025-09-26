@@ -251,7 +251,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                             </div>}
                                         variant={pourcentParticipants >= 100 ? 'linear' : 'wavy'}
                                         color="cyan"
-                                        value={pourcentParticipants}
+                                        value={formik.values?.Participants?.length ?? 0}
                                         max={formik.values.participantsMin ?? 10}
                                         min={1}
                                         size="xxsmall"

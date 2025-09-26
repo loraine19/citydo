@@ -37,7 +37,7 @@ const BackDropBlur: React.FC<BackDropBlurProps> = ({
         <div
             key={blurKey}
             id="blurDiv"
-            className={`fixed bg-black/50 inset-0 backdrop-blur animate-fade ${className}`}
+            className={`absolute bg-black/50 inset-0 backdrop-blur animate-fade ${className}`}
             onClick={() => setOpen && setOpen(false)}
             style={{}}
         >

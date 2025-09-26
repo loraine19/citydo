@@ -14,12 +14,12 @@ const NotifDiv: React.FC<NotifDivProps> = ({ notif, isLoading, refetch, error, c
     let [attempt, setAttempt] = useState<number>(0);
 
     useEffect(() => {
-        if (attempt < 2) setTimeout(() => {
+        if (attempt <= 2 && (notif || error)) setTimeout(() => {
             notif;
             refetch();
             attempt++
-        }, 1000);
-    }, [notif, error, isLoading]);
+        }, 500);
+    }, [notif, error, isLoading, attempt]);
 
     useEffect(() => {
         if (error === 'session expirée' && attempt > 3) window.location.replace('/signin');

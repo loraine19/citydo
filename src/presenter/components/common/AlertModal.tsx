@@ -1,6 +1,5 @@
 
 import parse from 'html-react-parser';
-import { Icon } from "./IconComp";
 import { useAlertStore } from "../../../application/stores/alert.store";
 import { AlertValues } from "../../../domain/entities/Error";
 import { useUxStore } from "../../../application/stores/ux.store";
@@ -17,35 +16,44 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
 
     if (isOpen || open) return (
         <div key={title ?? 'alert-modal'}
-            className={`!absolute top-0 left-0 h-screen px-[3rem] py-[10vh] lg:py-[20vh] w-screen z-[150] !flex flex-1 justify-center items-center backdropBlur   `} >
+            className={`!absolute top-0 left-0 h-screen px-[3rem] py-[10vh] lg:py-[20vh] w-screen z-[9] !flex flex-1 justify-center items-center backdropBlur bg-black/50  `} >
             <div>
-                <CardMD className="relative FixCardNoImage min-h-min !p-4 w-resp m-auto flex max-h-[400px] ">
-                    <CardMD.Headline
-                        className="FixCardHeaderNoImage flex justify-between p-4 text-center text-xl gap-6">
-                        <h4 className="md3-card-headline">{title ?? 'Alerte'}</h4>
-                        {!disableCancel &&
-                            <Icon
-                                onClick={() => {
-                                    close && close();
-                                    setOpen(false);
-                                    reset();
-                                }}
-                                icon="cancel"
-                                size="xl"
-                                color="red" />}
+                <CardMD className="relative md3-elevation-4 min-h-min  w-resp m-auto flex max-h-[400px] ">
+                    <CardMD.Headline className="pt-4">
+                        {title ?? 'Alerte'}
                     </CardMD.Headline>
-                    <CardMD.MidSection className=" max-h-[70vh] h-max items-center flex flex-col ">
-                        <hr className="pb-1"></hr>
+                    <CardMD.MidSection className=" max-h-[70vh] h-max  flex flex-col ">
                         {notif && <p className="text-center italic text-red-800">{notif}</p>}
                         <div className="overflow-auto flex w-full max-h-max justify-center ">
                             {element && typeof element === 'string' ?
-                                <p className="md3-card-subhead pt-[2vh] pb-[8vh] my-6">
+                                <p className="md3-card-subhead pt-[2vh] pb-[4vh] my-4">
                                     {parse(element as string)}</p> :
                                 <>{element}</>
                             }
                         </div>
                     </CardMD.MidSection>
-                    <CardMD.Footer className=" !justify-end FixCardFooter !items-end  flex flex-wrap gap-y-4 gap-x-8 py-6">
+                    <CardMD.Footer className=" !justify-end !pb-4 !items-end  flex flex-wrap ">
+                        {!disableCancel &&
+                            <Button
+                                color='slate'
+                                size='large'
+                                className='w-full'
+                                variant='outlined'
+                                onClick={() => {
+                                    close && close();
+                                    setOpen(false);
+                                    reset();
+                                }}
+                                icon={{
+                                    style: 'absolute left-2',
+                                    bg: true,
+                                    reverse: true,
+                                    icon: "close",
+                                    size: 'md'
+                                }}
+                            >
+                                Annuler
+                            </Button>}
                         {button2 &&
                             <Button
                                 size='large'
@@ -58,7 +66,7 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                                     close && close() || setOpen(false);
                                     reset();
                                 }}>
-                                {button2.text ?? '-'}
+                                {button2.text ?? ''}
                             </Button>}
                         <Button
                             size='large'
@@ -70,8 +78,13 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                                 values.handleConfirm && values.handleConfirm();
                                 close && close() || setOpen(false);
                                 reset();
-                            }
-                            }>
+                            }}
+                            icon={{
+                                style: 'absolute left-2',
+                                icon: "check",
+                                size: 'md',
+                                bg: true
+                            }}>
                             {confirmString || 'OK'}
                         </Button>
                     </CardMD.Footer>

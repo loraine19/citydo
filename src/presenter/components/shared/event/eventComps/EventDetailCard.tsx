@@ -85,14 +85,29 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
             <CardLarge.Divider />
 
             <CardLarge.SupportingText className="flex flex-col gap-2 pb-2">
-                <h6>Description</h6>
-                <div className="flex items-center -mt-3 justify-between border-b border-slate-400">
-                    <i>{eventDateInfo?.start} - {eventDateInfo?.end}</i>
+                <h6>Dates</h6>
+                <CardLarge.Chips className="flex items-center gap-6 ">
+
                     <EventCalAddBtn
                         ref
                         event={EventLoad}
-                        iconClass="relative" />
-                </div>
+                        iconClass="md3-elevation-2 text-primary text-2xl" />
+                    <div className="flex flex-col gap-3 md3-supporting-text">
+                        <Chip
+                            size="medium"
+                            value={eventDateInfo?.start} />
+                        <Chip
+                            size="medium"
+                            value={eventDateInfo?.end}
+                        />
+                    </div>
+                </CardLarge.Chips>
+            </CardLarge.SupportingText>
+
+            <CardLarge.Divider />
+
+            <CardLarge.SupportingText className="flex flex-col gap-2 pb-2">
+                <h6>Description</h6>
                 {description}
             </CardLarge.SupportingText>
 

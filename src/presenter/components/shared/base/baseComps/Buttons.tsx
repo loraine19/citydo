@@ -15,7 +15,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children?: ReactNode;
     elevating?: boolean;
     round?: boolean;
-    icon?: IconProps;
+    icon?: IconProps | ReactNode;
     iconPosition?: 'start' | 'end';
     fab?: boolean;
 }
@@ -31,12 +31,15 @@ ${!fab && (size ? `md3-button-${size}${round ? '-round' : ''}` : 'md3-button-med
             disabled={disabled}
             className={classes + ` ${icon && 'flex gap-2 items-center'} ${iconPosition === 'end' && 'flex-row-reverse'}`}
             data-md3 {...props}>
-            {icon &&
-                <Icon
-                    style={`${icon.style || ''}  `}
-                    size={size === 'small' ? 'lg' : size === 'large' ? '2xl' : 'xl'}
-                    {...icon}
-                />}
+            {(icon && React.isValidElement(icon)) ? icon :
+                (icon && typeof icon === 'object' && !Array.isArray(icon) ?
+                    <Icon
+                        size={size === 'small' ? 'lg' : size === 'large' ? '2xl' : 'xl'}
+                        {...icon as IconProps}
+                    />
+                    : null
+                )
+            }
 
             {children}
 
