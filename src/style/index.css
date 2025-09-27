@@ -108,7 +108,7 @@ main {
     @apply flex flex-col h-full pb-4  md3-surface flex-1 w-full mx-auto;
     min-height: 0;
     z-index: 0;
-    max-height: 100dvh;
+    height: 100vh;
 }
 .hBottomNav {
     margin-bottom: 1rem;
