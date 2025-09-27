@@ -91,7 +91,11 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                                 prefix=" "
                             />}
 
-                        {<MoreButton id={service?.id} type={'service'} flagged={service?.flagged} />}
+                        {<MoreButton
+                            title={title}
+                            id={service?.id}
+                            type={'service'}
+                            flagged={service?.flagged} />}
                     </CardMD.Chips>
                 </CardMD.Image>
             }>

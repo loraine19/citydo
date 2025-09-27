@@ -12,47 +12,45 @@ type NotifDivProps = {
 const NotifDiv: React.FC<NotifDivProps> = ({ notif, isLoading, refetch, error, className }) => {
     const { color } = useUxStore((state) => state);
     let [attempt, setAttempt] = useState<number>(0);
+    const [opacity, setOpacity] = useState<string>('0');
 
     useEffect(() => {
-        if (attempt <= 2 && (notif || error)) setTimeout(() => {
-            notif;
-            refetch();
-            attempt++
-        }, 500);
+        if (attempt <= 2 && (notif || error))
+            setTimeout(() => {
+                refetch();
+                setAttempt(attempt + 1);
+            }, 700);
     }, [notif, error, isLoading, attempt]);
 
     useEffect(() => {
         if (error === 'session expirée' && attempt > 3) window.location.replace('/signin');
     }, [error]);
 
+    useEffect(() => {
+        setOpacity((5 * attempt).toString());
+    }, [notif, error, attempt]);
+
     return (
         <div
             id='notifDiv'
-            className={`!max-w-full absolute !top-[1rem] h-fit w-full left-0 notif min-w-max  min-h-max !justify-start  ${className}`}>
+            className={`!max-w-full absolute !top-[1rem] h-fit w-full left-0 notif min-w-max min-h-max !justify-start  ${className}`}>
             {error ? 'Une erreur est survenue : ' : ''}
-            <span className="md3-card-subhead opacity-70 w-full text-center pt-4 ">{notif !== error && notif} </span>
-            <div
-                style={{ display: 'inline-block', transition: 'transform 0.5s' }}
-                className={'py-3 '}
-                onClick={e => {
-                    const el = e.currentTarget;
-                    el.classList.add('spin');
+            <span className={`md3-card-subhead opacity-[${opacity}%] w-full text-center pt-4 `}>
+                {notif !== error ? notif : error}
+            </span>
+
+
+            <Icon
+                onClick={() => {
                     setAttempt(attempt + 1);
                     refetch();
-                    setTimeout(() => { el.classList.remove('spin'); refetch() }, 700);
                 }}
-            >
-                <Icon
-                    reverse
-                    style={(attempt > 3) ? '!hidden' : 'md3-elevation-1'}
-                    color={color}
-                    size='3xl'
-                    title="Recharger la liste"
-                    bg={!isLoading}
-                    icon={'refresh'}
-                />
-            </div>
-
+                style={(attempt > 3) ? '!hidden' : ''}
+                color={color}
+                size='4xl'
+                title="Recharger la liste"
+                icon={(isLoading || attempt <= 2) ? 'progress_activity' : 'refresh'}
+            />
         </div>
     )
 }

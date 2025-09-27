@@ -8,12 +8,18 @@ interface ShareDivProps {
     text?: string;
 }
 
-const shareLinks = (url: string, text?: string) => ({
-    email: `mailto:?subject=${encodeURIComponent(text || "Check this out!")}&body=${encodeURIComponent(url)}`,
-    sms: `sms:?body=${encodeURIComponent(text ? `${text} ${url}` : url)}`,
-    whatsapp: `https://wa.me/?text=${encodeURIComponent(text ? `${text} ${url}` : url)}`,
-    snapchat: `https://www.snapchat.com/scan?attachmentUrl=${encodeURIComponent(url)}`,
-});
+const shareLinks = (url: string, text?: string) => {
+    const introText = 'J\'ai trouvé quelque chose d\'intéressant sur City\'do : ';
+    const linkedText = text
+        ? `${introText}\n\n ** ${text} ** \n${url}\n\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\u2015\nPartagé via City'do !\nhttps://citydo.fr`
+        : url;
+    return {
+        email: `mailto:?subject=${encodeURIComponent(text || "Je te recommande sur City'do")}&body=${encodeURIComponent(linkedText)}`,
+        sms: `sms:?body=${encodeURIComponent(linkedText)}`,
+        whatsapp: `https://wa.me/?text=${encodeURIComponent(linkedText)}`,
+        snapchat: `https://www.snapchat.com/scan?attachmentUrl=${encodeURIComponent(url)}`,
+    };
+};
 
 export const ShareDiv: React.FC<ShareDivProps> = ({ url, text }) => {
     const links = shareLinks(url, text);

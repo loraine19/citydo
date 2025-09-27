@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 import ShareDiv from "./shareDiv";
 
 type moreButtonProps = {
-    id?: number;
+    id: number;
     type?: string;
     flagged?: boolean;
-    title?: string;
+    title: string;
     className?: string;
     ref?: boolean;
     divRef?: any;
@@ -20,23 +20,21 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
 
 
     const iconList: any[] = [
-        {
+        ...(type !== 'cagnotte' ? [{
             icon: 'flag_2',
-            label: 'Signaler',
+            label: flagged ? 'Déja signalé' : 'Signaler',
             key: `flag${id}`,
             fill: flagged,
             flagged: flagged,
             color: flagged ? 'red' : 'slate',
             action: () => { setIsOpen(false); navigate(`/flag/${type}/${id}`) },
-        },
+        }] : []),
         {
             icon: 'share',
             label: 'Partager',
             key: `share${id}`,
             action: () => { setOpenShare(true) }
         },
-
-
     ]
 
     const [isOpen, setIsOpen] = useState(false);
@@ -73,7 +71,9 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
                         <Icon onClick={() => setOpenShare(false)} bg fill size="md" icon="arrow_back" />}>
                         Retour
                     </MenuItem>
-                        <ShareDiv url={window.location.href} text={title} />
+                        <ShareDiv
+                            url={type && id ? `${window.location.origin}/${type}/${id}` : window.location.origin}
+                            text={title} />
 
                     </> :
                     iconList.map((item: any, index: number) =>

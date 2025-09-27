@@ -15,6 +15,7 @@ import { ProgressBar } from "../../base/baseComps/Sliders";
 import { Button, Md3Colors } from "../../base/baseComps/Buttons";
 import { MoreButton } from "../../../common/moreBtn";
 import { Link } from "react-router-dom";
+import { GroupLink } from "../../../common/GroupLink";
 
 type PoolCardProps = {
     pool: any,
@@ -69,15 +70,22 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                     </div>
                     {<MoreButton
                         id={pool?.id}
-                        type={'vote/cagnotte'}
+                        type={'cagnotte'}
                         flagged={pool?.flagged}
                         title={pool?.title} />}
                 </CardMD.Chips>
-                <CardMD.Headline className="mb:pb-6">
-                    <Link to={`/cagnotte/${pool?.id}`}>{pool?.title}</Link>
+
+                <CardMD.Headline className="mb:pb-6 line-clamp-1">
+                    <Link to={`/vote/cagnotte/${pool?.id}`}>{pool?.title}</Link>
                 </CardMD.Headline>
-                <CardMD.Media className="h-full flex-1  justify-between gap-4">
-                    <div className="grid truncate flex-1 ">
+
+
+                <CardMD.Subhead className={`flex items-center gap-2`}>
+                    <GroupLink group={pool?.Group} />
+                </CardMD.Subhead>
+
+                <CardMD.Media className="h-full flex-1 justify-between gap-4">
+                    <div className="grid truncate items-center flex-1 ">
                         <ProfileDiv
                             divRef={divRef}
                             profile={pool?.UserBenef || {} as Partial<User>}
@@ -113,7 +121,6 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                         <div className=" w-full flex-1 flex items-center ">
                             <ProfileDiv
                                 date={pool?.createdAt}
-                                group={pool?.Group}
                                 divRef={divRef}
                                 profile={pool?.User} />
                         </div>

@@ -61,6 +61,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                 </div>
 
                 {<MoreButton
+                    title={post?.title}
                     id={id}
                     type={'annonce'}
                     flagged={post?.flagged} />}

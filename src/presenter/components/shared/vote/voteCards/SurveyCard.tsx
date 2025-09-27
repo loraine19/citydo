@@ -102,6 +102,7 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                 <CardMD.Subhead className={`flex items-center gap-2`}>
                     <GroupLink group={survey?.Group} />
                 </CardMD.Subhead>
+
                 <CardMD.Media>
                     <ProgressBar
                         color="orange"

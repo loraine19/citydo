@@ -142,9 +142,9 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                 className={`grid ${rowClass[row - 1]} gap-4 w-full rounded-xl h-[100%]  overflow-hidden`}>
                 {(weeks && !loadingEvents && !errorEvents && weeks.length > 0) ? weeks.map((week: any, key: number) => (
                     <div key={key}
-                        className={`grid rounded-xl overflow-auto !bg-[var(--md3-surface)] border border-[var(--md3-outline)] ${colClass[col - 1]}`}>
+                        className={`grid rounded-xl overflow-auto !bg-[var(--md3-surface)] border md3-border ${colClass[col - 1]}`}>
                         {week.map((day: any, index: number) =>
-                            <div className={`flex flex-col text-center h-full border-r border-[var(--md3-primary-container)] `}
+                            <div className={`flex flex-col text-center h-full border-r md3-border-primary-container `}
                                 key={index}>
                                 <p className={`${new Date(day.date).toDateString() === new Date().toDateString() && '!text-orange-500 underline underline-offset-4 text-font-bold'} w-full !text-xs pt-0 min-h-4 sticky top-0 text-center bg-[var(--md3-surface)]`}>
                                     {day.date.toLocaleDateString('fr-FR', { weekday: 'narrow', month: 'numeric', day: 'numeric' })}
@@ -204,7 +204,9 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                         isLoading={loadingEvents}
                         error={errorEvents}
                         refetch={refetch}
-                        notif={loadingEvents ? 'Chargement...' : errorEvents ? 'Une erreur est survenue' : ''} />}
+                        notif={loadingEvents ? 'Chargement...' :
+                            errorEvents ? 'Une erreur est survenue' :
+                                weeks.length === 0 ? 'Aucun événement' : ''} />}
             </div>
         </div>
     )

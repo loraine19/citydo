@@ -60,7 +60,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
     ///// RETURN COMPONENT
 
     return (
-        <div className={` md3-button-primary md3-button-tonal rounded-full !min-w-max flex items-center md3-elevation-0 
+        <div className={` md3-button-primary md3-button-tonal rounded-full !min-w-max flex items-center md3-elevation-0 md:py-2 hover:!cursor-pointer
             ${roundedStyle ? " p-2.5 md:pl-4 max-h-max " : " md:px-3 md:py-1 p-2.5 "}`}>
             <Menu
                 open={open}

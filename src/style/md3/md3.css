@@ -567,6 +567,12 @@
 .md3-border-surface-variant {
     border-color: var(--md3-surface-variant);
 }
+.md3-border-primary-container {
+    border-color: var(--md3-primary-container) !important;
+}
+.md3-border-surface {
+    border-color: var(--md3-surface);
+}
 
 /* Spacing utility classes */
 /* Padding */

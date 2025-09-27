@@ -64,10 +64,11 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                 </div>
 
                 <MoreButton
+                    title={title}
                     divRef={refMore}
                     ref
                     id={id}
-                    type={'annonce'}
+                    type={'evenement'}
                     flagged={flagged} />
             </CardLarge.Chips>
 

@@ -43,15 +43,15 @@ export function AvatarStack(props: AvatarStackProps) {
         }
 
         return () => window.removeEventListener("resize", updateMaxVisible);
-    }, [avatarDatas.length, containerRef.current?.offsetWidth]);
+    }, [avatarDatas?.length, containerRef.current?.offsetWidth]);
 
-    const visibleAvatars = avatarDatas.slice(0, maxVisible);
-    const hiddenCount = avatarDatas?.length - visibleAvatars.length > 0
+    const visibleAvatars = avatarDatas?.slice(0, maxVisible);
+    const hiddenCount = avatarDatas?.length - visibleAvatars?.length > 0
         ? <Chip
             onClick={() => setMaxVisible(avatarDatas?.length)}
             color='cyan'
             value={`+${avatarDatas?.length - visibleAvatars?.length}`}
-            className=" !border-[4px] !h-[2.65rem] !w-[2.65rem] flex items-center justify-center !rounded-full md3-cyan-container shrink-0 font-semibold !border-[var(--md3-primary-container)] text-[1rem] pt-0.5 pr-0.5 p-0"
+            className=" !border-[4px] !h-[2.65rem] !w-[2.65rem] flex items-center justify-center !rounded-full md3-cyan-container shrink-0 font-semibold md3-border-primary-container text-[1rem] pt-0.5 pr-0.5 p-0"
         />
         : null;
 
@@ -81,7 +81,7 @@ export function AvatarStack(props: AvatarStackProps) {
                                 <AvatarUser
                                     Profile={Participant?.User?.Profile}
                                     avatarSize={'md'}
-                                    avatarStyle="border-[4px] !h-[2.65rem] !w-[2.65rem] !border-[var(--md3-primary-container)] !hover:z-[2] !focus:z-[2] !shadow-none  top-0 left-0 " />
+                                    avatarStyle="border-[4px] !h-[2.65rem] !w-[2.65rem] md3-border-primary-container !hover:z-[2] !focus:z-[2] !shadow-none  top-0 left-0 " />
                             </div>
                         </div>}>
                     <MenuItem
@@ -95,7 +95,9 @@ export function AvatarStack(props: AvatarStackProps) {
                                 <OnlineDot id={Participant?.userId} />
                             </div>}>
 
-                        <span className="font-bold">{Participant?.User?.Profile?.firstName}<br /> {Participant?.User?.Profile?.lastName}
+                        <span className="font-bold">
+                            {Participant?.User?.Profile?.firstName}<br />
+                            {Participant?.User?.Profile?.lastName}
                         </span>
                     </MenuItem>
                     <MenuItem
@@ -103,7 +105,6 @@ export function AvatarStack(props: AvatarStackProps) {
                         onClick={() => navigate(`/chat?with=${Participant?.userId}`)}
                         leadingIcon={<Icon icon="chat" color='sky' fill size='lg' bg />}>
                         Envoyer un message
-
                     </MenuItem>
                     <MenuItem
                         disabled
@@ -112,8 +113,8 @@ export function AvatarStack(props: AvatarStackProps) {
                         <div className="flex flex-col">
                             <span>Groupes : </span>
                             {Participant?.User?.GroupUser?.map((group, index) =>
-                                <small key={index}
-                                    className="!line-clamp-1">⌖ {group?.Group?.name.split(':')[0]}
+                                <small key={index} className="!line-clamp-1">
+                                    ⌖ {group?.Group?.name?.split(':')[0]}
                                 </small>)}
                         </div>
                     </MenuItem >

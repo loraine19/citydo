@@ -11,7 +11,6 @@ export const notifViewModel = () => {
     const { data, isLoading, error, fetchNextPage, hasNextPage, refetch }
       = useInfiniteQuery({
         queryKey: ['notifs', filter],
-        staleTime: 6000,
         retry: true,
         queryFn: async ({ pageParam = 1 }) => await getNotifs.execute(pageParam, filter) || [],
         initialPageParam: 1,
@@ -22,7 +21,7 @@ export const notifViewModel = () => {
     const countMsg = isLoading ? 0 : data?.pages[data?.pages.length - 1].countMsg
     const countOther = isLoading ? 0 : data?.pages[data?.pages.length - 1].countOther
     const flat = data?.pages.flat().map(page => page.notifs).flat()
-    const notifs = isLoading || !flat || error || !data ? [] : flat?.map((notif: Notif) => notif && new NotifView(notif))
+    const notifs = isLoading || !flat ? [] : flat?.map((notif: Notif) => notif && new NotifView(notif))
     const notifsMsg = notifs.filter((notif) => notif.type === 'MESSAGE')
     const notifsOther = notifs.filter((notif) => notif.type !== 'MESSAGE')
     return {

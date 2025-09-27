@@ -47,7 +47,11 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
                             prefix=" "
                         />
 
-                        {<MoreButton id={post?.id} type={'annonce'} flagged={post?.flagged} />}
+                        {<MoreButton
+                            title={post?.title}
+                            id={post?.id}
+                            type={'annonce'}
+                            flagged={post?.flagged} />}
                     </CardMD.Chips>
                 </CardMD.Image>
             }

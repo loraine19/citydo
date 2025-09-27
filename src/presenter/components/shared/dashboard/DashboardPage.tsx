@@ -142,7 +142,13 @@ export default function DashboardPage() {
                             </div>
                             {count > 0 ?
                                 <>{count} {count > 1 ? 'notifications' : 'notification'} </> :
-                                'Vous n\'avez pas de notifications'}
+                                <NotifDiv
+                                    isLoading={isLoading}
+                                    error={error}
+                                    refetch={refetch}
+                                    notif={isLoading ? 'Chargement...' :
+                                        error ??
+                                            notifs.length === 0 ? 'Aucune notification' : ''} />}
 
                         </CardMD.Subhead>
                         {/* NOTIFS LIST */}
