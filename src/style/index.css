@@ -120,7 +120,7 @@ main {
 }
 .hBottomForm {
     margin-bottom: 1rem;
-    max-height: calc(100dvh - 9rem);
+    max-height: calc(100dvh - 10rem);
     @screen sm {
         max-height: calc(100dvh - 7rem);
     }
