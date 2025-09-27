@@ -98,7 +98,7 @@ html {
 }
 body {
     @apply h-screen w-screen  overflow-hidden flex flex-col;
-    max-height: 100dvh;
+    height: 100dvh;
 }
 
 .App {
