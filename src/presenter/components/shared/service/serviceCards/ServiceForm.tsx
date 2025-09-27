@@ -133,7 +133,7 @@ export function ServiceForm(props: { formik: any }) {
                                 variant="tonal"
                                 className={"relative pb-1"}
                                 formik={formik}
-                                imgBlob={imgBlob}
+                                imgBlob={imgBlob || formik.values.image}
                                 setImgBlob={setImgBlob}
                             />
                             <DateChip

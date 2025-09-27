@@ -126,7 +126,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                     >
                         <CardLarge.Chips className="justify-between px-4">
                             <ImageBtn
-                                imgBlob={imgBlob}
+                                imgBlob={imgBlob ?? formik.values.image}
                                 variant="tonal"
                                 className={"relative pb-1"}
                                 formik={formik}

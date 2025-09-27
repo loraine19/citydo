@@ -54,7 +54,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
     const start = formik.values.createdAt ? new Date(formik.values.createdAt) : new Date();
 
     return (
-        <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
+        <form onSubmit={formik.handleSubmit} className="flex flex-col h-full">
             <main className="wRespXLMargin">
 
                 <section className={`!h-full hBottomFab flex ${show ? 'overflow-hidden' : 'overflow-auto '}`}>
@@ -106,9 +106,9 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                     >
                         <CardLarge.Chips className="justify-between px-4">
                             <ImageBtn
-                                imgBlob={imgBlob}
+                                imgBlob={imgBlob || formik.values.image}
                                 variant="tonal"
-                                className={"relative pb-1"}
+                                className="relative pb-1"
                                 formik={formik}
                                 setImgBlob={setImgBlob}
                             />
