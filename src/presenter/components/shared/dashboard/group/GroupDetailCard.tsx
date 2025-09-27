@@ -92,9 +92,10 @@ export default function GroupDetailCard({ group: initGroup, refetch, expand, set
                     <DateChip start={createdAt} prefix="publié le " />
                 </div>
                 <MoreButton
+                    title={group?.name}
                     divRef={refMore}
                     ref
-                    id={group.id}
+                    id={group?.id}
                     type={'groupe'}
                     flagged={false}
                 />
