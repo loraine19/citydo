@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
 import { Action } from "../../../domain/entities/frontEntities";
-import { Icon, IconName } from "./IconComp";
+import { IconName } from "./IconComp";
 import { useAlertStore } from "../../../application/stores/alert.store";
 import { useUxStore } from "../../../application/stores/ux.store";
-
+import { Button, ButtonGroup, Md3Colors } from "../shared/base/baseComps/Buttons";
 type CTAProps = {
     actions: Action[],
     icon3?: boolean,
@@ -39,9 +39,13 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
     const isDisabled = (i: number) => ((i === 0 && disabled1) || (i === 1 && disabled2) || actions[i]?.disabled)
 
     return (
-        <footer className={`CTA  pb-2`}>
+        <footer className={` CTA h-max w-full !justify-end wRespXL py-2 flex`}>
 
-            <div className={`flex gap-x-3 gap-y-2 md:gap-x-6 md:gap-y-3 flex-row flex-wrap items-center justify-center w-full wRespL px-2 lg:px-2 pb-2 lg:pb-0 `}>
+            <ButtonGroup
+                rounded
+                size="large"
+                variant="text"
+                className={`bg-transparent blurBackdrop`}>
                 {[...actions]
                     .sort((a, b) => {
                         // First: NoPrimary === true
@@ -60,29 +64,28 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                                     ${showLabel.index === i && showLabel.value ? 'growShrink' : ''}
                                     ${isPrimary(i) ? 'flex-1 w-[90%]  ' :
                                         (actions.length === 2) ? ' !items-end justify-end ' : 'w-max '} !flex  !items-end !justify-end lg:!w-max lg:flex-shrink-0 growShrink`} >
-                                <div className={`flex flex-1 bg-slate-100 max-w-[max-content] rounded-full !justify-end items-end   `}>
-                                    <button
+                                <div className={`flex flex-1 max-w-[max-content] rounded-full !justify-end items-end   `}>
+                                    <Button
+                                        round={showLabel.index === i && showLabel.value ? false : true}
+                                        size={'xlarge'}
+                                        color={action?.color as Md3Colors ?? defColor ?? 'slate' as any}
+                                        variant={isPrimary(i) ? "filled" : "tonal"}
                                         disabled={isDisabled(i)}
                                         key={i + 'btn'}
                                         onMouseEnter={() => setShowLabel({ index: i, value: true })}
                                         onMouseLeave={() => setShowLabel({ index: i, value: false })}
                                         type={action?.type ?? "button"}
-                                        className={` showUp md3-${action?.color ?? defColor ?? 'slate'}${(isPrimary(i) && !isDisabled(i)) ? '' : '-container'} !min-w-max  lgBtn !mr-0 flex-1 flex !py-1 !px-1.5 anim md3-elevation-4`}
+                                        className={` showUp anim md3-elevation-4 !min-w-max `}
+                                        icon={{
+                                            onClick: () => {
+                                                setShowLabel({ index: i, value: !showLabel.value });
+                                            },
+                                            icon: action?.iconImage as IconName,
+                                            size: '2xl',
+                                            fill: isDisabled(i) ? false : true
+                                        }}
                                     >
-                                        {action?.iconImage && (
-                                            <Icon
-                                                onClick={() => {
-                                                    setShowLabel({ index: i, value: !showLabel.value });
-                                                }}
-                                                reverse={!isPrimary(i) || isDisabled(i) || (showLabel.index === i && showLabel.value) ? false : true}
-                                                clear={!(showLabel.index === i && showLabel.value) || !(isPrimary(i) || isDisabled(i))}
-                                                color={isDisabled(i) ? 'slate' : action?.color ?? defColor}
-                                                icon={action?.iconImage as IconName}
-                                                disabled={isDisabled(i)}
-                                                bg fill
-                                                size="2xl"
-                                            />
-                                        )}
+
                                         <span
                                             onClick={() => {
                                                 if (action?.direct) {
@@ -92,14 +95,17 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                                                     setIndex(i);
                                                 }
                                             }}
-                                            className={` growShrink ${showLabel.index === i && showLabel.value ? 'flex' : 'hidden'} hover:!flex active:!flex hover:w-full flex-1 -ml-3 pl-2 pr-4 md:!pr-9 `}>{action?.icon}</span>
-                                    </button>
+                                            className={`
+                                            ${showLabel.index === i && showLabel.value ? 'flex' : 'hidden'} hover:!flex active:!flex w-full  flex-1 justify-center  px-8 !text-sm growShrink `}>
+                                            {action?.icon}
+                                        </span>
+                                    </Button>
                                 </div>
                             </div>
                         )
                     )
                 }
-            </div>
+            </ButtonGroup>
         </footer>
     );
 }

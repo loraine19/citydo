@@ -2,48 +2,40 @@ import { useUxStore } from "../../../application/stores/ux.store";
 import { CardMD } from "../shared/base/baseComps/Cards";
 
 export function Skeleton(props: { className?: string, grid?: boolean, compact?: boolean }) {
-    const { className, compact } = props ?? 'SubGrid'
+    const { compact } = props ?? 'SubGrid'
     const style = `animate-pulse  flex items-center FixCard justify-center !w-full !h-full`;
 
     const { color } = useUxStore()
     return (
-        <div className={`h-full !z-[0]  pb-1.5 w-full flex flex-col flex-1 items-center justify-center ${className ?? ''}`}>
-            <CardMD
-                autoFit={compact}
-                variant="elevated"
-                className={style + ' !w-full h-full grid-cols-[100%]  '}
-                image={
-                    <CardMD.Image
-                        src="/images/placeholder.png"
-                        alt=""
-                        position="top"
-                        className={`!w-full !flex-1 flex min-w-full ${color}Style`}
-                    >
+        <CardMD
+            autoFit={compact}
+            className={style + ' min-h-full opacity-60 anim '}
+            image={
+                <CardMD.Image
+                    src="public/image/placeholder.jpg"
+                    alt=""
+                    position="top"
+                    className={`min-h-full md3-${color}-container`}
+                >
 
-                    </CardMD.Image>
-                }
-            >
-                <CardMD.Headline className="min-w-[100%] flex-1 flex">
-                    <div className="h-6 bg-slate-200 rounded-3xl w-2/3 animate-pulse"></div>
-                </CardMD.Headline>
-                <CardMD.Subhead>
-                    <div className="h-4 bg-slate-200 rounded-3xl w-3/4 animate-pulse"></div>
-                </CardMD.Subhead>
-                <CardMD.SupportingText>
-                    <div className="h-4 bg-slate-200 rounded-3xl w-full mb-2 animate-pulse"></div>
-                    <div className="h-4 bg-slate-200 rounded-3xl w-5/6 animate-pulse"></div>
-                </CardMD.SupportingText>
-                <CardMD.Footer>
-                    <div className="h-8 bg-slate-200 rounded-3xl w-1/2 animate-pulse"></div>
-                    <div className="h-8 bg-slate-200 rounded-3xl w-8 animate-pulse"></div>
-                </CardMD.Footer>
-            </CardMD>
-            {/* {!grid &&
-                <footer><CTAMines
-                    actions={[{ icon: '...loading' }]}>
-
-                </CTAMines></footer>} */}
-        </div>
+                </CardMD.Image>
+            }
+        >
+            <CardMD.Headline className="w-full flex-1 flex">
+                <div className="h-6 md3-surface rounded-3xl w-2/3 animate-pulse"></div>
+            </CardMD.Headline>
+            <CardMD.Subhead className="flex-1  min-h-[1rem] ">
+                <div className="h-4 md3-surface rounded-3xl w-3/4 animate-pulse"></div>
+            </CardMD.Subhead>
+            <CardMD.SupportingText className="flex-1 !flex-col   min-h-[5rem] ">
+                <div className="h-4 md3-surface rounded-3xl w-full mb-2 animate-pulse"></div>
+                <div className="h-4 md3-surface rounded-3xl w-5/6 animate-pulse"></div>
+            </CardMD.SupportingText>
+            <CardMD.Footer className="flex-1 gap-8 min-h-[7rem] ">
+                <div className="h-8 md3-surface rounded-3xl w-1/2 animate-pulse"></div>
+                <div className="h-8 md3-surface rounded-3xl w-8 animate-pulse"></div>
+            </CardMD.Footer>
+        </CardMD>
     );
 };
 
@@ -53,11 +45,13 @@ export function SkeletonGrid(props: { small?: boolean, count?: number, compact?:
     small ? num = 8 : num = num
     return (
         <section>
-            <div className={` ${small ? 'GridSmall  min-h-full' : 'Grid'} ${compact ? 'GridCompact' : ''} `}>
+            <div className={` 
+            ${small ? 'GridSmall  min-h-full' : 'Grid'} 
+                ${compact ? 'GridCompact' : ''} `}>
                 {[...Array(num)].map((_, index) => (
                     <div
                         key={index + 'div'}
-                        className={`${small ? 'SubGridSmall flex min-h-44 justify-center items-center pt-1' : 'SubGrid  '}  `}>
+                        className={`${small ? 'SubGridSmall flex min-h-44 justify-center items-center pt-1' : 'SubGrid h-max '}  `}>
                         <Skeleton
                             grid
                             key={index} />

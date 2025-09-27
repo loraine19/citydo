@@ -241,3 +241,57 @@
 .md3-helper-text.error {
     color: var(--md3-error);
 }
+
+/**** INPUT STYLES ****/
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:active,
+input[type="number"]:-webkit-autofill,
+input[type="number"]:-webkit-autofill:focus,
+input[type="number"]:-webkit-autofill:hover,
+input[type="number"]:-webkit-autofill:active,
+input[type="email"]:-webkit-autofill,
+input[type="email"]:-webkit-autofill:focus,
+input[type="email"]:-webkit-autofill:hover,
+input[type="email"]:-webkit-autofill:active {
+    @apply !outline-none !ring-0 !ring-current  !bg-opacity-0 !rounded-3xl;
+    box-shadow: 0 0 0px 1000px #00000000 inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: var(--md3-on-surface) !important;
+}
+
+input {
+    @apply !opacity-95  !outline-0 !ring-0 !ring-current;
+}
+
+input[type="datetime-local"] {
+    @apply !pr-0;
+    &::-webkit-calendar-picker-indicator {
+        @apply invisible absolute left-2 z-[4];
+    }
+}
+
+input[type="number"] {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        @apply invisible;
+    }
+}
+
+input[data-cy="input-search"]::placeholder {
+    @apply !min-h-8 !h-[1rem];
+}
+
+textarea {
+    @apply focus:bg-transparent;
+}
+
+[role="option"] {
+    @apply !text-slate-500 !opacity-95  !font-normal;
+}

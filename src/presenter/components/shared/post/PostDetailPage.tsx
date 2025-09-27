@@ -115,7 +115,7 @@ export default function PostDetailPage() {
                         handleHideCallback()
                     }}>
 
-                    <div className={`DetailCardDiv ${!hideNavBottom ? post?.isMine ? "hideCTA2" : "hideCTA2" : ""}`}>
+                    <div className={`!h-full hBottomFab flex pt-4 `}>
                         {!isLoading && post ?
                             <PostDetailCard
                                 expand={expand}

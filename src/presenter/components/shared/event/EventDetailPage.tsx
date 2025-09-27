@@ -102,7 +102,6 @@ export default function EventDetailPage() {
     return (
         <>
             <main data-cy="event-details-page">
-
                 <section
                     id='refDiv'
                     className={expanded ? 'overflow-auto' : 'overflow-hidden'}
@@ -110,11 +109,9 @@ export default function EventDetailPage() {
                     onScroll={() => {
                         handleHideCallback();
                     }}>
-                    <div
-                        className={`DetailCardDiv hideCTA   `}>
+                    <div className={`!h-full hBottomFab flex pt-4 `}>
                         {!isLoading && event ?
                             <EventDetailCard
-
                                 EventLoad={event}
                                 refetch={async () => await updateEvent()}
                                 expand={expanded}
@@ -122,11 +119,9 @@ export default function EventDetailPage() {
                             :
                             <Skeleton />}
                     </div>
-
-
-
                 </section>
             </main >
+            {/* CTA DIV  */}
             <footer className={`footer ${hideNavBottom ? 'hidden' : ''}`} >
                 {(!isLoading && event && !error) && <>
                     {event?.mine && !isLoading ?

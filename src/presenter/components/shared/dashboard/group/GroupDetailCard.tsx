@@ -117,7 +117,7 @@ export default function GroupDetailCard({ group: initGroup, refetch, expand, set
                             setOpen(true);
                             setAlertValues(toogleModoValues);
                         }}
-                        value={group?.GroupUser.filter(gu => gu.role === Role.MODO).length + ' conciliateurs' + (group?.ImModo ? '⠀✓' : '⠀')}
+                        value={group?.GroupUser?.filter(gu => gu.role === Role.MODO).length + ' conciliateurs' + (group?.ImModo ? '⠀✓' : '⠀')}
                         icon={
                             <Icon
                                 size="md"
@@ -151,10 +151,10 @@ export default function GroupDetailCard({ group: initGroup, refetch, expand, set
                         {infos.map((info: Label, index: number) => (
                             <div key={index} className='gap-1 flex w-full flex-col pt-2 snap-center shrink-0 '>
                                 <h6>
-                                    {info.label} :
+                                    {info?.label} :
                                 </h6>
                                 <div className="overflow-auto ">
-                                    {info.value}
+                                    {info?.value}
                                 </div>
                             </div>
                         ))}

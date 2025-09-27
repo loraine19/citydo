@@ -270,7 +270,7 @@ export default function ServiceDetailPage() {
                     ref={divRef}
                     onScroll={() =>
                         handleHideCallback()}>
-                    <div className={`DetailCardDiv  ${!hideNavBottom ? actions.length > 1 ? "hideCTA2" : "hideCTA" : ""}`}>
+                    <div className={`!h-full hBottomFab flex pt-4 `}>
                         {isLoading || error || !service ?
                             <Skeleton />
                             :

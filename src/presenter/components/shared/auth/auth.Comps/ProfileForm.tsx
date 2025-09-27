@@ -68,9 +68,9 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
     }, [SearchSection, setDetailSection, formik.values]);
 
     return (
-        <form onSubmit={formik.handleSubmit} className="flex flex-col h-full pb-2 overflow-hidden">
+        <form onSubmit={formik.handleSubmit} className="flex flex-col h-full  overflow-hidden">
             <main className="wRespXLMargin ">
-
+                {/* PRES DIV  */}
                 <div className="w-respXL pt-4 pb-4 flex flex-col gap-2 px-[0.8rem] md:px-[3rem] ">
                     <div className="flex items-center gap-4">
                         <AvatarUser
@@ -83,7 +83,6 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
                             avatarStyle="scale-[1] hover:!scale-[1] md3-elevation-2 md3-border "
                         />
                         <div className=" flex-1  flex flex-col ">
-
                             <span>
                                 Bienvenue&nbsp;
                                 {user?.Profile?.firstName ?? ""}
@@ -93,13 +92,14 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
                             </span>
                         </div>
                     </div>
-
-
                 </div>
-                <section className="DetailCardDiv hideCTAform ">
+
+
+                {/* FORM DIV  */}
+                <section className={`!h-full hBottomFab flex `}>
                     {error || isLoading ? <Skeleton /> :
                         <CardLarge
-                            className="mb-4"
+                            className="mb-6"
                             form
                             expanded={true}
                             setExpanded={() => { }}
@@ -142,7 +142,6 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
                                 </Button>
                             </CardLarge.Header>
                             <CardLarge.Divider />
-
                             <CardLarge.MidSection className="flex-col py-4 gap-4 flex ">
                                 <h6>Informations personnelles</h6>
                                 <Input
@@ -276,6 +275,8 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
                     }
                 </section>
             </main>
+
+            {/* CTA DIV  */}
             <CTAMines
                 actions={[
                     {

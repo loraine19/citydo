@@ -67,8 +67,8 @@ export function ServiceForm(props: { formik: any }) {
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
             <main className="wRespXLMargin">
-                <section className={`"DetailCardDiv  " ${show ? 'overflow-hidden' : 'overflow-auto hideCTAForm'} `}>
-                    <div className={`p-2 max-h-max w-full flex flex-col gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
+                <section className={`!h-full hBottomFab flex ${show ? 'overflow-hidden' : 'overflow-auto '}`}>
+                    <div className={`pt-2 max-h-max w-full flex flex-col gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
                         <h6 className="md3-card-subhead pt-4">Informations principales</h6>
                         <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
                             <RadioGroup
@@ -115,7 +115,7 @@ export function ServiceForm(props: { formik: any }) {
                         </div>
                     </div>
                     <CardLarge
-                        className={` ${(showCard && !show) ?
+                        className={` mb-3 ${(showCard && !show) ?
                             `md3-animation-slide-up ` : 'md3-animation-slide-out-down'}`}
                         form
                         expanded={expand}

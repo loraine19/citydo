@@ -44,6 +44,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
     }
     return (
         <CardLarge
+            className="min-h-full"
             expanded={expanded}
             setExpanded={setExpanded}
             image={

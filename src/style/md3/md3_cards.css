@@ -67,6 +67,7 @@
     flex: 1;
     height: 100%;
     overflow: hidden;
+    width: 100%;
 }
 
 .md3-card-headline {
@@ -272,4 +273,34 @@
 .md3-card:focus-visible {
     outline: 2px solid var(--md3-primary);
     outline-offset: 2px;
+}
+
+/**** GRID SYSTEM ****/
+
+/* list section */
+.Grid {
+    @apply max-h-full w-full grid pb-20 pt-2  px-[0.5rem] md:px-[1rem]
+    grid-cols-[minmax(calc(50%-1rem),1fr)]  
+    sm:grid-cols-[1fr,1fr] 
+    sm:auto-rows-[minmax(min-content,40vh)] 
+    auto-rows-[minmax(min-content,20vh)];
+}
+
+.GridCompact {
+    @apply lg:grid-cols-[auto,auto,auto];
+}
+
+.Grid2 {
+    @apply wRespXL !max-h-full grid grid-cols-[minmax(calc(50%-1rem),_1fr)] gap-y-3 pb-4 gap-x-1 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)];
+    grid-auto-rows: minmax(320px, 53vh);
+}
+
+.GridSmall {
+    @apply !max-h-full grid grid-cols-[minmax(calc(50%-1rem),_1fr)] gap-y-3 gap-x-3 px-4 pb-4 pt-2 lg:grid-cols-[minmax(calc(50%-1rem),_1fr)_minmax(calc(50%-1rem),_1fr)];
+    grid-auto-rows: minmax(max-content, 20vh);
+}
+
+/* list grid */
+.SubGrid {
+    @apply max-w-[calc(100vw-1rem)] px-2.5 pt-1 pb-4  overflow-hidden  grid;
 }

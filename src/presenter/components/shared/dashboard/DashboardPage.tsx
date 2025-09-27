@@ -75,8 +75,7 @@ export default function DashboardPage() {
         <main
 
             className={` lg:!-mt-0 !overflow-hidden  wRespXL
-            ${navBottom ? ' !max-h-[calc(100dvh_-_8rem)] lg:!max-h-[calc(100dvh_-_8rem)] ' :
-                    ' !max-h-[calc(100dvh_-_3.5rem)] lg:!max-h-[calc(100dvh_-_2rem)] '} `}
+            ${navBottom && ' hBottomNav '} `}
             data-cy="dashboard-body" >
             <div
                 ref={divRef}

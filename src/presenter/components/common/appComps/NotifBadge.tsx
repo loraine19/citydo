@@ -70,6 +70,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                         title={'ouvrir la page'} />
 
                     <Menu
+                        blurBack
                         placement="bottom-left"
                         title={hasNextPage ? `Notifications...${list.notifs.length}/${list.count} ` : "Notifications"}
                         MenuKey='notif-menu'

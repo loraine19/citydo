@@ -78,7 +78,7 @@ export default function PoolDetailPage() {
                     handleHideCallback()
                 }}>
 
-                <div className={`DetailCardDiv hideCTA`}>
+                <div className={`!h-full hBottomFab flex pt-4 `}>
                     {isLoading || !pool || error ?
                         <Skeleton /> :
                         <PoolDetailCard

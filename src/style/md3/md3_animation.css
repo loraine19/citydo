@@ -175,3 +175,254 @@
         opacity: 0;
     }
 }
+
+/**** ANIMATIONS ****/
+
+.anim2 {
+    @apply duration-700 fadeIn;
+    animation: up 2s forwards;
+}
+.anim {
+    @apply duration-700;
+    animation: up 2s forwards, fadeIn 2s forwards;
+}
+
+.anim-delay-1 {
+    animation-delay: 0.5s;
+}
+.anim-delay-2 {
+    animation-delay: 1s;
+}
+.anim-delay-3 {
+    animation-delay: 2s;
+}
+.anim-delay-4 {
+    animation-delay: 3s;
+}
+.anim-delay-5 {
+    animation-delay: 4s;
+}
+
+/* Ajoutez plus si besoin */
+
+.animRev {
+    @apply duration-700;
+    animation: down 2s forwards, fadeIn 2s forwards;
+}
+
+.animSlide {
+    @apply duration-700 fadeIn;
+    animation: slide 1.2s forwards;
+}
+
+.animSlideRev {
+    @apply duration-700;
+    animation: slideOut 1.2s forwards;
+}
+
+.animSlideUp {
+    @apply duration-700 fadeIn;
+    animation: slideUp 1.2s forwards;
+}
+@keyframes slide {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes slideOut {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-90%);
+    }
+}
+
+.fadeIn {
+    @apply duration-700;
+    animation: fadeIn 1.2s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes up {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes down {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.spin {
+    animation: spin 0.7s linear;
+}
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.showUp {
+    @apply duration-500;
+    animation: showUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes showUp {
+    from {
+        opacity: 0;
+        transform: scaleX(0.8);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+        max-height: 1000px;
+    }
+}
+.growShrink {
+    @apply duration-700;
+    animation: growShrink 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes growShrink {
+    from {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Animation d'apparition avec un effet de rebond */
+@keyframes pop {
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+    40% {
+        transform: scale(2);
+        opacity: 0.3;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0.6;
+    }
+}
+
+/* Animation pour la disparition du like */
+@keyframes popReverse {
+    0% {
+        transform: scale(3);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(2);
+        opacity: 0.3;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+/* La classe à utiliser pour déclencher l'animation */
+.animate-pop {
+    animation: pop 0.01s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards,
+        popReverse 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+    transform-origin: center;
+}
+
+/* Insta-like balancing left-right animation */
+.animate-balance {
+    animation: balance 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform-origin: center;
+}
+
+@keyframes balance {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    20% {
+        transform: rotate(-15deg) scale(1.1);
+    }
+    40% {
+        transform: rotate(15deg) scale(1.1);
+    }
+    60% {
+        transform: rotate(-10deg) scale(1.05);
+    }
+    80% {
+        transform: rotate(10deg) scale(1.05);
+    }
+    100% {
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+.animSheet {
+    @apply duration-700;
+
+    animation: upSheet 2s forwards, fadeIn 0.7s forwards;
+}
+
+.animSheetRev {
+    @apply duration-700;
+    animation: downSheet 2s forwards, fadeIn 2s forwards;
+}
+
+@keyframes upSheet {
+    from {
+        transform: translateY(5%);
+        height: 100%;
+    }
+    to {
+        transform: translateY(0);
+        height: 100%;
+    }
+}
+
+@keyframes downSheet {
+    from {
+        transform: translateY(20%);
+        height: 100%;
+    }
+    to {
+        transform: translateY(0);
+        height: 100%;
+    }
+}

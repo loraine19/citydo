@@ -152,7 +152,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
                         setOpen={setOpenFab}
                         className={`${isBottom ?
                             'bottom-[calc(100%_+_1rem)] fixed right-2' :
-                            'absolute top-[calc(100dvh_-_5rem)] md:-right-[7rem]'} `}
+                            'absolute top-[calc(100dvh_-_6rem)] -right-[6rem] md:-right-[5.5rem]'} `}
                         mainProps={{
                             className: ` rounded-[5rem]  `,
                             size: 'large',

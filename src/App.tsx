@@ -119,13 +119,16 @@ function App() {
                                     {/* DETAILS PAGES */}
 
                                     <Route path="/service/:id" element={<ServiceDetailPage />} />
-                                    <Route path="/cagnotte/:id" element={<PoolDetailPage />} />
+
                                     <Route path="/annonce/:id" element={<PostDetailPage />} />
                                     <Route path="/groupe/:id" element={<GroupDetailPage />} />
                                     <Route path="/evenement/:id" element={<EventDetailPage />} />
                                     <Route path="/conciliation/:id" element={<IssueDetailPage />} />
                                     <Route path="/vote/create" element={<VoteCreatePage />} />
                                     <Route path="/sondage/:id" element={<SurveyDetailPage />} />
+                                    <Route path="/vote/sondage/:id" element={<SurveyDetailPage />} />
+                                    <Route path="/cagnotte/:id" element={<PoolDetailPage />} />
+                                    <Route path="/vote/cagnotte/:id" element={<PoolDetailPage />} />
                                     <Route path="/base/:id" element={<BaseDetailPage />} />
                                 </Route>
 

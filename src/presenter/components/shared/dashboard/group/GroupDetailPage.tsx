@@ -123,7 +123,7 @@ export default function GroupDetailPage() {
                     onScroll={() => {
                         handleHideCallback();
                     }}>
-                    <div className={`DetailCardDiv hideCTA`}>
+                    <div className={`!h-full hBottomFab flex pt-4 `}>
                         {!isLoading && group && !error ?
                             <GroupDetailCard
                                 group={group}

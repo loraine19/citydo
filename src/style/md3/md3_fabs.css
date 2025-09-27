@@ -28,8 +28,8 @@
     width: 3.5rem; /* 56px */
 }
 .md3-fab-large {
-    height: 4rem; /* 64px */
-    width: 4rem; /* 64px */
+    height: 4.5rem; /* 64px */
+    width: 4.5rem; /* 64px */
     border-radius: var(--md3-radius-extra-large);
 }
 .md3-fab-xlarge {

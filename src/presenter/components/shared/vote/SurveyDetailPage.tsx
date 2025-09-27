@@ -78,7 +78,7 @@ export default function SurveyDetailPage() {
                         handleHideCallback()
                     }}>
 
-                    <div className={`DetailCardDiv ${!hideNavBottom ? survey.isMine ? "hideCTA" : "hideCTA" : ""}`}>
+                    <div className={`!h-full hBottomFab flex pt-4 `}>
                         {isLoading || !survey || error ?
                             <Skeleton
                                 className='!rounded-3xl flex pt-8 pb-1 h-full' /> :
