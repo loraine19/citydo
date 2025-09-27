@@ -48,7 +48,7 @@
 }
 
 .md3-button-xlarge {
-    height: 4.5rem;
+    height: 4.25rem;
     min-width: 6rem;
     padding: 0 2rem;
     font-size: 1.125rem;
@@ -70,8 +70,8 @@
     padding: 0;
 }
 .md3-button-xlarge-round {
-    height: 4.5rem;
-    width: 4.5rem;
+    height: 4.25rem;
+    width: 4.25rem;
     padding: 0;
 }
 
