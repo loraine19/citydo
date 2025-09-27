@@ -52,8 +52,8 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
             setOpen={setIsOpen}
             blurBack
             MenuKey={profile?.userId + size}
-            className={'px-2 overflow-auto ml-4 -mr-8 '}
-            placement='top-right'
+            className={'px-2'}
+            placement='auto'
             trigger={
                 <div className="flex items-center gap-2 ">
                     <div className={`relative`}>

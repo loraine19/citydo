@@ -106,16 +106,27 @@ body {
 }
 
 main {
-    @apply flex flex-col h-[calc(100%_-_0rem)]  md3-surface flex-1 w-full mx-auto;
+    @apply flex flex-col h-full pb-4  md3-surface flex-1 w-full mx-auto;
     min-height: 0;
     z-index: 0;
     max-height: 100dvh;
 }
 .hBottomNav {
+    margin-bottom: 1rem;
     max-height: calc(100dvh - 8rem);
 }
 .hBottomFab {
+    margin-bottom: 1rem;
     max-height: calc(100dvh - 6rem);
+}
+.hBottomForm {
+    margin-bottom: 1rem;
+    max-height: calc(100dvh - 8rem);
+    height: calc(100dvh - 8rem);
+    @screen sm {
+        max-height: calc(100dvh - 6rem);
+        height: calc(100dvh - 7rem);
+    }
 }
 
 section,

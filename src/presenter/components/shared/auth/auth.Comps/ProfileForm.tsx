@@ -69,14 +69,14 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
 
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full  overflow-hidden">
-            <main className="wRespXLMargin ">
+            <main>
                 {/* PRES DIV  */}
                 <div className="w-respXL pt-4 pb-4 flex flex-col gap-2 px-[0.8rem] md:px-[3rem] ">
                     <div className="flex items-center gap-4">
                         <AvatarUser
                             Profile={{
                                 firstName: formik.values?.firstName,
-                                image: imgBlob as string,
+                                image: imgBlob as string ?? 'public/image/logo.svg',
                                 userId: user?.id || 0
                             } as any}
                             avatarSize="6xl"
@@ -85,10 +85,10 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
                         <div className=" flex-1  flex flex-col ">
                             <span>
                                 Bienvenue&nbsp;
-                                {user?.Profile?.firstName ?? ""}
+                                {user?.Profile?.firstName ?? "sur City'do"}
                             </span>
                             <span className="text-sm font-normal opacity-80">
-                                {user?.email}
+                                {user?.email ?? 'creer votre compte'}
                             </span>
                         </div>
                     </div>
@@ -99,7 +99,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
                 <section className={`!h-full hBottomFab flex `}>
                     {error || isLoading ? <Skeleton /> :
                         <CardLarge
-                            className="mb-6"
+                            className="mb-10"
                             form
                             expanded={true}
                             setExpanded={() => { }}

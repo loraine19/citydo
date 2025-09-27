@@ -68,10 +68,12 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
 
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
-            <main className="wRespXLMargin">
-                <section className={`!h-full hBottomFab flex ${show ? 'overflow-hidden' : 'overflow-auto '}`}>
+            <main >
+                <section className={` hBottomForm flex ${show ? 'overflow-hidden' : 'overflow-auto '}`}>
                     <div className={`pt-2 max-h-max w-full flex flex-col  gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
-                        <h6 className="md3-card-subhead pt-4">Informations principales</h6>
+                        <h6 className="md3-card-subhead pt-4">
+                            Informations principales
+                        </h6>
                         <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
                             <RadioGroup
                                 variant="Input"

@@ -1,6 +1,5 @@
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { ProfileForm } from '../auth/auth.Comps/ProfileForm';
 import { ProfileDTO, } from '../../../../domain/entities/Profile';
@@ -14,7 +13,6 @@ export default function MyInfosPage() {
     const { setUser, user } = useUserStore()
 
     const { Profile, user: userUpdated } = DI.resolve('meViewModel')();
-    const navigate = useNavigate();
     const [assistance, setAssistance] = useState<string | undefined>(Profile?.assistance)
     const [mailSub, setMailSub] = useState<string | undefined>(Profile?.mailSub)
     const [address, setAddress] = useState<AddressDTO>(Profile?.Address)
@@ -46,7 +44,7 @@ export default function MyInfosPage() {
 
             setOpen(false);
             setUser({ ...user, Profile: updated });
-            navigate("/");
+            window.location.replace("/")
         } catch (error) {
             console.error(error)
             handleApiError(error ?? 'Erreur lors de la mise à jour du profil')

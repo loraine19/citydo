@@ -20,9 +20,18 @@ export default function DashboardPage() {
     const { user, fetchUser, setIsLoggedIn, } = useUserStore((state) => state);
     const { setHideNavBottom, navBottom } = useUxStore((state) => state);
     useEffect(() => {
-        !user ? setIsLoggedIn(false) : setIsLoggedIn(true);
+        if (!user) {
+            setIsLoggedIn(false);
+            setTimeout(() => {
+                window.location.replace("/signin")
+            }, 1000);
+        }
+        else setIsLoggedIn(true);
+
+
         !user?.Profile && fetchUser()
         setHideNavBottom(false)
+
     }, [user])
     const navigate = useNavigate();
 

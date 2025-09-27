@@ -39,13 +39,13 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
     const isDisabled = (i: number) => ((i === 0 && disabled1) || (i === 1 && disabled2) || actions[i]?.disabled)
 
     return (
-        <footer className={` CTA h-max w-full !justify-end wRespXL px-2  flex`}>
+        <footer className={` CTA h-max w-full !justify-end wRespXL   flex`}>
 
             <ButtonGroup
                 rounded
                 size="large"
                 variant="text"
-                className={`bg-transparent p-2 backdrop-blur-sm`}>
+                className={`bg-transparent p-2.5 md3-elevation-0 `}>
                 {[...actions]
                     .sort((a, b) => {
                         // First: NoPrimary === true

@@ -635,8 +635,8 @@ CHIP
 /* Size variations */
 .md3-button-group-small {
     font-size: 0.875rem;
-    padding: 4px;
-    gap: 4px;
+    padding: 6px;
+    gap: 5px;
 }
 .md3-button-group-medium {
     font-size: 0.875rem;

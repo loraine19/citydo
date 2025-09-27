@@ -10,7 +10,7 @@ interface MenuProps {
     anchorEl?: HTMLElement | null;
     className?: string;
     children: ReactNode;
-    placement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'auto' | 'center-trigger' | 'center' | 'up-bottom-right' | 'free' | 'bottom';
+    placement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'auto' | 'center-trigger' | 'center' | 'up-bottom-right' | 'free' | 'bottom' | 'top';
     onClose?: () => void;
     trigger?: ReactNode;
     closeIcon?: ReactNode;
@@ -121,144 +121,178 @@ export const Menu: React.FC<MenuProps> = ({
     }, [open, handleClose]);
 
 
-    const triggerRef = useRef<HTMLDivElement>(null);
     const menuCurrent = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const triggerRect = containerRef.current ? containerRef.current.getBoundingClientRect() : null;
-    const triggerWidth = triggerRef.current?.offsetWidth ?? 44;
     const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
-    const [placement, setPlacement] = useState<string | null>(givenPlacement);
+    const [placement] = useState<string | null>(givenPlacement);
+    type PlaceProps = {
+        triggerRect: DOMRect,
+        menuCurrent: React.RefObject<HTMLDivElement>,
+        style: React.CSSProperties,
+        cropt?: boolean,
+        placeHor?: 'right' | 'left'
+    }
+
+    const placeBottom = (props: PlaceProps) => {
+        const { triggerRect, style, cropt, placeHor = 'right' } = props;
+        style.top = `${triggerRect.bottom}px`;
+        style.left = `${triggerRect.left}px`;
+        style.transformOrigin = `top`;
+        if (cropt) {
+            style.maxHeight = `${(window.innerHeight - triggerRect.bottom) - 16}px`;
+            style.overflowY = 'auto';
+        }
+        if (placeHor === 'left') {
+            style.left = `${triggerRect.right - (menuCurrent?.current?.offsetWidth || 0)}px`;
+        }
+
+    }
+    const placeTop = (props: PlaceProps) => {
+        const { triggerRect, menuCurrent, style, cropt, placeHor = 'right' } = props;
+        const MenuHeight = menuCurrent?.current?.offsetHeight || 0;
+        const top = MenuHeight > (window.innerHeight - triggerRect.top) ?
+            (16) : (triggerRect.top - MenuHeight);
+        style.top = `${top}px`;
+        style.left = `${triggerRect.left}px`;
+        style.transformOrigin = `bottom`;
+        if (cropt) {
+            style.maxHeight = `${triggerRect.top - 16}px`;
+            style.overflowY = 'auto';
+        }
+        if (placeHor === 'left') {
+            style.left = `${triggerRect.left}px`;
+        }
+    }
 
     useLayoutEffect(() => {
         let style: React.CSSProperties = {};
 
         if (triggerRect && menuCurrent.current) {
-            const viewportHeight = window.innerHeight;
-            const viewportWidth = window.innerWidth;
             const menuHeight = menuCurrent.current.clientHeight;
             const menuWidth = menuCurrent.current.offsetWidth;
 
             // Calculate available space
-            const spaceBelow = viewportHeight - triggerRect.bottom;
-            const spaceAbove = triggerRect.top;
-            const spaceRight = viewportWidth - triggerRect.right;
+            const spaceBottom = window.innerHeight - triggerRect.bottom;
+            const spaceTop = triggerRect.top;
+            const spaceRight = window.innerWidth - triggerRect.right;
             const spaceLeft = triggerRect.left;
 
             style.position = 'fixed';
 
-            if (placement === 'bottom') {
-                if (spaceBelow >= menuHeight) {
-                    style.top = `${triggerRect.bottom}px`;
-                    style.left = `${triggerRect.left}px`;
-                    style.transformOrigin = `top`
+            if (givenPlacement === 'auto') {
+                if (spaceTop > menuHeight) {
+                    if (spaceRight >= menuWidth) placeTop({ triggerRect, menuCurrent, style });
+                    else placeTop({ triggerRect, menuCurrent, style, placeHor: 'left' });
                 }
-                else (setPlacement('top'))
+                else if (spaceTop >= spaceBottom) {
+                    if (spaceRight > menuWidth) placeTop({ triggerRect, menuCurrent, style, cropt: true });
+                    else placeTop({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'left' });
+                }
+                else {
+                    if (spaceBottom > menuHeight) {
+                        if ((spaceRight > menuWidth) || (spaceRight > spaceLeft)) {
+                            placeBottom({ triggerRect, menuCurrent, style });
+                        }
+                        else placeBottom({ triggerRect, menuCurrent, style, placeHor: 'left' });
+                    }
+                    else {
+                        if ((spaceRight > menuWidth) || (spaceRight > spaceLeft)) {
+                            placeBottom({ triggerRect, menuCurrent, style, cropt: true });
+                        }
+                        else placeBottom({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'left' });
+                    }
+                }
+            }
 
+            if (placement === 'bottom') {
+                if (spaceBottom >= menuHeight) placeBottom({ triggerRect, menuCurrent, style });
+                else if ((spaceTop >= menuHeight) || (spaceTop > spaceBottom)) placeTop({ triggerRect, menuCurrent, style });
+                else placeBottom({ triggerRect, menuCurrent, style, cropt: true });
             }
             else if (placement === 'top') {
-                if (spaceAbove >= menuHeight) {
-                    style.top = `${(triggerRect.top - menuHeight) > 50 ?
-                        (triggerRect.top - menuHeight) : 50}px`;
-                    style.left = `${triggerRect.left}px`;
-                    style.transformOrigin = `bottom`
-                }
+                if (spaceTop >= (menuHeight)) placeTop({ triggerRect, menuCurrent, style });
+                else if (spaceBottom >= (menuHeight)) placeBottom({ triggerRect, menuCurrent, style });
+                else if (spaceTop >= spaceBottom) placeTop({ triggerRect, menuCurrent, style, cropt: true });
+                else if ((spaceBottom > spaceTop) && (spaceRight > menuWidth)) placeBottom({ triggerRect, menuCurrent, style, cropt: true });
+                else if ((spaceBottom >= menuHeight) && (spaceRight < menuWidth)) placeBottom({ triggerRect, menuCurrent, style, placeHor: 'left' });
+                else placeTop({ triggerRect, menuCurrent, style, cropt: true });
             }
             else if (placement === 'top-left') {
-                if (spaceAbove >= menuHeight && spaceLeft >= menuWidth) {
-                    style.top = `${(triggerRect.top - menuHeight) > 50 ? (triggerRect.top - menuHeight) : 50}px`;
-                    style.left = `${triggerRect.left - menuWidth}px`;
-                    style.transformOrigin = `bottom`;
-                } else if (spaceAbove >= menuHeight && spaceRight >= menuWidth) {
-                    setPlacement('top-right');
-                } else if (spaceBelow >= menuHeight && spaceLeft >= menuWidth) {
-                    setPlacement('bottom-left');
-                } else if (spaceBelow >= menuHeight && spaceRight >= menuWidth) {
-                    setPlacement('bottom-right');
-                } else {
-                    setPlacement('center-trigger');
+                if (spaceTop >= menuHeight && spaceLeft >= menuWidth) {
+                    placeTop({ triggerRect, menuCurrent, style, placeHor: 'left' });
+                } else if (spaceTop >= menuHeight && spaceRight >= menuWidth) {
+                    placeTop({ triggerRect, menuCurrent, style });
+                } else if (spaceBottom >= menuHeight && spaceLeft >= menuWidth) {
+                    placeBottom({ triggerRect, menuCurrent, style, placeHor: 'left' });
+                } else if (spaceBottom >= menuHeight && spaceRight >= menuWidth) {
+                    placeBottom({ triggerRect, menuCurrent, style, placeHor: 'right' });
                 }
+                else placeTop({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'left' });
             }
             else if (placement === 'top-right') {
-                if (spaceAbove >= menuHeight && spaceRight >= menuWidth) {
-                    style.top = `${(triggerRect.top - menuHeight) > 50 ? (triggerRect.top - menuHeight) : 50}px`;
-                    style.left = `${triggerRect.left}px`;
-                    style.transformOrigin = `bottom`;
-                } else if (spaceAbove >= menuHeight && spaceLeft >= menuWidth) {
-                    setPlacement('top-left');
-                } else if (spaceBelow >= menuHeight && spaceRight >= menuWidth) {
-                    setPlacement('bottom-right');
-                } else if (spaceBelow >= menuHeight && spaceLeft >= menuWidth) {
-                    setPlacement('bottom-left');
-                } else {
-                    setPlacement('center-trigger');
+                if (spaceTop >= menuHeight && spaceRight >= menuWidth) {
+                    placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
+                } else if (spaceTop >= menuHeight && spaceLeft >= menuWidth) {
+                    placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
+                } else if (spaceBottom >= menuHeight && spaceRight >= menuWidth) {
+                    placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
+                } else if (spaceBottom >= menuHeight && spaceLeft >= menuWidth) {
+                    placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
                 }
+                else placeTop({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'right' });
             }
             else if (placement === 'bottom-left') {
-                if (spaceBelow >= menuHeight && spaceLeft >= menuWidth) {
-                    style.top = `${triggerRect.bottom}px`;
-                    style.left = `${triggerRect.left - menuWidth}px`;
-                    style.transformOrigin = `top`;
-                } else if (spaceBelow >= menuHeight && spaceRight >= menuWidth) {
-                    setPlacement('bottom-right');
-                } else if (spaceAbove >= menuHeight && spaceLeft >= menuWidth) {
-                    setPlacement('top-left');
-                } else if (spaceAbove >= menuHeight && spaceRight >= menuWidth) {
-                    setPlacement('top-right');
+                if (spaceBottom >= menuHeight && spaceLeft >= menuWidth) {
+                    placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
+                } else if (spaceBottom >= menuHeight && spaceRight >= menuWidth) {
+                    placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
+                } else if (spaceTop >= menuHeight && spaceLeft >= menuWidth) {
+                    placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
+                } else if (spaceTop >= menuHeight && spaceRight >= menuWidth) {
+                    placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
                 } else {
-                    setPlacement('center-trigger');
+                    placeBottom({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'left' });
                 }
             }
             else if (placement === 'bottom-right') {
-                if (spaceBelow >= menuHeight && spaceRight >= menuWidth) {
-                    style.top = `${triggerRect.bottom}px`;
-                    style.left = `${triggerRect.left}px`;
-                    style.transformOrigin = `top`;
-                } else if (spaceBelow >= menuHeight && spaceLeft >= menuWidth) {
-                    setPlacement('bottom-left');
-                } else if (spaceAbove >= menuHeight && spaceRight >= menuWidth) {
-                    setPlacement('top-right');
-                } else if (spaceAbove >= menuHeight && spaceLeft >= menuWidth) {
-                    setPlacement('top-left');
+                if (spaceBottom >= menuHeight && spaceRight >= menuWidth) {
+                    placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
+                } else if (spaceBottom >= menuHeight && spaceLeft >= menuWidth) {
+                    placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
+                } else if (spaceTop >= menuHeight && spaceRight >= menuWidth) {
+                    placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
+                } else if (spaceTop >= menuHeight && spaceLeft >= menuWidth) {
+                    placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
                 } else {
-                    setPlacement('center-trigger');
+                    placeBottom({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'right' });
                 }
             }
-            else if (placement === 'auto') {
-                if (spaceBelow >= menuHeight && spaceRight >= menuWidth) {
-                    setPlacement('bottom-right');
-                } else if (spaceBelow >= menuHeight && spaceLeft >= menuWidth) {
-                    setPlacement('bottom-left');
-                } else if (spaceAbove >= menuHeight && spaceRight >= menuWidth) {
-                    setPlacement('top-right');
-                } else if (spaceAbove >= menuHeight && spaceLeft >= menuWidth) {
-                    setPlacement('top-left');
-                } else {
-                    setPlacement('center-trigger');
-                }
-            }
+
             else if (placement === 'center-trigger') {
                 style.top = `${(triggerRect.bottom / 2) > 200 ? (triggerRect.bottom / 2) : 200}px`;
                 style.left = `${triggerRect.right / 2}px`;
                 style.transformOrigin = `top`;
             }
             else if (placement === 'center') {
-                style.top = `${(viewportHeight - menuHeight) / 2}px`;
-                style.left = `${(viewportWidth - menuWidth) / 2}px`;
+                style.top = `${(window.innerHeight - menuHeight) / 2}px`;
+                style.left = `${(window.innerWidth - menuWidth) / 2}px`;
                 style.transformOrigin = `center`;
             }
             else if (placement === 'up-bottom-right') {
                 style.top = `${triggerRect.bottom - triggerRect.height}px`;
-                style.left = `${triggerRect.right - menuWidth > 0 ? (triggerRect.right - menuWidth - triggerWidth / 2) : 0}px`;
+                style.left = `${triggerRect.right - menuWidth > 0 ? (triggerRect.right - menuWidth - triggerRect.width / 2) : 0}px`;
                 style.transformOrigin = `top`;
             }
-            else {
-                // Default/fallback: bottom placement with reduced height and overflow
-                style.top = `${triggerRect.bottom}px`;
-                style.left = `${triggerRect.left}px`;
-                style.transformOrigin = `top`;
-                style.maxHeight = `calc(100vh - ${triggerRect.bottom + 16}px)`;
-                style.overflowY = 'auto';
-            }
+            // else {
+            //     // Default/fallback: bottom placement with reduced height and overflow
+            //     style.top = `${triggerRect.bottom}px`;
+            //     style.left = `${triggerRect.left}px`;
+            //     style.transformOrigin = `top`;
+            //     style.maxHeight = `calc(100vh - ${triggerRect.bottom + 16}px)`;
+            //     style.overflowY = 'auto';
+            //     style.backgroundColor = 'purple';
+            // }
         }
         if (style !== menuStyle && open) setMenuStyle(style);
 

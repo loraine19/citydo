@@ -87,6 +87,7 @@ export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; im
                             icon={{
                                 bg: true,
                                 clear: true,
+                                size: 'md',
                                 icon: "hide_image",
                                 title: "Supprimer l'image",
                                 onClick: () => {

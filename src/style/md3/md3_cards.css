@@ -149,7 +149,7 @@
 
 /*** LARGER CARDS ***/
 .md3-card-large {
-    @apply flex flex-col w-respLarge md3-primary-container;
+    @apply flex flex-col  md3-primary-container;
     border-radius: var(--md3-radius-large);
     box-shadow: var(--md3-shadow-elevation-4);
     transition: box-shadow 0.2s, background-color 0.2s;

@@ -142,14 +142,15 @@ export const AddressInputOpen = (props: {
                 error={!!error}
                 leadingIcon={
                     <Menu
+                        fitMax
                         isVisible={open}
                         MenuKey='address-suggestion'
                         closeIcon={<></>}
                         open={open}
                         setOpen={((open) => address ? setOpen(open) : setOpen(false))}
                         title='Choisir dans la liste'
-                        placement='bottom-right'
-                        className=' w-[calc(100dvw-2rem)] absolute wRespXLMargin !right-0  !mt-[2rem] mx-[1rem] max-h-[11rem] overflow-y-scroll '
+                        placement='auto'
+                        className='!w-max max-w-[calc(100dvw-4rem)] max-h-[14rem]  wRespXLMargin !right-0   overflow-y-scroll '
                         trigger={
                             <button type="button" id="mapbox-trigger">
                                 <Icon

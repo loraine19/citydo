@@ -54,7 +54,7 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
                 className={className ?? '' + ' '}
                 open={isOpen}
                 setOpen={(open: boolean) => { setIsOpen(open); setOpenShare(false) }}
-                placement={'bottom-left'}
+                placement={'auto'}
                 trigger={
                     <Icon
 
