@@ -66,7 +66,7 @@ export function Select({
                         className=''
                         containerClassName="w-full"
                         blurBack
-                        placement="bottom"
+                        placement="auto"
                         trigger={
                             <div className="flex items-center justify-between flex-1 w-full">
                                 <div className={`${variant === 'Input' ? '' : ''} 

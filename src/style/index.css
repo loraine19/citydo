@@ -98,7 +98,6 @@ html {
 }
 body {
     @apply h-screen w-screen  flex flex-col;
-    max-height: 100dvh;
 }
 
 .App {

@@ -152,7 +152,7 @@ export const Menu: React.FC<MenuProps> = ({
         const { triggerRect, menuCurrent, style, cropt, placeHor = 'right' } = props;
         const MenuHeight = menuCurrent?.current?.offsetHeight || 0;
         const top = MenuHeight > (window.innerHeight - triggerRect.top) ?
-            (16) : (triggerRect.top - MenuHeight);
+            (triggerRect.top - MenuHeight) : (triggerRect.top - MenuHeight);
         style.top = `${top}px`;
         style.left = `${triggerRect.left}px`;
         style.transformOrigin = `bottom`;

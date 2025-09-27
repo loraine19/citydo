@@ -99,7 +99,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
                 <section className={`!h-full hBottomFab flex `}>
                     {error || isLoading ? <Skeleton /> :
                         <CardLarge
-                            className="mb-10"
+                            className="mb-3"
                             form
                             expanded={true}
                             setExpanded={() => { }}
