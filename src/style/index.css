@@ -97,7 +97,7 @@ html {
     background-color: var(--md3-surface);
 }
 body {
-    @apply h-screen w-screen  flex flex-col;
+    @apply h-screen w-screen  overflow-hidden flex flex-col;
     max-height: 100dvh;
 }
 
