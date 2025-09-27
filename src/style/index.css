@@ -108,7 +108,7 @@ main {
     @apply flex flex-col h-full pb-4  md3-surface flex-1 w-full mx-auto;
     min-height: 0;
     z-index: 0;
-    height: 100vh;
+    max-height: 100vh;
 }
 .hBottomNav {
     margin-bottom: 1rem;
@@ -121,10 +121,8 @@ main {
 .hBottomForm {
     margin-bottom: 1rem;
     max-height: calc(100dvh - 8rem);
-    height: calc(100dvh - 8rem);
     @screen sm {
-        max-height: calc(100dvh - 6rem);
-        height: calc(100dvh - 7rem);
+        max-height: calc(100dvh - 7rem);
     }
 }
 
