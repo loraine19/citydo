@@ -91,14 +91,14 @@ body {
     min-height: 100svh;
     max-height: 100lvh;
     width: 100vw;
+    overflow: auto;
+    margin: 0;
 }
 
 /* MAIN SECTIONS */
 
 .App {
-    height: 100dvh;
-    min-height: 100svh;
-    max-height: 100lvh;
+    height: 100.1dvh;
     width: 100vw;
     @apply border border-green-500 min-w-[280px];
     @apply flex flex-col flex-1 min-h-0;
