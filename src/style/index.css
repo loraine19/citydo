@@ -108,11 +108,11 @@ main {
     @apply flex flex-col h-full pb-2  md3-surface flex-1 w-full mx-auto;
     min-height: 0;
     z-index: 0;
-    max-height: 100dvh;
+    max-height: 100%;
 }
 .hBottomNav {
     margin-bottom: 1rem;
-    max-height: calc(100dvh - 7.5rem);
+    max-height: calc(100dvh - 8rem);
 }
 .hBottomFab {
     margin-bottom: 1rem;
@@ -120,13 +120,10 @@ main {
 }
 .hBottomForm {
     margin-bottom: 1rem;
-    max-height: calc(100dvh - 10rem);
+    max-height: calc(100dvh - 10.5rem);
     @screen sm {
         max-height: calc(100dvh - 7rem);
     }
-}
-* {
-    border: 1px solid red !important;
 }
 
 section,
