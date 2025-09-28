@@ -89,7 +89,7 @@ body {
     background-color: var(--md3-surface);
     height: 100dvh;
     width: 100vw;
-    @apply max-h-[100dvh] bg-red-100;
+    @apply min-h-[100dvh] bg-red-100;
 }
 
 /* MAIN SECTIONS */
@@ -97,7 +97,7 @@ body {
 .App {
     height: 100dvh;
     width: 100vw;
-    @apply border border-green-500 bg-red-500 min-w-[280px];
+    @apply border border-green-500 min-w-[280px];
     @apply flex flex-col flex-1 min-h-0;
     box-sizing: border-box;
     min-height: 100dvh;
@@ -145,7 +145,7 @@ footer {
 }
 
 header {
-    @apply w-full  mx-auto px-2 relative wRespXL bg-green-200;
+    @apply w-full  mx-auto px-2 relative wRespXL;
     width: 100%;
     margin: 0 auto;
     flex-shrink: 0;
