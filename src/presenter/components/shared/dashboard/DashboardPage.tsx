@@ -91,7 +91,7 @@ export default function DashboardPage() {
                 className={` 
                     px-[1rem] flex-1 max-max overflow-auto flex flex-col
                     md:grid md:grid-cols-2 md:grid-rows-[max-content,max-content,1fr,1fr]
-                    w-full place-content-start pt-6 rounded-b-[1rem] lg:pb-6 -mt-2 pb-3 
+                    w-full place-content-start pt-6 rounded-b-[1rem] lg:pb-3 -mt-2 pb-3 
                 `}>
 
                 {/* USER CARD  */}

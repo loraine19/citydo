@@ -43,6 +43,7 @@ const Chip: React.FC<ChipProps> = ({
         `md3-chip-${color}`,
         sizeClassMap[size],
         className,
+        "truncate"
     ]
         .filter(Boolean)
         .join(" ");

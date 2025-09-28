@@ -69,7 +69,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
 
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full  overflow-hidden">
-            <main>
+            <main className={`hBottomFab`}>
                 {/* PRES DIV  */}
                 <div className="wRespXL pt-4 pb-4 flex flex-col gap-2 px-[0.8rem] md:px-[3rem] ">
                     <div className="flex items-center gap-4">
@@ -96,7 +96,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
 
 
                 {/* FORM DIV  */}
-                <section className={`!h-full !max-h-[calc(100dvh-11rem)] flex `}>
+                <section className={`!h-full  flex `}>
                     {error || isLoading ? <Skeleton /> :
                         <CardLarge
                             className="mb-4"

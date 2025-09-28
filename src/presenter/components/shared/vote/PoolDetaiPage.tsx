@@ -69,7 +69,7 @@ export default function PoolDetailPage() {
 
     return (<>
 
-        <main>
+        <main data-cy="pool-details-page" className={`hBottomFab`}>
             <section
                 id='refDiv'
                 className={`${expand ? 'overflow-auto' : ''}`}
@@ -78,7 +78,7 @@ export default function PoolDetailPage() {
                     handleHideCallback()
                 }}>
 
-                <div className={`!h-full hBottomFab flex pt-4 `}>
+                <div className={`!h-full  flex py-3 `}>
                     {isLoading || !pool || error ?
                         <Skeleton /> :
                         <PoolDetailCard

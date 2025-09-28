@@ -263,14 +263,14 @@ export default function ServiceDetailPage() {
 
     return (
         <>
-            <main  >
+            <main className='hBottomFab' >
                 <section
                     id='refDiv'
                     className={`${expanded ? 'overflow-auto' : '!overflow-hidden '}`}
                     ref={divRef}
                     onScroll={() =>
                         handleHideCallback()}>
-                    <div className={`!h-full hBottomFab flex pt-4 `}>
+                    <div className={`!h-full  flex py-3 `}>
                         {isLoading || error || !service ?
                             <Skeleton />
                             :

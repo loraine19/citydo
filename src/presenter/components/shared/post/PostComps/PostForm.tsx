@@ -54,9 +54,9 @@ export function PostFormCard({ formik }: PostFormCardProps) {
     const start = formik.values.createdAt ? new Date(formik.values.createdAt) : new Date();
 
     return (
-        <form onSubmit={formik.handleSubmit} className="flex flex-col h-full">
-            <main>
-                <section className={` hBottomForm flex ${show ? 'overflow-hidden' : 'overflow-auto '}`}>
+        <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
+            <main className={`hBottomForm`}>
+                <section className={` flex ${show ? 'overflow-hidden' : 'overflow-auto '}`}>
                     <div className={`pt-2 max-h-max w-full flex flex-col  gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
                         <h6 className="md3-card-subhead pt-4">Informations principales</h6>
                         <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">

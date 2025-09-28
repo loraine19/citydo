@@ -101,7 +101,7 @@ export default function EventDetailPage() {
     }, [SearchSection, isLoading]);
     return (
         <>
-            <main data-cy="event-details-page">
+            <main data-cy="event-details-page" className="hBottomFab">
                 <section
                     id='refDiv'
                     className={expanded ? 'overflow-auto' : 'overflow-hidden'}
@@ -109,7 +109,7 @@ export default function EventDetailPage() {
                     onScroll={() => {
                         handleHideCallback();
                     }}>
-                    <div className={`!h-full hBottomFab flex pt-4 `}>
+                    <div className={`!h-full  flex py-3 `}>
                         {!isLoading && event ?
                             <EventDetailCard
                                 EventLoad={event}

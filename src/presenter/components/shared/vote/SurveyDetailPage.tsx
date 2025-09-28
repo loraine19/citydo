@@ -69,7 +69,7 @@ export default function SurveyDetailPage() {
 
     return (
         <>
-            <main >
+            <main className='hBottomFab'>
                 <section
                     id='refDiv'
                     className={`${expand ? 'overflow-auto' : 'overflow-hidden'}`}
@@ -78,7 +78,7 @@ export default function SurveyDetailPage() {
                         handleHideCallback()
                     }}>
 
-                    <div className={`!h-full hBottomFab flex pt-4 `}>
+                    <div className={`!h-full  flex py-3 `}>
                         {isLoading || !survey || error ?
                             <Skeleton
                                 className='!rounded-3xl flex pt-8 pb-1 h-full' /> :
