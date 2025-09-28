@@ -20,51 +20,49 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage, add
     }, [listPage, detailPage, singlePage])
 
     return (
-        <>
-            <header className={`
-                ${!mainPage && 'bg-gradient-to-t from-[var(--md3-primary-container)] to-[var(--md3-surface)]   md3-elevation-2 rounded-b-3xl mx-[3px] !w-[calc(100%-6px)]'}  !static flex-col flex gap-2 `}>
+        <header className={`
+                ${!mainPage && 'bg-gradient-to-t from-[var(--md3-primary-container)] to-[var(--md3-surface)]   md3-elevation-2  rounded-b-3xl mx-[3px] !w-[calc(100%-6px)]'} !border-none !static flex-col flex gap-2 `}>
 
-                {/* CONTAINER */}
-                <div id='AppBar'
-                    className={`pr-1 gap-2 ${!detailPage ? 'pt-3' : 'pt-1'} flex lg:px-0 slide justify-between items-center `} >
-
-
-                    {/* PROFILE MENU  */}
-                    {!detailPage &&
-                        <AppMenu
-                            listPage={listPage}
-                            singlePage={singlePage} />}
+            {/* CONTAINER */}
+            <div id='AppBar'
+                className={`pr-1 gap-2 ${!detailPage ? 'pt-3' : 'pt-1'} !border-none flex lg:px-0 slide justify-between items-center `} >
 
 
-                    {/* INSERTION NAVLINK TOP  */}
-                    {(mainPage || listPage) && !navBottom && !hideNavBottom && (
-                        <NavLinks addFab={addFab} mainPage={mainPage} placement="top" />
-                    )}
+                {/* PROFILE MENU  */}
+                {!detailPage &&
+                    <AppMenu
+                        listPage={listPage}
+                        singlePage={singlePage} />}
 
-                    {/* INSERTION SEARCH BAR */}
-                    {(searchSection && (hideNavBottom || navBottom)) && (
-                        <div className="w-full md:px-8">{searchSection}</div>
-                    )}
 
-                    {/* NOTIF BAGDES  */}
-                    <div className={`flex h-full  items-center 
+                {/* INSERTION NAVLINK TOP  */}
+                {(mainPage || listPage) && !navBottom && !hideNavBottom && (
+                    <NavLinks addFab={addFab} mainPage={mainPage} placement="top" />
+                )}
+
+                {/* INSERTION SEARCH BAR */}
+                {(searchSection && (hideNavBottom || navBottom)) && (
+                    <div className="w-full md:px-8">{searchSection}</div>
+                )}
+
+                {/* NOTIF BAGDES  */}
+                <div className={`flex h-full  items-center 
                     ${hideNavBottom || detailPage || singlePage ? 'hidden' : ''} 
                     ${navBottom ? ' w-max' : ''}`} >
-                        <NotifBadge />
-                    </div>
-                </div >
-                {/* INSERTION NAVLINK BOTTOM  */}
+                    <NotifBadge />
+                </div>
+            </div >
+            {/* INSERTION NAVLINK BOTTOM  */}
 
-                {(searchSection && !hideNavBottom && !navBottom) &&
-                    <div className="w-full">{searchSection}</div>}
-                {tabSection &&
-                    <div className={`"w-full  ${searchSection && ' pt-2 sm:pt-4'}`}>{tabSection}</div>
-                }
-                {detailSection &&
-                    <div>{detailSection}</div>
-                }
+            {(searchSection && !hideNavBottom && !navBottom) &&
+                <div className="w-full">{searchSection}</div>}
+            {tabSection &&
+                <div className={`"w-full  ${searchSection && ' pt-2 sm:pt-4'}`}>{tabSection}</div>
+            }
+            {detailSection &&
+                <div>{detailSection}</div>
+            }
 
-            </header >
-        </>
+        </header >
     );
 }
