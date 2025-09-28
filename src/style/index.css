@@ -91,7 +91,6 @@ body {
     min-height: 100dvh;
     max-height: 100.5dvh;
     width: 100vw;
-    overflow: hidden;
     margin: 0;
 }
 
@@ -99,8 +98,9 @@ body {
 
 .App {
     width: 100vw;
+    overflow: hidden;
     @apply min-w-[280px];
-    @apply flex flex-col flex-1 h-full min-h-0;
+    @apply flex flex-col flex-1 h-full max-h-[100dvh] max-w-[100dvw] min-h-0;
     box-sizing: border-box;
 }
 
@@ -146,7 +146,7 @@ footer {
 }
 
 header {
-    @apply w-full  mx-auto px-2 relative wRespXL;
+    @apply w-full sticky top-0 mx-auto px-2 wRespXL;
     width: 100%;
     margin: 0 auto;
     flex-shrink: 0;
