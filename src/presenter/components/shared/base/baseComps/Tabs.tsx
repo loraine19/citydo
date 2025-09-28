@@ -40,7 +40,7 @@ export const Tabs: React.FC<tabButtonProps> = ({
                     }}
                     onChange={() => onChange(option.value)}
                 >
-                    <span className="md3-tab-button__content">
+                    <span className="md3-tab-button__content ">
 
                         {selectedValueState === option.value ? (
                             <Icon
@@ -51,12 +51,12 @@ export const Tabs: React.FC<tabButtonProps> = ({
                             />
                         ) : option.icon ?
                             <Icon
-
                                 size={'lg'}
-                                fill={true}        {...option.icon}
+                                fill={true}
+                                {...option.icon}
 
                             /> : null}
-                        <span className={`${(selectedValueState === option.value || !option.icon) ? ' active' : " "} md3-tab-button__label `}>
+                        <span className={`${(selectedValueState === option.value || !option.icon) ? ' active' : " "} text-primary md3-tab-button__label `}>
                             {option.label}
                         </span>
                     </span>

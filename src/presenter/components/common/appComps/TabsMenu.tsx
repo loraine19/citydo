@@ -17,11 +17,7 @@ type TabProps = {
 }
 
 export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort, selectedSort, reverse, setReverse, action }: TabProps) {
-
-
-
     const { hideNavBottom, setHideNavBottom, color } = useUxStore()
-
     const parentDiv = (document.querySelector('#root > div > main > section') as HTMLElement) ?? undefined
 
     const scrollToTop = () => {

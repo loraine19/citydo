@@ -110,7 +110,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
                                     ${isBottom ? 'md:px-12  md:w-max ' : ' !rounded-none !p-0'}
                                     ${isBottom ? active ?
                                         `md3-${color}-container md3-elevation-0 md3-animation-ripple border-[1px] border-black/5 `
-                                        : ` max-w-[50px] sm:max-w-maw last:mr-[2vw] first:ml-[2vw]` : ``}
+                                        : `max-w-[50px] sm:max-w-maw last:mr-[2vw] first:ml-[2vw]` : ``}
                                     
                                         `}
                                 active={active}
