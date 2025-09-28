@@ -93,15 +93,15 @@ html {
 
 /* MAIN SECTIONS */
 #root {
-    @apply flex flex-col h-screen w-screen overflow-auto;
+    @apply flex flex-col;
     background-color: var(--md3-surface);
 }
 body {
-    @apply h-[100svh] w-screen bg-red-100  flex flex-col max-h-[100svh];
+    @apply h-[100dvh] w-screen bg-red-100   max-h-[100dvh] grid grid-cols-[auto_1fr];
 }
 
 .App {
-    @apply flex flex-col w-screen h-full   bg-red-900 max-h-[100dvh]  min-w-[280px];
+    @apply flex flex-col w-screen h-full  max-h-[100dvh]  min-w-[280px];
 }
 
 main {
@@ -111,13 +111,13 @@ main {
     max-height: calc(100dvh - 5.2rem);
 }
 .hBottomNav {
-    max-height: calc(100dvh - 8rem);
+    max-height: calc(100dvh - 8.2rem);
     @screen md {
         max-height: calc(100dvh - 9rem);
     }
 }
 .hBottomFab {
-    max-height: calc(100dvh - 7.5rem);
+    max-height: calc(100dvh - 7.8rem);
     @screen sm {
         max-height: calc(100dvh - 5rem);
     }
