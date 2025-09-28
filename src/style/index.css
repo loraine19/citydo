@@ -87,28 +87,26 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--md3-surface);
-    min-height: 100dvh;
     height: 100dvh;
+    min-height: 100dvh;
+    max-height: 100.5dvh;
     width: 100vw;
     overflow: hidden;
     margin: 0;
 }
 
+/* MAIN SECTIONS */
+
 .App {
-    @apply flex flex-col min-h-0 min-w-[280px] w-full h-full;
+    width: 100vw;
+    @apply min-w-[280px];
+    @apply flex flex-col flex-1 h-full min-h-0;
     box-sizing: border-box;
 }
 
 main,
 .main {
-    @apply flex flex-col flex-1 min-h-0 w-full;
-    overflow-y: auto;
-    min-height: 0;
-}
-
-main,
-.main {
-    @apply flex flex-col  flex-1 min-h-0 w-full;
+    @apply flex flex-col h-full flex-1 min-h-0 w-full;
     z-index: 0;
 }
 .hBottomNav {
