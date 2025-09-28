@@ -105,25 +105,19 @@ body {
 }
 
 main {
-    @apply flex flex-col h-full pb-2  md3-surface flex-1 w-full mx-auto;
+    @apply flex flex-col h-full   bg-gradient-to-t from-[var(--md3-primary-container)] to-[0.5rem] to-[var(--md3-surface)] flex-1 w-full mx-auto;
     min-height: 0;
     z-index: 0;
     max-height: 100%;
 }
 .hBottomNav {
-    margin-bottom: 1rem;
-    max-height: calc(100dvh - 7rem);
+    padding-bottom: 4.5rem;
 }
 .hBottomFab {
-    margin-bottom: 1rem;
-    max-height: calc(100dvh - 5.5rem);
+    padding-bottom: 2rem;
 }
 .hBottomForm {
-    margin-bottom: 1rem;
-    max-height: calc(100dvh - 9.5rem);
-    @screen sm {
-        max-height: calc(100dvh - 7rem);
-    }
+    padding-bottom: 1rem;
 }
 
 section,
@@ -150,7 +144,7 @@ header {
 }
 
 .sectionHeader {
-    @apply flex flex-col gap-2 px-3 relative md3-card-section-header wRespXL;
+    @apply flex flex-col gap-2 px-3 relative md3-card-section-header wRespXL !border-none;
 }
 
 /* TEXT */

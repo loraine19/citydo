@@ -181,7 +181,7 @@ export default function ChatPage() {
         <main>
             <section
                 id='refDiv'
-                className='flex !px-3 py-3 max-h-[calc(100dvh-6rem)] md:max-h-[calc(100dvh-4rem)] !overflow-hidden '>
+                className='flex !px-3 py-3  !overflow-hidden '>
                 {isLoadingConv ?
                     <Skeleton className='m-auto !h-full' /> :
                     <CardMD className={`${open ? 'md3-surface' : ''} 
