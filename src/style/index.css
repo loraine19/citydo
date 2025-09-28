@@ -88,19 +88,21 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--md3-surface);
     height: 100dvh;
+    min-height: 100svh;
+    max-height: 100lvh;
     width: 100vw;
-    @apply min-h-[100dvh] bg-red-100;
 }
 
 /* MAIN SECTIONS */
 
 .App {
     height: 100dvh;
+    min-height: 100svh;
+    max-height: 100lvh;
     width: 100vw;
     @apply border border-green-500 min-w-[280px];
     @apply flex flex-col flex-1 min-h-0;
     box-sizing: border-box;
-    min-height: 100dvh;
 }
 
 main,
