@@ -97,7 +97,7 @@ html {
     background-color: var(--md3-surface);
 }
 body {
-    @apply h-screen w-screen  flex flex-col;
+    @apply overflow-hidden h-[100dvh] w-screen  flex flex-col;
 }
 
 .App {
