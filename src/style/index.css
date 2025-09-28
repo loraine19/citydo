@@ -112,15 +112,15 @@ main {
 }
 .hBottomNav {
     margin-bottom: 1rem;
-    max-height: calc(100dvh - 8rem);
+    max-height: calc(100dvh - 6rem);
 }
 .hBottomFab {
     margin-bottom: 1rem;
-    max-height: calc(100dvh - 6.5rem);
+    max-height: calc(100dvh - 5rem);
 }
 .hBottomForm {
     margin-bottom: 1rem;
-    max-height: calc(100dvh - 10.5rem);
+    max-height: calc(100dvh - 8.5rem);
     @screen sm {
         max-height: calc(100dvh - 7rem);
     }
