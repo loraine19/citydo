@@ -97,17 +97,18 @@ html {
     background-color: var(--md3-surface);
 }
 body {
-    @apply h-screen w-screen bg-red-100 flex flex-col;
+    @apply h-screen w-screen bg-red-100 flex flex-col max-h-[100dvh];
 }
 
 .App {
-    @apply flex flex-col w-screen h-screen  bg-red-200 min-h-[100dvh]  min-w-[280px];
+    @apply flex flex-col w-screen h-screen  bg-red-200 max-h-[100dvh]  min-w-[280px];
 }
 
 main {
     @apply flex flex-col h-full  bg-red-300 flex-1 w-full mx-auto;
     min-height: 0;
     z-index: 0;
+    max-height: calc(100dvh - 5rem);
 }
 .hBottomNav {
     max-height: calc(100dvh - 8rem);
