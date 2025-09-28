@@ -97,11 +97,11 @@ html {
     background-color: var(--md3-surface);
 }
 body {
-    @apply h-[100dvh] w-screen bg-red-100  flex flex-col max-h-[100dvh];
+    @apply h-[100svh] w-screen bg-red-100  flex flex-col max-h-[100svh];
 }
 
 .App {
-    @apply flex flex-col w-screen h-full  overflow-hidden bg-red-900 max-h-[100dvh]  min-w-[280px];
+    @apply flex flex-col w-screen h-full   bg-red-900 max-h-[100dvh]  min-w-[280px];
 }
 
 main {
