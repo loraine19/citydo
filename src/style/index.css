@@ -89,7 +89,7 @@ body {
     background-color: var(--md3-surface);
     height: 100dvh;
     width: 100vw;
-    @apply max-h-[100vh] bg-red-100 p-0;
+    @apply max-h-[100dvh] bg-red-100;
 }
 
 /* MAIN SECTIONS */
@@ -100,7 +100,7 @@ body {
     @apply border border-green-500 bg-red-500 min-w-[280px];
     @apply flex flex-col flex-1 min-h-0;
     box-sizing: border-box;
-    min-height: 0;
+    min-height: 100dvh;
 }
 
 main,
@@ -137,7 +137,7 @@ section,
 }
 
 footer {
-    @apply mx-auto flex  bottom-0 justify-center items-center bg-yellow-300/40;
+    @apply mx-auto flex  bottom-0 justify-center items-center;
     width: 100%;
     margin: 0 auto;
     flex-shrink: 0;
