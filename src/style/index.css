@@ -93,22 +93,22 @@ html {
 
 /* MAIN SECTIONS */
 #root {
-    @apply flex flex-col h-screen w-screen;
+    @apply flex flex-col h-screen w-screen overflow-auto;
     background-color: var(--md3-surface);
 }
 body {
-    @apply h-screen w-screen bg-red-100 flex flex-col max-h-[100dvh];
+    @apply h-[100dvh] w-screen bg-red-100  flex flex-col max-h-[100dvh];
 }
 
 .App {
-    @apply flex flex-col w-screen h-screen  bg-red-200 max-h-[100dvh]  min-w-[280px];
+    @apply flex flex-col w-screen h-full  overflow-hidden bg-red-900 max-h-[100dvh]  min-w-[280px];
 }
 
 main {
     @apply flex flex-col h-full  bg-red-300 flex-1 w-full mx-auto;
     min-height: 0;
     z-index: 0;
-    max-height: calc(100dvh - 5rem);
+    max-height: calc(100dvh - 5.2rem);
 }
 .hBottomNav {
     max-height: calc(100dvh - 8rem);
