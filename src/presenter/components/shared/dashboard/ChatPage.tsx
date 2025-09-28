@@ -154,7 +154,7 @@ export default function ChatPage() {
             {open &&
                 <Icon
                     bg
-                    style='absolute z-[999] -bottom-[3.5rem] !-right-4 animSlide border-4 md3-border-primary-container'
+                    style='absolute z-[999] -bottom-[3.5rem] md:!-right-4  right-2 animSlide border-4 md3-border-primary-container'
                     color={'slate'}
                     size='md'
                     icon='close'
@@ -181,7 +181,7 @@ export default function ChatPage() {
         <main>
             <section
                 id='refDiv'
-                className='flex !px-3 py-3 max-h-[calc(100dvh-5rem)] md:max-h-[calc(100dvh-4rem)] !overflow-hidden '>
+                className='flex !px-3 py-3 max-h-[calc(100dvh-6rem)] md:max-h-[calc(100dvh-4rem)] !overflow-hidden '>
                 {isLoadingConv ?
                     <Skeleton className='m-auto !h-full' /> :
                     <CardMD className={`${open ? 'md3-surface' : ''} 
