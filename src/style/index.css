@@ -109,10 +109,10 @@ main,
     z-index: 0;
 }
 .hBottomNav {
-    max-height: calc(100dvh - 8.2rem);
+    /* max-height: calc(100dvh - 8.2rem);
     @screen md {
         max-height: calc(100dvh - 9rem);
-    }
+    } */
 }
 .hBottomFab {
     @apply pb-8;
