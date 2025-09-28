@@ -270,7 +270,7 @@ export default function VoteListPage() {
                                 <SurveyCard
                                     autoFit={compact}
                                     survey={element}
-                                    key={element.id}
+                                    key={element.id + 'survey'}
                                     change={search as any}
                                     mines={mine}
                                     vote={handleVote}
@@ -280,7 +280,7 @@ export default function VoteListPage() {
                                 <PoolCard
                                     divRef={divRef}
                                     pool={element}
-                                    key={element.id}
+                                    key={element.id + 'pool'}
                                     change={search as any}
                                     vote={handleVote}
                                     mines={mine}

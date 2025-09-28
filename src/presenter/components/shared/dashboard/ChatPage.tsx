@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Typography, List } from '@material-tailwind/react';
 import { Skeleton } from '../../common/Skeleton';
 import DI from '../../../../di/ioc';
 import { MessageView } from '../../../views/viewsEntities/messageViewEntity';
@@ -13,6 +12,7 @@ import { useUxStore } from '../../../../application/stores/ux.store';
 import { useNavStore } from '../../../../application/stores/nav.store';
 import FormHeadSection from '../base/baseComps/FormHeadSection';
 import { CardMD } from '../base/baseComps/Cards';
+import { List, ListItem } from '../base/baseComps/Lists';
 
 
 export default function ChatPage() {
@@ -154,9 +154,9 @@ export default function ChatPage() {
             {open &&
                 <Icon
                     bg
-                    style='absolute z-[999] -bottom-[3.8rem] !right-4 animSlide'
+                    style='absolute z-[999] -bottom-[3.5rem] !-right-4 animSlide border-4 md3-border-primary-container'
                     color={'slate'}
-                    size='lg'
+                    size='md'
                     icon='close'
                     title='fermer'
                     onClick={() => {
@@ -181,36 +181,22 @@ export default function ChatPage() {
         <main>
             <section
                 id='refDiv'
-                className='flex !px-3 py-3  !overflow-hidden '>
-                {!connected &&
-                    <Icon
-                        fill
-                        color='red'
-                        icon='sync_problem'
-                        title='actualiser'
-                        onClick={() => connexion()} />}
-
-                {notifConv &&
-                    <NotifDiv
-                        notif={notifConv}
-                        error={errorConv}
-                        isLoading={isLoadingConv}
-                        refetch={refetchConv}
-                    />}
+                className='flex !px-3 py-3 max-h-[calc(100dvh-5rem)] md:max-h-[calc(100dvh-4rem)] !overflow-hidden '>
                 {isLoadingConv ?
-                    <Skeleton className=' m-auto !h-full ' /> :
+                    <Skeleton className='m-auto !h-full' /> :
                     <CardMD className={`${open ? 'md3-surface' : ''} 
                         '!min-h-full !min-h-[100%] p!-0 grid !static '`}>
-                        <div className=' my-0  grid max-h-full h-full relative'>
-                            <div className=' overflow-y-auto overflow-x-hidden  '>
-                                <List className='px-3 gap-1.5  flex   !rounded-3xl'>
+                        <div className='my-0 grid max-h-full h-full relative'>
+                            <div className='overflow-y-auto overflow-x-hidden  '>
+                                <List className='px-3 gap-1.5 flex !rounded-3xl'>
                                     {conversations &&
                                         conversations.map((message: MessageView, index: number) =>
                                             <div key={index + 'div'}>
-                                                <List.Item
-                                                    className={`gap-1 rounded-full overflow-hidden ${(userIdRec === message?.isWith.id) ?
-                                                        'md3-primary-container !border md3-border py-2.5 px-2.5 md3-elevation-1 my-0.5 -ml-2 ' :
-                                                        'md3-surface -ml-1.5 py-1 '}`}
+                                                <ListItem
+                                                    className={`gap-4 rounded-full overflow-hidden 
+                                                        ${(userIdRec === message?.isWith.id) ?
+                                                            'md3-primary-container !border md3-border py-2.5 px-2.5 md3-elevation-1 my-0.5 -ml-2 ' :
+                                                            'md3-surface -ml-1.5 py-1 '}`}
                                                     key={index}
                                                     onClick={() => {
                                                         setOpen(true)
@@ -218,8 +204,8 @@ export default function ChatPage() {
                                                         setUserRec(userRec)
                                                         setUserIdRec(userRec.id)
                                                         setParams({ with: userRec.id.toString() })
-                                                    }} >
-                                                    <List.ItemStart className='relative flex min-w-max'>
+                                                    }}
+                                                    ItemStart={<div className='relative flex min-w-max'>
                                                         <AvatarUser
                                                             avatarSize={(userIdRec === message?.isWith.id) ? '2xl' : 'lg'}
                                                             Profile={message?.isWith?.Profile}
@@ -229,32 +215,42 @@ export default function ChatPage() {
                                                             <span className='absolute top-0 -right-2 md3-green rounded-full border-4 p-1.5 md3-border-surface '>
                                                             </span>
                                                         }
-                                                    </List.ItemStart>
+                                                    </div>}>
                                                     <div className="font-normal overflow-hidden w-full flex flex-col">
                                                         <div className='flex justify-between items-center flex-1 w-full'>
-                                                            <Typography as="h6" >
+                                                            <h6>
                                                                 {message.isWith?.Profile?.firstName}
-                                                            </Typography>
-                                                            <span
-                                                                className='px-4 !text-xs opcatity-70'>
+                                                            </h6>
+                                                            <span className='px-4 !text-xs opacity-70'>
                                                                 {message.formatedDate}
                                                             </span>
                                                         </div>
-                                                        <Typography
-                                                            variant="small"
-                                                            className="font-normal  !pr-2 !line-clamp-1">
+                                                        <p className="font-normal !pr-2 !line-clamp-1">
                                                             {message.IWrite &&
                                                                 <span className='opacity-70'>
                                                                     {message.read && '🗸'}
                                                                     {' vous : '}
                                                                 </span>}
                                                             {message?.message ?? '...'}
-                                                        </Typography>
+                                                        </p>
                                                     </div>
-                                                </List.Item>
+                                                </ListItem>
+                                            </div>)}
+                                    {!connected &&
+                                        <Icon
+                                            fill
+                                            color='red'
+                                            icon='progress_activity'
+                                            title='actualiser'
+                                            onClick={() => connexion()} />}
+                                    {(notifConv || errorConv) &&
+                                        <NotifDiv
+                                            notif={notifConv}
+                                            error={errorConv}
+                                            isLoading={isLoadingConv}
+                                            refetch={refetchConv}
+                                        />}
 
-                                            </div>
-                                        )}
                                 </List>
                             </div>
                             {/* CONVERSATION DIV */}
@@ -274,7 +270,6 @@ export default function ChatPage() {
                                         userRec={userRec}
                                         error={error}
                                     />
-
                                 </div>
                             }
                         </div>

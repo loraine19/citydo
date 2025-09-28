@@ -14,6 +14,7 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
     const { reset } = useAlertStore(state => state)
 
 
+
     if (isOpen || open) return (
         <div key={title ?? 'alert-modal'}
             className={`!absolute top-0 left-0 h-screen px-[3rem] py-[10vh] lg:py-[20vh] w-screen z-[9] !flex flex-1 justify-center items-center backdropBlur bg-black/50  `} >
@@ -88,7 +89,8 @@ export const AlertModal = ({ values }: { values: AlertValues }) => {
                             {confirmString || 'OK'}
                         </Button>
                     </CardMD.Footer>
-                </CardMD></div>
+                </CardMD>
+            </div>
         </div>
     );
 }

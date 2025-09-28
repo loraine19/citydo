@@ -112,7 +112,7 @@ main {
 }
 .hBottomNav {
     margin-bottom: 1rem;
-    max-height: calc(100dvh - 8rem);
+    max-height: calc(100dvh - 7.5rem);
 }
 .hBottomFab {
     margin-bottom: 1rem;

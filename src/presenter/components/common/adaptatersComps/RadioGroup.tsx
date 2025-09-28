@@ -13,7 +13,8 @@ type RadioGroupProps = {
     orientation?: "horizontal" | "vertical";
     options: RadioOption[];
     value: string;
-    onChange: (value: string) => void;
+    setValue?: (value: string | any) => void;
+    onChangeProps?: (value: string) => void;
     disabled?: boolean;
     className?: string;
     formik?: any;
@@ -26,7 +27,8 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     orientation = "horizontal",
     options,
     value,
-    onChange,
+    setValue,
+    onChangeProps,
     disabled = false,
     className = "",
     formik,
@@ -37,19 +39,19 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     const { color } = useUxStore(state => state)
     const classVariant = variant === 'Input' ? ' max-h-[2.7rem] max-w-max !py-2 md3-input-container md3-outlined !rounded-md' : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
     return (
-        <div className={`flex md3-input-size-${size ?? 'md'} ${orientation === "horizontal" ? "flex-row gap-2" : "flex-col gap-2"} ${className} ${classVariant}`}>
+        <div className={`flex md3-input-size-${size ?? 'md'} 
+        ${orientation === "horizontal" ? "flex-row gap-2" : "flex-col gap-2"} 
+      
+        ${className} ${classVariant}`}>
             {options.map((option) => (
-                <div
-                    key={option.value}
-                    className={`  px-4 !pr-2 flex items-center flex-1 `}
-                >
+                <div key={option.value} className={`px-4 !pr-2 flex items-center flex-1 `} >
                     <div className="relative flex items-center justify-center  ">
                         <Icon
                             size='xl'
                             color={option.color ?? color}
                             fill={value === option.value}
                             style={`${value === option.value ? '' : '!opacity-50'} relative -left-1.5 top-0 scale-[1.05]`}
-                            icon={value === option.value ? 'check_circle' : 'circle'}
+                            icon={(value === option.value) ? 'check_circle' : 'circle'}
                         />
                         <input
                             type="radio"
@@ -58,10 +60,11 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                             value={option.value}
                             checked={value === option.value}
                             disabled={disabled}
-                            onChange={() => {
-                                onChange(option.value);
-                                formik.setFieldValue(name, option.value);
-                                formik.setFieldTouched(name, true);
+                            onChange={(value) => {
+                                onChangeProps && onChangeProps(option.value);
+                                setValue && setValue(value);
+                                formik && formik.setFieldValue(name, option.value);
+                                formik && formik.setFieldTouched(name, true);
                             }}
                             className={` !opacity-0 -left-8 relative !scale-[1.9]`}
                         />

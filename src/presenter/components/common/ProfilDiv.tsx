@@ -77,14 +77,14 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
                         </span>
                         {group &&
                             <span className="gap-2 items-center opacity-80 hidden xs:flex">
-                                <Icon icon="groups" fill size="md" />
+                                <Icon icon="group" fill size="md" />
                                 <small className="inline-flex !line-clamp-1  overflow-hidden gap-2 items-center opacity-80"> {group?.name}</small>
                             </span>}
                         {size === '6xl' &&
                             userDiv?.GroupUser.map((groupUser, index) => {
                                 return (
                                     <span key={index} className="gap-2 items-center opacity-80 hidden xs:flex">
-                                        <Icon icon="groups" fill size="md" />
+                                        <Icon icon="group" fill size="md" />
                                         <small className="inline-flex !line-clamp-1  overflow-hidden gap-2 items-center opacity-80">
                                             {groupUser?.Group?.name.split(':')[0]}
                                         </small>

@@ -1,5 +1,4 @@
 import React, { ReactNode, useRef, useState, useLayoutEffect, useEffect } from "react";
-// AJOUTÉ : Importer createPortal
 import { createPortal } from "react-dom";
 import { Icon } from "../../../common/IconComp";
 import BackDropBlur from "./BackDropBlur";
@@ -10,7 +9,7 @@ interface MenuProps {
     anchorEl?: HTMLElement | null;
     className?: string;
     children: ReactNode;
-    placement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'auto' | 'center-trigger' | 'center' | 'up-bottom-right' | 'free' | 'bottom' | 'top';
+    placement?: 'auto' | 'center-trigger' | 'center' | 'up-bottom-right' | 'free' | 'bottom' | 'top' | 'top-left' | 'bottom-left';
     onClose?: () => void;
     trigger?: ReactNode;
     closeIcon?: ReactNode;
@@ -42,30 +41,36 @@ export const Menu: React.FC<MenuProps> = ({
     left = false,
     containerClassName
 }) => {
-    if (!MenuKey) return null;
     const [internalOpen, setInternalOpen] = useState(false);
     const isControlled = setOpen !== undefined;
     const open = isControlled ? controlledOpen : internalOpen;
     const menuRefAuto = useRef<HTMLDivElement>(null);
     const root = document.getElementById("root");
 
+    // Track the currently open menu key globally
+    (window as any).__CURRENT_MENU_KEY__ = (window as any).__CURRENT_MENU_KEY__ || null;
+
     useEffect(() => {
         if (isControlled) {
-            setInternalOpen(controlledOpen ?? false);
+            // Only open if controlledOpen is true and MenuKey matches the global currentMenuKey
+            if (controlledOpen && MenuKey === (window as any).__CURRENT_MENU_KEY__) {
+                setInternalOpen(true);
+            } else {
+                setInternalOpen(false);
+            }
         }
-    }, [controlledOpen, isControlled]);
+    }, [controlledOpen, isControlled, MenuKey]);
 
-    // AJOUTÉ : État pour stocker l'élément racine du portail
+
+    //// INIT PORTAL ROOT
     const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
-
-    // AJOUTÉ : Effet pour trouver la div#app après le premier rendu
     useEffect(() => {
         const rootEl = document.getElementById('app') || document.body;
         setPortalRoot(rootEl);
     }, []);
 
 
-    // Global set to track open menus
+    //// HANDLE MULTIPLE MENUS
     const openMenus: Set<() => void> = (window as any).__OPEN_MENUS__ || ((window as any).__OPEN_MENUS__ = new Set<() => void>());
 
     // Close handler for this menu
@@ -79,27 +84,22 @@ export const Menu: React.FC<MenuProps> = ({
 
     // Close all menus on route change
     useEffect(() => {
-
         const handleClickOutside = () => {
             const menuNode = (menuRef?.current || menuRefAuto.current);
-            if (menuNode) {
-                handleClose();
-            }
+            if (menuNode) handleClose();
         };
         handleClickOutside();
     }, [path]);
 
-    // Close menu on click outside
+    //// CLOSE MENU CLICK OUTSIDE
     useEffect(() => {
         if (!open) return;
-
         const handleClickOutside = (event: MouseEvent) => {
             const menuNode = (menuRef?.current || menuRefAuto.current);
             if (menuNode && !menuNode.contains(event.target as Node)) {
                 handleClose();
             }
         };
-
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
@@ -107,14 +107,10 @@ export const Menu: React.FC<MenuProps> = ({
     }, [open, menuRef, menuRefAuto, handleClose]);
 
 
-
-    // Register/unregister this menu's close handler
+    //// REGISTER/UNREGISTER MENU IN GLOBAL SET
     useEffect(() => {
-        if (open) {
-            openMenus.add(handleClose);
-        } else {
-            openMenus.delete(handleClose);
-        }
+        if (open) openMenus.add(handleClose)
+        else openMenus.delete(handleClose)
         return () => {
             openMenus.delete(handleClose);
         };
@@ -230,18 +226,18 @@ export const Menu: React.FC<MenuProps> = ({
                 }
                 else placeTop({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'left' });
             }
-            else if (placement === 'top-right') {
-                if (spaceTop >= menuHeight && spaceRight >= menuWidth) {
-                    placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
-                } else if (spaceTop >= menuHeight && spaceLeft >= menuWidth) {
-                    placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
-                } else if (spaceBottom >= menuHeight && spaceRight >= menuWidth) {
-                    placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
-                } else if (spaceBottom >= menuHeight && spaceLeft >= menuWidth) {
-                    placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
-                }
-                else placeTop({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'right' });
-            }
+            // else if (placement === 'top-right') {
+            //     if (spaceTop >= menuHeight && spaceRight >= menuWidth) {
+            //         placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
+            //     } else if (spaceTop >= menuHeight && spaceLeft >= menuWidth) {
+            //         placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
+            //     } else if (spaceBottom >= menuHeight && spaceRight >= menuWidth) {
+            //         placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
+            //     } else if (spaceBottom >= menuHeight && spaceLeft >= menuWidth) {
+            //         placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
+            //     }
+            //     else placeTop({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'right' });
+            // }
             else if (placement === 'bottom-left') {
                 if (spaceBottom >= menuHeight && spaceLeft >= menuWidth) {
                     placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
@@ -255,19 +251,19 @@ export const Menu: React.FC<MenuProps> = ({
                     placeBottom({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'left' });
                 }
             }
-            else if (placement === 'bottom-right') {
-                if (spaceBottom >= menuHeight && spaceRight >= menuWidth) {
-                    placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
-                } else if (spaceBottom >= menuHeight && spaceLeft >= menuWidth) {
-                    placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
-                } else if (spaceTop >= menuHeight && spaceRight >= menuWidth) {
-                    placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
-                } else if (spaceTop >= menuHeight && spaceLeft >= menuWidth) {
-                    placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
-                } else {
-                    placeBottom({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'right' });
-                }
-            }
+            // else if (placement === 'bottom-right') {
+            //     if (spaceBottom >= menuHeight && spaceRight >= menuWidth) {
+            //         placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
+            //     } else if (spaceBottom >= menuHeight && spaceLeft >= menuWidth) {
+            //         placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
+            //     } else if (spaceTop >= menuHeight && spaceRight >= menuWidth) {
+            //         placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
+            //     } else if (spaceTop >= menuHeight && spaceLeft >= menuWidth) {
+            //         placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
+            //     } else {
+            //         placeBottom({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'right' });
+            //     }
+            // }
 
             else if (placement === 'center-trigger') {
                 style.top = `${(triggerRect.bottom / 2) > 200 ? (triggerRect.bottom / 2) : 200}px`;

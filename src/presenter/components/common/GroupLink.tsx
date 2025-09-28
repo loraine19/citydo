@@ -11,28 +11,30 @@ export const GroupLink: React.FC<GroupDivProps> = ({ group, className }) => {
     return (
 
         <Menu
-            closeIcon={<></>}
-            placement="top-right"
-            className={` ${className ?? ''} ml-[30%] mr-[50%] `}
+            blurBack
+            title="Voir le groupe"
+            placement="auto"
+            className={` ${className ?? ''}`}
             MenuKey={group?.id}
             trigger={
                 <div className={`${className ?? ''} items-center flex gap-2  max-w-full line-clamp-1 justify-start`}>
-                    <Icon icon="groups" bg color='slate' fill size="sm" />
+                    <Icon icon="group" color='slate' fill size="md" />
                     <span className="line-clamp-1">{group?.name}</span>
                 </div>
 
             }>
             <MenuItem
                 className="items-start"
-                trailingIcon={<Icon
-                    bg clear
-                    fill
-                    size="sm"
-                    link={`/groupe/${group?.id}`}
-                    icon="arrow_forward_ios" />}>
+                trailingIcon={
+                    <Icon
+                        bg clear
+                        fill
+                        size="sm"
+                        link={`/groupe/${group?.id}`}
+                        icon="arrow_forward_ios" />}>
 
                 <div className="whitespace-pre-line flex flex-col gap-2">
-                    <h6>groupe : {group?.name}</h6>
+                    <h6> {group?.name}</h6>
                     <i className="text-xs italic truncate ">
                         {group?.Address?.address}, {group?.Address?.zipcode} {group?.Address?.city}
                     </i>

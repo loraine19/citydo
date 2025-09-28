@@ -24,7 +24,7 @@ export default function DashboardPage() {
             setIsLoggedIn(false);
             setTimeout(() => {
                 window.location.replace("/signin")
-            }, 1000);
+            }, 10000);
         }
         else setIsLoggedIn(true);
 

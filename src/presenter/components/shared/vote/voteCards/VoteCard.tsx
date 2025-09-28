@@ -1,107 +1,43 @@
-import { Radio, Typography } from "@material-tailwind/react";
+
 import { VoteOpinion } from "../../../../../domain/entities/Vote";
 import { PoolSurveyView } from "../../../../views/viewsEntities/poolSurveyViewEntity";
 import { VoteDTO } from "../../../../../infrastructure/DTOs/VoteDTO";
 import DI from "../../../../../di/ioc";
 import { useState } from "react";
 import { useAlertStore } from "../../../../../application/stores/alert.store";
-import { Icon } from "../../../common/IconComp";
 import { AlertValues } from "../../../../../domain/entities/Error";
+import { RadioGroup } from "../../../common/adaptatersComps/RadioGroup";
 
-const body = (
-    voteDTO: VoteDTO, setOpinion: (opinion: VoteOpinion) => void
-) => (
-    <Radio
-        orientation="horizontal"
-        className="w-full h-max py-4 px-4 items-center justify-center gap-4 flex md:gap-6 overflow-auto">
-        <div className="flex items-center w-full flex-1 gap-2">
-            <Radio.Item
-                id="no"
-                name="vote-no"
-                value={VoteOpinion.NO}
-                color='red'
-                checked={voteDTO.opinion === VoteOpinion.NO}
-                onChange={() => {
-                    voteDTO.opinion = VoteOpinion.NO;
-                    setOpinion(VoteOpinion.NO);
-                }}
-            >
-                <Radio.Indicator
-                    className="!border border-red-500/50 rounded-full flex !bg-white ">
-                    <Icon
-                        fill
-                        size="lg"
-                        color='red'
-                        icon='check_circle'
-                    />
-                </Radio.Indicator>
-                <Typography
-                    as="label"
-                    htmlFor="no"
-                    className="text-sm font-normal text-gray-600 pl-8">
-                    Contre
-                </Typography>
-            </Radio.Item>
-        </div>
-        <div className="flex items-center w-full flex-1 gap-2">
-            <Radio.Item
-                id="wo"
-                name="vote-wo"
-                value={VoteOpinion.WO}
-                color='orange'
-                checked={voteDTO.opinion === VoteOpinion.WO}
-                onChange={() => {
-                    voteDTO.opinion = VoteOpinion.WO;
-                    setOpinion(VoteOpinion.WO);
-                }}
-            >
-                <Radio.Indicator
-                    className="!border border-orange-500/50 rounded-full flex !bg-white ">
-                    <Icon
-                        fill
-                        size="lg"
-                        color='orange'
-                        icon='check_circle'
-                    />
-                </Radio.Indicator>
-                <Typography
-                    as="label"
-                    htmlFor="wo"
-                    className="text-sm font-normal text-gray-600 pl-8 whitespace-nowrap">
-                    Pas d'avis
-                </Typography>
-            </Radio.Item>
-        </div>
-        <div className="flex items-center flex-1 gap-2">
-            <Radio.Item
-                id="ok"
-                name="vote-ok"
-                value={VoteOpinion.OK}
-                color='green'
-                checked={voteDTO.opinion === VoteOpinion.OK}
-                onChange={() => {
-                    voteDTO.opinion = VoteOpinion.OK;
-                    setOpinion(VoteOpinion.OK);
-                }}
-            >
-                <Radio.Indicator
-                    className="!border border-green-500/50 rounded-full flex !bg-white ">
-                    <Icon
-                        fill
-                        size="lg"
-                        color='green'
-                        icon='check_circle'
-                    />
-                </Radio.Indicator>
-                <Typography
-                    as="label"
-                    htmlFor="ok"
-                    className="text-sm font-normal text-gray-600 pl-8">
-                    Pour
-                </Typography>
-            </Radio.Item>
-        </div>
-    </Radio>)
+interface BodyProps {
+    voteDTO: VoteDTO;
+    setOpinion: (opinion: VoteOpinion) => void;
+}
+
+const BodyVote = ({ voteDTO, setOpinion }: BodyProps) => {
+    const [opinion, setLocalOpinion] = useState<VoteOpinion>(voteDTO.opinion);
+    return (
+        <RadioGroup
+            variant="text"
+            orientation='vertical'
+            className="w-full flex-1 gap-3 !p-3 hover:!bg-none"
+            value={opinion}
+            setValue={setOpinion}
+            onChangeProps={(value) => {
+                const val = value as VoteOpinion;
+                voteDTO.opinion = val;
+                setLocalOpinion(value as VoteOpinion);
+                setOpinion(val);
+            }}
+            options={[
+                { id: 'NO', label: 'Contre', value: VoteOpinion.NO, color: 'error' },
+                { id: 'WO', label: 'Pas d\'avis', value: VoteOpinion.WO, color: 'orange' },
+                { id: 'OK', label: 'Pour', value: VoteOpinion.OK, color: 'green' }
+            ]}
+        >
+
+        </RadioGroup>
+    );
+}
 
 export const VoteValues = (vote: PoolSurveyView,
     refetch: (opinion: VoteOpinion) => void): AlertValues => {
@@ -129,9 +65,10 @@ export const VoteValues = (vote: PoolSurveyView,
             }
         },
         title: `${vote.IVoted ? 'Modifier mon vote ' : 'Voter'} pour ${vote.title} `,
-        confirmString: vote.IVoted ? 'Modifier' : 'Confirmer - ',
-        element: body(voteDTO, setOpinion),
+        confirmString: vote.IVoted ? 'Modifier' : 'Confirmer ',
+        element: <BodyVote voteDTO={voteDTO} setOpinion={setOpinion} />,
         disableCancel: false,
+        disableConfirm: false,
         close: () => setOpen(false)
     }
 }

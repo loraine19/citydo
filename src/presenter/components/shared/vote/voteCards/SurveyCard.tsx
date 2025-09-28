@@ -117,9 +117,9 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                                     <span>Sondage cloturé</span> :
                                     <>
                                         <span>
-                                            {survey?.Votes.length} vote{survey?.Votes.length > 1 ? 's ' : ' '}  pour {survey?.pourcent >= 100 ? ' approuvé' : ''}</span>
+                                            {survey?.Votes?.length} vote{survey?.Votes?.length > 1 ? 's ' : ' '}  pour {survey?.pourcent >= 100 ? ' approuvé' : ''}</span>
                                         <span className="opacity-50"> / &nbsp;
-                                            {survey?.needed}
+                                            {survey?.needed + survey?.Votes?.length}
                                         </span>
                                     </>
 

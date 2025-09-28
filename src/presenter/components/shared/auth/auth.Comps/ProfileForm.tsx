@@ -71,7 +71,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full  overflow-hidden">
             <main>
                 {/* PRES DIV  */}
-                <div className="w-respXL pt-4 pb-4 flex flex-col gap-2 px-[0.8rem] md:px-[3rem] ">
+                <div className="wRespXL pt-4 pb-4 flex flex-col gap-2 px-[0.8rem] md:px-[3rem] ">
                     <div className="flex items-center gap-4">
                         <AvatarUser
                             Profile={{
@@ -96,10 +96,10 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
 
 
                 {/* FORM DIV  */}
-                <section className={`!h-full hBottomFab flex `}>
+                <section className={`!h-full !max-h-[calc(100dvh-11rem)] flex `}>
                     {error || isLoading ? <Skeleton /> :
                         <CardLarge
-                            className="mb-3"
+                            className="mb-4"
                             form
                             expanded={true}
                             setExpanded={() => { }}
@@ -107,7 +107,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
                             <CardLarge.Header className="flex justify-start items-start flex-col pt-0 gap-2">
                                 <ImageBtn
                                     size={"small"}
-                                    imgBlob={imgBlob}
+                                    imgBlob={formik.values.image ?? imgBlob as string ?? null}
                                     variant="tonal"
                                     color='slate'
                                     setImgBlob={setImgBlob}

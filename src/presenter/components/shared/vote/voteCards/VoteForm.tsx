@@ -80,7 +80,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                                 value={formik.values.typeS ?? type}
                                 name="typeS"
                                 orientation="horizontal"
-                                onChange={(val) => { formik.setFieldValue("typeS", val); setType(val); }}
+                                onChangeProps={(val: any) => { formik.setFieldValue("typeS", val); setType(val); }}
                                 options={[
                                     { value: VoteTarget.SURVEY, label: "Sondage", id: 'sondage-radio' },
                                     { value: VoteTarget.POOL, label: "Cagnotte", id: 'cagnotte-radio' }

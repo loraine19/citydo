@@ -87,16 +87,12 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
     const handleScroll = () => {
         if (divRef.current) {
             const { scrollTop, scrollHeight, clientHeight } = divRef.current
-            // alert('scrollTop: ' + scrollTop + ' scrollHeight: ' + scrollHeight + ' clientHeight: ' + clientHeight)
             if ((scrollHeight + scrollTop) > (clientHeight)) {
                 setIsBottom(true);
                 if (hasNextPage) fetchNextPage()
                 setTimeout(() => {
                     setIsBottom(false);
                 }, 1000)
-
-
-
             } else setIsBottom(false)
         }
     }
@@ -106,11 +102,11 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
 
     return (
         <div className='flex flex-col h-full w-full  '>
-            <CardMD className='md3-elevation-1 min-h-full grid w-full border border-[var(--md3-outline)] '>
+            <CardMD className='md3-elevation-1 min-h-full grid w-full border md3-border '>
                 <CardMD.Header className={` w-full px-3  !relative !min-h-fit'`}>
                     {newConv &&
                         <ProfileDiv profile={userRec} />}
-                    {notif && <div className=' !w-[22rem] !flex  !justify-end border  absolute -translate-y-8 -translate-x-[50%] left-[50%]'>
+                    {notif && <div className=''>
                         <NotifDiv
                             notif={notif}
                             error={error}
@@ -118,8 +114,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                             refetch={refetch} />
                     </div>}
                 </CardMD.Header>
-                <div
-                    ref={divRef}
+                <div ref={divRef}
                     onScroll={() => handleScroll()}
                     className='rounded-3xl !flex flex-1  h-full !overflow-auto flex-col-reverse px-4 '>
                     <div className='gap-3  lg:px-2 flex-1 justify-end items-end flex flex-col-reverse' >
@@ -135,7 +130,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                                         {msg.formatedDate}
                                         {(msg.IWrite && !msg.isDeleted) &&
                                             <Icon
-                                                style='!-ml-1.5 mb-1'
+                                                style='!-ml-1.5 mb-1 '
                                                 key={'remove' + msg.id}
                                                 size='sm'
                                                 onClick={() => handleRemoveMessage(msg?.id, index)}
@@ -154,9 +149,8 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                         hasNextPage={isBottom}
                         handleScroll={handleScroll} />
                 </div>
-                <div className='pr-4'>
-                    <div
-                        className={`${imTyping ? '-top-2' : '-top-1'}  border border-[var(--md3-outline)] flex justify-between rounded-[2rem] w-full p-2 shadow-md m-2 min-h-min sticky `}>
+                <div className='px-0 -mb-2 -mt-1.5'>
+                    <div className={`${imTyping ? '-top-2' : ''} bottom-0 border-t md3-border flex justify-between rounded-t-[1.5rem] rounded-b-[1rem]  w-full px-3 py-4  min-h-min `}>
                         <div className='flex-0 flex top-0 mt-1 ' >
                             <Icon
                                 onClick={() => setOpenEmoji(!openEmoji)}

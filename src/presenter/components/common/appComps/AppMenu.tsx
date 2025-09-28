@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Menu, MenuItem } from "../../shared/base/baseComps/Menu";
 import { Icon, IconName } from "../IconComp";
 import { AvatarUser } from "../AvatarUser";
@@ -23,7 +23,6 @@ const AppMenu: React.FC<AppMenuProps> = ({
     ///// MENU ITEMS
     const [open, setOpen] = React.useState(false);
     const menuItems = [
-        { icon: "toll", text: ` ${user?.Profile?.points} points`, color: 'sky', divider: 'bottom' },
         { icon: "person_edit", text: "Modifier mon profil", link: '/myprofile', color: "cyan", divider: 'top' },
         {
             icon: dark ? "light_mode" : "dark_mode",
@@ -36,8 +35,10 @@ const AppMenu: React.FC<AppMenuProps> = ({
             text: navBottom ? "Cacher la barre" : "Afficher la barre",
             onClick: () => { setNavBottom(!navBottom); setOpen(false); },
             color: 'cyan', divider: 'bottom'
-        }, {
-            icon: 'groups', text: "Groupes",
+        },
+
+        {
+            icon: 'group', text: "Groupes",
             onClick: () => { setOpen(false); navigate('/groupe') }, color: "orange", divider: 'top',
         }, {
             icon: 'diversity_3', text: "Conciliation",
@@ -49,8 +50,43 @@ const AppMenu: React.FC<AppMenuProps> = ({
         },
     ]
 
-    if (!listPage || hideNavBottom) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => { setOpen(false); navigate('/') }, color: "slate", divider: 'none', style: 'rounded-none' })
+    if (!listPage || hideNavBottom) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => { setOpen(false); navigate('/') }, color: "slate", divider: 'bottom', style: '' })
 
+    const [installPrompt, setInstallPrompt] = useState<any>(null);
+
+    useEffect(() => {
+        const handleBeforeInstallPrompt = (e: Event) => {
+            // empêche la mini-barre d'info par défaut de Chrome de s'afficher
+            e.preventDefault();
+            // stocke l'événement dans notre état pour pouvoir l'utiliser plus tard
+            setInstallPrompt(e);
+        };
+        window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+        return () => {
+            window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+        };
+    }, []);
+
+
+    if (installPrompt) {
+        menuItems.unshift({
+            icon: "install_desktop",
+            text: "Installer l'application",
+            onClick: async () => {
+                if (!installPrompt) {
+                    return;
+                }
+                await installPrompt.prompt();
+                const { outcome } = await installPrompt.userChoice;
+                console.log(`User response to the install prompt: ${outcome}`);
+                setInstallPrompt(null);
+                setOpen(false);
+            },
+            color: "green",
+            divider: "none",
+            style: 'rounded-none'
+        });
+    }
 
     const menuIcon = hideNavBottom || singlePage
     const showAppName = !hideNavBottom || !listPage
@@ -108,17 +144,18 @@ const AppMenu: React.FC<AppMenuProps> = ({
                         <div>
                             <AvatarUser
                                 style="!shadow-none "
-                                avatarSize="2xl"
+                                avatarSize="4xl"
                                 Profile={user?.Profile}
                             />
                         </div>
                     }
                 >
-                    <div className="flex -ml-2 flex-1 flex-col">
+                    <div className="flex -ml-2 flex-1 gap-0.5 py-0.5 flex-col">
                         <span className="font-semibold ">
                             {user?.Profile?.firstName} {user?.Profile?.lastName}
                         </span>
-                        <i className="text-xs opacity-70">{user?.email}</i>
+                        <span className="text-xs opacity-90">{user?.email}</span>
+                        <span className="text-xs opacity-70 font-medium">vous avez {user?.Profile?.points} pts</span>
                     </div>
                 </MenuItem>
                 {/* LIST ITEM */}

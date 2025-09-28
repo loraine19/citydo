@@ -83,7 +83,7 @@ export default function PoolDetailCard({ pool, setExpand }: PoolDetailCardProps)
                                         <span>
                                             {pool?.Votes.length} vote{pool?.Votes.length > 1 ? 's ' : ' '}  pour {pool?.pourcent >= 100 ? ' approuvé' : ''}</span>
                                         <span className="opacity-50"> / &nbsp;
-                                            {pool?.needed}
+                                            {pool?.needed + pool?.Votes?.length}
                                         </span>
                                     </>
 

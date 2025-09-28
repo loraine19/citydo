@@ -156,7 +156,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                         trigger={<Icon
                                             size="md"
                                             icon="expand_content" />}
-                                        placement="top-right">
+                                        placement="top">
                                         <MenuItem>
                                             <div className='flex flex-col'>
                                                 <span className='text-sm'>En cliquant sur "S'inscrire", vous acceptez nos</span>

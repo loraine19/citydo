@@ -80,7 +80,7 @@ export function ServiceForm(props: { formik: any }) {
                                     { id: "offre-radio", label: "Offre", value: "DO" },
                                 ]}
                                 value={formik.values.type}
-                                onChange={(val) => formik.setFieldValue("type", val)}
+                                onChangeProps={(val) => formik.setFieldValue("type", val)}
                                 disabled={formik.values.statusValue > 0}
                             />
                             <Select

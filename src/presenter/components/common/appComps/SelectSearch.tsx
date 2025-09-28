@@ -27,7 +27,7 @@ export default function SelectSearch(props: selectSearchProps) {
                     className="mt-3 -ml-3 !flex-0  !max-w-max"
                     open={isOpen}
                     setOpen={setIsOpen}
-                    placement="bottom-right"
+                    placement="bottom"
                     trigger={
                         <div className={category.length > 0 ? 'max-w-max ' : 'invisible w-0'}>
                             <div className="flex ">

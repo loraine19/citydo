@@ -17,6 +17,7 @@ export function Skeleton(props: { className?: string, grid?: boolean, compact?: 
                     position="top"
                     className={`min-h-full md3-${color}-container`}
                 >
+                    <div className={`min-h-[99%]h-full md3-${color}-container rounded-2xl w-full animate-pulse"`}></div>
 
                 </CardMD.Image>
             }

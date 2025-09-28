@@ -1,4 +1,3 @@
-
 import ModifBtnStack from "../../../common/ModifBtnStack";
 import { Action } from "../../../../../domain/entities/frontEntities";
 import { dayMS, GenereMyActions } from "../../../../views/viewsEntities/utilsService";
@@ -16,6 +15,7 @@ import { Button, Md3Colors } from "../../base/baseComps/Buttons";
 import { MoreButton } from "../../../common/moreBtn";
 import { Link } from "react-router-dom";
 import { GroupLink } from "../../../common/GroupLink";
+import { VoteOpinion } from "../../../../../domain/entities/Vote";
 
 type PoolCardProps = {
     pool: any,
@@ -34,8 +34,8 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
     const deletePool = async (id: number) => await DI.resolve('deletePoolUseCase').execute(id)
     const actions: Action[] = GenereMyActions(pool, "vote/cagnotte", deletePool)
 
-    const color = (): string => {
-        switch (pool?.myOpinion) {
+    const color = (opinion: VoteOpinion): string => {
+        switch (opinion) {
             case 'OK': return 'green';
             case 'NO': return 'error';
             case 'WO': return 'slate';
@@ -108,7 +108,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                                             {pool?.Votes?.length} vote{pool?.Votes?.length > 1 ? 's ' : ' '}  pour {pool?.pourcent >= 100 ? ' approuvée' : ''}
                                         </span>
                                         <span className="opacity-50"> / &nbsp;
-                                            {pool?.needed}
+                                            {pool?.needed + pool?.Votes?.length}
                                         </span>
                                     </>
                                 }
@@ -142,7 +142,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                         disabled={pool?.status !== PoolSurveyStatus.PENDING}
                         onClick={() => vote(values)}
                         variant={!pool?.IVoted ? "tonal" : "tonal"}
-                        color={color() as Md3Colors}
+                        color={color(pool?.myOpinion) as Md3Colors}
                     />
                 </CardMD.Footer>
             </CardMD>

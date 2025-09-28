@@ -17,6 +17,8 @@ export function AvatarStack(props: AvatarStackProps) {
     const [open, setOpen] = useState(false);
 
     const [maxVisible, setMaxVisible] = useState(1);
+    const [selectedAvatar, setSelectedAvatar] = useState<number>(0);
+
 
     useEffect(() => {
         function updateMaxVisible() {
@@ -67,59 +69,66 @@ export function AvatarStack(props: AvatarStackProps) {
             ref={containerRef}
             className={` ${maxVisible === avatarDatas?.length ? 'overflow-y-auto' : ''} flex flex-1 items-center -space-x-3 overflow-x-auto w-full !rounded-full pr-3 `}
         >
-            {visibleAvatars?.map((Participant: Participant, index) =>
-                <Menu
-                    open={open}
-                    setOpen={setOpen}
-                    MenuKey={Participant?.userId + index + '_avatar'}
-                    className="px-2"
-                    blurBack
-                    placement={'auto'}
-                    trigger={
-                        <div className="relative !h-[2.65rem] !w-[2.65rem] flex hover:!z-[1] ">
-                            <div className="absolute hover:!z-[1] flex flex-1 top-0 left-0 h-[2.65rem] !w-[2.65rem] ">
-                                <AvatarUser
-                                    Profile={Participant?.User?.Profile}
-                                    avatarSize={'md'}
-                                    avatarStyle="border-[4px] !h-[2.65rem] !w-[2.65rem] md3-border-primary-container !hover:z-[2] !focus:z-[2] !shadow-none  top-0 left-0 " />
-                            </div>
-                        </div>}>
-                    <MenuItem
-                        disabled
-                        leadingIcon={
-                            <div className=" relative">
-                                <AvatarUser
-                                    Profile={Participant.User?.Profile}
-                                    avatarSize={'2xl'} />
+            {visibleAvatars?.map((Participant: Participant) => {
 
-                                <OnlineDot id={Participant?.userId} />
+                return (
+                    <Menu
+                        open={open && selectedAvatar === Participant?.userId}
+                        setOpen={(open: boolean) => {
+                            setSelectedAvatar(Participant?.userId);
+                            setOpen(open);
+
+                        }}
+                        MenuKey={Participant?.userId + '_avatar'}
+                        className="px-2"
+                        blurBack
+                        placement={'auto'}
+                        trigger={
+                            <div className="relative !h-[2.65rem] !w-[2.65rem] flex hover:!z-[1] ">
+                                <div className="absolute hover:!z-[1] flex flex-1 top-0 left-0 h-[2.65rem] !w-[2.65rem] ">
+                                    <AvatarUser
+                                        Profile={Participant?.User?.Profile}
+                                        avatarSize={'md'}
+                                        avatarStyle="border-[4px] !h-[2.65rem] !w-[2.65rem] md3-border-primary-container !hover:z-[2] !focus:z-[2] !shadow-none  top-0 left-0 " />
+                                </div>
                             </div>}>
+                        <MenuItem
+                            disabled
+                            leadingIcon={
+                                <div className=" relative">
+                                    <AvatarUser
+                                        Profile={Participant.User?.Profile}
+                                        avatarSize={'2xl'} />
 
-                        <span className="font-bold">
-                            {Participant?.User?.Profile?.firstName}<br />
-                            {Participant?.User?.Profile?.lastName}
-                        </span>
-                    </MenuItem>
-                    <MenuItem
-                        title={`Envoyer un message à ${Participant?.User?.Profile?.firstName}`}
-                        onClick={() => navigate(`/chat?with=${Participant?.userId}`)}
-                        leadingIcon={<Icon icon="chat" color='sky' fill size='lg' bg />}>
-                        Envoyer un message
-                    </MenuItem>
-                    <MenuItem
-                        disabled
-                        className="pointer-events-none"
-                        leadingIcon={<Icon icon="groups" fill size="lg" bg />}>
-                        <div className="flex flex-col">
-                            <span>Groupes : </span>
-                            {Participant?.User?.GroupUser?.map((group, index) =>
-                                <small key={index} className="!line-clamp-1">
-                                    ⌖ {group?.Group?.name?.split(':')[0]}
-                                </small>)}
-                        </div>
-                    </MenuItem >
+                                    <OnlineDot id={Participant?.userId} />
+                                </div>}>
 
-                </Menu >
+                            <span className="font-bold">
+                                {Participant?.User?.Profile?.firstName}<br />
+                                {Participant?.User?.Profile?.lastName}
+                            </span>
+                        </MenuItem>
+                        <MenuItem
+                            title={`Envoyer un message à ${Participant?.User?.Profile?.firstName}`}
+                            onClick={() => navigate(`/chat?with=${Participant?.userId}`)}
+                            leadingIcon={<Icon icon="chat" color='sky' fill size='lg' bg />}>
+                            Envoyer un message
+                        </MenuItem>
+                        <MenuItem
+                            disabled
+                            className="pointer-events-none"
+                            leadingIcon={<Icon icon="groups" fill size="lg" bg />}>
+                            <div className="flex flex-col">
+                                <span>Groupes : </span>
+                                {Participant?.User?.GroupUser?.map((group, index) =>
+                                    <small key={index} className="!line-clamp-1">
+                                        ⌖ {group?.Group?.name?.split(':')[0]}
+                                    </small>)}
+                            </div>
+                        </MenuItem >
+
+                    </Menu >)
+            }
 
             )
             }

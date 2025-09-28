@@ -2,6 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8" />
+
         <link
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"
@@ -9,6 +10,19 @@
         <link rel="icon" type="image/svg+xml" href="image/logo.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>City'Do</title>
+        <meta
+            name="theme-color"
+            media="(prefers-color-scheme: light)"
+            content="#e7eff2"
+        />
+
+        <meta
+            name="theme-color"
+            media="(prefers-color-scheme: dark)"
+            content="#131b1d"
+        />
+
+        <link rel="manifest" href="/manifest.json" />
         <meta
             name="description"
             content="City'Do - Plateforme collaborative pour améliorer la vie urbaine. Partagez, proposez et suivez les initiatives citoyennes dans votre ville."
@@ -35,6 +49,14 @@
         />
         <meta name="twitter:image" content="/image/logo.svg" />
     </head>
+    <script>
+        window.addEventListener("beforeinstallprompt", (e) => {
+            console.log(
+                "✅ L'événement beforeinstallprompt a été déclenché !",
+                e
+            );
+        });
+    </script>
     <body>
         <div id="root"></div>
         <script type="module" src="/src/main.tsx"></script>
