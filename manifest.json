@@ -2,7 +2,7 @@
     "name": "City'do",
     "short_name": "City'do",
     "description": "City'Do - Application collaborative pour améliorer la vie urbaine. Partagez, proposez et suivez les initiatives citoyennes dans votre ville.",
-    "start_url": "/index.html",
+    "start_url": "/",
     "scope": "/",
     "display": "standalone",
     "orientation": "portrait",
