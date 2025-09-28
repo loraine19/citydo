@@ -97,11 +97,11 @@ html {
     background-color: var(--md3-surface);
 }
 body {
-    @apply overflow-hidden h-[100dvh] w-screen  flex flex-col;
+    @apply h-[100dvh] w-screen  flex flex-col;
 }
 
 .App {
-    @apply flex flex-col w-screen overflow-hidden h-[100dvh]  min-w-[280px] min-h-[400px];
+    @apply flex flex-col w-screen h-[100dvh] min-h-[100dvh]  min-w-[280px];
 }
 
 main {
@@ -112,15 +112,15 @@ main {
 }
 .hBottomNav {
     margin-bottom: 1rem;
-    max-height: calc(100dvh - 6rem);
+    max-height: calc(100dvh - 7rem);
 }
 .hBottomFab {
     margin-bottom: 1rem;
-    max-height: calc(100dvh - 5rem);
+    max-height: calc(100dvh - 5.5rem);
 }
 .hBottomForm {
     margin-bottom: 1rem;
-    max-height: calc(100dvh - 8.5rem);
+    max-height: calc(100dvh - 9.5rem);
     @screen sm {
         max-height: calc(100dvh - 7rem);
     }
