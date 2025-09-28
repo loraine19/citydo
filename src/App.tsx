@@ -175,6 +175,7 @@ function App() {
                     {/* <div className="scale-95 opacity-50">
                         <ReactQueryDevtools />
                     </div> */}
+
                 </div>
             </BrowserRouter>
         </ErrorBoundary>

@@ -92,7 +92,7 @@ export default function SignInPage() {
                 confirm={false}
                 inError={inError}
             />
-            <footer className=" !static flex flex-col items-center gap-1 justify-center  pb-[3rem] pt-[1rem] ">
+            <footer className="flex flex-col items-center gap-1 justify-center  pb-[3rem] pt-[1rem] ">
                 <Link to="/motdepasse_oublie">
                     <p
                         className="text pb-4 md3-card-subhead nowrap text-center underline underline-offset-8 ">
