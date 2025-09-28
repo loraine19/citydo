@@ -98,6 +98,7 @@ html {
 }
 body {
     @apply h-[100dvh] w-screen  flex flex-col;
+    @apply h-[100dvh] w-screen  flex flex-col;
 }
 
 .App {
