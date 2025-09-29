@@ -72,6 +72,7 @@ function App() {
             <BrowserRouter>
                 <div id='app'
                     className={`App ${dark ? 'dark' : ''} md3-surface `}>
+
                     <AlertNotif />
                     <Suspense fallback={<LoadingPage />}>
                         <Routes>

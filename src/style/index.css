@@ -45,6 +45,7 @@
 }
 
 * {
+    @apply box-border;
     box-sizing: border-box;
 }
 
@@ -99,32 +100,32 @@ body {
 /* MAIN SECTIONS */
 
 .App {
-    @apply min-w-[280px] flex flex-col flex-1 pb-2 bg-pink-200;
+    @apply min-w-[280px] flex flex-col flex-1;
     width: 100vw;
-    height: 100dvh;
-    min-height: 100svh;
+    height: calc(100dvh - 1rem);
+    min-height: calc(100svh - 1rem);
     /* a -5rem ok pwa mais pas sur navigateur ( pas expend tout l'ecran )
     -2rem limite en pwA
     */
-    max-height: calc(100lvh - 3rem);
+    max-height: calc(100lvh - 1rem);
     box-sizing: border-box;
 }
 
 main,
 .main {
-    @apply flex flex-col bg-blue-300 flex-1 min-h-0 w-full;
+    @apply flex flex-col bg-blue-300 flex-1 w-full;
     height: 100%;
     z-index: 0;
 }
 
 section,
 .Section {
-    @apply wRespXLMargin bg-green-400 flex-col overflow-auto flex-1 h-full w-full flex pt-2 px-[0.5rem] md:px-[1rem];
+    @apply wRespXLMargin flex-col overflow-auto flex-1 h-full w-full flex pt-2 px-[0.5rem] md:px-[1rem];
     min-height: 0;
 }
 .hBottomNav {
     flex: 1;
-    max-height: calc(100% - 7.5rem);
+    max-height: calc(100% - 8rem);
     /* max-height: calc(100dvh - 8.2rem);
     @screen md {
         max-height: calc(100dvh - 9rem);
