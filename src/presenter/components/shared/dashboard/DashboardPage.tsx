@@ -14,6 +14,7 @@ import NotifDiv from "../../common/NotifDiv";
 import { useUxStore } from "../../../../application/stores/ux.store";
 import { OnlineDot } from "../../common/onlineDot";
 import { CardMD } from "../base/baseComps/Cards";
+import GeoLocBtn from "../../common/mapComps/GeoLocBtn";
 export default function DashboardPage() {
 
     //// USER & AUTORISATION
@@ -23,7 +24,15 @@ export default function DashboardPage() {
         if (!user) {
             setIsLoggedIn(false);
             setTimeout(() => {
-                window.location.replace("/signin")
+                setAlertValues({
+                    title: "Session expirée",
+                    element: "Veuillez vous reconnecter.",
+                    confirmString: "OK",
+                    handleConfirm: () => {
+                        setOpen(false);
+                        window.location.reload();
+                    },
+                });
             }, 10000);
         }
         else setIsLoggedIn(true);
@@ -44,7 +53,7 @@ export default function DashboardPage() {
     const notifViewModelFactory = DI.resolve('notifViewModel');
     const { notifs, notifsMsg, notifsOther, refetch, count, fetchNextPage, hasNextPage, isLoading, error } = notifViewModelFactory();
     const notifMapViewModelFactory = DI.resolve('notifMapViewModel');
-    const { notifsMap, isLoadingMap, refetchMap, countMap } = notifMapViewModelFactory();
+    const { notifsMap, isLoadingMap, refetchMap } = notifMapViewModelFactory();
 
     //// CLASSES
 
@@ -79,6 +88,10 @@ export default function DashboardPage() {
         });
     }, [msg])
 
+    //// HANDLE ADDRESS
+    const [address, setAddress] = useState(user?.Profile?.Address);
+    const [auto] = useState(true);
+
 
     return (
         <main
@@ -109,9 +122,7 @@ export default function DashboardPage() {
                         </CardMD.Media>
 
                         <CardMD.Subhead className="justify-center items-center !py-3 ">
-
                             <div className="rounded-full md3-slate-container px-12 m py-2 flex flex-col items-center justify-center shadow-sm mt-2">
-
                                 <span>
                                     Bienvenue&nbsp;
                                     {user?.Profile?.firstName ?? ""}   !
@@ -136,7 +147,7 @@ export default function DashboardPage() {
                                     size="md"
                                     color="orange"
                                     title="voir mes notifications" />
-                                <span className={notifsOther.length < 1 ? "hidden" : " absolute -top-0.5 right-0 w-3 h-3 rounded-full bg-orange-500 border-[2px] border-[var(--md3-primary-container)]"} />
+                                <span className={notifsOther.length < 1 ? "hidden" : " absolute -top-0.5 right-0 w-3 h-3 rounded-full bg-orange-500 border-[2px] md3-border-primary-container"} />
                             </div>
                             <div className="relative">
                                 < Icon
@@ -217,46 +228,35 @@ export default function DashboardPage() {
                 <div className={mapClasse}>
                     <CardMD className="min-h-full !flex flex-1 py-2  anim  ">
                         <CardMD.Subhead>
-                            <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-2">
-                                    <Icon
-                                        fill
-                                        bg
-                                        icon="location_on"
-                                        link="/service"
-                                        size="md"
-                                        color="slate"
-                                        title="voir mes services" />
-                                    {isLoadingMap ?
-                                        'Chargement...' :
-                                        ` ${countMap ?? 0} nouveautés à proximité`}
-                                </div>
-                            </div>
+                            <GeoLocBtn
+                                setAddress={setAddress}
+                                auto={auto}
+                            />
                         </CardMD.Subhead>
                         <CardMD.Media className="flex-1 h-full flex">
-                            {(user?.Profile?.Address && notifsMap && !isLoadingMap) ?
+
+                            {(address && notifsMap && !isLoadingMap) ?
                                 <AddressMapOpen
                                     message=" Vous êtes ici "
-                                    address={user?.Profile?.Address}
+                                    address={address}
                                     notifs={notifsMap} /> :
-                                <CardMD className="FixCard h-full w-full !flex  !flex-col flex-1 justify-center items-center bg-gray-50">
-                                    <CardMD.Subhead className="flex-1 h-full">
-                                        {user?.Profile?.Address ? 'pas de nouveautés à proximité , essayer de modifier de rafraichir' : 'Veuillez renseigner votre adresse pour voir les services à proximité'}
-                                    </CardMD.Subhead>
-                                    {user?.Profile?.Address ?
+                                <>
+
+                                    {(user?.Profile?.Address || address) ?
                                         <NotifDiv
                                             notif={
-                                                isLoadingMap ? 'Chargement...' : 'impossible de charger la carte, veuillez réessayer'}
+                                                isLoadingMap ? 'Chargement...' : 'Aucune donnée à afficher'}
                                             isLoading={isLoadingMap}
                                             refetch={refetchMap} />
-                                        : <Icon
+                                        : <> <Icon
                                             icon="add"
                                             fill bg
                                             color="orange"
-                                            title="ajouter votre adresse"
+                                            title="ajouter votre adresse ou utiliser la géolocalisation"
                                             onClick={() => navigate('/myprofile#address')} />
+                                            <span className="text-sm font-light opacity-80 mt-2">Ajouter votre adresse dans votre profil , ou utiliser la géolocalisation pour voir les notifications autour de vous</span></>
                                     }
-                                </CardMD>}
+                                </>}
                         </CardMD.Media>
                     </CardMD>
                 </div>
@@ -264,7 +264,6 @@ export default function DashboardPage() {
                 {/* CALENDARD CARD  */}
                 <div className={eventClasse}>
                     <CardMD className="min-h-full grid pb-2">
-
                         <CalendarComp logo={true} />
                     </CardMD>
                 </div>

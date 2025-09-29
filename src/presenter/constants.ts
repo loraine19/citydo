@@ -47,7 +47,7 @@ export enum PathElement {
 
 export enum EventImage {
     CATEGORY_1 = "https://miro.medium.com/v2/resize:fit:828/format:webp/1*wWopwRHXQsuwUXAxwdShWw.png",
-    CATEGORY_2 = "https://blog.nextdoor.com/wp-content/uploads/2020/01/nextdoorevent3-22-2018-287-1.jpg",
+    CATEGORY_2 = "https://cdn.pixabay.com/photo/2018/10/01/17/51/marseille-3716909_1280.jpg",
     CATEGORY_3 = "https://worldculturefest.org/wp-content/uploads/2023/06/Home_Carousel-3.jpg",
     CATEGORY_4 = "https://museum.toulouse-metropole.fr/wp-content/uploads/sites/6/2023/09/blob.png",
     CATEGORY_5 = "https://blog.collinsdictionary.com/wp-content/uploads/sites/39/2023/03/autre-blog.jpg",

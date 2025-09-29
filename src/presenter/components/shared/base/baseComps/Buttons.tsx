@@ -85,7 +85,9 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
                         variant={(child.props as ButtonProps).variant || variant}
                         color={(child.props as ButtonProps).color || color}
                         size={(child.props as ButtonProps).size || size}
-                        className={`md3-button-group-item flex-1 ${(child.props as any).className || ''} ${rounded ? 'rounded-full px-0' : ''}`}
+                        className={`md3-button-group-item flex-1 
+                            ${(child.props as any).className || ''} 
+                            ${rounded ? 'rounded-full px-0' : ''}`}
                         round={rounded}
                     >{child.props.children}
                     </Button>

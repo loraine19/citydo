@@ -292,6 +292,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
                 {imageProps.src &&
                     <div className={`absolute top-0 anim md3-card-large-image-container h-[55%]`}  >
                         <img
+                            onError={(e: any) => { e.target.onerror = null; }}
                             src={imageProps.src}
                             alt={imageProps.alt}
                             className={`md3-card-large-image ${imageProps.className || ""}`}

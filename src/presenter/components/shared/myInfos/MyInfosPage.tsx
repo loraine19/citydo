@@ -86,6 +86,7 @@ export default function MyInfosPage() {
 
             <ProfileForm
                 formik={formik}
+                address={address}
                 setAssistance={setAssistance}
                 setAddress={setAddress}
                 setMailSub={setMailSub}

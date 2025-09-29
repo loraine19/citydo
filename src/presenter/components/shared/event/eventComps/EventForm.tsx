@@ -12,11 +12,13 @@ import { Select } from "../../../common/adaptatersComps/Select";
 import CTAMines from "../../../common/CTA";
 import { CardLarge } from "../../base/baseComps/Cards";
 import { Input } from "../../base/baseComps/Inputs";
-import { ProgressBar } from "../../base/baseComps/Sliders";
+import Slider, { ProgressBar } from "../../base/baseComps/Sliders";
 import { Icon } from "../../../common/IconComp";
 import { useNavStore } from "../../../../../application/stores/nav.store";
 import FormHeadSection from "../../base/baseComps/FormHeadSection";
 import { Button } from "../../base/baseComps/Buttons";
+import GeoLocBtn from "../../../common/mapComps/GeoLocBtn";
+import { InputError } from "../../../common/adaptatersComps/input";
 
 interface EventFormProps {
     formik: any;
@@ -26,7 +28,7 @@ interface EventFormProps {
 
 export function EventForm({ formik, Address, setAddress }: EventFormProps) {
     const user = useUserStore((state) => state.user);
-    const [imgBlob, setImgBlob] = useState<string>(formik.values.image ?? formik.values.blob ?? EventImage[formik.values.category as keyof typeof EventImage] ?? EventImage.default ?? '');
+    const [imgBlob, setImgBlob] = useState<string>(formik.values.image ?? formik.values.blob ?? EventImage[formik.values.category as keyof typeof EventImage] ?? EventImage.default ?? null);
     const [groupId, setGroupId] = useState<string | number | undefined>(formik.values.Group?.id);
     const [expand, setExpand] = useState<boolean>(false);
 
@@ -46,9 +48,9 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
 
     useEffect(() => {
         if (!formik.values.image || formik.values.image === '') {
-            setImgBlob(EventImage[formik.values.category as keyof typeof EventImage] || EventImage.default);
+            setImgBlob(EventImage[formik.values.category as keyof typeof EventImage] ?? EventImage.default ?? null);
         }
-    }, [formik.values.category, show]);
+    }, [formik.values.category, formik.values.categoryS, show]);
 
     // AppBar Section
     const { setDetailSection } = useNavStore((state) => state);
@@ -72,8 +74,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
         return () => setDetailSection(undefined);
     }, [SearchSection, setDetailSection, formik.values.id, label, formik.errors.groupId, formik.errors.category, show, showCard]);
 
-
-
+    const [slidderValue, setSlidderValue] = useState(formik.values.participantsMin ?? 1);
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
             <main className={`hBottomForm`}>
@@ -120,7 +121,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                             <CardLarge.Image
                                 className="md3-cyan-container"
                                 src={imgBlob ?? formik.values.image ?? null}
-                                alt={formik.values.title || 'image'}
+                                alt={formik.values.title ?? imgBlob}
                             />
                         }
                     >
@@ -173,7 +174,14 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                         <CardLarge.Divider />
                         <CardLarge.MidSection className="md:px-8 flex flex-col">
                             <span className="md3-card-subhead">Lieu</span>
-                            <div className="flex flex-1 flex-col md:flex-row gap-4">
+                            {(!formik.values?.Address || !Address?.lat) &&
+                                <div className="px-3 h-4 my-2 italic">
+                                    <GeoLocBtn
+                                        iconProps={{ size: 'md', bg: false, icon: 'location_on', }}
+                                        setAddress={setAddress} />
+                                </div>
+                            }
+                            <div className="flex flex-1 flex-col  gap-4">
                                 {(Address?.lat && Address?.lng) ?
                                     <div className="flex-1 mb-2 !max-h-[7rem]">
                                         <AddressMapOpen address={Address} />
@@ -184,9 +192,11 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                     setAddress={setAddress}
                                     error={formik.errors.Address}
                                 />
+
                             </div>
                         </CardLarge.MidSection>
                         <CardLarge.Divider />
+                        {/* DATE SECTION  */}
                         <CardLarge.MidSection className="md:px-8 flex flex-col">
                             <span className="md3-card-subhead">Date</span>
                             <div className="flex flex-1 flex-col md:flex-row gap-4">
@@ -225,10 +235,11 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                             </div>
                         </CardLarge.MidSection>
                         <CardLarge.Divider />
-                        <CardLarge.MidSection className="md:px-8 flex flex-col">
+                        {/* PARTICIPATION SECTION */}
+                        <CardLarge.MidSection className="md:px-8 flex flex-col pb-6">
                             <span className="md3-card-subhead">Participants</span>
-                            <div className="flex flex-1 flex-col md:flex-row gap-4">
-                                <Input
+                            <div className="flex flex-1 flex-col  gap-4 ">
+                                {/* <Input
                                     leadingIcon={<Icon icon='person' fill={true} size='lg' />}
                                     error={!!formik.errors.participantsMin}
                                     type='number'
@@ -237,13 +248,25 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                     onChange={formik.handleChange}
                                     value={formik.values.participantsMin}
                                     helperText={formik.errors.participantsMin ?? 'participants minimum pour valider l\'évenement'}
-                                />
-                                <div className="flex-col flex w-full gap-3">
+                                /> */}
+                                <Slider
+                                    size='medium'
+                                    color='cyan'
+                                    id='participantsMin'
+                                    value={slidderValue}
+                                    max={formik.values.groupLength ?? 12}
+                                    min={1}
+                                    onChange={(e) => {
+                                        setSlidderValue(e.target.valueAsNumber);
+                                        formik.setFieldValue('participantsMin', e.target.valueAsNumber);
+                                    }} />
+                                <InputError error={formik.errors.participantsMin} tips={slidderValue + ' participants min. pour valider l\'évenement'} />
+                                {formik.values?.id > 0 && <div className="flex-col flex w-full gap-3 pt-4">
                                     <ProgressBar
                                         label={
                                             <div className="justify-between flex-1 w-full px-6 flex flex-row">
                                                 <small>
-                                                    {formik.values?.Participants?.length ?? 0} participant{formik.values?.Participants?.length > 1 ? 's' : ''}
+                                                    {formik.values?.Participants?.length ?? 0} participant{formik.values?.Participants?.length > 1 ? 's' : ''} déjà inscrit{formik.values?.Participants?.length > 1 ? 's' : ''}
                                                 </small>
                                                 <small className="opacity-50"> / &nbsp;
                                                     {formik.values.participantsMin ?? 1} min.
@@ -256,7 +279,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                                         min={1}
                                         size="xxsmall"
                                     />
-                                </div>
+                                </div>}
                             </div>
                         </CardLarge.MidSection>
                     </CardLarge>

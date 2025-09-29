@@ -4,7 +4,7 @@
 }
 
 .md3-slider {
-    @apply w-full h-full px-[1.5rem] z-40;
+    @apply w-full h-full px-[0rem] z-[2];
     -webkit-appearance: none;
     appearance: none;
     background: none;
@@ -20,14 +20,14 @@
 }
 
 .md3-slider-track-active {
-    @apply h-full w-full flex items-center justify-between pl-3;
+    @apply h-full w-full flex items-center justify-between pl-2;
     background: var(--md3-primary);
     border-radius: var(--md3-radius-large) 0 0 var(--md3-radius-large);
     color: var(--md3-on-primary);
 }
 
 .md3-slider-track-inactive {
-    @apply h-full w-full flex !items-center !justify-end pr-1;
+    @apply h-full w-full flex !items-center !justify-end pr-3;
     background: var(--md3-on-surface-variant);
     border-radius: 0 var(--md3-radius-large) var(--md3-radius-large) 0;
     color: var(--md3-surface-variant);
@@ -37,7 +37,7 @@
 }
 
 .md3-slider::-webkit-slider-thumb {
-    @apply h-[130%] w-[1rem] rounded flex;
+    @apply h-[130%] w-2 rounded flex;
     -webkit-appearance: none;
     appearance: none;
     opacity: 0;
@@ -48,7 +48,7 @@
 }
 
 .md3-slider-thumb {
-    @apply h-[calc(180%)] w-2 rounded flex;
+    @apply h-[calc(188%)] w-2 rounded flex;
     cursor: pointer;
     border-radius: var(--md3-radius-medium);
 }

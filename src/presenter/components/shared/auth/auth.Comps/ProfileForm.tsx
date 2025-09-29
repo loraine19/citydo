@@ -14,15 +14,18 @@ import { CardLarge } from "../../base/baseComps/Cards";
 import { Button } from "../../base/baseComps/Buttons";
 import { useNavStore } from "../../../../../application/stores/nav.store";
 import FormHeadSection from "../../base/baseComps/FormHeadSection";
+import AddressMapOpen from "../../../common/mapComps/AddressMapOpen";
+import GeoLocBtn from "../../../common/mapComps/GeoLocBtn";
 
 type ProfileFormProps = {
     formik: any,
     setAssistance?: any,
+    address?: any,
     setAddress?: any,
     setMailSub?: any,
 }
 
-export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: ProfileFormProps) {
+export function ProfileForm({ formik, setAssistance, setMailSub, setAddress, address }: ProfileFormProps) {
     const { user } = useUserStore((state) => state);
     const [imgBlob, setImgBlob] = useState<string | Blob>(formik?.values?.image ?? '');
     const [newSkill, setNewSkill] = useState<string | undefined>();
@@ -173,10 +176,21 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress }: P
                                     type='tel'
                                 />
                                 <AddressInputOpen
-                                    address={formik.values?.Address}
+                                    address={address}
                                     setAddress={setAddress}
                                     error={formik.errors?.Address}
                                 />
+                                {(!formik.values?.Address || !address) &&
+                                    <div className="px-3 h-4 -mt-2 italic">
+                                        <GeoLocBtn
+                                            iconProps={{ size: 'md', bg: false, icon: 'location_on', }}
+                                            setAddress={setAddress} />
+                                    </div>
+                                }
+                                {address && <AddressMapOpen
+                                    address={address}
+                                    message="Votre adresse actuelle"
+                                />}
 
                             </CardLarge.MidSection>
                             <CardLarge.Divider />

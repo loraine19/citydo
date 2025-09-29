@@ -123,7 +123,7 @@ main,
     } */
 }
 .hBottomForm {
-    @apply pb-2;
+    padding-bottom: 2rem;
     /* max-height: calc(100dvh - 9rem);
     @screen sm {
         max-height: calc(100dvh - 5rem);

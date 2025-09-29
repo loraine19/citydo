@@ -203,8 +203,9 @@ export const Menu: React.FC<MenuProps> = ({
 
             if (placement === 'bottom') {
                 if (spaceBottom >= menuHeight) placeBottom({ triggerRect, menuCurrent, style });
-                else if ((spaceTop >= menuHeight) || (spaceTop > spaceBottom)) placeTop({ triggerRect, menuCurrent, style });
-                else placeBottom({ triggerRect, menuCurrent, style, cropt: true });
+                else if (spaceTop > spaceBottom) placeTop({ triggerRect, menuCurrent, style });
+                else if (spaceRight >= menuWidth || spaceRight > spaceLeft) placeBottom({ triggerRect, menuCurrent, style, cropt: true, });
+                else placeBottom({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'left' });
             }
             else if (placement === 'top') {
                 if (spaceTop >= (menuHeight)) placeTop({ triggerRect, menuCurrent, style });
@@ -226,18 +227,6 @@ export const Menu: React.FC<MenuProps> = ({
                 }
                 else placeTop({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'left' });
             }
-            // else if (placement === 'top-right') {
-            //     if (spaceTop >= menuHeight && spaceRight >= menuWidth) {
-            //         placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
-            //     } else if (spaceTop >= menuHeight && spaceLeft >= menuWidth) {
-            //         placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
-            //     } else if (spaceBottom >= menuHeight && spaceRight >= menuWidth) {
-            //         placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
-            //     } else if (spaceBottom >= menuHeight && spaceLeft >= menuWidth) {
-            //         placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
-            //     }
-            //     else placeTop({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'right' });
-            // }
             else if (placement === 'bottom-left') {
                 if (spaceBottom >= menuHeight && spaceLeft >= menuWidth) {
                     placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
@@ -251,19 +240,6 @@ export const Menu: React.FC<MenuProps> = ({
                     placeBottom({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'left' });
                 }
             }
-            // else if (placement === 'bottom-right') {
-            //     if (spaceBottom >= menuHeight && spaceRight >= menuWidth) {
-            //         placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
-            //     } else if (spaceBottom >= menuHeight && spaceLeft >= menuWidth) {
-            //         placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
-            //     } else if (spaceTop >= menuHeight && spaceRight >= menuWidth) {
-            //         placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
-            //     } else if (spaceTop >= menuHeight && spaceLeft >= menuWidth) {
-            //         placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
-            //     } else {
-            //         placeBottom({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'right' });
-            //     }
-            // }
 
             else if (placement === 'center-trigger') {
                 style.top = `${(triggerRect.bottom / 2) > 200 ? (triggerRect.bottom / 2) : 200}px`;

@@ -20,9 +20,9 @@ const sizeMap = {
     xxxsmall: { trackHeight: '0.5rem', textSize: 'text-xs' },         // ~8px
     xxsmall: { trackHeight: '0.75rem', textSize: 'text-sm' },     // ~12px (
     xsmall: { trackHeight: '1rem', textSize: 'text-base' },           // ~16px
-    small: { trackHeight: '1.5rem', textSize: 'text-lg' },         // ~24px
-    medium: { trackHeight: '2rem', textSize: 'text-xl' },
-    large: { trackHeight: '3rem', textSize: 'text-2xl' },
+    small: { trackHeight: '1.5rem', textSize: 'text-base' },         // ~24px
+    medium: { trackHeight: '2rem', textSize: 'text-lg' },
+    large: { trackHeight: '3rem', textSize: 'text-xl' },
     // ~32px
 };
 
@@ -48,8 +48,8 @@ export const Slider: React.FC<SliderProps> = ({
 
 
     const trackHeight = sizeMap[size].trackHeight;
-    const mainColor = customColor || ` md3-${color} ` || ' bg-primary ';
-    const inactiveColor = ` md3-${color}-container ` || ' bg-primary-container ';
+    const mainColor = customColor || ` md3-${color} !text-white ` || ' md3-primary ';
+    const inactiveColor = ` md3-${color}-container ` || ' md3-primary-container ';
 
     return (
 
@@ -58,17 +58,19 @@ export const Slider: React.FC<SliderProps> = ({
             {/* TRACKLINE */}
             <div className={`md3-slider-track`} style={{ height: trackHeight }} >
                 {/* ACTIVE BG LINE */}
-                <div className={`md3-slider-track-active ${mainColor} `}
+                <div className={`md3-slider-track-active ${mainColor}`}
                     style={{ width: `${active}%` }} >
                     {value > min && min}
-                    <span className='px-2'>
+                    <span className='px-2 '>
                         {value > min ? value : ''}
                     </span>
                 </div>
+
                 {/* THUMB */}
                 <div className="flex h-full px-1.5 items-center justify-center">
                     <span className={`md3-slider-thumb ${mainColor} `} />
                 </div>
+
                 {/* INPUT HIDDEN */}
                 <input
                     id={id}
@@ -84,10 +86,10 @@ export const Slider: React.FC<SliderProps> = ({
                 {/* INACTIVE BG LINE */}
                 <div className={` md3-slider-track-inactive ${inactiveColor} `}
                     style={{ width: `${100 - active}%` }} >
-                    <span className='px-2'>
+                    <span className='px-2 w-full'>
                         {value === min ? value : ''}
                     </span>
-                    {value < max && max}
+                    {<>{value < max && max}&nbsp;</>}
                 </div>
             </div>
         </div>

@@ -28,6 +28,7 @@ export default function EventCreatePage() {
             zipcode: string().required("Code postal est obligatoire"),
         }),
         groupId: string().required("Groupe est obligatoire").notOneOf(["0"], "Groupe est obligatoire"),
+        groupLength: number()
     })
 
     const { setAlertValues, setOpen, handleApiError } = useAlertStore(state => state)

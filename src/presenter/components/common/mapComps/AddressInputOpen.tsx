@@ -7,7 +7,7 @@ import { Icon } from '../IconComp';
 import { Input } from '../../shared/base/baseComps/Inputs';
 import { Menu, MenuItem } from '../../shared/base/baseComps/Menu';
 
-interface AddressSuggestion { label: string; value: Address }
+export interface AddressSuggestion { label: string; value: Address }
 
 export const AddressInputOpen = (props: {
     address: AddressDTO | Address,
@@ -104,6 +104,7 @@ export const AddressInputOpen = (props: {
     const handleSuggestionSelect = (suggestion: AddressSuggestion) => {
         setInputValue(suggestion.label)
         setSuggestions([]);
+        setAddress(suggestion.value);
         formik.setFieldValue('address', suggestion.value.address);
 
     };
@@ -111,6 +112,7 @@ export const AddressInputOpen = (props: {
     const [triggerElement, setTriggerElement] = useState<HTMLElement | null>(null);
     useEffect(() => {
         setTriggerElement(document.getElementById('menu-button') as HTMLElement);
+        setOpen(true)
         if (triggerElement && (suggestions.length === 0) && open) {
             (triggerElement as HTMLElement).click();
         }
@@ -126,13 +128,17 @@ export const AddressInputOpen = (props: {
                 name='address'
                 value={inputValue}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    if (event.target.value.trim() !== '' || event.target.value === '') { handleInputChange(event) }
+                    if (event.target.value.trim() !== '' || event.target.value === '') {
+                        handleInputChange(event);
+                    }
                 }}
                 trailingIcon={
                     <Icon
                         icon='close'
                         style={'!absolute top-[50%] translate-y-[-50%] right-2'}
                         onClick={() => {
+                            setAddress(null);
+                            formik.setFieldValue('address', '');
                             setInputValue('');
                             setOpen(false)
                         }}
@@ -147,10 +153,10 @@ export const AddressInputOpen = (props: {
                         MenuKey='address-suggestion'
                         closeIcon={<></>}
                         open={open}
-                        setOpen={((open) => address ? setOpen(open) : setOpen(false))}
+                        setOpen={setOpen}
                         title='Choisir dans la liste'
-                        placement='auto'
-                        className='!w-max max-w-[calc(100dvw-4rem)] max-h-[14rem]  wRespXLMargin !right-0   overflow-y-scroll '
+                        placement='bottom'
+                        className='h-[12rem] -ml-3 min-w-[calc(100%-3rem)] md:max-w-max overflow-y-auto '
                         trigger={
                             <button type="button" id="mapbox-trigger">
                                 <Icon

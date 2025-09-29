@@ -38,13 +38,13 @@
     height: 2.625rem;
     min-width: 4rem;
     padding: 0 1.5rem;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 .md3-button-large {
     height: 3rem;
     min-width: 5rem;
     padding: 0 2rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .md3-button-xlarge {

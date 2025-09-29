@@ -109,17 +109,25 @@ const MarkerList = ({ notifsMap }: { notifsMap: NotifView[] }) => {
 }
 
 
-type AddressMapOpenProps = { address: AddressDTO | Address, message?: string | Element, notifs?: NotifView[], aera?: number, color?: string };
+type AddressMapOpenProps = {
+    address: AddressDTO | Address,
+    lat?: number,
+    lng?: number,
+    message?: string | Element,
+    notifs?: NotifView[],
+    aera?: number,
+    color?: string
+};
 
-export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, message, notifs, aera, color }) => {
+export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, lat = 0, lng = 0, message, notifs, aera, color }) => {
 
-    const [position, setPosition] = useState<[number, number]>([
+    const [position, setPosition] = useState<[number, number]>(lat && lng ? [lat, lng] : [
         Number(address?.lat ?? 0),
         Number(address?.lng ?? 0)
     ]);
 
     useEffect(() => {
-        setPosition([
+        if (!lat && !lng) setPosition([
             Number(address?.lat ?? 0),
             Number(address?.lng ?? 0)
         ]);
