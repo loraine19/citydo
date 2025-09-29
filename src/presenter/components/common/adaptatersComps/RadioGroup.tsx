@@ -44,14 +44,15 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
       
         ${className} ${classVariant}`}>
             {options.map((option) => (
-                <div key={option.value} className={`px-4 !pr-2 flex items-center flex-1 `} >
+                <div key={option.value} className={`px-4 !pr-2 flex items-center gap-2 flex-1 `} >
                     <div className="relative flex items-center justify-center  ">
                         <Icon
-                            size='xl'
+                            reverse
+                            size='2xl'
                             color={option.color ?? color}
-                            fill={value === option.value}
-                            style={`${value === option.value ? '' : '!opacity-50'} relative -left-1.5 top-0 scale-[1.05]`}
-                            icon={(value === option.value) ? 'check_circle' : 'circle'}
+                            fill={false}
+                            style={`${value === option.value ? '!cursor-pointer' : ''} relative -left-0.5 top-0  `}
+                            icon={(value === option.value) ? 'radio_button_checked' : 'radio_button_unchecked'}
                         />
                         <input
                             type="radio"
@@ -66,7 +67,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                                 formik && formik.setFieldValue(name, option.value);
                                 formik && formik.setFieldTouched(name, true);
                             }}
-                            className={` !opacity-0 -left-8 relative !scale-[1.9]`}
+                            className={`!cursor-pointer !opacity-0 -left-6 relative !scale-[1.9]`}
                         />
 
                     </div>

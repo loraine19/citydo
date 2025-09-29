@@ -116,7 +116,6 @@ main,
     } */
 }
 .hBottomFab {
-    @apply pb-8;
     /* max-height: calc(100dvh - 7.8rem);
     @screen sm {
         max-height: calc(100dvh - 5rem);
@@ -132,8 +131,7 @@ main,
 
 section,
 .Section {
-    @apply flex wRespXLMargin px-2 flex-col overflow-y-auto flex-1;
-    gap: 0.2rem;
+    @apply wRespXLMargin flex-col overflow-y-auto flex-1 max-h-full w-full flex pb-10 pt-2  px-[0.5rem] md:px-[1rem] bg-red-300;
     min-height: 0;
 }
 

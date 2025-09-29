@@ -22,8 +22,8 @@ export default function GroupSelect({ formik, user, groupId, disabled, variant =
             disabled={disabled}
             onChangeFunction={() => {
                 const group = user?.GroupUser?.find((groupUser: any) => groupUser.Group.id === formik.values.groupId);
-                alert(group?.Group?.name)
                 formik.setFieldValue('groupLength', group?.Group?.GroupUser?.length ?? 0)
+                formik.setFieldValue('groupId', groupId)
             }}
             options={user?.GroupUser?.map((group: any) => ({
                 label: group.Group.name,

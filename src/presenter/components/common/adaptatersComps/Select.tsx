@@ -42,9 +42,10 @@ export function Select({
     const className = variant === 'Input' ? `md3-input-container md3-outlined  !rounded-md md3-input-size-lg ` : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
 
     const handleSelect = (option: { label: string, value: string }) => {
+        onChangeFunction && onChangeFunction();
         if (formik) formik.setFieldValue(name, option?.value);
         setValue && setValue(option?.value);
-        onChangeFunction && onChangeFunction();
+
     };
 
     const [open, setOpen] = useState(false)
