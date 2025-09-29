@@ -52,7 +52,7 @@
 html {
     @apply dark flex flex-col p-0 m-0;
     box-sizing: border-box;
-    height: calc(100dvh + 1rem);
+    height: calc(100dvh + 2rem);
     min-height: calc(100svh);
     max-height: calc(100lvh);
     margin: 0;
@@ -83,7 +83,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100vw;
-    height: calc(100dvh + 1rem);
+    height: calc(100dvh + 2rem);
     min-height: calc(100svh);
     max-height: calc(100lvh);
     box-sizing: border-box;
@@ -103,7 +103,7 @@ body {
     @apply min-w-[280px] flex flex-col flex-1;
     width: 100vw;
     min-width: 100vw;
-    height: calc(100dvh + 1rem);
+    height: calc(100dvh + 2rem);
     min-height: calc(100svh);
     max-height: calc(100lvh);
     box-sizing: border-box;
@@ -112,12 +112,11 @@ body {
     .App,
     body,
     html {
-        height: calc(100svh - 1rem);
-        min-height: calc(100svh - 1rem);
-        max-height: calc(100svh - 1rem);
+        height: calc(100svh - 1rem) !important;
+        min-height: calc(100svh - 5rem);
+        max-height: calc(100svh - 1rem) !important;
         padding-bottom: env(safe-area-inset-bottom);
         box-sizing: border-box;
-        background-color: red !important;
     }
 }
 
@@ -150,7 +149,7 @@ section,
 }
 .hBottomForm {
     @apply overflow-auto xs:overflow-hidden;
-    max-height: calc(100dvh - 2rem);
+    max-height: calc(100dvh - 3rem);
     @screen sm {
         max-height: calc(100dvh - 1.5rem);
     }
