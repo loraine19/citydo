@@ -150,7 +150,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                         handleScroll={handleScroll} />
                 </div>
                 <div className='px-0 -mb-2 -mt-1.5'>
-                    <div className={`${imTyping ? '-top-2' : ''} bottom-0 border-t md3-border flex justify-between rounded-t-[1.5rem] rounded-b-[1rem]  w-full px-3 py-4  min-h-min `}>
+                    <div className={`${imTyping ? '-top-2' : ''} bottom-0 border-t md3-border flex justify-between rounded-t-[1.5rem] rounded-b-[1rem]  border-b-0 w-full px-3 py-4  min-h-min `}>
                         <div className='flex-0 flex top-0 mt-1 ' >
                             <Icon
                                 onClick={() => setOpenEmoji(!openEmoji)}
