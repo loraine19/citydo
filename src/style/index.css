@@ -99,7 +99,7 @@ body {
 .App {
     min-height: calc(100dvh-5rem);
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     max-height: 100vh;
     overflow: hidden;
     @apply min-w-[280px];
