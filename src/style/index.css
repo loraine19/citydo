@@ -115,6 +115,13 @@ body {
     max-height: calc(100lvh - 2rem);
     box-sizing: border-box;
 }
+@media (display-mode: minimal-ui) {
+    .App {
+        height: 100svh;
+        padding-bottom: env(safe-area-inset-bottom);
+        box-sizing: border-box;
+    }
+}
 
 main,
 .main {
