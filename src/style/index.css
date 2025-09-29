@@ -76,7 +76,7 @@ html {
 }
 
 body {
-    @apply scroll-smooth font-montserrat border border-red-500;
+    @apply scroll-smooth font-montserrat;
     display: grid;
     grid-template-rows: 1fr;
     box-sizing: border-box;
@@ -90,7 +90,7 @@ body {
     min-height: 100dvh;
     width: 100vw;
     height: 100dvh;
-    max-height: calc(100vh-1rem);
+    max-height: calc(100vh-10rem);
     margin: 0;
 }
 
@@ -102,8 +102,7 @@ body {
     height: calc(100%-1rem);
     max-height: calc(100dvh-4rem);
     overflow: hidden;
-    @apply min-w-[280px];
-    @apply flex flex-col flex-1 h-full border-green-500 border;
+    @apply min-w-[280px] flex flex-col flex-1  border-green-500 border;
     box-sizing: border-box;
 }
 
