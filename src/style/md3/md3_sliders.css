@@ -22,14 +22,14 @@
 .md3-slider-track-active {
     @apply h-full w-full flex items-center justify-between pl-2;
     background: var(--md3-primary);
-    border-radius: var(--md3-radius-large) 0 0 var(--md3-radius-large);
+    border-radius: var(--md3-radius-medium) 0 0 var(--md3-radius-medium);
     color: var(--md3-on-primary);
 }
 
 .md3-slider-track-inactive {
     @apply h-full w-full flex !items-center !justify-end pr-3;
     background: var(--md3-on-surface-variant);
-    border-radius: 0 var(--md3-radius-large) var(--md3-radius-large) 0;
+    border-radius: 0 var(--md3-radius-medium) var(--md3-radius-medium) 0;
     color: var(--md3-surface-variant);
     right: 0;
     top: 0;
