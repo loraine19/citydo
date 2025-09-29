@@ -117,7 +117,7 @@ body {
         max-height: calc(100svh - 1rem);
         padding-bottom: env(safe-area-inset-bottom);
         box-sizing: border-box;
-        background-color: blue !important;
+        background-color: red !important;
     }
 }
 
