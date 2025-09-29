@@ -15,10 +15,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
     const readNotif = async (id: number) => await DI.resolve('readNotifUseCase').execute(id);
     const notifViewModelFactory = DI.resolve('notifViewModel');
     const { notifsMsg, notifsOther, refetch, countMsg, countOther, isLoading, error, hasNextPage, fetchNextPage } = notifViewModelFactory();
-
-
     const navigate = useNavigate()
-
     const { navBottom } = useUxStore()
 
     //// TODO SET UNREAD NOTIF BY TYPE ( UPDATE COUNT FROM VIEW )
@@ -31,12 +28,10 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
     const handleScroll = () => {
         if (divRef.current) {
             const { scrollTop, scrollHeight, clientHeight } = divRef.current;
-
             if ((scrollTop + clientHeight) < scrollHeight) {
                 setIsBottom(true);
                 if (hasNextPage) {
                     fetchNextPage()
-
                 }
             } else setIsBottom(false)
         }
@@ -79,7 +74,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                             <Icon
                                 title={'ouvrir le popup'}
                                 fill
-                                style='absolute -top-2 -right-2 !bg-[var(--md3-primary-container)] rounded-full !p-[0.5px]'
+                                style='absolute -top-2 !z-0 -right-2 !bg-[var(--md3-primary-container)] rounded-full !p-[0.5px]'
                                 reverse
                                 icon='fiber_manual_record'
                                 color={list.color}

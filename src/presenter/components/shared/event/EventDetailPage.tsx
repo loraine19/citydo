@@ -109,7 +109,7 @@ export default function EventDetailPage() {
                     onScroll={() => {
                         handleHideCallback();
                     }}>
-                    <div className={`!h-full  flex py-3 `}>
+                    <div className={`!h-full  flex pb-4 pt-2 `}>
                         {!isLoading && event ?
                             <EventDetailCard
                                 EventLoad={event}

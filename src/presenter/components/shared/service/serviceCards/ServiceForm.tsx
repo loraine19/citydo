@@ -115,7 +115,7 @@ export function ServiceForm(props: { formik: any }) {
                         </div>
                     </div>
                     <CardLarge
-                        className={` mb-3 ${(showCard && !show) ?
+                        className={`mb-4 ${(showCard && !show) ?
                             `md3-animation-slide-up ` : 'md3-animation-slide-out-down'}`}
                         form
                         expanded={expand}
