@@ -38,7 +38,7 @@ export default function EventDetailPage() {
     useEffect(() => {
         if (event && event?.Address) {
             formik.values.Address = new AddressDTO(event?.Address)
-            formik.values.addressString = (event?.Address?.address as string || '')
+            formik.values.addressString = (`${event?.Address?.address as string ?? ''} ${event?.Address?.zipcode as string ?? ''} ${event?.Address?.city as string ?? ''}`)
         }
     }, [event.Address])
 
@@ -124,7 +124,7 @@ export default function EventDetailPage() {
 
     return (
         <>
-            {isLoading || formik.values.Address ?
+            {isLoading || !formik.values.Address ?
                 <Skeleton /> :
                 <EventForm
                     formik={formik} />}
