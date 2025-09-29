@@ -109,7 +109,9 @@ body {
     box-sizing: border-box;
 }
 @media (display-mode: minimal-ui) {
-    .App {
+    .App,
+    body,
+    html {
         height: 100svh;
         min-height: 100svh;
         max-height: 100svh;
