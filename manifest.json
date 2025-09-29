@@ -1,6 +1,12 @@
 {
     "name": "City'do",
     "short_name": "City'do",
+    "lang": "fr",
+    "categories": [
+        "productivity",
+        "social",
+        "utilities"
+    ],
     "description": "City'Do - Application collaborative pour améliorer la vie urbaine. Partagez, proposez et suivez les initiatives citoyennes dans votre ville.",
     "start_url": "/",
     "scope": "/",
