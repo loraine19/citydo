@@ -99,11 +99,11 @@ body {
 .App {
     min-height: calc(100dvh-20rem);
     width: 100vw;
-    height: 100%;
-    max-height: calc(100dvh-8rem);
+    height: calc(100%-1rem);
+    max-height: calc(100dvh-4rem);
     overflow: hidden;
     @apply min-w-[280px];
-    @apply flex flex-col flex-1 h-full border-yellow-500 border;
+    @apply flex flex-col flex-1 h-full border-green-500 border;
     box-sizing: border-box;
 }
 
