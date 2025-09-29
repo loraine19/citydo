@@ -135,7 +135,7 @@ main,
 
 section,
 .Section {
-    @apply wRespXLMargin flex-col overflow-y-auto flex-1 max-h-full w-full flex pb-10 pt-2  px-[0.5rem] md:px-[1rem] bg-red-300;
+    @apply wRespXLMargin flex-col overflow-y-auto flex-1 max-h-full w-full flex  pt-2  px-[0.5rem] md:px-[1rem] bg-red-300;
     min-height: 0;
 }
 
