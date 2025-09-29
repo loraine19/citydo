@@ -27,6 +27,7 @@ interface EventFormProps {
 }
 
 export function EventForm({ formik }: EventFormProps) {
+    console.log(formik.values)
     const user = useUserStore((state) => state.user);
     const [imgBlob, setImgBlob] = useState<string>(formik.values.image ?? formik.values.blob ?? EventImage[formik.values.category as keyof typeof EventImage] ?? EventImage.default ?? null);
     const [groupId, setGroupId] = useState<string | number | undefined>(formik.values.Group?.id);
