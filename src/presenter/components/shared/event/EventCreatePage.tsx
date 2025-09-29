@@ -51,7 +51,7 @@ export default function EventCreatePage() {
         }
 
     }
-    type extendEventView = EventView & { addressString?: string, categoryS?: string, Address?: AddressDTO }
+    type extendEventView = Omit<EventView, 'Address'> & { addressString?: string, categoryS?: string, Address?: AddressDTO }
     const formik = useFormik({
         initialValues: {} as extendEventView,
         validationSchema: formSchema,

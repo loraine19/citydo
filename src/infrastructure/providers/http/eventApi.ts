@@ -34,6 +34,7 @@ export class EventApi {
 
     async updateEvent(id: number, event: EventDTO): Promise<Event> {
         const formData = this.api.createFormData(event);
+        console.log(event)
         return this.api.patch(`${this.dataType}/${id}`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
         });

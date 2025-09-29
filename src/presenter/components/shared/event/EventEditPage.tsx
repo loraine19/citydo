@@ -37,7 +37,7 @@ export default function EventDetailPage() {
 
     useEffect(() => {
         if (event && event?.Address) {
-            formik.values.Address = event?.Address
+            formik.values.Address = new AddressDTO(event?.Address)
             formik.values.addressString = (event?.Address?.address as string || '')
         }
     }, [event.Address])
@@ -57,13 +57,14 @@ export default function EventDetailPage() {
         addressString: string(),
     })
 
-    type extendEventView = EventView & { addressString?: string, categoryS?: string, Address?: AddressDTO }
+    type extendEventView = Omit<EventView, 'Address'> & { addressString?: string, categoryS?: string, Address?: AddressDTO }
     //// FORMIK 
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: initialValues as extendEventView,
         validationSchema: formSchema,
         onSubmit: async values => {
+            console.log(values)
             formik.values = values
             setOpen(true)
             setAlertValues({
@@ -103,8 +104,10 @@ export default function EventDetailPage() {
         formik.values.end = new Date(formik.values.end).toISOString()
         const { ...rest } = formik.values;
         const updateData = new EventDTO({ ...rest })
+        const addressDTO = new AddressDTO(formik.values.Address)
+        console.log(addressDTO)
         try {
-            const updated = await updateEvent(event.id, updateData, formik.values.Address as AddressDTO)
+            const updated = await updateEvent(event.id, updateData, addressDTO)
             if (updated) {
                 navigate("/evenement/" + updated.id);
                 location.reload()

@@ -6,6 +6,12 @@ export class AddressDTO {
     lat: number | string = 0;
     lng: number | string = 0;
     constructor(init?: Partial<AddressDTO>) {
-        Object.assign(this, init);
+        if (init) {
+            Object.keys(init).forEach(key => {
+                if (Object.prototype.hasOwnProperty.call(this, key)) {
+                    (this as any)[key] = init[key as keyof AddressDTO];
+                }
+            });
+        }
     }
 }

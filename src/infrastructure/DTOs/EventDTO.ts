@@ -18,6 +18,7 @@ export class EventDTO {
     groupId?: number = 0;
 
     constructor(init?: Partial<EventDTO>) {
+        this.Address = init?.Address ? new AddressDTO(init.Address) : {} as AddressDTO;
         if (init) {
             Object.keys(init).forEach(key => {
                 if (key in this) {

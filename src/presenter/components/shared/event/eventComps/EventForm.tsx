@@ -40,8 +40,16 @@ export function EventForm({ formik }: EventFormProps) {
     const today = new Date(new Date().getTime() + (1 * dayMS)).toISOString().slice(0, 16).replace('Z', '');
 
     useEffect(() => {
-        setFormikAddress(formik.values.Address ?? {} as AddressDTO);
-    }, [formik.values.Address]);
+        if (formik.values.Address && formik.values.Address !== formikAddress)
+            setFormikAddress(new AddressDTO(formik.values.Address));
+    }, []);
+
+    useEffect(() => {
+        if (formikAddress && formikAddress !== formik.values.Address) {
+            formik.values.Address = new AddressDTO(formikAddress);
+            formik.values.addressString = (formikAddress?.address as string || '') + ' ' + (formikAddress?.zipcode as string || '') + ' ' + (formikAddress?.city as string || '');
+        };
+    }, [formikAddress]);
 
     useEffect(() => {
         if (!formik.values.image || formik.values.image === '') {
@@ -182,7 +190,6 @@ export function EventForm({ formik }: EventFormProps) {
 
 
                                     <GeoLocBtn
-
                                         iconProps={{ size: 'md', bg: false, icon: 'location_on', }}
                                         setAddress={setFormikAddress} />
                                 </div>
