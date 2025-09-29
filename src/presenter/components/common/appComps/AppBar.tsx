@@ -55,7 +55,7 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage, add
             {/* INSERTION NAVLINK BOTTOM  */}
 
             {(searchSection && !hideNavBottom && !navBottom) &&
-                <div className="w-full">{searchSection}</div>}
+                <div className="w-full  ">{searchSection}</div>}
             {tabSection &&
                 <div className={`"w-full  ${searchSection && ' pt-2 sm:pt-4'}`}>{tabSection}</div>
             }

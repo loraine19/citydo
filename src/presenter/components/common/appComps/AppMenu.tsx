@@ -89,7 +89,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
     }
 
     const menuIcon = hideNavBottom || singlePage
-    const showAppName = !hideNavBottom || !listPage
+    const showAppName = (!hideNavBottom || !listPage) && !singlePage
     const roundedStyle = !showAppName
 
 
@@ -118,6 +118,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                                     />
                                 </div>
                                 : <Icon
+                                    style=""
                                     icon="menu"
                                     size="xl"
                                 />}
@@ -133,8 +134,8 @@ const AppMenu: React.FC<AppMenuProps> = ({
 
                         )}
                     </div>
-                }
-            >
+                }   >
+
                 {/* USER ITEM */}
                 <MenuItem
                     bg

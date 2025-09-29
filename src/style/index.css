@@ -50,15 +50,17 @@
 }
 
 html {
-    @apply dark flex flex-col;
+    @apply dark flex flex-col p-0 m-0;
     box-sizing: border-box;
-    height: 100vh;
-    min-height: 100svh;
-    max-height: 100lvh;
+    height: calc(100dvh - 0.5rem);
+    min-height: calc(100svh);
+    max-height: calc(100lvh - 1.5rem);
     margin: 0;
     padding: 0;
 
     width: 100vw;
+    min-width: 100vw;
+
     background-color: var(--md3-surface);
     font-size: 16px;
     @media (max-width: 1024px) {
@@ -90,7 +92,7 @@ body {
     width: 100vw;
     height: calc(100dvh - 0.5rem);
     min-height: calc(100svh);
-    max-height: calc(100lvh - 1rem);
+    max-height: calc(100lvh - 1.5rem);
     box-sizing: border-box;
     line-height: 1.3;
     font-weight: 400;
@@ -105,8 +107,9 @@ body {
 /* MAIN SECTIONS */
 
 .App {
-    @apply min-w-[280px] flex flex-col flex-1;
+    @apply min-w-[280px] flex flex-col flex-1 border-b border-red-500;
     width: 100vw;
+    min-width: 100vw;
     height: calc(100dvh - 0.5rem);
     min-height: calc(100svh);
     max-height: calc(100lvh - 1.5rem);
