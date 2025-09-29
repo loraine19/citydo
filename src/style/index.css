@@ -105,11 +105,11 @@ body {
 /* MAIN SECTIONS */
 
 .App {
-    @apply min-w-[280px] flex flex-col flex-1 bg-slate-500/10;
+    @apply min-w-[280px] flex flex-col flex-1;
     width: 100vw;
     height: calc(100dvh - 0.5rem);
     min-height: calc(100svh);
-    max-height: calc(100lvh - 1rem);
+    max-height: calc(100lvh - 1.5rem);
     box-sizing: border-box;
 }
 
@@ -134,12 +134,14 @@ section,
     }
 }
 .hBottomFab {
+    @apply overflow-auto xs:overflow-hidden;
     max-height: calc(100% - 8rem);
     @screen sm {
         max-height: calc(100% - 5rem);
     }
 }
 .hBottomForm {
+    @apply overflow-auto xs:overflow-hidden;
     max-height: calc(100% - 2rem);
     @screen sm {
         max-height: calc(100% - 2rem);
