@@ -124,7 +124,7 @@ export default function EventDetailPage() {
 
     return (
         <>
-            {isLoading || formik.values === null ?
+            {isLoading || formik.values.Address ?
                 <Skeleton /> :
                 <EventForm
                     formik={formik} />}
