@@ -52,7 +52,7 @@
 html {
     @apply dark flex flex-col p-0 m-0;
     box-sizing: border-box;
-    height: calc(100dvh + 0.1rem);
+    height: calc(100dvh + 0.5rem);
     min-height: calc(100svh);
     max-height: calc(100lvh);
     margin: 0;
@@ -83,7 +83,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100vw;
-    height: calc(100dvh + 0.1rem);
+    height: calc(100dvh + 0.5rem);
     min-height: calc(100svh);
     max-height: calc(100lvh);
     box-sizing: border-box;
@@ -103,7 +103,7 @@ body {
     @apply min-w-[280px] flex flex-col flex-1;
     width: 100vw;
     min-width: 100vw;
-    height: calc(100dvh + 0.1rem);
+    height: calc(100dvh + 0.5rem);
     min-height: calc(100svh);
     max-height: calc(100lvh);
     box-sizing: border-box;
