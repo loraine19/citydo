@@ -99,8 +99,8 @@ body {
 .App {
     min-height: calc(100dvh-20rem);
     width: 100vw;
-    height: 100dvh;
-    max-height: calc(100vh-2rem);
+    height: 100%;
+    max-height: calc(100dvh-8rem);
     overflow: hidden;
     @apply min-w-[280px];
     @apply flex flex-col flex-1 h-full border-yellow-500 border;
