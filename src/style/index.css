@@ -101,7 +101,8 @@ body {
     min-height: 0;
     height: 100dvh;
     min-height: 100svh;
-    max-height: calc(100lvh - 5rem);
+    /* a -5rem ok pwa mais pas sur navigateur ( pas expend tout l'ecran ) */
+    max-height: calc(100lvh - 2rem);
     box-sizing: border-box;
 }
 
