@@ -76,7 +76,7 @@ html {
 }
 
 body {
-    @apply scroll-smooth font-montserrat;
+    @apply scroll-smooth font-montserrat border border-red-500;
     display: grid;
     grid-template-rows: 1fr;
     box-sizing: border-box;
@@ -90,20 +90,20 @@ body {
     min-height: 100dvh;
     width: 100vw;
     height: 100dvh;
-    max-height: 100dvh;
+    max-height: calc(100vh-1rem);
     margin: 0;
 }
 
 /* MAIN SECTIONS */
 
 .App {
-    min-height: calc(100dvh-15rem);
+    min-height: calc(100dvh-20rem);
     width: 100vw;
     height: 100dvh;
-    max-height: 100dvh;
+    max-height: calc(100vh-2rem);
     overflow: hidden;
     @apply min-w-[280px];
-    @apply flex flex-col flex-1 h-full;
+    @apply flex flex-col flex-1 h-full border-yellow-500 border;
     box-sizing: border-box;
 }
 
