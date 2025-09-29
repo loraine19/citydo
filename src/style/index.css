@@ -112,9 +112,9 @@ body {
     .App,
     body,
     html {
-        height: 100svh;
-        min-height: 100svh;
-        max-height: 100svh;
+        height: calc(100svh - 1rem);
+        min-height: calc(100svh - 1rem);
+        max-height: calc(100svh - 1rem);
         padding-bottom: env(safe-area-inset-bottom);
         box-sizing: border-box;
         background-color: blue !important;
