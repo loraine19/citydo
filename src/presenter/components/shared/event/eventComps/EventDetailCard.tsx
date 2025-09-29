@@ -115,7 +115,7 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
 
             <CardLarge.Media className="flex-1 flex flex-col gap-2 pb-2">
                 <h6>Localisation</h6>
-                <p className="md3-card-subhead line-clamp-2">
+                <p className="md3-card-supporting-text line-clamp-2">
                     {Address ? `${Address?.address}, ${Address?.zipcode} ${Address?.city}` : '...'}
                 </p>
                 {Address ?

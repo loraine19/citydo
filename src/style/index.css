@@ -113,10 +113,20 @@ body {
     body,
     html {
         height: calc(100svh - 1rem) !important;
-        min-height: calc(100svh - 5rem);
+        min-height: calc(100svh - 5rem) !important;
         max-height: calc(100svh - 1rem) !important;
         padding-bottom: env(safe-area-inset-bottom);
         box-sizing: border-box;
+    }
+    .hBottomNav {
+        max-height: calc(100svh - 9rem) !important;
+    }
+    .hBottomFab {
+        max-height: calc(100svh - 5rem) !important;
+    }
+
+    .hBottomForm {
+        max-height: calc(100svh - 1.5rem) !important;
     }
 }
 
