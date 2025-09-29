@@ -517,6 +517,19 @@
 .md3-text-on-green-container {
     color: var(--md3-on-green-container);
 }
+
+.md3-text-error {
+    color: var(--md3-error);
+}
+.md3-text-on-error {
+    color: var(--md3-on-error);
+}
+.md3-text-error-container {
+    color: var(--md3-error-container);
+}
+.md3-text-on-error-container {
+    color: var(--md3-on-error-container);
+}
 .md3-text-slate {
     color: var(--md3-slate);
 }

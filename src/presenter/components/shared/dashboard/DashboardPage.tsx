@@ -56,7 +56,6 @@ export default function DashboardPage() {
     const { notifsMap, isLoadingMap, refetchMap } = notifMapViewModelFactory();
 
     //// CLASSES
-
     const userClasse = "row-start-1 row-end-3 col-start-1 col-end-2 flex animRev p-2 !max-h-max  ";
     const notifClasse = "row-start-1 row-end-2 col-start-2 col-end-3 animRev p-2 " + (notifs.length > 0 ? " min-h-[4rem] " : "min-h-[5rem]");
     const eventClasse = "anim row-start-3 row-end-5 col-start-1 col-end-2  flex flex-col h-full  p-2 flex-1 ";

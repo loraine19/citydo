@@ -18,7 +18,7 @@ export const AppFooter: React.FC<AppFooterProps> = ({ mainPage, listPage, addFab
 
     if (navBottom) return (
         <>
-            <footer className={` -mb-[1px] bottom-0 ${mainPage ? 'sticky' : 'fixed'}`}
+            <footer className={` -mb-[1px] bottom-0 ${mainPage ? 'fixed' : 'fixed'}`}
                 onDrag={() => setNavBottom(!navBottom)}>
                 {((mainPage || listPage) && navBottom) &&
                     <NavLinks mainPage={mainPage} addFab={addFab} placement="bottom" />}

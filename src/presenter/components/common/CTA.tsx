@@ -39,7 +39,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
     const isDisabled = (i: number) => ((i === 0 && disabled1) || (i === 1 && disabled2) || actions[i]?.disabled)
 
     return (
-        <footer className={` CTA h-max w-full !justify-end wRespXL   flex`}>
+        <footer className={`h-max w-full !justify-end wRespXL -mb-[1px] bottom-0 ${'fixed'}`}>
 
             <ButtonGroup
                 rounded
