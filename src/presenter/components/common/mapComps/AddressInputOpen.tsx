@@ -11,22 +11,21 @@ export interface AddressSuggestion { label: string; value: Address }
 
 export const AddressInputOpen = (props: {
     address: AddressDTO | Address,
-    setAddress: any,
+    setAddress: (address: Address) => void,
     error?: any,
     formik?: any
 }) => {
-    const { address, setAddress, error, formik } = props;
+    const { error, formik, address, setAddress } = props;
     const [inputLoading, setInputLoading] = useState(false)
-    const [inputValue, setInputValue] = useState(`${address?.address || ''} ${address?.zipcode || ''} ${address?.city || ''}`.trim());
+    const [inputValue, setInputValue] = useState(`${address?.address ?? ''} ${address?.zipcode ?? ''} ${address?.city ?? ''}`);
+    useEffect(() => {
+        setInputValue(`${address?.address ?? ''} ${address?.zipcode ?? ''} ${address?.city ?? ''}`);
+    }, [address]);
     const [suggestions, setSuggestions] = useState<AddressSuggestion[]>([]);
 
     const groupList = async (): Promise<Address[]> => await DI.resolve('getAddressUseCase').execute()
 
 
-    // USE EFFECT
-    useEffect(() => {
-        setInputValue(`${address?.address || ''} ${address?.zipcode || ''} ${address?.city || ''}`.trim());
-    }, [address]);
 
     const handleInputChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const q = event.target.value;
@@ -102,21 +101,32 @@ export const AddressInputOpen = (props: {
     };
 
     const handleSuggestionSelect = (suggestion: AddressSuggestion) => {
-        setInputValue(suggestion.label)
+        const selectedAddress = suggestion.value as Address;
+        setOpen(false);
+        setInputLoading(false);
+        formik.values.Address = { ...selectedAddress };
         setSuggestions([]);
-        setAddress(suggestion.value);
-        formik.setFieldValue('address', suggestion.value.address);
-
+        setAddress({ ...selectedAddress })
+        setInputValue(suggestion.label);
+        formik.values.addressString = suggestion.label;
     };
+
+    const handleClear = () => {
+        setInputValue('');
+        setAddress(new Address({}));
+        formik.values.addressString = '';
+        formik.values.Address = {} as AddressDTO
+        setOpen(false)
+        setSuggestions([]);
+    }
+
     const [open, setOpen] = useState(true);
     const [triggerElement, setTriggerElement] = useState<HTMLElement | null>(null);
     useEffect(() => {
-        setTriggerElement(document.getElementById('menu-button') as HTMLElement);
-        setOpen(true)
-        if (triggerElement && (suggestions.length === 0) && open) {
+        setTriggerElement(document.querySelector('.mapbox-trigger') as HTMLElement);
+        if (triggerElement && suggestions.length === 0 && open) {
             (triggerElement as HTMLElement).click();
         }
-
     }, [suggestions, inputLoading]);
 
     return (
@@ -137,16 +147,14 @@ export const AddressInputOpen = (props: {
                         icon='close'
                         style={'!absolute top-[50%] translate-y-[-50%] right-2'}
                         onClick={() => {
-                            setAddress(null);
-                            formik.setFieldValue('address', '');
-                            setInputValue('');
-                            setOpen(false)
+                            handleClear();
                         }}
                         size='sm'
                         color='gray' />}
                 helperText={error ? Object.values(error).join(', ') : ""}
                 error={!!error}
                 leadingIcon={
+
                     <Menu
                         fitMax
                         isVisible={open}
@@ -158,13 +166,13 @@ export const AddressInputOpen = (props: {
                         placement='bottom'
                         className='h-[12rem] -ml-3 min-w-[calc(100%-3rem)] md:max-w-max overflow-y-auto '
                         trigger={
-                            <button type="button" id="mapbox-trigger">
+                            <button type="button" className="mapbox-trigger">
                                 <Icon
                                     style='mt-1'
                                     icon={inputLoading ? 'progress_activity' : 'my_location'}
                                     fill={true}
-                                    size='lg' />
-                            </button>}
+                                    size='lg' /></button>
+                        }
 
                     >
                         {suggestions.length > 0 ?
@@ -175,9 +183,8 @@ export const AddressInputOpen = (props: {
                                     title='choisir cette adresse'
                                     key={index}
                                     onClick={() => {
-                                        setInputLoading(false);
                                         handleSuggestionSelect(suggestion);
-                                        setAddress({ ...suggestion.value } as Address)
+
                                     }}>
                                     {suggestion.label}
                                 </MenuItem>
@@ -192,8 +199,6 @@ export const AddressInputOpen = (props: {
                     </Menu>}
             >
             </Input>
-
-
         </div >
     );
 };

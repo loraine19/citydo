@@ -22,7 +22,6 @@ export default function EventDetailPage() {
     const eventIdViewModelFactory = DI.resolve('eventIdViewModel');
     const { event, isLoading } = eventIdViewModelFactory(idS);
     const [initialValues, setInitialValues] = useState<EventView>({} as EventView)
-    const [Address, setAddress] = useState<AddressDTO>(initialValues.Address || {} as AddressDTO)
     const updateEvent = async (id: number, data: EventUpdateDTO, address: AddressDTO) => await DI.resolve('updateEventUseCase').execute(id, data, address)
 
     //// HANDLE API ERROR
@@ -30,15 +29,18 @@ export default function EventDetailPage() {
     const navigate = useNavigate()
     useEffect(() => {
         if (event && !event?.mine && !isLoading) navigate("/msg?msg=Vous n'avez pas le droit de modifier cet événement")
-        setInitialValues(event as EventView)
-        setAddress(event?.Address || {} as AddressDTO)
+        if (!isLoading) {
+            setInitialValues(event as EventView)
+            formik.setValues(event as EventView)
+        }
     }, [isLoading]);
 
     useEffect(() => {
         if (event && event?.Address) {
-            setAddress(event?.Address || {} as AddressDTO)
+            formik.values.Address = event?.Address
+            formik.values.addressString = (event?.Address?.address as string || '')
         }
-    }, [event])
+    }, [event.Address])
 
     //// FORM SCHEMA
     const formSchema = object({
@@ -51,17 +53,17 @@ export default function EventDetailPage() {
         Address: object({
             city: string().required("Ville est obligatoire"),
             zipcode: string().required("Code postal est obligatoire"),
-        })
+        }),
+        addressString: string(),
     })
 
+    type extendEventView = EventView & { addressString?: string, categoryS?: string, Address?: AddressDTO }
     //// FORMIK 
     const formik = useFormik({
         enableReinitialize: true,
-        initialValues: initialValues as any,
+        initialValues: initialValues as extendEventView,
         validationSchema: formSchema,
         onSubmit: async values => {
-            formik.values = values
-            formik.values.Address = Address as AddressDTO
             setOpen(true)
             setAlertValues({
                 disableConfirm: false,
@@ -84,7 +86,7 @@ export default function EventDetailPage() {
                                 <div className='font-semibold'>Date de fin:</div>
                                 <div>{new Date(values.end).toLocaleString()}</div>
                                 <div className='font-semibold'>Adresse:</div>
-                                <div>{Address?.address ? Address.address + ', ' : ''}{Address?.city ? Address.city + ', ' : ''}{Address?.zipcode ? Address.zipcode : ''}</div>
+                                <div>{values?.addressString ?? ''}</div>
                             </>
                         }
                     />
@@ -101,7 +103,7 @@ export default function EventDetailPage() {
         const { ...rest } = formik.values;
         const updateData = new EventDTO({ ...rest })
         try {
-            const updated = await updateEvent(event.id, updateData, Address)
+            const updated = await updateEvent(event.id, updateData, formik.values.Address as AddressDTO)
             if (updated) {
                 navigate("/evenement/" + updated.id);
                 location.reload()
@@ -120,9 +122,7 @@ export default function EventDetailPage() {
             {isLoading || formik.values === null ?
                 <Skeleton /> :
                 <EventForm
-                    formik={formik}
-                    Address={Address || formik.values.Address}
-                    setAddress={setAddress} />}
+                    formik={formik} />}
         </>
     )
 }

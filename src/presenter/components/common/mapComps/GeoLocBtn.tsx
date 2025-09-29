@@ -11,7 +11,7 @@ type GeoLocProps = {
     iconProps?: IconProps
 }
 
-const GeoLocBtn = ({ setAddress, setPosition, auto, iconProps }: GeoLocProps) => {
+const GeoLocBtn = ({ setAddress, setPosition, auto, iconProps, address }: GeoLocProps) => {
     const [error, setError] = useState<string | null>(null);
     const [searching, setSearching] = useState(false);
     const [displayAddress, setDisplayAddress] = useState<string | null>('ce géolocaliser');
@@ -45,7 +45,7 @@ const GeoLocBtn = ({ setAddress, setPosition, auto, iconProps }: GeoLocProps) =>
                     zipcode: data?.address?.postcode,
                     city: data?.address?.city || data?.address?.town || data?.address?.village,
                 }
-                setDisplayAddress(formatedAddress.address + ` ${formatedAddress.zipcode || ''} ${formatedAddress.city || ''}`.trim() || osmAddress);
+                setDisplayAddress(formatedAddress.address + `, ${formatedAddress.zipcode || ''} ${formatedAddress.city || ''}` || address?.address || osmAddress);
                 setAddress(new Address(formatedAddress));
                 setSearching(false);
             })
@@ -53,15 +53,13 @@ const GeoLocBtn = ({ setAddress, setPosition, auto, iconProps }: GeoLocProps) =>
                 setDisplayAddress('une erreur est survenue, veuillez reafficher la page');
                 setSearching(false);
             });
-        const newAddress = new Address({ lat: latitude, lng: longitude });
-        setDisplayAddress(`${newAddress.address},  ${newAddress.zipcode || ''} ${newAddress.city || ''}` || 'votre position');
     };
 
 
     const handleError = (error: GeolocationPositionError) => {
         switch (error.code) {
             case error.PERMISSION_DENIED:
-                setError("L'utilisateur a refusé la demande de géolocalisation.");
+                setError("Géolocalisation désactivée, nous utilisons l'adresse saisie");
                 break;
             case error.POSITION_UNAVAILABLE:
                 setError("Les informations de localisation ne sont pas disponibles.");
@@ -98,9 +96,9 @@ const GeoLocBtn = ({ setAddress, setPosition, auto, iconProps }: GeoLocProps) =>
             </div>
 
             <InputError
-                error={error}
-                style='md3-card-subhead min-h-max h-full !m-0 !px-0 line-clamp-1'
-                tips={displayAddress ?? 'vous localisez'} />
+
+                style='md3-card-subhead opacity-70 !py-1 !px-1 h-full  !flex flex-col justify-center !items-center w-max whitespace-break'
+                tips={error ?? displayAddress ?? 'vous localisez'} />
         </div>
     );
 };

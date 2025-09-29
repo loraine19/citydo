@@ -219,7 +219,8 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, lat = 0
                         iconAnchor: [40, 75],
                     })}>
                     <Popup>
-                        <MenuItem>  {typeof message === 'string' ? message : <>{message}</> || `${address?.address} ${address?.city}`}
+                        <MenuItem>
+                            {typeof message === 'string' ? message : <>{message}</> || `${address?.address} ${address?.city}`}
                         </MenuItem>
                     </Popup>
                 </Marker>

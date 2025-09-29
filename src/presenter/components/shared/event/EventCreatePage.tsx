@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { date, number, object, string, ref } from 'yup';
-import { useState } from 'react';
 import { EventForm } from './eventComps/EventForm';
 import DI from '../../../../di/ioc';
 import { AddressDTO } from '../../../../infrastructure/DTOs/AddressDTO';
@@ -9,11 +8,11 @@ import { EventDTO } from '../../../../infrastructure/DTOs/EventDTO';
 import { useAlertStore } from '../../../../application/stores/alert.store';
 import { TextLength } from '../../../../domain/entities/utilsEntity';
 import { CardConfirmForm } from '../../common/CardConfirmForm';
+import { EventView } from '../../../views/viewsEntities/eventViewEntities';
 
 
 export default function EventCreatePage() {
     const navigate = useNavigate();
-    const [Address, setAddress] = useState<AddressDTO>({} as AddressDTO)
     const postEvent = async (data: EventDTO) => await DI.resolve('postEventUseCase').execute(data)
 
     const formSchema = object({
@@ -23,10 +22,12 @@ export default function EventCreatePage() {
         participantsMin: number().required("obligatoire").min(1, "minmum 1 personne"),
         description: string().required("Description est obligatoire").min(2, "minmum 2 lettres").max(TextLength.MAX_LONGTEXT, "le texte est trop long"),
         category: string().required("Obligatoire"),
+        categoryS: string(),
         Address: object({
             city: string().required("Ville est obligatoire"),
             zipcode: string().required("Code postal est obligatoire"),
         }),
+        addressString: string(),
         groupId: string().required("Groupe est obligatoire").notOneOf(["0"], "Groupe est obligatoire"),
         groupLength: number()
     })
@@ -50,9 +51,9 @@ export default function EventCreatePage() {
         }
 
     }
-
+    type extendEventView = EventView & { addressString?: string, categoryS?: string, Address?: AddressDTO }
     const formik = useFormik({
-        initialValues: {} as any,
+        initialValues: {} as extendEventView,
         validationSchema: formSchema,
         onSubmit: async values => {
             setOpen(true)
@@ -81,7 +82,7 @@ export default function EventCreatePage() {
                                 <div className='font-semibold'>Date de fin:</div>
                                 <div>{new Date(values.end).toLocaleString()}</div>
                                 <div className='font-semibold'>Adresse:</div>
-                                <div>{Address?.address ? Address.address + ', ' : ''}{Address?.city ? Address.city + ', ' : ''}{Address?.zipcode ? Address.zipcode : ''}</div>
+                                <div>{formik.values.addressString}</div>
                             </>
                         }
                     />
@@ -95,8 +96,6 @@ export default function EventCreatePage() {
 
     return (
         <EventForm
-            formik={formik}
-            Address={Address}
-            setAddress={setAddress} />
+            formik={formik} />
     )
 }

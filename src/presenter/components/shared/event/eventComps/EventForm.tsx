@@ -22,33 +22,31 @@ import { InputError } from "../../../common/adaptatersComps/input";
 
 interface EventFormProps {
     formik: any;
-    Address: AddressDTO;
-    setAddress: any;
+    Address?: AddressDTO;
+    setAddress?: (address: AddressDTO) => void;
 }
 
-export function EventForm({ formik, Address, setAddress }: EventFormProps) {
+export function EventForm({ formik }: EventFormProps) {
     const user = useUserStore((state) => state.user);
     const [imgBlob, setImgBlob] = useState<string>(formik.values.image ?? formik.values.blob ?? EventImage[formik.values.category as keyof typeof EventImage] ?? EventImage.default ?? null);
     const [groupId, setGroupId] = useState<string | number | undefined>(formik.values.Group?.id);
     const [expand, setExpand] = useState<boolean>(false);
+    const [formikAddress, setFormikAddress] = useState<AddressDTO>(formik.values.Address ?? {} as AddressDTO);
 
     // Stepper logic
     const [show, setShow] = useState(true);
     const [showCard, setShowCard] = useState(false);
-
     const pourcentParticipants = Math.floor((formik.values.Participants?.length) / (formik.values.participantsMin || 1) * 100) || 0;
     const today = new Date(new Date().getTime() + (1 * dayMS)).toISOString().slice(0, 16).replace('Z', '');
 
     useEffect(() => {
-        setAddress(Address);
-        if (Address) {
-            formik.values.Address = Address;
-        }
-    }, [Address]);
+        setFormikAddress(formik.values.Address ?? {} as AddressDTO);
+    }, [formik.values.Address]);
 
     useEffect(() => {
         if (!formik.values.image || formik.values.image === '') {
-            setImgBlob(EventImage[formik.values.category as keyof typeof EventImage] ?? EventImage.default ?? null);
+            setImgBlob(EventImage[formik.values.category as keyof typeof EventImage] ??
+                EventImage.default ?? null);
         }
     }, [formik.values.category, formik.values.categoryS, show]);
 
@@ -67,12 +65,12 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                 + (label ? " / " + label : "...")
             }
         />
-    ), [show, formik.values.id, label, formik.errors.groupId, formik.errors.category, showCard]);
+    ), [show, formik.values.id, label, formik.errors, showCard]);
 
     useEffect(() => {
         setDetailSection(SearchSection);
         return () => setDetailSection(undefined);
-    }, [SearchSection, setDetailSection, formik.values.id, label, formik.errors.groupId, formik.errors.category, show, showCard]);
+    }, [SearchSection, setDetailSection, formik.values, label, formik.errors, show, showCard]);
 
     const [slidderValue, setSlidderValue] = useState(formik.values.participantsMin ?? 1);
     return (
@@ -84,7 +82,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                         <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
                             <Select
                                 variant="Input"
-                                value={formik.values.category}
+                                value={formik?.values?.category}
                                 options={eventCategories}
                                 formik={formik}
                                 name="category"
@@ -112,7 +110,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                         </div>
                     </div>
                     <CardLarge
-                        className={`mb-4 ${(showCard && !show) ?
+                        className={`mb-5 ${(showCard && !show) ?
                             ` md3-animation-slide-up ` : ' md3-animation-slide-out-down '}`}
                         form
                         expanded={expand}
@@ -141,7 +139,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                         </CardLarge.Chips>
                         <CardLarge.Divider />
                         <CardLarge.MidSection className="md:!px-8  flex flex-col">
-                            <span className="md3-card-subhead">Informations</span>
+                            <span className="md3-card-subhead pb-1">Informations</span>
                             <div className="flex flex-1 flex-col gap-4">
                                 <Input
                                     label={"Titre"}
@@ -172,24 +170,34 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                             </div>
                         </CardLarge.MidSection>
                         <CardLarge.Divider />
+
+                        {/* ADDRESS SECTION  */}
                         <CardLarge.MidSection className="md:px-8 flex flex-col">
-                            <span className="md3-card-subhead">Lieu</span>
-                            {(!formik.values?.Address || !Address?.lat) &&
+
+                            <span className="md3-card-subhead pb-1">
+                                Lieu
+                            </span>
+                            {(!formikAddress?.lat || (formikAddress?.lat === 0 && formikAddress?.lng === 0)) &&
                                 <div className="px-3 h-4 my-2 italic">
+
+
                                     <GeoLocBtn
+
                                         iconProps={{ size: 'md', bg: false, icon: 'location_on', }}
-                                        setAddress={setAddress} />
+                                        setAddress={setFormikAddress} />
                                 </div>
                             }
                             <div className="flex flex-1 flex-col  gap-4">
-                                {(Address?.lat && Address?.lng) ?
+                                {(formikAddress?.lat && (formikAddress?.lat !== 0 && formikAddress?.lng !== 0)) ?
                                     <div className="flex-1 mb-2 !max-h-[7rem]">
-                                        <AddressMapOpen address={Address} />
+                                        <AddressMapOpen
+                                            address={formikAddress}
+                                        />
                                     </div> : null}
                                 <AddressInputOpen
                                     formik={formik}
-                                    address={Address}
-                                    setAddress={setAddress}
+                                    address={formikAddress}
+                                    setAddress={setFormikAddress}
                                     error={formik.errors.Address}
                                 />
 
@@ -198,7 +206,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                         <CardLarge.Divider />
                         {/* DATE SECTION  */}
                         <CardLarge.MidSection className="md:px-8 flex flex-col">
-                            <span className="md3-card-subhead">Date</span>
+                            <span className="md3-card-subhead pb-1">Date</span>
                             <div className="flex flex-1 flex-col md:flex-row gap-4">
                                 <Input
                                     error={!!formik.errors.start}
@@ -237,7 +245,7 @@ export function EventForm({ formik, Address, setAddress }: EventFormProps) {
                         <CardLarge.Divider />
                         {/* PARTICIPATION SECTION */}
                         <CardLarge.MidSection className="md:px-8 flex flex-col pb-6">
-                            <span className="md3-card-subhead">Participants</span>
+                            <span className="md3-card-subhead pb-1">Participants</span>
                             <div className="flex flex-1 flex-col  gap-4 ">
                                 {/* <Input
                                     leadingIcon={<Icon icon='person' fill={true} size='lg' />}

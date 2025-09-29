@@ -16,6 +16,7 @@ import { useNavStore } from "../../../../../application/stores/nav.store";
 import FormHeadSection from "../../base/baseComps/FormHeadSection";
 import AddressMapOpen from "../../../common/mapComps/AddressMapOpen";
 import GeoLocBtn from "../../../common/mapComps/GeoLocBtn";
+import { AddressDTO } from "../../../../../infrastructure/DTOs/AddressDTO";
 
 type ProfileFormProps = {
     formik: any,
@@ -25,7 +26,7 @@ type ProfileFormProps = {
     setMailSub?: any,
 }
 
-export function ProfileForm({ formik, setAssistance, setMailSub, setAddress, address }: ProfileFormProps) {
+export function ProfileForm({ formik, setAssistance, setMailSub }: ProfileFormProps) {
     const { user } = useUserStore((state) => state);
     const [imgBlob, setImgBlob] = useState<string | Blob>(formik?.values?.image ?? '');
     const [newSkill, setNewSkill] = useState<string | undefined>();
@@ -55,6 +56,16 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress, add
             setNewSkill('');
         }
     };
+
+    /// Address state
+    const [address, setAddress] = useState(formik.values?.Address || null);
+    useEffect(() => {
+        if (formik.values.Address && formik.values.Address !== address) setAddress(formik.values.Address ?? {} as AddressDTO);
+    }, []);
+
+    useEffect(() => {
+        if (address && address !== formik.values.Address) formik.values.Address = address;
+    }, [address]);
 
     // AppBar Section
     const { setDetailSection } = useNavStore((state) => state);
@@ -176,21 +187,23 @@ export function ProfileForm({ formik, setAssistance, setMailSub, setAddress, add
                                     type='tel'
                                 />
                                 <AddressInputOpen
+                                    formik={formik}
                                     address={address}
                                     setAddress={setAddress}
                                     error={formik.errors?.Address}
                                 />
-                                {(!formik.values?.Address || !address) &&
+                                {(!formik.values?.Address || !address?.lat) &&
                                     <div className="px-3 h-4 -mt-2 italic">
                                         <GeoLocBtn
                                             iconProps={{ size: 'md', bg: false, icon: 'location_on', }}
                                             setAddress={setAddress} />
                                     </div>
                                 }
-                                {address && <AddressMapOpen
-                                    address={address}
-                                    message="Votre adresse actuelle"
-                                />}
+                                {(address?.lat && address?.lng) ?
+                                    <AddressMapOpen
+                                        address={address}
+                                        message="Votre adresse actuelle"
+                                    /> : null}
 
                             </CardLarge.MidSection>
                             <CardLarge.Divider />

@@ -12,12 +12,17 @@ import { CardConfirmForm } from '../../common/CardConfirmForm';
 export default function MyInfosPage() {
     const { setUser, user } = useUserStore()
 
-    const { Profile, user: userUpdated } = DI.resolve('meViewModel')();
+    const { Profile, user: userUpdated, error, isLoading } = DI.resolve('meViewModel')();
     const [assistance, setAssistance] = useState<string | undefined>(Profile?.assistance)
     const [mailSub, setMailSub] = useState<string | undefined>(Profile?.mailSub)
-    const [address, setAddress] = useState<AddressDTO>(Profile?.Address)
     const updateProfile = async (data: ProfileDTO, Address: AddressDTO) => await DI.resolve('updateProfileUseCase').execute(data, Address)
 
+    const [initialValues, setInitialValues] = useState<ProfileDTO>({} as ProfileDTO)
+    useEffect(() => {
+        if (Profile) {
+            setInitialValues(Profile)
+        }
+    }, [Profile.userId])
 
     const formSchema = object({
         firstName: string().required("Le prémon est obligatoire").min(2, "minmum 2 lettres"),
@@ -36,12 +41,11 @@ export default function MyInfosPage() {
     }, [userUpdated])
 
     const updateFunction = async () => {
-        const { blob, ...rest } = formik.values;
+        const { ...rest } = formik.values;
         const updateData = new ProfileDTO({ assistance, ...rest })
 
         try {
-            const updated = await updateProfile(updateData, address)
-
+            const updated = await updateProfile(updateData, formik.values.Address as AddressDTO)
             setOpen(false);
             setUser({ ...user, Profile: updated });
             window.location.replace("/")
@@ -53,7 +57,7 @@ export default function MyInfosPage() {
 
     const formik = useFormik({
         enableReinitialize: true,
-        initialValues: Profile as any,
+        initialValues: initialValues as ProfileDTO & { Address?: AddressDTO },
         validationSchema: formSchema,
         onSubmit: async values => {
             values.assistance = assistance;
@@ -77,20 +81,15 @@ export default function MyInfosPage() {
     })
 
 
-
-    useEffect(() => { if (address) formik.values.Address = address }, [address])
-
     return (
         <>
 
-
-            <ProfileForm
-                formik={formik}
-                address={address}
-                setAssistance={setAssistance}
-                setAddress={setAddress}
-                setMailSub={setMailSub}
-            />
+            {!error && !isLoading && formik.values?.Address &&
+                <ProfileForm
+                    formik={formik}
+                    setAssistance={setAssistance}
+                    setMailSub={setMailSub}
+                />}
         </ >
     )
 }

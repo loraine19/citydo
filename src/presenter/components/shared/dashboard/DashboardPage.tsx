@@ -91,26 +91,39 @@ export default function DashboardPage() {
     const [address, setAddress] = useState(user?.Profile?.Address);
     const [auto] = useState(true);
 
+    const [hideUser, setHideUser] = useState(false);
+
 
     return (
         <main
 
-            className={` wRespXL overflow-auto xs:overflow-hidden
-            ${navBottom && ' hBottomNav '} `}
+            className={` wRespXL overflow-auto xs:overflow-hidden 
+            ${navBottom && ' hBottomNav !-mt-4 sm:!mt-0 '} `}
             data-cy="dashboard-body" >
             <div
+                onScroll={() => {
+                    if (divRef.current) {
+                        const { scrollTop, scrollHeight, clientHeight } = divRef.current;
+                        if (scrollTop + clientHeight + 6 >= scrollHeight) {
+                            setHideUser(true);
+                        } else {
+                            setHideUser(false);
+                        }
+                    }
+                    handleScroll();
+                }}
                 ref={divRef}
-                className={` 
+                className={` ${hideUser ? 'pt-6 pb-3' : 'pt-[2.5rem]'}
                     px-[1rem] flex-1 max-max overflow-auto flex flex-col
                     md:grid md:grid-cols-2 md:grid-rows-[max-content,max-content,1fr,1fr]
-                    w-full place-content-start pt-6 rounded-b-[1rem] lg:pb-3 -mt-2 pb-3 
+                    w-full place-content-start  rounded-b-[1rem] 
                 `}>
 
                 {/* USER CARD  */}
                 <div className={`${userClasse}`}>
-                    <CardMD className=" !overflow-visible pt-6 flex-1 anim ">
-                        <CardMD.Media className="-top-[1.5rem]  w-full flex-1 items-center absolute ">
-                            <div className="relative ">
+                    <CardMD className=" !overflow-visible  flex-1 anim ">
+                        <CardMD.Media className={`${hideUser ? 'hidden' : '-top-[2.5rem]  w-full flex-1 items-center absolute'} `}>
+                            <div className={"relative "}>
                                 <AvatarUser
                                     avatarSize="6xl"
                                     avatarStyle="!shadow -mt-0 border border-slate-900/10 "
