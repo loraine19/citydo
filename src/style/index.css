@@ -97,7 +97,7 @@ body {
 /* MAIN SECTIONS */
 
 .App {
-    min-height: 100dvh;
+    min-height: calc(100dvh-5rem);
     width: 100vw;
     height: 100vh;
     max-height: 100vh;
