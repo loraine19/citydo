@@ -97,10 +97,13 @@ body {
 /* MAIN SECTIONS */
 
 .App {
+    min-height: 100dvh;
     width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
     overflow: hidden;
     @apply min-w-[280px];
-    @apply flex flex-col flex-1 h-full max-h-[100dvh] max-w-[100dvw] min-h-0;
+    @apply flex flex-col flex-1 h-full;
     box-sizing: border-box;
 }
 
