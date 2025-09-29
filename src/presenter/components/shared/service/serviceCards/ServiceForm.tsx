@@ -66,7 +66,7 @@ export function ServiceForm(props: { formik: any }) {
 
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
-            <main className={`hBottomFormm`}>
+            <main className={`hBottomForm`}>
                 <section className={` ${show ? 'overflow-hidden' : 'overflow-auto '}`}>
                     <div className={`pt-2 max-h-max w-full flex flex-col gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
                         <h6 className="md3-card-subhead pt-4">Informations principales</h6>
@@ -180,6 +180,7 @@ export function ServiceForm(props: { formik: any }) {
                             <div className="flex flex-1 !py-2 flex-col gap-4">
                                 <div className="flex flex-col xs:flex-row gap-4 ">
                                     <Select
+                                        bgColor="var(--md3-primary-container)"
                                         variant="Input"
                                         name={'skill'}
                                         formik={formik}
@@ -188,6 +189,7 @@ export function ServiceForm(props: { formik: any }) {
                                         placeholder="Compétence"
                                     />
                                     <Select
+                                        bgColor="var(--md3-primary-container)"
                                         placeholder="Pénibilité"
                                         variant="Input"
                                         name={'hard'}
