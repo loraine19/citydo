@@ -111,8 +111,11 @@ body {
 @media (display-mode: minimal-ui) {
     .App {
         height: 100svh;
+        min-height: 100svh;
+        max-height: 100svh;
         padding-bottom: env(safe-area-inset-bottom);
         box-sizing: border-box;
+        background-color: blue !important;
     }
 }
 
