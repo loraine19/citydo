@@ -95,7 +95,7 @@ export default function DashboardPage() {
     return (
         <main
 
-            className={` lg:!-mt-0 !overflow-hidden  wRespXL
+            className={` wRespXL
             ${navBottom && ' hBottomNav '} `}
             data-cy="dashboard-body" >
             <div
