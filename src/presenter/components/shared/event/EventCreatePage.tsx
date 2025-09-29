@@ -56,6 +56,7 @@ export default function EventCreatePage() {
         initialValues: {} as extendEventView,
         validationSchema: formSchema,
         onSubmit: async values => {
+            formik.values = values
             setOpen(true)
             setAlertValues({
                 button2: {
