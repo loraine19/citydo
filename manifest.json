@@ -13,7 +13,7 @@
     "display": "minimal-ui",
     "orientation": "portrait",
     "background_color": "#e7eff2",
-    "theme_color": "#006fbb",
+    "theme_color": "#f6fafd",
     "icons": [
         {
             "purpose": "maskable",
