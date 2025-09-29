@@ -89,8 +89,8 @@ body {
     background-color: var(--md3-surface);
     min-height: 100dvh;
     width: 100vw;
-    height: 100vh;
-    max-height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
     margin: 0;
 }
 
@@ -100,7 +100,7 @@ body {
     min-height: calc(100dvh-15rem);
     width: 100vw;
     height: 100dvh;
-    max-height: 100vh;
+    max-height: 100dvh;
     overflow: hidden;
     @apply min-w-[280px];
     @apply flex flex-col flex-1 h-full;
@@ -135,7 +135,7 @@ main,
 
 section,
 .Section {
-    @apply wRespXLMargin flex-col overflow-y-auto flex-1 max-h-full w-full flex  pt-2  px-[0.5rem] md:px-[1rem] bg-yellow-300;
+    @apply wRespXLMargin flex-col overflow-y-auto flex-1 max-h-full w-full flex  pt-2  px-[0.5rem] md:px-[1rem];
     min-height: 0;
 }
 
