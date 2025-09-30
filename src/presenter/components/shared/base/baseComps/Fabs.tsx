@@ -49,8 +49,9 @@ export const FabMenu: React.FC<FabMenuProps> = ({ mainProps, children, placement
 
             <div className={`md3-fab-${size} ${mainProps?.className || ''} max-w-max`}>
                 <div className={`md3-fab-container md3-fab-${size} ${className || ''} `}>
+
                     <div style={{ transformOrigin: 'right' }}
-                        className={` md3-fab-menu-container md3-fab-menu-container-${placement} 
+                        className={`z-[4] md3-fab-menu-container md3-fab-menu-container-${placement} 
                             ${visible ? '' : 'invisible'}
                             ${isOpen ? 'open md3-fab-item-enter' : 'md3-fab-item-leave'}
                     
@@ -72,7 +73,7 @@ export const FabMenu: React.FC<FabMenuProps> = ({ mainProps, children, placement
                     blurKey={'fab-menu-blur' + (mainProps?.text || mainProps?.icon?.icon || 'default')}
                     open={isOpen}
                     setOpen={setIsOpen}
-                    className="z-0" />}
+                    className="z-[1]" />}
 
 
         </>

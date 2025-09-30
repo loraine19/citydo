@@ -30,14 +30,14 @@ const BackDropBlur: React.FC<BackDropBlurProps> = ({
 
     if (existing) return null;
 
-    const root = document.getElementById("root");
+    const root = document.getElementById("app");
     if (!root || !root.parentNode) return null;
 
     return ReactDOM.createPortal(
         <div
             key={blurKey}
             id="blurDiv"
-            className={`absolute bg-black/50 top-0 left-0 w-screen h-screen overflow-hidden backdrop-blur animate-fade ${className}`}
+            className={`absolute top-0 left-0 w-screen h-screen overflow-hidden  backdropBlur animate-fade ${className}`}
             onClick={() => setOpen && setOpen(false)}
             style={{}}
         >

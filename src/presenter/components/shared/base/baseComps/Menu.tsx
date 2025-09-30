@@ -371,7 +371,7 @@ export const Menu: React.FC<MenuProps> = ({
                     blurKey={'menu-blur' + MenuKey}
                     open={openPortal}
                     setOpen={handleClose}
-                    className="z-[1]"
+                    className="z-[2]"
                 />,
                 portalRoot
             )}

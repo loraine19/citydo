@@ -78,7 +78,7 @@ export default function SurveyDetailPage() {
                         handleHideCallback()
                     }}>
 
-                    <div className={`!h-full  flex py-3 `}>
+                    <div className={`!h-full flex pt-2 pb-6 `}>
                         {isLoading || !survey || error ?
                             <Skeleton
                                 className='!rounded-3xl flex pt-8 pb-1 h-full' /> :

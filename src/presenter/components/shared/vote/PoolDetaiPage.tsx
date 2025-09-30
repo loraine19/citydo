@@ -78,7 +78,7 @@ export default function PoolDetailPage() {
                     handleHideCallback()
                 }}>
 
-                <div className={`!h-full  flex py-3 `}>
+                <div className={`!h-full flex pt-2 pb-6 `}>
                     {isLoading || !pool || error ?
                         <Skeleton /> :
                         <PoolDetailCard

@@ -69,7 +69,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
             <main className={`flex-1 hBottomForm  overflow-hidden`}>
-                <section className={` flex ${show ? 'overflow-hidden' : 'overflow-auto '}`}>
+                <section className={`pb-6 ${show ? 'overflow-hidden' : 'overflow-auto '}`}>
                     <div className={`pt-2 max-h-max w-full flex flex-col  gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
                         <h6 className="md3-card-subhead pt-4">
                             Informations principales
@@ -126,7 +126,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                         </div>
                     </div>
                     <CardLarge
-                        className={`mb-5 ${(showCard && !show) ?
+                        className={`${(showCard && !show) ?
                             `md3-animation-slide-up ` : 'md3-animation-slide-out-down'}`}
                         form
                         expanded={expand}

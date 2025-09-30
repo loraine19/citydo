@@ -108,50 +108,25 @@ body {
     max-height: calc(100lvh);
     box-sizing: border-box;
 }
-@media (display-mode: minimal-ui) {
+@media (display-mode: minimal-ui), (display-mode: standalone) {
     .App,
     body,
     html {
-        height: calc(100svh - 0.1rem) !important;
+        height: calc(100svh - 0rem) !important;
         min-height: calc(100svh - 5rem) !important;
         max-height: calc(100svh) !important;
         padding-bottom: env(safe-area-inset-bottom);
         box-sizing: border-box;
     }
     .hBottomNav {
-        max-height: calc(100% - 6.5rem) !important;
+        max-height: calc(100% - 7.7rem) !important;
     }
     .hBottomFab {
-        border: 1px solid red !important;
-        background-color: black !important;
-        max-height: calc(100dvh - 8rem) !important;
+        max-height: calc(100%) !important;
     }
 
     .hBottomForm {
-        max-height: calc(100% - 1.2rem) !important;
-    }
-}
-@media (display-mode: standalone) {
-    .App,
-    body,
-    html {
-        height: calc(100svh - 0.1rem) !important;
-        min-height: calc(100svh - 5rem) !important;
-        max-height: calc(100svh) !important;
-        padding-bottom: env(safe-area-inset-bottom);
-        box-sizing: border-box;
-    }
-    .hBottomNav {
-        max-height: calc(100% - 6.5rem) !important;
-    }
-    .hBottomFab {
-        border: 1px solid red !important;
-        background-color: black !important;
-        max-height: calc(100dvh - 8rem) !important;
-    }
-
-    .hBottomForm {
-        max-height: calc(100% - 1.2rem) !important;
+        max-height: calc(100% - 1rem) !important;
     }
 }
 
@@ -286,7 +261,7 @@ i {
 
 /* BACKDROP BLUR */
 .backdropBlur {
-    @apply bg-slate-600/40;
+    @apply bg-slate-900/30;
     -webkit-backdrop-filter: blur(1px);
     backdrop-filter: blur(1px);
 }

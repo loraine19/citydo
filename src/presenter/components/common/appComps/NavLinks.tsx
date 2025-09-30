@@ -91,7 +91,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
             <div className={
                 `${hideNavBottom ? 'md3-animation-slide-out-down' : 'md3-animation-slide-up'}
                 ${isBottom ? ` wRespXLMargin  ` : ' -mt-1.5   '}                 
-                 flex items-center w-full `
+                 flex items-center w-full !z-[3] `
             }>
                 <NavigationBar
                     value={navValue}
