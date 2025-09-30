@@ -190,6 +190,7 @@ export function EventForm({ formik }: EventFormProps) {
 
                                     <GeoLocBtn
                                         iconProps={{ size: 'md', bg: false, icon: 'location_on', }}
+                                        address={formikAddress}
                                         setAddress={setFormikAddress} />
                                 </div>
                             }

@@ -112,7 +112,7 @@ body {
     .App,
     body,
     html {
-        height: calc(100svh) !important;
+        height: calc(100svh - 0.1rem) !important;
         min-height: calc(100svh - 5rem) !important;
         max-height: calc(100svh) !important;
         padding-bottom: env(safe-area-inset-bottom);
@@ -122,7 +122,8 @@ body {
         max-height: calc(100% - 6.5rem) !important;
     }
     .hBottomFab {
-        max-height: calc(100% - 8rem) !important;
+        border: 1px solid red !important;
+        max-height: calc(100dvh - 8rem) !important;
     }
 
     .hBottomForm {

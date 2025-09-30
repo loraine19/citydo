@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { Address } from '../../../../domain/entities/Address';
 import { Icon, IconName, IconProps } from '../IconComp';
 import { InputError } from '../adaptatersComps/input';
+import { AddressDTO } from '../../../../infrastructure/DTOs/AddressDTO';
 
 type GeoLocProps = {
-    address?: Address
+    address?: Address | AddressDTO
     setAddress: (address: Address) => void
     setPosition?: (position: { lat: number; lng: number }) => void,
     auto?: boolean,
@@ -15,6 +16,7 @@ const GeoLocBtn = ({ setAddress, setPosition, auto, iconProps, address }: GeoLoc
     const [error, setError] = useState<string | null>(null);
     const [searching, setSearching] = useState(false);
     const [displayAddress, setDisplayAddress] = useState<string | null>('ce géolocaliser');
+    const [geolocated, setGeolocated] = useState(false);
 
     const handleGetLocation = () => {
         setSearching(true);
@@ -48,6 +50,7 @@ const GeoLocBtn = ({ setAddress, setPosition, auto, iconProps, address }: GeoLoc
                 setDisplayAddress(formatedAddress.address + `, ${formatedAddress.zipcode || ''} ${formatedAddress.city || ''}` || address?.address || osmAddress);
                 setAddress(new Address(formatedAddress));
                 setSearching(false);
+                setGeolocated(true);
             })
             .catch(() => {
                 setDisplayAddress('une erreur est survenue, veuillez reafficher la page');
@@ -60,15 +63,23 @@ const GeoLocBtn = ({ setAddress, setPosition, auto, iconProps, address }: GeoLoc
         switch (error.code) {
             case error.PERMISSION_DENIED:
                 setError("Géolocalisation désactivée, nous utilisons l'adresse saisie");
+                setSearching(false);
+                setGeolocated(false);
                 break;
             case error.POSITION_UNAVAILABLE:
                 setError("Les informations de localisation ne sont pas disponibles.");
+                setSearching(false);
+                setGeolocated(false);
                 break;
             case error.TIMEOUT:
                 setError("La demande de localisation de l'utilisateur a expiré.");
+                setSearching(false);
+                setGeolocated(false);
                 break;
             default:
                 setError("Une erreur inconnue s'est produite.");
+                setSearching(false);
+                setGeolocated(false);
                 break;
         }
     };
@@ -89,7 +100,7 @@ const GeoLocBtn = ({ setAddress, setPosition, auto, iconProps, address }: GeoLoc
                     bg={iconProps?.bg ?? true}
                     fill={iconProps?.fill ?? true}
                     onClick={handleGetLocation}
-                    icon={searching ? 'progress_activity' : iconProps?.icon as IconName ?? "my_location"}
+                    icon={geolocated ? searching ? 'progress_activity' : iconProps?.icon as IconName ?? "my_location" : 'home'}
                     size="md"
                     title="Obtenir votre position"
                 />
