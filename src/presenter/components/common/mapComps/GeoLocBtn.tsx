@@ -22,8 +22,10 @@ const GeoLocBtn = ({ setAddress, setPosition, auto, iconProps, address }: GeoLoc
         setSearching(true);
         if (!navigator.geolocation) {
             setError('La géolocalisation n\'est pas supportée par votre navigateur.');
+            setSearching(false);
             return;
         }
+
         navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
     };
 
@@ -62,7 +64,7 @@ const GeoLocBtn = ({ setAddress, setPosition, auto, iconProps, address }: GeoLoc
     const handleError = (error: GeolocationPositionError) => {
         switch (error.code) {
             case error.PERMISSION_DENIED:
-                setError("Géolocalisation désactivée, nous utilisons l'adresse saisie");
+                setError("Géolocalisation désactivée, nous utilisons l'adresse saisie , modifier vos paramettre pour reactivé ");
                 setSearching(false);
                 setGeolocated(false);
                 break;
@@ -94,13 +96,14 @@ const GeoLocBtn = ({ setAddress, setPosition, auto, iconProps, address }: GeoLoc
         <div className='flex w-full h-full items-center gap-1 '>
             <div>
                 <Icon
+                    disabled={searching || !geolocated}
                     {...iconProps}
                     style={`cursor-pointer ${iconProps?.style ?? ''}`}
                     color={iconProps?.color || 'slate'}
                     bg={iconProps?.bg ?? true}
                     fill={iconProps?.fill ?? true}
                     onClick={handleGetLocation}
-                    icon={geolocated ? searching ? 'progress_activity' : iconProps?.icon as IconName ?? "my_location" : 'home'}
+                    icon={geolocated ? searching ? 'progress_activity' : iconProps?.icon as IconName ?? "my_location" : 'location_off'}
                     size="md"
                     title="Obtenir votre position"
                 />

@@ -122,7 +122,7 @@ body {
         max-height: calc(100% - 7.7rem) !important;
     }
     .hBottomFab {
-        max-height: calc(100%) !important;
+        max-height: calc(100% - 1rem) !important;
     }
 
     .hBottomForm {
@@ -206,10 +206,6 @@ i {
     @apply italic text-[0.90rem] font-normal !font-montserrat;
 }
 
-.description {
-    @apply leading-[1.3rem] pt-1;
-}
-
 /* RESPONSIVE */
 
 .wRespXL {
@@ -261,7 +257,7 @@ i {
 
 /* BACKDROP BLUR */
 .backdropBlur {
-    @apply bg-slate-900/30;
+    @apply bg-black/40;
     -webkit-backdrop-filter: blur(1px);
     backdrop-filter: blur(1px);
 }
