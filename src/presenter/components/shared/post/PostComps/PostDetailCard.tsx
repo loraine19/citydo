@@ -33,10 +33,13 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                 onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
                 src={image as any}
                 alt={title}
-                className="CardImage" >
-                <IconAnimate
-                    active={post?.ILike}
-                    icon={'favorite'} />
+                className="" >
+
+                <div className="!relative mt-12 ml-12 scale-125 text-white">
+                    <IconAnimate
+                        active={post?.ILike}
+                        icon={'favorite'} />
+                </div>
 
                 <CardLarge.Chips className="justify-end !p-2">
 
@@ -87,9 +90,9 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                     iconPosition="end"
                     icon={{
                         style: '-mt-[1px]',
-                        icon: 'favorite',
-                        fill: ILike,
-                        title: ILike ? "retirer de mes favoris" : "j'aime"
+                        icon: post?.ILike ? "favorite" : "heart_plus",
+                        fill: post?.ILike,
+                        title: post?.ILike ? "retirer de mes favoris" : "j'aime"
                     }}>
                     {Likes?.length}
 

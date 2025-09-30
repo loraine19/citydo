@@ -12,6 +12,7 @@ import { GroupLink } from "../../../common/GroupLink";
 import { ProgressBar } from "../../base/baseComps/Sliders";
 import { useRef } from "react";
 import BtnExpandImg from "../../../common/BtnExpandImg";
+import { IconAnimate } from "../../../common/IconAnimate";
 
 type EventCardProps = {
     EventLoad: EventView,
@@ -38,6 +39,12 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                     src={image as string || '/image/placeholder.jpg'}
                     alt={title}
                     className='md3-card-large-image' >
+
+                    <div className="!relative mt-12 ml-12 scale-125 text-white">
+                        <IconAnimate
+                            active={EventLoad?.Igo}
+                            icon={'person'} />
+                    </div>
                     <CardLarge.Chips className="p-2 mt-1 justify-end">
                         <DateChip
                             start={EventLoad?.createdAt}

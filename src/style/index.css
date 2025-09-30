@@ -145,9 +145,9 @@ section,
 }
 .hBottomNav {
     flex: 1;
-    max-height: calc(100dvh - 8.5rem);
+    max-height: calc(100dvh - 7.8rem) !important;
     @screen md {
-        max-height: calc(100dvh - 9rem);
+        max-height: calc(100dvh - 9rem) !important;
     }
 }
 

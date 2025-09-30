@@ -149,7 +149,7 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                                 <p className={`${new Date(day.date).toDateString() === new Date().toDateString() && '!text-orange-500 underline underline-offset-4 text-font-bold'} w-full !text-xs pt-0 min-h-4 sticky top-0 text-center bg-[var(--md3-surface)]`}>
                                     {day.date.toLocaleDateString('fr-FR', { weekday: 'narrow', month: 'numeric', day: 'numeric' })}
                                 </p>
-                                <div className='min-h-4  h-full w-full flex flex-col flex-1 items-center gap-0.5' key={index}>
+                                <div className='min-h-4 h-full w-full flex flex-col flex-1 items-center gap-0.5' key={index}>
                                     {day.events.sort((a: any, b: any) => a.id - b.id).map((event: any, indexEvent: number) => {
                                         const eventDays = event.days.map((d: any) => new Date(d).toDateString());
                                         const currentDay = new Date(new Date(day.date).getTime()).toDateString();
@@ -162,14 +162,15 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                                                 <Menu
                                                     closeIcon={<Icon icon='close' size='md' />}
                                                     MenuKey={'event-menu' + event.id + '_' + indexEvent}
-
-                                                    className={`-ml-[0.5rem] max-h-full !z-[9]  px-2 pt-2  max-w-fit bg-[var(--md3-surface-variant)]  md3-border `}
+                                                    className={`-ml-[0.5rem] max-h-full !z-[9]  px-2 pt-2 max-w-fit bg-[var(--md3-surface-variant)]  md3-border border-y`}
                                                     blurBack
                                                     placement={'center'}
                                                     trigger={<button
                                                         className=
                                                         {` ${!event.actif && 'invisible'} 
-                                                                             ${event.status !== EventStatus.VALIDATED ? `!bg-[--md3-slate-container]` : `bg-[--md3-cyan-container]`} md3-elevation-1 px-[0.5rem] mb-[0.2rem]  w-full flex-1  h-5 truncate flex items-center justify-center font-normal z-[4]
+                                                                             ${event.status !== EventStatus.VALIDATED ? `!bg-[--md3-slate-container]` : `bg-[--md3-cyan-container] outline outline-1 !outline-[var(--md3-cyan-container)]`}  px-[0.5rem] mb-[0.2rem]  w-full flex-1  h-5 truncate flex items-center justify-center 
+                                                                              font-normal z-[4]
+                                                                              outline outline-1 outline-[var(--md3-surface-variant)]
                                                         text-[0.80rem]
                                                         ${(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) ? 'rounded-l-xl !justify-start !z-50 pl-3 !font-medium capitalize' : 'italic text-opacity-70'}
                                                         ${(eventDays[eventDays.length - 1] === currentDay || new Date(day.date).getDay() === 0) && 'rounded-r-xl '}
