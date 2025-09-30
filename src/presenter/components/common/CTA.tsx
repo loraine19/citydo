@@ -45,7 +45,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                 rounded
                 size="large"
                 variant="text"
-                className={`bg-transparent !pr-2 md3-elevation-0 `}>
+                className={`bg-transparent !pr-2 md3-elevation-0 !rounded-none`}>
                 {[...actions]
                     .sort((a, b) => {
                         // First: NoPrimary === true
