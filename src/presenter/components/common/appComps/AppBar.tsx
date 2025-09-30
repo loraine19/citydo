@@ -21,7 +21,7 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage, add
 
     return (
         <header className={`
-                ${!mainPage && 'md3-primary-container  md3-elevation-2 !border-none rounded-b-3xl mx-[1px] !w-[calc(100%-2px)]'}  top-0 flex-col flex gap-2 `}>
+                ${!mainPage && 'md3-primary-container  md3-elevation-2 !border-none rounded-b-3xl '} mx-auto top-0 flex-col flex gap-2 w-full `}>
 
             {/* CONTAINER */}
             <div id='AppBar'

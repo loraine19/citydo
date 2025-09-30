@@ -71,7 +71,7 @@ function App() {
 
             <BrowserRouter>
                 <div id='app'
-                    className={`App ${dark ? 'dark' : ''} md3-surface `}>
+                    className={`App ${dark ? 'dark' : ''} `}>
 
                     <AlertNotif />
                     <Suspense fallback={<LoadingPage />}>

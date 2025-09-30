@@ -50,7 +50,7 @@
 }
 
 html {
-    @apply dark flex flex-col p-0 m-0;
+    @apply flex flex-col p-0 m-0;
     box-sizing: border-box;
     height: calc(100dvh + 2rem);
     min-height: calc(100svh);
@@ -60,7 +60,6 @@ html {
     width: 100vw;
     min-width: 100vw;
     font-size: 16px;
-    background-color: var(--md3-surface);
     @media (max-width: 1024px) {
         font-size: 16px;
     }
@@ -94,7 +93,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
-    background-color: var(--md3-surface);
 }
 
 /* MAIN SECTIONS */
@@ -104,10 +102,9 @@ body {
     width: 100vw;
     min-width: 100vw;
     height: calc(100dvh + 2rem);
-    min-height: calc(100dvh);
-    max-height: calc(100%);
+    min-height: calc(100svh);
+    max-height: calc(100lvh);
     box-sizing: border-box;
-    background-color: var(--md3-surface);
 }
 
 @media (display-mode: minimal-ui), (display-mode: standalone) {
@@ -168,7 +165,7 @@ section,
 }
 
 footer {
-    @apply mx-auto flex  bottom-0 justify-center items-center;
+    @apply mx-auto flex bottom-0 justify-center items-center;
     width: 100%;
     margin: 0 auto;
     flex-shrink: 0;
