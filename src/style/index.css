@@ -131,6 +131,29 @@ body {
         max-height: calc(100% - 1.2rem) !important;
     }
 }
+@media (display-mode: standalone) {
+    .App,
+    body,
+    html {
+        height: calc(100svh - 0.1rem) !important;
+        min-height: calc(100svh - 5rem) !important;
+        max-height: calc(100svh) !important;
+        padding-bottom: env(safe-area-inset-bottom);
+        box-sizing: border-box;
+    }
+    .hBottomNav {
+        max-height: calc(100% - 6.5rem) !important;
+    }
+    .hBottomFab {
+        border: 1px solid red !important;
+        background-color: black !important;
+        max-height: calc(100dvh - 8rem) !important;
+    }
+
+    .hBottomForm {
+        max-height: calc(100% - 1.2rem) !important;
+    }
+}
 
 main,
 .main {
