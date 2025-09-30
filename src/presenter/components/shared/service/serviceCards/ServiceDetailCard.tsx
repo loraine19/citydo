@@ -55,7 +55,7 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                     alt={title}
                     className='md3-card-large-image'
                 >
-                    <CardLarge.Chips className="p-2 mt-1 justify-end">
+                    <CardLarge.Chips className="justify-end mt-2">
                         <DateChip
                             start={service?.createdAt}
                             prefix=" "

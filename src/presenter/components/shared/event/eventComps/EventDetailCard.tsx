@@ -40,12 +40,12 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                     alt={title}
                     className='md3-card-large-image' >
 
-                    <div className="!relative mt-12 ml-12 scale-125 text-white">
+                    <div className="!relative ml-12 scale-125 text-white">
                         <IconAnimate
                             active={EventLoad?.Igo}
                             icon={'person'} />
                     </div>
-                    <CardLarge.Chips className="p-2 mt-1 justify-end">
+                    <CardLarge.Chips className="justify-end mt-2">
                         <DateChip
                             start={EventLoad?.createdAt}
                             prefix=" " />

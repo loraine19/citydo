@@ -63,7 +63,11 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                         <IconAnimate
                             active={survey?.IVoted}
                             icon={'ballot'} />
-                        <CardMD.Chips className="justify-end absolute top-2 right-2">
+                        <CardMD.Chips className="px-0.5 max-h-max w-full justify-end">
+                            <DateChip
+                                start={survey?.createdAt}
+                                prefix=" "
+                            />
                             <MoreButton
                                 id={survey?.id}
                                 type={'vote/sondage'}

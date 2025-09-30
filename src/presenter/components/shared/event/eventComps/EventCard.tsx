@@ -51,7 +51,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                     <IconAnimate
                         active={event?.Igo}
                         icon={'person'} />
-                    <CardMD.Chips className="px-1 max-h-max w-full justify-end">
+                    <CardMD.Chips className="px-0.5 max-h-max w-full justify-end">
                         <DateChip
                             start={event?.createdAt}
                             prefix=" " />

@@ -83,14 +83,11 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                     alt={title}
                     className=""
                 >
-
-                    <CardMD.Chips className={`w-full flex absolute justify-end gap-2 px-4 h-max`}>
-                        {!compact &&
-                            <DateChip
-                                start={service?.createdAt}
-                                prefix=" "
-                            />}
-
+                    <CardMD.Chips className="px-0.5 max-h-max w-full justify-end">
+                        <DateChip
+                            start={service?.createdAt}
+                            prefix=" "
+                        />
                         {<MoreButton
                             title={title}
                             id={service?.id}

@@ -30,10 +30,10 @@ export default function SurveyDetailCard({ survey, expand, setExpand }: Props) {
                 alt={title}
                 className="CardImage"
             >
-                <CardLarge.Chips className="justify-end py-3">
+                <CardLarge.Chips className="justify-end mt-2">
                     <DateChip
                         start={createdAt}
-                        prefix="publié le " />
+                        prefix=" " />
                     <BtnExpandImg
                         image={image as any} />
                 </CardLarge.Chips>
