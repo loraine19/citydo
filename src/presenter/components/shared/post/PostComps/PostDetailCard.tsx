@@ -35,7 +35,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                 alt={title}
                 className="" >
 
-                <div className="!relative mt-12 ml-12 scale-125 text-white">
+                <div className="!relative ml-12 scale-125 text-white">
                     <IconAnimate
                         active={post?.ILike}
                         icon={'favorite'} />

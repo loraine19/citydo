@@ -29,7 +29,7 @@ export const IconAnimate: React.FC<IconAnimateProps> = ({
             className={
                 (firstLoad < 1 || !active ? "opacity-0 h-1" : " animate-pop h-max") +
 
-                " absolute w-max mt-6  -ml-12  top-[100%] left-[50%] translate-x-[-50%] translate-y-[-0%] " +
+                " absolute w-max mt-12  -ml-8  top-[100%] left-[50%] translate-x-[-50%] translate-y-[-0%] " +
                 className
             }
         >
