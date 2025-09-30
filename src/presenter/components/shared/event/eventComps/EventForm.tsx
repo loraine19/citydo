@@ -148,7 +148,7 @@ export function EventForm({ formik }: EventFormProps) {
                         </CardLarge.Chips>
                         <CardLarge.Divider />
                         <CardLarge.MidSection className="md:!px-8  flex flex-col">
-                            <span className="md3-card-subhead pb-1">Informations</span>
+                            <h6>Informations</h6>
                             <div className="flex flex-1 flex-col gap-4">
                                 <Input
                                     label={"Titre"}
@@ -183,9 +183,7 @@ export function EventForm({ formik }: EventFormProps) {
                         {/* ADDRESS SECTION  */}
                         <CardLarge.MidSection className="md:px-8 flex flex-col">
 
-                            <span className="md3-card-subhead pb-1">
-                                Lieu
-                            </span>
+                            <h6>Lieu  </h6>
                             {(!formikAddress?.lat || (formikAddress?.lat === 0 && formikAddress?.lng === 0)) &&
                                 <div className="px-3 h-4 my-2 italic">
 
@@ -214,7 +212,7 @@ export function EventForm({ formik }: EventFormProps) {
                         <CardLarge.Divider />
                         {/* DATE SECTION  */}
                         <CardLarge.MidSection className="md:px-8 flex flex-col">
-                            <span className="md3-card-subhead pb-1">Date</span>
+                            <h6>Date</h6>
                             <div className="flex flex-1 flex-col md:flex-row gap-4">
                                 <Input
                                     error={!!formik.errors.start}
@@ -253,7 +251,7 @@ export function EventForm({ formik }: EventFormProps) {
                         <CardLarge.Divider />
                         {/* PARTICIPATION SECTION */}
                         <CardLarge.MidSection className="md:px-8 flex flex-col pb-6">
-                            <span className="md3-card-subhead pb-1">Participants</span>
+                            <h6>Participants</h6>
                             <div className="flex flex-1 flex-col  gap-4 ">
                                 {/* <Input
                                     leadingIcon={<Icon icon='person' fill={true} size='lg' />}
