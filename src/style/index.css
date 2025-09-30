@@ -79,11 +79,11 @@ html {
 
 body,
 #root {
-    @apply scroll-smooth font-montserrat p-0 m-0;
+    @apply scroll-smooth font-montserrat p-0 m-0 inset-0;
     display: flex;
     flex-direction: column;
     width: 100vw;
-    height: calc(100dvh + 2rem);
+    height: calc(100dvh);
     min-height: calc(100svh);
     max-height: calc(100lvh);
     box-sizing: border-box;
@@ -99,7 +99,7 @@ body,
 /* MAIN SECTIONS */
 
 .App {
-    @apply min-w-[280px] md3-surface flex flex-col flex-1;
+    @apply min-w-[280px] md3-surface flex flex-col flex-1 overflow-hidden;
     width: 100vw;
     min-width: 100vw;
     height: calc(100dvh + 2rem);
@@ -132,7 +132,7 @@ body,
 
 main,
 .main {
-    @apply flex flex-col flex-1 md3-surface w-full;
+    @apply flex flex-col flex-1  w-full;
     max-height: 100% !important;
     height: 100%;
     z-index: 0;
