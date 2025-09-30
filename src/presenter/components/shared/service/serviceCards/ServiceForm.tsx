@@ -67,7 +67,7 @@ export function ServiceForm(props: { formik: any }) {
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
             <main className={`hBottomForm`}>
-                <section className={`pb-6 ${show ? 'overflow-hidden' : 'overflow-auto '}`}>
+                <section className={` ${show ? 'overflow-hidden' : 'overflow-auto '}`}>
                     <div className={`pt-2 max-h-max w-full flex flex-col gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
                         <h6 className="md3-card-subhead pt-4">Informations principales</h6>
                         <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
@@ -143,7 +143,7 @@ export function ServiceForm(props: { formik: any }) {
                         </CardLarge.Chips>
                         <CardLarge.Divider />
                         <CardLarge.MidSection className="md:px-8 flex flex-col">
-                            <span className="md3-card-subhead">Informations</span>
+                            <h6>Informations</h6>
                             <div className="flex flex-1 flex-col gap-4">
                                 <Input
                                     error={!!formik.errors.title}
@@ -176,7 +176,7 @@ export function ServiceForm(props: { formik: any }) {
                         </CardLarge.MidSection>
                         <CardLarge.Divider />
                         <CardLarge.MidSection className="md:px-8 max-h-max flex flex-col">
-                            <span className="md3-card-subhead">Niveaux</span>
+                            <h6>Niveaux</h6>
                             <div className="flex flex-1 !py-2 flex-col gap-4">
                                 <div className="flex flex-col xs:flex-row gap-4 ">
                                     <Select

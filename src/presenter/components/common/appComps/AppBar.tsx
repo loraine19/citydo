@@ -36,7 +36,7 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage, add
 
 
                 {/* INSERTION NAVLINK TOP  */}
-                {(mainPage || listPage) && !navBottom && !hideNavBottom && (
+                {(mainPage || listPage) && (!navBottom && !hideNavBottom) && (
                     <NavLinks addFab={addFab} mainPage={mainPage} placement="top" />
                 )}
 
@@ -52,7 +52,7 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage, add
                     <NotifBadge />
                 </div>
             </div >
-            {/* INSERTION NAVLINK BOTTOM  */}
+            {/* INSERTION SEARCH BAR */}
 
             {(searchSection && !hideNavBottom && !navBottom) &&
                 <div className="w-full  ">{searchSection}</div>}

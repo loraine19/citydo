@@ -136,7 +136,6 @@ function App() {
                                 <Route element={<ConfigPage singlePage />}>
                                     {/* SINGLE PAGE  */}
                                     <Route path="/reglement" element={<RulesPage />} />
-                                    <Route path="/msg" element={<DashboardPage />} />
                                     <Route path="/base/create" element={<BaseCreatePage />} />
                                     <Route path="/base/edit/:id" element={<BaseEditPage />} />
                                     <Route path="/chat" element={<ChatPage />} />
@@ -148,9 +147,10 @@ function App() {
 
 
                                 {/* DASHBOARD */}
-                                <Route element={<ConfigPage mainPage addFab />}>
+                                <Route element={<ConfigPage mainPage={true} addFab={true} />}>
 
                                     <Route path="/" element={<DashboardPage />} />
+                                    <Route path="/msg" element={<DashboardPage />} />
                                 </Route>
 
 
