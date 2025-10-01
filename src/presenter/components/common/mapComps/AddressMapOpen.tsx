@@ -203,7 +203,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, lat = 0
             zoomControl={false}
             attributionControl={false}
             scrollWheelZoom={false}
-            className=' flex flex-1  items-center justify-center !z-[0] !rounded-3xl ' >
+            className=' flex flex-1  items-center justify-center !z-[0] rounded-[var(--md3-radius-large)]' >
             <TileLayer
                 url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}" />
             <ZoomControls />
@@ -213,7 +213,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, lat = 0
                 <Marker
                     position={position}
                     icon={L.icon({
-                        className: 'drop-shadow  !pt-5',
+                        className: 'drop-shadow-[0_1px_2px_rgba(0,0,0,0.1]  !pt-5',
                         iconUrl: '/image/marker_orange.svg',
                         iconSize: [80, 80],
                         iconAnchor: [40, 75],
@@ -239,7 +239,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, lat = 0
 
     return (
         <>
-            <div className='border border-slate-300 relative flex flex-1 min-h-[7.8rem] lg:min-h-[7.7rem] !rounded-3xl w-full shadow mb-2 lg:mb-0'>
+            <div className='border md3-border relative flex flex-1 min-h-[7.8rem] lg:min-h-[7.7rem] !rounded-[var(--md3-radius-large)] w-full '>
                 <MapDiv />
 
                 <Dialog>

@@ -180,6 +180,7 @@ export default function DashboardPage() {
                                             notifs.length === 0 ? 'Aucune notification' : ''} />}
 
                         </CardMD.Subhead>
+
                         {/* NOTIFS LIST */}
                         <CardMD.Media className="relative" >
                             <NotifDiv

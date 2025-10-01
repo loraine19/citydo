@@ -272,7 +272,7 @@ i {
 }
 
 .Map {
-    @apply w-full h-full flex flex-1  rounded-3xl;
+    @apply w-full h-full flex flex-1  rounded-[var(--md3-radius-large)] !z-[0];
 }
 .FixedCenter {
     position: fixed;

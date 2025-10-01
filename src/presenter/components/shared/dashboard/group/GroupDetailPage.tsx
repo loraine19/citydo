@@ -44,7 +44,8 @@ export default function GroupDetailPage() {
     // ACTIONS
     const buttonsGenerator = (groupUp: any): Action[] => [
         {
-            iconImage: groupUp?.ImModo ? 'person_cancel' : 'person_add',
+            iconImage: groupUp?.ImModo ? 'cancel' : 'add',
+            color: 'orange',
             icon: groupUp?.ImModo ? 'Quitter conciliateur' : 'Devenir conciliateur',
             title: groupUp?.ImModo ? `Quitter le rôle de conciliateur` : `Devenir conciliateur`,
             body: groupUp?.ImModo
@@ -62,6 +63,7 @@ export default function GroupDetailPage() {
         {
             iconImage: groupUp?.ImIn ? 'person_cancel' : 'person_add',
             icon: groupUp?.ImIn ? 'Quitter le groupe' : 'Rejoindre le groupe',
+            color: 'cyan',
             title: groupUp?.ImIn ? `Quitter le groupe` : `Rejoindre le groupe`,
             body: groupUp?.ImIn
                 ? `Voulez-vous vraiment quitter le groupe ${groupUp?.name} ?`
@@ -115,7 +117,8 @@ export default function GroupDetailPage() {
 
     return (
         <>
-            <main data-cy="group-details-page">
+            <main data-cy="group-details-page"
+                className={`hBottomFab`}>
                 <section
                     id='refDiv'
                     className={expanded ? 'overflow-auto' : 'overflow-hidden'}
@@ -123,7 +126,7 @@ export default function GroupDetailPage() {
                     onScroll={() => {
                         handleHideCallback();
                     }}>
-                    <div className={`!h-full hBottomFab flex pt-4 `}>
+                    <div className={`detailCardDiv`}>
                         {!isLoading && group && !error ?
                             <GroupDetailCard
                                 group={group}
