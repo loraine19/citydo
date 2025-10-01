@@ -126,7 +126,7 @@ export function VoteForm({ formik, type, setType }: PoolSurveyFormProps) {
                         </div>
                     </div>
                     <CardLarge
-                        className={`${(showCard && !show) ?
+                        className={`mb-8 ${(showCard && !show) ?
                             `md3-animation-slide-up ` : 'md3-animation-slide-out-down'}`}
                         form
                         expanded={expand}
