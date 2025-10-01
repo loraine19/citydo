@@ -185,6 +185,9 @@ header {
 .sectionHeader {
     @apply flex flex-col gap-2 px-3 relative md3-card-section-header wRespXL !border-none;
 }
+.detailCardDiv {
+    @apply !h-full flex pt-2 pb-8;
+}
 
 /* TEXT */
 ::first-letter {

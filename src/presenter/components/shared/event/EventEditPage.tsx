@@ -65,7 +65,6 @@ export default function EventDetailPage() {
 
         validationSchema: formSchema,
         onSubmit: async values => {
-            console.log(values)
             formik.values = values
             setOpen(true)
             setAlertValues({
@@ -106,7 +105,6 @@ export default function EventDetailPage() {
         const { ...rest } = formik.values;
         const updateData = new EventDTO({ ...rest })
         const addressDTO = new AddressDTO(formik.values.Address)
-        console.log(addressDTO)
         try {
             const updated = await updateEvent(event.id, updateData, addressDTO)
             if (updated) {

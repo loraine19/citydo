@@ -161,7 +161,7 @@ export function MultiSelect({
                         </div>
 
                         <Menu
-                            open={open}
+                            open={open && (selectedValues === value)}
                             setOpen={setOpen}
                             MenuKey={'multiselect-menu' + (color)}
                             closeIcon={<></>}
@@ -180,7 +180,11 @@ export function MultiSelect({
                                     value={option?.value}
                                     onClick={() => handleSelect(option)}
                                     trailingIcon={selectedValues.includes(option?.value) ? (
-                                        <Icon style='-mr-1' color={color ?? 'slate'} size="lg" icon="check" />
+                                        <Icon
+                                            style='-mr-1'
+                                            color={color ?? 'slate'}
+                                            size="lg"
+                                            icon="check" />
                                     ) : <div className="w-3" />}
                                 >
                                     {option?.label}

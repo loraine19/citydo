@@ -15,7 +15,6 @@ export function AvatarStack(props: AvatarStackProps) {
     const AVATAR_WIDTH = 44;
     const AVATAR_OVERLAP = 12;
     const [open, setOpen] = useState(false);
-
     const [maxVisible, setMaxVisible] = useState(1);
     const [selectedAvatar, setSelectedAvatar] = useState<number>(0);
 

@@ -36,7 +36,7 @@ export default function PostCreatePage() {
                     text: "Annuler",
                     onClick: () => setOpen(false)
                 },
-                disableCancel: true,
+                disableConfirm: false,
                 handleConfirm: async () => await postFunction(),
                 confirmString: "Enregistrer ",
                 title: "Confimrer la création de l'annonce",

@@ -17,6 +17,7 @@ import FormHeadSection from "../../base/baseComps/FormHeadSection";
 import AddressMapOpen from "../../../common/mapComps/AddressMapOpen";
 import GeoLocBtn from "../../../common/mapComps/GeoLocBtn";
 import { AddressDTO } from "../../../../../infrastructure/DTOs/AddressDTO";
+import { Group } from "../../../../../domain/entities/Group";
 
 type ProfileFormProps = {
     formik: any,
@@ -24,15 +25,15 @@ type ProfileFormProps = {
     address?: any,
     setAddress?: any,
     setMailSub?: any,
+    groups: Group[],
 }
 
-export function ProfileForm({ formik, setAssistance, setMailSub }: ProfileFormProps) {
+export function ProfileForm({ formik, setAssistance, setMailSub, groups }: ProfileFormProps) {
     const { user } = useUserStore((state) => state);
     const [imgBlob, setImgBlob] = useState<string | Blob>(formik?.values?.image ?? '');
     const [newSkill, setNewSkill] = useState<string | undefined>();
     const [skillList, setSkillList] = useState<string[]>(formik.values?.skills?.split(',') || []);
     const deleteAccountUseCase = DI.resolve('deleteAccountUseCase');
-    const { groups, error, isLoading } = DI.resolve('groupViewModel')();
 
     // Avatar image update effect
     useEffect(() => {
@@ -71,8 +72,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub }: ProfileFormPr
     const { setDetailSection } = useNavStore((state) => state);
     const SearchSection = useMemo(() => (
         <FormHeadSection
-
-            infosChipValue={'Profil'}
+            infosChipValue={formik.values?.userId ? 'Profil' : 'Création de votre profil '}
         />
     ), [formik.values]);
 
@@ -82,10 +82,12 @@ export function ProfileForm({ formik, setAssistance, setMailSub }: ProfileFormPr
     }, [SearchSection, setDetailSection, formik.values]);
 
     return (
-        <form onSubmit={formik.handleSubmit} className="flex flex-col h-full  overflow-hidden">
-            <main className={`hBottomFab`}>
+        <form onSubmit={formik.handleSubmit}
+            className="flex flex-col h-full overflow-hidden">
+            <main className={`hBottomForm`}>
+
                 {/* PRES DIV  */}
-                <div className="wRespXL pt-4 pb-4 flex flex-col gap-2 px-[0.8rem] md:px-[3rem] ">
+                <div className="wRespXL pt-6 pb-2 flex flex-col gap-2 px-[0.8rem] md:px-[3rem] ">
                     <div className="flex items-center gap-4">
                         <AvatarUser
                             Profile={{
@@ -111,9 +113,9 @@ export function ProfileForm({ formik, setAssistance, setMailSub }: ProfileFormPr
 
                 {/* FORM DIV  */}
                 <section className={`!h-full  flex `}>
-                    {error || isLoading ? <Skeleton /> :
+                    {!formik.values ? <Skeleton /> :
                         <CardLarge
-                            className="mb-4"
+                            className="mb-8"
                             form
                             expanded={true}
                             setExpanded={() => { }}
@@ -234,7 +236,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub }: ProfileFormPr
                             <CardLarge.MidSection className="flex-col py-4 gap-4 flex ">
                                 <h6>Groupes</h6>
                                 {/* GROUP SELECT */}
-                                {!isLoading &&
+                                {groups &&
 
                                     <MultiSelect
                                         bgColor='var(--md3-primary-container)'
@@ -243,10 +245,10 @@ export function ProfileForm({ formik, setAssistance, setMailSub }: ProfileFormPr
                                         setValue={(val: any) => {
                                             formik.setFieldValue('groups', val);
                                         }}
-                                        value={formik.values?.groups ? formik.values?.groups.split(',') : groups.map((group: any) => group.id.toString())}
+                                        value={formik.values?.groups || []}
                                         name="groups"
                                         placeholder={'Vos groupes'}
-                                        options={groups.map((group: any) => ({
+                                        options={groups.map((group: Group) => ({
                                             label: group.name,
                                             value: group.id.toString()
                                         }))} />}

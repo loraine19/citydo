@@ -93,7 +93,7 @@ export default function VoteEditPage() {
                     text: "Annuler",
                     onClick: () => setOpen(false)
                 },
-                disableCancel: true,
+                disableConfirm: false,
                 handleConfirm: async () => await updateFunction(values),
                 confirmString: "Enregistrer ",
                 title: "Confimrer la modification",

@@ -45,8 +45,10 @@ export const AlertNotif = () => {
 
         return () => {
             console.warn('unmounted CHAT')
-            socketService.disconnect(nameSpace);
-            setIsConnected(false);
+            if (!isLoggedIn) {
+                socketService.disconnect(nameSpace);
+                setIsConnected(false);
+            }
         }
     }, [isLoggedIn])
 
@@ -59,7 +61,7 @@ export const AlertNotif = () => {
                 if (newMessage && typeof newMessage === 'object' && 'description' in newMessage) {
                     const notifMessage = newMessage as Notif;
                     setHidden(false);
-                    setTimeout(() => { setNotif(notifMessage.description), 2000 });
+                    setTimeout(() => { setNotif(notifMessage.title + ' : ' + notifMessage.description), 2000 });
                     notifMessage.link && setLink(notifMessage.link);
                     setTimeout(() => { setNotif('') }, 7000);
                     setTimeout(() => { setHidden(true) }, 8000);
@@ -98,7 +100,7 @@ export const AlertNotif = () => {
                         {link && <Chip onClick={() => navigate(link)} value='Voir' />}
                     </CardMD.Footer>
                     <Icon
-                        bg
+
                         color='error'
                         style='absolute right-3 top-3 '
                         icon='close'

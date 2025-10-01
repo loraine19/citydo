@@ -74,7 +74,7 @@ export default function VoteCreatePage() {
                     text: "Annuler",
                     onClick: () => setOpen(false)
                 },
-                disableCancel: true,
+                disableConfirm: false,
                 handleConfirm: async () => await createFunction(values),
                 confirmString: "Enregistrer ",
                 title: "Confimrer la création",

@@ -270,7 +270,7 @@ export default function ServiceDetailPage() {
                     ref={divRef}
                     onScroll={() =>
                         handleHideCallback()}>
-                    <div className={`!h-full flex pt-2 pb-6 `}>
+                    <div className={`detailCardDiv`}>
                         {isLoading || error || !service ?
                             <Skeleton />
                             :

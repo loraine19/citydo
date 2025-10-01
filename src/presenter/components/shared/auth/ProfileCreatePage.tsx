@@ -1,108 +1,123 @@
 import { useFormik } from 'formik';
-import { object, string } from 'yup';
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { Typography, } from '@material-tailwind/react';
-import { AuthHeader } from './auth.Comps/AuthHeader'
-import { ProfileForm } from './auth.Comps/ProfileForm';
-import { AssistanceLevel, ProfileDTO } from '../../../../domain/entities/Profile';
-import { ConfirmModal } from '../../common/ConfirmModal';
+import { array, object, string } from 'yup';
+import { useState } from 'react';
+import { ProfileForm } from '../auth/auth.Comps/ProfileForm';
+import { ProfileDTO, } from '../../../../domain/entities/Profile';
 import DI from '../../../../di/ioc';
 import { useUserStore } from '../../../../application/stores/user.store';
-import { Skeleton } from '../../common/Skeleton';
-import { User } from '../../../../domain/entities/User';
-import { MailSubscriptions } from '../../../../domain/entities/Profile';
 import { AddressDTO } from '../../../../infrastructure/DTOs/AddressDTO';
-import { Address } from '../../../../domain/entities/Address';
-import { LogOutButton } from '../../common/LogOutBtn';
-import { ProfileDiv } from '../../common/ProfilDiv';
 import { useAlertStore } from '../../../../application/stores/alert.store';
+import { CardConfirmForm } from '../../common/CardConfirmForm';
+import { GroupUser } from '../../../../domain/entities/GroupUser';
+import { Group } from '../../../../domain/entities/Group';
+import { GroupView } from '../../../views/viewsEntities/GroupViewEntity';
+import { Skeleton } from '../../common/Skeleton';
 
 export default function ProfileCreatePage() {
-    const { setUser } = useUserStore()
-    const navigate = useNavigate()
-    const user: User = useUserStore((state) => state.user);
-    const [assistance, setAssistance] = useState<string>(AssistanceLevel.LEVEL_0 as string)
-    const [address, setAddress] = useState<AddressDTO>(new AddressDTO())
-    const [mailSub, setMailSub] = useState<string>(MailSubscriptions.SUB_1 as string)
-    const [open, setOpen] = useState(false);
-    const postProfile = async (data: ProfileDTO) => await DI.resolve('postProfileUseCase').execute(data, address)
+    const { setUser, user } = useUserStore()
+    const Profile = {} as ProfileDTO
+    const [assistance, setAssistance] = useState<string | undefined>(Profile?.assistance)
+    const [mailSub, setMailSub] = useState<string | undefined>(Profile?.mailSub)
+    const updateProfile = async (data: ProfileDTO, Address: AddressDTO) => await DI.resolve('updateProfileUseCase').execute(data, Address)
 
-    const { handleApiError } = useAlertStore(state => state)
+    const { groups, error, isLoading } = DI.resolve('groupViewModel')();
+
+    const [initialValues] = useState<ProfileDTO & { Address?: AddressDTO } & { groups: any[] }>({
+        groups: [] as any[],
+        ...Profile,
+        Address: {} as any
+    })
 
 
-    useEffect(() => {
-        if (!user) navigate("/signup?msg=Vous devez avoir un compte pour accéder à cette page")
-        if (user.Profile) navigate("/msg?msg=Vous avez déjà un profil")
-    }, [user])
 
-    /// FORMIK SCHEMA
     const formSchema = object({
         firstName: string().required("Le prémon est obligatoire").min(2, "minmum 2 lettres"),
         lastName: string().required("Le Nom est obligatoire").min(2, "minmum 2 lettres"),
         phone: string().required("Le Numéro est obligatoire").min(10, "minmum 2 caractères").max(14, "maxmum 14 caractères").matches(/^\+33/, "Le Numéro doit commencer par +33"),
         Address: object({ city: string().required("Ville est obligatoire"), zipcode: string().required("Code postal est obligatoire") }),
-        mailSub: string()
+        mailSub: string(),
+        assistance: string(),
+        groups: array().required("1 groupe est obligatoire").min(1, "minmum 1 groupe"),
     })
 
-    /// FORMIK SUBMIT
-    const formik = useFormik({
-        initialValues: new ProfileDTO(),
-        validationSchema: formSchema,
-        onSubmit: async values => {
-            formik.values = values;
-            formik.values.assistance = assistance;
-            formik.values.mailSub = mailSub;
-            setOpen(true)
-        }
-    })
-    const post = async () => {
+    const { setOpen, setAlertValues, handleApiError } = useAlertStore(state => state)
+
+
+    const updateFunction = async () => {
         const { ...rest } = formik.values;
-        const updateData = { ...rest }
+        const updateData = new ProfileDTO({ assistance, ...rest })
+        const updatedGroups: GroupUser[] =
+            formik.values.groups.map((gId: string) => {
+                return { groupId: parseInt(gId), userId: user?.id, Group: groups?.find((gr: Group) => gr.id === parseInt(gId)) as Group } as GroupUser
+            })
+
         try {
-            let updated: any = await postProfile(updateData)
-            setUser({ ...user, Profile: updated })
-            navigate("/");
-            setOpen(false)
 
+            if (updatedGroups !== user?.GroupUser) {
+                alert('Mise à jour des groupes en cours ...')
+                updatedGroups.map(async g => {
+                    if (!user?.GroupUser?.find(ug => ug.groupId === g.groupId)) {
+                        const groupview = new GroupView(g.Group, user.id)
+                        try { await groupview.toogleMember() }
+                        catch (error) { handleApiError(error ?? 'Erreur lors de l\'ajout du groupe') }
+                    }
+                })
+                user?.GroupUser?.map(async ug => {
+                    if (!updatedGroups.find(ugr => ugr.groupId === ug.groupId)) {
+                        const groupview = new GroupView(ug.Group, user.id)
+                        try { await groupview.toogleMember() }
+                        catch (error) { handleApiError(error ?? 'Erreur lors de la suppression du groupe') }
+                    }
+                })
+            }
+            const updated = await updateProfile(updateData, formik.values.Address as AddressDTO)
+            setOpen(false);
+            setUser({ ...user, GroupUser: updatedGroups, Profile: updated });
+            window.location.replace("/")
         } catch (error) {
-            handleApiError(error ?? 'Erreur lors de la création de votre profil')
+            console.error(error)
+            handleApiError(error ?? 'Erreur lors de la mise à jour du profil')
         }
-
     }
 
+    const formik = useFormik({
+        enableReinitialize: true,
+        initialValues: initialValues as ProfileDTO & { Address?: AddressDTO } & { groups: any[] },
+        validationSchema: formSchema,
+        onSubmit: async values => {
+            values.assistance = assistance;
+            values.mailSub = mailSub;
+            setOpen(true)
+            setAlertValues({
+                close: () => setOpen(false),
+                handleConfirm: async () => await updateFunction(),
+                disableConfirm: false,
+                confirmString: "Enregistrer les modifications",
+                title: "Confimrer la modification : ",
+                element: (
+                    <CardConfirmForm
+                        title={undefined}
+                        content={<div>
+                            Vous confirmez la modification de votre profil ?
+                        </div>} />
+                )
+            })
+        }
+    })
 
-    useEffect(() => { formik.values.Address = address as Address }, [address])
+
     return (
         <>
-            <ConfirmModal
-                open={open}
-                handleCancel={() => { setOpen(false) }}
-                handleConfirm={async () => { await post() }}
-                title={"Confirmer la création de votre profil"}
-                element={
-                    <ProfileDiv
-                        size='lg' profile={{ id: user.id, ...formik.values } as Partial<User>} />} />
-            <header>
-                <AuthHeader />
-                <div className="flex w-respLarge justify-between items-center pb-3">
-                    <Typography
-                        className='w-resp px-4 flex justify-center pb-2'>
-                        Bienvenue, veuillez remplir votre profil pour pouvoir utiliser City'Do
-                    </Typography>
-                    <LogOutButton />
-                </div>
-            </header>
-            <main>
 
-                {!user ?
-                    <Skeleton /> :
-                    <ProfileForm
-                        formik={formik}
-                        setAssistance={setAssistance}
-                        setAddress={setAddress}
-                        setMailSub={setMailSub} />}
-            </main>
-        </>
+            {(!error && !isLoading && formik.values?.Address && formik.values?.groups && groups) ?
+                <ProfileForm
+                    groups={groups}
+                    formik={formik}
+                    setAssistance={setAssistance}
+                    setMailSub={setMailSub}
+                /> :
+                <Skeleton />
+            }
+        </ >
     )
 }

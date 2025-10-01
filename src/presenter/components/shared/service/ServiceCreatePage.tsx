@@ -53,7 +53,7 @@ export default function ServiceCreatePage() {
                     text: "Annuler",
                     onClick: () => setOpen(false)
                 },
-                disableCancel: true,
+                disableConfirm: false,
                 handleConfirm: async () => {
                     await postFunction()
                 },

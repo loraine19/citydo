@@ -68,7 +68,7 @@ export default function PostEditPage() {
                     text: "Annuler",
                     onClick: () => setOpen(false)
                 },
-                disableCancel: true,
+                disableConfirm: false,
                 confirmString: "Enregistrer ",
                 title: "Confimrer la modification",
                 element: (

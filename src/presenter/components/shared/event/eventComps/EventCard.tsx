@@ -124,7 +124,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                     <Button
                         icon={{
                             style: '-mt-[1px]',
-                            icon: event?.Igo ? 'person' : 'person_add',
+                            icon: event?.Igo ? 'person_check' : 'person_add',
                             fill: event?.Igo,
                             title: event?.Igo ? "retirer de l'evenement" : "je participe"
                         }}

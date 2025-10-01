@@ -55,6 +55,12 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
         'grid-rows-4'
     ]
 
+    //// HANDLE MENU
+
+    const [open, setOpen] = useState(false);
+
+    const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
+
     return (
         <div
             className='grid grid-rows-[auto,1fr] h-[100%]  px-4 gap-2  overflow-hidden '
@@ -160,6 +166,12 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                                                 title={'Voir événement' + ' ' + event.title}
                                                 className='w-full grid ' >
                                                 <Menu
+                                                    open={open && selectedEvent === (event.id + '_' + indexEvent + '' + currentDay)}
+                                                    setOpen={(open: boolean) => {
+                                                        setSelectedEvent(event.id + '_' + indexEvent + '' + currentDay);
+                                                        setOpen(open);
+
+                                                    }}
                                                     closeIcon={<Icon icon='close' size='md' />}
                                                     MenuKey={'event-menu' + event.id + '_' + indexEvent}
                                                     className={`-ml-[0.5rem] max-h-full !z-[9]  px-2 pt-2 max-w-fit bg-[var(--md3-surface-variant)]  md3-border border-y`}
