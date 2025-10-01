@@ -157,7 +157,7 @@ export default function PostListPage() {
     ];
 
     //// HANDLE COMPACT VIEW
-    const [compact, setCompact] = useState<boolean>(true);
+    const [compact, setCompact] = useState<boolean>(false);
 
     //// APPBAR SECTIONS
     const { setSearchSection, setTabSection } = useNavStore((state) => state);
@@ -284,7 +284,6 @@ export default function PostListPage() {
                                         className="SubGrid"
                                         key={index}>
                                         <PostCard
-
                                             autoFit={compact}
                                             short
                                             key={post?.id}

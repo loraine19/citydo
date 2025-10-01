@@ -279,7 +279,7 @@
 
 /* list section */
 .Grid {
-    @apply grid pb-10 pt-2  px-[0.5rem] md:px-[1rem] 
+    @apply grid pb-10 mb-10 pt-2  px-[0.5rem] md:px-[1rem] 
     grid-cols-[minmax(calc(50%-1rem),1fr)]  
     sm:grid-cols-[1fr,1fr] 
     sm:auto-rows-[minmax(min-content,40vh)] 
@@ -302,5 +302,5 @@
 
 /* list grid */
 .SubGrid {
-    @apply max-w-[calc(100vw-1rem)] px-2.5 pt-1 pb-4  overflow-hidden  grid;
+    @apply max-w-[calc(100vw-1rem)] px-1 pt-1 pb-4  overflow-hidden  grid;
 }

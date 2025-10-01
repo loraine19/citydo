@@ -175,7 +175,7 @@ export default function VoteListPage() {
     }
 
     //// HANDLE VIEW CHANGE
-    const [compact, setCompact] = useState<boolean>(true);
+    const [compact, setCompact] = useState<boolean>(false);
 
     ////FOR APPBAR
     const { setSearchSection, setTabSection } = useNavStore((state) => state);
