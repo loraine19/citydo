@@ -11,6 +11,7 @@ export const postViewModel = () => {
       refetchOnWindowFocus: false,
       staleTime: 1000 * 60 * 15,
       retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 
@@ -23,6 +24,7 @@ export const postViewModel = () => {
         retry: true,
         queryFn: async ({ pageParam = 1 }) => await getPosts.execute(pageParam, params) || { Posts: [], count: 0 },
         initialPageParam: 1,
+        networkMode: 'offlineFirst',
         getNextPageParam: (lastPage, pages) => lastPage.posts?.length ? pages.length + 1 : undefined
       })
 
@@ -47,12 +49,12 @@ export const postViewModel = () => {
 export const postIdViewModel = () => {
   return (id: number) => {
 
-
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
       staleTime: 1000 * 60 * 15,
       refetchOnWindowFocus: false,
-
+      retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
     const userId = user?.id

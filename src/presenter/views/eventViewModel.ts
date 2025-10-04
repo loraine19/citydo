@@ -12,7 +12,7 @@ export const eventViewModel = () => {
       refetchOnWindowFocus: false,
       staleTime: 1000 * 60 * 15,
       retry: true,
-
+      networkMode: 'offlineFirst',
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 
@@ -24,7 +24,8 @@ export const eventViewModel = () => {
         retry: true,
         queryFn: async ({ pageParam = 1 }) => await getEvents.execute(pageParam, params) || { events: [], count: 0 },
         initialPageParam: 1,
-        getNextPageParam: (lastPage, pages) => lastPage.events?.length ? pages.length + 1 : undefined
+        getNextPageParam: (lastPage, pages) => lastPage.events?.length ? pages.length + 1 : undefined,
+        networkMode: 'offlineFirst'
       })
 
     const count = isLoading ? 0 : (data?.pages[data?.pages.length - 1].count)
@@ -53,6 +54,7 @@ export const eventIdViewModel = () => {
       refetchOnWindowFocus: false,
       staleTime: 1000 * 60 * 15,
       retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
 
     })
@@ -64,6 +66,7 @@ export const eventIdViewModel = () => {
       staleTime: 1000 * 60 * 15,
       retry: true,
       refetchOnWindowFocus: false,
+      networkMode: 'offlineFirst',
       queryFn: async () => await getEventById.execute(id),
     })
 
@@ -95,6 +98,10 @@ export const eventsWeekViewModel = () => {
 
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
+      refetchOnWindowFocus: false,
+      staleTime: 1000 * 60 * 15,
+      retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 
@@ -105,6 +112,7 @@ export const eventsWeekViewModel = () => {
         refetchOnWindowFocus: true,
         retry: true,
         staleTime: 1000 * 60 * 15,
+        networkMode: 'offlineFirst',
         queryFn: async ({ pageParam = 1 }) => await getEvents.execute(pageParam) || { events: [], count: 0 },
         initialPageParam: 1,
         getNextPageParam: (lastPage, pages) => lastPage.events?.length ? pages.length + 1 : undefined

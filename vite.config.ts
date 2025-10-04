@@ -27,8 +27,11 @@ export default defineConfig(({ mode }) => {
       react(),
       VitePWA({
         registerType: 'autoUpdate',
-        injectRegister: false,
+        injectRegister: 'auto',
         workbox: {
+
+          skipWaiting: true,      // Force le nouveau SW à s'activer
+          clientsClaim: true,     // Force le SW à prendre le contrôle immédiatement
           // La limite par défaut de 2Mo est suffisante maintenant
           globPatterns: ['**/*.{js,css,html,ico,png,svg,ttf}'], // woff2 est retiré
           runtimeCaching: [
@@ -75,8 +78,8 @@ export default defineConfig(({ mode }) => {
           scope: "/",
           display: "minimal-ui",
           orientation: "portrait",
-          theme_color: "#1a202c",
-          background_color: "#ffffff",
+          theme_color: "#131b1d",
+          background_color: "#e7eff2",
           icons: [
             { purpose: "maskable", sizes: "1024x1024", src: "icons/maskable_icon.png", type: "image/png" },
             { purpose: "maskable", sizes: "512x512", src: "icons/maskable_icon_x512.png", type: "image/png" },
