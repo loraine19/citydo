@@ -7,16 +7,16 @@ import {
   matchQuery,
   notifyManager,
   partialMatchKey
-} from "./chunk-6QTK5IVE.js";
+} from "./chunk-LDMAO4IK.js";
 import {
   require_jsx_runtime
-} from "./chunk-P5EAQRRD.js";
+} from "./chunk-24WYNIL6.js";
 import {
   require_react
-} from "./chunk-VPEBV5N7.js";
+} from "./chunk-QLJLW6ED.js";
 import {
   __toESM
-} from "./chunk-SNAQBZPT.js";
+} from "./chunk-PR4QN5HX.js";
 
 // node_modules/@tanstack/query-persist-client-core/build/modern/persist.js
 var cacheEventTypes = ["added", "removed", "updated"];
@@ -90,7 +90,7 @@ function persistQueryClient(props) {
   let persistQueryClientUnsubscribe;
   const unsubscribe = () => {
     hasUnsubscribed = true;
-    persistQueryClientUnsubscribe == null ? void 0 : persistQueryClientUnsubscribe();
+    persistQueryClientUnsubscribe?.();
   };
   const restorePromise = persistQueryClientRestore(props).then(() => {
     if (!hasUnsubscribed) {
@@ -229,7 +229,7 @@ function experimental_createQueryPersister({
     return Promise.resolve(queryFnResult);
   }
   async function persisterGc() {
-    if (storage == null ? void 0 : storage.entries) {
+    if (storage?.entries) {
       const entries = await storage.entries();
       for (const [key, value] of entries) {
         if (key.startsWith(prefix)) {
@@ -247,7 +247,7 @@ function experimental_createQueryPersister({
   }
   async function restoreQueries(queryClient, filters2 = {}) {
     const { exact, queryKey } = filters2;
-    if (storage == null ? void 0 : storage.entries) {
+    if (storage?.entries) {
       const entries = await storage.entries();
       for (const [key, value] of entries) {
         if (key.startsWith(prefix)) {
@@ -313,13 +313,7 @@ var PersistQueryClientProvider = ({
     };
     if (!didRestore.current) {
       didRestore.current = true;
-      persistQueryClientRestore(options).then(() => {
-        var _a, _b;
-        return (_b = (_a = refs.current).onSuccess) == null ? void 0 : _b.call(_a);
-      }).catch(() => {
-        var _a, _b;
-        return (_b = (_a = refs.current).onError) == null ? void 0 : _b.call(_a);
-      }).finally(() => {
+      persistQueryClientRestore(options).then(() => refs.current.onSuccess?.()).catch(() => refs.current.onError?.()).finally(() => {
         setIsRestoring(false);
       });
     }

@@ -1,9 +1,9 @@
 import {
   require_react
-} from "./chunk-VPEBV5N7.js";
+} from "./chunk-QLJLW6ED.js";
 import {
   __toESM
-} from "./chunk-SNAQBZPT.js";
+} from "./chunk-PR4QN5HX.js";
 
 // node_modules/zustand/esm/vanilla.mjs
 var createStoreImpl = (createState) => {
@@ -27,7 +27,7 @@ var createStoreImpl = (createState) => {
   const initialState = state = createState(setState, getState, api);
   return api;
 };
-var createStore = (createState) => createState ? createStoreImpl(createState) : createStoreImpl;
+var createStore = ((createState) => createState ? createStoreImpl(createState) : createStoreImpl);
 
 // node_modules/zustand/esm/react.mjs
 var import_react = __toESM(require_react(), 1);
@@ -47,7 +47,7 @@ var createImpl = (createState) => {
   Object.assign(useBoundStore, api);
   return useBoundStore;
 };
-var create = (createState) => createState ? createImpl(createState) : createImpl;
+var create = ((createState) => createState ? createImpl(createState) : createImpl);
 export {
   create,
   createStore,

@@ -1,13 +1,13 @@
 import {
   __commonJS
-} from "./chunk-SNAQBZPT.js";
+} from "./chunk-PR4QN5HX.js";
 
 // node_modules/leaflet/dist/leaflet-src.js
 var require_leaflet_src = __commonJS({
   "node_modules/leaflet/dist/leaflet-src.js"(exports, module) {
     (function(global, factory) {
       typeof exports === "object" && typeof module !== "undefined" ? factory(exports) : typeof define === "function" && define.amd ? define(["exports"], factory) : (global = typeof globalThis !== "undefined" ? globalThis : global || self, factory(global.leaflet = {}));
-    })(exports, function(exports2) {
+    })(exports, (function(exports2) {
       "use strict";
       var version = "1.9.4";
       function extend(dest) {
@@ -20,14 +20,14 @@ var require_leaflet_src = __commonJS({
         }
         return dest;
       }
-      var create$2 = Object.create || /* @__PURE__ */ function() {
+      var create$2 = Object.create || /* @__PURE__ */ (function() {
         function F() {
         }
         return function(proto) {
           F.prototype = proto;
           return new F();
         };
-      }();
+      })();
       function bind(fn, obj) {
         var slice = Array.prototype.slice;
         if (fn.bind) {
@@ -1127,10 +1127,10 @@ var require_leaflet_src = __commonJS({
             point.x * d / this.R
           );
         },
-        bounds: function() {
+        bounds: (function() {
           var d = earthRadius * Math.PI;
           return new Bounds([-d, -d], [d, d]);
-        }()
+        })()
       };
       function Transformation(a, b, c, d) {
         if (isArray(a)) {
@@ -1176,10 +1176,10 @@ var require_leaflet_src = __commonJS({
       var EPSG3857 = extend({}, Earth, {
         code: "EPSG:3857",
         projection: SphericalMercator,
-        transformation: function() {
+        transformation: (function() {
           var scale2 = 0.5 / (Math.PI * SphericalMercator.R);
           return toTransformation(scale2, 0.5, -scale2, 0.5);
-        }()
+        })()
       });
       var EPSG900913 = extend({}, EPSG3857, {
         code: "EPSG:900913"
@@ -1229,7 +1229,7 @@ var require_leaflet_src = __commonJS({
       var mobileOpera = mobile && opera;
       var mobileGecko = mobile && gecko;
       var retina = (window.devicePixelRatio || window.screen.deviceXDPI / window.screen.logicalXDPI) > 1;
-      var passiveEvents = function() {
+      var passiveEvents = (function() {
         var supportsPassiveOption = false;
         try {
           var opts = Object.defineProperty({}, "passive", {
@@ -1242,17 +1242,17 @@ var require_leaflet_src = __commonJS({
         } catch (e) {
         }
         return supportsPassiveOption;
-      }();
-      var canvas$1 = function() {
+      })();
+      var canvas$1 = (function() {
         return !!document.createElement("canvas").getContext;
-      }();
+      })();
       var svg$1 = !!(document.createElementNS && svgCreate("svg").createSVGRect);
-      var inlineSvg = !!svg$1 && function() {
+      var inlineSvg = !!svg$1 && (function() {
         var div = document.createElement("div");
         div.innerHTML = "<svg/>";
         return (div.firstChild && div.firstChild.namespaceURI) === "http://www.w3.org/2000/svg";
-      }();
-      var vml = !svg$1 && function() {
+      })();
+      var vml = !svg$1 && (function() {
         try {
           var div = document.createElement("div");
           div.innerHTML = '<v:shape adj="1"/>';
@@ -1262,7 +1262,7 @@ var require_leaflet_src = __commonJS({
         } catch (e) {
           return false;
         }
-      }();
+      })();
       var mac = navigator.platform.indexOf("Mac") === 0;
       var linux = navigator.platform.indexOf("Linux") === 0;
       function userAgentContains(str) {
@@ -4350,10 +4350,10 @@ var require_leaflet_src = __commonJS({
       var EPSG3395 = extend({}, Earth, {
         code: "EPSG:3395",
         projection: Mercator,
-        transformation: function() {
+        transformation: (function() {
           var scale2 = 0.5 / (Math.PI * Mercator.R);
           return toTransformation(scale2, 0.5, -scale2, 0.5);
-        }()
+        })()
       });
       var EPSG4326 = extend({}, Earth, {
         code: "EPSG:4326",
@@ -8555,7 +8555,7 @@ var require_leaflet_src = __commonJS({
       function canvas(options) {
         return Browser.canvas ? new Canvas(options) : null;
       }
-      var vmlCreate = function() {
+      var vmlCreate = (function() {
         try {
           document.namespaces.add("lvml", "urn:schemas-microsoft-com:vml");
           return function(name) {
@@ -8566,7 +8566,7 @@ var require_leaflet_src = __commonJS({
         return function(name) {
           return document.createElement("<" + name + ' xmlns="urn:schemas-microsoft.com:vml" class="lvml">');
         };
-      }();
+      })();
       var vmlMixin = {
         _initContainer: function() {
           this._container = create$1("div", "leaflet-vml-container");
@@ -9548,7 +9548,7 @@ var require_leaflet_src = __commonJS({
         return this;
       };
       window.L = exports2;
-    });
+    }));
   }
 });
 
@@ -9563,4 +9563,4 @@ leaflet/dist/leaflet-src.js:
    * (c) 2010-2023 Vladimir Agafonkin, (c) 2010-2011 CloudMade
    *)
 */
-//# sourceMappingURL=chunk-EWRAASFD.js.map
+//# sourceMappingURL=chunk-CHPFRV3U.js.map

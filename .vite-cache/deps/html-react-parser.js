@@ -1,10 +1,10 @@
 import {
   require_react
-} from "./chunk-VPEBV5N7.js";
+} from "./chunk-QLJLW6ED.js";
 import {
   __commonJS,
   __toESM
-} from "./chunk-SNAQBZPT.js";
+} from "./chunk-PR4QN5HX.js";
 
 // node_modules/domelementtype/lib/index.js
 var require_lib = __commonJS({
@@ -44,7 +44,7 @@ var require_lib = __commonJS({
 var require_node = __commonJS({
   "node_modules/domhandler/lib/node.js"(exports) {
     "use strict";
-    var __extends = exports && exports.__extends || /* @__PURE__ */ function() {
+    var __extends = exports && exports.__extends || /* @__PURE__ */ (function() {
       var extendStatics = function(d, b) {
         extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
           d2.__proto__ = b2;
@@ -62,7 +62,7 @@ var require_node = __commonJS({
         }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
       };
-    }();
+    })();
     var __assign = exports && exports.__assign || function() {
       __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -79,7 +79,7 @@ var require_node = __commonJS({
     var domelementtype_1 = require_lib();
     var Node = (
       /** @class */
-      function() {
+      (function() {
         function Node2() {
           this.parent = null;
           this.prev = null;
@@ -137,12 +137,12 @@ var require_node = __commonJS({
           return cloneNode(this, recursive);
         };
         return Node2;
-      }()
+      })()
     );
     exports.Node = Node;
     var DataNode = (
       /** @class */
-      function(_super) {
+      (function(_super) {
         __extends(DataNode2, _super);
         function DataNode2(data) {
           var _this = _super.call(this) || this;
@@ -164,12 +164,12 @@ var require_node = __commonJS({
           configurable: true
         });
         return DataNode2;
-      }(Node)
+      })(Node)
     );
     exports.DataNode = DataNode;
     var Text2 = (
       /** @class */
-      function(_super) {
+      (function(_super) {
         __extends(Text3, _super);
         function Text3() {
           var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -184,12 +184,12 @@ var require_node = __commonJS({
           configurable: true
         });
         return Text3;
-      }(DataNode)
+      })(DataNode)
     );
     exports.Text = Text2;
     var Comment2 = (
       /** @class */
-      function(_super) {
+      (function(_super) {
         __extends(Comment3, _super);
         function Comment3() {
           var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -204,12 +204,12 @@ var require_node = __commonJS({
           configurable: true
         });
         return Comment3;
-      }(DataNode)
+      })(DataNode)
     );
     exports.Comment = Comment2;
     var ProcessingInstruction2 = (
       /** @class */
-      function(_super) {
+      (function(_super) {
         __extends(ProcessingInstruction3, _super);
         function ProcessingInstruction3(name, data) {
           var _this = _super.call(this, data) || this;
@@ -225,12 +225,12 @@ var require_node = __commonJS({
           configurable: true
         });
         return ProcessingInstruction3;
-      }(DataNode)
+      })(DataNode)
     );
     exports.ProcessingInstruction = ProcessingInstruction2;
     var NodeWithChildren = (
       /** @class */
-      function(_super) {
+      (function(_super) {
         __extends(NodeWithChildren2, _super);
         function NodeWithChildren2(children) {
           var _this = _super.call(this) || this;
@@ -270,12 +270,12 @@ var require_node = __commonJS({
           configurable: true
         });
         return NodeWithChildren2;
-      }(Node)
+      })(Node)
     );
     exports.NodeWithChildren = NodeWithChildren;
     var CDATA = (
       /** @class */
-      function(_super) {
+      (function(_super) {
         __extends(CDATA2, _super);
         function CDATA2() {
           var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -290,12 +290,12 @@ var require_node = __commonJS({
           configurable: true
         });
         return CDATA2;
-      }(NodeWithChildren)
+      })(NodeWithChildren)
     );
     exports.CDATA = CDATA;
     var Document = (
       /** @class */
-      function(_super) {
+      (function(_super) {
         __extends(Document2, _super);
         function Document2() {
           var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -310,12 +310,12 @@ var require_node = __commonJS({
           configurable: true
         });
         return Document2;
-      }(NodeWithChildren)
+      })(NodeWithChildren)
     );
     exports.Document = Document;
     var Element2 = (
       /** @class */
-      function(_super) {
+      (function(_super) {
         __extends(Element3, _super);
         function Element3(name, attribs, children, type) {
           if (children === void 0) {
@@ -369,7 +369,7 @@ var require_node = __commonJS({
           configurable: true
         });
         return Element3;
-      }(NodeWithChildren)
+      })(NodeWithChildren)
     );
     exports.Element = Element2;
     function isTag(node) {
@@ -478,7 +478,7 @@ var require_node = __commonJS({
 var require_lib2 = __commonJS({
   "node_modules/domhandler/lib/index.js"(exports) {
     "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports && exports.__createBinding || (Object.create ? (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -487,10 +487,10 @@ var require_lib2 = __commonJS({
         } };
       }
       Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
+    }) : (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
-    });
+    }));
     var __exportStar = exports && exports.__exportStar || function(m, exports2) {
       for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports2, p)) __createBinding(exports2, m, p);
     };
@@ -506,7 +506,7 @@ var require_lib2 = __commonJS({
     };
     var DomHandler = (
       /** @class */
-      function() {
+      (function() {
         function DomHandler2(callback, options, elementCB) {
           this.dom = [];
           this.root = new node_js_1.Document(this.dom);
@@ -626,7 +626,7 @@ var require_lib2 = __commonJS({
           this.lastNode = null;
         };
         return DomHandler2;
-      }()
+      })()
     );
     exports.DomHandler = DomHandler;
     exports.default = DomHandler;
@@ -856,6 +856,7 @@ var require_domparser = __commonJS({
           }
           return elements;
         }
+        // low-level tag or text
         default: {
           if (parseFromTemplate) {
             return parseFromTemplate(html);
@@ -2301,6 +2302,7 @@ var require_dom_to_react = __commonJS({
               children = domToReact2(node.children, options);
             }
             break;
+          // skip all other cases (e.g., comment)
           default:
             continue;
         }

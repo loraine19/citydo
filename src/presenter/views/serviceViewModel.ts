@@ -9,7 +9,9 @@ export const serviceViewModel = () => {
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
       refetchOnWindowFocus: false,
-      staleTime: 600000, // 10 minutes,
+      staleTime: 1000 * 60 * 15,
+      retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
     const getServices = DI.resolve('getServicesUseCase')
@@ -17,6 +19,8 @@ export const serviceViewModel = () => {
       = useInfiniteQuery({
         queryKey: ['services', params],
         retry: true,
+        staleTime: 1000 * 60 * 15,
+        networkMode: 'offlineFirst',
         queryFn: async ({ pageParam = 1 }) => await getServices.execute(pageParam, params) || [],
         initialPageParam: 1,
         getNextPageParam: (lastPage: any, pages: any) => lastPage?.services?.length ? pages.length + 1 : undefined
@@ -49,6 +53,7 @@ export const serviceIdViewModel = () => {
       refetchOnWindowFocus: false,
       staleTime: 1000 * 60 * 15,
       retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 

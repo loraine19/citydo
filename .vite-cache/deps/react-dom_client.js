@@ -1,12 +1,12 @@
 import {
   require_react_dom
-} from "./chunk-6JBW5ATH.js";
+} from "./chunk-2YVMFDJ2.js";
 import {
   require_react
-} from "./chunk-VPEBV5N7.js";
+} from "./chunk-QLJLW6ED.js";
 import {
   __commonJS
-} from "./chunk-SNAQBZPT.js";
+} from "./chunk-PR4QN5HX.js";
 
 // node_modules/scheduler/cjs/scheduler.development.js
 var require_scheduler_development = __commonJS({
@@ -17966,7 +17966,7 @@ var require_react_dom_client_development = __commonJS({
         componentOrElement = null === componentOrElement ? null : componentOrElement.stateNode;
         return componentOrElement;
       };
-      if (!function() {
+      if (!(function() {
         var internals = {
           bundleType: 1,
           version: "19.1.1",
@@ -17990,7 +17990,7 @@ var require_react_dom_client_development = __commonJS({
         internals.getLaneLabelMap = getLaneLabelMap;
         internals.injectProfilingHooks = injectProfilingHooks;
         return injectInternals(internals);
-      }() && canUseDOM && window.top === window.self && (-1 < navigator.userAgent.indexOf("Chrome") && -1 === navigator.userAgent.indexOf("Edge") || -1 < navigator.userAgent.indexOf("Firefox"))) {
+      })() && canUseDOM && window.top === window.self && (-1 < navigator.userAgent.indexOf("Chrome") && -1 === navigator.userAgent.indexOf("Edge") || -1 < navigator.userAgent.indexOf("Firefox"))) {
         var protocol = window.location.protocol;
         /^(https?|file):$/.test(protocol) && console.info(
           "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools" + ("file:" === protocol ? "\nYou might need to use a local HTTP server (instead of file://): https://react.dev/link/react-devtools-faq" : ""),

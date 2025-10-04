@@ -12,6 +12,7 @@ export const voteViewModel = () => {
       refetchOnWindowFocus: false,
       staleTime: 1000 * 60 * 10,
       retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 
@@ -24,6 +25,7 @@ export const voteViewModel = () => {
         initialPageParam: 1,
         retry: true,
         staleTime: 1000 * 60 * 15,
+        networkMode: 'offlineFirst',
         getNextPageParam: (lastPage, pages) => lastPage?.poolsSurveys?.length ? pages.length + 1 : undefined
       })
 
@@ -49,14 +51,18 @@ export const poolIdViewModel = () => {
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
       refetchOnWindowFocus: true,
-      staleTime: 600000, // 10 minutes,
+      staleTime: 1000 * 60 * 15,
+      retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 
     const getPoolById = DI.resolve('getPoolByIdUseCase')
     const { data, isLoading, error, refetch } = useQuery({
       queryKey: ['poolById', id],
-      staleTime: 60000,
+      staleTime: 1000 * 60 * 15,
+      retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await getPoolById.execute(id),
     })
 
@@ -81,14 +87,18 @@ export const surveyIdViewModel = () => {
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
       refetchOnWindowFocus: false,
-      staleTime: 600000, // 10 minutes,
+      staleTime: 1000 * 60 * 15,
+      retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 
     const getSurveyById = DI.resolve('getSurveyByIdUseCase')
     const { data, isLoading, error, refetch } = useQuery({
       queryKey: ['surveyById', id],
-      staleTime: 600000,
+      staleTime: 1000 * 60 * 15,
+      retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await getSurveyById.execute(id),
     })
 

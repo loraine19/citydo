@@ -1,18 +1,17 @@
 "use client";
 import {
   require_react_dom
-} from "./chunk-6JBW5ATH.js";
+} from "./chunk-2YVMFDJ2.js";
 import {
   require_jsx_runtime
-} from "./chunk-P5EAQRRD.js";
+} from "./chunk-24WYNIL6.js";
 import {
   require_react
-} from "./chunk-VPEBV5N7.js";
+} from "./chunk-QLJLW6ED.js";
 import {
   __commonJS,
-  __publicField,
   __toESM
-} from "./chunk-SNAQBZPT.js";
+} from "./chunk-PR4QN5HX.js";
 
 // node_modules/deepmerge/dist/cjs.js
 var require_cjs = __commonJS({
@@ -501,220 +500,219 @@ function getRgbChannels(hex) {
 var mtConfig = import_plugin.default.withOptions(
   function(options) {
     return function({ addBase }) {
-      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P, _Q, _R, _S, _T, _U, _V, _W, _X, _Y, _Z, __, _$, _aa, _ba, _ca, _da, _ea, _fa, _ga, _ha, _ia, _ja, _ka, _la, _ma, _na, _oa, _pa, _qa, _ra, _sa, _ta, _ua, _va, _wa, _xa, _ya, _za, _Aa, _Ba, _Ca, _Da, _Ea, _Fa, _Ga, _Ha, _Ia, _Ja, _Ka, _La, _Ma, _Na, _Oa, _Pa, _Qa, _Ra, _Sa, _Ta, _Ua, _Va, _Wa, _Xa, _Ya, _Za, __a, _$a, _ab, _bb, _cb, _db, _eb, _fb, _gb, _hb, _ib, _jb, _kb, _lb, _mb, _nb, _ob;
       addBase({
         ":root": {
           /* border radius */
-          "--radius": (options == null ? void 0 : options.radius) || "1.5rem",
+          "--radius": options?.radius || "1.5rem",
           /* fonts */
-          "--font-sans": ((_a = options == null ? void 0 : options.fonts) == null ? void 0 : _a.sans) || "Inter",
-          "--font-serif": ((_b = options == null ? void 0 : options.fonts) == null ? void 0 : _b.serif) || "",
-          "--font-mono": ((_c = options == null ? void 0 : options.fonts) == null ? void 0 : _c.mono) || "Fira Code",
+          "--font-sans": options?.fonts?.sans || "Inter",
+          "--font-serif": options?.fonts?.serif || "",
+          "--font-mono": options?.fonts?.mono || "Fira Code",
           /* base colors */
           "--color-background": getRgbChannels(
-            ((_d = options == null ? void 0 : options.colors) == null ? void 0 : _d.background) || "#ffffff"
+            options?.colors?.background || "#ffffff"
           ),
           "--color-foreground": getRgbChannels(
-            ((_e = options == null ? void 0 : options.colors) == null ? void 0 : _e.foreground) || "#475569"
+            options?.colors?.foreground || "#475569"
           ),
-          "--color-black": getRgbChannels(((_f = options == null ? void 0 : options.colors) == null ? void 0 : _f.black) || "#020617"),
-          "--color-white": getRgbChannels(((_g = options == null ? void 0 : options.colors) == null ? void 0 : _g.white) || "#ffffff"),
+          "--color-black": getRgbChannels(options?.colors?.black || "#020617"),
+          "--color-white": getRgbChannels(options?.colors?.white || "#ffffff"),
           /* surface color */
           "--color-surface": getRgbChannels(
-            ((_i = (_h = options == null ? void 0 : options.colors) == null ? void 0 : _h.surface) == null ? void 0 : _i.default) || "#e2e8f0"
+            options?.colors?.surface?.default || "#e2e8f0"
           ),
           "--color-surface-dark": getRgbChannels(
-            ((_k = (_j = options == null ? void 0 : options.colors) == null ? void 0 : _j.surface) == null ? void 0 : _k.dark) || "#cbd5e1"
+            options?.colors?.surface?.dark || "#cbd5e1"
           ),
           "--color-surface-light": getRgbChannels(
-            ((_m = (_l = options == null ? void 0 : options.colors) == null ? void 0 : _l.surface) == null ? void 0 : _m.light) || "#f1f5f9"
+            options?.colors?.surface?.light || "#f1f5f9"
           ),
           "--color-surface-foreground": getRgbChannels(
-            ((_o = (_n = options == null ? void 0 : options.colors) == null ? void 0 : _n.surface) == null ? void 0 : _o.foreground) || "#020617"
+            options?.colors?.surface?.foreground || "#020617"
           ),
           /* primary color */
           "--color-primary": getRgbChannels(
-            ((_q = (_p = options == null ? void 0 : options.colors) == null ? void 0 : _p.primary) == null ? void 0 : _q.default) || "#1e293b"
+            options?.colors?.primary?.default || "#1e293b"
           ),
           "--color-primary-dark": getRgbChannels(
-            ((_s = (_r = options == null ? void 0 : options.colors) == null ? void 0 : _r.primary) == null ? void 0 : _s.dark) || "#0f172a"
+            options?.colors?.primary?.dark || "#0f172a"
           ),
           "--color-primary-light": getRgbChannels(
-            ((_u = (_t = options == null ? void 0 : options.colors) == null ? void 0 : _t.primary) == null ? void 0 : _u.light) || "#334155"
+            options?.colors?.primary?.light || "#334155"
           ),
           "--color-primary-foreground": getRgbChannels(
-            ((_w = (_v = options == null ? void 0 : options.colors) == null ? void 0 : _v.primary) == null ? void 0 : _w.foreground) || "#f8fafc"
+            options?.colors?.primary?.foreground || "#f8fafc"
           ),
           /* secondary color */
           "--color-secondary": getRgbChannels(
-            ((_y = (_x = options == null ? void 0 : options.colors) == null ? void 0 : _x.secondary) == null ? void 0 : _y.default) || "#e2e8f0"
+            options?.colors?.secondary?.default || "#e2e8f0"
           ),
           "--color-secondary-dark": getRgbChannels(
-            ((_A = (_z = options == null ? void 0 : options.colors) == null ? void 0 : _z.secondary) == null ? void 0 : _A.dark) || "#cbd5e1"
+            options?.colors?.secondary?.dark || "#cbd5e1"
           ),
           "--color-secondary-light": getRgbChannels(
-            ((_C = (_B = options == null ? void 0 : options.colors) == null ? void 0 : _B.secondary) == null ? void 0 : _C.light) || "#f1f5f9"
+            options?.colors?.secondary?.light || "#f1f5f9"
           ),
           "--color-secondary-foreground": getRgbChannels(
-            ((_E = (_D = options == null ? void 0 : options.colors) == null ? void 0 : _D.secondary) == null ? void 0 : _E.foreground) || "#020617"
+            options?.colors?.secondary?.foreground || "#020617"
           ),
           /* info color */
           "--color-info": getRgbChannels(
-            ((_G = (_F = options == null ? void 0 : options.colors) == null ? void 0 : _F.info) == null ? void 0 : _G.default) || "#0062ff"
+            options?.colors?.info?.default || "#0062ff"
           ),
           "--color-info-dark": getRgbChannels(
-            ((_I = (_H = options == null ? void 0 : options.colors) == null ? void 0 : _H.info) == null ? void 0 : _I.dark) || "#0055dd"
+            options?.colors?.info?.dark || "#0055dd"
           ),
           "--color-info-light": getRgbChannels(
-            ((_K = (_J = options == null ? void 0 : options.colors) == null ? void 0 : _J.info) == null ? void 0 : _K.light) || "#007aff"
+            options?.colors?.info?.light || "#007aff"
           ),
           "--color-info-foreground": getRgbChannels(
-            ((_M = (_L = options == null ? void 0 : options.colors) == null ? void 0 : _L.info) == null ? void 0 : _M.foreground) || "#f8fafc"
+            options?.colors?.info?.foreground || "#f8fafc"
           ),
           /* success color */
           "--color-success": getRgbChannels(
-            ((_O = (_N = options == null ? void 0 : options.colors) == null ? void 0 : _N.success) == null ? void 0 : _O.default) || "#00bf6b"
+            options?.colors?.success?.default || "#00bf6b"
           ),
           "--color-success-dark": getRgbChannels(
-            ((_Q = (_P = options == null ? void 0 : options.colors) == null ? void 0 : _P.success) == null ? void 0 : _Q.dark) || "#00a35f"
+            options?.colors?.success?.dark || "#00a35f"
           ),
           "--color-success-light": getRgbChannels(
-            ((_S = (_R = options == null ? void 0 : options.colors) == null ? void 0 : _R.success) == null ? void 0 : _S.light) || "#02e585"
+            options?.colors?.success?.light || "#02e585"
           ),
           "--color-success-foreground": getRgbChannels(
-            ((_U = (_T = options == null ? void 0 : options.colors) == null ? void 0 : _T.success) == null ? void 0 : _U.foreground) || "#f8fafc"
+            options?.colors?.success?.foreground || "#f8fafc"
           ),
           /* warning color */
           "--color-warning": getRgbChannels(
-            ((_W = (_V = options == null ? void 0 : options.colors) == null ? void 0 : _V.warning) == null ? void 0 : _W.default) || "#fca327"
+            options?.colors?.warning?.default || "#fca327"
           ),
           "--color-warning-dark": getRgbChannels(
-            ((_Y = (_X = options == null ? void 0 : options.colors) == null ? void 0 : _X.warning) == null ? void 0 : _Y.dark) || "#f67d0a"
+            options?.colors?.warning?.dark || "#f67d0a"
           ),
           "--color-warning-light": getRgbChannels(
-            ((__ = (_Z = options == null ? void 0 : options.colors) == null ? void 0 : _Z.warning) == null ? void 0 : __.light) || "#fdba4c"
+            options?.colors?.warning?.light || "#fdba4c"
           ),
           "--color-warning-foreground": getRgbChannels(
-            ((_aa = (_$ = options == null ? void 0 : options.colors) == null ? void 0 : _$.warning) == null ? void 0 : _aa.foreground) || "#f8fafc"
+            options?.colors?.warning?.foreground || "#f8fafc"
           ),
           /* error color */
           "--color-error": getRgbChannels(
-            ((_ca = (_ba = options == null ? void 0 : options.colors) == null ? void 0 : _ba.error) == null ? void 0 : _ca.default) || "#ef4444"
+            options?.colors?.error?.default || "#ef4444"
           ),
           "--color-error-dark": getRgbChannels(
-            ((_ea = (_da = options == null ? void 0 : options.colors) == null ? void 0 : _da.error) == null ? void 0 : _ea.dark) || "#dc2626"
+            options?.colors?.error?.dark || "#dc2626"
           ),
           "--color-error-light": getRgbChannels(
-            ((_ga = (_fa = options == null ? void 0 : options.colors) == null ? void 0 : _fa.error) == null ? void 0 : _ga.light) || "#f87171"
+            options?.colors?.error?.light || "#f87171"
           ),
           "--color-error-foreground": getRgbChannels(
-            ((_ia = (_ha = options == null ? void 0 : options.colors) == null ? void 0 : _ha.error) == null ? void 0 : _ia.foreground) || "#f8fafc"
+            options?.colors?.error?.foreground || "#f8fafc"
           )
         },
         ".dark": {
           /* base colors */
           "--color-background": getRgbChannels(
-            ((_ja = options == null ? void 0 : options.darkColors) == null ? void 0 : _ja.background) || "#020617"
+            options?.darkColors?.background || "#020617"
           ),
           "--color-foreground": getRgbChannels(
-            ((_ka = options == null ? void 0 : options.darkColors) == null ? void 0 : _ka.foreground) || "#94a3b8"
+            options?.darkColors?.foreground || "#94a3b8"
           ),
           "--color-black": getRgbChannels(
-            ((_la = options == null ? void 0 : options.darkColors) == null ? void 0 : _la.black) || "#020617"
+            options?.darkColors?.black || "#020617"
           ),
           "--color-white": getRgbChannels(
-            ((_ma = options == null ? void 0 : options.darkColors) == null ? void 0 : _ma.white) || "#ffffff"
+            options?.darkColors?.white || "#ffffff"
           ),
           /* surface color */
           "--color-surface": getRgbChannels(
-            ((_oa = (_na = options == null ? void 0 : options.darkColors) == null ? void 0 : _na.surface) == null ? void 0 : _oa.default) || "#1e293b"
+            options?.darkColors?.surface?.default || "#1e293b"
           ),
           "--color-surface-dark": getRgbChannels(
-            ((_qa = (_pa = options == null ? void 0 : options.darkColors) == null ? void 0 : _pa.surface) == null ? void 0 : _qa.dark) || "#0f172a"
+            options?.darkColors?.surface?.dark || "#0f172a"
           ),
           "--color-surface-light": getRgbChannels(
-            ((_sa = (_ra = options == null ? void 0 : options.darkColors) == null ? void 0 : _ra.surface) == null ? void 0 : _sa.light) || "#334155"
+            options?.darkColors?.surface?.light || "#334155"
           ),
           "--color-surface-foreground": getRgbChannels(
-            ((_ua = (_ta = options == null ? void 0 : options.darkColors) == null ? void 0 : _ta.surface) == null ? void 0 : _ua.foreground) || "#f8fafc"
+            options?.darkColors?.surface?.foreground || "#f8fafc"
           ),
           /* primary color */
           "--color-primary": getRgbChannels(
-            ((_wa = (_va = options == null ? void 0 : options.darkColors) == null ? void 0 : _va.primary) == null ? void 0 : _wa.default) || "#e2e8f0"
+            options?.darkColors?.primary?.default || "#e2e8f0"
           ),
           "--color-primary-dark": getRgbChannels(
-            ((_ya = (_xa = options == null ? void 0 : options.darkColors) == null ? void 0 : _xa.primary) == null ? void 0 : _ya.dark) || "#cbd5e1"
+            options?.darkColors?.primary?.dark || "#cbd5e1"
           ),
           "--color-primary-light": getRgbChannels(
-            ((_Aa = (_za = options == null ? void 0 : options.darkColors) == null ? void 0 : _za.primary) == null ? void 0 : _Aa.light) || "#f1f5f9"
+            options?.darkColors?.primary?.light || "#f1f5f9"
           ),
           "--color-primary-foreground": getRgbChannels(
-            ((_Ca = (_Ba = options == null ? void 0 : options.darkColors) == null ? void 0 : _Ba.primary) == null ? void 0 : _Ca.foreground) || "#020617"
+            options?.darkColors?.primary?.foreground || "#020617"
           ),
           /* secondary color */
           "--color-secondary": getRgbChannels(
-            ((_Ea = (_Da = options == null ? void 0 : options.darkColors) == null ? void 0 : _Da.secondary) == null ? void 0 : _Ea.default) || "#1e293b"
+            options?.darkColors?.secondary?.default || "#1e293b"
           ),
           "--color-secondary-dark": getRgbChannels(
-            ((_Ga = (_Fa = options == null ? void 0 : options.darkColors) == null ? void 0 : _Fa.secondary) == null ? void 0 : _Ga.dark) || "#0f172a"
+            options?.darkColors?.secondary?.dark || "#0f172a"
           ),
           "--color-secondary-light": getRgbChannels(
-            ((_Ia = (_Ha = options == null ? void 0 : options.darkColors) == null ? void 0 : _Ha.secondary) == null ? void 0 : _Ia.light) || "#334155"
+            options?.darkColors?.secondary?.light || "#334155"
           ),
           "--color-secondary-foreground": getRgbChannels(
-            ((_Ka = (_Ja = options == null ? void 0 : options.darkColors) == null ? void 0 : _Ja.secondary) == null ? void 0 : _Ka.foreground) || "#f8fafc"
+            options?.darkColors?.secondary?.foreground || "#f8fafc"
           ),
           /* info color */
           "--color-info": getRgbChannels(
-            ((_Ma = (_La = options == null ? void 0 : options.darkColors) == null ? void 0 : _La.info) == null ? void 0 : _Ma.default) || "#0062ff"
+            options?.darkColors?.info?.default || "#0062ff"
           ),
           "--color-info-dark": getRgbChannels(
-            ((_Oa = (_Na = options == null ? void 0 : options.darkColors) == null ? void 0 : _Na.info) == null ? void 0 : _Oa.dark) || "#0055dd"
+            options?.darkColors?.info?.dark || "#0055dd"
           ),
           "--color-info-light": getRgbChannels(
-            ((_Qa = (_Pa = options == null ? void 0 : options.darkColors) == null ? void 0 : _Pa.info) == null ? void 0 : _Qa.light) || "#007aff"
+            options?.darkColors?.info?.light || "#007aff"
           ),
           "--color-info-foreground": getRgbChannels(
-            ((_Sa = (_Ra = options == null ? void 0 : options.darkColors) == null ? void 0 : _Ra.info) == null ? void 0 : _Sa.foreground) || "#f8fafc"
+            options?.darkColors?.info?.foreground || "#f8fafc"
           ),
           /* success color */
           "--color-success": getRgbChannels(
-            ((_Ua = (_Ta = options == null ? void 0 : options.darkColors) == null ? void 0 : _Ta.success) == null ? void 0 : _Ua.default) || "#00bf6b"
+            options?.darkColors?.success?.default || "#00bf6b"
           ),
           "--color-success-dark": getRgbChannels(
-            ((_Wa = (_Va = options == null ? void 0 : options.darkColors) == null ? void 0 : _Va.success) == null ? void 0 : _Wa.dark) || "#00a35f"
+            options?.darkColors?.success?.dark || "#00a35f"
           ),
           "--color-success-light": getRgbChannels(
-            ((_Ya = (_Xa = options == null ? void 0 : options.darkColors) == null ? void 0 : _Xa.success) == null ? void 0 : _Ya.light) || "#02e585"
+            options?.darkColors?.success?.light || "#02e585"
           ),
           "--color-success-foreground": getRgbChannels(
-            ((__a = (_Za = options == null ? void 0 : options.darkColors) == null ? void 0 : _Za.success) == null ? void 0 : __a.foreground) || "#f8fafc"
+            options?.darkColors?.success?.foreground || "#f8fafc"
           ),
           /* warning color */
           "--color-warning": getRgbChannels(
-            ((_ab = (_$a = options == null ? void 0 : options.darkColors) == null ? void 0 : _$a.warning) == null ? void 0 : _ab.default) || "#fca327"
+            options?.darkColors?.warning?.default || "#fca327"
           ),
           "--color-warning-dark": getRgbChannels(
-            ((_cb = (_bb = options == null ? void 0 : options.darkColors) == null ? void 0 : _bb.warning) == null ? void 0 : _cb.dark) || "#f67d0a"
+            options?.darkColors?.warning?.dark || "#f67d0a"
           ),
           "--color-warning-light": getRgbChannels(
-            ((_eb = (_db = options == null ? void 0 : options.darkColors) == null ? void 0 : _db.warning) == null ? void 0 : _eb.light) || "#fdba4c"
+            options?.darkColors?.warning?.light || "#fdba4c"
           ),
           "--color-warning-foreground": getRgbChannels(
-            ((_gb = (_fb = options == null ? void 0 : options.darkColors) == null ? void 0 : _fb.warning) == null ? void 0 : _gb.foreground) || "#f8fafc"
+            options?.darkColors?.warning?.foreground || "#f8fafc"
           ),
           /* error color */
           "--color-error": getRgbChannels(
-            ((_ib = (_hb = options == null ? void 0 : options.darkColors) == null ? void 0 : _hb.error) == null ? void 0 : _ib.default) || "#ef4444"
+            options?.darkColors?.error?.default || "#ef4444"
           ),
           "--color-error-dark": getRgbChannels(
-            ((_kb = (_jb = options == null ? void 0 : options.darkColors) == null ? void 0 : _jb.error) == null ? void 0 : _kb.dark) || "#dc2626"
+            options?.darkColors?.error?.dark || "#dc2626"
           ),
           "--color-error-light": getRgbChannels(
-            ((_mb = (_lb = options == null ? void 0 : options.darkColors) == null ? void 0 : _lb.error) == null ? void 0 : _mb.light) || "#f87171"
+            options?.darkColors?.error?.light || "#f87171"
           ),
           "--color-error-foreground": getRgbChannels(
-            ((_ob = (_nb = options == null ? void 0 : options.darkColors) == null ? void 0 : _nb.error) == null ? void 0 : _ob.foreground) || "#f8fafc"
+            options?.darkColors?.error?.foreground || "#f8fafc"
           )
         }
       });
@@ -4219,7 +4217,7 @@ var twMerge = createTailwindMerge(getDefaultConfig);
 // node_modules/@material-tailwind/react/dist/chunk-5DV345YV.js
 function mergeTheme(entry) {
   const result = {};
-  const defaultProps = entry == null ? void 0 : entry["defaultProps"];
+  const defaultProps = entry?.["defaultProps"];
   for (const key in entry) {
     if (key !== "defaultProps") {
       if (Array.isArray(entry[key])) {
@@ -4242,7 +4240,7 @@ function mergeTheme(entry) {
 // node_modules/@material-tailwind/react/dist/chunk-L3VNOE5J.js
 function parseObject(entry) {
   const result = {};
-  const defaultProps = entry == null ? void 0 : entry["defaultProps"];
+  const defaultProps = entry?.["defaultProps"];
   for (const key in entry) {
     if (key !== "defaultProps") {
       if (typeof entry[key] === "object") {
@@ -9705,14 +9703,14 @@ function TooltipRoot({
 }) {
   const arrowRef = React4.useRef(null);
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.tooltip) ?? tooltipTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.tooltip ?? tooltipTheme;
+  const defaultProps = theme2?.defaultProps;
   const [uncontrolledOpen, setUncontrolledOpen] = React4.useState(false);
   const open = controlledOpen ?? uncontrolledOpen;
   const setOpen = setControlledOpen ?? setUncontrolledOpen;
-  placement ?? (placement = (defaultProps == null ? void 0 : defaultProps.placement) ?? "top");
-  offset4 ?? (offset4 = (defaultProps == null ? void 0 : defaultProps.offset) ?? 8);
-  interactive ?? (interactive = (defaultProps == null ? void 0 : defaultProps.interactive) ?? false);
+  placement ??= defaultProps?.placement ?? "top";
+  offset4 ??= defaultProps?.offset ?? 8;
+  interactive ??= defaultProps?.interactive ?? false;
   const data = useFloating2({
     placement,
     open,
@@ -9760,10 +9758,10 @@ TooltipRoot.displayName = "MaterialTailwind.Tooltip";
 function TooltipTriggerRoot({ as, className, children, ...props }, ref) {
   const Component = as || "button";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.tooltipTrigger) ?? tooltipTriggerTheme;
+  const theme2 = contextTheme?.tooltipTrigger ?? tooltipTriggerTheme;
   const { refs, getReferenceProps, open } = React4.useContext(TooltipContext);
   const styles = twMerge(theme2.baseStyle, className);
-  const elementRef = useMergeRefs([refs == null ? void 0 : refs.setReference, ref]);
+  const elementRef = useMergeRefs([refs?.setReference, ref]);
   return (0, import_jsx_runtime4.jsx)(
     Component,
     {
@@ -9781,17 +9779,17 @@ var TooltipTrigger = React4.forwardRef(TooltipTriggerRoot);
 function TooltipContentRoot({ as, className, children, ...props }, ref) {
   const Component = as || "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.tooltipContent) ?? tooltipContentTheme;
+  const theme2 = contextTheme?.tooltipContent ?? tooltipContentTheme;
   const { refs, getFloatingProps, open, floatingStyles } = React4.useContext(TooltipContext);
   const styles = twMerge(theme2.baseStyle, className);
-  const elementRef = useMergeRefs([refs == null ? void 0 : refs.setFloating, ref]);
+  const elementRef = useMergeRefs([refs?.setFloating, ref]);
   return open ? (0, import_jsx_runtime4.jsx)(FloatingPortal, { children: (0, import_jsx_runtime4.jsx)(
     Component,
     {
       ...props,
       ref: elementRef,
       "data-open": open,
-      style: { ...floatingStyles, ...props == null ? void 0 : props.style },
+      style: { ...floatingStyles, ...props?.style },
       className: styles,
       ...getFloatingProps && getFloatingProps(),
       children
@@ -9801,10 +9799,9 @@ function TooltipContentRoot({ as, className, children, ...props }, ref) {
 TooltipContentRoot.displayName = "MaterialTailwind.TooltipContent";
 var TooltipContent = React4.forwardRef(TooltipContentRoot);
 function TooltipArrowRoot({ as, className, ...props }, ref) {
-  var _a, _b, _c;
   const Component = as || "span";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.tooltipArrow) ?? tooltipArrowTheme;
+  const theme2 = contextTheme?.tooltipArrow ?? tooltipArrowTheme;
   const innerRef = React4.useRef(null);
   const { placement, arrowRef, middlewareData } = React4.useContext(TooltipContext);
   const elementRef = useMergeRefs([arrowRef, innerRef, ref]);
@@ -9822,10 +9819,10 @@ function TooltipArrowRoot({ as, className, ...props }, ref) {
       ref: elementRef,
       style: {
         position: "absolute",
-        left: (_a = middlewareData == null ? void 0 : middlewareData.arrow) == null ? void 0 : _a.x,
-        top: (_b = middlewareData == null ? void 0 : middlewareData.arrow) == null ? void 0 : _b.y,
-        [staticSide]: `${-((_c = innerRef == null ? void 0 : innerRef.current) == null ? void 0 : _c.clientHeight) / 2 - 1}px`,
-        ...props == null ? void 0 : props.style
+        left: middlewareData?.arrow?.x,
+        top: middlewareData?.arrow?.y,
+        [staticSide]: `${-innerRef?.current?.clientHeight / 2 - 1}px`,
+        ...props?.style
       },
       "data-placement": placement,
       className: styles
@@ -9847,15 +9844,15 @@ var headings = ["h1", "h2", "h3", "h4", "h5", "h6"];
 function TypographyRoot({ as, color, type, className, children, ...props }, ref) {
   const Component = as ? as : type === "lead" ? "p" : type || "p";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.typography) ?? typographyTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.typography ?? typographyTheme;
+  const defaultProps = theme2?.defaultProps;
   if (headings.includes(type) && color === "inherit") {
     color = "default";
   } else {
-    color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "inherit");
+    color ??= defaultProps?.color ?? "inherit";
   }
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "inherit");
-  type ?? (type = (defaultProps == null ? void 0 : defaultProps.type) ?? "p");
+  color ??= defaultProps?.color ?? "inherit";
+  type ??= defaultProps?.type ?? "p";
   const styles = twMerge(
     theme2.baseStyle,
     theme2["type"][type],
@@ -9884,9 +9881,9 @@ function RatingRoot({
 }, ref) {
   const Component = as ?? "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.rating) ?? ratingTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
-  ratedIcon ?? (ratedIcon = (defaultProps == null ? void 0 : defaultProps.ratedIcon) ?? (0, import_jsx_runtime6.jsx)(
+  const theme2 = contextTheme?.rating ?? ratingTheme;
+  const defaultProps = theme2?.defaultProps;
+  ratedIcon ??= defaultProps?.ratedIcon ?? (0, import_jsx_runtime6.jsx)(
     "svg",
     {
       xmlns: "http://www.w3.org/2000/svg",
@@ -9902,8 +9899,8 @@ function RatingRoot({
         }
       )
     }
-  ));
-  unratedIcon ?? (unratedIcon = (defaultProps == null ? void 0 : defaultProps.unratedIcon) ?? (0, import_jsx_runtime6.jsx)(
+  );
+  unratedIcon ??= defaultProps?.unratedIcon ?? (0, import_jsx_runtime6.jsx)(
     "svg",
     {
       xmlns: "http://www.w3.org/2000/svg",
@@ -9921,11 +9918,11 @@ function RatingRoot({
         }
       )
     }
-  ));
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
-  count2 ?? (count2 = (defaultProps == null ? void 0 : defaultProps.count) ?? 5);
-  value ?? (value = 0);
-  readonly ?? (readonly = (defaultProps == null ? void 0 : defaultProps.readonly) ?? false);
+  );
+  color ??= defaultProps?.color ?? "primary";
+  count2 ??= defaultProps?.count ?? 5;
+  value ??= 0;
+  readonly ??= defaultProps?.readonly ?? false;
   const [ratingValue, setRatingValue] = React6.useState(() => [
     ...Array(value).fill("rated"),
     ...Array(count2 - value).fill("un_rated")
@@ -9937,14 +9934,12 @@ function RatingRoot({
   const baseStyles = twMerge(theme2.baseStyle, theme2.color[color], className);
   const iconStyle = twMerge(theme2.icon);
   const renderRating = (data) => data.map((el, idx) => {
-    var _a;
     const isRated = el === "rated";
     const elementToRender = isRated ? ratedIcon : unratedIcon;
     return React6.isValidElement(elementToRender) ? React6.cloneElement(elementToRender, {
-      ...elementToRender == null ? void 0 : elementToRender.props,
+      ...elementToRender?.props,
       key: idx,
       onClick: (event) => {
-        var _a2, _b;
         if (readonly)
           return;
         const nextRating = ratingValue.map(
@@ -9952,10 +9947,9 @@ function RatingRoot({
         );
         setRatingValue(nextRating);
         onValueChange && typeof onValueChange === "function" && onValueChange(nextRating.filter((el2) => el2 === "rated").length);
-        ((_a2 = elementToRender == null ? void 0 : elementToRender.props) == null ? void 0 : _a2.onClick) && ((_b = elementToRender == null ? void 0 : elementToRender.props) == null ? void 0 : _b.onClick(event));
+        elementToRender?.props?.onClick && elementToRender?.props?.onClick(event);
       },
       onMouseEnter: (event) => {
-        var _a2, _b;
         if (readonly)
           return;
         const nextRating = ratingOnHover.map(
@@ -9963,19 +9957,18 @@ function RatingRoot({
         );
         setIsHover(true);
         setRatingOnHover(nextRating);
-        ((_a2 = elementToRender == null ? void 0 : elementToRender.props) == null ? void 0 : _a2.onMouseEnter) && ((_b = elementToRender == null ? void 0 : elementToRender.props) == null ? void 0 : _b.onMouseEnter(event));
+        elementToRender?.props?.onMouseEnter && elementToRender?.props?.onMouseEnter(event);
       },
       onMouseLeave: (event) => {
-        var _a2, _b;
         if (!readonly) {
           setIsHover(false);
         }
-        ((_a2 = elementToRender == null ? void 0 : elementToRender.props) == null ? void 0 : _a2.onMouseLeave) && ((_b = elementToRender == null ? void 0 : elementToRender.props) == null ? void 0 : _b.onMouseLeave(event));
+        elementToRender?.props?.onMouseLeave && elementToRender?.props?.onMouseLeave(event);
       },
       "data-slot": "icon",
       className: twMerge(
         iconStyle,
-        (_a = elementToRender == null ? void 0 : elementToRender.props) == null ? void 0 : _a.className
+        elementToRender?.props?.className
       )
     }) : React6.createElement(elementToRender, {
       key: idx,
@@ -10038,8 +10031,8 @@ function SelectRootBase({
   children
 }, ref) {
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.select) ?? selectTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.select ?? selectTheme;
+  const defaultProps = theme2?.defaultProps;
   const [isOpen, setIsOpen] = React7.useState(false);
   const [selected, setSelected] = React7.useState(() => ({
     value,
@@ -10047,13 +10040,13 @@ function SelectRootBase({
   }));
   const [activeIndex, setActiveIndex] = React7.useState(null);
   const [selectedIndex, setSelectedIndex] = React7.useState(null);
-  size4 ?? (size4 = (defaultProps == null ? void 0 : defaultProps.size) ?? "md");
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
-  isPill ?? (isPill = (defaultProps == null ? void 0 : defaultProps.isPill) ?? false);
-  isError ?? (isError = (defaultProps == null ? void 0 : defaultProps.isError) ?? false);
-  isSuccess ?? (isSuccess = (defaultProps == null ? void 0 : defaultProps.isSuccess) ?? false);
-  placement ?? (placement = (defaultProps == null ? void 0 : defaultProps.placement) ?? "bottom");
-  offset4 ?? (offset4 = (defaultProps == null ? void 0 : defaultProps.offset) ?? 5);
+  size4 ??= defaultProps?.size ?? "md";
+  color ??= defaultProps?.color ?? "primary";
+  isPill ??= defaultProps?.isPill ?? false;
+  isError ??= defaultProps?.isError ?? false;
+  isSuccess ??= defaultProps?.isSuccess ?? false;
+  placement ??= defaultProps?.placement ?? "bottom";
+  offset4 ??= defaultProps?.offset ?? 5;
   const { refs, floatingStyles, context } = useFloating2({
     placement,
     open: isOpen,
@@ -10077,12 +10070,11 @@ function SelectRootBase({
   const labelsRef = React7.useRef([]);
   const elementsRef = React7.useRef([]);
   const handleSelect = React7.useCallback((index3) => {
-    var _a;
     setSelectedIndex(index3);
     setIsOpen(false);
     if (index3 !== null) {
       setSelected(labelsRef.current[index3]);
-      onValueChange == null ? void 0 : onValueChange((_a = labelsRef.current[index3]) == null ? void 0 : _a.value);
+      onValueChange?.(labelsRef.current[index3]?.value);
     }
   }, []);
   function handleTypeaheadMatch(index3) {
@@ -10099,7 +10091,7 @@ function SelectRootBase({
     onNavigate: setActiveIndex
   });
   const labelsRefTypehead = React7.useRef(
-    labelsRef.current.map((item) => item == null ? void 0 : item.value)
+    labelsRef.current.map((item) => item?.value)
   );
   const typeahead = useTypeahead(context, {
     listRef: labelsRefTypehead,
@@ -10169,7 +10161,7 @@ function SelectRootBase({
         ref,
         name,
         style: { display: "none" },
-        value: value || (selected == null ? void 0 : selected.value) || ""
+        value: value || selected?.value || ""
       }
     )
   ] });
@@ -10186,8 +10178,8 @@ function SelectTriggerRoot({
 }, ref) {
   const Component = as || "button";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.selectTrigger) ?? selectTriggerTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.selectTrigger ?? selectTriggerTheme;
+  const defaultProps = theme2?.defaultProps;
   const {
     refs,
     getReferenceProps,
@@ -10200,10 +10192,10 @@ function SelectTriggerRoot({
     isSuccess,
     disabled
   } = React7.useContext(SelectContext);
-  const value = selected == null ? void 0 : selected.value;
-  const element = selected == null ? void 0 : selected.element;
-  const elementRef = useMergeRefs([refs == null ? void 0 : refs.setReference, ref]);
-  indicator ?? (indicator = (defaultProps == null ? void 0 : defaultProps.indicator) ?? (0, import_jsx_runtime7.jsxs)(
+  const value = selected?.value;
+  const element = selected?.element;
+  const elementRef = useMergeRefs([refs?.setReference, ref]);
+  indicator ??= defaultProps?.indicator ?? (0, import_jsx_runtime7.jsxs)(
     "svg",
     {
       viewBox: "0 0 24 24",
@@ -10232,7 +10224,7 @@ function SelectTriggerRoot({
         )
       ]
     }
-  ));
+  );
   const styles = twMerge(
     theme2.baseStyle,
     theme2.size[size4],
@@ -10278,8 +10270,8 @@ function SelectListRoot({
 }, ref) {
   const Component = as || "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.selectList) ?? selectListTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.selectList ?? selectListTheme;
+  const defaultProps = theme2?.defaultProps;
   const {
     context,
     refs,
@@ -10292,26 +10284,25 @@ function SelectListRoot({
     setSelected,
     controlledValue
   } = React7.useContext(SelectContext);
-  disabled ?? (disabled = (defaultProps == null ? void 0 : defaultProps.disabled) ?? false);
-  initialFocus ?? (initialFocus = (defaultProps == null ? void 0 : defaultProps.initialFocus) ?? 0);
-  returnFocus ?? (returnFocus = (defaultProps == null ? void 0 : defaultProps.returnFocus) ?? true);
-  guards ?? (guards = (defaultProps == null ? void 0 : defaultProps.guards) ?? true);
-  modal ?? (modal = (defaultProps == null ? void 0 : defaultProps.modal) ?? true);
-  visuallyHiddenDismiss ?? (visuallyHiddenDismiss = (defaultProps == null ? void 0 : defaultProps.visuallyHiddenDismiss) ?? true);
-  closeOnFocusOut ?? (closeOnFocusOut = (defaultProps == null ? void 0 : defaultProps.closeOnFocusOut) ?? true);
-  order ?? (order = (defaultProps == null ? void 0 : defaultProps.order) ?? ["content"]);
+  disabled ??= defaultProps?.disabled ?? false;
+  initialFocus ??= defaultProps?.initialFocus ?? 0;
+  returnFocus ??= defaultProps?.returnFocus ?? true;
+  guards ??= defaultProps?.guards ?? true;
+  modal ??= defaultProps?.modal ?? true;
+  visuallyHiddenDismiss ??= defaultProps?.visuallyHiddenDismiss ?? true;
+  closeOnFocusOut ??= defaultProps?.closeOnFocusOut ?? true;
+  order ??= defaultProps?.order ?? ["content"];
   const styles = twMerge(theme2.baseStyle, className);
-  const elementRef = useMergeRefs([refs == null ? void 0 : refs.setFloating, ref]);
+  const elementRef = useMergeRefs([refs?.setFloating, ref]);
   React7.useEffect(() => {
-    var _a, _b;
     if (controlledValue) {
-      const label = children == null ? void 0 : children.find(
-        (el) => (selected == null ? void 0 : selected.value) === el.props.value
+      const label = children?.find(
+        (el) => selected?.value === el.props.value
       );
       if (label) {
-        setSelected == null ? void 0 : setSelected({
-          value: ((_a = label == null ? void 0 : label.props) == null ? void 0 : _a.value) || "",
-          element: ((_b = label == null ? void 0 : label.props) == null ? void 0 : _b.children) || ""
+        setSelected?.({
+          value: label?.props?.value || "",
+          element: label?.props?.children || ""
         });
       }
     }
@@ -10334,7 +10325,7 @@ function SelectListRoot({
           ...props,
           ref: elementRef,
           "data-open": isOpen,
-          style: { ...floatingStyles, ...props == null ? void 0 : props.style },
+          style: { ...floatingStyles, ...props?.style },
           className: styles,
           ...getFloatingProps && getFloatingProps(),
           children: (0, import_jsx_runtime7.jsx)(
@@ -10363,11 +10354,11 @@ function SelectOptionRoot({
 }, ref) {
   const Component = as || "button";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.selectOption) ?? selectOptionTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.selectOption ?? selectOptionTheme;
+  const defaultProps = theme2?.defaultProps;
   const { getItemProps, handleSelect, activeIndex, selectedIndex, selected } = React7.useContext(SelectContext);
-  ripple ?? (ripple = (defaultProps == null ? void 0 : defaultProps.ripple) ?? true);
-  indicator ?? (indicator = (defaultProps == null ? void 0 : defaultProps.indicator) ?? (0, import_jsx_runtime7.jsx)(
+  ripple ??= defaultProps?.ripple ?? true;
+  indicator ??= defaultProps?.indicator ?? (0, import_jsx_runtime7.jsx)(
     "svg",
     {
       xmlns: "http://www.w3.org/2000/svg",
@@ -10385,20 +10376,20 @@ function SelectOptionRoot({
         }
       )
     }
-  ));
+  );
   const { ref: itemRef, index: index3 } = useListItem({
     label: { value, element: children }
   });
   const rippleEffect = ripple !== void 0 && new import_material_ripple_effects.default();
   const handleClick = (e) => {
-    const onClick = props == null ? void 0 : props.onClick;
+    const onClick = props?.onClick;
     if (ripple) {
       rippleEffect.create(e, "dark");
     }
     handleSelect && handleSelect(index3);
-    onClick == null ? void 0 : onClick(e);
+    onClick?.(e);
   };
-  const curValue = (selected == null ? void 0 : selected.value) || "";
+  const curValue = selected?.value || "";
   const isActive = activeIndex === index3;
   const isSelected = selectedIndex === index3 || curValue === value;
   const styles = twMerge(theme2.baseStyle, className);
@@ -10461,183 +10452,9 @@ var linearInterpolator = {
   }
 };
 var Ranger = class {
+  sortedValues = [];
+  rangerElement = null;
   constructor(opts) {
-    __publicField(this, "sortedValues", []);
-    __publicField(this, "rangerElement", null);
-    __publicField(this, "_willUpdate", () => {
-      const rangerElement = this.options.getRangerElement();
-      if (this.rangerElement !== rangerElement) {
-        this.rangerElement = rangerElement;
-      }
-    });
-    __publicField(this, "getValueForClientX", (clientX) => {
-      const trackDims = getBoundingClientRect2(this.rangerElement);
-      return this.options.interpolator.getValueForClientX(clientX, trackDims, this.options.min, this.options.max);
-    });
-    __publicField(this, "getNextStep", (val, direction) => {
-      const {
-        min: min3,
-        max: max3
-      } = this.options;
-      if ("steps" in this.options) {
-        const {
-          steps
-        } = this.options;
-        let currIndex = steps.indexOf(val);
-        let nextIndex = currIndex + direction;
-        if (nextIndex >= 0 && nextIndex < steps.length) {
-          return steps[nextIndex];
-        } else {
-          return val;
-        }
-      } else {
-        let nextVal = val + this.options.stepSize * direction;
-        if (nextVal >= min3 && nextVal <= max3) {
-          return nextVal;
-        } else {
-          return val;
-        }
-      }
-    });
-    __publicField(this, "roundToStep", (val) => {
-      const {
-        min: min3,
-        max: max3
-      } = this.options;
-      let left = min3;
-      let right = max3;
-      if ("steps" in this.options) {
-        this.options.steps.forEach((step) => {
-          if (step <= val && step > left) {
-            left = step;
-          }
-          if (step >= val && step < right) {
-            right = step;
-          }
-        });
-      } else {
-        const {
-          stepSize
-        } = this.options;
-        while (left < val && left + stepSize < val) {
-          left += stepSize;
-        }
-        right = Math.min(left + stepSize, max3);
-      }
-      if (val - left < right - val) {
-        return left;
-      }
-      return right;
-    });
-    __publicField(this, "handleDrag", (e) => {
-      if (this.activeHandleIndex === void 0) {
-        return;
-      }
-      const clientX = e.type === "touchmove" ? e.changedTouches[0].clientX : e.clientX;
-      const newValue = this.getValueForClientX(clientX);
-      const newRoundedValue = this.roundToStep(newValue);
-      this.sortedValues = [...this.options.values.slice(0, this.activeHandleIndex), newRoundedValue, ...this.options.values.slice(this.activeHandleIndex + 1)];
-      if (this.options.onDrag) {
-        this.options.onDrag(this);
-      } else {
-        this.tempValues = this.sortedValues;
-        this.options.rerender();
-      }
-    });
-    __publicField(this, "handleKeyDown", (e, i) => {
-      const {
-        values
-      } = this.options;
-      if (e.keyCode === 37 || e.keyCode === 39) {
-        this.activeHandleIndex = i;
-        const direction = e.keyCode === 37 ? -1 : 1;
-        const newValue = this.getNextStep(values[i], direction);
-        const newValues = [...values.slice(0, i), newValue, ...values.slice(i + 1)];
-        this.sortedValues = sortNumList(newValues);
-        if (this.options.onChange) {
-          this.options.onChange(this);
-        }
-      }
-    });
-    __publicField(this, "handlePress", (_e, i) => {
-      this.activeHandleIndex = i;
-      this.options.rerender();
-      const handleRelease = () => {
-        const {
-          tempValues,
-          handleDrag: handleDrag2
-        } = this;
-        document.removeEventListener("mousemove", handleDrag2);
-        document.removeEventListener("touchmove", handleDrag2);
-        document.removeEventListener("mouseup", handleRelease);
-        document.removeEventListener("touchend", handleRelease);
-        this.sortedValues = sortNumList(tempValues || this.options.values);
-        if (this.options.onChange) {
-          this.options.onChange(this);
-        }
-        if (this.options.onDrag) {
-          this.options.onDrag(this);
-        }
-        this.activeHandleIndex = void 0;
-        this.tempValues = void 0;
-        this.options.rerender();
-      };
-      const {
-        handleDrag
-      } = this;
-      document.addEventListener("mousemove", handleDrag);
-      document.addEventListener("touchmove", handleDrag);
-      document.addEventListener("mouseup", handleRelease);
-      document.addEventListener("touchend", handleRelease);
-    });
-    __publicField(this, "getPercentageForValue", (val) => this.options.interpolator.getPercentageForValue(val, this.options.min, this.options.max));
-    __publicField(this, "getTicks", () => {
-      let ticks = [];
-      if (this.options.ticks) {
-        ticks = [...this.options.ticks];
-      } else if ("steps" in this.options) {
-        ticks = [...this.options.steps];
-      } else {
-        ticks = [this.options.min];
-        while (ticks[ticks.length - 1] < this.options.max - this.options.tickSize) {
-          ticks.push(ticks[ticks.length - 1] + this.options.tickSize);
-        }
-        ticks.push(this.options.max);
-      }
-      return ticks.map((value, i) => ({
-        value,
-        key: i,
-        percentage: this.getPercentageForValue(value)
-      }));
-    });
-    __publicField(this, "getSteps", () => {
-      const values = sortNumList(this.tempValues || this.options.values);
-      return [...values, this.options.max].map((value, i) => {
-        const previousValue = values[i - 1];
-        const leftValue = previousValue !== void 0 ? previousValue : this.options.min;
-        const left = this.getPercentageForValue(leftValue);
-        const width = this.getPercentageForValue(value) - left;
-        return {
-          left,
-          width
-        };
-      });
-    });
-    __publicField(this, "handles", () => {
-      return (this.tempValues || this.options.values).map((value, i) => ({
-        value,
-        isActive: i === this.activeHandleIndex,
-        onKeyDownHandler: (e) => {
-          this.handleKeyDown(e, i);
-        },
-        onMouseDownHandler: (e) => {
-          this.handlePress(e, i);
-        },
-        onTouchStart: (e) => {
-          this.handlePress(e, i);
-        }
-      }));
-    });
     this.setOptions(opts);
   }
   setOptions(opts) {
@@ -10653,6 +10470,180 @@ var Ranger = class {
       ...opts
     };
   }
+  _willUpdate = () => {
+    const rangerElement = this.options.getRangerElement();
+    if (this.rangerElement !== rangerElement) {
+      this.rangerElement = rangerElement;
+    }
+  };
+  getValueForClientX = (clientX) => {
+    const trackDims = getBoundingClientRect2(this.rangerElement);
+    return this.options.interpolator.getValueForClientX(clientX, trackDims, this.options.min, this.options.max);
+  };
+  getNextStep = (val, direction) => {
+    const {
+      min: min3,
+      max: max3
+    } = this.options;
+    if ("steps" in this.options) {
+      const {
+        steps
+      } = this.options;
+      let currIndex = steps.indexOf(val);
+      let nextIndex = currIndex + direction;
+      if (nextIndex >= 0 && nextIndex < steps.length) {
+        return steps[nextIndex];
+      } else {
+        return val;
+      }
+    } else {
+      let nextVal = val + this.options.stepSize * direction;
+      if (nextVal >= min3 && nextVal <= max3) {
+        return nextVal;
+      } else {
+        return val;
+      }
+    }
+  };
+  roundToStep = (val) => {
+    const {
+      min: min3,
+      max: max3
+    } = this.options;
+    let left = min3;
+    let right = max3;
+    if ("steps" in this.options) {
+      this.options.steps.forEach((step) => {
+        if (step <= val && step > left) {
+          left = step;
+        }
+        if (step >= val && step < right) {
+          right = step;
+        }
+      });
+    } else {
+      const {
+        stepSize
+      } = this.options;
+      while (left < val && left + stepSize < val) {
+        left += stepSize;
+      }
+      right = Math.min(left + stepSize, max3);
+    }
+    if (val - left < right - val) {
+      return left;
+    }
+    return right;
+  };
+  handleDrag = (e) => {
+    if (this.activeHandleIndex === void 0) {
+      return;
+    }
+    const clientX = e.type === "touchmove" ? e.changedTouches[0].clientX : e.clientX;
+    const newValue = this.getValueForClientX(clientX);
+    const newRoundedValue = this.roundToStep(newValue);
+    this.sortedValues = [...this.options.values.slice(0, this.activeHandleIndex), newRoundedValue, ...this.options.values.slice(this.activeHandleIndex + 1)];
+    if (this.options.onDrag) {
+      this.options.onDrag(this);
+    } else {
+      this.tempValues = this.sortedValues;
+      this.options.rerender();
+    }
+  };
+  handleKeyDown = (e, i) => {
+    const {
+      values
+    } = this.options;
+    if (e.keyCode === 37 || e.keyCode === 39) {
+      this.activeHandleIndex = i;
+      const direction = e.keyCode === 37 ? -1 : 1;
+      const newValue = this.getNextStep(values[i], direction);
+      const newValues = [...values.slice(0, i), newValue, ...values.slice(i + 1)];
+      this.sortedValues = sortNumList(newValues);
+      if (this.options.onChange) {
+        this.options.onChange(this);
+      }
+    }
+  };
+  handlePress = (_e, i) => {
+    this.activeHandleIndex = i;
+    this.options.rerender();
+    const handleRelease = () => {
+      const {
+        tempValues,
+        handleDrag: handleDrag2
+      } = this;
+      document.removeEventListener("mousemove", handleDrag2);
+      document.removeEventListener("touchmove", handleDrag2);
+      document.removeEventListener("mouseup", handleRelease);
+      document.removeEventListener("touchend", handleRelease);
+      this.sortedValues = sortNumList(tempValues || this.options.values);
+      if (this.options.onChange) {
+        this.options.onChange(this);
+      }
+      if (this.options.onDrag) {
+        this.options.onDrag(this);
+      }
+      this.activeHandleIndex = void 0;
+      this.tempValues = void 0;
+      this.options.rerender();
+    };
+    const {
+      handleDrag
+    } = this;
+    document.addEventListener("mousemove", handleDrag);
+    document.addEventListener("touchmove", handleDrag);
+    document.addEventListener("mouseup", handleRelease);
+    document.addEventListener("touchend", handleRelease);
+  };
+  getPercentageForValue = (val) => this.options.interpolator.getPercentageForValue(val, this.options.min, this.options.max);
+  getTicks = () => {
+    let ticks = [];
+    if (this.options.ticks) {
+      ticks = [...this.options.ticks];
+    } else if ("steps" in this.options) {
+      ticks = [...this.options.steps];
+    } else {
+      ticks = [this.options.min];
+      while (ticks[ticks.length - 1] < this.options.max - this.options.tickSize) {
+        ticks.push(ticks[ticks.length - 1] + this.options.tickSize);
+      }
+      ticks.push(this.options.max);
+    }
+    return ticks.map((value, i) => ({
+      value,
+      key: i,
+      percentage: this.getPercentageForValue(value)
+    }));
+  };
+  getSteps = () => {
+    const values = sortNumList(this.tempValues || this.options.values);
+    return [...values, this.options.max].map((value, i) => {
+      const previousValue = values[i - 1];
+      const leftValue = previousValue !== void 0 ? previousValue : this.options.min;
+      const left = this.getPercentageForValue(leftValue);
+      const width = this.getPercentageForValue(value) - left;
+      return {
+        left,
+        width
+      };
+    });
+  };
+  handles = () => {
+    return (this.tempValues || this.options.values).map((value, i) => ({
+      value,
+      isActive: i === this.activeHandleIndex,
+      onKeyDownHandler: (e) => {
+        this.handleKeyDown(e, i);
+      },
+      onMouseDownHandler: (e) => {
+        this.handlePress(e, i);
+      },
+      onTouchStart: (e) => {
+        this.handlePress(e, i);
+      }
+    }));
+  };
 };
 
 // node_modules/@tanstack/react-ranger/build/esm/index.js
@@ -10663,9 +10654,8 @@ function useRanger(options) {
     ...options,
     rerender,
     onChange: (instance2) => {
-      var _a;
       rerender();
-      (_a = options.onChange) == null ? void 0 : _a.call(options, instance2);
+      options.onChange?.(instance2);
     }
   };
   const [instance] = React8.useState(() => new Ranger(resolvedOptions));
@@ -10701,14 +10691,14 @@ function SliderRootBase({
   const Component = as || "div";
   const sliderRef = React9.useRef(null);
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.slider) ?? sliderTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
-  size4 ?? (size4 = (defaultProps == null ? void 0 : defaultProps.size) ?? "md");
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
+  const theme2 = contextTheme?.slider ?? sliderTheme;
+  const defaultProps = theme2?.defaultProps;
+  size4 ??= defaultProps?.size ?? "md";
+  color ??= defaultProps?.color ?? "primary";
   const [uncontrolledValue, setUncontrolledValue] = React9.useState([
     0
   ]);
-  const value = (controlledValue == null ? void 0 : controlledValue.slice(0, 2)) ?? uncontrolledValue;
+  const value = controlledValue?.slice(0, 2) ?? uncontrolledValue;
   const onValueChange = setControlledValue ?? setUncontrolledValue;
   const contextValue = React9.useMemo(
     () => ({
@@ -10732,7 +10722,7 @@ var SliderRoot = React9.forwardRef(SliderRootBase);
 function SliderRangeRoot({ as, className, children, ...props }, ref) {
   const Component = as || "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.sliderRange) ?? sliderRangeTheme;
+  const theme2 = contextTheme?.sliderRange ?? sliderRangeTheme;
   const { sliderRef, value, onValueChange, min: min3, max: max3, step, color } = React9.useContext(SliderContext);
   const sliderInstance = useRanger({
     getRangerElement: () => sliderRef.current,
@@ -10740,8 +10730,8 @@ function SliderRangeRoot({ as, className, children, ...props }, ref) {
     min: min3 ?? 0,
     max: max3 ?? 100,
     stepSize: step ?? 1,
-    onDrag: (instance) => onValueChange == null ? void 0 : onValueChange(instance.sortedValues),
-    onChange: (instance) => onValueChange == null ? void 0 : onValueChange(instance.sortedValues)
+    onDrag: (instance) => onValueChange?.(instance.sortedValues),
+    onChange: (instance) => onValueChange?.(instance.sortedValues)
   });
   return sliderInstance.getSteps().map(({ left, width }, i) => (0, import_jsx_runtime8.jsx)(
     Component,
@@ -10757,7 +10747,7 @@ function SliderRangeRoot({ as, className, children, ...props }, ref) {
         position: "absolute",
         left: `${left}%`,
         width: `${width}%`,
-        ...props == null ? void 0 : props.style
+        ...props?.style
       },
       children
     }
@@ -10768,7 +10758,7 @@ var SliderRange = React9.forwardRef(SliderRangeRoot);
 function SliderThumbRoot({ as, className, children, ...props }, ref) {
   const Component = as || "button";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.sliderThumb) ?? sliderThumbTheme;
+  const theme2 = contextTheme?.sliderThumb ?? sliderThumbTheme;
   const { sliderRef, value, onValueChange, min: min3, max: max3, step, size: size4, color } = React9.useContext(SliderContext);
   const sliderInstance = useRanger({
     getRangerElement: () => sliderRef.current,
@@ -10776,8 +10766,8 @@ function SliderThumbRoot({ as, className, children, ...props }, ref) {
     min: min3 ?? 0,
     max: max3 ?? 100,
     stepSize: step ?? 1,
-    onDrag: (instance) => onValueChange == null ? void 0 : onValueChange(instance.sortedValues),
-    onChange: (instance) => onValueChange == null ? void 0 : onValueChange(instance.sortedValues)
+    onDrag: (instance) => onValueChange?.(instance.sortedValues),
+    onChange: (instance) => onValueChange?.(instance.sortedValues)
   });
   const styles = twMerge(
     theme2.baseStyle,
@@ -10800,18 +10790,15 @@ function SliderThumbRoot({ as, className, children, ...props }, ref) {
           ref,
           key: i,
           onKeyDown: (e) => {
-            var _a;
-            (_a = props == null ? void 0 : props.onKeyDown) == null ? void 0 : _a.call(props, e);
+            props?.onKeyDown?.(e);
             onKeyDownHandler(e);
           },
           onMouseDown: (e) => {
-            var _a;
-            (_a = props == null ? void 0 : props.onMouseDown) == null ? void 0 : _a.call(props, e);
+            props?.onMouseDown?.(e);
             onMouseDownHandler(e);
           },
           onTouchStart: (e) => {
-            var _a;
-            (_a = props == null ? void 0 : props.onTouchStart) == null ? void 0 : _a.call(props, e);
+            props?.onTouchStart?.(e);
             onTouchStart(e);
           },
           role: "slider",
@@ -10825,7 +10812,7 @@ function SliderThumbRoot({ as, className, children, ...props }, ref) {
             left: `${sliderInstance.getPercentageForValue(value2)}%`,
             zIndex: isActive ? "1" : "0",
             transform: "translate(-50%, -50%)",
-            ...props == null ? void 0 : props.style
+            ...props?.style
           }
         }
       );
@@ -10837,7 +10824,7 @@ var SliderThumb = React9.forwardRef(SliderThumbRoot);
 function SliderTickRoot({ as, className, children, ...props }, ref) {
   const Component = as || "span";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.sliderTick) ?? sliderTickTheme;
+  const theme2 = contextTheme?.sliderTick ?? sliderTickTheme;
   const { sliderRef, value, onValueChange, min: min3, max: max3, step, size: size4, color } = React9.useContext(SliderContext);
   const sliderInstance = useRanger({
     getRangerElement: () => sliderRef.current,
@@ -10845,8 +10832,8 @@ function SliderTickRoot({ as, className, children, ...props }, ref) {
     min: min3 ?? 0,
     max: max3 ?? 100,
     stepSize: step ?? 1,
-    onDrag: (instance) => onValueChange == null ? void 0 : onValueChange(instance.sortedValues),
-    onChange: (instance) => onValueChange == null ? void 0 : onValueChange(instance.sortedValues)
+    onDrag: (instance) => onValueChange?.(instance.sortedValues),
+    onChange: (instance) => onValueChange?.(instance.sortedValues)
   });
   const styles = twMerge(
     theme2.baseStyle,
@@ -10863,7 +10850,7 @@ function SliderTickRoot({ as, className, children, ...props }, ref) {
       className: styles,
       style: {
         left: `${percentage}%`,
-        ...props == null ? void 0 : props.style
+        ...props?.style
       }
     },
     value2
@@ -10883,9 +10870,9 @@ var import_jsx_runtime9 = __toESM(require_jsx_runtime(), 1);
 function SpinnerRoot({ size: size4, color, className, ...props }, ref) {
   const contextTheme = useTheme();
   const theme2 = contextTheme.spinner ?? spinnerTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
-  size4 ?? (size4 = (defaultProps == null ? void 0 : defaultProps.size) ?? "md");
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
+  const defaultProps = theme2?.defaultProps;
+  size4 ??= defaultProps?.size ?? "md";
+  color ??= defaultProps?.color ?? "primary";
   const styles = twMerge(theme2.baseStyle, theme2.size[size4], className);
   const spinnerColor = twMerge(theme2.color[color]);
   return (0, import_jsx_runtime9.jsxs)(
@@ -10932,9 +10919,9 @@ var import_jsx_runtime10 = __toESM(require_jsx_runtime(), 1);
 function SwitchRoot({ color, className, ...props }, ref) {
   const innerID = React11.useId();
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.switch) ?? switchTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
+  const theme2 = contextTheme?.switch ?? switchTheme;
+  const defaultProps = theme2?.defaultProps;
+  color ??= defaultProps?.color ?? "primary";
   const styles = twMerge(
     theme2.baseStyle,
     theme2.trackStyle,
@@ -10949,7 +10936,7 @@ function SwitchRoot({ color, className, ...props }, ref) {
       ref,
       type: "checkbox",
       className: styles,
-      id: (props == null ? void 0 : props.id) || innerID
+      id: props?.id || innerID
     }
   );
 }
@@ -10977,7 +10964,7 @@ function TabsRootBase({
   const contextTheme = useTheme();
   const theme2 = contextTheme.tabs || tabsTheme;
   const defaultProps = contextTheme.defaultProps;
-  orientation ?? (orientation = (defaultProps == null ? void 0 : defaultProps.orientation) ?? "horizontal");
+  orientation ??= defaultProps?.orientation ?? "horizontal";
   const tabsValue = value || defaultValue;
   const [indicatorRect, setIndicatorRect] = React12.useState({
     clientWidth: 0,
@@ -11056,7 +11043,7 @@ function TabsTriggerRoot({ as, value, className, children, ...props }, ref) {
   }, []);
   const handleIndicatorRect = React12.useCallback(() => {
     if (isActive && elementRect) {
-      setIndicatorRect == null ? void 0 : setIndicatorRect({
+      setIndicatorRect?.({
         clientWidth: elementRect.clientWidth,
         clientHeight: elementRect.clientHeight,
         offsetLeft: elementRect.offsetLeft,
@@ -11083,9 +11070,8 @@ function TabsTriggerRoot({ as, value, className, children, ...props }, ref) {
       "data-active": isActive,
       "aria-selected": isActive,
       onClick: (event) => {
-        var _a;
-        (_a = props.onClick) == null ? void 0 : _a.call(props, event);
-        setActiveTab == null ? void 0 : setActiveTab(value);
+        props.onClick?.(event);
+        setActiveTab?.(value);
       },
       children
     }
@@ -11127,11 +11113,11 @@ function TabsTriggerIndicatorRoot({ as, className, ...props }, ref) {
       ...props,
       ref,
       style: {
-        ...props == null ? void 0 : props.style,
-        width: indicatorRect == null ? void 0 : indicatorRect.clientWidth,
-        height: indicatorRect == null ? void 0 : indicatorRect.clientHeight,
-        left: indicatorRect == null ? void 0 : indicatorRect.offsetLeft,
-        top: indicatorRect == null ? void 0 : indicatorRect.offsetTop,
+        ...props?.style,
+        width: indicatorRect?.clientWidth,
+        height: indicatorRect?.clientHeight,
+        left: indicatorRect?.offsetLeft,
+        top: indicatorRect?.offsetTop,
         position: "absolute",
         zIndex: 1
       },
@@ -11163,13 +11149,13 @@ function TextareaRoot({
   ...props
 }, ref) {
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.textarea) ?? textareaTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
-  size4 ?? (size4 = (defaultProps == null ? void 0 : defaultProps.size) ?? "md");
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
-  resize ?? (resize = (defaultProps == null ? void 0 : defaultProps.resize) ?? false);
-  isError ?? (isError = (defaultProps == null ? void 0 : defaultProps.isError) ?? false);
-  isSuccess ?? (isSuccess = (defaultProps == null ? void 0 : defaultProps.isSuccess) ?? false);
+  const theme2 = contextTheme?.textarea ?? textareaTheme;
+  const defaultProps = theme2?.defaultProps;
+  size4 ??= defaultProps?.size ?? "md";
+  color ??= defaultProps?.color ?? "primary";
+  resize ??= defaultProps?.resize ?? false;
+  isError ??= defaultProps?.isError ?? false;
+  isSuccess ??= defaultProps?.isSuccess ?? false;
   const styles = twMerge(
     theme2.baseStyle,
     theme2.color[color],
@@ -11219,26 +11205,26 @@ function TimelineRootBase({
 }, ref) {
   const Component = as || "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.timeline) ?? timelineTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.timeline ?? timelineTheme;
+  const defaultProps = theme2?.defaultProps;
   const innerRef = React14.useRef(null);
   const [innerValue, setInnerValue] = React14.useState(defaultValue || "");
-  value ?? (value = innerValue);
-  onValueChange ?? (onValueChange = setInnerValue);
-  mode ?? (mode = (defaultProps == null ? void 0 : defaultProps.mode) ?? "timeline");
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
-  orientation ?? (orientation = (defaultProps == null ? void 0 : defaultProps.orientation) ?? "horizontal");
+  value ??= innerValue;
+  onValueChange ??= setInnerValue;
+  mode ??= defaultProps?.mode ?? "timeline";
+  color ??= defaultProps?.color ?? "primary";
+  orientation ??= defaultProps?.orientation ?? "horizontal";
   React14.useEffect(() => {
-    const parentEl = innerRef == null ? void 0 : innerRef.current;
+    const parentEl = innerRef?.current;
     if (parentEl && !value) {
       const children2 = Array.from(parentEl.children);
       const firstChild = children2[0];
-      onValueChange == null ? void 0 : onValueChange(firstChild.dataset.value);
+      onValueChange?.(firstChild.dataset.value);
     }
   }, []);
   React14.useEffect(() => {
     if (mode === "stepper") {
-      const parentEl = innerRef == null ? void 0 : innerRef.current;
+      const parentEl = innerRef?.current;
       if (parentEl) {
         const children2 = Array.from(parentEl.children);
         const currentEl = children2.find(
@@ -11297,7 +11283,7 @@ var TimelineRoot = React14.forwardRef(TimelineRootBase);
 function TimelineItemRoot({ as, value, className, disabled, children, ...props }, ref) {
   const Component = as || "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.timelineItem) ?? timelineItemTheme;
+  const theme2 = contextTheme?.timelineItem ?? timelineItemTheme;
   const {
     mode,
     setValue,
@@ -11305,13 +11291,12 @@ function TimelineItemRoot({ as, value, className, disabled, children, ...props }
     value: contextValue
   } = React14.useContext(TimelineContext);
   const innerRef = React14.useRef(null);
-  value ?? (value = React14.useId());
+  value ??= React14.useId();
   const isActive = contextValue == value || mode === "timeline";
   function onClick(event) {
-    var _a;
-    (_a = props == null ? void 0 : props.onClick) == null ? void 0 : _a.call(props, event);
+    props?.onClick?.(event);
     if (mode === "stepper") {
-      setValue == null ? void 0 : setValue(value);
+      setValue?.(value);
     }
   }
   const styles = twMerge(theme2.baseStyle, className);
@@ -11337,7 +11322,7 @@ var TimelineItem = React14.forwardRef(TimelineItemRoot);
 function TimelineHeaderRoot({ as, className, children, ...props }, ref) {
   const Component = as || "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.timelineHeader) ?? timelineHeaderTheme;
+  const theme2 = contextTheme?.timelineHeader ?? timelineHeaderTheme;
   const styles = twMerge(theme2.baseStyle, className);
   return (0, import_jsx_runtime13.jsx)(Component, { ...props, ref, className: styles, children });
 }
@@ -11346,7 +11331,7 @@ var TimelineHeader = React14.forwardRef(TimelineHeaderRoot);
 function TimelineIconRoot({ as, className, children, ...props }, ref) {
   const Component = as || "span";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.timelineIcon) ?? timelineIconTheme;
+  const theme2 = contextTheme?.timelineIcon ?? timelineIconTheme;
   const { color } = React14.useContext(TimelineContext);
   const styles = twMerge(theme2.baseStyle, theme2.color[color], className);
   return (0, import_jsx_runtime13.jsx)(Component, { ...props, ref, className: styles, children });
@@ -11356,7 +11341,7 @@ var TimelineIcon = React14.forwardRef(TimelineIconRoot);
 function TimelineSeparatorRoot({ as, className, children, ...props }, ref) {
   const Component = as || "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.timelineSeparator) ?? timelineSeparatorTheme;
+  const theme2 = contextTheme?.timelineSeparator ?? timelineSeparatorTheme;
   const { orientation, color } = React14.useContext(TimelineContext);
   const styles = twMerge(theme2.baseStyle, theme2.color[color], className);
   return (0, import_jsx_runtime13.jsx)(
@@ -11375,7 +11360,7 @@ var TimelineSeparator = React14.forwardRef(TimelineSeparatorRoot);
 function TimelineBodyRoot({ as, className, children, ...props }, ref) {
   const Component = as || "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.timelineBody) ?? timelineBodyTheme;
+  const theme2 = contextTheme?.timelineBody ?? timelineBodyTheme;
   const { orientation } = React14.useContext(TimelineContext);
   const styles = twMerge(theme2.baseStyle, className);
   return (0, import_jsx_runtime13.jsx)(
@@ -11429,15 +11414,15 @@ function InputRootBase({
 }, ref) {
   const Component = as ?? "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.input) ?? inputTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.input ?? inputTheme;
+  const defaultProps = theme2?.defaultProps;
   const [isIconDefined, setIsIconDefined] = React15.useState(false);
   const [iconPlacement, setIconPlacement] = React15.useState("start");
-  size4 ?? (size4 = (defaultProps == null ? void 0 : defaultProps.size) ?? "md");
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
-  isPill ?? (isPill = (defaultProps == null ? void 0 : defaultProps.isPill) ?? false);
-  isError ?? (isError = (defaultProps == null ? void 0 : defaultProps.isError) ?? false);
-  isSuccess ?? (isSuccess = (defaultProps == null ? void 0 : defaultProps.isSuccess) ?? false);
+  size4 ??= defaultProps?.size ?? "md";
+  color ??= defaultProps?.color ?? "primary";
+  isPill ??= defaultProps?.isPill ?? false;
+  isError ??= defaultProps?.isError ?? false;
+  isSuccess ??= defaultProps?.isSuccess ?? false;
   const styles = twMerge(
     theme2.baseStyle,
     theme2.size[size4],
@@ -11513,9 +11498,9 @@ function InputIconRoot({ as, placement, ...props }, ref) {
     isSuccess,
     disabled
   } = React15.useContext(InputContext);
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.inputIcon) ?? inputIconTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
-  placement ?? (placement = (defaultProps == null ? void 0 : defaultProps.placement) ?? "start");
+  const theme2 = contextTheme?.inputIcon ?? inputIconTheme;
+  const defaultProps = theme2?.defaultProps;
+  placement ??= defaultProps?.placement ?? "start";
   React15.useEffect(() => {
     setIsIconDefined(true);
     return () => {
@@ -11528,7 +11513,7 @@ function InputIconRoot({ as, placement, ...props }, ref) {
       setIconPlacement("start");
     };
   }, [placement]);
-  const styles = twMerge(theme2.baseStyle, theme2.size[size4], props == null ? void 0 : props.className);
+  const styles = twMerge(theme2.baseStyle, theme2.size[size4], props?.className);
   return (0, import_jsx_runtime14.jsx)(
     Component,
     {
@@ -11555,7 +11540,7 @@ var import_jsx_runtime15 = __toESM(require_jsx_runtime(), 1);
 function ListRootBase({ as, className, children, ...props }, ref) {
   const Component = as ?? "ul";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.list) ?? listTheme;
+  const theme2 = contextTheme?.list ?? listTheme;
   const styles = twMerge(theme2.baseStyle, className);
   return (0, import_jsx_runtime15.jsx)(Component, { ...props, ref, className: styles, children });
 }
@@ -11572,12 +11557,12 @@ function ListItemRoot({
 }, ref) {
   const Component = as ?? "li";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.listItem) ?? listItemTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
-  ripple ?? (ripple = (defaultProps == null ? void 0 : defaultProps.ripple) ?? true);
+  const theme2 = contextTheme?.listItem ?? listItemTheme;
+  const defaultProps = theme2?.defaultProps;
+  ripple ??= defaultProps?.ripple ?? true;
   const rippleEffect = ripple !== void 0 && new import_material_ripple_effects2.default();
   const handleClick = (e) => {
-    const onClick = props == null ? void 0 : props.onClick;
+    const onClick = props?.onClick;
     if (ripple) {
       rippleEffect.create(e, "dark");
     }
@@ -11602,7 +11587,7 @@ var ListItem = React16.forwardRef(ListItemRoot);
 function ListItemStartRoot({ as, className, disabled, children, ...props }, ref) {
   const Component = as ?? "span";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.listItemStart) ?? listItemStartTheme;
+  const theme2 = contextTheme?.listItemStart ?? listItemStartTheme;
   const styles = twMerge(theme2.baseStyle, className);
   return (0, import_jsx_runtime15.jsx)(Component, { ...props, ref, className: styles, children });
 }
@@ -11611,7 +11596,7 @@ var ListItemStart = React16.forwardRef(ListItemStartRoot);
 function ListItemEndRoot({ as, className, disabled, children, ...props }, ref) {
   const Component = as ?? "span";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.listItemEnd) ?? listItemEndTheme;
+  const theme2 = contextTheme?.listItemEnd ?? listItemEndTheme;
   const styles = twMerge(theme2.baseStyle, className);
   return (0, import_jsx_runtime15.jsx)(Component, { ...props, ref, className: styles, children });
 }
@@ -11640,8 +11625,8 @@ function MenuCore({
   children
 }) {
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.menu) ?? menuTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.menu ?? menuTheme;
+  const defaultProps = theme2?.defaultProps;
   const [uncontrolledOpen, setUncontrolledOpen] = React17.useState(false);
   const [activeIndex, setActiveIndex] = React17.useState(null);
   const elementsRef = React17.useRef([]);
@@ -11653,8 +11638,8 @@ function MenuCore({
   const isNested = parentId != null;
   const open = controlledOpen ?? uncontrolledOpen;
   const setOpen = setControlledOpen ?? setUncontrolledOpen;
-  placement ?? (placement = isNested ? "right-start" : (defaultProps == null ? void 0 : defaultProps.placement) ?? "bottom");
-  offset4 ?? (offset4 = isNested ? 8 : (defaultProps == null ? void 0 : defaultProps.offset) ?? 5);
+  placement ??= isNested ? "right-start" : defaultProps?.placement ?? "bottom";
+  offset4 ??= isNested ? 8 : defaultProps?.offset ?? 5;
   const { floatingStyles, refs, context } = useFloating2({
     nodeId,
     placement,
@@ -11749,7 +11734,7 @@ MenuRoot.displayName = "MaterialTailwind.Menu";
 function MenuTriggerRoot({ as, className, children, ...props }, ref) {
   const Component = as || "button";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.menuTrigger) ?? menuTriggerTheme;
+  const theme2 = contextTheme?.menuTrigger ?? menuTriggerTheme;
   const {
     refs,
     item,
@@ -11760,7 +11745,7 @@ function MenuTriggerRoot({ as, className, children, ...props }, ref) {
     open
   } = React17.useContext(MenuContext);
   const styles = twMerge(theme2.baseStyle, className);
-  const elementRef = useMergeRefs([refs == null ? void 0 : refs.setReference, item == null ? void 0 : item.ref, ref]);
+  const elementRef = useMergeRefs([refs?.setReference, item?.ref, ref]);
   return (0, import_jsx_runtime16.jsx)(
     Component,
     {
@@ -11768,7 +11753,7 @@ function MenuTriggerRoot({ as, className, children, ...props }, ref) {
       ref: elementRef,
       "data-open": open,
       "data-nested": isNested,
-      tabIndex: !isNested ? void 0 : activeIndex === (item == null ? void 0 : item.index) ? 0 : -1,
+      tabIndex: !isNested ? void 0 : activeIndex === item?.index ? 0 : -1,
       role: isNested ? "menuitem" : void 0,
       className: styles,
       ...getReferenceProps && getItemProps && getReferenceProps(getItemProps()),
@@ -11794,7 +11779,7 @@ function MenuContentRoot({
 }, ref) {
   const Component = as || "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.menuContent) ?? menuContentTheme;
+  const theme2 = contextTheme?.menuContent ?? menuContentTheme;
   const defaultProps = theme2.defaultProps;
   const {
     elementsRef,
@@ -11806,16 +11791,16 @@ function MenuContentRoot({
     floatingStyles,
     isNested
   } = React17.useContext(MenuContext);
-  disabled ?? (disabled = (defaultProps == null ? void 0 : defaultProps.disabled) ?? false);
-  initialFocus ?? (initialFocus = (defaultProps == null ? void 0 : defaultProps.initialFocus) ?? 0);
-  returnFocus ?? (returnFocus = (defaultProps == null ? void 0 : defaultProps.returnFocus) ?? true);
-  guards ?? (guards = (defaultProps == null ? void 0 : defaultProps.guards) ?? true);
-  modal ?? (modal = (defaultProps == null ? void 0 : defaultProps.modal) ?? false);
-  visuallyHiddenDismiss ?? (visuallyHiddenDismiss = (defaultProps == null ? void 0 : defaultProps.visuallyHiddenDismiss) ?? true);
-  closeOnFocusOut ?? (closeOnFocusOut = (defaultProps == null ? void 0 : defaultProps.closeOnFocusOut) ?? true);
-  order ?? (order = (defaultProps == null ? void 0 : defaultProps.order) ?? ["content"]);
+  disabled ??= defaultProps?.disabled ?? false;
+  initialFocus ??= defaultProps?.initialFocus ?? 0;
+  returnFocus ??= defaultProps?.returnFocus ?? true;
+  guards ??= defaultProps?.guards ?? true;
+  modal ??= defaultProps?.modal ?? false;
+  visuallyHiddenDismiss ??= defaultProps?.visuallyHiddenDismiss ?? true;
+  closeOnFocusOut ??= defaultProps?.closeOnFocusOut ?? true;
+  order ??= defaultProps?.order ?? ["content"];
   const styles = twMerge(theme2.baseStyle, className);
-  const elementRef = useMergeRefs([refs == null ? void 0 : refs.setFloating, ref]);
+  const elementRef = useMergeRefs([refs?.setFloating, ref]);
   return (0, import_jsx_runtime16.jsx)(FloatingList, { elementsRef, labelsRef, children: open && (0, import_jsx_runtime16.jsx)(FloatingPortal, { children: (0, import_jsx_runtime16.jsx)(
     FloatingFocusManager,
     {
@@ -11834,7 +11819,7 @@ function MenuContentRoot({
           ...props,
           ref: elementRef,
           "data-open": open,
-          style: { ...floatingStyles, ...props == null ? void 0 : props.style },
+          style: { ...floatingStyles, ...props?.style },
           className: styles,
           ...getFloatingProps && getFloatingProps(),
           children
@@ -11856,11 +11841,11 @@ function MenuItemRoot({
 }, ref) {
   const Component = as || "button";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.menuItem) ?? menuItemTheme;
+  const theme2 = contextTheme?.menuItem ?? menuItemTheme;
   const defaultProps = theme2.defaultProps;
   const { activeIndex, getItemProps } = React17.useContext(MenuContext);
-  ripple ?? (ripple = (defaultProps == null ? void 0 : defaultProps.ripple) ?? true);
-  closeOnClick ?? (closeOnClick = (defaultProps == null ? void 0 : defaultProps.closeOnClick) ?? true);
+  ripple ??= defaultProps?.ripple ?? true;
+  closeOnClick ??= defaultProps?.closeOnClick ?? true;
   const rippleEffect = ripple !== void 0 && new import_material_ripple_effects3.default();
   const item = useListItem({
     label: disabled ? null : children
@@ -11880,10 +11865,9 @@ function MenuItemRoot({
       className: styles,
       ...getItemProps && getItemProps({
         onClick(event) {
-          var _a;
-          (_a = props.onClick) == null ? void 0 : _a.call(props, event);
+          props.onClick?.(event);
           if (closeOnClick) {
-            tree == null ? void 0 : tree.events.emit("click");
+            tree?.events.emit("click");
           }
           if (ripple) {
             rippleEffect.create(event, "dark");
@@ -11910,8 +11894,8 @@ function NavbarRoot({ as, color, variant, className, children, ...props }, ref) 
   const contextTheme = useTheme();
   const theme2 = contextTheme.navbar || navbarTheme;
   const defaultProps = theme2.defaultProps;
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "default");
-  variant ?? (variant = (defaultProps == null ? void 0 : defaultProps.variant) ?? "solid");
+  color ??= defaultProps?.color ?? "default";
+  variant ??= defaultProps?.variant ?? "solid";
   const styles = twMerge(
     theme2.baseStyle,
     theme2.variant[variant][color],
@@ -11939,13 +11923,13 @@ function PopoverRoot({
 }) {
   const arrowRef = React19.useRef(null);
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.popover) ?? popoverTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.popover ?? popoverTheme;
+  const defaultProps = theme2?.defaultProps;
   const [uncontrolledOpen, setUncontrolledOpen] = React19.useState(false);
   const open = controlledOpen ?? uncontrolledOpen;
   const setOpen = setControlledOpen ?? setUncontrolledOpen;
-  placement ?? (placement = (defaultProps == null ? void 0 : defaultProps.placement) ?? "bottom");
-  offset4 ?? (offset4 = (defaultProps == null ? void 0 : defaultProps.offset) ?? 10);
+  placement ??= defaultProps?.placement ?? "bottom";
+  offset4 ??= defaultProps?.offset ?? 10;
   const data = useFloating2({
     placement,
     open,
@@ -11988,10 +11972,10 @@ PopoverRoot.displayName = "MaterialTailwind.Popover";
 function PopoverTriggerRoot({ as, className, children, ...props }, ref) {
   const Component = as || "button";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.popoverTrigger) ?? popoverTriggerTheme;
+  const theme2 = contextTheme?.popoverTrigger ?? popoverTriggerTheme;
   const { refs, getReferenceProps, open } = React19.useContext(PopoverContext);
   const styles = twMerge(theme2.baseStyle, className);
-  const elementRef = useMergeRefs([refs == null ? void 0 : refs.setReference, ref]);
+  const elementRef = useMergeRefs([refs?.setReference, ref]);
   return (0, import_jsx_runtime18.jsx)(
     Component,
     {
@@ -12022,21 +12006,21 @@ function PopoverContentRoot({
 }, ref) {
   const Component = as || "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.popoverContent) ?? popoverContentTheme;
+  const theme2 = contextTheme?.popoverContent ?? popoverContentTheme;
   const defaultProps = theme2.defaultProps;
   const { context, refs, getFloatingProps, open, floatingStyles } = React19.useContext(PopoverContext);
-  disabled ?? (disabled = (defaultProps == null ? void 0 : defaultProps.disabled) ?? false);
-  initialFocus ?? (initialFocus = (defaultProps == null ? void 0 : defaultProps.initialFocus) ?? 0);
-  returnFocus ?? (returnFocus = (defaultProps == null ? void 0 : defaultProps.returnFocus) ?? true);
-  guards ?? (guards = (defaultProps == null ? void 0 : defaultProps.guards) ?? true);
-  modal ?? (modal = (defaultProps == null ? void 0 : defaultProps.modal) ?? false);
-  visuallyHiddenDismiss ?? (visuallyHiddenDismiss = (defaultProps == null ? void 0 : defaultProps.visuallyHiddenDismiss) ?? true);
-  closeOnFocusOut ?? (closeOnFocusOut = (defaultProps == null ? void 0 : defaultProps.closeOnFocusOut) ?? true);
-  order ?? (order = (defaultProps == null ? void 0 : defaultProps.order) ?? [
+  disabled ??= defaultProps?.disabled ?? false;
+  initialFocus ??= defaultProps?.initialFocus ?? 0;
+  returnFocus ??= defaultProps?.returnFocus ?? true;
+  guards ??= defaultProps?.guards ?? true;
+  modal ??= defaultProps?.modal ?? false;
+  visuallyHiddenDismiss ??= defaultProps?.visuallyHiddenDismiss ?? true;
+  closeOnFocusOut ??= defaultProps?.closeOnFocusOut ?? true;
+  order ??= defaultProps?.order ?? [
     "content"
-  ]);
+  ];
   const styles = twMerge(theme2.baseStyle, className);
-  const elementRef = useMergeRefs([refs == null ? void 0 : refs.setFloating, ref]);
+  const elementRef = useMergeRefs([refs?.setFloating, ref]);
   return open ? (0, import_jsx_runtime18.jsx)(FloatingPortal, { children: (0, import_jsx_runtime18.jsx)(
     FloatingFocusManager,
     {
@@ -12055,7 +12039,7 @@ function PopoverContentRoot({
           ...props,
           ref: elementRef,
           "data-open": open,
-          style: { ...floatingStyles, ...props == null ? void 0 : props.style },
+          style: { ...floatingStyles, ...props?.style },
           className: styles,
           ...getFloatingProps && getFloatingProps(),
           children
@@ -12067,10 +12051,9 @@ function PopoverContentRoot({
 PopoverContentRoot.displayName = "MaterialTailwind.PopoverContent";
 var PopoverContent = React19.forwardRef(PopoverContentRoot);
 function PopoverArrowRoot({ as, className, ...props }, ref) {
-  var _a, _b, _c;
   const Component = as || "span";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.popoverArrow) ?? popoverArrowTheme;
+  const theme2 = contextTheme?.popoverArrow ?? popoverArrowTheme;
   const innerRef = React19.useRef(null);
   const { placement, arrowRef, middlewareData } = React19.useContext(PopoverContext);
   const elementRef = useMergeRefs([arrowRef, innerRef, ref]);
@@ -12088,10 +12071,10 @@ function PopoverArrowRoot({ as, className, ...props }, ref) {
       ref: elementRef,
       style: {
         position: "absolute",
-        left: (_a = middlewareData == null ? void 0 : middlewareData.arrow) == null ? void 0 : _a.x,
-        top: (_b = middlewareData == null ? void 0 : middlewareData.arrow) == null ? void 0 : _b.y,
-        [staticSide]: `${-((_c = innerRef == null ? void 0 : innerRef.current) == null ? void 0 : _c.clientHeight) / 2 - 1}px`,
-        ...props == null ? void 0 : props.style
+        left: middlewareData?.arrow?.x,
+        top: middlewareData?.arrow?.y,
+        [staticSide]: `${-innerRef?.current?.clientHeight / 2 - 1}px`,
+        ...props?.style
       },
       "data-placement": placement,
       className: styles
@@ -12117,9 +12100,9 @@ function ProgressRootBase({ as, size: size4, color, value, className, children, 
   const Component = as ?? "div";
   const contextTheme = useTheme();
   const theme2 = contextTheme.progress ?? progressTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
-  size4 ?? (size4 = (defaultProps == null ? void 0 : defaultProps.size) ?? "md");
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
+  const defaultProps = theme2?.defaultProps;
+  size4 ??= defaultProps?.size ?? "md";
+  color ??= defaultProps?.color ?? "primary";
   const styles = twMerge(theme2.baseStyle, theme2.size[size4], className);
   const contextValue = React20.useMemo(() => ({ value, color }), [value, color]);
   return (0, import_jsx_runtime19.jsx)(ProgressContext.Provider, { value: contextValue, children: (0, import_jsx_runtime19.jsx)(Component, { ...props, ref, className: styles, children }) });
@@ -12144,7 +12127,7 @@ function ProgressBarRoot({ as, className, children, ...props }, ref) {
       className: styles,
       style: {
         width: `${value}%`,
-        ...props == null ? void 0 : props.style
+        ...props?.style
       },
       children
     }
@@ -12178,13 +12161,13 @@ function RadioRootBase({
 }, ref) {
   const Component = as || "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.radio) ?? radioTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.radio ?? radioTheme;
+  const defaultProps = theme2?.defaultProps;
   const [innerValue, setInnerValue] = React21.useState(defaultValue || "");
-  value ?? (value = innerValue);
-  onValueChange ?? (onValueChange = setInnerValue);
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
-  orientation ?? (orientation = (defaultProps == null ? void 0 : defaultProps.orientation) ?? "vertical");
+  value ??= innerValue;
+  onValueChange ??= setInnerValue;
+  color ??= defaultProps?.color ?? "primary";
+  orientation ??= defaultProps?.orientation ?? "vertical";
   const styles = twMerge(theme2.baseStyle, className);
   const contextValue = React21.useMemo(
     () => ({
@@ -12210,7 +12193,7 @@ RadioRootBase.displayName = "MaterialTailwind.Radio";
 var RadioRoot = React21.forwardRef(RadioRootBase);
 function RadioItemRoot({ disabled, className, children, value, ...props }, ref) {
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.radioItem) ?? radioItemTheme;
+  const theme2 = contextTheme?.radioItem ?? radioItemTheme;
   const { globalValue, setGlobalValue, color } = React21.useContext(RadioContext);
   const innerId = React21.useId();
   const innerValue = React21.useId();
@@ -12225,20 +12208,19 @@ function RadioItemRoot({ disabled, className, children, value, ...props }, ref) 
       "data-value": mainValue,
       "data-checked": isChecked,
       "aria-disabled": disabled,
-      htmlFor: (props == null ? void 0 : props.id) || innerId,
+      htmlFor: props?.id || innerId,
       children: [
         (0, import_jsx_runtime20.jsx)(
           "input",
           {
             ...props,
-            id: (props == null ? void 0 : props.id) || innerId,
+            id: props?.id || innerId,
             type: "radio",
             checked: isChecked,
             value: mainValue,
             onChange: (e) => {
-              var _a;
-              (_a = props == null ? void 0 : props.onChange) == null ? void 0 : _a.call(props, e);
-              setGlobalValue == null ? void 0 : setGlobalValue(mainValue);
+              props?.onChange?.(e);
+              setGlobalValue?.(mainValue);
             },
             style: { display: "none" }
           }
@@ -12253,7 +12235,7 @@ var RadioItem = React21.forwardRef(RadioItemRoot);
 function RadioIndicatorRoot({ as, className, children, ...props }, ref) {
   const Component = as || "span";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.radioIndicator) ?? radioIndicatorTheme;
+  const theme2 = contextTheme?.radioIndicator ?? radioIndicatorTheme;
   const styles = twMerge(theme2.baseStyle, className);
   return (0, import_jsx_runtime20.jsx)(Component, { ...props, className: styles, ref, children: children || (0, import_jsx_runtime20.jsx)(
     "svg",
@@ -12300,17 +12282,17 @@ function ButtonRoot({
 }, ref) {
   const Component = as || "button";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.button) ?? buttonTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
-  size4 ?? (size4 = (defaultProps == null ? void 0 : defaultProps.size) ?? "md");
-  ripple ?? (ripple = (defaultProps == null ? void 0 : defaultProps.ripple) ?? true);
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
-  variant ?? (variant = (defaultProps == null ? void 0 : defaultProps.variant) ?? "solid");
-  isPill ?? (isPill = (defaultProps == null ? void 0 : defaultProps.isPill) ?? false);
-  isFullWidth ?? (isFullWidth = (defaultProps == null ? void 0 : defaultProps.isFullWidth) ?? false);
+  const theme2 = contextTheme?.button ?? buttonTheme;
+  const defaultProps = theme2?.defaultProps;
+  size4 ??= defaultProps?.size ?? "md";
+  ripple ??= defaultProps?.ripple ?? true;
+  color ??= defaultProps?.color ?? "primary";
+  variant ??= defaultProps?.variant ?? "solid";
+  isPill ??= defaultProps?.isPill ?? false;
+  isFullWidth ??= defaultProps?.isFullWidth ?? false;
   const rippleEffect = ripple !== void 0 && new import_material_ripple_effects4.default();
   const handleClick = (e) => {
-    const onClick = props == null ? void 0 : props.onClick;
+    const onClick = props?.onClick;
     const isDarkRipple = variant === "ghost" || color === "secondary";
     if (ripple) {
       rippleEffect.create(e, isDarkRipple ? "dark" : "light");
@@ -12347,8 +12329,8 @@ function CardRootBase({ as, color, variant, className, children, ...props }, ref
   const contextTheme = useTheme();
   const theme2 = contextTheme.card || cardTheme;
   const defaultProps = theme2.defaultProps;
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "default");
-  variant ?? (variant = (defaultProps == null ? void 0 : defaultProps.variant) ?? "solid");
+  color ??= defaultProps?.color ?? "default";
+  variant ??= defaultProps?.variant ?? "solid";
   const styles = twMerge(
     theme2.baseStyle,
     theme2.variant[variant][color],
@@ -12401,15 +12383,15 @@ var CheckboxContext = React24.createContext({
 });
 function CheckboxRootBase({ color, disabled, className, children, ...props }, ref) {
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.checkbox) ?? checkboxTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.checkbox ?? checkboxTheme;
+  const defaultProps = theme2?.defaultProps;
   const innerId = React24.useId();
-  const [checked, setChecked] = React24.useState((props == null ? void 0 : props.checked) || false);
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
+  const [checked, setChecked] = React24.useState(props?.checked || false);
+  color ??= defaultProps?.color ?? "primary";
   const styles = twMerge(theme2.baseStyle, theme2.color[color], className);
   React24.useEffect(() => {
-    if (props == null ? void 0 : props.defaultChecked) {
-      setChecked(props == null ? void 0 : props.defaultChecked);
+    if (props?.defaultChecked) {
+      setChecked(props?.defaultChecked);
     }
   }, []);
   const contextValue = React24.useMemo(
@@ -12427,18 +12409,17 @@ function CheckboxRootBase({ color, disabled, className, children, ...props }, re
       className: styles,
       "data-checked": checked,
       "aria-disabled": disabled,
-      htmlFor: (props == null ? void 0 : props.id) || innerId,
+      htmlFor: props?.id || innerId,
       children: [
         (0, import_jsx_runtime23.jsx)(
           "input",
           {
             ...props,
-            id: (props == null ? void 0 : props.id) || innerId,
+            id: props?.id || innerId,
             type: "checkbox",
-            checked: (props == null ? void 0 : props.defaultChecked) ? void 0 : (props == null ? void 0 : props.checked) || checked,
+            checked: props?.defaultChecked ? void 0 : props?.checked || checked,
             onChange: (e) => {
-              var _a;
-              (_a = props == null ? void 0 : props.onChange) == null ? void 0 : _a.call(props, e);
+              props?.onChange?.(e);
               setChecked((cur) => !cur);
             },
             style: { display: "none" }
@@ -12455,7 +12436,7 @@ function CheckboxIndicatorRoot({ as, className, children, ...props }, ref) {
   const Component = as || "span";
   const contextTheme = useTheme();
   const { checked } = React24.useContext(CheckboxContext);
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.checkboxIndicator) ?? checkboxIndicatorTheme;
+  const theme2 = contextTheme?.checkboxIndicator ?? checkboxIndicatorTheme;
   const styles = twMerge(theme2.baseStyle, className);
   return (0, import_jsx_runtime23.jsx)(Component, { ...props, "data-checked": checked, className: styles, ref, children: children || (0, import_jsx_runtime23.jsx)(
     "svg",
@@ -12512,15 +12493,15 @@ function ChipRootBase({
 }, ref) {
   const Component = as ?? "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.chip) ?? chipTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.chip ?? chipTheme;
+  const defaultProps = theme2?.defaultProps;
   const [uncontrolledOpen, setUncontrolledOpen] = React25.useState(true);
   const open = controlledOpen ?? uncontrolledOpen;
   const setOpen = setControlledOpen ?? setUncontrolledOpen;
-  size4 ?? (size4 = (defaultProps == null ? void 0 : defaultProps.size) ?? "md");
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
-  variant ?? (variant = (defaultProps == null ? void 0 : defaultProps.variant) ?? "solid");
-  isPill ?? (isPill = (defaultProps == null ? void 0 : defaultProps.isPill) ?? true);
+  size4 ??= defaultProps?.size ?? "md";
+  color ??= defaultProps?.color ?? "primary";
+  variant ??= defaultProps?.variant ?? "solid";
+  isPill ??= defaultProps?.isPill ?? true;
   const styles = twMerge(
     theme2.baseStyle,
     theme2["size"][size4],
@@ -12555,7 +12536,7 @@ function ChipLabelRoot({ as, className, children, ...props }, ref) {
   const Component = as ?? "span";
   const contextTheme = useTheme();
   const { size: size4 } = React25.useContext(ChipContext);
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.chipLabel) ?? chipLabelTheme;
+  const theme2 = contextTheme?.chipLabel ?? chipLabelTheme;
   const styles = twMerge(
     theme2.baseStyle,
     theme2["size"][size4 || "md"],
@@ -12569,7 +12550,7 @@ function ChipIconRoot({ as, className, children, ...props }, ref) {
   const Component = as ?? "span";
   const contextTheme = useTheme();
   const { size: size4 } = React25.useContext(ChipContext);
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.chipIcon) ?? chipIconTheme;
+  const theme2 = contextTheme?.chipIcon ?? chipIconTheme;
   const styles = twMerge(
     theme2.baseStyle,
     theme2["size"][size4 || "md"],
@@ -12583,14 +12564,13 @@ function ChipDismissTriggerRoot({ as, ripple, className, children, ...props }, r
   const Component = as ?? "button";
   const contextTheme = useTheme();
   const { size: size4, color, variant, setOpen } = React25.useContext(ChipContext);
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.chipDismissTrigger) ?? chipDismissTriggerTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
-  ripple ?? (ripple = (defaultProps == null ? void 0 : defaultProps.ripple) ?? true);
+  const theme2 = contextTheme?.chipDismissTrigger ?? chipDismissTriggerTheme;
+  const defaultProps = theme2?.defaultProps;
+  ripple ??= defaultProps?.ripple ?? true;
   const rippleEffect = ripple !== void 0 && new import_material_ripple_effects5.default();
   const handleClick = (event) => {
-    var _a;
-    setOpen == null ? void 0 : setOpen(false);
-    (_a = props.onClick) == null ? void 0 : _a.call(props, event);
+    setOpen?.(false);
+    props.onClick?.(event);
     const isDarkRipple = variant === "ghost" || variant === "outline" || color === "secondary" || color === "warning";
     if (ripple) {
       rippleEffect.create(event, isDarkRipple ? "dark" : "light");
@@ -12635,7 +12615,7 @@ var import_jsx_runtime25 = __toESM(require_jsx_runtime(), 1);
 function CollapseRoot({ as, open, className, children, ...props }, ref) {
   const Component = as ?? "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.collapse) ?? collapseTheme;
+  const theme2 = contextTheme?.collapse ?? collapseTheme;
   const styles = twMerge(theme2.baseStyle, className);
   return open ? (0, import_jsx_runtime25.jsx)(Component, { ...props, ref, "data-open": open, className: styles, children }) : null;
 }
@@ -12657,12 +12637,12 @@ function DialogRoot({
   children
 }) {
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.dialog) ?? dialogTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.dialog ?? dialogTheme;
+  const defaultProps = theme2?.defaultProps;
   const [uncontrolledOpen, setUncontrolledOpen] = React27.useState(false);
   const open = controlledOpen ?? uncontrolledOpen;
   const setOpen = setControlledOpen ?? setUncontrolledOpen;
-  size4 ?? (size4 = (defaultProps == null ? void 0 : defaultProps.size) ?? "md");
+  size4 ??= defaultProps?.size ?? "md";
   const data = useFloating2({
     open,
     onOpenChange: setOpen
@@ -12690,10 +12670,10 @@ DialogRoot.displayName = "MaterialTailwind.Dialog";
 function DialogTriggerRoot({ as, className, children, ...props }, ref) {
   const Component = as || "button";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.dialogTrigger) ?? dialogTriggerTheme;
+  const theme2 = contextTheme?.dialogTrigger ?? dialogTriggerTheme;
   const { refs, getReferenceProps, open } = React27.useContext(DialogContext);
   const styles = twMerge(theme2.baseStyle, className);
-  const elementRef = useMergeRefs([refs == null ? void 0 : refs.setReference, ref]);
+  const elementRef = useMergeRefs([refs?.setReference, ref]);
   return (0, import_jsx_runtime26.jsx)(
     Component,
     {
@@ -12710,10 +12690,10 @@ DialogTriggerRoot.displayName = "MaterialTailwind.DialogTrigger";
 var DialogTrigger = React27.forwardRef(DialogTriggerRoot);
 function DialogOverlayRoot({ className, lockScroll, children, ...props }, ref) {
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.dialogOverlay) ?? dialogOverlayTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.dialogOverlay ?? dialogOverlayTheme;
+  const defaultProps = theme2?.defaultProps;
   const { open } = React27.useContext(DialogContext);
-  lockScroll ?? (lockScroll = (defaultProps == null ? void 0 : defaultProps.lockScroll) ?? true);
+  lockScroll ??= defaultProps?.lockScroll ?? true;
   const styles = twMerge(theme2.baseStyle, className);
   return open ? (0, import_jsx_runtime26.jsx)(FloatingPortal, { children: (0, import_jsx_runtime26.jsx)(
     FloatingOverlay,
@@ -12745,19 +12725,19 @@ function DialogContentRoot({
 }, ref) {
   const Component = as || "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.dialogContent) ?? dialogContentTheme;
+  const theme2 = contextTheme?.dialogContent ?? dialogContentTheme;
   const defaultProps = theme2.defaultProps;
   const { context, refs, getFloatingProps, open, size: size4 } = React27.useContext(DialogContext);
-  disabled ?? (disabled = (defaultProps == null ? void 0 : defaultProps.disabled) ?? false);
-  initialFocus ?? (initialFocus = (defaultProps == null ? void 0 : defaultProps.initialFocus) ?? 0);
-  returnFocus ?? (returnFocus = (defaultProps == null ? void 0 : defaultProps.returnFocus) ?? true);
-  guards ?? (guards = (defaultProps == null ? void 0 : defaultProps.guards) ?? true);
-  modal ?? (modal = (defaultProps == null ? void 0 : defaultProps.modal) ?? false);
-  visuallyHiddenDismiss ?? (visuallyHiddenDismiss = (defaultProps == null ? void 0 : defaultProps.visuallyHiddenDismiss) ?? true);
-  closeOnFocusOut ?? (closeOnFocusOut = (defaultProps == null ? void 0 : defaultProps.closeOnFocusOut) ?? true);
-  order ?? (order = (defaultProps == null ? void 0 : defaultProps.order) ?? ["content"]);
+  disabled ??= defaultProps?.disabled ?? false;
+  initialFocus ??= defaultProps?.initialFocus ?? 0;
+  returnFocus ??= defaultProps?.returnFocus ?? true;
+  guards ??= defaultProps?.guards ?? true;
+  modal ??= defaultProps?.modal ?? false;
+  visuallyHiddenDismiss ??= defaultProps?.visuallyHiddenDismiss ?? true;
+  closeOnFocusOut ??= defaultProps?.closeOnFocusOut ?? true;
+  order ??= defaultProps?.order ?? ["content"];
   const styles = twMerge(theme2.baseStyle, theme2.size[size4], className);
-  const elementRef = useMergeRefs([refs == null ? void 0 : refs.setFloating, ref]);
+  const elementRef = useMergeRefs([refs?.setFloating, ref]);
   return open ? (0, import_jsx_runtime26.jsx)(
     FloatingFocusManager,
     {
@@ -12789,7 +12769,7 @@ var DialogContent = React27.forwardRef(DialogContentRoot);
 function DialogDismissTriggerRoot({ as, className, children, ...props }, ref) {
   const Component = as || "button";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.dialogDismissTrigger) ?? dialogDismissTriggerTheme;
+  const theme2 = contextTheme?.dialogDismissTrigger ?? dialogDismissTriggerTheme;
   const { open, setOpen } = React27.useContext(DialogContext);
   const styles = twMerge(theme2.baseStyle, className);
   return (0, import_jsx_runtime26.jsx)(
@@ -12800,8 +12780,7 @@ function DialogDismissTriggerRoot({ as, className, children, ...props }, ref) {
       "data-open": open,
       className: styles,
       onClick: (event) => {
-        var _a;
-        (_a = props.onClick) == null ? void 0 : _a.call(props, event);
+        props.onClick?.(event);
         if (setOpen) {
           setOpen(false);
         }
@@ -12861,10 +12840,10 @@ DrawerRoot.displayName = "MaterialTailwind.Drawer";
 function DrawerTriggerRoot({ as, className, children, ...props }, ref) {
   const Component = as || "button";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.drawerTrigger) ?? drawerTriggerTheme;
+  const theme2 = contextTheme?.drawerTrigger ?? drawerTriggerTheme;
   const { refs, getReferenceProps, open } = React28.useContext(DrawerContext);
   const styles = twMerge(theme2.baseStyle, className);
-  const elementRef = useMergeRefs([refs == null ? void 0 : refs.setReference, ref]);
+  const elementRef = useMergeRefs([refs?.setReference, ref]);
   return (0, import_jsx_runtime27.jsx)(
     Component,
     {
@@ -12881,10 +12860,10 @@ DrawerTriggerRoot.displayName = "MaterialTailwind.DrawerTrigger";
 var DrawerTrigger = React28.forwardRef(DrawerTriggerRoot);
 function DrawerOverlayRoot({ className, lockScroll, children, ...props }, ref) {
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.drawerOverlay) ?? drawerOverlayTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.drawerOverlay ?? drawerOverlayTheme;
+  const defaultProps = theme2?.defaultProps;
   const { open } = React28.useContext(DrawerContext);
-  lockScroll ?? (lockScroll = (defaultProps == null ? void 0 : defaultProps.lockScroll) ?? true);
+  lockScroll ??= defaultProps?.lockScroll ?? true;
   const styles = twMerge(theme2.baseStyle, className);
   return open ? (0, import_jsx_runtime27.jsx)(FloatingPortal, { children: (0, import_jsx_runtime27.jsx)(
     FloatingOverlay,
@@ -12917,20 +12896,20 @@ function DrawerPanelRoot({
 }, ref) {
   const Component = as || "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.drawerPanel) ?? drawerPanelTheme;
+  const theme2 = contextTheme?.drawerPanel ?? drawerPanelTheme;
   const defaultProps = theme2.defaultProps;
   const { context, refs, getFloatingProps, open } = React28.useContext(DrawerContext);
-  placement ?? (placement = (defaultProps == null ? void 0 : defaultProps.placement) ?? "right");
-  disabled ?? (disabled = (defaultProps == null ? void 0 : defaultProps.disabled) ?? false);
-  initialFocus ?? (initialFocus = (defaultProps == null ? void 0 : defaultProps.initialFocus) ?? 0);
-  returnFocus ?? (returnFocus = (defaultProps == null ? void 0 : defaultProps.returnFocus) ?? true);
-  guards ?? (guards = (defaultProps == null ? void 0 : defaultProps.guards) ?? true);
-  modal ?? (modal = (defaultProps == null ? void 0 : defaultProps.modal) ?? false);
-  visuallyHiddenDismiss ?? (visuallyHiddenDismiss = (defaultProps == null ? void 0 : defaultProps.visuallyHiddenDismiss) ?? true);
-  closeOnFocusOut ?? (closeOnFocusOut = (defaultProps == null ? void 0 : defaultProps.closeOnFocusOut) ?? true);
-  order ?? (order = (defaultProps == null ? void 0 : defaultProps.order) ?? ["content"]);
+  placement ??= defaultProps?.placement ?? "right";
+  disabled ??= defaultProps?.disabled ?? false;
+  initialFocus ??= defaultProps?.initialFocus ?? 0;
+  returnFocus ??= defaultProps?.returnFocus ?? true;
+  guards ??= defaultProps?.guards ?? true;
+  modal ??= defaultProps?.modal ?? false;
+  visuallyHiddenDismiss ??= defaultProps?.visuallyHiddenDismiss ?? true;
+  closeOnFocusOut ??= defaultProps?.closeOnFocusOut ?? true;
+  order ??= defaultProps?.order ?? ["content"];
   const styles = twMerge(theme2.baseStyle, className);
-  const elementRef = useMergeRefs([refs == null ? void 0 : refs.setFloating, ref]);
+  const elementRef = useMergeRefs([refs?.setFloating, ref]);
   return open ? (0, import_jsx_runtime27.jsx)(
     FloatingFocusManager,
     {
@@ -12963,7 +12942,7 @@ var DrawerPanel = React28.forwardRef(DrawerPanelRoot);
 function DrawerDismissTriggerRoot({ as, className, children, ...props }, ref) {
   const Component = as || "button";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.drawerDismissTrigger) ?? drawerDismissTriggerTheme;
+  const theme2 = contextTheme?.drawerDismissTrigger ?? drawerDismissTriggerTheme;
   const { open, setOpen } = React28.useContext(DrawerContext);
   const styles = twMerge(theme2.baseStyle, className);
   return (0, import_jsx_runtime27.jsx)(
@@ -12974,8 +12953,7 @@ function DrawerDismissTriggerRoot({ as, className, children, ...props }, ref) {
       "data-open": open,
       className: styles,
       onClick: (event) => {
-        var _a;
-        (_a = props.onClick) == null ? void 0 : _a.call(props, event);
+        props.onClick?.(event);
         if (setOpen) {
           setOpen(false);
         }
@@ -13012,16 +12990,16 @@ function IconButtonRoot({
 }, ref) {
   const Component = as ?? "button";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.iconButton) ?? iconButtonTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
-  size4 ?? (size4 = (defaultProps == null ? void 0 : defaultProps.size) ?? "md");
-  ripple ?? (ripple = (defaultProps == null ? void 0 : defaultProps.ripple) ?? true);
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
-  variant ?? (variant = (defaultProps == null ? void 0 : defaultProps.variant) ?? "solid");
-  isCircular ?? (isCircular = (defaultProps == null ? void 0 : defaultProps.isCircular) ?? false);
+  const theme2 = contextTheme?.iconButton ?? iconButtonTheme;
+  const defaultProps = theme2?.defaultProps;
+  size4 ??= defaultProps?.size ?? "md";
+  ripple ??= defaultProps?.ripple ?? true;
+  color ??= defaultProps?.color ?? "primary";
+  variant ??= defaultProps?.variant ?? "solid";
+  isCircular ??= defaultProps?.isCircular ?? false;
   const rippleEffect = ripple !== void 0 && new import_material_ripple_effects6.default();
   const handleClick = (e) => {
-    const onClick = props == null ? void 0 : props.onClick;
+    const onClick = props?.onClick;
     const isDarkRipple = variant === "ghost" || color === "secondary";
     if (ripple) {
       rippleEffect.create(e, isDarkRipple ? "dark" : "light");
@@ -13067,8 +13045,8 @@ function AccordionRoot({
 }) {
   const contextTheme = useTheme();
   const theme2 = contextTheme.accordion || accordionTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
-  type ?? (type = (defaultProps == null ? void 0 : defaultProps.type) ?? "single");
+  const defaultProps = theme2?.defaultProps;
+  type ??= defaultProps?.type ?? "single";
   const accordionValue = value || defaultValue;
   const [uncontrolledActiveItem, setUncontrolledActiveItem] = React30.useState("");
   const activeItem = value || uncontrolledActiveItem;
@@ -13092,11 +13070,11 @@ function AccordionItemRoot({ as, value, disabled, className, children, ...props 
   const Component = as || "div";
   const contextTheme = useTheme();
   const theme2 = contextTheme.accordionItem || accordionItemTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const defaultProps = theme2?.defaultProps;
   const { type, activeItem } = React30.useContext(AccordionContext);
-  disabled ?? (disabled = (defaultProps == null ? void 0 : defaultProps.disabled) ?? false);
+  disabled ??= defaultProps?.disabled ?? false;
   const isMultiple = type === "multiple";
-  const isOpen = isMultiple ? activeItem == null ? void 0 : activeItem.includes(value) : activeItem === value;
+  const isOpen = isMultiple ? activeItem?.includes(value) : activeItem === value;
   const styles = twMerge(theme2.baseStyle, className);
   return (0, import_jsx_runtime29.jsx)(AccordionItemContext.Provider, { value, children: (0, import_jsx_runtime29.jsx)(
     Component,
@@ -13119,7 +13097,7 @@ function AccordionTriggerRoot({ as, className, children, ...props }, ref) {
   const value = React30.useContext(AccordionItemContext);
   const { type, activeItem, setActiveItem } = React30.useContext(AccordionContext);
   const isMultiple = type === "multiple";
-  const isOpen = isMultiple ? activeItem == null ? void 0 : activeItem.includes(value) : activeItem === value;
+  const isOpen = isMultiple ? activeItem?.includes(value) : activeItem === value;
   const styles = twMerge(theme2.baseStyle, className);
   return (0, import_jsx_runtime29.jsx)(
     Component,
@@ -13129,19 +13107,18 @@ function AccordionTriggerRoot({ as, className, children, ...props }, ref) {
       "data-open": isOpen,
       className: styles,
       onClick: (event) => {
-        var _a;
         if (isMultiple) {
-          if (activeItem == null ? void 0 : activeItem.includes(value)) {
-            setActiveItem == null ? void 0 : setActiveItem(
+          if (activeItem?.includes(value)) {
+            setActiveItem?.(
               (prev) => prev.filter((item) => item !== value)
             );
           } else {
-            setActiveItem == null ? void 0 : setActiveItem((prev) => [...prev, value]);
+            setActiveItem?.((prev) => [...prev, value]);
           }
         } else {
-          setActiveItem == null ? void 0 : setActiveItem((prev) => prev === value ? "" : value);
+          setActiveItem?.((prev) => prev === value ? "" : value);
         }
-        (_a = props.onClick) == null ? void 0 : _a.call(props, event);
+        props.onClick?.(event);
       },
       children
     }
@@ -13156,7 +13133,7 @@ function AccordionContentRoot({ as, className, children, ...props }, ref) {
   const value = React30.useContext(AccordionItemContext);
   const { type, activeItem } = React30.useContext(AccordionContext);
   const isMultiple = type === "multiple";
-  const isOpen = isMultiple ? activeItem == null ? void 0 : activeItem.includes(value) : activeItem === value;
+  const isOpen = isMultiple ? activeItem?.includes(value) : activeItem === value;
   const styles = twMerge(theme2.baseStyle, className);
   return isOpen ? (0, import_jsx_runtime29.jsx)(Component, { ...props, ref, className: styles, "data-open": isOpen, children }) : null;
 }
@@ -13192,14 +13169,14 @@ function AlertRootBase({
 }, ref) {
   const Component = as ?? "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.alert) ?? alertTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
+  const theme2 = contextTheme?.alert ?? alertTheme;
+  const defaultProps = theme2?.defaultProps;
   const [uncontrolledOpen, setUncontrolledOpen] = React31.useState(true);
   const open = controlledOpen ?? uncontrolledOpen;
   const setOpen = setControlledOpen ?? setUncontrolledOpen;
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
-  variant ?? (variant = (defaultProps == null ? void 0 : defaultProps.variant) ?? "solid");
-  isPill ?? (isPill = (defaultProps == null ? void 0 : defaultProps.isPill) ?? false);
+  color ??= defaultProps?.color ?? "primary";
+  variant ??= defaultProps?.variant ?? "solid";
+  isPill ??= defaultProps?.isPill ?? false;
   const styles = twMerge(
     theme2.baseStyle,
     theme2["variant"][variant][color],
@@ -13233,7 +13210,7 @@ var AlertRoot = React31.forwardRef(AlertRootBase);
 function AlertContentRoot({ as, className, children, ...props }, ref) {
   const Component = as ?? "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.alertContent) ?? alertContentTheme;
+  const theme2 = contextTheme?.alertContent ?? alertContentTheme;
   const styles = twMerge(theme2.baseStyle, className);
   return (0, import_jsx_runtime30.jsx)(Component, { ...props, ref, className: styles, children });
 }
@@ -13242,7 +13219,7 @@ var AlertContent = React31.forwardRef(AlertContentRoot);
 function AlertIconRoot({ as, className, children, ...props }, ref) {
   const Component = as ?? "span";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.alertIcon) ?? alertIconTheme;
+  const theme2 = contextTheme?.alertIcon ?? alertIconTheme;
   const styles = twMerge(theme2.baseStyle, className);
   return (0, import_jsx_runtime30.jsx)(Component, { ...props, ref, className: styles, children });
 }
@@ -13252,12 +13229,11 @@ function AlertDismissTriggerRoot({ as, ripple, className, children, ...props }, 
   const Component = as ?? "button";
   const contextTheme = useTheme();
   const { setOpen } = React31.useContext(AlertContext);
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.alertDismissTrigger) ?? alertDismissTriggerTheme;
+  const theme2 = contextTheme?.alertDismissTrigger ?? alertDismissTriggerTheme;
   const styles = children ? className : twMerge(theme2.baseStyle, className);
   function closeAlert(event) {
-    var _a;
-    setOpen == null ? void 0 : setOpen(false);
-    (_a = props.onClick) == null ? void 0 : _a.call(props, event);
+    setOpen?.(false);
+    props.onClick?.(event);
   }
   return (0, import_jsx_runtime30.jsx)(Component, { ...props, ref, className: styles, onClick: closeAlert, children: children || (0, import_jsx_runtime30.jsx)(
     "svg",
@@ -13295,10 +13271,10 @@ var import_jsx_runtime31 = __toESM(require_jsx_runtime(), 1);
 function AvatarRoot({ as, src, alt, shape, size: size4, className, ...props }, ref) {
   const Component = as ?? "img";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.avatar) ?? avatarTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
-  size4 ?? (size4 = (defaultProps == null ? void 0 : defaultProps.size) ?? "md");
-  shape ?? (shape = (defaultProps == null ? void 0 : defaultProps.shape) ?? "circular");
+  const theme2 = contextTheme?.avatar ?? avatarTheme;
+  const defaultProps = theme2?.defaultProps;
+  size4 ??= defaultProps?.size ?? "md";
+  shape ??= defaultProps?.shape ?? "circular";
   const styles = twMerge(theme2.baseStyle, theme2["size"][size4], className);
   return (0, import_jsx_runtime31.jsx)(
     Component,
@@ -13326,11 +13302,11 @@ var BadgeContext = React33.createContext({
 function BadgeRootBase({ as, color, overlap, placement, className, children, ...props }, ref) {
   const Component = as ?? "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.badge) ?? badgeTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
-  overlap ?? (overlap = (defaultProps == null ? void 0 : defaultProps.overlap) ?? "square");
-  placement ?? (placement = (defaultProps == null ? void 0 : defaultProps.placement) ?? "top-end");
+  const theme2 = contextTheme?.badge ?? badgeTheme;
+  const defaultProps = theme2?.defaultProps;
+  color ??= defaultProps?.color ?? "primary";
+  overlap ??= defaultProps?.overlap ?? "square";
+  placement ??= defaultProps?.placement ?? "top-end";
   const styles = twMerge(theme2.baseStyle, className);
   const contextValue = React33.useMemo(
     () => ({
@@ -13347,7 +13323,7 @@ var BadgeRoot = React33.forwardRef(BadgeRootBase);
 function BadgeContentRoot({ as, className, children, ...props }, ref) {
   const Component = as ?? "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.badgeContent) ?? badgeContentTheme;
+  const theme2 = contextTheme?.badgeContent ?? badgeContentTheme;
   const styles = twMerge(theme2.baseStyle, className);
   return (0, import_jsx_runtime32.jsx)(Component, { ...props, ref, className: styles, children });
 }
@@ -13357,7 +13333,7 @@ function BadgeIndicatorRoot({ as, className, children, ...props }, ref) {
   const Component = as ?? "span";
   const contextTheme = useTheme();
   const { overlap, placement, color } = React33.useContext(BadgeContext);
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.badgeIndicator) ?? badgeIndicatorTheme;
+  const theme2 = contextTheme?.badgeIndicator ?? badgeIndicatorTheme;
   const styles = twMerge(
     theme2.baseStyle,
     theme2.color[color || "primary"],
@@ -13437,15 +13413,15 @@ function ButtonGroupRoot({
 }, ref) {
   const Component = as ?? "div";
   const contextTheme = useTheme();
-  const theme2 = (contextTheme == null ? void 0 : contextTheme.buttonGroup) ?? buttonGroupTheme;
-  const defaultProps = theme2 == null ? void 0 : theme2.defaultProps;
-  size4 ?? (size4 = (defaultProps == null ? void 0 : defaultProps.size) ?? "md");
-  ripple ?? (ripple = (defaultProps == null ? void 0 : defaultProps.ripple) ?? true);
-  color ?? (color = (defaultProps == null ? void 0 : defaultProps.color) ?? "primary");
-  variant ?? (variant = (defaultProps == null ? void 0 : defaultProps.variant) ?? "solid");
-  orientation ?? (orientation = (defaultProps == null ? void 0 : defaultProps.orientation) ?? "horizontal");
-  isFullWidth ?? (isFullWidth = (defaultProps == null ? void 0 : defaultProps.isFullWidth) ?? false);
-  isPill ?? (isPill = (defaultProps == null ? void 0 : defaultProps.isPill) ?? false);
+  const theme2 = contextTheme?.buttonGroup ?? buttonGroupTheme;
+  const defaultProps = theme2?.defaultProps;
+  size4 ??= defaultProps?.size ?? "md";
+  ripple ??= defaultProps?.ripple ?? true;
+  color ??= defaultProps?.color ?? "primary";
+  variant ??= defaultProps?.variant ?? "solid";
+  orientation ??= defaultProps?.orientation ?? "horizontal";
+  isFullWidth ??= defaultProps?.isFullWidth ?? false;
+  isPill ??= defaultProps?.isPill ?? false;
   const styles = twMerge(theme2.baseStyle, className);
   return (0, import_jsx_runtime34.jsx)(
     Component,

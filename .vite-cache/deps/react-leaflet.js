@@ -1,15 +1,15 @@
 import {
   require_leaflet_src
-} from "./chunk-EWRAASFD.js";
+} from "./chunk-CHPFRV3U.js";
 import {
   require_react_dom
-} from "./chunk-6JBW5ATH.js";
+} from "./chunk-2YVMFDJ2.js";
 import {
   require_react
-} from "./chunk-VPEBV5N7.js";
+} from "./chunk-QLJLW6ED.js";
 import {
   __toESM
-} from "./chunk-SNAQBZPT.js";
+} from "./chunk-PR4QN5HX.js";
 
 // node_modules/@react-leaflet/core/lib/attribution.js
 var import_react = __toESM(require_react(), 1);
@@ -236,8 +236,7 @@ function useLayerLifecycle(element, context) {
     const container = context.layerContainer ?? context.map;
     container.addLayer(element.instance);
     return function removeLayer() {
-      var _a;
-      (_a = context.layerContainer) == null ? void 0 : _a.removeLayer(element.instance);
+      context.layerContainer?.removeLayer(element.instance);
       context.map.removeLayer(element.instance);
     };
   }, [
@@ -487,7 +486,7 @@ function createControlledLayer(addLayerToControl) {
       map
     ]);
     const removeLayer = (0, import_react10.useCallback)((layerToRemove) => {
-      layersControl == null ? void 0 : layersControl.removeLayer(layerToRemove);
+      layersControl?.removeLayer(layerToRemove);
       setLayer(null);
     }, [
       layersControl
@@ -537,7 +536,7 @@ function MapContainerComponent({ bounds, boundsOptions, center, children, classN
   });
   const [context, setContext] = (0, import_react11.useState)(null);
   const mapInstanceRef = (0, import_react11.useRef)(void 0);
-  (0, import_react11.useImperativeHandle)(forwardedRef, () => (context == null ? void 0 : context.map) ?? null, [
+  (0, import_react11.useImperativeHandle)(forwardedRef, () => context?.map ?? null, [
     context
   ]);
   const mapRef = (0, import_react11.useCallback)((node) => {
@@ -557,7 +556,7 @@ function MapContainerComponent({ bounds, boundsOptions, center, children, classN
   }, []);
   (0, import_react11.useEffect)(() => {
     return () => {
-      context == null ? void 0 : context.map.remove();
+      context?.map.remove();
     };
   }, [
     context
@@ -653,9 +652,8 @@ function PaneComponent(props, forwardedRef) {
   (0, import_react12.useEffect)(() => {
     setPaneElement(createPane(paneName, props, context));
     return function removeCreatedPane() {
-      var _a;
       const pane = context.map.getPane(paneName);
-      (_a = pane == null ? void 0 : pane.remove) == null ? void 0 : _a.call(pane);
+      pane?.remove?.();
       if (context.map._panes != null) {
         context.map._panes = omitPane(context.map._panes, paneName);
         context.map._paneRenderers = omitPane(
@@ -731,12 +729,11 @@ var Popup = createOverlayComponent(function createPopup(props, context) {
       context.overlayContainer.bindPopup(instance);
     }
     return function removePopup() {
-      var _a;
       context.map.off({
         popupopen: onPopupOpen,
         popupclose: onPopupClose
       });
-      (_a = context.overlayContainer) == null ? void 0 : _a.unbindPopup();
+      context.overlayContainer?.unbindPopup();
       context.map.removeLayer(instance);
     };
   }, [
@@ -855,10 +852,9 @@ var Tooltip = createOverlayComponent(function createTooltip(props, context) {
 // node_modules/react-leaflet/lib/VideoOverlay.js
 var import_leaflet21 = __toESM(require_leaflet_src(), 1);
 var VideoOverlay = createLayerComponent(function createVideoOverlay({ bounds, url, ...options }, ctx) {
-  var _a;
   const overlay = new import_leaflet21.VideoOverlay(url, bounds, options);
   if (options.play === true) {
-    (_a = overlay.getElement()) == null ? void 0 : _a.play();
+    overlay.getElement()?.play();
   }
   return createElementObject(overlay, extendContext(ctx, {
     overlayContainer: overlay
