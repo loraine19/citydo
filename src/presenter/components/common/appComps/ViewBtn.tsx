@@ -35,6 +35,8 @@ export const ViewButton = ({ viewList, view }: ViewButtonProps) => {
 
             {viewList.map((item: { key: string, label: string, icon: IconName, action?: () => void }, index: number) =>
                 <MenuItem
+
+                    className={`gap-12 px-2`}
                     key={index}
                     data-cy={item.key ?? item.label}
                     onClick={() => {

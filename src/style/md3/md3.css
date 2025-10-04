@@ -78,10 +78,10 @@ html {
     --md3-on-secondary-orange: #ffffff;
 
     /* Green */
-    --md3-green: #01512c;
+    --md3-green: #016e3b;
     --md3-on-green: #ffffff;
     --md3-green-container: #beeeba;
-    --md3-on-green-container: #01512c;
+    --md3-on-green-container: #016e3b;
     --md3-secondary-green: #59614f;
     --md3-on-secondary-green: #ffffff;
 
@@ -190,8 +190,8 @@ html {
 
         /* Green */
         --md3-on-green: #beeeba;
-        --md3-green: #01512c;
-        --md3-on-green-container: #01512c;
+        --md3-green: #016e3b;
+        --md3-on-green-container: #016e3b;
         --md3-green-container: #beeeba;
         --md3-secondary-green: #59614f;
         --md3-on-secondary-green: #ffffff;
@@ -275,8 +275,8 @@ html {
 
     /* Green */
     --md3-on-green: #beeeba;
-    --md3-green: #01512c;
-    --md3-on-green-container: #01512c;
+    --md3-green: #016e3b;
+    --md3-on-green-container: #016e3b;
     --md3-green-container: #beeeba;
     --md3-secondary-green: #59614f;
     --md3-on-secondary-green: #ffffff;

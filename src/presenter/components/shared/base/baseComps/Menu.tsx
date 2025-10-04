@@ -321,7 +321,7 @@ export const Menu: React.FC<MenuProps> = ({
 
                 <div className="md3-menu-list">
                     <div onClick={handleClose}
-                        className="md3-menu-header flex w-full items-center py-1 px-2 justify-between">
+                        className="md3-menu-header gap-4 flex w-full items-center py-1 px-2 justify-between">
                         {title &&
                             <div className="flex-1 font-medium  -mb-1 p-3 text-[0.95rem] ">
                                 {title}
@@ -331,8 +331,8 @@ export const Menu: React.FC<MenuProps> = ({
                             <Icon
                                 onClick={handleClose}
                                 icon='close'
-                                bg color='slate'
-                                size='sm' />
+                                color='slate'
+                                size='md' />
                         }
                     </div>
 

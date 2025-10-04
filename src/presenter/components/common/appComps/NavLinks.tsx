@@ -163,12 +163,12 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
                     >
                         {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
                             <Fab
-                                className="max-w-max self-end shadow-lg mr-4"
+                                className="max-w-max self-end shadow-lg mr-4 gap-4"
                                 variant="tonal"
                                 key={index}
                                 size="extended"
                                 color={color as Md3Colors ?? 'slate'}
-                                icon={{ icon: icon, size: 'lg' }}
+                                icon={{ icon: icon, size: 'xl' }}
                                 text={label}
                                 onClick={() => {
                                     navigate(to);

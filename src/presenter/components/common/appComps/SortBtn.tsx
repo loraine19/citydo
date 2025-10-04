@@ -35,14 +35,13 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
                     size="2xl"
                 />}>
 
-
             {sortList.map((item: SortLabel, index: number) =>
                 <MenuItem
                     key={index}
+                    className={`gap-12 px-2`}
                     data-cy={item.key ?? item.label}
                     onClick={() => {
                         action()
-
                         setSelectedSort(item.key ?? item.label)
                         setReverse(!reverse)
                         setIsOpen(!isOpen);
@@ -68,8 +67,6 @@ export const SortButton = ({ sortList, setSelectedSort, selectedSort, reverse = 
                                     action();
                                     setSelectedSort(item.key ?? item.label)
                                     setReverse(!reverse)
-
-
                                 }}
                                 title={'Trier par ' + item.label}
                                 disabled={(selectedSort === (item.key ?? item.label))}
