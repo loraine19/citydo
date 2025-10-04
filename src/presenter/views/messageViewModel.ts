@@ -10,7 +10,8 @@ export const conversationViewModel = () => {
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
       refetchOnWindowFocus: true,
-      staleTime: 6000, // 10 minutes,
+      staleTime: 1000 * 60 * 15,
+      retry: true,
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 
@@ -18,9 +19,10 @@ export const conversationViewModel = () => {
     const { data, isLoading, error, fetchNextPage, hasNextPage, refetch }
       = useInfiniteQuery({
         queryKey: ['conversation', id],
-        staleTime: 6000,
+        staleTime: 1000 * 60 * 15,
         refetchOnMount: true,
         refetchOnWindowFocus: true,
+        retry: true,
         queryFn: async ({ pageParam = 1 }) => await getConversation.execute(id, pageParam) || [],
         initialPageParam: 1,
         getNextPageParam: (lastPage, pages) => lastPage?.messages?.length ? pages.length + 1 : undefined
@@ -60,6 +62,8 @@ export const conversationsViewModel = () => {
         initialPageParam: 1,
         getNextPageParam: (lastPage, pages) => lastPage?.conversations?.length ? pages.length + 1 : undefined,
         refetchOnMount: true,
+        staleTime: 1000 * 60 * 15,
+        retry: true,
         refetchOnWindowFocus: true,
       })
 

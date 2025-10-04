@@ -9,7 +9,8 @@ export const flagsViewModel = () => {
   const { data, isLoading, error, refetch }
     = useQuery({
       queryKey: ['flags'],
-      staleTime: 600000,
+      staleTime: 1000 * 60 * 15,
+      retry: true,
       queryFn: async () => await getFlags.execute() || [],
     })
 
@@ -30,7 +31,8 @@ export const flagByIdViewModel = () => {
     const { data, isLoading, error, refetch }
       = useQuery({
         queryKey: ['flagById', id, target],
-        staleTime: 600000,
+        staleTime: 1000 * 60 * 15,
+        retry: true,
         queryFn: async () => await getFlagById.execute(id, target) || [],
       })
 

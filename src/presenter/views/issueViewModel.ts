@@ -8,7 +8,7 @@ export const issueViewModel = () => {
 
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
-      staleTime: 600000, // 10 minutes,
+      staleTime: 1000 * 60 * 15,
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 
@@ -18,8 +18,8 @@ export const issueViewModel = () => {
       = useInfiniteQuery({
         queryKey: ['issues', filter],
         refetchOnWindowFocus: false,
-        //  staleTime: 600000,
-        retry: 2,
+        staleTime: 1000 * 60 * 15,
+        retry: true,
         queryFn: async ({ pageParam = 1 }) => await getIssues.execute(pageParam, filter) || [],
         initialPageParam: 1,
         getNextPageParam: (lastPage, pages) => lastPage?.issues?.length ? pages.length + 1 : undefined
@@ -46,7 +46,8 @@ export const IssueIdViewModel = () => {
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
       refetchOnWindowFocus: false,
-      staleTime: 600000,
+      staleTime: 1000 * 60 * 15,
+      retry: true,
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
     const userId = user?.id || 0
@@ -54,7 +55,8 @@ export const IssueIdViewModel = () => {
 
     const { data, isLoading, error, refetch } = useQuery({
       queryKey: ['IssueById', id],
-      staleTime: 600000,
+      staleTime: 1000 * 60 * 15,
+      retry: true,
       queryFn: async () => await getIssueById.execute(id),
     })
     const issue = userLoading ? {} : data ? new IssueView(data, userId) : {} as IssueView;

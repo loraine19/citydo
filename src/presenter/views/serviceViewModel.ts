@@ -47,7 +47,8 @@ export const serviceIdViewModel = () => {
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
       refetchOnWindowFocus: false,
-      staleTime: 600000,
+      staleTime: 1000 * 60 * 15,
+      retry: true,
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 
@@ -55,7 +56,7 @@ export const serviceIdViewModel = () => {
 
     const { data, isLoading, error, refetch } = useQuery({
       queryKey: ['serviceById', id],
-      staleTime: 600000,
+      staleTime: 1000 * 60 * 15,
       retry: true,
       queryFn: async () => id && await getServiceById.execute(id),
     })

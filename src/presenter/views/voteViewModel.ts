@@ -10,7 +10,8 @@ export const voteViewModel = () => {
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
       refetchOnWindowFocus: false,
-      staleTime: 600000, // 10 minutes,
+      staleTime: 1000 * 60 * 10,
+      retry: true,
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 
@@ -22,7 +23,7 @@ export const voteViewModel = () => {
         queryFn: async ({ pageParam = 1 }) => await getPoolsSurveys.execute(pageParam, params) || [],
         initialPageParam: 1,
         retry: true,
-        staleTime: 60000,
+        staleTime: 1000 * 60 * 15,
         getNextPageParam: (lastPage, pages) => lastPage?.poolsSurveys?.length ? pages.length + 1 : undefined
       })
 

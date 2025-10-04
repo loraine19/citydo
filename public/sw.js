@@ -1,16 +1,41 @@
-// Basic Service Worker setup
+const CACHE_NAME = 'citydo-cache-v1';
+const urlsToCache = [
+    '/',
+    '/index.html',
+    '/manifest.json',
+    '/favicon.ico',
 
+];
+
+// Install: cache files
 self.addEventListener('install', event => {
-    // Perform install steps
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then(cache => cache.addAll(urlsToCache))
+    );
     self.skipWaiting();
 });
 
+// Activate: clean up old caches
 self.addEventListener('activate', event => {
-    // Claim clients immediately so the SW starts controlling them
-    event.waitUntil(self.clients.claim());
+    event.waitUntil(
+        caches.keys().then(cacheNames =>
+            Promise.all(
+                cacheNames.map(name => {
+                    if (name !== CACHE_NAME) {
+                        return caches.delete(name);
+                    }
+                })
+            )
+        )
+    );
+    self.clients.claim();
 });
 
+// Fetch: serve cached files if offline
 self.addEventListener('fetch', event => {
-    // You can customize fetch handling here
-    // For now, just let requests pass through
+    event.respondWith(
+        caches.match(event.request)
+            .then(response => response || fetch(event.request))
+    );
 });

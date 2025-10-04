@@ -9,7 +9,8 @@ export const postViewModel = () => {
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
       refetchOnWindowFocus: false,
-      staleTime: 600000, // 10 minutes,
+      staleTime: 1000 * 60 * 15,
+      retry: true,
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 
@@ -18,7 +19,7 @@ export const postViewModel = () => {
       = useInfiniteQuery({
         queryKey: ['Posts', params],
         refetchOnWindowFocus: false,
-        staleTime: 600000, // 10 minutes,
+        staleTime: 1000 * 60 * 15,
         retry: true,
         queryFn: async ({ pageParam = 1 }) => await getPosts.execute(pageParam, params) || { Posts: [], count: 0 },
         initialPageParam: 1,
@@ -29,7 +30,6 @@ export const postViewModel = () => {
     const userId = user?.id || 0
     const flat = error || isLoading || userLoading || !data ? [] : data?.pages.flat().map(page => page.posts).flat()
     const posts = flat?.map(post => post && new PostView(post, userId))
-    console.log(posts)
 
     return {
       count,
@@ -50,7 +50,7 @@ export const postIdViewModel = () => {
 
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
-      staleTime: 600000,
+      staleTime: 1000 * 60 * 15,
       refetchOnWindowFocus: false,
 
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
@@ -60,7 +60,7 @@ export const postIdViewModel = () => {
     const getPostById = DI.resolve('getPostByIdUseCase')
     let { data, isLoading, error, refetch } = useQuery({
       queryKey: ['PostById', id],
-      staleTime: 600000,
+      staleTime: 1000 * 60 * 15,
       refetchOnMount: true,
       refetchOnWindowFocus: false,
       retry: true,

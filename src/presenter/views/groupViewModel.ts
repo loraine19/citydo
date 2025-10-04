@@ -9,7 +9,8 @@ export const groupViewModel = () => {
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
       refetchOnWindowFocus: false,
-      staleTime: 600000, // 10 minutes,
+      staleTime: 1000 * 60 * 15,
+      retry: true,
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 
@@ -17,7 +18,8 @@ export const groupViewModel = () => {
     const { data, isLoading, error, fetchNextPage, hasNextPage, refetch }
       = useInfiniteQuery({
         queryKey: ['groups', filter, category],
-        staleTime: 600000,
+        staleTime: 1000 * 60 * 15,
+        retry: true,
         queryFn: async ({ pageParam = 1 }) => await getGroups.execute(pageParam, filter, category) || { groups: [], count: 0 },
         initialPageParam: 1,
         getNextPageParam: (lastPage, pages) => lastPage.group?.length ? pages.length + 1 : undefined
@@ -49,7 +51,8 @@ export const groupIdViewModel = () => {
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
       refetchOnWindowFocus: false,
-      staleTime: 600000, // 10 minutes,
+      staleTime: 1000 * 60 * 15,
+      retry: true,
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
 
     })

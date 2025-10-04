@@ -1,163 +1,163 @@
 {
-  "hash": "dace9cdb",
+  "hash": "18ab7b77",
   "configHash": "2dde7a21",
-  "lockfileHash": "41589f40",
-  "browserHash": "74ff8790",
+  "lockfileHash": "f9cc3f4f",
+  "browserHash": "4fbaab9f",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "3772161a",
+      "fileHash": "cd163f4a",
       "needsInterop": true
     },
     "react-dom": {
       "src": "../../node_modules/react-dom/index.js",
       "file": "react-dom.js",
-      "fileHash": "6bd818ed",
+      "fileHash": "090a1032",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "5ae89d24",
+      "fileHash": "ac243534",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "b22d92c6",
+      "fileHash": "c28d83b7",
       "needsInterop": true
     },
     "@material-tailwind/react": {
       "src": "../../node_modules/@material-tailwind/react/dist/index.js",
       "file": "@material-tailwind_react.js",
-      "fileHash": "6d27ed7f",
+      "fileHash": "02d02978",
       "needsInterop": false
     },
     "@project-lary/react-material-symbols-400-rounded": {
       "src": "../../node_modules/@project-lary/react-material-symbols-400-rounded/dist/index.js",
       "file": "@project-lary_react-material-symbols-400-rounded.js",
-      "fileHash": "64550f06",
+      "fileHash": "be31555e",
       "needsInterop": false
     },
     "@tanstack/react-query": {
       "src": "../../node_modules/@tanstack/react-query/build/modern/index.js",
       "file": "@tanstack_react-query.js",
-      "fileHash": "1153b5dd",
+      "fileHash": "3e1ed217",
       "needsInterop": false
     },
     "awilix": {
       "src": "../../node_modules/awilix/lib/awilix.browser.mjs",
       "file": "awilix.js",
-      "fileHash": "c9b98505",
+      "fileHash": "4b74df2a",
       "needsInterop": false
     },
     "axios": {
       "src": "../../node_modules/axios/index.js",
       "file": "axios.js",
-      "fileHash": "8dcf1132",
+      "fileHash": "280130de",
       "needsInterop": false
     },
     "crypto-js": {
       "src": "../../node_modules/crypto-js/index.js",
       "file": "crypto-js.js",
-      "fileHash": "2591085c",
+      "fileHash": "daf59966",
       "needsInterop": true
     },
     "emoji-picker-react": {
       "src": "../../node_modules/emoji-picker-react/dist/emoji-picker-react.esm.js",
       "file": "emoji-picker-react.js",
-      "fileHash": "8cf128a7",
+      "fileHash": "efa539e1",
       "needsInterop": false
     },
     "formik": {
       "src": "../../node_modules/formik/dist/formik.esm.js",
       "file": "formik.js",
-      "fileHash": "97faeb7a",
+      "fileHash": "6a28e9b4",
       "needsInterop": false
     },
     "html-react-parser": {
       "src": "../../node_modules/html-react-parser/esm/index.mjs",
       "file": "html-react-parser.js",
-      "fileHash": "5cb36291",
+      "fileHash": "5d4a92e6",
       "needsInterop": false
     },
     "js-cookie": {
       "src": "../../node_modules/js-cookie/dist/js.cookie.mjs",
       "file": "js-cookie.js",
-      "fileHash": "35496917",
+      "fileHash": "4cfd0ea4",
       "needsInterop": false
     },
     "jwt-decode": {
       "src": "../../node_modules/jwt-decode/build/esm/index.js",
       "file": "jwt-decode.js",
-      "fileHash": "1062f779",
+      "fileHash": "0bb08023",
       "needsInterop": false
     },
     "leaflet": {
       "src": "../../node_modules/leaflet/dist/leaflet-src.js",
       "file": "leaflet.js",
-      "fileHash": "7ad06e3b",
+      "fileHash": "8c5147b3",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "222325d1",
+      "fileHash": "356eeacc",
       "needsInterop": true
     },
     "react-icons/fa": {
       "src": "../../node_modules/react-icons/fa/index.mjs",
       "file": "react-icons_fa.js",
-      "fileHash": "8b564ab5",
+      "fileHash": "8487f848",
       "needsInterop": false
     },
     "react-icons/io": {
       "src": "../../node_modules/react-icons/io/index.mjs",
       "file": "react-icons_io.js",
-      "fileHash": "6426822d",
+      "fileHash": "df138d8b",
       "needsInterop": false
     },
     "react-leaflet": {
       "src": "../../node_modules/react-leaflet/lib/index.js",
       "file": "react-leaflet.js",
-      "fileHash": "397208ea",
+      "fileHash": "593c1232",
       "needsInterop": false
     },
     "react-router": {
       "src": "../../node_modules/react-router/dist/index.js",
       "file": "react-router.js",
-      "fileHash": "a00ebb1c",
+      "fileHash": "b143e65b",
       "needsInterop": false
     },
     "react-router-dom": {
       "src": "../../node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
-      "fileHash": "28af0f56",
+      "fileHash": "af1a3a08",
       "needsInterop": false
     },
     "socket.io-client": {
       "src": "../../node_modules/socket.io-client/build/esm/index.js",
       "file": "socket__io-client.js",
-      "fileHash": "435c3f20",
+      "fileHash": "19dae528",
       "needsInterop": false
     },
     "yup": {
       "src": "../../node_modules/yup/index.esm.js",
       "file": "yup.js",
-      "fileHash": "e4430abc",
+      "fileHash": "b545a673",
       "needsInterop": false
     },
     "zustand": {
       "src": "../../node_modules/zustand/esm/index.mjs",
       "file": "zustand.js",
-      "fileHash": "caf679fb",
+      "fileHash": "0046a92e",
       "needsInterop": false
     },
     "zustand/middleware": {
       "src": "../../node_modules/zustand/esm/middleware.mjs",
       "file": "zustand_middleware.js",
-      "fileHash": "5e467ff6",
+      "fileHash": "a49ef563",
       "needsInterop": false
     }
   },

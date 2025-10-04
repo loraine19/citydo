@@ -9,14 +9,13 @@ export const userViewModel = () => {
     const { data, isLoading, error, fetchNextPage, hasNextPage, refetch }
       = useInfiniteQuery({
         queryKey: ['users', groupeId],
-        staleTime: 600000,
+        staleTime: 1000 * 60 * 15,
+        retry: true,
         queryFn: async ({ pageParam = 1 }) => await getUsers.execute(groupeId, pageParam),
         initialPageParam: 1,
         getNextPageParam: (lastPage, pages) => lastPage?.length ? pages.length + 1 : undefined
       })
 
-    //  const count = isLoading ? 0 : (data?.pages[data?.pages.length - 1].count)
-    console.log(data, isLoading);
     const flat = !data || error || isLoading ? [] : data?.pages.flat().map(page => page).flat()
     const users = (isLoading || !data) ? [] : flat?.map((user: User) => user)
 

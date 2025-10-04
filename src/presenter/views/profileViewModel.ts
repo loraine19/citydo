@@ -10,7 +10,8 @@ export const meViewModel = () => {
         const { data, error: error, isLoading } = useQuery({
             queryKey: ['me'],
             refetchOnWindowFocus: false,
-            staleTime: 600000, // 10 minutes,
+            staleTime: 1000 * 60 * 15,
+            retry: true,
             queryFn: async () => await get.execute()
         })
 
