@@ -145,7 +145,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                         <div>
                             <AvatarUser
                                 style="!shadow-none "
-                                avatarSize="4xl"
+                                avatarSize="2xl"
                                 Profile={user?.Profile}
                             />
                         </div>
@@ -173,7 +173,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                                 disabled={!item.onClick}
                                 bg
                                 fill
-                                size="xl"
+                                size="2xl"
                                 color={item.color ?? color}
                                 icon={item.icon as IconName}
                             />

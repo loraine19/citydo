@@ -23,14 +23,12 @@ function ZoomControls() {
         <div className='flex absolute top-[9px] left-[9px] z-[400]'>
             <div className='md3-slate-container border-[var(--md3-outline)] rounded-full shadow p-[5px] flex flex-col gap-[1px]'>
                 <Icon
-                    style={'!text-slate-400/80 hover:!text-slate-600'}
                     title='Zoomer'
                     onClick={handleZoomIn}
                     icon="add_circle"
                     size="lg"
                 />
                 <Icon
-                    style={'!text-slate-400/80 hover:!text-slate-600'}
                     title='Dézoomer'
                     onClick={handleZoomOut}
                     icon="do_not_disturb_on"

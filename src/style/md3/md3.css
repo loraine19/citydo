@@ -238,8 +238,8 @@ html {
     /* error */
     --md3-error: #f2b8b5;
     --md3-on-error: #601410;
-    --md3-error-container: #8c1d18;
-    --md3-on-error-container: #f2b8b5;
+    --md3-on-error-container: #8c1d18;
+    --md3-error-container: #f2b8b5;
 
     /* Sky */
     --md3-on-sky: #bcf0fe;
@@ -285,7 +285,7 @@ html {
     --md3-on-slate: #dde4f3;
     --md3-slate: #5b6172;
     --md3-on-slate-container: #5b6172;
-    --md3-slate-container: #dde4f3;
+    --md3-slate-container: #c1c7d4;
     --md3-secondary-slate: #475569;
     --md3-on-secondary-slate: #ffffff;
 

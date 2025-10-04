@@ -180,7 +180,7 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                                                     trigger={<button
                                                         className=
                                                         {` ${!event.actif && 'invisible'} 
-                                                                             ${event.status !== EventStatus.VALIDATED ? `!bg-[--md3-slate-container]` : `bg-[--md3-cyan-container] outline outline-1 !outline-[var(--md3-cyan-container)]`}  px-[0.5rem] mb-[0.2rem]  w-full flex-1  h-5 truncate flex items-center justify-center 
+                                                                             ${event.status !== EventStatus.VALIDATED ? `md3-slate-container` : `md3-cyan-container outline outline-1 !outline-[var(--md3-cyan-container)]`}  px-[0.5rem] mb-[0.2rem]  w-full flex-1  h-5 truncate flex items-center justify-center 
                                                                               font-normal z-[4]
                                                                               outline outline-1 outline-[var(--md3-surface-variant)]
                                                         text-[0.80rem]
