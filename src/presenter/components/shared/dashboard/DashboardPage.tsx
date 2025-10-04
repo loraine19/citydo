@@ -96,7 +96,7 @@ export default function DashboardPage() {
 
     return (
         <main className={` wRespXL overflow-auto xs:overflow-hidden 
-            ${navBottom && ' hBottomNav !-mt-4 sm:!mt-0 '} `}
+            ${navBottom && ' hBottomNav !-mt-4 sm:!-mt-3 '} `}
             data-cy="dashboard-body" >
             <div
                 onScroll={() => {
@@ -124,7 +124,7 @@ export default function DashboardPage() {
                             <div className={"relative "}>
                                 <AvatarUser
                                     avatarSize="6xl"
-                                    avatarStyle="!shadow -mt-0 border border-slate-900/10 "
+                                    avatarStyle="outline outline-4 md3-elevation-2 hover:md3-elevation-2  outline-[var(--md3-surface)]"
                                     Profile={user?.Profile} />
                                 <OnlineDot
                                     id={user?.id} />

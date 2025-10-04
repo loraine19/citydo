@@ -49,10 +49,10 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
 
     const colClass = ['grid-cols-1', 'grid-cols-2', 'grid-cols-3', 'grid-cols-4', 'grid-cols-5', 'grid-cols-6', 'grid-cols-7']
     const rowClass = [
-        'grid-rows-1',
-        'grid-rows-[1fr,1fr]',
-        'grid-rows-3',
-        'grid-rows-4'
+        'grid-rows-[repeat(1, minmax(0, 1fr))]',
+        'grid-rows-[repeat(2, minmax(0, 1fr))]',
+        'grid-rows-[repeat(3, minmax(0, 1fr))]',
+        'grid-rows-[repeat(4, minmax(0, 1fr))]',
     ]
 
     //// HANDLE MENU
@@ -145,17 +145,17 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
             {/* CALENDAR */}
 
             <div id='refDiv'
-                className={`grid ${rowClass[row - 1]} gap-4 w-full rounded-xl h-[100%]  overflow-hidden`}>
-                {(!loadingEvents && !errorEvents) ? weeks.map((week: any, key: number) => (
+                className={`grid ${rowClass[row - 1]} gap-4 w-full rounded-xl !max-h-full h-[100%] overflow-hidden`}>
+                {(!loadingEvents && !errorEvents && weeks.length > 0) ? weeks.map((week: any, key: number) => (
                     <div key={key}
-                        className={`grid rounded-xl overflow-auto !bg-[var(--md3-surface)] border md3-border ${colClass[col - 1]}`}>
+                        className={`grid rounded-xl overflow-auto !bg-[var(--md3-surface)] border md3-border ${colClass[col - 1]} `}>
                         {week.map((day: any, index: number) =>
                             <div className={`flex flex-col text-center h-full border-r md3-border-primary-container `}
                                 key={index}>
                                 <p className={`${new Date(day.date).toDateString() === new Date().toDateString() && '!text-orange-500 underline underline-offset-4 text-font-bold'} w-full !text-xs pt-0 min-h-4 sticky top-0 text-center bg-[var(--md3-surface)]`}>
                                     {day.date.toLocaleDateString('fr-FR', { weekday: 'narrow', month: 'numeric', day: 'numeric' })}
                                 </p>
-                                <div className='min-h-4 h-full w-full flex flex-col flex-1 items-center gap-0.5' key={index}>
+                                <div className='min-h-4 h-full  py-0.5  w-full flex flex-col flex-1 items-center gap-0.5' key={index}>
                                     {day.events.sort((a: any, b: any) => a.id - b.id).map((event: any, indexEvent: number) => {
                                         const eventDays = event.days.map((d: any) => new Date(d).toDateString());
                                         const currentDay = new Date(new Date(day.date).getTime()).toDateString();
@@ -180,9 +180,9 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
                                                     trigger={<button
                                                         className=
                                                         {` ${!event.actif && 'invisible'} 
-                                                                             ${event.status !== EventStatus.VALIDATED ? `md3-slate-container outline-[var(--md3-slate-container)]` : `md3-cyan-container outline outline-1 !outline-[var(--md3-cyan-container)]`}  px-[0.5rem] mb-[0.2rem]  w-full flex-1  h-5 truncate flex items-center justify-center 
+                                                                             ${event.status !== EventStatus.VALIDATED ? `md3-slate-container outline-[var(--md3-slate-container)]` : `md3-cyan-container outline !outline-[var(--md3-cyan-container)]`}  px-[0.5rem] mb-[0.2rem]  w-full flex-1  h-5 truncate flex items-center justify-center 
                                                                               font-normal z-[4]
-                                                                              outline outline-1 
+                                                                              outline outline-[0.5px] 
                                                         text-[0.80rem]
                                                         ${(eventDays[0] === currentDay || new Date(day.date).getDay() === 1) ? 'rounded-l-xl !justify-start !z-50 pl-3 !font-medium capitalize' : 'italic text-opacity-70'}
                                                         ${(eventDays[eventDays.length - 1] === currentDay || new Date(day.date).getDay() === 0) && 'rounded-r-xl '}
