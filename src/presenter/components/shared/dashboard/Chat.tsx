@@ -150,13 +150,13 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                         handleScroll={handleScroll} />
                 </div>
                 <div className='px-0 -mb-2 -mt-1.5'>
-                    <div className={`${imTyping ? '-top-2' : ''} bottom-0 border-t md3-border flex justify-between rounded-t-[1.5rem] rounded-b-[1rem]  border-b-0 w-full px-3 py-4  min-h-min `}>
+                    <div className={`${imTyping ? '-top-2' : ''} bottom-0 border-t md3-border flex justify-between rounded-t-[1.5rem] !border-b-0 w-full px-3 py-4  min-h-min `}>
                         <div className='flex-0 flex top-0 mt-1 ' >
                             <Icon
                                 onClick={() => setOpenEmoji(!openEmoji)}
                                 color='slate'
                                 title='Emoji'
-                                size='3xl'
+                                size='2xl'
                                 icon='mood'
                                 style={`max-h-max relative`}
                             />
@@ -178,7 +178,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                         </div>
                         <textarea
                             onFocus={() => setImTyping(true)}
-                            className='rounded-3xl h-10 py-2.5 bg-[var(--md3-surface)] text-[var(--md3-on-surface)] pl-4 mx-1 w-full focus:outline-none resize-none '
+                            className={`rounded-3xl h-10 py-2.5 md3-surface pl-4 mx-1 w-full focus:outline-none resize-none ${(imTyping ? 'overflow-y-auto ' : 'overflow-y-hidden ')}`}
                             rows={1}
                             value={message}
                             placeholder='Ecrivez un message...'
@@ -223,7 +223,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                                 setImTyping(false)
                             }}
                             icon='send'
-                            size='3xl' />
+                            size='2xl' />
                     </div>
                 </div>
             </CardMD >

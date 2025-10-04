@@ -578,7 +578,7 @@ CHIP
 }
 .md3-chip-outlined.md3-chip-slate {
     border-color: var(--md3-slate);
-    color: var(--md3-on-slate);
+    color: var(--md3-on-surface);
 }
 
 .md3-chip-tonal.md3-chip-secondary {

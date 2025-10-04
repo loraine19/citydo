@@ -58,7 +58,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                         reverse={!navBottom}
                         onClick={() => navigate(list.link)}
                         icon={list.icon as IconName}
-                        color={'slate'}
+
                         bg={navBottom ? false : false}
                         fill={(navBottom) ? false : false}
                         size={navBottom ? '2xl' : '2xl'}
