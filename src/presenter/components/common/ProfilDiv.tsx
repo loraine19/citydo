@@ -148,7 +148,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
             >
                 <div className="flex !min-w-full flex-1 flex-col gap-1">
                     Localisation :
-                    <div className="flex flex-1 w-full  ">
+                    <div className="flex flex-1 w-full ">
                         <AddressMapOpen
                             message={<DistanceCalculator
                                 lat1={Number(profile?.Address?.lat)}

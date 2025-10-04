@@ -155,10 +155,11 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
             </CardLarge.Media>
 
             <CardLarge.Divider />
-            <CardLarge.Footer className={`md3-card-large-footer `}>
+            <CardLarge.Footer className={`md3-card-large-footer pb-4`}>
                 <div className="flex flex-col gap-2 w-max justify-center ">
                     <h6>Organisateur</h6>
                     <ProfileDiv
+                        size="lg"
                         date={EventLoad?.createdAt}
                         profile={User} />
                 </div>
