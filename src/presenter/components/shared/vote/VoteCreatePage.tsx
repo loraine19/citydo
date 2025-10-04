@@ -70,10 +70,6 @@ export default function VoteCreatePage() {
             values.groupId = parseInt(formik.values.groupId)
             setOpen(true)
             setAlertValues({
-                button2: {
-                    text: "Annuler",
-                    onClick: () => setOpen(false)
-                },
                 disableConfirm: false,
                 handleConfirm: async () => await createFunction(values),
                 confirmString: "Enregistrer ",

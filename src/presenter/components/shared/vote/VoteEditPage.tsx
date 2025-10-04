@@ -89,10 +89,6 @@ export default function VoteEditPage() {
             formik.values.UserBenef = values?.UserBenef
             setOpen(true)
             setAlertValues({
-                button2: {
-                    text: "Annuler",
-                    onClick: () => setOpen(false)
-                },
                 disableConfirm: false,
                 handleConfirm: async () => await updateFunction(values),
                 confirmString: "Enregistrer ",

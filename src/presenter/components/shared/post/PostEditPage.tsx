@@ -64,10 +64,6 @@ export default function PostEditPage() {
             setOpen(true)
             setAlertValues({
                 handleConfirm: async () => await updateFunction(),
-                button2: {
-                    text: "Annuler",
-                    onClick: () => setOpen(false)
-                },
                 disableConfirm: false,
                 confirmString: "Enregistrer ",
                 title: "Confimrer la modification",

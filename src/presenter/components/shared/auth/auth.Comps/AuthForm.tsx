@@ -85,7 +85,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                     </CardMD.Headline>
                     <CardMD.Subhead className='flex flex-col h-full w-full justify-center overflow-auto   px-12  pt-2 flex-1 gap-2 '>
                         <Input
-                            sizeInput={confirm ? "xs" : "md"}
+                            sizeInput={confirm ? "sm" : "md"}
                             type='email'
                             label={"Email"}
                             name="email"
@@ -95,7 +95,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                             helperText={formik?.errors.email as string ?? ''}
                             data-cy="email-input" />
                         <Input
-                            sizeInput={confirm ? "xs" : "md"}
+                            sizeInput={confirm ? "sm" : "md"}
                             error={!!formik?.errors.password}
                             label={"Mot de passe"}
                             name="password"
@@ -112,7 +112,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                         </Input>
                         <div className={!confirm ? "hidden" : "flex flex-1 flex-col w-full"}>
                             <Input
-                                sizeInput={confirm ? "xs" : "md"}
+                                sizeInput={confirm ? "sm" : "md"}
                                 error={!!formik?.errors.passwordConfirm}
                                 label={"Confirmer le mot de passe"}
                                 name="passwordConfirm"
@@ -139,7 +139,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
                                 elevating>
                                 {submitText}
                             </Button>
-                            <div className={`${!checkbox ? "hidden" : "flex flex-col flex-1 pt-1  px-4 "} `}>
+                            <div className={`${!checkbox ? "hidden" : "relative flex flex-col flex-1 pt-1  px-4 "} `}>
                                 <InputError error={formik?.errors.checkbox} />
                                 <div className='flex flex-1 w-full items-center justify-between gap-1'>
                                     <Checkbox
@@ -152,18 +152,20 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
                                     </Checkbox>
                                     <Menu
+                                        title={"En cliquant sur S' inscrire, "}
                                         MenuKey='terms'
                                         trigger={<Icon
                                             size="md"
                                             icon="expand_content" />}
-                                        placement="top">
+                                        placement="bottom-left">
                                         <MenuItem>
-                                            <div className='flex flex-col'>
-                                                <span className='text-sm'>En cliquant sur "S'inscrire", vous acceptez nos</span>
-                                                <Link to="/terms" className='text-sm text-blue-500'>Conditions d'utilisation</Link>
-                                                <span className='text-sm'>et</span>
-                                                <Link to="/privacy" className='text-sm text-blue-500'>Politique de confidentialité</Link>
-                                            </div>
+
+                                            <span className='text-sm'>vous acceptez nos</span>
+                                            <Link to="/terms" className='text-sm md3-text-cyan hover:underline'>Conditions d'utilisation</Link>
+                                        </MenuItem>
+                                        <MenuItem>
+                                            <span className='text-sm'>et</span>
+                                            <Link to="/privacy" className='text-sm md3-text-cyan hover:underline'>Politique de confidentialité</Link>
                                         </MenuItem>
                                     </Menu>
                                 </div>

@@ -49,10 +49,6 @@ export default function ServiceCreatePage() {
         onSubmit: values => {
             values.status = 'STEP_0' as ServiceStep;
             const valuesAlert: AlertValues = {
-                button2: {
-                    text: "Annuler",
-                    onClick: () => setOpen(false)
-                },
                 disableConfirm: false,
                 handleConfirm: async () => {
                     await postFunction()

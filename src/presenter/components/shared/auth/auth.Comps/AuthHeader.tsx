@@ -2,16 +2,14 @@
 
 export function AuthHeader(props: { className?: string }) {
     return (
-        <header className={` h-max flex-1  flex gap-3 items-center justify-center ${props.className}`}>
+        <header className={`h-max flex-1  !max-h-[20vh]  flex gap-3 items-center justify-center ${props.className}`}>
             <div className="relative flex items-center justify-center flex-1 pt-2">
                 <img
                     onError={(e) => { (e.target as HTMLImageElement).src = 'https://citydo.fr/image/logo.svg' }}
                     className="h-[3rem] w-[3rem]  object-cover object-center"
                     src="image/logo.svg"
                     alt="logo" />
-                <h1
-                    className="!font-quicksand md3-text-cyan font-[600] md3-text-cyan
--mt-1 -ml-4                text-[2.5rem] ">
+                <h1 className="!font-quicksand md3-text-cyan font-[600] md3-text-cyan -mt-1 -ml-4 text-[2.5rem] ">
                     &nbsp; City'do &nbsp;
                 </h1>
 

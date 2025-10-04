@@ -52,10 +52,6 @@ export default function ServiceEditPage() {
             formik.values = values
             setOpen(true)
             setAlertValues({
-                button2: {
-                    text: "Annuler",
-                    onClick: () => setOpen(false)
-                },
                 disableConfirm: false,
                 handleConfirm: async () => await postFunction(),
                 confirmString: "Enregistrer ",
