@@ -5,7 +5,6 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(({ mode }) => {
   // --- Mode Analyse ---
-  // Cette partie reste inchangée pour votre script `npm run analyze`
   if (mode === 'analyze') {
     return {
       plugins: [react(), visualizer()],
@@ -26,20 +25,31 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       react(),
-      // Configuration complète et finale de la PWA
       VitePWA({
         registerType: 'autoUpdate',
         injectRegister: false,
         workbox: {
-          globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,ttf}'],
-          navigateFallback: 'index.html',
+          // La limite par défaut de 2Mo est suffisante maintenant
+          globPatterns: ['**/*.{js,css,html,ico,png,svg,ttf}'], // woff2 est retiré
           runtimeCaching: [
+            {
+              // Stratégie pour les autres polices (comme Comfortaa.ttf)
+              urlPattern: /\.(?:ttf|woff)$/,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'fonts-cache',
+                expiration: {
+                  maxEntries: 10,
+                  maxAgeSeconds: 60 * 60 * 24 * 365 // 1 an
+                },
+              },
+            },
             {
               urlPattern: /\.(?:png|jpg|jpeg|svg|gif)$/,
               handler: 'CacheFirst',
               options: {
                 cacheName: 'images-cache',
-                expiration: { maxEntries: 60, maxAgeSeconds: 30 * 24 * 60 * 60 }, // 30 jours
+                expiration: { maxEntries: 60, maxAgeSeconds: 30 * 24 * 60 * 60 },
               },
             },
             {
@@ -47,15 +57,14 @@ export default defineConfig(({ mode }) => {
               handler: 'StaleWhileRevalidate',
               options: {
                 cacheName: 'api-cache',
-                expiration: { maxEntries: 100, maxAgeSeconds: 24 * 60 * 60 }, // 24 heures
+                expiration: { maxEntries: 100, maxAgeSeconds: 24 * 60 * 60 },
                 cacheableResponse: {
-                  statuses: [0, 200], // Met en cache uniquement les réponses réseau valides
+                  statuses: [0, 200],
                 },
               },
             },
           ],
         },
-        // Le manifest est généré depuis cette configuration, en reprenant 100% de votre fichier existant
         manifest: {
           name: "City'do",
           short_name: "City'do",
@@ -66,8 +75,8 @@ export default defineConfig(({ mode }) => {
           scope: "/",
           display: "minimal-ui",
           orientation: "portrait",
-          theme_color: "#1a202c", // Couleur de fond pour le thème sombre
-          background_color: "#ffffff", // Couleur de fond pour le splash screen
+          theme_color: "#1a202c",
+          background_color: "#ffffff",
           icons: [
             { purpose: "maskable", sizes: "1024x1024", src: "icons/maskable_icon.png", type: "image/png" },
             { purpose: "maskable", sizes: "512x512", src: "icons/maskable_icon_x512.png", type: "image/png" },
