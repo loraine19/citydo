@@ -146,7 +146,7 @@ export default function CalendarCompLarge(props: { logo?: boolean, divRef?: Reac
 
             <div id='refDiv'
                 className={`grid ${rowClass[row - 1]} gap-4 w-full rounded-xl h-[100%]  overflow-hidden`}>
-                {(weeks && !loadingEvents && !errorEvents && weeks.length > 0) ? weeks.map((week: any, key: number) => (
+                {(!loadingEvents && !errorEvents) ? weeks.map((week: any, key: number) => (
                     <div key={key}
                         className={`grid rounded-xl overflow-auto !bg-[var(--md3-surface)] border md3-border ${colClass[col - 1]}`}>
                         {week.map((day: any, index: number) =>

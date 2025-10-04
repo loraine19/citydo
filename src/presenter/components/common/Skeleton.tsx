@@ -9,15 +9,17 @@ export function Skeleton(props: { className?: string, grid?: boolean, compact?: 
     return (
         <CardMD
             autoFit={compact}
-            className={style + ' min-h-full opacity-60 anim '}
+            className={style + ' min-h-full opacity-50 anim '}
             image={
                 <CardMD.Image
                     src="public/image/placeholder.jpg"
                     alt=""
                     position="top"
-                    className={`min-h-full md3-${color}-container`}
+                    className={`min-h-full max-h-[50vh] md3-${color}-container`}
                 >
-                    <div className={`min-h-[99%]h-full md3-${color}-container rounded-2xl w-full animate-pulse"`}></div>
+                    <div className={`min-h-[99%] h-full md3-${color}-container rounded-2xl w-full animate-pulse"`}>
+
+                    </div>
 
                 </CardMD.Image>
             }

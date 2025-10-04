@@ -150,51 +150,57 @@ html {
         --md3-inverse-on-surface: #242e30;
         --md3-inverse-primary: #64748b;
 
+        /* error */
+        --md3-error: #f2b8b5;
+        --md3-on-error: #601410;
+        --md3-error-container: #8c1d18;
+        --md3-on-error-container: #f2b8b5;
+
         /* Sky */
-        --md3-sky: #bcf0fe;
-        --md3-on-sky: #107bad;
-        --md3-sky-container: #107bad;
-        --md3-on-sky-container: #bcf0fe;
+        --md3-on-sky: #bcf0fe;
+        --md3-sky: #107bad;
+        --md3-on-sky-container: #107bad;
+        --md3-sky-container: #bcf0fe;
         --md3-secondary-sky: #5d5d85;
         --md3-on-secondary-sky: #ffffff;
 
         /* Cyan */
-        --md3-cyan: #acedff;
-        --md3-on-cyan: #0c8e9f;
-        --md3-cyan-container: #0c8e9f;
-        --md3-on-cyan-container: #acedff;
+        --md3-on-cyan: #acedff;
+        --md3-cyan: #0c8e9f;
+        --md3-on-cyan-container: #0c8e9f;
+        --md3-cyan-container: #acedff;
         --md3-secondary-cyan: #5a7679;
         --md3-on-secondary-cyan: #ffffff;
 
         /* Rose */
-        --md3-rose: #fddbdc;
-        --md3-on-rose: #ac1358;
-        --md3-rose-container: #ac1358;
-        --md3-on-rose-container: #fddbdc;
+        --md3-on-rose: #fddbdc;
+        --md3-rose: #ac1358;
+        --md3-on-rose-container: #ac1358;
+        --md3-rose-container: #fddbdc;
         --md3-secondary-rose: #c2758d;
         --md3-on-secondary-rose: #ffffff;
 
         /* Orange */
-        --md3-orange: #ffe4c4;
-        --md3-on-orange: #d0691b;
-        --md3-orange-container: #d0691b;
-        --md3-on-orange-container: #ffe4c4;
+        --md3-on-orange: #ffe4c4;
+        --md3-orange: #d0691b;
+        --md3-on-orange-container: #d0691b;
+        --md3-orange-container: #ffe4c4;
         --md3-secondary-orange: #9b6c4b;
         --md3-on-secondary-orange: #ffffff;
 
         /* Green */
-        --md3-green: #beeeba;
-        --md3-on-green: #01512c;
-        --md3-green-container: #01512c;
-        --md3-on-green-container: #beeeba;
+        --md3-on-green: #beeeba;
+        --md3-green: #01512c;
+        --md3-on-green-container: #01512c;
+        --md3-green-container: #beeeba;
         --md3-secondary-green: #59614f;
         --md3-on-secondary-green: #ffffff;
 
         /* Slate (adjusted from main scheme hex) */
-        --md3-slate: #dde4f3;
-        --md3-on-slate: #5b6172;
-        --md3-slate-container: #5b6172;
-        --md3-on-slate-container: #dde4f3;
+        --md3-on-slate: #dde4f3;
+        --md3-slate: #5b6172;
+        --md3-on-slate-container: #5b6172;
+        --md3-slate-container: #dde4f3;
         --md3-secondary-slate: #475569;
         --md3-on-secondary-slate: #ffffff;
 
@@ -221,7 +227,7 @@ html {
     --md3-on-background: #e6e1e5;
     --md3-surface-variant: #475569;
     --md3-on-surface-variant: #dbe0e6;
-    --md3-outline: #c0c5ca40;
+    --md3-outline: #dbe0e659;
     --md3-outline-variant: #242e30;
     --md3-shadow: #000000;
     --md3-scrim: rgba(0, 0, 0, 0.32);
@@ -229,51 +235,57 @@ html {
     --md3-inverse-on-surface: #242e30;
     --md3-inverse-primary: #64748b;
 
+    /* error */
+    --md3-error: #f2b8b5;
+    --md3-on-error: #601410;
+    --md3-error-container: #8c1d18;
+    --md3-on-error-container: #f2b8b5;
+
     /* Sky */
-    --md3-sky: #bcf0fe;
-    --md3-on-sky: #107bad;
-    --md3-sky-container: #107bad;
-    --md3-on-sky-container: #bcf0fe;
+    --md3-on-sky: #bcf0fe;
+    --md3-sky: #107bad;
+    --md3-on-sky-container: #107bad;
+    --md3-sky-container: #bcf0fe;
     --md3-secondary-sky: #5d5d85;
     --md3-on-secondary-sky: #ffffff;
 
     /* Cyan */
-    --md3-cyan: #acedff;
-    --md3-on-cyan: #0c8e9f;
-    --md3-cyan-container: #0c8e9f;
-    --md3-on-cyan-container: #acedff;
+    --md3-on-cyan: #acedff;
+    --md3-cyan: #0c8e9f;
+    --md3-on-cyan-container: #0c8e9f;
+    --md3-cyan-container: #acedff;
     --md3-secondary-cyan: #5a7679;
     --md3-on-secondary-cyan: #ffffff;
 
     /* Rose */
-    --md3-rose: #fddbdc;
-    --md3-on-rose: #ac1358;
-    --md3-rose-container: #ac1358;
-    --md3-on-rose-container: #fddbdc;
+    --md3-on-rose: #fddbdc;
+    --md3-rose: #ac1358;
+    --md3-on-rose-container: #ac1358;
+    --md3-rose-container: #fddbdc;
     --md3-secondary-rose: #c2758d;
     --md3-on-secondary-rose: #ffffff;
 
     /* Orange */
-    --md3-orange: #ffe4c4;
-    --md3-on-orange: #d0691b;
-    --md3-orange-container: #d0691b;
-    --md3-on-orange-container: #ffe4c4;
+    --md3-on-orange: #ffe4c4;
+    --md3-orange: #d0691b;
+    --md3-on-orange-container: #d0691b;
+    --md3-orange-container: #ffe4c4;
     --md3-secondary-orange: #9b6c4b;
     --md3-on-secondary-orange: #ffffff;
 
     /* Green */
-    --md3-green: #beeeba;
-    --md3-on-green: #01512c;
-    --md3-green-container: #01512c;
-    --md3-on-green-container: #beeeba;
+    --md3-on-green: #beeeba;
+    --md3-green: #01512c;
+    --md3-on-green-container: #01512c;
+    --md3-green-container: #beeeba;
     --md3-secondary-green: #59614f;
     --md3-on-secondary-green: #ffffff;
 
     /* Slate (adjusted from main scheme hex) */
-    --md3-slate: #dde4f3;
-    --md3-on-slate: #5b6172;
-    --md3-slate-container: #5b6172;
-    --md3-on-slate-container: #dde4f3;
+    --md3-on-slate: #dde4f3;
+    --md3-slate: #5b6172;
+    --md3-on-slate-container: #5b6172;
+    --md3-slate-container: #dde4f3;
     --md3-secondary-slate: #475569;
     --md3-on-secondary-slate: #ffffff;
 
