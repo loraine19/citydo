@@ -22,14 +22,16 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button: React.FC<ButtonProps> = ({ variant = 'filled', color, children, elevating, className, disabled, icon, size, iconPosition = 'start', fab, round, ...props }) => {
     const classes = `${!fab && 'md3-button'} md3-button-${disabled ? 'tonal' : variant}
-    ${color ? `md3-button-${color}` : ''}  
+    ${color ? `md3-button-${disabled ? 'slate' : color}` : ''}  
 ${!fab && (size ? `md3-button-${size}${round ? '-round' : ''}` : 'md3-button-medium')}
 
     ${className || ''} ${elevating ? ' md3-elevating ' : ''} `.trim();
     return (
         <button
             disabled={disabled}
-            className={classes + ` ${icon && 'flex gap-2 items-center'} ${iconPosition === 'end' && 'flex-row-reverse'}`}
+            className={classes +
+                ` ${icon && 'flex gap-2 items-center'} 
+                ${iconPosition === 'end' && 'flex-row-reverse'}`}
             data-md3 {...props}>
             {(icon && React.isValidElement(icon)) ? icon :
                 (icon && typeof icon === 'object' && !Array.isArray(icon) ?
