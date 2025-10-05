@@ -66,8 +66,8 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                     </CardLarge.Chips>
                 </img>
             }>
-            <CardLarge.Chips className=" px-2 md:-mt-1">
-                <div className="md3-card-chips w-full">
+            <CardLarge.Chips>
+                <div className="md3-card-chips !pl-0.5 !pr-6 w-full">
                     <Link to={`/service?search=&category=${service?.category}`} >
                         <Chip
                             variant="tonal"

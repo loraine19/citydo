@@ -26,7 +26,7 @@ type EventCardProps = {
 
 
 export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps) {
-    const { id, title, description, label, image, participantsMin, Participants, User, Address, flagged, end, start, eventDateInfo, Group, } = EventLoad;
+    const { id, title, description, label, image, participantsMin, Participants, User, Address, flagged, eventDateInfo, Group, } = EventLoad;
     const refMore = useRef(null);
 
     return (
@@ -69,9 +69,10 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                         </Chip>
                     </Link>
                     <DateChip
-                        start={start}
-                        end={end}
-                        ended={new Date(end).getTime() < Date.now()}
+                        size="medium"
+                        start={new Date(EventLoad?.start) as Date}
+                        end={new Date(EventLoad?.end) as Date}
+                        ended={new Date(EventLoad?.end) < new Date()}
                         prefix={'commence dans '} />
                 </div>
 

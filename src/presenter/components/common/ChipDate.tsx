@@ -1,10 +1,9 @@
 import { dayMS } from "../../../domain/entities/frontEntities";
 import Chip from "./adaptatersComps/Chip";
+import { Icon, IconName } from "./IconComp";
 
-export function DateChip(props: { start: Date | string, end?: Date | string, ended?: boolean, prefix?: string }) {
-    const { start, end, prefix, ended } = props
+export function DateChip({ start, end, prefix, ended, size }: { start: Date | string, end?: Date | string, ended?: boolean, prefix?: string, size?: 'small' | 'medium' | 'large' }) {
     const now = new Date();
-    const endDate: string = end && new Date(end).toLocaleDateString('fr-FR') || ''
     const endDays: number = Math.ceil(((new Date(end ? end : start).getTime()) - (now.getTime())) / dayMS)
     const dateClass = (() => {
         switch (true) {
@@ -18,12 +17,14 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
                 return "primary";
         }
     })();
+    let icon: IconName | undefined = undefined;
     const value = (() => {
         switch (true) {
             case prefix && !ended && !end:
-                return `${prefix} ${new Date(start).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' })}`;
+                return `${prefix} ${new Date(start).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' })} `;
             case ended:
-                return `⛌ ${new Date(endDate).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' })}`;
+                icon = 'cancel';
+                return ` ${new Date(end ?? start).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' })}`;
             case endDays > 9:
                 return null;
             case endDays > 0:
@@ -41,6 +42,9 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
         <div className="max-h-max ">
             {value &&
                 <Chip
+                    className={`${ended ? '!opacity-60' : ''}`}
+                    icon={icon && <Icon icon={icon} size={'md'} />}
+                    size={size || 'small'}
                     variant="tonal"
                     value={value}
                     color={dateClass}>
