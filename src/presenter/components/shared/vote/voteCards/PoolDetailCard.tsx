@@ -96,9 +96,10 @@ export default function PoolDetailCard({ pool, setExpand }: PoolDetailCardProps)
 
             <CardLarge.Divider />
             <CardLarge.Footer className="md3-card-large-footer gap-2">
-                <div className="flex flex-col gap-2 ">
+                <div className="flex flex-col gap-2 pb-4 ">
                     <h6>Créé par</h6>
                     <ProfileDiv
+                        size="lg"
                         date={pool?.createdAt}
                         profile={pool?.User || {} as Partial<User>} />
                 </div>

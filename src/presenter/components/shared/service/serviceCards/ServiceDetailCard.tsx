@@ -98,8 +98,9 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
             <CardLarge.Subhead className=" flex flex-col items-start  relative ">
                 <GroupLink group={service?.Group} />
             </CardLarge.Subhead>
-
-            <CardLarge.SupportingText>
+            <CardLarge.Divider />
+            <CardLarge.SupportingText className="flex flex-col gap-2 ">
+                <h6 className="">Description</h6>
                 {service?.description}
             </CardLarge.SupportingText>
             <CardLarge.Divider />
@@ -146,23 +147,24 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                     </i>
                     <div className="flex min-w-fit py-2 max-w-max h-max flex-col ">
                         <ProfileDiv
-
+                            size="lg"
                             profile={UserResp ?? new Profile({
                                 firstName: "Mr",
                                 lastName: "?",
                                 userId: 0,
                                 userIdSp: 0,
                                 addressId: 0,
-                            } as Partial<Profile>)} size="sm" />
+                            } as Partial<Profile>)} />
                     </div>
                 </div>
             </CardLarge.MidSection>
             <CardLarge.Divider />
             <CardLarge.Footer className={`md3-card-large-footer `}>
 
-                <div className="flex flex-col w-full gap-2 ">
+                <div className="flex flex-col w-full gap-2 pb-4 ">
                     <h6>Publié par</h6>
                     <ProfileDiv
+                        size="lg"
                         date={service?.createdAt}
                         profile={User} />
                 </div>

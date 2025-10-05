@@ -54,9 +54,10 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
             </img>}>
             <CardLarge.Chips className="justify-between">
 
-                <div className="md3-card-chips flex-1 !overflow-auto">
+                <div className="md3-card-chips pl-1 flex-1 !overflow-auto">
                     <Link to={`/annonce?search=&category=${post?.category}`} >
                         <Chip
+                            size="medium"
                             value={`${categoryS}`}
                             color="rose"
                         />
@@ -100,8 +101,9 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
             </CardLarge.Media>
             <CardLarge.Divider />
             <CardLarge.Footer className="md3-card-large-footer ">
-                <div className=" w-full flex-1 items-center flex truncate pl-2 pb-4 -ml-2 ">
+                <div className=" w-full flex-1 items-center flex truncate pl-2 pb-4 ">
                     <ProfileDiv
+                        size="lg"
                         date={post?.createdAt}
                         profile={Author} />
                 </div>
