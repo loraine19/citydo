@@ -33,12 +33,11 @@ const NotifDiv: React.FC<NotifDivProps> = ({ notif, isLoading, refetch, error, c
     return (
         <div
             id='notifDiv'
-            className={`opacity-[${opacity}%]  !max-w-full absolute !top-[1rem] h-fit w-full left-0 notif min-w-max min-h-max !justify-start  ${className}`}>
+            className={`opacity-[${opacity}%] !max-w-full absolute !top-[1rem] h-fit w-full left-0 notif min-w-max min-h-max !justify-start  ${className}`}>
             {error ? 'Une erreur est survenue : ' : ''}
             <span className={`md3-card-subhead w-full text-center pt-4 `}>
                 {notif !== error ? notif : error}
             </span>
-
 
             <Icon
                 onClick={() => {

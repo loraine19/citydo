@@ -22,7 +22,7 @@ const BtnExpandImg: React.FC<BtnExpandImgProps> = ({ colorComp, image }) => {
                 color={colorComp ?? color as Md3Colors}
                 icon={{
                     fill: true,
-                    size: "md",
+                    size: "lg",
                     icon: "expand_content",
                     title: "Aperçu de l'image",
                     onClick: () => setOpenDialog(true),

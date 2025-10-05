@@ -5,7 +5,6 @@ import { AvatarUser } from "../../../common/AvatarUser";
 import { Menu, MenuItem } from "../../base/baseComps/Menu";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import Chip from "../../../common/adaptatersComps/Chip";
 
 type AvatarStackProps = { avatarDatas: Participant[], ref?: boolean };
 export function AvatarStack(props: AvatarStackProps) {
@@ -48,12 +47,16 @@ export function AvatarStack(props: AvatarStackProps) {
 
     const visibleAvatars = avatarDatas?.slice(0, maxVisible);
     const hiddenCount = avatarDatas?.length - visibleAvatars?.length > 0
-        ? <Chip
+        ? <Icon
+            bg
+            textIcon={`+${avatarDatas?.length - visibleAvatars?.length}   `}
+            size="md"
             onClick={() => setMaxVisible(avatarDatas?.length)}
             color='cyan'
-            value={`+${avatarDatas?.length - visibleAvatars?.length}`}
-            className=" !border-[4px] !h-[2.65rem] !min-w-[2.65rem] flex items-center justify-center !rounded-full md3-cyan-container shrink-0 font-semibold md3-border-primary-container text-[1rem] pt-0.5 pr-0.5 p-0 !opacity-100"
-        />
+            style=" !border-[4px] !h-[2.65rem] !font-semibold !text-[1rem] !w-[2.65rem] flex md3-border-primary-container "
+        >
+
+        </Icon>
         : null;
 
     return (

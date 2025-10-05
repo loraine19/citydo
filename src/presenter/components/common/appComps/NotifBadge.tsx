@@ -50,7 +50,7 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
 
 
     return (
-        <div className={` pb-0.5 pl-2.5 gap-3 flex items-center `}>
+        <div className={` -mb-0.5 pl-2.5 gap-3 flex items-center `}>
             {badgeMap.map((list: NotifBadgeProps, index: number) =>
                 <div key={index}
                     className={`relative w-full flex items-center justify-center ${onBoard ? 'lg:hidden' : ''}`}>
@@ -74,12 +74,11 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                             <Icon
                                 title={'ouvrir le popup'}
                                 fill
-                                style='absolute -top-2 !z-0 -right-2 !bg-[var(--md3-primary-container)] rounded-full !p-[0.5px]'
+                                style='absolute -top-2 !z-0 -right-1.5 !bg-[var(--md3-primary-container)] rounded-full !p-[0px]'
                                 reverse
                                 icon='fiber_manual_record'
                                 color={list.color}
                                 size={'md'} />}>
-
                         {(error || list.notifs.length === 0) &&
                             <NotifDiv
                                 className="!relative !-mt-[4rem] mb-14"
@@ -116,12 +115,10 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                                                     notif.link && navigate(notif.link)
                                                 }}
                                             size="2xl"
-                                        />}
-                                >
+                                        />}>
 
                                     <div className=" flex flex-col gap-1 line-clamp-3 ">
                                         <div className="flex max-w-max gap-2 pl-1 ">
-
                                             <Chip
                                                 value={notif.typeS}
                                                 color={`${list.color}` as Md3Colors}>
@@ -129,13 +126,12 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                                             <Chip
                                                 value={notif.update}>
                                             </Chip>
-
                                         </div>
                                         <span className="md3-card-subhead">{notif.title}</span>
-                                        <span className="md3-card-supporting-text line-clamp-1">{notif.description}</span>
-
+                                        <span className="md3-card-supporting-text line-clamp-1">
+                                            {notif.description}
+                                        </span>
                                     </div>
-
                                 </MenuItem>
                             ))}
                             <LoadMoreButton

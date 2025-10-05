@@ -36,7 +36,7 @@ const EventCalAddBtn: React.FC<EventCalAddBtnProps> = ({ event, className, iconC
                     title={`ajouter a mon agenda  : ${title}`}
                     bg={true}
                     size="xl"
-                    style={iconClass + ' !px-1.5 '}
+                    style={iconClass + ' !px-[7px] '}
                 />
             }>
 
