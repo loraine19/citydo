@@ -182,7 +182,6 @@ export default function ChatPage() {
 
     useEffect(() => {
         const handleResize = () => {
-            alert('resize')
             const threshold = 100; // px
             const heightDiff = window.outerHeight - window.innerHeight;
             setKeyboardOpen(heightDiff > threshold);
@@ -194,7 +193,8 @@ export default function ChatPage() {
     }, []);
 
     return (
-        <main className={`${keyboardOpen ? 'h-[calc(100%-23rem)]' : 'h-[calc(100%-7rem)] '} max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)] `}>
+        <main className={`${keyboardOpen ? 'h-[calc(100%-13rem)]' : 'h-[calc(100%-7rem)] '} max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)] `}>
+            {keyboardOpen ? 'open' : 'close'}
             <section
                 id='refDiv'
                 className='flex !px-3 pt-3 pb-2  !overflow-hidden '>
