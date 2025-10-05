@@ -77,16 +77,16 @@ html {
     }
 
     @media (prefers-color-scheme: dark) {
-        color-scheme: dark;
+        background-color: var(--md3-on-surface);
     }
     @media (prefers-color-scheme: light) {
-        color-scheme: light;
+        background-color: var(--md3-surface);
     }
 }
 
 body,
 #root {
-    @apply scroll-smooth font-montserrat p-0 m-0 inset-0;
+    @apply scroll-smooth font-montserrat p-0  m-0 inset-0;
     display: flex;
     border: none;
     flex-direction: column;
@@ -107,7 +107,7 @@ body,
 /* MAIN SECTIONS */
 
 .App {
-    @apply min-w-[280px] flex flex-col flex-1 overflow-hidden;
+    @apply min-w-[280px] flex flex-col flex-1 md3-surface overflow-hidden;
     width: 100vw;
     min-width: 100vw;
     height: calc(100dvh + 2rem);

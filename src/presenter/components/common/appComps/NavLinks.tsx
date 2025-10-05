@@ -97,7 +97,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
                     value={navValue}
                     onValueChange={(value) => setNavValue(value)}
                     className={` 
-                    ${containerStyle} items-center overflow-x-auto overflow-y-hidden flex h-full w-full `}>
+                    ${containerStyle}  border-t-[1px] !border-[var(--md3-surface)] items-center overflow-x-auto overflow-y-hidden flex h-full w-full `}>
 
                     {navItems.map(({ to, icon, label, color }: NavItem, index) => {
                         const active = location.pathname === to;

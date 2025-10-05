@@ -25,7 +25,7 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage, add
 
             {/* CONTAINER */}
             <div id='AppBar'
-                className={`pr-4 gap-2 ${!detailPage ? 'pt-2' : 'pt-1'} !border-none flex lg:px-0 slide justify-between items-center `} >
+                className={`pr-2 gap-2 ${!detailPage ? 'pt-2' : 'pt-1'} !border-none flex lg:px-0 slide justify-between items-center `} >
 
 
                 {/* PROFILE MENU  */}
