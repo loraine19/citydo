@@ -190,6 +190,7 @@ export default function ChatPage() {
                 heightDiff = window.outerHeight - window.innerHeight;
             }
             setKeyboardOpen(heightDiff > threshold);
+            window.scrollTo(0, document.body.scrollHeight);
         };
         window.addEventListener('resize', handleResize);
         if (window.visualViewport) {
@@ -204,7 +205,7 @@ export default function ChatPage() {
     }, []);
 
     return (
-        <main className={`${keyboardOpen ? '!h-[calc(100dvh-24rem)] !max-h-[calc(100dvh-24rem)] sticky bottom-0 bg-cyan-500 ' : 'h-[calc(100%-7rem)] '} max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)] `}>
+        <main className={`${keyboardOpen ? '!h-[calc(100dvh-26rem)] !max-h-[calc(100dvh-26rem)] sticky bottom-0 bg-pink-500 ' : 'h-[calc(100%-7rem)] max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)]  '} `}>
             <section
                 id='refDiv'
                 className='flex !px-3 pt-3 pb-2  !overflow-hidden '>
