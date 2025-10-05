@@ -24,11 +24,9 @@ const BackDropBlur: React.FC<BackDropBlurProps> = ({
     const [existing, setExisting] = React.useState<boolean>(false);
     React.useEffect(() => {
         const elements = document.querySelectorAll("#blurDiv");
-        console.log(elements);
-        if (elements.length > 2) return setExisting(true)
+        if (elements.length > 1) return setExisting(true)
     }, []);
 
-    if (existing) return null;
 
     const root = document.getElementById("app");
     if (!root || !root.parentNode) return null;
@@ -37,7 +35,7 @@ const BackDropBlur: React.FC<BackDropBlurProps> = ({
         <div
             key={blurKey}
             id="blurDiv"
-            className={`absolute top-0 left-0 w-screen h-[100lvh] overflow-hidden  backdropBlur animate-fade ${className}`}
+            className={`${!existing && 'backdropBlur '} absolute top-0 left-0 w-screen h-[100lvh] overflow-hidden  animate-fade ${className} `}
             onClick={() => setOpen && setOpen(false)}
             style={{}}
         >

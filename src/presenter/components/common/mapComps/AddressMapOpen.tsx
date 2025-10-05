@@ -249,24 +249,18 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, lat = 0
 
                 <ExpandButton />
                 <BackDropBlur
-                    className='z-[2]'
+                    className='!z-[999]'
                     blurKey={address?.address + '_map'}
                     open={open}
                     setOpen={() => { }} >
                     <div className="!py-0 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] overflow-hidden min-w-[90vw] bg-clip">
-                        <div className='relative flex flex-1 md3-elevation-4  !w-[90vw] !h-[80dvh]'>
-
+                        <div className='relative flex flex-1 md3-elevation-4 !z-[999]  !w-[90vw] !h-[80dvh]'>
                             <MapDiv />
                             <CloseButton />
                         </div>
                     </div>
                 </BackDropBlur>
-
-
-
             </div>
-
-
         </>
     );
 }
