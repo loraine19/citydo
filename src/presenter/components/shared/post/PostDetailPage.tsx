@@ -105,7 +105,7 @@ export default function PostDetailPage() {
 
     return (
         <>
-            <main data-cy="post-details-page" className={`hBottomFab`}>
+            <main data-cy="post-details-page" className={` hBottomFab `}>
 
                 <section
                     id='refDiv'
@@ -115,7 +115,7 @@ export default function PostDetailPage() {
                         handleHideCallback()
                     }}>
 
-                    <div className={`!h-full  flex py-3 `}>
+                    <div className={`detailCardDiv`}>
                         {!isLoading && post ?
                             <PostDetailCard
                                 expand={expand}

@@ -145,28 +145,14 @@ export default function ChatPage() {
 
     const SearchSection = useMemo(() => (
         <FormHeadSection
+
             isLoading={isLoading}
             notif={notif}
             refetch={refetch}
             error={error}
             infosChipValue={`${open ? `Chat avec ${userRec?.Profile?.firstName ?? ''}` : 'Chat '}
            ${open ? `${messages?.length} messages` : `${conversations?.length} conversations`}`} >
-            {open &&
-                <Icon
-                    bg
-                    style='absolute z-[999] -bottom-[3.5rem] md:!-right-4  right-2 animSlide border-4 md3-border-primary-container'
-                    color={'slate'}
-                    size='md'
-                    icon='close'
-                    title='fermer'
-                    onClick={() => {
-                        setParams({ with: '0' })
-                        setUserIdRec(0)
-                        setUserRec({} as User)
-                        setOpen(false)
-                    }}
-                />
-            }
+
         </FormHeadSection>
     ), [isLoading, open,]);
 
@@ -205,25 +191,27 @@ export default function ChatPage() {
     }, []);
 
     return (
-        <main className={`${keyboardOpen ? '!h-[calc(100dvh-26rem)] !max-h-[calc(100dvh-26rem)] sticky bottom-0 bg-pink-500 ' : 'h-[calc(100%-7rem)] max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)]  '} `}>
+        <main className={`${keyboardOpen ? '!h-[calc(100dvh-26.5rem)] !max-h-[calc(100dvh-26.5rem)] sticky bottom-0  ' : 'h-[calc(100%-7rem)] max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)]  '} `}>
             <section
                 id='refDiv'
                 className='flex !px-3 pt-3 pb-2  !overflow-hidden '>
+
                 {isLoadingConv ?
                     <Skeleton className='m-auto !h-full' /> :
                     <CardMD className={`${open ? 'md3-surface' : ''} 
                         '!min-h-full !min-h-[100%] p!-0 grid !static '`}>
                         <div className='my-0 grid max-h-full h-full relative'>
+
                             <div className='overflow-y-auto overflow-x-hidden  '>
                                 <List className='px-3 gap-1.5 flex !rounded-3xl'>
                                     {conversations &&
                                         conversations.map((message: MessageView, index: number) =>
                                             <div key={index + 'div'}>
                                                 <ListItem
-                                                    className={`gap-4 rounded-full overflow-hidden 
+                                                    className={`gap-4  p-2.5 items-center  rounded-full overflow-hidden 
                                                         ${(userIdRec === message?.isWith.id) ?
-                                                            'md3-primary-container !border md3-border py-2.5 px-2.5 md3-elevation-1 my-0.5 -ml-2 ' :
-                                                            'md3-surface -ml-1.5 py-1 '}`}
+                                                            'md3-primary-container !border md3-border py-2.5md3-elevation-1 my-0.5 -ml-2 ' :
+                                                            'md3-surface -ml-1.5  py-1 '}`}
                                                     key={index}
                                                     onClick={() => {
                                                         setOpen(true)
@@ -252,7 +240,7 @@ export default function ChatPage() {
                                                                 {message.formatedDate}
                                                             </span>
                                                         </div>
-                                                        <p className="font-normal !pr-2 !line-clamp-1">
+                                                        <p className="font-[300] !pr-2 !line-clamp-1">
                                                             {message.IWrite &&
                                                                 <span className='opacity-70'>
                                                                     {message.read && '🗸'}
@@ -283,6 +271,21 @@ export default function ChatPage() {
                             {/* CONVERSATION DIV */}
                             {open &&
                                 <div className='absolute left-[4rem] right-0 flex-1 h-[calc(100%_+_1.25rem)] md3-surface rounded-l-3xl backdrop:opacity-5 -mt-3 flex  bg-clip-border '>
+                                    {<Icon
+                                        bg
+                                        style='absolute !z-[9] top-2 right-2 animSlide border-4 md3-border-primary-container'
+                                        color={'slate'}
+                                        size='md'
+                                        icon='close'
+                                        title='fermer'
+                                        onClick={() => {
+                                            setParams({ with: '0' })
+                                            setUserIdRec(0)
+                                            setUserRec({} as User)
+                                            setOpen(false)
+                                        }}
+                                    />
+                                    }
                                     <Chat
                                         refetch={refetch}
                                         setNewConv={setNewConv}

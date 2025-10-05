@@ -331,7 +331,7 @@ export const Menu: React.FC<MenuProps> = ({
                             <Icon
                                 onClick={handleClose}
                                 icon='close'
-                                color='slate'
+                                bg clear
                                 size='md' />
                         }
                     </div>

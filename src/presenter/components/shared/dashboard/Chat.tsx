@@ -102,8 +102,8 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
 
     return (
         <div className='flex flex-col h-full w-full  '>
-            <CardMD className='md3-elevation-1 min-h-full grid w-full border md3-border '>
-                <CardMD.Header className={` w-full px-3  !relative !min-h-fit'`}>
+            <CardMD className='!pt-0 md3-elevation-1 min-h-full grid w-full border md3-border '>
+                <CardMD.Header className={` w-full px-3 max-h-max py-0 !relative !min-h-fit'`}>
                     {newConv &&
                         <ProfileDiv profile={userRec} />}
                     {notif && <div className=''>
@@ -116,8 +116,8 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                 </CardMD.Header>
                 <div ref={divRef}
                     onScroll={() => handleScroll()}
-                    className='rounded-3xl !flex flex-1  h-full !overflow-auto flex-col-reverse px-4 '>
-                    <div className='gap-3  lg:px-2 flex-1 justify-end items-end flex flex-col-reverse' >
+                    className='rounded-3xl !-mt-4 !flex flex-1 h-full !overflow-auto flex-col-reverse px-4 '>
+                    <div className='gap-3 lg:px-2 flex-1 justify-end items-end flex flex-col-reverse' >
                         {!isLoading && messages && messages.map((msg: MessageView, index: number) => (
                             <div key={index}
                                 className={`flex p-0 w-full items-start ${msg.userId === messages[index + 1]?.userId ? ' pt-0' : ' pt-4'}`} >
@@ -149,12 +149,11 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                         hasNextPage={isBottom}
                         handleScroll={handleScroll} />
                 </div>
-                <div className='px-0 -mb-2 -mt-1.5'>
+                <div className='px-0 -mb-2'>
                     <div className={`${imTyping ? '-top-2' : ''} bottom-0 border-t md3-border flex justify-between rounded-t-[1.5rem] !border-b-0 border-x-0 w-full px-3 py-4  min-h-min `}>
                         <div className='flex-0 flex top-0 mt-1 ' >
                             <Icon
                                 onClick={() => setOpenEmoji(!openEmoji)}
-                                color='slate'
                                 title='Emoji'
                                 size='2xl'
                                 icon='mood'
@@ -215,7 +214,6 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                         />
                         <Icon
                             style='!mt-0.5'
-                            color='slate'
                             title='Envoyer'
                             onClick={() => {
                                 handleSendMessage();

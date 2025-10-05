@@ -74,23 +74,21 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                                 flagged={survey?.flagged}
                                 title={survey?.title} />
                         </CardMD.Chips>
-
                     </CardMD.Image>
+                } >
 
-                }
-            >
                 <CardMD.Chips >
-                    <button onClick={() => change()}>
-                        <Chip
-                            value="Sondage"
-                            color="orange"
-                        />
-                    </button>
                     <Chip
+                        onClick={() => change()}
+                        variant="tonal"
+                        value="Sondage"
+                        color="orange"
+                    />
+                    <Chip
+                        variant="tonal"
                         value={survey?.categoryS}
                         color="orange"
                     />
-
                     <DateChip
                         start={survey?.createdAt}
                         ended={ended}

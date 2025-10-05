@@ -26,13 +26,14 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
             key: `flag${id}`,
             fill: flagged,
             flagged: flagged,
-            color: flagged ? 'red' : 'slate',
+            color: flagged ? 'error' : 'error',
             action: () => { setIsOpen(false); navigate(`/flag/${type}/${id}`) },
         }] : []),
         {
             icon: 'share',
             label: 'Partager',
             key: `share${id}`,
+            color: 'green',
             action: () => { setOpenShare(true) }
         },
     ]
@@ -86,7 +87,7 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
                             leadingIcon={
                                 <Icon
                                     bg
-                                    color={item.flagged ? 'error' : 'slate'}
+                                    color={item.color ?? 'slate'}
                                     fill={item.fill ?? false}
                                     size={'md'}
                                     onClick={() => {

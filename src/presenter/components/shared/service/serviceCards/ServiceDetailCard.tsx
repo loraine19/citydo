@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HardLevel, SkillLevel, ServiceStep, ServiceType } from "../../../../../domain/entities/Service";
 import { Icon } from "../../../common/IconComp";
 import { DateChip } from "../../../common/ChipDate";
@@ -68,21 +68,30 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
             }>
             <CardLarge.Chips className=" px-2 md:-mt-1">
                 <div className="md3-card-chips w-full">
-                    <Chip
-                        value={`${categoryS}`}
-                        color='sky'
-                    >
-                    </Chip>
-                    <Chip
-                        value={typeS}
-                        color={typeS === ServiceType.GET ? "orange" : "green"}>
-                    </Chip>
-                    <button onClick={() => { statusS === ServiceStep.STEP_4 && navigate(`/conciliation/${id}`) }}>
+                    <Link to={`/service?search=&category=${service?.category}`} >
                         <Chip
-                            value={statusS}
-                            color={statusValues(statusS as ServiceStep).color as Md3Colors}>
+                            variant="tonal"
+                            size="medium"
+                            value={`${categoryS}`}
+                            color='sky'
+                        >
                         </Chip>
-                    </button>
+                    </Link>
+                    <Link to={`/service?search=&type=${service?.type}`} >
+                        <Chip
+                            variant="tonal"
+                            size="medium"
+                            value={typeS}
+                            color={typeS === ServiceType.GET ? "orange" : "green"}>
+                        </Chip>
+                    </Link>
+                    <Chip
+                        variant="tonal"
+                        size="medium"
+                        onClick={() => { statusS === ServiceStep.STEP_4 && navigate(`/conciliation/${id}`) }}
+                        value={statusS}
+                        color={statusValues(statusS as ServiceStep).color as Md3Colors}>
+                    </Chip>
                 </div>
                 <MoreButton
                     type="service"
@@ -90,48 +99,62 @@ export default function ServiceDetailComp(props: { service: ServiceView, mines?:
                     flagged={flagged}
                     title={title} />
             </CardLarge.Chips>
+
             <CardLarge.Headline>
                 {title}
-
             </CardLarge.Headline>
 
             <CardLarge.Subhead className=" flex flex-col items-start  relative ">
                 <GroupLink group={service?.Group} />
             </CardLarge.Subhead>
             <CardLarge.Divider />
+
             <CardLarge.SupportingText className="flex flex-col gap-2 ">
                 <h6 className="">Description</h6>
                 {service?.description}
             </CardLarge.SupportingText>
+
             <CardLarge.Divider />
             <CardLarge.Media className="gap-8 w-full flex-row justify-start ">
                 <div className="flex flex-col gap-2 ">
                     <h6 className="">Difficulté</h6>
                     <div className="flex flex-col lg:flex-row xs:flex-row gap-2">
                         <Chip
+                            size="medium"
                             value={SkillLevel[skill as unknown as keyof typeof SkillLevel]}
                             icon={<Icon
                                 disabled
-                                size="sm"
+                                size="md"
+                                fill
                                 icon="design_services"
                                 style=" pointer-events-none"
                                 title="Compétence" />}>
                         </Chip>
                         <Chip
+                            size="medium"
                             color='slate'
                             value={HardLevel[hard as unknown as keyof typeof HardLevel]}
                             icon={<Icon
                                 disabled
-                                size="sm"
+                                size="md"
+                                fill
                                 icon="signal_cellular_alt"
                                 style="pointer-events-none"
                                 title="Difficulté" />}>
                         </Chip>
                         <Chip
+                            icon={<Icon
+                                disabled
+                                fill
+                                size="md"
+                                icon="toll"
+                                style="pointer-events-none"
+                                title="Rémunération" />}
+                            size="medium"
                             value={
                                 points[1]
-                                    ? `points : ${points[0]} à ${points[1]} `
-                                    : `points : ${points[0]} `
+                                    ? `${points[0]} à ${points[1]} pts`
+                                    : `${points[0]} pts`
                             }
                         />
                     </div>

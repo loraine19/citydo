@@ -38,9 +38,10 @@ export function DateChip(props: { start: Date | string, end?: Date | string, end
     })();
     if (!value) return null;
     return (
-        <div className="max-h-max opacity-80 ">
+        <div className="max-h-max ">
             {value &&
                 <Chip
+                    variant="tonal"
                     value={value}
                     color={dateClass}>
                 </Chip>}

@@ -52,12 +52,15 @@ export default function PoolDetailCard({ pool, setExpand }: PoolDetailCardProps)
                     <GroupLink group={pool?.Group} />
                 </div>
             </CardLarge.Subhead>
-            <CardLarge.SupportingText>
+
+            <CardLarge.Divider />
+            <CardLarge.SupportingText className="flex flex-col gap-2">
+                <h6>Description</h6>
                 {pool?.description}
             </CardLarge.SupportingText>
 
             <CardLarge.Divider />
-            <CardLarge.Media className="h-full flex-1 justify-between gap-2">
+            <CardLarge.Media className="h-full flex-1 relative justify-between gap-2">
                 <h6>Bénéficiaire</h6>
                 <ProfileDiv
                     profile={pool?.UserBenef || {} as Partial<User>}
@@ -95,7 +98,7 @@ export default function PoolDetailCard({ pool, setExpand }: PoolDetailCardProps)
             </CardLarge.Media>
 
             <CardLarge.Divider />
-            <CardLarge.Footer className="md3-card-large-footer gap-2">
+            <CardLarge.Footer className="md3-card-large-footer gap-2 ">
                 <div className="flex flex-col gap-2 pb-4 ">
                     <h6>Créé par</h6>
                     <ProfileDiv

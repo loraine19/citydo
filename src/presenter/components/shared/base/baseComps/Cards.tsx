@@ -125,9 +125,7 @@ export const CardMD: React.FC<CardMDProps> & {
     ...props
 }) => {
 
-
         const [screenSmall, setScreenSmall] = useState<boolean>(window.innerWidth < 640);
-
 
         useEffect(() => {
             const handleResize = () => setScreenSmall(window.innerWidth < 640);
@@ -216,7 +214,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
     form?: boolean;
     setExpanded?: (expanded: boolean) => void;
 } = ({
-    variant = "outlined",
+    variant = "elevated",
     color,
     children,
     className,
@@ -308,7 +306,8 @@ export const CardLarge: React.FC<CardLargeProps> & {
                 {/* Pull handle and expandable content */}
                 <div id='sheet'
                     ref={divRef}
-                    className={` md3-card-large-sheet md3-card-${variant}  ${sheetClassName || ""}
+                    className={` md3-card-large-sheet md3-card-${variant} 
+                        ${sheetClassName || ""}
                         ${(imageProps.src) ? `
                             ${(!expanded) ?
                                 " animSheetRev max-h-[60%] lg:max-h-[55%]   overflow-hidden " :

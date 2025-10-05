@@ -108,7 +108,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                 placement="free"
                 trigger={
                     <div className="flex items-center ">
-                        <div className={`h-full justify-center max-w-max grid items-center !p-0`}>
+                        <div className={`h-full justify-center max-w-max grid items-center !p-0.5`}>
                             {!menuIcon ?
                                 <div className="flex w-[2.4rem] flex-1 items-center">
                                     <img

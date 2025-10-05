@@ -58,11 +58,11 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
         >
             <CardMD.Chips className="justify-between flex-1 min-h-max">
                 <Chip
+                    variant="tonal"
                     onClick={() => change(post?.category as string)}
                     value={`${post?.categoryS}`}
                     color="rose"
                 />
-
             </CardMD.Chips>
 
             <CardMD.Headline>

@@ -13,6 +13,7 @@ import { ProgressBar } from "../../base/baseComps/Sliders";
 import { useRef } from "react";
 import BtnExpandImg from "../../../common/BtnExpandImg";
 import { IconAnimate } from "../../../common/IconAnimate";
+import { Link } from "react-router-dom";
 
 type EventCardProps = {
     EventLoad: EventView,
@@ -58,11 +59,15 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
 
                 className="!relative !z-[3]">
                 <div
-                    className="md3-card-chips w-full ">
-                    <Chip
-                        value={label}
-                        color='cyan'>
-                    </Chip>
+                    className="md3-card-chips pl-1  w-full ">
+                    <Link to={`/evenement?search=&category=${EventLoad?.category}`} >
+                        <Chip
+                            size="medium"
+                            variant="tonal"
+                            value={label}
+                            color='cyan'>
+                        </Chip>
+                    </Link>
                     <DateChip
                         start={start}
                         end={end}

@@ -55,12 +55,12 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
             >
                 <CardMD.Chips className="justify-between flex-wrap">
                     <div className="flex gap-2 py-1.5">
-                        <button onClick={change}>
-                            <Chip
-                                value="Cagnotte"
-                                color={"orange"}
-                            />
-                        </button>
+                        <Chip
+                            variant="tonal"
+                            onClick={change}
+                            value="Cagnotte"
+                            color={"orange"}
+                        />
                         <DateChip
                             start={pool?.createdAt}
                             end={end}
@@ -78,7 +78,6 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                 <CardMD.Headline className="mb:pb-6 line-clamp-1">
                     <Link to={`/vote/cagnotte/${pool?.id}`}>{pool?.title}</Link>
                 </CardMD.Headline>
-
 
                 <CardMD.Subhead className={`flex items-center gap-2`}>
                     <GroupLink group={pool?.Group} />
@@ -116,6 +115,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                         }
                     />
                 </CardMD.Media>
+
                 <CardMD.Footer className="flex items-center  ">
                     {!mines ? (
                         <div className=" w-full flex-1 flex items-center ">

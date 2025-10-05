@@ -302,5 +302,5 @@
 
 /* list grid */
 .SubGrid {
-    @apply max-w-[calc(100vw-1rem)] px-1 pt-1 pb-4  overflow-hidden  grid;
+    @apply max-w-[calc(100vw-1rem)] sm:px-2 pt-1 pb-4  overflow-hidden  grid;
 }

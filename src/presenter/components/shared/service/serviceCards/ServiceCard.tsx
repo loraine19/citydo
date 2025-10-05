@@ -100,27 +100,26 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
 
             <CardMD.Chips className="overflow-x-auto ">
                 <Chip
-                    onClick={() => {
-                        change(categoryS as any);
-                    }}
+                    variant="tonal"
+                    onClick={() => change(categoryS as any)}
                     color='sky'
                     value={`${categoryS}`}
                 />
 
                 <Chip
-                    onClick={() => {
-                        change(typeS as any);
-                    }}
+                    variant="tonal"
+                    onClick={() => change(typeS as any)}
                     value={typeS}
                     color={typeS === ServiceType.GET ? "orange" : "green"}
                 />
 
                 <Chip
+                    variant="tonal"
                     value={statusS}
                     color={statusColor(statusS as ServiceStep).color as Md3Colors}
                 />
-
             </CardMD.Chips>
+
             <CardMD.Headline className="flex flex-row justify-between w-full ">
                 <span className={`line-clamp-1`}>
                     {title}
@@ -133,7 +132,6 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
 
             <CardMD.SupportingText className={`flex  gap-3`}>
                 <Icon
-
                     style='max-h-max'
                     icon="fiber_manual_record"
                     title={`Ce service ${service.typeS === ServiceType.GET ? 'vous fais gagner' : 'coute'} ${points.join(' à ')}pts`}
@@ -142,13 +140,9 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                     size="md"
                 />
                 {` ${points.join(' à ')} pts`}
-
             </CardMD.SupportingText>
 
-
-
             <CardMD.Footer className="justify-between items-center flex max-h-max   w-full">
-
                 {(!mines) && (
                     <ProfileDiv
                         profile={User}

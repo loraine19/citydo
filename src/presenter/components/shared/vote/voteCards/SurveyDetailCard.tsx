@@ -11,6 +11,7 @@ import { CardLarge } from "../../base/baseComps/Cards";
 import { GroupLink } from "../../../common/GroupLink";
 import { ProgressBar } from "../../base/baseComps/Sliders";
 import BtnExpandImg from "../../../common/BtnExpandImg";
+import { Link } from "react-router-dom";
 
 type Props = { survey: PoolSurveyView, setOpen: (open: boolean) => void, expand: boolean, setExpand: (expand: boolean) => void }
 
@@ -42,10 +43,13 @@ export default function SurveyDetailCard({ survey, expand, setExpand }: Props) {
             <CardLarge.Chips className="justify-between">
 
                 <div className="md3-card-chips flex-1 !overflow-auto">
-                    <Chip
-                        value={`${categoryS}`}
-                        color="orange"
-                    />
+                    <Link to={`/vote?search=&category=${survey?.category}`} >
+                        <Chip
+                            variant="tonal"
+                            value={`${categoryS}`}
+                            color="orange"
+                        />
+                    </Link>
                     <DateChip
                         start={createdAt}
                         ended={status !== PoolSurveyStatus.PENDING}
@@ -58,6 +62,7 @@ export default function SurveyDetailCard({ survey, expand, setExpand }: Props) {
                     flagged={flagged}
                     title={title} />
             </CardLarge.Chips>
+
             <CardLarge.Headline>
                 <Title title={title} />
             </CardLarge.Headline>
@@ -67,6 +72,8 @@ export default function SurveyDetailCard({ survey, expand, setExpand }: Props) {
                     <GroupLink group={Group} />
                 </div>
             </CardLarge.Subhead>
+
+            <CardLarge.Divider />
             <CardLarge.SupportingText className="flex flex-col gap-2">
                 <h6>Description</h6>
                 {survey?.description}

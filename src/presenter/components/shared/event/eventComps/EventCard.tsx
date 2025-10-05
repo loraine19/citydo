@@ -64,27 +64,30 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                 </CardMD.Image>}>
             <CardMD.Chips >
                 <Chip
+                    variant="tonal"
                     onClick={change}
                     data-cy={`chip-${label}`}
                     value={label}
                     color='cyan' />
+
+                <Chip
+                    variant="tonal"
+                    value={eventDateInfo.start}
+                />
                 {new Date(end).getTime() > Date.now() &&
                     <DateChip
+
                         start={start}
                         end={end}
                         ended={new Date(end).getTime() < Date.now()}
                         prefix=" j-" />}
-                <Chip
-                    value={eventDateInfo.start}
-                />
-
             </CardMD.Chips>
+
             <CardMD.Headline className="line-clamp-1">
                 {title}
             </CardMD.Headline>
 
             <CardMD.Media className="flex-1" >
-
                 <ProgressBar
                     size='xxsmall'
                     variant={event.Participants?.length >= (participantsMin) ? 'linear' : 'wavy'}
@@ -102,8 +105,8 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                             </span>
                         </div>}
                 />
-
             </CardMD.Media>
+
             <CardMD.Footer className="flex items-center">
                 {!mines ? (
                     <div className="flex flex-1 my-0.5 -ml-1 overflow-hidden items-center ">

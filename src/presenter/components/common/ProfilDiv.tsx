@@ -64,11 +64,11 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
                             id={profile?.userId} />
                     </div>
                     <div className="flex flex-col ">
-
                         <span
                             className={`flex gap-x-1 flex-wrap items-center  ${textSize} `}>
-                            <span>  {profile?.firstName}</span>
-
+                            <span>
+                                {profile?.firstName}
+                            </span>
                             {date &&
                                 <span className="opacity-80 text-[0.8em] flex items-center gap-1">
                                     {date && '•'}{getAgoString(date)}
@@ -77,7 +77,9 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
                         {group &&
                             <span className="gap-2 items-center opacity-80 hidden xs:flex">
                                 <Icon icon="group" fill size="md" />
-                                <small className="inline-flex !line-clamp-1  overflow-hidden gap-2 items-center opacity-80"> {group?.name}</small>
+                                <small className="inline-flex !line-clamp-1  overflow-hidden gap-2 items-center opacity-80">
+                                    {group?.name}
+                                </small>
                             </span>}
                         {size === '6xl' &&
                             userDiv?.GroupUser.map((groupUser, index) => {
@@ -91,7 +93,6 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
                                 )
                             })
                         }
-
                     </div>
                 </div>
             }>

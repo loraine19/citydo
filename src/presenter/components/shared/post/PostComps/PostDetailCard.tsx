@@ -45,7 +45,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
 
                     <DateChip
                         start={createdAt}
-                        prefix="publié le " />
+                        prefix=" " />
                     <BtnExpandImg
                         image={image as any} />
                 </CardLarge.Chips>
@@ -57,6 +57,7 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                 <div className="md3-card-chips pl-1 flex-1 !overflow-auto">
                     <Link to={`/annonce?search=&category=${post?.category}`} >
                         <Chip
+                            variant="tonal"
                             size="medium"
                             value={`${categoryS}`}
                             color="rose"
