@@ -11,16 +11,25 @@
         <meta
             name="theme-color"
             media="(prefers-color-scheme: light)"
-            content="#ff4444"
-            background="#ff4499"
+            content="#f6fafd"
         />
 
         <meta
             name="theme-color"
             media="(prefers-color-scheme: dark)"
-            content="#fff333"
-            background="#ffa388"
+            content="#242e30"
         />
+
+        <style>
+            body {
+                background: var(--md3-surface);
+            }
+            @media (prefers-color-scheme: dark) {
+                body .dark {
+                    background: var(--md3-on-surface);
+                }
+            }
+        </style>
 
         <link rel="manifest" href="/manifest.json" />
         <meta

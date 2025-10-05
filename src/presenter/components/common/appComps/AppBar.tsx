@@ -36,9 +36,9 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage, add
 
 
                 {/* INSERTION NAVLINK TOP  */}
-                {(mainPage || listPage) && (!navBottom && !hideNavBottom) && (
+                {(mainPage || listPage) && (!navBottom && !hideNavBottom) &&
                     <NavLinks addFab={addFab} mainPage={mainPage} placement="top" />
-                )}
+                }
 
                 {/* INSERTION SEARCH BAR */}
                 {(searchSection && (hideNavBottom || navBottom)) && (

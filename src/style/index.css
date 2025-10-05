@@ -114,6 +114,7 @@ body,
     min-height: calc(100svh);
     max-height: calc(100lvh);
     box-sizing: border-box;
+    background-color: var(--md3-surface) !important;
 }
 
 @media (display-mode: minimal-ui), (display-mode: standalone) {

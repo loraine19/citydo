@@ -29,8 +29,8 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
 
     //// CONTAINER STYLE 
     const isBottom = placement === "bottom"
-    const containerStyle = isBottom ? `rounded-t-[2rem] pt-3 px-3 !flex-1 md3-elevation-5 !max-w-full !border-b-0 justify-between md3-primary-container
-    ` : `!shadow-none w-full md3-elevation-0 justify-around  md:pb-0  md:px-2`
+    const containerStyle = isBottom ? `rounded-t-[2rem] pt-3 px-3 !flex-1 md3-elevation-5 !max-w-full !border-b-0 justify-between md3-primary-container ` :
+        `!shadow-none w-full md3-elevation-0 justify-around  md:pb-0  md:px-2`
 
 
     //// NAV ITEMS
@@ -97,7 +97,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
                     value={navValue}
                     onValueChange={(value) => setNavValue(value)}
                     className={` 
-                    ${containerStyle}  border-t-[1px] !border-[var(--md3-surface)] items-center overflow-x-auto overflow-y-hidden flex h-full w-full `}>
+                    ${containerStyle} border-t-[1px] !border-[var(--md3-surface)] items-center overflow-x-auto overflow-y-hidden flex h-full w-full `}>
 
                     {navItems.map(({ to, icon, label, color }: NavItem, index) => {
                         const active = location.pathname === to;

@@ -131,15 +131,16 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
             </CardMD.Subhead>
 
             <CardMD.SupportingText className={`flex  gap-3`}>
-                <Icon
-                    style='max-h-max'
-                    icon="fiber_manual_record"
-                    title={`Ce service ${service.typeS === ServiceType.GET ? 'vous fais gagner' : 'coute'} ${points.join(' à ')}pts`}
-                    fill={user?.Profile?.points > points[0]}
-                    color={service.typeS === ServiceType.GET ? "green" : "orange"}
-                    size="md"
-                />
-                {` ${points.join(' à ')} pts`}
+                <Chip
+                    variant="tonal"
+                    icon={<Icon
+                        size="md"
+                        icon="toll"
+                        style=""
+                        fill={user?.Profile?.points > points[0]}
+                    />}
+                    value={points.join(' à ') + ' pts'}
+                    color={service.typeS === ServiceType.GET ? "green" : "orange"} />
             </CardMD.SupportingText>
 
             <CardMD.Footer className="justify-between items-center flex max-h-max   w-full">
