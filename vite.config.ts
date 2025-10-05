@@ -75,6 +75,7 @@ export default defineConfig(({ mode }) => {
           ],
         },
         manifest: {
+          background_color: "#e7eff2",
           name: "City'do",
           short_name: "City'do",
           lang: "fr",

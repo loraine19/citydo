@@ -64,6 +64,8 @@ function App() {
     const { color, getColor, dark } = useUxStore(state => state);
     useEffect(() => { getColor(window.location.pathname) }, [window.location.pathname]);
 
+
+
     return (
 
         <ErrorBoundary
