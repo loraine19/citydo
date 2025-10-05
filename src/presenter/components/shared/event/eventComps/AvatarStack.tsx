@@ -18,23 +18,23 @@ export function AvatarStack(props: AvatarStackProps) {
     const [maxVisible, setMaxVisible] = useState(1);
     const [selectedAvatar, setSelectedAvatar] = useState<number>(0);
 
-
-    useEffect(() => {
-        function updateMaxVisible() {
-            if (containerRef.current) {
-                const containerWidth = containerRef.current.offsetWidth;
-                let calculated = 1;
-                if (avatarDatas?.length > 1) {
-                    calculated = Math.floor(
-                        ((containerWidth - 14) - AVATAR_WIDTH) / (AVATAR_WIDTH - AVATAR_OVERLAP)
-                    ) + 1;
-                }
-                calculated = Math.max(1, Math.min(calculated, avatarDatas?.length));
-                setMaxVisible(calculated);
-            } else {
-                setMaxVisible(1);
+    function updateMaxVisible() {
+        if (containerRef.current) {
+            const containerWidth = containerRef.current.offsetWidth;
+            let calculated = 1;
+            if (avatarDatas?.length > 1) {
+                calculated = Math.floor(
+                    ((containerWidth - 14) - AVATAR_WIDTH) / (AVATAR_WIDTH - AVATAR_OVERLAP)
+                ) + 1;
             }
+            calculated = Math.max(1, Math.min(calculated, avatarDatas?.length));
+            setMaxVisible(calculated);
+        } else {
+            setMaxVisible(1);
         }
+    }
+    useEffect(() => {
+
         updateMaxVisible();
         window.addEventListener("resize", updateMaxVisible);
         let resizeObserver: ResizeObserver | undefined;
@@ -58,18 +58,12 @@ export function AvatarStack(props: AvatarStackProps) {
 
     return (
         <div
-            onScroll={
-                (e) => {
-                    if (e.currentTarget.scrollLeft === 0) {
-                        setMaxVisible(visibleAvatars?.length);
-                    }
-                }
-            }
+            onScroll={(e) => (e.currentTarget.scrollLeft <= 2) && updateMaxVisible()}
             ref={containerRef}
-            className={` ${maxVisible === avatarDatas?.length ? 'overflow-x-auto' : ''} flex flex-1 items-center -space-x-3 overflow-x-auto w-full !rounded-full pr-3 overflow-y-hidden `}
+            className={` ${maxVisible === avatarDatas?.length ? 'overflow-x-auto' : ''} 
+                flex flex-1 items-center -space-x-3.5 overflow-x-auto w-full !rounded-full pr-3 overflow-y-hidden `}
         >
             {visibleAvatars?.map((Participant: Participant) => {
-
                 return (
                     <Menu
                         open={open && selectedAvatar === Participant?.userId}
@@ -125,18 +119,15 @@ export function AvatarStack(props: AvatarStackProps) {
                                     </small>)}
                             </div>
                         </MenuItem >
-
                     </Menu >)
-            }
-
-            )
-            }
+            })}
             <div className="relative !h-[2.65rem] !z-[1] !w-[2.65rem] flex hover:!z-[4] ">
                 <div className="absolute hover:!z-[4] flex flex-1 top-0 left-0 h-[2.65rem] !w-[2.65rem] ">
-                    <div>{hiddenCount}</div>
+                    <div>
+                        {hiddenCount}
+                    </div>
                 </div>
             </div>
-
         </div >
     );
 }

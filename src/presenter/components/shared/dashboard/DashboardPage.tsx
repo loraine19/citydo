@@ -112,7 +112,7 @@ export default function DashboardPage() {
                 }}
                 ref={divRef}
                 className={` ${hideUser ? 'pt-6 pb-3' : 'pt-[2.5rem]'}
-                    px-[1rem] flex-1 max-max overflow-auto flex flex-col
+                    px-[0.3rem] flex-1 max-max overflow-auto flex flex-col
                     md:grid md:grid-cols-2 md:grid-rows-[max-content,max-content,1fr,1fr]
                     w-full place-content-start  rounded-b-[1rem] 
                 `}>

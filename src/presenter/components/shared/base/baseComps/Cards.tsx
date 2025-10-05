@@ -282,8 +282,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
         const [keepHandle, setKeepHandle] = useState(form ? true : false);
 
         return (
-            <div
-                className={`${cardClasses}  !border-none relative min-h-full flex flex-1 overflow-hidden`} data-md3-card
+            <div className={`${cardClasses}  !border-none relative min-h-full flex flex-1 overflow-hidden`} data-md3-card
                 {...props}>
 
                 {/* Large Image */}
@@ -306,17 +305,17 @@ export const CardLarge: React.FC<CardLargeProps> & {
                 {/* Pull handle and expandable content */}
                 <div id='sheet'
                     ref={divRef}
-                    className={` md3-card-large-sheet md3-card-${variant} 
+                    className={` md3-card-large-sheet md3-card-${variant} !border-[var(--md3-primary-container)] border overflow-x-hidden 
                         ${sheetClassName || ""}
                         ${(imageProps.src) ? `
                             ${(!expanded) ?
-                                " animSheetRev max-h-[60%] lg:max-h-[55%]   overflow-hidden " :
-                                "  max-h-[calc(100%-4rem)] h-fit overflow-auto animSheet "}
+                                " animSheetRev max-h-[60%] lg:max-h-[55%] overflow-hidden " :
+                                " max-h-[calc(100%-4rem)] h-fit overflow-y-auto animSheet "}
                             `
-                            : `h-full overflow-auto `}
+                            : `h-full overflow-y-auto `}
                             `}>
 
-                    <div className="md3-card-large-sheet-handle">
+                    <div className="md3-card-large-sheet-handle ">
                         {((keepHandle || largeContent) && imageProps.src) &&
                             <button
                                 type="button"

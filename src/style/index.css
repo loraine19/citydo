@@ -300,19 +300,19 @@ i {
 ::-webkit-scrollbar {
     width: 2px;
     height: 0px;
-    @apply bg-slate-400/5 rounded-3xl;
+    @apply bg-[var(--md3-surface)] rounded-3xl;
 }
 ::-webkit-scrollbar:hover {
-    @apply bg-slate-400/10 h-4;
+    @apply bg-[var(--md3-surface-variant)] h-4;
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply bg-slate-300/50  rounded-3xl h-1;
+    @apply bg-[var(--md3-surface)]  !rounded-3xl h-1;
     cursor: pointer;
 }
 ::-webkit-scrollbar-thumb:hover,
 ::-webkit-scrollbar-thumb:active {
-    @apply bg-slate-300/80;
+    @apply bg-[var(--md3-on-surface-variant)] !rounded-3xl;
 }
 button span {
     @apply !truncate max-w-full min-h-max;
