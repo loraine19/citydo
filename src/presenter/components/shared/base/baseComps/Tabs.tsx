@@ -24,9 +24,6 @@ export const Tabs: React.FC<tabButtonProps> = ({
     return (
         <div className={`md3-tab-button-group ${className || ''} `}>
             {options.map((option) => (
-
-
-
                 <button
                     key={option.value}
                     className={`md3-tab-button md3-tab-button-${size} 
@@ -44,14 +41,14 @@ export const Tabs: React.FC<tabButtonProps> = ({
 
                         {selectedValueState === option.value ? (
                             <Icon
-                                style='-mb-0.5'
+                                style='md3-animation-scale-in '
                                 icon="check"
-                                size="lg"
+                                size="md"
 
                             />
                         ) : option.icon ?
                             <Icon
-                                size={'lg'}
+                                size={'md'}
                                 fill={true}
                                 {...option.icon}
 

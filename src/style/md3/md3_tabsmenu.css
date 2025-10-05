@@ -9,7 +9,7 @@
 
 /* Conteneur des onglets */
 .md3-tab-button-group {
-    padding: 0.3rem 0;
+    padding: 0.2rem 0;
     display: flex;
     width: 100%;
     height: fit-content;
@@ -37,23 +37,23 @@
 
 /* LE CONTENEUR QUI DÉFINIT LA LARGEUR DE LA PILULE */
 .md3-tab-button__label {
-    position: relative; /* Indispensable pour positionner la pilule en dessous */
-    display: inline-block; /* Pour que le span prenne la largeur de son contenu */
+    position: relative;
+    display: inline-block;
     padding: 0 1rem 0.4rem;
     font-size: 0.85rem;
     font-weight: 400;
 }
 
-/* LA PILULE INDICATRICE */
+/* PILULE */
 .md3-tab-button__label::after {
     content: "";
     position: absolute;
     bottom: -0.4rem;
     left: -0rem;
-    width: 100%; /* Prend 100% de la largeur du span __label */
+    width: 100%;
     height: 0.8rem;
     background-color: currentColor;
-    border-radius: 2rem; /* Pour la forme de pilule */
+    border-radius: 2rem;
 
     /* Animation */
     transform: scaleX(0);
@@ -69,10 +69,8 @@
 .md3-tab-button-active .md3-tab-button__label {
     font-weight: 500;
 }
-
-/* On déclenche l'animation de la pilule pour l'onglet actif */
 .md3-tab-button-active .md3-tab-button__label::after {
-    transform: scaleX(1); /* La pilule s'anime et apparaît */
+    transform: scaleX(1);
 }
 
 .md3-tab-button-small {

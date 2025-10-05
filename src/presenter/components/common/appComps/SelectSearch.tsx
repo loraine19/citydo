@@ -19,7 +19,7 @@ export default function SelectSearch(props: selectSearchProps) {
 
     return (
         <div className={`w-full relative  ${style} `} >
-            <div className={`flex items-center rounded-full md3-button-${color} md3-button-${'tonal'} !pr-[7px] pl-3 !h-[3.2rem] gap-2 md:gap-4`} >
+            <div className={`flex items-center rounded-full md3-button-${color} md3-button-${'tonal'} !pr-[8px] pl-3 !h-[3.2rem] gap-2 md:gap-4`} >
                 <Menu
                     MenuKey={'select-menu' + (color)}
                     blurBack

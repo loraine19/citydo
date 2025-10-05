@@ -47,7 +47,11 @@ export default function PostEditPage() {
         const updateData = new PostDTO({ ...formik.values as PostDTO, share });
         try {
             const data = await updatePost(post.id, updateData)
-            if (data?.id) { refetch(); navigate(`/annonce/${data?.id}`); setOpen(false); }
+            if (data) {
+                refetch();
+                navigate(`/annonce/${data?.id}`);
+                setOpen(false);
+            }
             else handleApiError("Erreur lors de la modification de l'annonce");
         } catch (error) {
             handleApiError(error ?? "Erreur lors de la modification de l'annonce");

@@ -117,7 +117,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
                                 icon={
                                     <Icon
                                         disabled={active}
-                                        style={`${!isBottom ? active ? ` border-b md3-border-${color} py-1 md:border-none md:py-0 px-2 ` : `px-1.5` : ``} `
+                                        style={`${!isBottom ? active ? ` border-b md3-border-${color} py-1 md:border-none md:py-0 px-2 ` : `px-1.5` : active ? `md3-animation-scale-in ` : ''} `
                                         }
                                         reverse={false}
                                         clear={isBottom}
