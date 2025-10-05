@@ -75,12 +75,20 @@ html {
     @media (max-width: 375px) {
         font-size: 13px;
     }
+
+    @media (prefers-color-scheme: dark) {
+        color-scheme: dark;
+    }
+    @media (prefers-color-scheme: light) {
+        color-scheme: light;
+    }
 }
 
 body,
 #root {
     @apply scroll-smooth font-montserrat p-0 m-0 inset-0;
     display: flex;
+    border: none;
     flex-direction: column;
     width: 100vw;
     height: calc(100dvh);
@@ -99,7 +107,7 @@ body,
 /* MAIN SECTIONS */
 
 .App {
-    @apply min-w-[280px] md3-surface flex flex-col flex-1 overflow-hidden;
+    @apply min-w-[280px] flex flex-col flex-1 overflow-hidden;
     width: 100vw;
     min-width: 100vw;
     height: calc(100dvh + 2rem);

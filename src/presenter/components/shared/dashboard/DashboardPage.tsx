@@ -37,7 +37,6 @@ export default function DashboardPage() {
         }
         else setIsLoggedIn(true);
 
-
         !user?.Profile && fetchUser()
         setHideNavBottom(false)
 
@@ -90,9 +89,7 @@ export default function DashboardPage() {
     //// HANDLE ADDRESS
     const [address, setAddress] = useState(user?.Profile?.Address);
     const [auto] = useState(true);
-
     const [hideUser, setHideUser] = useState(false);
-
 
     return (
         <main className={` wRespXL overflow-auto xs:overflow-hidden 
