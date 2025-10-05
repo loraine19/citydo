@@ -58,9 +58,8 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
                 placement={'bottom-left'}
                 trigger={
                     <Icon
-
                         fill
-                        style='!p-1 z-40  h-[2rem] md3-stroke  max-h-max'
+                        style='!font-extrabold !scale-x-[1.2] !p-1 z-[4] h-[1.5rem] md3-stroke max-h-max'
                         color={''}
                         textIcon="⋮"
                         size={'3xl'}
