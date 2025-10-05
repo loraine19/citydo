@@ -261,7 +261,7 @@ i {
 
 /* BACKDROP BLUR */
 .backdropBlur {
-    @apply bg-black/40;
+    @apply bg-black/80;
     -webkit-backdrop-filter: blur(1px);
     backdrop-filter: blur(1px);
 }

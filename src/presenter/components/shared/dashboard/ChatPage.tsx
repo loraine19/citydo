@@ -183,12 +183,23 @@ export default function ChatPage() {
     useEffect(() => {
         const handleResize = () => {
             const threshold = 100; // px
-            const heightDiff = window.outerHeight - window.innerHeight;
+            let heightDiff = 0;
+            if (window.visualViewport) {
+                heightDiff = window.innerHeight - window.visualViewport.height;
+            } else {
+                heightDiff = window.outerHeight - window.innerHeight;
+            }
             setKeyboardOpen(heightDiff > threshold);
-        }
+        };
         window.addEventListener('resize', handleResize);
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', handleResize);
+        }
         return () => {
             window.removeEventListener('resize', handleResize);
+            if (window.visualViewport) {
+                window.visualViewport.removeEventListener('resize', handleResize);
+            }
         };
     }, []);
 

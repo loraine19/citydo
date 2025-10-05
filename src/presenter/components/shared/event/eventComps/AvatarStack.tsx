@@ -66,7 +66,7 @@ export function AvatarStack(props: AvatarStackProps) {
                 }
             }
             ref={containerRef}
-            className={` ${maxVisible === avatarDatas?.length ? 'overflow-y-auto' : ''} flex flex-1 items-center -space-x-3 overflow-x-auto w-full !rounded-full pr-3 `}
+            className={` ${maxVisible === avatarDatas?.length ? 'overflow-x-auto' : ''} flex flex-1 items-center -space-x-3 overflow-x-auto w-full !rounded-full pr-3 overflow-y-hidden `}
         >
             {visibleAvatars?.map((Participant: Participant) => {
 

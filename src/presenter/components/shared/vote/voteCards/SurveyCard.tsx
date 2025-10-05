@@ -138,6 +138,7 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                     {!mines ? (
                         <div className=" w-full flex-1 flex items-center truncate pl-2 -ml-2 ">
                             <ProfileDiv
+                                size='md'
                                 date={survey?.createdAt}
                                 profile={survey?.User} />
                         </div>

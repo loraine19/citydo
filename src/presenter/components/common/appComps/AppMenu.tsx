@@ -110,9 +110,9 @@ const AppMenu: React.FC<AppMenuProps> = ({
                     <div className="flex items-center ">
                         <div className={`h-full justify-center max-w-max grid items-center !p-0`}>
                             {!menuIcon ?
-                                <div className="flex w-[2.2rem] flex-1 items-center">
+                                <div className="flex w-[2.4rem] flex-1 items-center">
                                     <img
-                                        className="!w-[2.2rem] !h-[2.2rem] object-cover object-center"
+                                        className="!w-[2.4rem] !h-[2.4rem] object-cover object-center"
                                         src="/image/logo.svg"
                                         alt="logo"
                                     />

@@ -99,7 +99,6 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
 
 
             <CardMD.Chips className="overflow-x-auto ">
-
                 <Chip
                     onClick={() => {
                         change(categoryS as any);
@@ -123,7 +122,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
 
             </CardMD.Chips>
             <CardMD.Headline className="flex flex-row justify-between w-full ">
-                <span className={`${!compact ? 'line-clamp-1' : 'line-clamp-2 '} "sm:line-clamp-2"`}>
+                <span className={`line-clamp-1`}>
                     {title}
                 </span>
             </CardMD.Headline>
@@ -151,7 +150,10 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
             <CardMD.Footer className="justify-between items-center flex max-h-max   w-full">
 
                 {(!mines) && (
-                    <ProfileDiv profile={User} date={createdAt} size='md' />
+                    <ProfileDiv
+                        profile={User}
+                        date={createdAt}
+                        size='md' />
                 )}
 
                 {mine && mines && (
@@ -170,8 +172,6 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                         disabled2={service.statusS !== ServiceStep.STEP_1}
                     />
                 )}
-
-
 
             </CardMD.Footer>
         </CardMD>

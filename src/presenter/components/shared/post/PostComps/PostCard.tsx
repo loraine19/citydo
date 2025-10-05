@@ -77,6 +77,7 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
                 {!mines ?
                     <div className=" w-full flex-1 items-center flex truncate pl-2 -ml-2 ">
                         <ProfileDiv
+                            size='md'
                             date={post?.createdAt}
                             profile={post?.User} />
                     </div> :

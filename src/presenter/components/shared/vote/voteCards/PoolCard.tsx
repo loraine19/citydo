@@ -120,6 +120,7 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                     {!mines ? (
                         <div className=" w-full flex-1 flex items-center ">
                             <ProfileDiv
+                                size='md'
                                 date={pool?.createdAt}
                                 divRef={divRef}
                                 profile={pool?.User} />

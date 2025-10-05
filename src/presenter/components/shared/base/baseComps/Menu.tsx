@@ -413,7 +413,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         data-value={value}
         className={` md3-menu-item-container
           
-            ${bg ? '' : 'border-t border-slate-300/80 !pt-1 rounded-none first:border-0 first:!pt-0'}
+            ${bg ? '' : 'border-t border-t-[var(--md3-surface)] !pt-1 rounded-none first:border-0 first:!pt-0'}
             ${divider ? `md3-menu-item-divider-${divider}` : ''}
         `}
         data-md3
