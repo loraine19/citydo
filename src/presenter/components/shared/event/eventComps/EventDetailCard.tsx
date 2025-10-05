@@ -98,7 +98,7 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
             <CardLarge.Divider />
 
             <CardLarge.SupportingText className="flex flex-col gap-2 pb-2">
-                <h6>Agenda : {eventDateInfo?.duration}</h6>
+                <h6>Agenda • {eventDateInfo?.duration}</h6>
                 <CardLarge.Chips className="flex items-center gap-6 ">
 
                     {!EventLoad?.isPast && <EventCalAddBtn
@@ -108,11 +108,11 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                     <div className="flex  gap-3 md3-supporting-text">
                         <Chip
 
-                            icon={<Icon color='green' fill bg icon="event_available" size="md" />}
+                            icon={<Icon fill icon="event_available" size="lg" />}
                             size="medium"
                             value={eventDateInfo?.start} />
                         <Chip
-                            icon={<Icon color='error' fill bg icon="event_busy" size="md" />}
+                            icon={<Icon fill icon="event_busy" size="lg" />}
                             size="medium"
                             value={eventDateInfo?.end}
                         />
