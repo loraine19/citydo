@@ -50,7 +50,7 @@
 }
 
 html {
-    @apply flex flex-col p-0 m-0;
+    @apply flex flex-col p-0 m-0 xs:overflow-x-hidden;
     box-sizing: border-box;
     height: calc(100dvh + 2rem);
     min-height: calc(100svh);

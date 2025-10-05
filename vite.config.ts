@@ -32,38 +32,44 @@ export default defineConfig(({ mode }) => {
 
           skipWaiting: true,      // Force le nouveau SW à s'activer
           clientsClaim: true,     // Force le SW à prendre le contrôle immédiatement
-          // La limite par défaut de 2Mo est suffisante maintenant
-          globPatterns: ['**/*.{js,css,html,ico,png,svg,ttf}'], // woff2 est retiré
+          globPatterns: ['**/*.{js,css,html,ico,png,svg,ttf}'],
           runtimeCaching: [
             {
-              // Stratégie pour les autres polices (comme Comfortaa.ttf)
-              urlPattern: /\.(?:ttf|woff)$/,
+              urlPattern: ({ url }) =>
+                url.origin.includes('api.citydo.fr') &&
+                /\.(?:png|jpg|jpeg|svg|gif)$/.test(url.pathname),
               handler: 'CacheFirst',
               options: {
-                cacheName: 'fonts-cache',
+                cacheName: 'api-images-cache',
                 expiration: {
-                  maxEntries: 10,
-                  maxAgeSeconds: 60 * 60 * 24 * 365 // 1 an
+                  maxEntries: 60,
+                  maxAgeSeconds: 30 * 24 * 60 * 60, // 30 jours
+                },
+                // Cette option est importante pour les réponses CORS
+                cacheableResponse: {
+                  statuses: [0, 200],
                 },
               },
             },
+            // -----------------------------------------------------------------
             {
+              urlPattern: /\.(?:ttf|woff|woff2)$/,
+              handler: 'CacheFirst',
+              options: { cacheName: 'fonts-cache', expiration: { maxEntries: 10, maxAgeSeconds: 31536000 } },
+            },
+            {
+              // Règle générale pour les autres images (celles qui ne viennent pas de votre API)
               urlPattern: /\.(?:png|jpg|jpeg|svg|gif)$/,
               handler: 'CacheFirst',
-              options: {
-                cacheName: 'images-cache',
-                expiration: { maxEntries: 60, maxAgeSeconds: 30 * 24 * 60 * 60 },
-              },
+              options: { cacheName: 'images-cache', expiration: { maxEntries: 60, maxAgeSeconds: 2592000 } },
             },
             {
               urlPattern: ({ url }) => url.origin.includes('api.citydo.fr'),
               handler: 'StaleWhileRevalidate',
               options: {
                 cacheName: 'api-cache',
-                expiration: { maxEntries: 100, maxAgeSeconds: 24 * 60 * 60 },
-                cacheableResponse: {
-                  statuses: [0, 200],
-                },
+                expiration: { maxEntries: 100, maxAgeSeconds: 86400 },
+                cacheableResponse: { statuses: [0, 200] },
               },
             },
           ],
