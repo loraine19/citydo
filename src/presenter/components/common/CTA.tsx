@@ -39,13 +39,13 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
     const isDisabled = (i: number) => ((i === 0 && disabled1) || (i === 1 && disabled2) || actions[i]?.disabled)
 
     return (
-        <footer className={`h-max w-full !z-[0] justify-end wRespXL -mb-[1px] bottom-0 ${'fixed'}`}>
+        <footer className={`h-max w-full !z-[0] justify-end wRespXL bottom-0 ${'fixed'}`}>
 
             <ButtonGroup
                 rounded
                 size="large"
                 variant="text"
-                className={`bg-transparent !pr-2 !pt-0 md3-elevation-0 !rounded-none`}>
+                className={`bg-transparent !pr-2 !pt-1 pb-2 md3-elevation-0 !rounded-none`}>
                 {[...actions]
                     .sort((a, b) => {
                         // First: NoPrimary === true
@@ -75,7 +75,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                                         onMouseEnter={() => setShowLabel({ index: i, value: true })}
                                         onMouseLeave={() => setShowLabel({ index: i, value: false })}
                                         type={action?.type ?? "button"}
-                                        className={` showUp anim md3-elevation-4 !min-w-max `}
+                                        className={` showUp anim md3-elevation-3 !min-w-max `}
                                         icon={{
                                             onClick: () => {
                                                 setShowLabel({ index: i, value: !showLabel.value });

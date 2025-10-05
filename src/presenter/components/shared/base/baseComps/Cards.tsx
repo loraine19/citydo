@@ -287,7 +287,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
 
                 {/* Large Image */}
                 {imageProps.src &&
-                    <div className={`absolute top-0 anim md3-card-large-image-container h-[55%]`}  >
+                    <div className={`absolute top-0  anim md3-card-large-image-container h-[55%]`}  >
                         <img
                             onError={(e: any) => { e.target.onerror = null; }}
                             src={imageProps.src}
@@ -297,7 +297,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
                                 ${imageProps.className || ""}`}
                         />
                         {imageProps.children && (
-                            <div className="md3-card-large-image-children" >
+                            <div className={` ${expanded ? '-mt-1 -mr-2' : ''}  md3-card-large-image-children`} >
                                 {imageProps.children}
                             </div>
                         )}
@@ -312,7 +312,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
                         ${(imageProps.src) ? `
                             ${(!expanded) ?
                                 " animSheetRev max-h-[60%] lg:max-h-[55%] overflow-hidden " :
-                                " max-h-[calc(100%-4rem)] h-fit overflow-y-auto animSheet "}
+                                " max-h-[calc(100%-3.2rem)]  h-fit overflow-y-auto animSheet "}
                             `
                             : `h-full overflow-y-auto `}
                             `}>

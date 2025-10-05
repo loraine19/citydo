@@ -15,13 +15,14 @@ const BtnExpandImg: React.FC<BtnExpandImgProps> = ({ colorComp, image }) => {
     return (
         <>
             <Fab
-                className="m-1 md3-elevation-1"
-                size="small"
+                className="m-1 md3-elevation-1 !rounded-lg"
+                size="xsmall"
                 variant="tonal"
                 type="button"
                 color={colorComp ?? color as Md3Colors}
                 icon={{
                     fill: true,
+                    size: "md",
                     icon: "expand_content",
                     title: "Aperçu de l'image",
                     onClick: () => setOpenDialog(true),

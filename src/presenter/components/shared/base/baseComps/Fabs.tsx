@@ -4,7 +4,7 @@ import { IconProps } from "../../../common/IconComp";
 import BackDropBlur from "./BackDropBlur";
 
 interface FabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    size?: 'small' | 'large' | 'medium' | 'xlarge' | 'extended';
+    size?: 'xsmall' | 'small' | 'large' | 'medium' | 'xlarge' | 'extended';
     variant?: Md3Variants;
     color?: Md3Colors;
     icon?: IconProps;
