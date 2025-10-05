@@ -84,8 +84,6 @@ export default defineConfig(({ mode }) => {
           scope: "/",
           display: "minimal-ui",
           orientation: "portrait",
-          theme_color: "#131b1d",
-          background_color: "#e7eff2",
           icons: [
             { purpose: "maskable", sizes: "1024x1024", src: "icons/maskable_icon.png", type: "image/png" },
             { purpose: "maskable", sizes: "512x512", src: "icons/maskable_icon_x512.png", type: "image/png" },

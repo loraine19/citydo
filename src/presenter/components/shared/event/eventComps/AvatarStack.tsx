@@ -92,7 +92,6 @@ export function AvatarStack(props: AvatarStackProps) {
                                     <AvatarUser
                                         Profile={Participant.User?.Profile}
                                         avatarSize={'2xl'} />
-
                                     <OnlineDot id={Participant?.userId} />
                                 </div>}>
 
