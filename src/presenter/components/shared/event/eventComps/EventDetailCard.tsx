@@ -107,7 +107,6 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                         iconClass="text-primary md3-cyan-container " />}
                     <div className="flex  gap-3 md3-supporting-text">
                         <Chip
-
                             icon={<Icon fill icon="event_available" size="lg" />}
                             size="medium"
                             value={eventDateInfo?.start} />

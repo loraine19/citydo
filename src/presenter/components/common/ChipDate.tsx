@@ -39,16 +39,16 @@ export function DateChip({ start, end, prefix, ended, size }: { start: Date | st
     })();
     if (!value) return null;
     return (
-        <div className="max-h-max ">
+        <>
             {value &&
                 <Chip
-                    className={`${ended ? ' !opacity-50' : ''}`}
+                    className={`${ended ? 'pt-0.5 !opacity-50' : ''}`}
                     icon={icon && <Icon icon={icon} size={'lg'} fill />}
                     size={size || 'small'}
                     variant="tonal"
                     value={value}
                     color={dateClass}>
                 </Chip>}
-        </div>
+        </>
     )
 }
