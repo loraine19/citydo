@@ -21,7 +21,6 @@ export default defineConfig(({ mode }) => {
     };
   }
 
-  // --- Mode Production & Développement ---
   return {
     plugins: [
       react(),
@@ -29,7 +28,6 @@ export default defineConfig(({ mode }) => {
         registerType: 'autoUpdate',
         injectRegister: 'auto',
         workbox: {
-
           skipWaiting: true,      // Force le nouveau SW à s'activer
           clientsClaim: true,     // Force le SW à prendre le contrôle immédiatement
           globPatterns: ['**/*.{js,css,html,ico,png,svg,ttf}'],
@@ -65,7 +63,7 @@ export default defineConfig(({ mode }) => {
             },
             {
               urlPattern: ({ url }) => url.origin.includes('api.citydo.fr'),
-              handler: 'StaleWhileRevalidate',
+              handler: 'NetworkFirst',
               options: {
                 cacheName: 'api-cache',
                 expiration: { maxEntries: 100, maxAgeSeconds: 86400 },
