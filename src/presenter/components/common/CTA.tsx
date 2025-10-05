@@ -59,49 +59,42 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
                     })
                     .map((action, i) =>
                         action?.icon && action?.icon !== '' && (
-                            <div key={i}
-                                className={`
-                                    ${showLabel.index === i && showLabel.value ? 'growShrink' : ''}
-                                    ${isPrimary(i) ? 'flex-1 w-[90%]  ' :
-                                        (actions.length === 2) ? ' !items-end justify-end ' : 'w-max '} !flex  !items-end !justify-end lg:!w-max lg:flex-shrink-0 growShrink`} >
-                                <div className={`flex flex-1 max-w-[max-content] rounded-full !justify-end items-end   `}>
-                                    <Button
-                                        round={showLabel.index === i && showLabel.value ? false : true}
-                                        size={'xlarge'}
-                                        color={action?.color as Md3Colors ?? defColor ?? 'slate' as any}
-                                        variant={isPrimary(i) ? "filled" : "tonal"}
-                                        disabled={isDisabled(i)}
-                                        key={i + 'btn'}
-                                        onMouseEnter={() => setShowLabel({ index: i, value: true })}
-                                        onMouseLeave={() => setShowLabel({ index: i, value: false })}
-                                        type={action?.type ?? "button"}
-                                        className={` showUp anim md3-elevation-3 !min-w-max `}
-                                        icon={{
-                                            onClick: () => {
-                                                setShowLabel({ index: i, value: !showLabel.value });
-                                            },
-                                            icon: action?.iconImage as IconName,
-                                            size: '2xl',
-                                            fill: isDisabled(i) ? false : true
-                                        }}
-                                    >
 
-                                        <span
-                                            onClick={() => {
-                                                if (action?.direct) {
-                                                    action.function && action.function();
-                                                } else {
-                                                    setOpen(true);
-                                                    setIndex(i);
-                                                }
-                                            }}
-                                            className={`
-                                            ${showLabel.index === i && showLabel.value ? 'flex' : 'hidden'} hover:!flex active:!flex w-full  flex-1 justify-center  px-8 !text-sm growShrink `}>
-                                            {action?.icon}
-                                        </span>
-                                    </Button>
-                                </div>
-                            </div>
+                            <Button
+                                round={showLabel.index === i && showLabel.value ? false : true}
+                                size={'xlarge'}
+                                color={action?.color as Md3Colors ?? defColor ?? 'slate' as any}
+                                variant={isPrimary(i) ? "filled" : "tonal"}
+                                disabled={isDisabled(i)}
+                                key={i + 'btn'}
+                                onMouseEnter={() => setShowLabel({ index: i, value: true })}
+                                onMouseLeave={() => setShowLabel({ index: i, value: false })}
+                                type={action?.type ?? "button"}
+                                className={`${showLabel.index === i && showLabel.value ? 'px-6' : 'px-4 '} showUp anim md3-elevation-3 !min-w-max `}
+                                icon={{
+                                    onClick: () => {
+                                        setShowLabel({ index: i, value: !showLabel.value });
+                                    },
+                                    icon: action?.iconImage as IconName,
+                                    size: '2xl',
+                                    fill: isDisabled(i) ? false : true
+                                }}
+                            >
+
+                                <span
+                                    onClick={() => {
+                                        if (action?.direct) {
+                                            action.function && action.function();
+                                        } else {
+                                            setOpen(true);
+                                            setIndex(i);
+                                        }
+                                    }}
+                                    className={`
+                                            ${showLabel.index === i && showLabel.value ? 'flex' : 'hidden'} hover:!flex active:!flex w-full  flex-1 justify-center  px-2 !text-sm growShrink `}>
+                                    {action?.icon}
+                                </span>
+                            </Button>
                         )
                     )
                 }
