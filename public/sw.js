@@ -5,7 +5,6 @@ const urlsToCache = [
     '/manifest.json',
     '/favicon.ico',
 
-
 ];
 
 // Install: cache files

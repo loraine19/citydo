@@ -64,6 +64,20 @@ function App() {
     const { color, getColor, dark } = useUxStore(state => state);
     useEffect(() => { getColor(window.location.pathname) }, [window.location.pathname]);
 
+    useEffect(() => {
+        const lightThemeColor = "#f6fafd";
+        const darkThemeColor = "#242e30";
+
+        let themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
+        // Au cas où, si elle n'existe pas, on la crée.
+        if (!themeColorMeta) {
+            themeColorMeta = document.createElement('meta');
+            themeColorMeta.setAttribute('name', 'theme-color');
+            document.head.appendChild(themeColorMeta);
+        }
+        themeColorMeta.setAttribute('content', dark ? darkThemeColor : lightThemeColor);
+    }, [dark]);
 
 
     return (
