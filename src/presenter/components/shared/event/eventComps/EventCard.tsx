@@ -136,6 +136,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                         onClick={async () => {
                             const event = toogleParticipate && await toogleParticipate()
                             event && setEvent(event)
+                            refetch && refetch()
                         }}
                         variant={!event?.Igo ? "tonal" : "filled"}
                         color="cyan" />

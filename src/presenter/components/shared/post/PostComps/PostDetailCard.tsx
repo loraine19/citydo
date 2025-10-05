@@ -97,9 +97,9 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                         title: post?.ILike ? "retirer de mes favoris" : "j'aime"
                     }}>
                     {Likes?.length}
-
                 </Button>
             </CardLarge.Media>
+
             <CardLarge.Divider />
             <CardLarge.Footer className="md3-card-large-footer ">
                 <div className=" w-full flex-1 items-center flex truncate pl-2 pb-4 ">
