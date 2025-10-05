@@ -29,7 +29,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
 
     //// CONTAINER STYLE 
     const isBottom = placement === "bottom"
-    const containerStyle = isBottom ? `rounded-t-[2rem] py-2 px-3 !flex-1 md3-elevation-5 !max-w-full !border-b-0 justify-between bg-gradient-to-t from-[var(--md3-surface)] to-[25%] to-[var(--md3-primary-container)]` :
+    const containerStyle = isBottom ? `rounded-t-[2rem] py-2 px-3 !flex-1 md3-elevation-5 !max-w-full !border-b-0 justify-between bg-gradient-to-t from-[var(--md3-primary-container)] to-[25%] to-[var(--md3-primary-container)]` :
         `!shadow-none w-full md3-elevation-0 justify-around  md:pb-0  md:px-2`
 
 

@@ -23,7 +23,7 @@ export function DateChip({ start, end, prefix, ended, size }: { start: Date | st
             case prefix && !ended && !end:
                 return `${prefix} ${new Date(start).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' })} `;
             case ended:
-                icon = 'cancel';
+                icon = 'event_busy';
                 return ` ${new Date(end ?? start).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: '2-digit' })}`;
             case endDays > 9:
                 return null;
@@ -42,8 +42,8 @@ export function DateChip({ start, end, prefix, ended, size }: { start: Date | st
         <div className="max-h-max ">
             {value &&
                 <Chip
-                    className={`${ended ? '!opacity-60' : ''}`}
-                    icon={icon && <Icon icon={icon} size={'md'} />}
+                    className={`${ended ? ' !opacity-50' : ''}`}
+                    icon={icon && <Icon icon={icon} size={'lg'} fill />}
                     size={size || 'small'}
                     variant="tonal"
                     value={value}

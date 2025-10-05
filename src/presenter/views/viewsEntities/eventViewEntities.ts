@@ -17,7 +17,7 @@ export class EventView extends Event {
     isValidate: boolean;
     agendaLink: string;
     agendaICalLink: string;
-    eventDateInfo: { start: string; end: string };
+    eventDateInfo: { start: string; end: string, duration: string };
     toogleParticipate: () => Promise<EventView | any>;
     image: string = '';
 
@@ -26,7 +26,7 @@ export class EventView extends Event {
         if (!event) {
             throw new Error('Impossible de récupérer l\'événement')
         }
-        this.isPast = new Date(event?.end) < new Date(Date.now());
+        this.isPast = new Date(event?.end).getTime() < new Date(Date.now()).getTime();
         this.image = (typeof event?.image === 'string' && event?.image) ? event.image : this.getDefaultImage(event?.category as EventCategory);
         this.days = this.getDays(event);
         this.Igo = event?.Participants?.some((p) => p.userId === userId) ? true : false;
@@ -67,11 +67,21 @@ export class EventView extends Event {
         const startDate = new Date(event.start);
         const endDate = new Date(event.end);
 
+        const durationMS = endDate.getTime() - startDate.getTime();
+        let duration: string;
+        if (durationMS < dayMS) {
+            const hours = Math.ceil(durationMS / (1000 * 60 * 60));
+            duration = `${hours} heure${hours > 1 ? 's' : ''}`;
+        } else {
+            const days = Math.ceil(durationMS / dayMS);
+            duration = `${days} jour${days > 1 ? 's' : ''}`;
+        }
         return {
-            start: `${formatDate(startDate)} ${formatTime(startDate)}`.trim(),
+            duration,
+            start: `${formatDate(startDate)} • ${formatTime(startDate)}`.trim(),
             end: (startDate.toDateString() === endDate.toDateString()
                 ? formatTime(endDate)
-                : `${formatDate(endDate)} ${formatTime(endDate)}`.trim())
+                : `${formatDate(endDate)} • ${formatTime(endDate)}`.trim())
         }
     }
 

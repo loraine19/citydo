@@ -14,6 +14,7 @@ import { useRef } from "react";
 import BtnExpandImg from "../../../common/BtnExpandImg";
 import { IconAnimate } from "../../../common/IconAnimate";
 import { Link } from "react-router-dom";
+import { Icon } from "../../../common/IconComp";
 
 type EventCardProps = {
     EventLoad: EventView,
@@ -56,7 +57,6 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
                 </img>}>
 
             <CardLarge.Chips
-
                 className="!relative !z-[3]">
                 <div
                     className="md3-card-chips pl-1  w-full ">
@@ -98,18 +98,21 @@ export function EventDetailCard({ EventLoad, expand, setExpand }: EventCardProps
             <CardLarge.Divider />
 
             <CardLarge.SupportingText className="flex flex-col gap-2 pb-2">
-                <h6>Dates</h6>
+                <h6>Agenda : {eventDateInfo?.duration}</h6>
                 <CardLarge.Chips className="flex items-center gap-6 ">
 
-                    <EventCalAddBtn
+                    {!EventLoad?.isPast && <EventCalAddBtn
                         ref
                         event={EventLoad}
-                        iconClass="md3-elevation-2 text-primary text-2xl" />
-                    <div className="flex flex-col gap-3 md3-supporting-text">
+                        iconClass="text-primary md3-cyan-container " />}
+                    <div className="flex  gap-3 md3-supporting-text">
                         <Chip
+
+                            icon={<Icon color='green' fill bg icon="event_available" size="md" />}
                             size="medium"
                             value={eventDateInfo?.start} />
                         <Chip
+                            icon={<Icon color='error' fill bg icon="event_busy" size="md" />}
                             size="medium"
                             value={eventDateInfo?.end}
                         />

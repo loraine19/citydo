@@ -110,8 +110,8 @@
     padding: 0 var(--md3-spacing-sm) 0;
 }
 .md3-card-divider {
-    height: 8px;
-    background-color: var(--md3-surface-variant);
+    height: 4px;
+    background-color: var(--md3-surface);
     margin: var(--md3-spacing-small) 0;
     width: 100%;
     flex-shrink: 0;
