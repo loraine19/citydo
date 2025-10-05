@@ -204,9 +204,7 @@ export default function ChatPage() {
     }, []);
 
     return (
-        <main className={`${keyboardOpen ? '!h-[calc(100dvh-28rem)] !max-h-[calc(100dvh-28rem)] bg-blue-500 ' : 'h-[calc(100%-7rem)] '} max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)] `}>
-            {keyboardOpen ? 'open' : 'close'}
-            {window.visualViewport ? window.visualViewport.height : null}
+        <main className={`${keyboardOpen ? '!h-[calc(100dvh-18rem)] !max-h-[calc(100dvh-18rem)] bg-blue-500 ' : 'h-[calc(100%-7rem)] '} max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)] `}>
             <section
                 id='refDiv'
                 className='flex !px-3 pt-3 pb-2  !overflow-hidden '>
