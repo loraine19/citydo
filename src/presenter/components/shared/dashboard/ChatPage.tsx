@@ -204,7 +204,7 @@ export default function ChatPage() {
     }, []);
 
     return (
-        <main className={`${keyboardOpen ? 'h-[calc(100%-18rem)] bg-red-500 ' : 'h-[calc(100%-7rem)] '} max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)] `}>
+        <main className={`${keyboardOpen ? '!h-[calc(100%-28rem)] max-h-[calc(100%-28rem)] bg-red-500 ' : 'h-[calc(100%-7rem)] '} max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)] `}>
             {keyboardOpen ? 'open' : 'close'}
             {window.visualViewport ? window.visualViewport.height : null}
             <section
