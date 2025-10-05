@@ -182,13 +182,11 @@ export default function ChatPage() {
 
     useEffect(() => {
         const handleResize = () => {
-            // On mobile, keyboard open usually reduces window.innerHeight
-            // You may want to tweak the threshold for your app
-            const threshold = 150; // px
+            alert('resize')
+            const threshold = 100; // px
             const heightDiff = window.outerHeight - window.innerHeight;
             setKeyboardOpen(heightDiff > threshold);
-        };
-
+        }
         window.addEventListener('resize', handleResize);
         return () => {
             window.removeEventListener('resize', handleResize);
