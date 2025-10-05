@@ -177,8 +177,26 @@ export default function ChatPage() {
         }
     }, [SearchSection, isLoading, open]);
 
+    // Detect keyboard open (mobile)
+    const [keyboardOpen, setKeyboardOpen] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            // On mobile, keyboard open usually reduces window.innerHeight
+            // You may want to tweak the threshold for your app
+            const threshold = 150; // px
+            const heightDiff = window.outerHeight - window.innerHeight;
+            setKeyboardOpen(heightDiff > threshold);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     return (
-        <main className={`h-[calc(100%-6rem)] max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)] `}>
+        <main className={`${keyboardOpen ? 'h-[calc(100%-23rem)]' : 'h-[calc(100%-7rem)] '} max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)] `}>
             <section
                 id='refDiv'
                 className='flex !px-3 pt-3 pb-2  !overflow-hidden '>

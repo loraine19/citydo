@@ -150,7 +150,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                         handleScroll={handleScroll} />
                 </div>
                 <div className='px-0 -mb-2 -mt-1.5'>
-                    <div className={`${imTyping ? '-top-2' : ''} bottom-0 border-t md3-border flex justify-between rounded-t-[1.5rem] !border-b-0 w-full px-3 py-4  min-h-min `}>
+                    <div className={`${imTyping ? '-top-2' : ''} bottom-0 border-t md3-border flex justify-between rounded-t-[1.5rem] !border-b-0 border-x-0 w-full px-3 py-4  min-h-min `}>
                         <div className='flex-0 flex top-0 mt-1 ' >
                             <Icon
                                 onClick={() => setOpenEmoji(!openEmoji)}
@@ -160,7 +160,7 @@ const Chat: React.FC<ChatProps> = ({ userRec = {} as User, handleSendMessage, me
                                 icon='mood'
                                 style={`max-h-max relative`}
                             />
-                            <div className='!absolute flex overflow-auto  items-end w-full -ml-5 pr-2  z-50 mb-14 bottom-0 '>
+                            <div className='!absolute flex overflow-auto items-end w-full -ml-5 pr-2  z-50 mb-14 bottom-0 '>
                                 <EmojiPicker
                                     className='!bg-[var(--md3-primary-container)] !border-[var(--md3-outline)] !overflow-auto !mb-2 !shadow-md !rounded-3xl max-h-[85%] z-40 p-1.5 ml-3 flex flex-1'
                                     previewConfig={{ showPreview: false }}

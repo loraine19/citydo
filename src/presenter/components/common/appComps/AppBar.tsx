@@ -21,11 +21,11 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage, add
 
     return (
         <header className={`
-                ${!mainPage && 'md3-primary-container  md3-elevation-2 !border-none rounded-b-3xl '} mx-auto top-0 flex-col flex gap-2 w-full `}>
+                ${!mainPage && 'md3-primary-container md3-elevation-2 !border-none rounded-b-3xl '} mx-auto top-0 flex-col flex gap-2 w-full `}>
 
             {/* CONTAINER */}
             <div id='AppBar'
-                className={`pr-4  gap-2 ${!detailPage ? 'pt-3' : 'pt-1'} !border-none flex lg:px-0 slide justify-between items-center `} >
+                className={`pr-4 gap-2 ${!detailPage ? 'pt-3' : 'pt-1'} !border-none flex lg:px-0 slide justify-between items-center `} >
 
 
                 {/* PROFILE MENU  */}
