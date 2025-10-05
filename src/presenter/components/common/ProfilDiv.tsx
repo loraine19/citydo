@@ -47,12 +47,11 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
     const navigate = useNavigate();
     return (
         <Menu
-
+            title={`Voir le profil :`}
             open={isOpen}
             setOpen={setIsOpen}
             blurBack
             MenuKey={profile?.userId + size}
-            className={'px-2'}
             placement='auto'
             trigger={
                 <div className="flex items-center gap-2 ">
@@ -102,8 +101,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
                     <div className=" relative">
                         <AvatarUser
                             Profile={profile}
-                            avatarSize={'lg'}
-                            avatarStyle="border-2 border-white scale-90" />
+                            avatarSize={'md'} />
 
                         <OnlineDot id={profile?.userId} />
                     </div>}>
@@ -119,7 +117,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
 
             </MenuItem>
             {profile?.skills && <MenuItem
-                leadingIcon={<Icon icon="person" fill size={'lg'} bg />}
+                leadingIcon={<Icon icon="person" fill size={'md'} bg />}
                 disabled>
 
                 <div className="flex flex-col">
@@ -132,7 +130,7 @@ export const ProfileDiv: React.FC<ProfileDivProps> = ({ size = 'sm', divRef, ...
             </MenuItem>}
             <MenuItem
                 disabled
-                leadingIcon={<Icon icon="groups" fill size={'lg'} bg />}>
+                leadingIcon={<Icon icon="group" fill size={'md'} bg color='slate' />}>
                 <div className="flex flex-col ">
                     <span>Groupes : </span>
                     {groups?.map((group, index) =>

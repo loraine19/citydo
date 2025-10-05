@@ -18,8 +18,12 @@ export const GroupLink: React.FC<GroupDivProps> = ({ group, className }) => {
             MenuKey={group?.id}
             trigger={
                 <div className={`${className ?? ''} items-center flex gap-2  max-w-full line-clamp-1 justify-start`}>
-                    <Icon icon="group" color='slate' fill size="md" />
-                    <span className="line-clamp-1">{group?.name}</span>
+                    <Icon
+                        icon="group" fill
+                        size="md" />
+                    <span className="line-clamp-1">
+                        {group?.name}
+                    </span>
                 </div>
 
             }>
@@ -27,6 +31,7 @@ export const GroupLink: React.FC<GroupDivProps> = ({ group, className }) => {
                 className="items-start"
                 trailingIcon={
                     <Icon
+
                         bg clear
                         fill
                         size="sm"
