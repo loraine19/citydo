@@ -61,8 +61,8 @@ const FormHeadSection: React.FC<FormHeadSectionProps> = ({
     }
 
     return (
-        <div className={`flex flex-col gap-2 z-[99]  w-full wRespXLMargin 
-        ${hidden ? 'md3-menu-leave h-0.5' : 'md3-menu-enter px-2 pb-3  '}`}>
+        <div className={`flex flex-col gap-2 z-[99] w-full wRespXLMargin 
+        ${hidden ? 'md3-menu-leave h-0' : 'md3-menu-enter px-2 pb-3  '}`}>
 
             <div className="flex overflow-auto gap-2 justify-between w-full ">
                 <div className="flex flex-col sm:flex-row w-full gap-2">

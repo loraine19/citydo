@@ -33,7 +33,7 @@ const DetailsHeadSection: React.FC<DetailsHeadSectionProps> = ({
     return (
         <div className={`flex flex-col gap-2 z-[99]  w-full wRespXLMargin
         ${hidden ? 'md3-animation-slide-out-up' : 'md3-animation-slide-down'}
-        ${hidden ? ' h-0.5' : ' px-2 pt-4  '}`}>
+        ${hidden ? ' h-0' : ' px-2 pt-4  '}`}>
             <div className="flex  gap-2 overflow-auto justify-between w-full ">
                 <div className="flex gap-2">
                     {infosChipValue && <Chip

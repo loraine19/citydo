@@ -60,7 +60,7 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
                     <Icon
 
                         fill
-                        style='!p-0 z-40  h-[2rem] md3-stroke   max-h-max'
+                        style='!p-1 z-40  h-[2rem] md3-stroke  max-h-max'
                         color={''}
                         textIcon="⋮"
                         size={'3xl'}

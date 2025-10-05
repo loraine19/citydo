@@ -49,11 +49,9 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                     <BtnExpandImg
                         image={image as any} />
                 </CardLarge.Chips>
-
-
             </img>}>
-            <CardLarge.Chips className="justify-between">
 
+            <CardLarge.Chips className="justify-between">
                 <div className="md3-card-chips pl-1 flex-1 !overflow-auto">
                     <Link to={`/annonce?search=&category=${post?.category}`} >
                         <Chip
@@ -64,7 +62,6 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
                         />
                     </Link>
                 </div>
-
                 {<MoreButton
                     title={post?.title}
                     id={id}
@@ -79,7 +76,10 @@ export default function PostDetailCard(props: { post: PostView, mines?: boolean,
             <CardLarge.Subhead>
                 <GroupLink group={post.Group} />
             </CardLarge.Subhead>
-            <CardLarge.SupportingText className="line-clamp-2">
+
+            <CardLarge.Divider />
+            <CardLarge.SupportingText className="flex flex-col gap-2">
+                <h6>Description</h6>
                 {description}
             </CardLarge.SupportingText>
             <CardLarge.Media>
