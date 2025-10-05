@@ -247,6 +247,11 @@
     animation: fadeIn 1.2s forwards;
 }
 
+.fadeOut {
+    @apply duration-700;
+    animation: fadeOut 1.2s forwards;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -261,7 +266,7 @@
         opacity: 1;
     }
     to {
-        opacity: 0;
+        opacity: 0.5;
     }
 }
 

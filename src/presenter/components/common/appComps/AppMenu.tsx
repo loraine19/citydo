@@ -96,7 +96,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
     ///// RETURN COMPONENT
 
     return (
-        <div className={` md3-button-primary md3-button-tonal rounded-full !min-w-max flex items-center md3-elevation-0 md:py-2 hover:!cursor-pointer
+        <div className={`md3-button-primary md3-button-tonal rounded-full !min-w-max flex items-center md3-elevation-0 md:py-2 hover:!cursor-pointer 
             ${roundedStyle ? " p-2.5 md:pl-4 max-h-max " : " md:px-3 md:py-1 p-2.5 "}`}>
             <Menu
                 open={open}
@@ -104,11 +104,11 @@ const AppMenu: React.FC<AppMenuProps> = ({
                 blurBack
                 left
                 MenuKey="profile-menu"
-                className={`rounded-l-none !absolute !top-0 !left-0 px-4 py-2 !z-[999] h-[100dvh] !max-h-[100dvh]  overflow-auto  !min-w-[70vw]"`}
+                className={`rounded-l-none !absolute !top-0 !left-0 px-4 py-2 !z-[999] h-[100dvh] !max-h-[100dvh]  overflow-auto !min-w-[70vw]"`}
                 placement="free"
                 trigger={
                     <div className="flex items-center ">
-                        <div className={`h-full justify-center max-w-max grid items-center !p-0.5`}>
+                        <div className={`h-full justify-center max-w-max grid items-center !p-0`}>
                             {!menuIcon ?
                                 <div className="flex w-[2.4rem] flex-1 items-center">
                                     <img

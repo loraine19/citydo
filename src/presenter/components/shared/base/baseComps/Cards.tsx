@@ -292,7 +292,7 @@ export const CardLarge: React.FC<CardLargeProps> & {
                             onError={(e: any) => { e.target.onerror = null; }}
                             src={imageProps.src}
                             alt={imageProps.alt}
-                            className={`md3-card-large-image ${imageProps.className || ""}`}
+                            className={`md3-card-large-image ${expanded ? 'fadeOut' : 'fadeIn'} ${imageProps.className || ""}`}
                         />
                         {imageProps.children && (
                             <div className="md3-card-large-image-children" >
