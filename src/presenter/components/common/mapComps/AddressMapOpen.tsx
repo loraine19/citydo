@@ -72,7 +72,7 @@ const MarkerList = ({ notifsMap }: { notifsMap: NotifView[] }) => {
                         iconSize: [50, 50],
                         iconAnchor: [(notif.Address?.id && index > 0 && notif.Address.id === notifsMap[index - 1]?.Address?.id) ? 35 : 25, 50],
                         popupAnchor: [0, -20],
-                        className: 'md3-elevation-2',
+                        className: 'drop-shadow-[0_1px_2px_rgba(0,0,0,0.1]',
                         pane: 'markerPane',
                     })} >
                 <Popup>
@@ -208,8 +208,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, lat = 0
             scrollWheelZoom={false}
             className='flex flex-1 items-center justify-center rounded-[var(--md3-radius-large)]' >
             <ZoomControls />
-            {notifs &&
-                <MarkerList notifsMap={notifs} />}
+
             {!message && <FlyToMarker position={position} zoom={zoom} />}
             {fly && <FlyToMarker position={position} setFly={setFly} zoom={zoom} />}
             <IntenaryChip />
@@ -239,7 +238,8 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, lat = 0
                     pathOptions={circleOptions}
                 />
             )}
-
+            {notifs &&
+                <MarkerList notifsMap={notifs} />}
         </MapContainer>)
 
     return (
@@ -253,14 +253,12 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, lat = 0
                     blurKey={address?.address + '_map'}
                     open={open}
                     setOpen={() => { }} >
-                    <div className="   !py-0 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] overflow-hidden min-w-[90vw] bg-clip">
+                    <div className="!py-0 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] overflow-hidden min-w-[90vw] bg-clip">
                         <div className='relative flex flex-1 md3-elevation-4  !w-[90vw] !h-[80dvh]'>
 
                             <MapDiv />
                             <CloseButton />
                         </div>
-
-
                     </div>
                 </BackDropBlur>
 

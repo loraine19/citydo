@@ -7,7 +7,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { NotifView } from "../../../views/viewsEntities/notifViewEntity";
 import DI from "../../../../di/ioc";
 import { LoadMoreButton } from "../../common/LoadMoreBtn";
-import { ElementNotif } from "../../../../domain/entities/Notif";
 import { useAlertStore } from "../../../../application/stores/alert.store";
 import { AvatarUser } from "../../common/AvatarUser";
 import NotifDiv from "../../common/NotifDiv";
@@ -15,6 +14,7 @@ import { useUxStore } from "../../../../application/stores/ux.store";
 import { OnlineDot } from "../../common/onlineDot";
 import { CardMD } from "../base/baseComps/Cards";
 import GeoLocBtn from "../../common/mapComps/GeoLocBtn";
+import Chip from "../../common/adaptatersComps/Chip";
 export default function DashboardPage() {
 
     //// USER & AUTORISATION
@@ -53,7 +53,7 @@ export default function DashboardPage() {
     const notifViewModelFactory = DI.resolve('notifViewModel');
     const { notifs, notifsMsg, notifsOther, refetch, count, fetchNextPage, hasNextPage, isLoading, error } = notifViewModelFactory();
     const notifMapViewModelFactory = DI.resolve('notifMapViewModel');
-    const { notifsMap, isLoadingMap, refetchMap } = notifMapViewModelFactory();
+    const { notifsMap, isLoadingMap, refetchMap, errorMap } = notifMapViewModelFactory();
 
     //// CLASSES
     const userClasse = "row-start-1 md:h-full row-end-3 col-start-1 col-end-2 flex animRev p-2   ";
@@ -124,14 +124,14 @@ export default function DashboardPage() {
                             <div className={"relative "}>
                                 <AvatarUser
                                     avatarSize="6xl"
-                                    avatarStyle="outline outline-4 md3-elevation-2 hover:md3-elevation-2  outline-[var(--md3-surface)]"
+                                    avatarStyle="ring-[6px]  ring-[var(--md3-surface)]"
                                     Profile={user?.Profile} />
                                 <OnlineDot
                                     id={user?.id} />
                             </div>
                         </CardMD.Media>
 
-                        <CardMD.Subhead className="justify-center items-center !py-3 ">
+                        <CardMD.Subhead className="justify-center items-center !pt-5 ">
                             <div className="rounded-full md3-slate-container px-12 m py-2 flex flex-col items-center justify-center shadow-sm mt-2">
                                 <span>
                                     Bienvenue&nbsp;
@@ -157,7 +157,7 @@ export default function DashboardPage() {
                                     size="md"
                                     color="orange"
                                     title="voir mes notifications" />
-                                <span className={notifsOther.length < 1 ? "hidden" : " absolute -top-0.5 right-0 w-3 h-3 rounded-full bg-orange-500 border-[2px] md3-border-primary-container"} />
+                                <span className={notifsOther.length < 1 ? "hidden" : " absolute -top-0.5 right-0 w-3 h-3 rounded-full md3-orange border-[2px] md3-border-primary-container"} />
                             </div>
                             <div className="relative">
                                 < Icon
@@ -193,23 +193,25 @@ export default function DashboardPage() {
                                 <div className="relative overflow-auto gap-0.5 flex flex-col">
                                     {!isLoading && (notifs.map((notif: NotifView, index: number) => notif?.read === false &&
                                         <div key={index + 'div'}
-                                            className="flex w-full justify-between h-full gap-2 -ml-1">
+                                            className="flex w-full justify-between h-full gap-2 ">
                                             <div key={index}
-                                                className={`${notif?.type !== ElementNotif.MESSAGE ? 'hover:bg-orange-500' : 'hover:bg-cyan-500'} px-4 font-light text-sm flex  items-center break-words pl-2 justify-between hover:cursor-pointer hover:bg-opacity-20 rounded-full  flex-0 relative `}
+                                                className={`hover:bg-[var(--md3-surface)]   px-1 font-light text-sm flex  items-center break-words justify-between hover:cursor-pointer rounded-xl  flex-0 relative `}
                                                 onClick={async () => {
                                                     await readNotif(notif?.id);
                                                     await refetch();
                                                     notif?.link && navigate(notif?.link)
                                                 }}>
-                                                <i className="!line-clamp-1 ">
-                                                    <span
-                                                        className={` capitalize font-normal ${notif?.typeS === 'message' ? 'text-cyan-600' : 'text-orange-600'}`}>
-                                                        {notif?.typeS} :&nbsp;
-                                                    </span>
-                                                    <span className="w-full">
+                                                <p className="!line-clamp-1 ">
+                                                    <Chip
+                                                        size="small"
+                                                        variant="outlined"
+                                                        color={notif?.typeS === 'message' ? 'cyan' : 'orange'}
+                                                        className={` capitalize font-normal`}
+                                                        value={notif?.typeS} />
+                                                    <span className="w-full px-1">
                                                         {notif?.description}
                                                     </span>
-                                                </i>
+                                                </p>
                                             </div>
                                             <Icon
                                                 fill
@@ -246,28 +248,40 @@ export default function DashboardPage() {
                         </CardMD.Subhead>
                         <CardMD.Media className="flex-1 h-full flex">
 
-                            {(address && notifsMap && !isLoadingMap) ?
-                                <AddressMapOpen
-                                    message=" Vous êtes ici "
-                                    address={address}
-                                    notifs={notifsMap} /> :
-                                <>
-
-                                    {(user?.Profile?.Address || address) ?
+                            {
+                                // If address exists and notifsMap is loaded, show the map
+                                address && notifsMap && !isLoadingMap ? (
+                                    <AddressMapOpen
+                                        message=" Vous êtes ici "
+                                        address={address}
+                                        notifs={notifsMap}
+                                    />
+                                ) : (
+                                    // If address exists, show loading/error or no data message
+                                    address ? (
                                         <NotifDiv
-                                            notif={
-                                                isLoadingMap ? 'Chargement...' : 'Aucune donnée à afficher'}
+                                            notif={errorMap ?? isLoadingMap ? 'Chargement...' : 'Aucune donnée à afficher'}
                                             isLoading={isLoadingMap}
-                                            refetch={refetchMap} />
-                                        : <> <Icon
-                                            icon="add"
-                                            fill bg
-                                            color="orange"
-                                            title="ajouter votre adresse ou utiliser la géolocalisation"
-                                            onClick={() => navigate('/myprofile#address')} />
-                                            <span className="text-sm font-light opacity-80 mt-2">Ajouter votre adresse dans votre profil , ou utiliser la géolocalisation pour voir les notifications autour de vous</span></>
-                                    }
-                                </>}
+                                            refetch={refetchMap}
+                                        />
+                                    ) : (
+                                        // If no address, prompt user to add address or use geolocation
+                                        <>
+                                            <Icon
+                                                icon="add"
+                                                fill
+                                                bg
+                                                color="orange"
+                                                title="ajouter votre adresse ou utiliser la géolocalisation"
+                                                onClick={() => navigate('/myprofile#address')}
+                                            />
+                                            <span className="text-sm font-light opacity-80 mt-2">
+                                                Ajouter votre adresse dans votre profil, ou utiliser la géolocalisation pour voir les notifications autour de vous
+                                            </span>
+                                        </>
+                                    )
+                                )
+                            }
                         </CardMD.Media>
                     </CardMD>
                 </div>

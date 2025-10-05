@@ -41,6 +41,7 @@
     width: auto;
     min-width: 5rem; /* 80px */
     padding: 0 1.125rem; /* 18px */
+    font-weight: 500;
     border-radius: var(--md3-radius-extra-large);
 }
 .md3-fab-menu-container {

@@ -64,7 +64,7 @@ export const notifMapViewModel = () => {
       notifsMap,
       refetchMap: refetch,
       isLoadingMap: isLoading,
-      error
+      errorMap: error
     }
   }
 }
