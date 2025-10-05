@@ -182,7 +182,7 @@ export default function ChatPage() {
 
     useEffect(() => {
         const handleResize = () => {
-            const threshold = 100; // px
+            const threshold = 150; // px
             let heightDiff = 0;
             if (window.visualViewport) {
                 heightDiff = window.innerHeight - window.visualViewport.height;
@@ -204,7 +204,7 @@ export default function ChatPage() {
     }, []);
 
     return (
-        <main className={`${keyboardOpen ? '!h-[calc(100%-28rem)] max-h-[calc(100%-28rem)] bg-red-500 ' : 'h-[calc(100%-7rem)] '} max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)] `}>
+        <main className={`${keyboardOpen ? '!h-[calc(100dvh-28rem)] !max-h-[calc(100dvh-28rem)] bg-blue-500 ' : 'h-[calc(100%-7rem)] '} max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)] `}>
             {keyboardOpen ? 'open' : 'close'}
             {window.visualViewport ? window.visualViewport.height : null}
             <section
