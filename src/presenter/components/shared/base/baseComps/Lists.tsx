@@ -17,7 +17,7 @@ export const ListItem: React.FC<ListItemProps> = ({ children, className, onClick
             {ItemStart && <div className="md3-list-item-start">
                 {ItemStart}
             </div>}
-            {children && <div className="md3-list-item-content">{children}</div>}
+            {children && <div className=" flex flex-1  ">{children}</div>}
         </li>
     );
 };

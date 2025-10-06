@@ -196,61 +196,68 @@ export default function ChatPage() {
             'h-[calc(100%-7rem)] max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)]  '} `}>
             <section
                 id='refDiv'
-                className='flex !px-3 pt-3 pb-2  !overflow-hidden '>
+                className='flex !px-2 pt-3 pb-2  !overflow-hidden '>
                 {isLoadingConv ?
                     <Skeleton className='m-auto !h-full' /> :
-                    <CardMD className={`${open ? 'md3-surface' : ''} 
+                    <CardMD className={`${open ? 'md3-surface md3-elevation-0' : ''} 
                         '!min-h-full !min-h-[100%] p!-0 grid !static '`}>
                         <div className='my-0 grid max-h-full h-full relative'>
                             <div className='overflow-y-auto overflow-x-hidden  '>
-                                <List className='px-3 gap-1.5 flex !rounded-3xl'>
+                                <List className='px-3 gap-2 flex !rounded-3xl'>
                                     {conversations &&
                                         conversations.map((message: MessageView, index: number) =>
-                                            <div key={index + 'div'}>
-                                                <ListItem
-                                                    className={`gap-4  p-2.5 items-center  rounded-full overflow-hidden 
+                                            <ListItem
+                                                className={`gap-4 !w-full p-2.5 items-center rounded-full overflow-hidden !flex !flex-1
                                                         ${(userIdRec === message?.isWith.id) ?
-                                                            'md3-primary-container !border md3-border py-2.5md3-elevation-1 my-0.5 -ml-2 ' :
-                                                            'md3-surface -ml-1.5  py-1 '}`}
-                                                    key={index}
-                                                    onClick={() => {
-                                                        setOpen(true)
-                                                        const userRec = message?.IWrite ? message?.UserRec : message?.User
-                                                        setUserRec(userRec)
-                                                        setUserIdRec(userRec.id)
-                                                        setParams({ with: userRec.id.toString() })
-                                                    }}
-                                                    ItemStart={<div className='relative flex min-w-max'>
-                                                        <AvatarUser
-                                                            avatarSize={(userIdRec === message?.isWith.id) ? '2xl' : 'lg'}
-                                                            Profile={message?.isWith?.Profile}
-                                                        />
-                                                        {(online.length > 0 &&
-                                                            online.includes(message.isWith.id)) &&
-                                                            <span className='absolute top-0 -right-2 md3-green rounded-full border-4 p-1.5 md3-border-surface '>
-                                                            </span>
-                                                        }
-                                                    </div>}>
-                                                    <div className="font-normal overflow-hidden w-full flex flex-col">
-                                                        <div className='flex justify-between items-center flex-1 w-full'>
-                                                            <h6>
-                                                                {message.isWith?.Profile?.firstName}
-                                                            </h6>
-                                                            <span className='px-4 !text-xs opacity-70'>
-                                                                {message.formatedDate}
-                                                            </span>
-                                                        </div>
-                                                        <p className="font-[300] !pr-2 !line-clamp-1">
-                                                            {message.IWrite &&
-                                                                <span className='opacity-70'>
-                                                                    {message.read && '🗸'}
-                                                                    {' vous : '}
-                                                                </span>}
-                                                            {message?.message ?? '...'}
-                                                        </p>
+                                                        'md3-primary-container !border md3-border py-1.5  my-0.5 -ml-2.5 md3-elevation-1 ' :
+                                                        'md3-surface -ml-1.5  py-0.5 '}`}
+                                                key={index}
+                                                onClick={() => {
+                                                    setOpen(true)
+                                                    const userRec = message?.IWrite ? message?.UserRec : message?.User
+                                                    setUserRec(userRec)
+                                                    setUserIdRec(userRec.id)
+                                                    setParams({ with: userRec.id.toString() })
+                                                }}
+                                                ItemStart={<div className='relative flex min-w-max'>
+                                                    <AvatarUser
+                                                        avatarSize={(userIdRec === message?.isWith.id) ? 'xl' : 'lg'}
+                                                        Profile={message?.isWith?.Profile}
+                                                    />
+                                                    {(online.length > 0 &&
+                                                        online.includes(message.isWith.id)) &&
+                                                        <span className='absolute top-0 -right-2 md3-green rounded-full border-4 p-[5px] md3-border-surface '>
+                                                        </span>
+                                                    }
+                                                </div>}>
+                                                <div className="flex-1 !min-w-full !w-full !flex flex-col ">
+                                                    <div className='flex justify-between items-center flex-1 w-full'>
+                                                        <h6>
+                                                            {message.isWith?.Profile?.firstName}
+                                                        </h6>
+                                                        <span className='px-4 !text-xs opacity-70'>
+                                                            {(message?.unreadCount && message?.unreadCount > 1) ? (
+                                                                <span className='small'>
+                                                                    <small className='md3-text-green'></small>{' '}
+                                                                    <span className="mr-3 px-[5px] py-0.5 rounded-full md3-green-container  text-xs font-semibold">
+                                                                        {message?.unreadCount > 9 ? '9+' : message?.unreadCount}
+                                                                    </span>
+                                                                </span>
+                                                            ) : ''}
+                                                            {message.formatedDate}
+                                                        </span>
                                                     </div>
-                                                </ListItem>
-                                            </div>)}
+                                                    <div className="font-[300] !min-w-full flex flex-1 !pr-2 !line-clamp-1">
+                                                        {message.IWrite &&
+                                                            <span className='opacity-70  '>
+                                                                {message.read && '🗸'}
+                                                                {' vous : '}
+                                                            </span>}
+                                                        {message?.message ?? '...'}
+                                                    </div>
+                                                </div>
+                                            </ListItem>
+                                        )}
                                     {!connected &&
                                         <Icon
                                             fill

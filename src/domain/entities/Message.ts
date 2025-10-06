@@ -11,6 +11,7 @@ export class Message {
     createdAt: Date = new Date();
     updatedAt: Date = new Date();
     read: boolean = false;
+    unreadCount?: number = 0;
     constructor(data?: Partial<Message>) {
         if (data) {
             Object.assign(this, data);

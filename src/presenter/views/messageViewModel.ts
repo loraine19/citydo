@@ -71,6 +71,8 @@ export const conversationsViewModel = () => {
     const flat = data?.pages.flat().map(page => page.conversations).flat()
     const conversations = isLoading || userLoading ? [] : flat?.map((message: Message) => new MessageView(message, user?.id || 0))
 
+    console.log('conversations', conversations, data);
+
     return {
       countConv: count,
       conversations,
