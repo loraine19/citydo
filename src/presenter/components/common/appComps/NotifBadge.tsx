@@ -74,7 +74,8 @@ export function NotifBadge({ onBoard }: { onBoard?: boolean }) {
                             <Icon
                                 title={'ouvrir le popup'}
                                 fill
-                                style='absolute -top-2 !z-0 -right-1.5 !bg-[var(--md3-primary-container)] rounded-full !p-[0px]'
+                                style={`absolute -top-2 !z-0 -right-1.5 rounded-full !p-[0px] 
+                                    ${onBoard ? '!bg-[var(--md3-surface)]' : '!bg-[var(--md3-primary-container)]'}`}
                                 reverse
                                 icon='fiber_manual_record'
                                 color={list.color}

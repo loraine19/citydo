@@ -49,7 +49,7 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage, add
                 <div className={`flex h-full  items-center 
                     ${hideNavBottom || detailPage || singlePage ? 'hidden' : ''} 
                     ${navBottom ? ' w-max' : ''}`} >
-                    <NotifBadge />
+                    <NotifBadge onBoard={mainPage} />
                 </div>
             </div >
             {/* INSERTION SEARCH BAR */}
