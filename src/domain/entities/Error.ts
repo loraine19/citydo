@@ -27,7 +27,7 @@ export class
         if (init) {
             Object.keys(init).forEach(key => {
                 if (key in this) {
-                    (this as any)[key] = init[key as keyof Event];
+                    (this as any)[key] = init[key as keyof AlertValues];
                 }
             })
         }
