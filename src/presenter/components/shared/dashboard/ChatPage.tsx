@@ -176,7 +176,7 @@ export default function ChatPage() {
                 heightDiff = window.outerHeight - window.innerHeight;
             }
             setKeyboardOpen(heightDiff > threshold);
-            window.scrollTo(0, document.body.scrollHeight);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         };
         window.addEventListener('resize', handleResize);
         if (window.visualViewport) {
@@ -191,17 +191,17 @@ export default function ChatPage() {
     }, []);
 
     return (
-        <main className={`${keyboardOpen ? '!h-[calc(100dvh-26.5rem)] !max-h-[calc(100dvh-26.5rem)] sticky bottom-0  ' : 'h-[calc(100%-7rem)] max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)]  '} `}>
+        <main className={`${keyboardOpen ?
+            '!h-[calc(100dvh-26.5rem)] !max-h-[calc(100dvh-26.5rem)] sticky top-0  ' :
+            'h-[calc(100%-7rem)] max-h-[calc(100%-7rem)] sm:max-h-[calc(100%-5rem)]  '} `}>
             <section
                 id='refDiv'
                 className='flex !px-3 pt-3 pb-2  !overflow-hidden '>
-
                 {isLoadingConv ?
                     <Skeleton className='m-auto !h-full' /> :
                     <CardMD className={`${open ? 'md3-surface' : ''} 
                         '!min-h-full !min-h-[100%] p!-0 grid !static '`}>
                         <div className='my-0 grid max-h-full h-full relative'>
-
                             <div className='overflow-y-auto overflow-x-hidden  '>
                                 <List className='px-3 gap-1.5 flex !rounded-3xl'>
                                     {conversations &&
