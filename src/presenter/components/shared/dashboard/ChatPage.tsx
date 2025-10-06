@@ -199,7 +199,7 @@ export default function ChatPage() {
                 className='flex !px-2 pt-3 pb-2  !overflow-hidden '>
                 {isLoadingConv ?
                     <Skeleton className='m-auto !h-full' /> :
-                    <CardMD className={`${open ? 'md3-surface md3-elevation-0' : ''} 
+                    <CardMD className={`${open ? 'md3-surface md3-elevation-0 hover:shadow-none' : ''} 
                         '!min-h-full !min-h-[100%] p!-0 grid !static '`}>
                         <div className='my-0 grid max-h-full h-full relative'>
                             <div className='overflow-y-auto overflow-x-hidden  '>
@@ -209,7 +209,7 @@ export default function ChatPage() {
                                             <ListItem
                                                 className={`gap-4 !w-full p-2.5 items-center rounded-full overflow-hidden !flex !flex-1
                                                         ${(userIdRec === message?.isWith.id) ?
-                                                        'md3-primary-container !border md3-border py-1.5  my-0.5 -ml-2.5 md3-elevation-1 ' :
+                                                        'md3-primary-container !border md3-border py-1.5 my-0.5 -ml-2.5 md3-elevation-1 ' :
                                                         'md3-surface -ml-1.5  py-0.5 '}`}
                                                 key={index}
                                                 onClick={() => {
@@ -219,7 +219,8 @@ export default function ChatPage() {
                                                     setUserIdRec(userRec.id)
                                                     setParams({ with: userRec.id.toString() })
                                                 }}
-                                                ItemStart={<div className='relative flex min-w-max'>
+                                                ItemStart=
+                                                {<div className='relative flex min-w-max'>
                                                     <AvatarUser
                                                         avatarSize={(userIdRec === message?.isWith.id) ? 'xl' : 'lg'}
                                                         Profile={message?.isWith?.Profile}
@@ -236,24 +237,27 @@ export default function ChatPage() {
                                                             {message.isWith?.Profile?.firstName}
                                                         </h6>
                                                         <span className='px-4 !text-xs opacity-70'>
-                                                            {(message?.unreadCount && message?.unreadCount > 1) ? (
-                                                                <span className='small'>
-                                                                    <small className='md3-text-green'></small>{' '}
-                                                                    <span className="mr-3 px-[5px] py-0.5 rounded-full md3-green-container  text-xs font-semibold">
-                                                                        {message?.unreadCount > 9 ? '9+' : message?.unreadCount}
-                                                                    </span>
-                                                                </span>
-                                                            ) : ''}
                                                             {message.formatedDate}
                                                         </span>
                                                     </div>
-                                                    <div className="font-[300] !min-w-full flex flex-1 !pr-2 !line-clamp-1">
-                                                        {message.IWrite &&
-                                                            <span className='opacity-70  '>
-                                                                {message.read && '🗸'}
-                                                                {' vous : '}
-                                                            </span>}
-                                                        {message?.message ?? '...'}
+                                                    <div className="font-[300] !justify-between flex flex-row flex-1 !pr-6 pb-1 ">
+                                                        <div className='flex-1 flex !flex-row  !line-clamp-1'>
+                                                            {message.IWrite &&
+                                                                <i className='opacity-70'>
+                                                                    {message.read && '🗸'}
+                                                                    {' vous : '}
+                                                                </i>}
+                                                            <span>
+                                                                {message?.message ?? '...'}
+                                                            </span>
+                                                        </div>
+                                                        {(message?.unreadCount && message?.unreadCount > 1) ? (
+                                                            <div className='flex'>
+                                                                <span className="ml-3 px-[6px] py-0.5 rounded-full md3-green-container text-xs font-semibold">
+                                                                    {message?.unreadCount > 9 ? '9+' : message?.unreadCount}
+                                                                </span>
+                                                            </div>
+                                                        ) : ''}
                                                     </div>
                                                 </div>
                                             </ListItem>

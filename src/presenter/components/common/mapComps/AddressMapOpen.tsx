@@ -244,7 +244,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, lat = 0
 
     return (
         <>
-            <div className='border md3-border relative flex flex-1 min-h-[7.8rem] lg:min-h-[7.7rem] !rounded-[var(--md3-radius-large)] w-full '>
+            <div className='border md3-border relative flex flex-1 min-h-[7rem] lg:min-h-[7.7rem] !rounded-[var(--md3-radius-large)] w-full '>
                 <MapDiv />
 
                 <ExpandButton />
@@ -254,7 +254,7 @@ export const AddressMapOpen: React.FC<AddressMapOpenProps> = ({ address, lat = 0
                     open={open}
                     setOpen={() => { }} >
                     <div className="!py-0 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] overflow-hidden min-w-[90vw] bg-clip">
-                        <div className='relative flex flex-1 md3-elevation-4 !z-[999]  !w-[90vw] !h-[80dvh]'>
+                        <div className='relative flex flex-1 md3-elevation-4 !z-[999] !w-[90vw] !h-[80dvh]'>
                             <MapDiv />
                             <CloseButton />
                         </div>

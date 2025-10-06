@@ -105,10 +105,11 @@ export default function DashboardPage() {
                             setHideUser(false);
                         }
                     }
+                    console.log(hideUser);
                     handleScroll();
                 }}
                 ref={divRef}
-                className={` ${hideUser ? 'pt-6 pb-3' : 'pt-[2.5rem]'}
+                className={` pt-[2rem]
                     px-[0.3rem] flex-1 max-max overflow-auto flex flex-col
                     md:grid md:grid-cols-2 md:grid-rows-[max-content,max-content,1fr,1fr]
                     w-full place-content-start  rounded-b-[1rem] 
@@ -117,7 +118,7 @@ export default function DashboardPage() {
                 {/* USER CARD  */}
                 <div className={`${userClasse}`}>
                     <CardMD className=" !overflow-visible min-h-full  flex-1 anim ">
-                        <CardMD.Media className={`${hideUser ? 'hidden' : '-top-[2.5rem]  w-full flex-1 items-center absolute'} `}>
+                        <CardMD.Media className={`-top-[2.5rem]  w-full flex-1 items-center absolute`}>
                             <div className={"relative "}>
                                 <AvatarUser
                                     avatarSize="6xl"
@@ -129,7 +130,7 @@ export default function DashboardPage() {
                         </CardMD.Media>
 
                         <CardMD.Subhead className="justify-center items-center !pt-5 ">
-                            <div className="rounded-full md3-slate-container px-12 m py-2 flex flex-col items-center justify-center shadow-sm mt-2">
+                            <div className="rounded-full md3-slate-container px-12 m py-2 flex flex-col items-center justify-center shadow-sm my-2">
                                 <span>
                                     Bienvenue&nbsp;
                                     {user?.Profile?.firstName ?? ""}   !
@@ -144,7 +145,7 @@ export default function DashboardPage() {
 
                 {/* NOTIF CARD  */}
                 <div className={`hidden ${notifClasse} grid-cols-1 h-full  md:grid`}>
-                    <CardMD className="!flex  pt-2">
+                    <CardMD className="!flex pt-2">
                         <CardMD.Subhead className="flex gap-2 items-center">
                             <div className="relative">
                                 <Icon
@@ -184,21 +185,21 @@ export default function DashboardPage() {
                                 isLoading={isLoading}
                                 refetch={refetch}
                                 notif={error} />
-                            <div className="relative flex flex-col max-h-[3rem]  w-full overflow-y-auto"
+                            <div className="relative flex flex-col max-h-[1.5rem]  w-full overflow-y-auto"
                                 onScroll={() => handleScroll()}
                                 ref={divRef}>
-                                <div className="relative overflow-auto gap-0.5 flex flex-col">
+                                <div className="relative overflow-auto gap-1 flex flex-col">
                                     {!isLoading && (notifs.map((notif: NotifView, index: number) => notif?.read === false &&
                                         <div key={index + 'div'}
                                             className="flex w-full justify-between h-full gap-2 ">
                                             <div key={index}
-                                                className={`hover:bg-[var(--md3-surface)]   px-1 font-light text-sm flex  items-center break-words justify-between hover:cursor-pointer rounded-xl  flex-0 relative `}
+                                                className={`hover:bg-[var(--md3-surface)] font-light text-sm flex  items-center break-words justify-between hover:cursor-pointer rounded-xl  flex-0 relative `}
                                                 onClick={async () => {
                                                     await readNotif(notif?.id);
                                                     await refetch();
                                                     notif?.link && navigate(notif?.link)
                                                 }}>
-                                                <p className="!line-clamp-1 ">
+                                                <div className="!line-clamp-1 ">
                                                     <Chip
                                                         size="small"
                                                         variant="outlined"
@@ -208,18 +209,20 @@ export default function DashboardPage() {
                                                     <span className="w-full px-1">
                                                         {notif?.description}
                                                     </span>
-                                                </p>
+                                                </div>
+                                                <Icon
+
+                                                    fill
+                                                    icon={"cancel"}
+                                                    onClick={async () => {
+                                                        await readNotif(notif?.id);
+                                                        await refetch();
+                                                    }}
+                                                    size="md"
+                                                    style="hover:cursor-pointer min-w-max opacity-60"
+                                                    title={"fermer " + notif?.title} />
                                             </div>
-                                            <Icon
-                                                fill
-                                                icon={"close"}
-                                                onClick={async () => {
-                                                    await readNotif(notif?.id);
-                                                    await refetch();
-                                                }}
-                                                size="md"
-                                                style="hover:cursor-pointer absolute right-0 !z-50"
-                                                title={"fermer " + notif?.title} />
+
                                         </div>))}
                                 </div>
                             </div>
