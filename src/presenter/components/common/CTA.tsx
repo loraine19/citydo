@@ -22,7 +22,7 @@ export default function CTAMines({ disabled1, disabled2, actions }: CTAProps) {
     useEffect(() => {
         if (index < actions.length && actions[index]) {
             setAlertValues({
-
+                disableConfirm: false,
                 handleConfirm: () => {
                     if (typeof actions[index]?.function === 'function') actions[index].function();
                     setOpen(false)

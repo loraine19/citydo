@@ -14,6 +14,7 @@ export const serviceViewModel = () => {
       networkMode: 'offlineFirst',
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
+
     const getServices = DI.resolve('getServicesUseCase')
     const { data, isLoading, error, fetchNextPage, hasNextPage, refetch }
       = useInfiniteQuery({
@@ -31,8 +32,6 @@ export const serviceViewModel = () => {
     const flat = error || isLoading || !data ? [] : data?.pages.flat().map((page: any) => page.services).flat()
     const services = (userLoading || !flat) ? [] : flat?.map((service: Service) => service && new ServiceView(service, user))
 
-
-    console.log(services)
 
     return {
       count,
@@ -58,7 +57,6 @@ export const serviceIdViewModel = () => {
     })
 
     const getServiceById = DI.resolve('getServiceByIdUseCase')
-
     const { data, isLoading, error, refetch } = useQuery({
       queryKey: ['serviceById', id],
       staleTime: 1000 * 60 * 15,
