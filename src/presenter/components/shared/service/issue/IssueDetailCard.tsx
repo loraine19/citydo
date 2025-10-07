@@ -307,9 +307,9 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service }) 
                                         bgColor="var(--md3-primary-container)"
                                         name={"userIdModo"}
                                         value={formik?.values?.userIdModo?.toString() ??
-                                            issue.userIdModo?.toString() ?? '0'}
-                                        disabled={((issue.mine && !issue.UserModo || formik)) ? false : true}
-                                        onChangeFunction={formik.handleChange}
+                                            issue?.userIdModo?.toString() ?? '0'}
+                                        disabled={((issue?.mine && !issue?.UserModo || formik)) ? false : true}
+                                        onChangeFunction={formik?.handleChange}
                                         options={modos.map((modo: User) => ({
                                             value: modo?.id?.toString(),
                                             label:
@@ -325,7 +325,7 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service }) 
                                     variant="Input"
                                     bgColor="var(--md3-primary-container)"
                                     name={"userIdModoOn"}
-                                    onChangeFunction={formik.handleChange}
+                                    onChangeFunction={formik?.handleChange}
                                     formik={formik}
                                     value={formik?.values?.userIdModoOn?.toString() ?? issue.userIdModoOn?.toString() ?? '0'}
                                     disabled={(!issue.mine || issue.UserModoOn) ? true : false}
@@ -337,7 +337,7 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service }) 
                                                 <div>{modo?.Profile?.firstName} {modo?.Profile?.lastName}</div>
                                             </div>
                                     }))}
-                                    placeholder={`Modérateur de ${Service.UserResp?.Profile?.firstName}
+                                    placeholder={`Modérateur de ${Service?.UserResp?.Profile?.firstName}
                                         ${formik?.values?.userIdModoOn ? '' : ': choix en cours...'}`}
                                 />
                             </div>
