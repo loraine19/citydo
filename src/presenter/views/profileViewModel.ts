@@ -12,6 +12,7 @@ export const meViewModel = () => {
             refetchOnWindowFocus: false,
             staleTime: 1000 * 60 * 15,
             retry: true,
+            networkMode: 'offlineFirst',
             queryFn: async () => await get.execute()
         })
 

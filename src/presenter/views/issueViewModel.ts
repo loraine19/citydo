@@ -10,6 +10,8 @@ export const issueViewModel = () => {
       queryKey: ['user'],
       staleTime: 1000 * 60 * 15,
       retry: true,
+      refetchOnWindowFocus: false,
+      networkMode: 'offlineFirst',
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 
@@ -23,15 +25,12 @@ export const issueViewModel = () => {
         networkMode: 'offlineFirst',
         queryFn: async ({ pageParam = 1 }) => await getIssues.execute(pageParam, filter) || { issues: [], count: 0 },
         initialPageParam: 1,
-
         getNextPageParam: (lastPage, pages) => lastPage?.issues?.length ? pages.length + 1 : undefined
       });
 
     const count = isLoading ? 0 : (data?.pages[data?.pages.length - 1].count)
     const flat = (isLoading) ? [] : data?.pages.flat().map(page => page.issues).flat()
     const issues = (userLoading || !flat) ? [] : flat?.map((issue: Issue) => new IssueView(issue, userId))
-
-    console.log("issues", issues, data, filter)
 
     return {
       count,
@@ -52,6 +51,7 @@ export const IssueIdViewModel = () => {
       refetchOnWindowFocus: false,
       staleTime: 1000 * 60 * 15,
       retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
     const userId = user?.id || 0
@@ -61,6 +61,7 @@ export const IssueIdViewModel = () => {
       queryKey: ['IssueById', id],
       staleTime: 1000 * 60 * 15,
       retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await getIssueById.execute(id),
     })
     const issue = userLoading ? {} : data ? new IssueView(data, userId) : {} as IssueView;

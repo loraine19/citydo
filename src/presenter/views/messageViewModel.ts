@@ -23,6 +23,7 @@ export const conversationViewModel = () => {
         refetchOnMount: true,
         refetchOnWindowFocus: true,
         retry: true,
+        networkMode: 'offlineFirst',
         queryFn: async ({ pageParam = 1 }) => await getConversation.execute(id, pageParam) || [],
         initialPageParam: 1,
         getNextPageParam: (lastPage, pages) => lastPage?.messages?.length ? pages.length + 1 : undefined
@@ -64,6 +65,7 @@ export const conversationsViewModel = () => {
         refetchOnMount: true,
         staleTime: 1000 * 60 * 15,
         retry: true,
+        networkMode: 'offlineFirst',
         refetchOnWindowFocus: true,
       })
 
@@ -71,7 +73,6 @@ export const conversationsViewModel = () => {
     const flat = data?.pages.flat().map(page => page.conversations).flat()
     const conversations = isLoading || userLoading ? [] : flat?.map((message: Message) => new MessageView(message, user?.id || 0))
 
-    console.log('conversations', conversations, data);
 
     return {
       countConv: count,

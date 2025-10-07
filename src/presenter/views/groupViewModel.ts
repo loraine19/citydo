@@ -11,6 +11,7 @@ export const groupViewModel = () => {
       refetchOnWindowFocus: false,
       staleTime: 1000 * 60 * 15,
       retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 
@@ -22,6 +23,7 @@ export const groupViewModel = () => {
         retry: true,
         queryFn: async ({ pageParam = 1 }) => await getGroups.execute(pageParam, filter, category) || { groups: [], count: 0 },
         initialPageParam: 1,
+        networkMode: 'offlineFirst',
         getNextPageParam: (lastPage, pages) => lastPage.group?.length ? pages.length + 1 : undefined
       })
 
@@ -29,8 +31,6 @@ export const groupViewModel = () => {
     const userId = user?.id || 0
     const flat = data?.pages.flat().map(page => page.groups).flat()
     const groups = (userLoading || isLoading || !data) ? [] : flat?.map(group => group && new GroupView(group, userId))
-
-    console.log(data, groups, error)
 
     return {
       count,
@@ -53,6 +53,7 @@ export const groupIdViewModel = () => {
       refetchOnWindowFocus: false,
       staleTime: 1000 * 60 * 15,
       retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
 
     })
@@ -63,6 +64,8 @@ export const groupIdViewModel = () => {
       queryKey: ['groupById', id],
       staleTime: 600000,
       refetchOnWindowFocus: false,
+      retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => await getGroupById.execute(id),
     })
 

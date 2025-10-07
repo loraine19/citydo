@@ -15,6 +15,7 @@ export const notifViewModel = () => {
         staleTime: 1000 * 60 * 15,
         queryFn: async ({ pageParam = 1 }) => await getNotifs.execute(pageParam, filter) || [],
         initialPageParam: 1,
+        networkMode: 'offlineFirst',
         getNextPageParam: (lastPage, pages) => lastPage?.notifs?.length ? pages.length + 1 : undefined
       })
 
@@ -52,6 +53,7 @@ export const notifMapViewModel = () => {
         refetchOnReconnect: true,
         staleTime: 1000 * 60 * 15,
         retry: true,
+        networkMode: 'offlineFirst',
         queryFn: async () => await getNotifs.execute(0, '', map) || [],
       })
 

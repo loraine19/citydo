@@ -63,6 +63,7 @@ export const serviceIdViewModel = () => {
       queryKey: ['serviceById', id],
       staleTime: 1000 * 60 * 15,
       retry: true,
+      networkMode: 'offlineFirst',
       queryFn: async () => id && await getServiceById.execute(id),
     })
     const service = userLoading || isLoading ? {} : data ? new ServiceView(data, user) : {} as ServiceView;
