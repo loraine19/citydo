@@ -1,185 +1,196 @@
-import { Card, CardHeader, Typography, CardBody, Textarea, Select, Input, CardFooter } from "@material-tailwind/react"
-import ServiceIssueCard from "./ServiceIssueCard"
-import { useState } from "react"
-import { Service } from "../../../../../domain/entities/Service"
-import { User } from "../../../../../domain/entities/User"
-import { ImageBtn } from "../../../common/ImageBtn"
-import { IssueView } from "../../../../views/viewsEntities/issueViewEntity"
-import { IssueStep } from "../../../../../domain/entities/Issue"
-import { ProfileDiv } from "../../../common/ProfilDiv"
-import { GroupLink } from "../../../common/GroupLink"
-import { InputError } from "../../../common/adaptatersComps/input"
-import Chip from "../../../common/adaptatersComps/Chip"
-import PopOver from "../../../common/oldcomp/PopOver"
+import { useEffect, useMemo, useState } from "react";
+import { CardLarge } from "../../base/baseComps/Cards";
+import { Input } from "../../base/baseComps/Inputs";
+import { Button } from "../../base/baseComps/Buttons";
+import { useNavStore } from "../../../../../application/stores/nav.store";
+import { ImageBtn } from "../../../common/ImageBtn";
+import { Select } from "../../../common/adaptatersComps/Select";
+import FormHeadSection from "../../base/baseComps/FormHeadSection";
+import { ProfileDiv } from "../../../common/ProfilDiv";
+import ServiceIssueCard from "./ServiceIssueCard";
+import { IssueStep } from "../../../../../domain/entities/Issue";
+import CTAMines from "../../../common/CTA";
+import { User } from "../../../../../domain/entities/User";
+import { Service } from "../../../../../domain/entities/Service";
+import { IssueView } from "../../../../views/viewsEntities/issueViewEntity";
+import { Icon } from "../../../common/IconComp";
+import Chip from "../../../common/adaptatersComps/Chip";
 
-type IssueFormProps = { issue: IssueView, service?: Service, formik?: any, modos: User[] }
-export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, modos }) => {
-    const Service = service ? service : issue.Service
-    const [imgBlob, setImgBlob] = useState<string>(formik?.values.image ?? issue.image)
-    const start = new Date(Service?.createdAt).toLocaleDateString('fr-FR')
+type IssueFormProps = { issue: IssueView, service?: Service, formik: any, modos: User[], expand: boolean, setExpand: (e: boolean) => void };
+
+export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service, modos, expand, setExpand }) => {
+    const Service = service ? service : issue.Service;
+    const [imgBlob, setImgBlob] = useState<string>(formik?.values?.image ?? issue.image);
+    const [show, setShow] = useState(true);
+    const [showCard, setShowCard] = useState(!formik ? true : false);
+
+    // AppBar Section
+    const { setDetailSection } = useNavStore((state) => state);
+    const label = Service?.title || '';
+    const SearchSection = useMemo(() => (
+        <FormHeadSection
+            showProps={(!showCard || !formik) ? undefined : {
+                show, setShow,
+                text: show ? "Saisir Informations principales" : "Modifier Informations principales",
+                color: (formik?.errors?.date) ? "error" : "slate"
+            }}
+            infosChipValue={
+                (formik?.values?.id ? "Modifier votre demande de conciliation" :
+                    formik ? "Créer une conciliation " : "Détails de la conciliation ")
+                + " / " + (label ?? '...')
+            }
+        />
+    ), [show, formik?.values, label, formik?.errors, showCard]);
+
+    useEffect(() => {
+        setDetailSection(SearchSection);
+        return () => setDetailSection(undefined);
+    }, [SearchSection, setDetailSection, formik?.errors, formik?.values, show,]);
+
+    const start = new Date(Service?.createdAt).toLocaleDateString('fr-FR');
 
     return (
-        <>
-            <section className={`flex `}>
-                <Card className={`${issue.image ? " FixCard !grid-rows-[auto_35%_1fr]" : "FixCardNoImage !grid-rows-[auto_30%_1fr]"} w-respLarge `}>
-                    <CardHeader className={"FixCardHeaderNoImage px-4 min-h-max pt-3 gap-3 justify-between lg:items-center shadow-none flex !mt-0 flex-col lg:flex-row"}>
-                        <div className="flex flex-col ">
-                            <Typography
-                                className="truncate"
-                                as="h6" >
-                                {`${issue?.User?.Profile?.firstName ?? 'Vous'} ${issue?.UserModo ? "à demander de l'aide" : "demandez de l'aide"}`}
-                            </Typography>
-                            <GroupLink group={issue?.Service?.Group} />
-                        </div>
-                        <div className="flex gap-2 items-center">
-                            <Chip
-                                color={`${issue?.statusS === IssueStep.STEP_3 && 'green' || issue?.statusS === IssueStep.STEP_4 && 'slate' || 'orange'}`}
-                                value={issue?.statusS ?? 'nouveau'}>
-                            </Chip>
-                            {issue?.date ?
-                                <Chip
-                                    value={'' + (new Date(formik?.values?.createdAt ? formik?.values.createdAt : issue.createdAt)).toLocaleDateString('fr-FR')}
-                                >
-                                </Chip>
-                                :
-                                <div className='flex flex-col flex-1 !max-w-max overflow-auto pt-1'>
-                                    <Input
-                                        type="datetime-local"
-                                        min={start}
-                                        className="flex justify-end px-4 pb-4 redChip"
-                                        placeholder={"date du probléme"}
-                                        name="date"
-                                        onChange={formik?.handleChange}
-                                        value={formik?.values?.date ? formik?.values.date : start}
-                                        isError={Boolean(formik?.errors?.date)}
-                                    />
-                                    <InputError error={formik?.errors?.date} />
-                                </div>}
-                        </div>
-                    </CardHeader>
-                    <CardBody className={`flex-col  !pb-0 flex h-full relative !w-full gap-2 `}  >
-                        <div className={`lg:items-center flex h-full w-full gap-4`}>
-                            <div className={`flex min-w-[50%] h-full`}>
-                                <Textarea
-                                    className={`inputStandart overflow-auto py-1 !rounded ${formik?.errors?.description ? 'error' : ''}`}
-                                    placeholder="description"
-                                    onChange={formik?.handleChange}
-                                    defaultValue={formik?.value?.description ?? issue.description}
-                                    disabled={formik ? false : true}
-                                />
-                                <InputError error={formik?.errors?.description} />
-                            </div>
-                            <div className={imgBlob ? 'flex h-[calc(100%_+_1rem)] -mt-2 p-1 relative items-center justify-center' : ``}>
-                                <div className={imgBlob ? 'flex flex-col h-full overflow-hidden rounded-3xl justify-center' : `hidden`}>
-                                    <PopOver
-                                        trigger={<div className="flex rounded-3xl flex-1  overflow-hidden items-center justify-center">
-                                            <img
-                                                onError={(e) => e.currentTarget.src = '/image/placeholder.jpg'}
-                                                src={imgBlob ?? issue.image ?? '/image/placeholder.jpg'}
-                                                alt='image'
-                                                title='cliquez pour agrandir'
-                                                className="max-h-[300px] max-w-full object-contain rounded-3xl shadow-sm"
-                                                style={{ flex: 1, maxHeight: '300px' }}
-                                            />
-                                        </div>}
-                                        children={
-                                            <div className="flex max-h-[100%] w-full">
-                                                <img
-                                                    onError={(e) => e.currentTarget.src = '/image/placeholder.jpg'}
-                                                    title='cliquez pour fermer'
-                                                    src={imgBlob}
-                                                    alt='image'
-                                                    className="rounded-3xl object-cover shadow-2xl max-h-[80vh] max-w-full"
-                                                />
-                                            </div>}
-                                    />
-                                </div>
-                                <div className={formik ? 'flex absolute bottom-14 right-14' : `hidden`}>
-                                    <ImageBtn
-                                        imgBlob={imgBlob}
-                                        setImgBlob={setImgBlob}
-                                        formik={formik}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </CardBody>
-                    <CardFooter className="!overflow-auto flex-[100%] !flex flex-col gap-3 lg:!pb-5">
-                        <div>
-                            <h6> Concilateurs : </h6>
-                            <div className='flex gap-4 md:!flex-row flex-col max-w-full'>
-                                <Select name={"userIdModo"}
-                                    key='userIdModo'
-                                    value={issue?.userIdModoOn?.toString() || '0'}
-                                    onChange={(event: React.ChangeEvent<HTMLButtonElement>) => {
-                                        const value = event.target.value;
-                                        formik.values.userIdModo = parseInt(value || '1');
-                                    }}
-                                    disabled={!formik || !issue.mine || issue.UserModo ? true : false}>
-                                    <Select.Trigger className="inputDiv" >
-                                        {() => issue?.UserModo ?
-                                            (<ProfileDiv
-                                                size="xs"
-                                                profile={issue?.UserModo} />) :
-                                            (<p>{`Modérateur de ${Service.User?.Profile?.firstName}`}</p>)
-                                        }
-                                    </Select.Trigger>
-                                    <Select.List>
-                                        {
-                                            modos?.map((modo: User) =>
-                                                <Select.Option
-                                                    key={modo.id}
-                                                    className={` rounded-full hover:!bg-slate-200  `}
-                                                    value={issue?.userIdModo?.toString() || '0'} >
-                                                    <ProfileDiv
-                                                        size="xs"
-                                                        profile={modo} />
-                                                </Select.Option>)}
-                                    </Select.List>
-                                </Select>
-
-                                <Select
-                                    name={"userIdModoOn"}
-                                    disabled={!formik || !issue.mine || issue.UserModoOn ? true : false}
-                                    value={issue?.userIdModoOn?.toString() || '0'}
-                                    onChange={(event: React.FormEvent<HTMLButtonElement>) => {
-                                        const value = (event.target as HTMLButtonElement).value;
-                                        formik.values.userIdModoOn = value;
-                                    }}>
-                                    {() =>
-                                        issue?.UserModoOn ? (
-                                            <ProfileDiv
-                                                size="xs"
-                                                profile={issue?.UserModoOn}
-                                            />
-                                        ) : null
+        <form onSubmit={formik?.handleSubmit} className="flex flex-col h-full overflow-hidden w-full">
+            <main className="hBottomForm">
+                <section className={`${(show) ? 'overflow-hidden' : 'overflow-auto '}`}>
+                    <div className={`pt-2 max-h-max w-full flex flex-col gap-2 
+                        ${(show && formik) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
+                        <h6 className="md3-card-subhead pt-4">Informations principales</h6>
+                        <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
+                            <Input
+                                leadingIcon={
+                                    <Icon
+                                        fill size='lg'
+                                        icon='calendar_today'
+                                        onClick={() => {
+                                            (document.getElementsByName("date")[0] as HTMLInputElement).showPicker();
+                                        }} />}
+                                label="Date du problème"
+                                type="date-local"
+                                min={start}
+                                name="date"
+                                onChange={formik?.handleChange}
+                                value={formik?.values?.date || start}
+                                error={!!formik?.errors?.date}
+                                helperText={formik?.errors?.date}
+                            />
+                            <Input
+                                multiline
+                                rows={6}
+                                error={!!formik?.errors?.description}
+                                label='Description'
+                                name="description"
+                                helperText={`${formik?.errors?.description ?? (`${formik?.values?.description?.length ?? 0}/300`)}`}
+                                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                                    formik.handleChange(e);
+                                    const textarea = e.target as HTMLTextAreaElement;
+                                    textarea.style.height = '8rem';
+                                    textarea.style.height = textarea.scrollHeight + 'px';
+                                    if (e.target.value === '') {
+                                        textarea.style.height = '8rem';
                                     }
-                                    <Select.Trigger className="inputDiv" >
-                                        {() => issue?.UserModoOn ?
-                                            (<ProfileDiv
-                                                size="xs"
-                                                profile={issue?.UserModoOn} />) :
-                                            (<p>{`Modérateur de ${Service.UserResp?.Profile?.firstName}`}</p>)
-                                        }
-                                    </Select.Trigger>
-                                    <Select.List>
-                                        {
-                                            modos?.map((modo: User) =>
-                                                <Select.Option
-                                                    key={modo.id}
-                                                    className={` rounded-full hover:!bg-slate-200  `}
-                                                    value={modo.id && modo?.id?.toString() || '0'} >
-                                                    <ProfileDiv
-                                                        size="xs"
-                                                        profile={modo} />
-                                                </Select.Option >)}
-                                    </Select.List>
-                                </Select>
-                            </div>
+                                }}
+                                value={formik?.values?.description}
+                            />
+                            <Button
+                                color='sky'
+                                type='button'
+                                onClick={() => {
+                                    setShowCard(true);
+                                    setShow(false);
+                                }}>
+                                Continuer
+                            </Button>
                         </div>
-                        <ServiceIssueCard service={Service} />
-                    </CardFooter>
-                </Card>
-            </section >
-        </>)
-}
+                    </div>
+                    <CardLarge
+                        className={`mb-8 w-full ${(showCard && (!show || !formik)) ?
+                            `md3-animation-slide-up ` : 'md3-animation-slide-out-down'}`}
+                        form
+                        expanded={expand}
+                        setExpanded={setExpand}
+                        image={
+                            <CardLarge.Image
+                                className="md3-sky-container"
+                                src={imgBlob || formik?.values?.image || undefined}
+                                alt={formik?.values?.title || 'image'}
+                            />
+                        }
+                    >
+                        <CardLarge.Chips className="justify-end px-4">
+                            {formik &&
+                                <div className="flex flex-1">
+                                    <ImageBtn
+                                        variant="tonal"
+                                        formik={formik}
+                                        imgBlob={imgBlob || formik?.values?.image}
+                                        setImgBlob={setImgBlob}
+                                    />
+                                </div>}
+                            <Chip
+                                variant="tonal"
+                                value={issue.statusS ?? ''} />
+                            <Chip
+                                value={formik?.values?.date || start}
+                            />
+                        </CardLarge.Chips>
+                        <CardLarge.Divider />
+                        <CardLarge.SupportingText className="md:px-8 flex flex-col gap-2">
+                            <h6>Description du probleme</h6>
+                            {formik?.values?.description ?? issue.description}
+                        </CardLarge.SupportingText>
+                        <CardLarge.Divider />
+                        <CardLarge.MidSection className="md:px-8 flex flex-col">
+                            <h6>Modérateur</h6>
+                            <div className="flex flex-col gap-4">
+                                <Select
+                                    variant="Input"
+                                    bgColor="var(--md3-primary-container)"
+                                    name={"userIdModo"}
+                                    value={formik?.values?.userIdModo?.toString() ?? issue.userIdModo?.toString() ?? '0'}
+                                    disabled={(!issue.mine || issue.UserModo) ? true : false}
+                                    options={modos.map((modo: User) => ({
+                                        value: modo.id.toString(),
+                                        label: <ProfileDiv size="xs" profile={modo} />
+                                    }))}
+                                    placeholder={`Modérateur de ${Service.User?.Profile?.firstName}`}
+                                />
+                                {issue.userIdModoOn}
+                                <Select
+                                    variant="Input"
+                                    bgColor="var(--md3-primary-container)"
+                                    name={"userIdModoOn"}
+                                    value={formik?.values?.userIdModoOn?.toString() ?? issue.userIdModoOn?.toString() ?? '0'}
+                                    disabled={(!issue.mine || issue.UserModoOn) ? true : false}
+                                    options={modos.map((modo: User) => ({
+                                        value: modo.id.toString(),
+                                        label: <ProfileDiv size="xs" profile={modo} />
+                                    }))}
+                                    placeholder={`Modérateur de ${Service.UserResp?.Profile?.firstName}`}
+                                />
+                            </div>
+                        </CardLarge.MidSection>
+                        <CardLarge.Divider />
+                        <CardLarge.MidSection className="md:px-8 flex flex-col ">
+                            <h6>Service lié</h6>
+                            <ServiceIssueCard service={Service} />
+                        </CardLarge.MidSection>
+                    </CardLarge>
+                </section>
+            </main>
+            {(showCard && !show && formik) &&
+                <CTAMines
+                    actions={[
+                        {
+                            disabled: formik?.values?.statusS > IssueStep.STEP_2,
+                            type: 'submit',
+                            icon: formik?.values?.statusS > IssueStep.STEP_2 ? 'Non modifiable' : `Enregistrer`,
+                            iconImage: formik.isSubmitting ? "progress_activity" : formik.values?.id ? "check" : "send",
+                            direct: true,
+                            function: () => { }
+                        }
+                    ]}
+                />}
+        </form>
+    );
+};

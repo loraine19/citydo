@@ -18,9 +18,9 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
     return (
         <CardMD
             variant="outlined"
-            className={`!grid-rows-[auto_1fr] !h-full  !flex-1  w-full `}>
+            className={`!grid-rows-[auto_1fr] !h-full !flex-1  w-full `}>
             <CardMD.Chips>
-                <div className="flex flex-1 items-center gap-2 ">
+                <div className="flex flex-1 items-center gap-2 max-h-max">
                     <Chip
                         variant="tonal"
                         color="cyan"
@@ -36,23 +36,21 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
                     value={(new Date(createdAt)).toLocaleDateString('fr-FR')}>
                 </Chip>
             </CardMD.Chips>
-            <CardMD.Media className={` flex !flex-1 `}>
-                <div className="flex h-[calc(100%-3rem)]  ">
+            <CardMD.Media className={` flex pb-1`}>
+                <div className="flex flex-1 ">
                     <div className="flex flex-col h-full flex-1 gap-2 justify-between !overflow-auto">
-                        <div className="flex items-center justify-between pr-2">
-                            <small
-                                className="truncate max-w-[40vw] pt-2 lg:max-w-[20vw] pr-2 font-medium">
+                        <div className="flex items-center  pr-2">
+                            <p className="line-clamp-2  pr-2 font-medium">
                                 {title}
-                            </small>
+                            </p>
                             <Icon
-                                bg
-                                icon="visibility"
+                                icon="expand_content"
                                 link={`/service/${id}`}
                                 title={`voir les details de service  ${title}`}
-                                size="sm" />
+                                size="md" />
                         </div>
                         <div className="flex gap-2 ">
-                            <AvatarUser Profile={User.Profile} avatarSize="sm" />
+                            <AvatarUser Profile={User.Profile} avatarSize="md" />
                             <div className="flex flex-col">
                                 <small>
                                     {User.Profile?.firstName}
@@ -62,16 +60,14 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
                                 </small>
                             </div>
                         </div>
-
                     </div>
-                    <div className="flex flex-1 flex-col pt-1 justify-between items-end border-l-[1px] border-gray-400 overflow-y-auto gap-0.5">
+                    <div className="flex ml-2 pl-4 min-w-[30%] flex-col pt-1 justify-between items-end border-l-[1px] border-[var(--md3-outline)] overflow-y-auto gap-0.5">
                         <div className="flex flex-col items-end gap-2">
-                            <small
-                                className="text-right font-medium">
-                                à réaliser le service
-                            </small>
+                            <p className="text-right font-medium">
+                                répondu par
+                            </p>
                             <div className="flex flex-row-reverse gap-2 ">
-                                <AvatarUser Profile={UserResp?.Profile ?? {} as Profile} avatarSize="sm" />
+                                <AvatarUser Profile={UserResp?.Profile ?? {} as Profile} avatarSize="md" />
                                 <div className="flex flex-col items-end">
                                     <small
                                         className="max-h-4">
@@ -83,7 +79,6 @@ export default function ServiceIssueCard(props: { service: Service, clamp?: bool
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </CardMD.Media>

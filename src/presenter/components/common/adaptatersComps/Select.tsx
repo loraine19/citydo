@@ -11,7 +11,7 @@ interface SelectProps {
     name?: string;
     placeholder?: string;
     disabled?: boolean;
-    options: { label: string, value: string }[],
+    options: { label: string | React.ReactNode, value: string }[],
     variant?: 'filled' | 'tonal' | 'text' | 'Input';
     onChangeFunction?: () => void;
     bgColor?: string;
@@ -35,13 +35,12 @@ export function Select({
     bgColor
 }: SelectProps) {
     const { color } = useUxStore(state => state);
-
     const error = formik?.errors[name ?? ''];
-    const selected = options?.find(opt => opt.value === (formik?.values?.[name ?? ''] ?? value));
+    const selected = options?.find(opt => opt.value === ((formik?.values?.[name ?? ''] || value)));
     const displayLabel = selected?.label || placeholder;
     const className = variant === 'Input' ? `md3-input-container md3-outlined  !rounded-md md3-input-size-lg ` : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
 
-    const handleSelect = (option: { label: string, value: string }) => {
+    const handleSelect = (option: { label: string | React.ReactNode, value: string }) => {
         onChangeFunction && onChangeFunction();
         if (formik) formik.setFieldValue(name, option?.value);
         setValue && setValue(option?.value);
@@ -85,7 +84,10 @@ export function Select({
                             <MenuItem
                                 key={option?.value}
                                 value={option?.value}
-                                onClick={() => { handleSelect(option); setOpen(false) }}
+                                onClick={() => {
+                                    handleSelect(option);
+                                    setOpen(false)
+                                }}
                                 trailingIcon={selected?.value === option?.value ? (
                                     <Icon style='-mr-1' color={color ?? 'slate'} size="lg" icon="check" />
                                 ) : <div className="w-3" />}
@@ -133,7 +135,7 @@ export function MultiSelect({
         `md3-input md3-input-size-lg md3-outlined active md3-input-container !rounded-md  ` :
         `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
 
-    const handleSelect = (option: { label: string, value: string }) => {
+    const handleSelect = (option: { label: string | React.ReactNode, value: string }) => {
         let newValues: string[];
         if (selectedValues.includes(option.value)) {
             newValues = selectedValues.filter(v => v !== option.value);
@@ -178,7 +180,8 @@ export function MultiSelect({
                                 <MenuItem
                                     key={option?.value}
                                     value={option?.value}
-                                    onClick={() => handleSelect(option)}
+                                    onClick={() =>
+                                        handleSelect(option)}
                                     trailingIcon={selectedValues.includes(option?.value) ? (
                                         <Icon
                                             style='-mr-1'

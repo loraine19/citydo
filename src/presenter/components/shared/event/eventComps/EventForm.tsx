@@ -185,8 +185,6 @@ export function EventForm({ formik }: EventFormProps) {
                             <h6>Lieu  </h6>
                             {(!formikAddress?.lat || (formikAddress?.lat === 0 && formikAddress?.lng === 0)) &&
                                 <div className="px-3 h-4 my-2 italic">
-
-
                                     <GeoLocBtn
                                         iconProps={{ size: 'md', bg: false, icon: 'location_on', }}
                                         address={formikAddress}
