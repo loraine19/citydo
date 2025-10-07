@@ -1,4 +1,3 @@
-import { Card, CardHeader, Typography, CardBody, CardFooter } from "@material-tailwind/react";
 import { ServiceType, } from "../../../../../domain/entities/Service";
 import ModifBtnStack from "../../../common/ModifBtnStack";
 import { DateChip } from "../../../common/ChipDate";
@@ -15,6 +14,7 @@ import { IssueStep } from '../../../../../domain/entities/Issue';
 import { User } from "../../../../../domain/entities/User";
 import { GroupLink } from "../../../common/GroupLink";
 import Chip from "../../../common/adaptatersComps/Chip";
+import { CardMD } from "../../base/baseComps/Cards";
 
 type IssueCardProps = { issue: IssueView, mines?: boolean, change: (e: any) => void, update?: () => void }
 const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) => {
@@ -50,61 +50,49 @@ const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) =
 
     return (
         <>
-            <Card className={` ${haveImage ? "FixCard" : "FixCardNoImage !overflow-visible bg-clip-border "} ${withMe ? "!border-orange-400 !border-[1px]" : ""} `}>
-                <CardHeader
-                    className={haveImage ? "FixCardHeader" : "FixCardHeaderNoImage "}>
-                    <div className={haveImage ? "ChipDiv" : "ChipDivNoImage !flex-wrap"}>
-                        <div className="flex items-start  gap-2 ">
-                            <button
-                                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                                    const cat = e.currentTarget.innerText.toLowerCase();
-                                    change(cat)
-                                }}>
-                                <Chip
-                                    value={statusS}
-                                    className={`${statusS === IssueStep.STEP_3 && 'greenChip' || statusS === IssueStep.STEP_4 && 'grayChip' || 'orangeChip'} truncate lowercase`}
-                                >
-                                </Chip>
-                            </button>
-                        </div>
-                        <DateChip
-                            start={createdAt}
-                            prefix="le" />
-                    </div>
-                    {image &&
-                        <img
-                            onError={(e) => e.currentTarget.src = "/image/placeholder.jpg"}
-                            title="image de concialtion"
-                            src={image as any}
-                            alt={Service.title}
-                            className="CardImage flex " />
-                    }
-                </CardHeader>
-                <CardBody className={` FixCardBody`}>
-                    <div className="relative flex-1 flex items-center justify-between">
-                        <div className="flex flex-col md:gap-4 lg:gap-0 justify-between w-full mr-8">
-                            <Typography
-                                as="h6">
-                                Probleme :
-                            </Typography>
-                            <div className="grid">
-                                <GroupLink group={Service.Group} />
-                            </div>
-                        </div>
-                        <Icon
-                            icon="keyboard_arrow_right"
-                            link={`/${PathElement.ISSUE}/${serviceId}`}
-                            title={`voir les details de concialtion  ${Service.title}`}
-                            bg clear
-                            style="absolute -top-2 -right-3"
-                            fill />
-                    </div>
-                    <Typography className="description line-clamp-1 ">
-                        {description}
-                    </Typography>
-                </CardBody>
+            <CardMD
+                image={haveImage ? image as any : undefined}
+                variant="outlined"
+                className={`${withMe ? "!border-orange-400 !border-[1px]" : ""} `}
+                key={issue.serviceId} >
+                <CardMD.Chips className="!justify-between">
+                    <Chip
+                        onClick={(e) => {
+                            const cat = e.currentTarget.innerText.toLowerCase();
+                            change(cat)
+                        }}
+                        value={statusS}
+                        className={`${statusS === IssueStep.STEP_3 && 'greenChip' || statusS === IssueStep.STEP_4 && 'grayChip' || 'orangeChip'} truncate lowercase`}
+                    >
+                    </Chip>
+                    <DateChip
+                        start={createdAt}
+                        prefix="le" />
 
-                <CardFooter className="CardFooter !overflow-auto ">
+                </CardMD.Chips>
+                <CardMD.Headline className="!justify-between flex pt-2">
+                    Probleme :
+                    <Icon
+                        color='slate'
+                        size="sm"
+                        icon="keyboard_arrow_right"
+                        link={`/${PathElement.ISSUE}/${serviceId}`}
+                        title={`voir les details de concialtion  ${Service.title}`}
+                        bg
+                        fill />
+                </CardMD.Headline>
+                <CardMD.Subhead>
+                    <div className="grid">
+                        <GroupLink group={Service.Group} />
+                    </div>
+
+
+                </CardMD.Subhead>
+                <CardMD.SupportingText className="!line-clamp-1">
+                    {description}
+                </CardMD.SupportingText>
+
+                <CardMD.Footer className="flex flex-1 flex-col !pb-0">
                     <ServiceIssueCard service={Service} clamp={true} />
                     <div
                         className="flex items-center justify-between">
@@ -118,8 +106,8 @@ const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) =
                             <ModifBtnStack
                                 actions={takenCTA} />}
                     </div>
-                </CardFooter>
-            </Card >
+                </CardMD.Footer>
+            </CardMD >
         </>
     )
 }

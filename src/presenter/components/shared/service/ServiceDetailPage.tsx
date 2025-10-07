@@ -69,8 +69,8 @@ export default function ServiceDetailPage() {
                     {
                         iconImage: service.isNew ? 'person' : service.isFinish ? 'check' : 'block',
                         icon: service.isNew ? 'Répondre au service' : service.isFinish ? 'ce service est terminé' : service.statusS,
-                        title: service.isNew ? 'Nous envoyerons un message à ' + service.User?.email + ' pour le premier contact' : '55',
-                        body: service?.title,
+                        body: service.isNew ? 'Nous envoyerons un message à ' + service.User?.email + ' pour le premier contact et vous pouvez discuter avec lui' : '',
+                        title: 'Repondre a : ' + service?.title,
                         disabled: !service.isNew || service.isFinish,
                         function: service.isNew ?
                             async () => {
@@ -78,7 +78,10 @@ export default function ServiceDetailPage() {
                                     if (!service.isResp) {
                                         const data = await respService(service.id)
                                         if (data.error) handleApiError(data.error);
-                                        else updateService();
+                                        else {
+                                            updateService();
+                                            window.location.replace(`/chat?with=${service?.User?.Profile?.userId ?? 0}&text=${`Bonjour, je suis intéressé par votre service "${service?.title}"`}`)
+                                        }
                                     }
                                 } catch (error) {
                                     handleApiError(error ?? "Erreur lors de l'annulation de la réponse");
@@ -191,7 +194,6 @@ export default function ServiceDetailPage() {
                                 handleApiError(error ?? "Erreur lors de l'annulation de la réponse");
                             }
                         }
-
                     },
                 ];
                 break;

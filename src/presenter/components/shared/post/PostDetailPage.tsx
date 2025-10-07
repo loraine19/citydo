@@ -106,7 +106,6 @@ export default function PostDetailPage() {
     return (
         <>
             <main data-cy="post-details-page" className={` hBottomFab `}>
-
                 <section
                     id='refDiv'
                     className={`${expand ? 'overflow-auto' : ''} `}
