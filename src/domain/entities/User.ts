@@ -28,5 +28,7 @@ export class User {
     }
 }
 
+export type ModosPage = { modos: User[], count: number };
+
 
 

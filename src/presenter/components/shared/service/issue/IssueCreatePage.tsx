@@ -3,27 +3,20 @@ import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
 import { Issue } from '../../../../../domain/entities/Issue';
-import { ServiceType } from '../../../../../domain/entities/Service';
-import SubHeader from '../../../common/appComps/SubHeader';
 import { IssueForm } from './IssueDetailCard';
-import { useUserStore } from '../../../../../application/stores/user.store';
 import { Skeleton } from '../../../common/Skeleton';
-import { Button, Typography } from '@material-tailwind/react';
 import { IssueView } from '../../../../views/viewsEntities/issueViewEntity';
 import DI from '../../../../../di/ioc';
 import { IssueDTO } from '../../../../../infrastructure/DTOs/IssueDTO';
 import { User } from '../../../../../domain/entities/User';
-import { Icon } from '../../../common/IconComp';
 import { useAlertStore } from '../../../../../application/stores/alert.store';
-import IssueCard from './IssueCard';
+import { CardConfirmForm } from '../../../common/CardConfirmForm';
 
 
 
 export default function IssueEditPage() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { user } = useUserStore()
-    const userId = user.id
     const [issue, setIssue] = useState<Issue>({} as Issue);
     const idS = id ? parseInt(id) : 0;
     const serviceIdViewModelFactory = DI.resolve('serviceIdViewModel');
@@ -32,7 +25,6 @@ export default function IssueEditPage() {
     const getModos = async () => await DI.resolve('getUsersModosUseCase').execute()
     const [modos, setModos] = useState<User[]>([])
     const { handleApiError, setAlertValues, setOpen } = useAlertStore(state => state)
-    const [expand, setExpand] = useState<boolean>(false);
 
     useEffect(() => {
         if (modos.length === 0) {
@@ -65,15 +57,19 @@ export default function IssueEditPage() {
                 confirmString: "Enregistrer les modifications",
                 title: "Confimrer la modification",
                 element: (
-                    <div className='flex flex-col gap-8 max-h-[80vh] bg-gray-100 rounded-3xl p-5'>
-                        <Typography variant='h6'>
-                            litige
-                        </Typography>
-                        <IssueCard
-                            issue={new IssueView({ ...formik.values, image: formik.values?.blob || formik.values?.image }, 0)}
-                            change={() => { }}
-                        />
-                    </div>
+                    <CardConfirmForm
+                        title={values.title}
+                        content={
+                            <>
+                                <div className='font-semibold'>Description:</div>
+                                <div>{values.description}</div>
+                                <div className='font-semibold'>Date:</div>
+                                <div>{new Date(values.date).toLocaleDateString()}</div>
+                                <div className='font-semibold'>Modérateur:</div>
+
+                            </>
+                        }
+                    />
                 )
             })
         }
@@ -101,34 +97,15 @@ export default function IssueEditPage() {
 
 
     return (
-        <form onSubmit={formik.handleSubmit} className='flex h-full flex-col'>
-            <main>
-                <div className="sectionHeader">
-                    <SubHeader type={"Conciliation"} place={` sur ${service?.type === ServiceType.GET ? "une demande" : "une offre"} de service  ${userId === service?.userId ? "que j'ai créé" : "à laquelle j'ai repondu"}`} closeBtn />
-                </div>
-                {isLoading ?
-                    <Skeleton className="w-respLarge !rounded-3xl !h-[calc(100vh-16rem)] shadow m-auto" /> :
-                    <IssueForm
+        <>
+            {isLoading ?
+                <Skeleton className="w-respLarge !rounded-3xl !h-[calc(100vh-16rem)] shadow m-auto" /> :
+                <IssueForm
 
-                        modos={modos}
-                        issue={issue as IssueView}
-                        service={service}
-                        formik={formik}
-                        expand={expand}
-                        setExpand={setExpand} />}
-            </main>
-            <footer className="CTA">
-                <Button
-                    type="submit"
-                    className="lgBtn" >
-                    <Icon
-                        size='xl'
-                        color="white"
-                        icon="add" />
-                    Enregistrer la demande d'aide
-                </Button>
-            </footer>
-        </form>
+                    issue={issue as IssueView}
+                    service={service}
+                    formik={formik} />}
+        </>
 
 
     )

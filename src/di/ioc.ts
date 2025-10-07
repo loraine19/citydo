@@ -68,7 +68,7 @@ import { GroupApi } from '../infrastructure/providers/http/groupApi';
 import { DeleteGroupUserUseCase, GetGroupByIdUseCase, GetNearestGroupsUseCase, PostGroupUserUseCase, UpdateGroupUserUseCase } from '../application/useCases/group.usecase';
 import { groupIdViewModel, groupViewModel } from '../presenter/views/groupViewModel';
 import { UtilsUseCase } from '../application/useCases/utils.useCase';
-import { userViewModel } from '../presenter/views/userViewModel';
+import { modosViewModel, userViewModel } from '../presenter/views/userViewModel';
 
 
 // Extend the BuildResolverOptions type to include 'deps'
@@ -117,6 +117,7 @@ container.register({
     userRepository: asClass(UserRepositoryImpl),
     userData: asClass(UserApi),
     userViewModel: asFunction(userViewModel),
+    modosViewModel: asFunction(modosViewModel),
 
     ////PROFILE
     postProfileUseCase: asClass(PostProfileUseCase),

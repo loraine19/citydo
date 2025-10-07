@@ -1,5 +1,5 @@
 //src/infrastructure/repositoriesImpl/UserRespositoryImpl.tsx
-import { User } from "../../domain/entities/User";
+import { ModosPage, User } from "../../domain/entities/User";
 import { UserRepositoryBase } from "../../domain/repositoriesBase/UserRepositoryBase";
 import { UserDTO } from "../DTOs/UserDTO";
 import { ApiServiceI } from "../providers/http/apiService";
@@ -25,7 +25,7 @@ export class UserRepositoryImpl implements UserRepositoryBase {
         return this.userData.getUsers(groupId);
     }
 
-    public async getUsersModos(groupId: number): Promise<User[]> {
+    public async getUsersModos(groupId: number): Promise<ModosPage> {
         return this.userData.getUsersModos(groupId);
     }
 

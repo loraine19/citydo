@@ -1,5 +1,5 @@
 //src/application/user/getUserMe.usecase.ts
-import { User } from "../../domain/entities/User";
+import { ModosPage, User } from "../../domain/entities/User";
 import { UserRepositoryBase } from "../../domain/repositoriesBase/UserRepositoryBase";
 
 export class GetUserMeUseCase {
@@ -58,7 +58,7 @@ export class GetUsersModosUseCase {
         this.userRepository = userRepository;
     }
 
-    public async execute(groupId: number): Promise<User[]> {
+    public async execute(groupId: number): Promise<ModosPage> {
         return this.userRepository.getUsersModos(groupId)
     }
 }

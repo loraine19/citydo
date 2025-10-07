@@ -13,7 +13,7 @@ interface SelectProps {
     disabled?: boolean;
     options: { label: string | React.ReactNode, value: string }[],
     variant?: 'filled' | 'tonal' | 'text' | 'Input';
-    onChangeFunction?: () => void;
+    onChangeFunction?: (() => void) | ((e: any) => void);
     bgColor?: string;
 }
 
@@ -41,7 +41,7 @@ export function Select({
     const className = variant === 'Input' ? `md3-input-container md3-outlined  !rounded-md md3-input-size-lg ` : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
 
     const handleSelect = (option: { label: string | React.ReactNode, value: string }) => {
-        onChangeFunction && onChangeFunction();
+        onChangeFunction && onChangeFunction(value);
         if (formik) formik.setFieldValue(name, option?.value);
         setValue && setValue(option?.value);
 
@@ -144,7 +144,7 @@ export function MultiSelect({
         }
         if (formik) formik.setFieldValue(name, newValues);
         setValue && setValue(newValues);
-        onChangeFunction && onChangeFunction();
+        onChangeFunction && onChangeFunction(newValues);
     };
 
     const [open, setOpen] = useState(false)

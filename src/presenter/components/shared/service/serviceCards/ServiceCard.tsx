@@ -43,7 +43,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
             iconImage: "sync_problem",
             title: `litige sur  `,
             body: `litige a `,
-            function: () => navigate({ pathname: `/litige/create/${id}` }),
+            function: () => navigate({ pathname: `/conciliation/create/${id}` }),
         }
     ];
     const takenCTA: Action[] = [
@@ -51,7 +51,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
             iconImage: "sync_problem",
             title: `litige sur ${title}`,
             body: `litige a ${title}`,
-            function: () => navigate({ pathname: `/litige/create/${id}` }),
+            function: () => navigate({ pathname: `/conciliation/create/${id}` }),
         },
         {
             iconImage: "person_cancel",

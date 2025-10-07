@@ -1,5 +1,5 @@
 //src/infrastructure/api/userApi.tsx
-import { User } from "../../../domain/entities/User";
+import { ModosPage, User } from "../../../domain/entities/User";
 import { UserDTO } from "../../DTOs/UserDTO";
 import { ApiServiceI, ApiService } from "./apiService";
 
@@ -10,7 +10,7 @@ export class UserApi {
     constructor() { this.api = new ApiService(); }
 
 
-    async getUsersModos(groupId: number): Promise<User[]> {
+    async getUsersModos(groupId: number): Promise<ModosPage> {
         return this.api.get(`${this.dataType}/modos/${groupId}`);
     }
 
