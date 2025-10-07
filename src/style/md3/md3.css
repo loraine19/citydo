@@ -150,10 +150,7 @@ html {
         --md3-inverse-primary: #64748b;
 
         /* error */
-        --md3-error: #f2b8b5;
-        --md3-on-error: #601410;
-        --md3-error-container: #8c1d18;
-        --md3-on-error-container: #f2b8b5;
+        --md3-on-error: #f2b8b5;
 
         /* Sky */
         --md3-on-sky: #bcf0fe;
@@ -203,10 +200,7 @@ html {
     --md3-inverse-primary: #64748b;
 
     /* error */
-    --md3-error: #f2b8b5;
-    --md3-on-error: #601410;
-    --md3-on-error-container: #8c1d18;
-    --md3-error-container: #f2b8b5;
+    --md3-on-error: #f2b8b5;
 
     /* Sky */
     --md3-on-sky: #bcf0fe;
@@ -409,11 +403,6 @@ html {
 /* Text color utility classes */
 .md3-text-sky {
     color: var(--md3-sky);
-    @media (prefers-color-scheme: dark), dark {
-        dark {
-            color: var(--md3-secondary-sky);
-        }
-    }
 }
 .md3-text-on-sky {
     color: var(--md3-on-sky);
@@ -426,11 +415,6 @@ html {
 }
 .md3-text-cyan {
     color: var(--md3-cyan);
-    @media (prefers-color-scheme: dark), dark {
-        dark {
-            color: var(--md3-secondary-cyan);
-        }
-    }
 }
 .md3-text-on-cyan {
     color: var(--md3-on-cyan);

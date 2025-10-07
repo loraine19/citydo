@@ -165,7 +165,7 @@ export default function DashboardPage() {
                                     size="md"
                                     color="cyan"
                                     title="voir mes messages" />
-                                <span className={notifsMsg.length < 1 ? "hidden" : " absolute -top-0.5 right-0 w-3 h-3 rounded-full bg-cyan-500 border-[2px] border-[var(--md3-primary-container)]"} />
+                                <span className={notifsMsg.length < 1 ? "hidden" : " absolute -top-0.5 right-0 w-3 h-3 rounded-full md3-cyan border-[2px] border-[var(--md3-primary-container)]"} />
                             </div>
                             {count > 0 ?
                                 <>{count} {count > 1 ? 'notifications' : 'notification'} </> :
@@ -202,9 +202,9 @@ export default function DashboardPage() {
                                                 <div className="!line-clamp-1 ">
                                                     <Chip
                                                         size="small"
-                                                        variant="outlined"
+                                                        variant="tonal"
                                                         color={notif?.typeS === 'message' ? 'cyan' : 'orange'}
-                                                        className={` capitalize font-normal`}
+                                                        className={`mr-2`}
                                                         value={notif?.typeS} />
                                                     <span className="w-full px-1">
                                                         {notif?.description}

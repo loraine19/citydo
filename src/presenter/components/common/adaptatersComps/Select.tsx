@@ -2,7 +2,7 @@ import { useUxStore } from "../../../../application/stores/ux.store";
 import { InputError } from "./input";
 import { Icon } from "../IconComp";
 import { Menu, MenuItem } from "../../shared/base/baseComps/Menu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface SelectProps {
     formik?: any;
@@ -36,16 +36,23 @@ export function Select({
 }: SelectProps) {
     const { color } = useUxStore(state => state);
     const error = formik?.errors[name ?? ''];
-    const selected = options?.find(opt => opt.value === ((formik?.values?.[name ?? ''] || value)));
-    const displayLabel = selected?.label || placeholder;
+    const [selected, setSelected] = useState(options?.find(opt => opt.value === ((formik?.values?.[name ?? ''] || value))));
+
+    const [displayLabel, setDisplayLabel] = useState<string | React.ReactNode>(selected?.label || placeholder);
     const className = variant === 'Input' ? `md3-input-container md3-outlined  !rounded-md md3-input-size-lg ` : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
 
     const handleSelect = (option: { label: string | React.ReactNode, value: string }) => {
         onChangeFunction && onChangeFunction(value);
         if (formik) formik.setFieldValue(name, option?.value);
         setValue && setValue(option?.value);
+    }
 
-    };
+    useEffect(() => {
+        const selected2 = options?.find(opt => (opt.value === formik?.values?.[name ?? '']) ||
+            options?.find(opt2 => opt2.value === value));
+        setDisplayLabel(selected2?.label || placeholder)
+        setSelected(selected2)
+    }, [options, value, formik?.values?.[name ?? '']]);
 
     const [open, setOpen] = useState(false)
 

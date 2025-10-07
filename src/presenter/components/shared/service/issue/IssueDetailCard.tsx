@@ -293,24 +293,24 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service }) 
                         </CardLarge.Chips>
                         <CardLarge.Divider />
                         <CardLarge.SupportingText className="md:px-8 flex flex-col gap-2">
-                            <h6>Description du probleme</h6>
+                            <h6>Description du probleme par {issue?.User?.Profile.firstName}</h6>
                             {formik?.values?.description ?? issue?.description}
                         </CardLarge.SupportingText>
                         <CardLarge.Divider />
                         <CardLarge.MidSection className="md:px-8 gap-2 flex flex-col">
                             <h6>Modérateurs</h6>
                             <div className="flex flex-col gap-4">
-                                {modos &&
+                                {issue?.UserModo?.Profile.firstName}
+                                {
                                     <Select
                                         formik={formik}
                                         variant="Input"
                                         bgColor="var(--md3-primary-container)"
                                         name={"userIdModo"}
-                                        value={formik?.values?.userIdModo?.toString() ??
-                                            issue?.userIdModo?.toString() ?? '0'}
+                                        value={issue?.UserModo?.id.toString() ?? formik?.values?.userIdModo?.toString() ?? '0'}
                                         disabled={((issue?.mine && !issue?.UserModo || formik)) ? false : true}
                                         onChangeFunction={formik?.handleChange}
-                                        options={modos.map((modo: User) => ({
+                                        options={(issue?.UserModo ? [issue?.UserModo] : modos).map((modo: User) => ({
                                             value: modo?.id?.toString(),
                                             label:
                                                 <div className="flex items-center gap-2">
@@ -318,27 +318,26 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service }) 
                                                     <div>{modo?.Profile?.firstName} {modo?.Profile?.lastName}</div>
                                                 </div>
                                         }))}
-                                        placeholder={`Modérateur de ${Service.User?.Profile?.firstName} ${formik?.values?.userIdModo ? '' : 'choix en cours...'}`}
+                                        placeholder={`Modérateur de ${Service.User?.Profile?.firstName} ${formik?.values?.userIdModo || issue?.UserModo ? ' : ' : 'choix en cours...'}`}
                                     />}
-                                {issue.userIdModoOn}
                                 <Select
                                     variant="Input"
                                     bgColor="var(--md3-primary-container)"
                                     name={"userIdModoOn"}
                                     onChangeFunction={formik?.handleChange}
                                     formik={formik}
-                                    value={formik?.values?.userIdModoOn?.toString() ?? issue.userIdModoOn?.toString() ?? '0'}
+                                    value={formik?.values?.userIdModoOn?.toString() ?? issue?.userIdModoOn?.toString() ?? '0'}
                                     disabled={(!issue.mine || issue.UserModoOn) ? true : false}
-                                    options={modos && modos.map((modo: User) => ({
+                                    options={(issue?.UserModoOn ? [issue?.UserModoOn] : modos).map((modo: User) => ({
                                         value: modo?.id?.toString(),
                                         label:
                                             <div className="flex items-center gap-2">
-                                                <AvatarUser Profile={modo?.Profile} avatarSize="md" />
+                                                <AvatarUser Profile={modo?.Profile ?? issue?.UserModoOn?.Profile} avatarSize="md" />
                                                 <div>{modo?.Profile?.firstName} {modo?.Profile?.lastName}</div>
                                             </div>
                                     }))}
                                     placeholder={`Modérateur de ${Service?.UserResp?.Profile?.firstName}
-                                        ${formik?.values?.userIdModoOn ? '' : ': choix en cours...'}`}
+                                        ${formik?.values?.userIdModoOn || issue?.UserModoOn ? '' : ': choix en cours...'}`}
                                 />
                             </div>
                         </CardLarge.MidSection>

@@ -51,9 +51,10 @@ const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) =
     return (
         <>
             <CardMD
+                variant='tonal'
                 image={haveImage ? image as any : undefined}
-                variant="outlined"
-                className={`${withMe ? "!border-orange-400 !border-[1px]" : ""} `}
+                color={withMe ? "orange" : ""}
+                className={` ${withMe ? 'ring-1 ring-[var(--md3-error)]' : ''}  `}
                 key={issue.serviceId} >
                 <CardMD.Chips className="!justify-between">
                     <Chip
@@ -71,7 +72,7 @@ const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) =
 
                 </CardMD.Chips>
                 <CardMD.Headline className="!justify-between flex pt-2">
-                    Probleme :
+                    Litige de {issue?.User?.Profile.firstName}, {Service.typeS} de service
                     <Icon
                         color='slate'
                         size="sm"
@@ -85,8 +86,6 @@ const IssueCard: React.FC<IssueCardProps> = ({ mines, change, update, issue }) =
                     <div className="grid">
                         <GroupLink group={Service.Group} />
                     </div>
-
-
                 </CardMD.Subhead>
                 <CardMD.SupportingText className="!line-clamp-1">
                     {description}
