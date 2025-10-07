@@ -68,8 +68,9 @@ export const CardChips: React.FC<{ children: ReactNode; className?: string }> = 
 );
 
 //// CARD HEADLINE
-export const CardHeadline: React.FC<{ children: ReactNode; className?: string, onClick?: () => void }> = ({ children, className }) => (
-    <div className={`md3-card-headline ${className}`} >{children}</div>
+export const CardHeadline: React.FC<{ children: ReactNode; className?: string, onClick?: () => void }> = ({ children, className, onClick }) => (
+    <div
+        className={`md3-card-headline ${className} ${onClick ? 'cursor-pointer' : ''}`} onClick={onClick}>{children}</div>
 );
 
 //// CARD SUBHEAD

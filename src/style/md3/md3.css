@@ -30,6 +30,7 @@ html {
     --md3-on-error: #ffffff;
     --md3-error-container: #fddbdc;
     --md3-on-error-container: #851b1b;
+    --md3-secondary-error: #fea096;
     --md3-background: #fffbfe;
     --md3-on-background: #1c1b1f;
     --md3-surface: #e7eff2;
@@ -50,7 +51,7 @@ html {
     --md3-on-sky: #ffffff;
     --md3-sky-container: #bcf0fe;
     --md3-on-sky-container: #107bad;
-    --md3-secondary-sky: #5d5d85;
+    --md3-secondary-sky: #49b1e0;
     --md3-on-secondary-sky: #ffffff;
 
     /* Cyan */
@@ -58,7 +59,7 @@ html {
     --md3-on-cyan: #ffffff;
     --md3-cyan-container: #afeaf1;
     --md3-on-cyan-container: #0c8e9f;
-    --md3-secondary-cyan: #5a7679;
+    --md3-secondary-cyan: #4fb6c1;
     --md3-on-secondary-cyan: #ffffff;
 
     /* Rose */
@@ -66,7 +67,7 @@ html {
     --md3-on-rose: #ffffff;
     --md3-rose-container: #fddbdc;
     --md3-on-rose-container: #ac1358;
-    --md3-secondary-rose: #c2758d;
+    --md3-secondary-rose: #e48b9a;
     --md3-on-secondary-rose: #ffffff;
 
     /* Orange */
@@ -74,7 +75,7 @@ html {
     --md3-on-orange: #ffffff;
     --md3-orange-container: #ffe4c4;
     --md3-on-orange-container: #d0691b;
-    --md3-secondary-orange: #9b6c4b;
+    --md3-secondary-orange: #e48b3e;
     --md3-on-secondary-orange: #ffffff;
 
     /* Green */
@@ -82,7 +83,7 @@ html {
     --md3-on-green: #ffffff;
     --md3-green-container: #beeeba;
     --md3-on-green-container: #016e3b;
-    --md3-secondary-green: #59614f;
+    --md3-secondary-green: #4caf70;
     --md3-on-secondary-green: #ffffff;
 
     /* Slate */
@@ -90,7 +91,7 @@ html {
     --md3-on-slate: #ffffff;
     --md3-slate-container: #dde4f3;
     --md3-on-slate-container: #5b6172;
-    --md3-secondary-slate: #475569;
+    --md3-secondary-slate: #9aa5b8;
     --md3-on-secondary-slate: #ffffff;
 
     /* Ombres (élévation) - style moderne, moins décalées vers le bas, plus diffuses */
@@ -144,8 +145,6 @@ html {
         --md3-on-surface-variant: #dbe0e6;
         --md3-outline: #dbe0e659;
         --md3-outline-variant: #242e30;
-        --md3-shadow: #000000;
-        --md3-scrim: rgba(0, 0, 0, 0.32);
         --md3-inverse-surface: #e6e1e5;
         --md3-inverse-on-surface: #242e30;
         --md3-inverse-primary: #64748b;
@@ -158,53 +157,23 @@ html {
 
         /* Sky */
         --md3-on-sky: #bcf0fe;
-        --md3-sky: #107bad;
-        --md3-on-sky-container: #107bad;
-        --md3-sky-container: #bcf0fe;
-        --md3-secondary-sky: #5d5d85;
-        --md3-on-secondary-sky: #ffffff;
 
         /* Cyan */
         --md3-on-cyan: #acedff;
-        --md3-cyan: #0c8e9f;
-        --md3-on-cyan-container: #0c8e9f;
         --md3-cyan-container: #acedff;
-        --md3-secondary-cyan: #5a7679;
-        --md3-on-secondary-cyan: #ffffff;
 
         /* Rose */
         --md3-on-rose: #fddbdc;
-        --md3-rose: #ac1358;
-        --md3-on-rose-container: #ac1358;
-        --md3-rose-container: #fddbdc;
-        --md3-secondary-rose: #c2758d;
-        --md3-on-secondary-rose: #ffffff;
 
         /* Orange */
         --md3-on-orange: #ffe4c4;
-        --md3-orange: #d0691b;
-        --md3-on-orange-container: #d0691b;
-        --md3-orange-container: #ffe4c4;
-        --md3-secondary-orange: #9b6c4b;
-        --md3-on-secondary-orange: #ffffff;
 
         /* Green */
         --md3-on-green: #beeeba;
-        --md3-green: #016e3b;
-        --md3-on-green-container: #016e3b;
-        --md3-green-container: #beeeba;
-        --md3-secondary-green: #59614f;
-        --md3-on-secondary-green: #ffffff;
 
         /* Slate (adjusted from main scheme hex) */
         --md3-on-slate: #dde4f3;
-        --md3-slate: #5b6172;
-        --md3-on-slate-container: #5b6172;
-        --md3-slate-container: #dde4f3;
-        --md3-secondary-slate: #475569;
-        --md3-on-secondary-slate: #ffffff;
 
-        --md3-shadow-elevation-0: none;
         --md3-shadow-elevation-1: 0 0.0625rem 0.125rem #00000045;
         --md3-shadow-elevation-2: 0 0.125rem 0.25rem #00000045;
         --md3-shadow-elevation-3: 0 0.3125rem 0.625rem #00000045,
@@ -229,8 +198,6 @@ html {
     --md3-on-surface-variant: #dbe0e6;
     --md3-outline: #dbe0e659;
     --md3-outline-variant: #242e30;
-    --md3-shadow: #000000;
-    --md3-scrim: rgba(0, 0, 0, 0.32);
     --md3-inverse-surface: #e6e1e5;
     --md3-inverse-on-surface: #242e30;
     --md3-inverse-primary: #64748b;
@@ -243,53 +210,24 @@ html {
 
     /* Sky */
     --md3-on-sky: #bcf0fe;
-    --md3-sky: #107bad;
-    --md3-on-sky-container: #107bad;
-    --md3-sky-container: #bcf0fe;
-    --md3-secondary-sky: #5d5d85;
-    --md3-on-secondary-sky: #ffffff;
 
     /* Cyan */
     --md3-on-cyan: #acedff;
-    --md3-cyan: #0c8e9f;
-    --md3-on-cyan-container: #0c8e9f;
     --md3-cyan-container: #acedff;
-    --md3-secondary-cyan: #5a7679;
-    --md3-on-secondary-cyan: #ffffff;
 
     /* Rose */
     --md3-on-rose: #fddbdc;
-    --md3-rose: #ac1358;
-    --md3-on-rose-container: #ac1358;
-    --md3-rose-container: #fddbdc;
-    --md3-secondary-rose: #c2758d;
-    --md3-on-secondary-rose: #ffffff;
 
     /* Orange */
     --md3-on-orange: #ffe4c4;
-    --md3-orange: #d0691b;
-    --md3-on-orange-container: #d0691b;
-    --md3-orange-container: #ffe4c4;
-    --md3-secondary-orange: #9b6c4b;
-    --md3-on-secondary-orange: #ffffff;
 
     /* Green */
     --md3-on-green: #beeeba;
-    --md3-green: #016e3b;
-    --md3-on-green-container: #016e3b;
-    --md3-green-container: #beeeba;
-    --md3-secondary-green: #59614f;
-    --md3-on-secondary-green: #ffffff;
 
     /* Slate (adjusted from main scheme hex) */
     --md3-on-slate: #dde4f3;
-    --md3-slate: #5b6172;
-    --md3-on-slate-container: #5b6172;
     --md3-slate-container: #c1c7d4;
-    --md3-secondary-slate: #475569;
-    --md3-on-secondary-slate: #ffffff;
 
-    --md3-shadow-elevation-0: none;
     --md3-shadow-elevation-1: 0 0.0625rem 0.125rem #00000045;
     --md3-shadow-elevation-2: 0 0.125rem 0.25rem #00000045;
     --md3-shadow-elevation-3: 0 0.3125rem 0.625rem #00000045,
@@ -471,6 +409,11 @@ html {
 /* Text color utility classes */
 .md3-text-sky {
     color: var(--md3-sky);
+    @media (prefers-color-scheme: dark), dark {
+        dark {
+            color: var(--md3-secondary-sky);
+        }
+    }
 }
 .md3-text-on-sky {
     color: var(--md3-on-sky);
@@ -483,6 +426,11 @@ html {
 }
 .md3-text-cyan {
     color: var(--md3-cyan);
+    @media (prefers-color-scheme: dark), dark {
+        dark {
+            color: var(--md3-secondary-cyan);
+        }
+    }
 }
 .md3-text-on-cyan {
     color: var(--md3-on-cyan);
@@ -545,6 +493,7 @@ html {
 .md3-text-slate {
     color: var(--md3-slate);
 }
+
 .md3-text-on-slate {
     color: var(--md3-on-slate);
 }

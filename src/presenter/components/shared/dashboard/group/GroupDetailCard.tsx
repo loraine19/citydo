@@ -135,7 +135,7 @@ export default function GroupDetailCard({ group: initGroup, refetch, expand, set
                         icon={
                             <Icon
                                 size="md"
-                                icon="groups"
+                                icon="group"
                                 fill={group?.ImIn}
                                 color={group?.ImIn ? "cyan" : "gray"}
                                 title={group?.ImIn ? "Je suis membre" : "Je ne suis pas membre"} />}

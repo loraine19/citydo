@@ -59,6 +59,7 @@ export const useUxStore = create<UxStore, [['zustand/persist', UxStore]]>(
 
             case 'sign':
             case 'flag':
+            case 'conciliation':
               color = 'error';
               break;
             default:

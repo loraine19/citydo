@@ -178,11 +178,11 @@ function App() {
                                     <Route path="/sondage" element={<VoteListPage />} />
                                     <Route path="/cagnotte" element={<VoteListPage />} />
                                     <Route path="/annonce" element={<PostListPage />} />
-                                    <Route path="/conciliation" element={<ConciliationListPage />} />
                                 </Route>
                                 {/* LIST PAGES NO FAB */}
                                 <Route element={<ConfigPage listPage />}>
                                     <Route path="/groupe" element={<GroupPage />} />
+                                    <Route path="/conciliation" element={<ConciliationListPage />} />
                                 </Route>
                             </Route>
                         </Routes>

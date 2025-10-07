@@ -5,7 +5,6 @@ import { DateChip } from "../../../common/ChipDate";
 import DI from "../../../../../di/ioc";
 import { PostView } from "../../../../views/viewsEntities/postViewEntities";
 import { useState } from "react";
-import { Title } from "../../../common/CardTitle";
 import { ProfileDiv } from "../../../common/ProfilDiv";
 import Chip from "../../../common/adaptatersComps/Chip";
 import { CardMD } from "../../base/baseComps/Cards";
@@ -65,8 +64,10 @@ export default function PostCard({ post: initialPost, mines, change, update, aut
                 />
             </CardMD.Chips>
 
-            <CardMD.Headline>
-                <Title title={post?.title} />
+            <CardMD.Headline
+                onClick={() => navigate(`/annonce/${post?.id}`)}
+                className="line-clamp-1">
+                {post?.title}
             </CardMD.Headline>
 
             <CardMD.Subhead className={`flex items-start flex-1 gap-1`}>

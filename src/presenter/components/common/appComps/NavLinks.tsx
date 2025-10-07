@@ -50,7 +50,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
             evenement: "event",
             annonce: "dashboard",
             vote: "ballot",
-            groupe: "groups"
+            groupe: "group"
         }[type] || "add") as IconName,
         label: `Ajouter un ${type}`,
         color: color,
@@ -106,11 +106,12 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
 
                             <NavigationBarItem
                                 row={!isBottom}
-                                className={`md3-text-${color} 
+                                className={`
                                     ${isBottom ? 'md:px-12  md:w-max ' : ' !rounded-none !p-0'}
                                     ${isBottom ? active ?
                                         `md3-${color}-container md3-elevation-0 md3-animation-ripple `
                                         : `max-w-[50px] sm:max-w-maw last:mr-[2vw] first:ml-[2vw]` : ``}
+                                        ${!active && `md3-text-${color}`}
                                     
                                         `}
                                 active={active}

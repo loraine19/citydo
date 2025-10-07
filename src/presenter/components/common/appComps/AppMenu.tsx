@@ -104,7 +104,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                 blurBack
                 left
                 MenuKey="profile-menu"
-                className={`rounded-l-none !absolute !top-0 !left-0 px-4 py-2 !z-[999] h-[100dvh] !max-h-[100dvh]  overflow-auto !min-w-[70vw]"`}
+                className={`rounded-l-none !absolute !top-0 !left-0 px-4 pb-2 !z-[999] h-[100dvh] !max-h-[100dvh]  overflow-auto !min-w-[70vw] sm:!min-w-max `}
                 placement="free"
                 trigger={
                     <div className="flex items-center ">
@@ -145,7 +145,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                         <div>
                             <AvatarUser
                                 style="!shadow-none "
-                                avatarSize="2xl"
+                                avatarSize="xl"
                                 Profile={user?.Profile}
                             />
                         </div>
@@ -162,7 +162,6 @@ const AppMenu: React.FC<AppMenuProps> = ({
                 {/* LIST ITEM */}
                 {menuItems.map((item, index) => (
                     <MenuItem
-
                         bg
                         className={item.style}
                         divider={item.divider as any}
@@ -173,7 +172,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                                 disabled={!item.onClick}
                                 bg
                                 fill
-                                size="2xl"
+                                size="xl"
                                 color={item.color ?? color}
                                 icon={item.icon as IconName}
                             />

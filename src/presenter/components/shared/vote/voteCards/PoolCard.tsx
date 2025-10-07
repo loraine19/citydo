@@ -13,9 +13,9 @@ import { CardMD } from "../../base/baseComps/Cards";
 import { ProgressBar } from "../../base/baseComps/Sliders";
 import { Button, Md3Colors } from "../../base/baseComps/Buttons";
 import { MoreButton } from "../../../common/moreBtn";
-import { Link } from "react-router-dom";
 import { GroupLink } from "../../../common/GroupLink";
 import { VoteOpinion } from "../../../../../domain/entities/Vote";
+import { useNavigate } from "react-router";
 
 type PoolCardProps = {
     pool: any,
@@ -46,6 +46,8 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
 
     const values = VoteValues(pool, update);
 
+    const navigate = useNavigate()
+
     return (
         <>
             <CardMD
@@ -75,8 +77,10 @@ export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCard
                         title={pool?.title} />}
                 </CardMD.Chips>
 
-                <CardMD.Headline className="mb:pb-6 line-clamp-1">
-                    <Link to={`/vote/cagnotte/${pool?.id}`}>{pool?.title}</Link>
+                <CardMD.Headline
+                    onClick={() => navigate(`/vote/cagnotte/${pool?.id}`)}
+                    className="mb:pb-6 line-clamp-1">
+                    {pool?.title}
                 </CardMD.Headline>
 
                 <CardMD.Subhead className={`flex items-center gap-2`}>

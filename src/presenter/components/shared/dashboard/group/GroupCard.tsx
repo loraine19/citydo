@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GenereMyActions } from "../../../../views/viewsEntities/utilsService";
-import { DateChip } from "../../../common/ChipDate";
 import ModifBtnStack from "../../../common/ModifBtnStack";
 import { GroupView } from "../../../../views/viewsEntities/GroupViewEntity";
 import DI from "../../../../../di/ioc";
 import { Icon } from "../../../common/IconComp";
-import { Title } from "../../../common/CardTitle";
 import AddressMapOpen from "../../../common/mapComps/AddressMapOpen";
 import Chip from "../../../common/adaptatersComps/Chip";
 import { CardMD } from "../../base/baseComps/Cards";
@@ -31,7 +29,7 @@ export function GroupCard({
     imagePosition = 'top'
 }: GroupCardProps) {
     const [group, setGroup] = useState<GroupView>(initialGroup);
-    const { id, name, Address, createdAt, area, fullAddress, categoryS, ImModo, ImIn, toogleModo } = group;
+    const { id, name, Address, area, fullAddress, categoryS, ImModo, ImIn, toogleModo } = group;
     const deletegroup = async (id: number) => await DI.resolve('deletegroupUseCase').execute(id)
     const actions = GenereMyActions(group, "groupe", deletegroup);
     const navigate = useNavigate();
@@ -66,7 +64,7 @@ export function GroupCard({
                 <CardMD.Chips className=" justify-between">
                     <Chip value={categoryS} />
                     <div className="flex flex-1 gap-1 items-center justify-end">
-                        <DateChip start={createdAt} prefix=" " />
+
                         <MoreButton
                             id={id}
                             type={'groupe'}
@@ -75,8 +73,8 @@ export function GroupCard({
                     </div>
 
                 </CardMD.Chips>
-                <CardMD.Headline className="line-clamp-1">
-                    <Title title={name ?? ''} />
+                <CardMD.Headline onClick={() => navigate(`/groupe/${id}`)} className="line-clamp-1">
+                    {name}
                 </CardMD.Headline>
                 <CardMD.Subhead className="flex flex-col flex-1 gap-1 justify-start items-start" >
                     <p > {(fullAddress || '')}  </p>

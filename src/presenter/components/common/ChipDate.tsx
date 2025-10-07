@@ -42,8 +42,12 @@ export function DateChip({ start, end, prefix, ended, size }: { start: Date | st
         <>
             {value &&
                 <Chip
-                    className={`${ended ? 'pt-0.5 !opacity-50' : ''}`}
-                    icon={icon && <Icon icon={icon} size={'lg'} fill />}
+                    className={`${ended ? '!opacity-50' : ''}`}
+                    icon={icon &&
+                        <Icon
+                            icon={icon}
+                            size={size === 'large' ? 'xl' : size === 'medium' ? 'lg' : 'md'}
+                            fill />}
                     size={size || 'small'}
                     variant="tonal"
                     value={value}

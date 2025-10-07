@@ -59,10 +59,10 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
                 trigger={
                     <Icon
                         fill
-                        style='!font-extrabold !scale-x-[1.1] !p-1 z-[4] h-[1.5rem] md3-stroke max-h-max'
+                        style='!font-extrabold !scale-x-[1.1] z-[4] h-[1.5rem] md3-stroke max-h-max'
                         color={''}
-                        textIcon="⋮"
-                        size={'3xl'}
+                        icon="more_vert"
+                        size={'xl'}
                     />}>
 
 

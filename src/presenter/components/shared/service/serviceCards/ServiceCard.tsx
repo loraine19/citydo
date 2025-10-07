@@ -63,7 +63,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
             },
         },
         {
-            iconImage: "groups",
+            iconImage: "group",
             title: `Relancer ${title}`,
             body: ` Relancer ${title}`,
             function: () => { alert(`Voulez-vous relancer ${typeS} ${id} ?`) },
@@ -120,7 +120,9 @@ const ServiceCard: React.FC<ServiceProps> = ({ service, mines, change, update, c
                 />
             </CardMD.Chips>
 
-            <CardMD.Headline className="flex flex-row justify-between w-full ">
+            <CardMD.Headline
+                onClick={() => navigate(`/service/${id}`)}
+                className="flex flex-row justify-between w-full ">
                 <span className={`line-clamp-1`}>
                     {title}
                 </span>

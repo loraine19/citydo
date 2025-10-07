@@ -112,7 +112,7 @@ export function AvatarStack(props: AvatarStackProps) {
                         <MenuItem
                             disabled
                             className="pointer-events-none"
-                            leadingIcon={<Icon icon="groups" fill size="lg" bg />}>
+                            leadingIcon={<Icon icon="group" fill size="lg" bg />}>
                             <div className="flex flex-col">
                                 <span>Groupes : </span>
                                 {Participant?.User?.GroupUser?.map((group, index) =>

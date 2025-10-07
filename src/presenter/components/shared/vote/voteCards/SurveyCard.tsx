@@ -46,123 +46,121 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
 
 
     return (
-        <>
-
-
-            <CardMD
-                autoFit={autoFit}
-                className="min-h-full fade-in"
-                imagePosition="top"
-                image={
-                    <CardMD.Image
-                        onClick={() => navigate(`/sondage/${survey?.id}`)}
-                        src={survey?.image as string}
-                        alt={survey?.title}
-                        className=""
-                    >
-                        <IconAnimate
-                            active={survey?.IVoted}
-                            icon={'ballot'} />
-                        <CardMD.Chips className="px-0.5 max-h-max w-full justify-end">
-                            <DateChip
-                                start={survey?.createdAt}
-                                prefix=" "
-                            />
-                            <MoreButton
-                                id={survey?.id}
-                                type={'vote/sondage'}
-                                flagged={survey?.flagged}
-                                title={survey?.title} />
-                        </CardMD.Chips>
-                    </CardMD.Image>
-                } >
-
-                <CardMD.Chips >
-                    <Chip
-                        onClick={() => change()}
-                        variant="tonal"
-                        value="Sondage"
-                        color="orange"
-                    />
-                    <Chip
-                        variant="tonal"
-                        value={survey?.categoryS}
-                        color="orange"
-                    />
-                    <DateChip
-                        start={survey?.createdAt}
-                        ended={ended}
-                        end={end}
-                        prefix="J-"
-                    />
-                </CardMD.Chips>
-
-                <CardMD.Headline className="line-clamp-1">
-                    {survey?.title}
-                </CardMD.Headline>
-
-                <CardMD.Subhead className={`flex items-center gap-2`}>
-                    <GroupLink group={survey?.Group} />
-                </CardMD.Subhead>
-
-                <CardMD.Media>
-                    <ProgressBar
-                        color="orange"
-                        size='xxsmall'
-                        variant={survey?.pourcent >= 100 ? 'linear' : 'wavy'}
-                        className="pb-0.5"
-                        value={survey?.pourcent}
-                        max={100}
-                        label={
-                            <div className="md3-card-supporting-text justify-between flex-row">
-                                {survey?.status !== PoolSurveyStatus.PENDING ?
-                                    <span>Sondage cloturé</span> :
-                                    <>
-                                        <span>
-                                            {survey?.Votes?.length} vote{survey?.Votes?.length > 1 ? 's ' : ' '}  pour {survey?.pourcent >= 100 ? ' approuvé' : ''}</span>
-                                        <span className="opacity-50"> / &nbsp;
-                                            {survey?.needed + survey?.Votes?.length}
-                                        </span>
-                                    </>
-
-                                }
-                            </div>}
-
-                    />
-
-
-                </CardMD.Media>
-                <CardMD.Footer className="flex items-center pb-1">
-                    {!mines ? (
-                        <div className=" w-full flex-1 flex items-center truncate pl-2 -ml-2 ">
-                            <ProfileDiv
-                                size='md'
-                                date={survey?.createdAt}
-                                profile={survey?.User} />
-                        </div>
-                    ) : (
-                        <ModifBtnStack
-                            disabled2={ended}
-                            actions={actions}
-                            update={update}
+        <CardMD
+            autoFit={autoFit}
+            className="min-h-full fade-in"
+            imagePosition="top"
+            image={
+                <CardMD.Image
+                    onClick={() => navigate(`/sondage/${survey?.id}`)}
+                    src={survey?.image as string}
+                    alt={survey?.title}
+                    className=""
+                >
+                    <IconAnimate
+                        active={survey?.IVoted}
+                        icon={'ballot'} />
+                    <CardMD.Chips className="px-0.5 max-h-max w-full justify-end">
+                        <DateChip
+                            start={survey?.createdAt}
+                            prefix=" "
                         />
-                    )}
-                    <Button
-                        icon={{
-                            style: '-mt-[1px]',
-                            icon: survey?.IVoted ? 'list_alt_check' : 'list_alt_add',
-                            fill: survey?.IVoted,
-                            title: survey?.IVoted ? "Retirer mon vote" : "Je participe"
-                        }}
-                        size='medium'
-                        disabled={survey?.status !== PoolSurveyStatus.PENDING}
-                        onClick={() => vote(values)}
-                        variant={!survey?.IVoted ? "tonal" : "tonal"}
-                        color={color() as Md3Colors}
-                    />
+                        <MoreButton
+                            id={survey?.id}
+                            type={'vote/sondage'}
+                            flagged={survey?.flagged}
+                            title={survey?.title} />
+                    </CardMD.Chips>
+                </CardMD.Image>
+            } >
 
-                </CardMD.Footer>
-            </CardMD>
-        </>
+            <CardMD.Chips >
+                <Chip
+                    onClick={() => change()}
+                    variant="tonal"
+                    value="Sondage"
+                    color="orange"
+                />
+                <Chip
+                    variant="tonal"
+                    value={survey?.categoryS}
+                    color="orange"
+                />
+                <DateChip
+                    start={survey?.createdAt}
+                    ended={ended}
+                    end={end}
+                    prefix="J-"
+                />
+            </CardMD.Chips>
+
+            <CardMD.Headline
+                onClick={() => navigate(`/vote/sondage/${survey?.id}`)}
+                className="line-clamp-1">
+                {survey?.title}
+            </CardMD.Headline>
+
+            <CardMD.Subhead className={`flex items-center gap-2`}>
+                <GroupLink group={survey?.Group} />
+            </CardMD.Subhead>
+
+            <CardMD.Media>
+                <ProgressBar
+                    color="orange"
+                    size='xxsmall'
+                    variant={survey?.pourcent >= 100 ? 'linear' : 'wavy'}
+                    className="pb-0.5"
+                    value={survey?.pourcent}
+                    max={100}
+                    label={
+                        <div className="md3-card-supporting-text justify-between flex-row">
+                            {survey?.status !== PoolSurveyStatus.PENDING ?
+                                <span>Sondage cloturé</span> :
+                                <>
+                                    <span>
+                                        {survey?.Votes?.length} vote{survey?.Votes?.length > 1 ? 's ' : ' '}  pour {survey?.pourcent >= 100 ? ' approuvé' : ''}</span>
+                                    <span className="opacity-50"> / &nbsp;
+                                        {survey?.needed + survey?.Votes?.length}
+                                    </span>
+                                </>
+
+                            }
+                        </div>}
+
+                />
+
+
+            </CardMD.Media>
+            <CardMD.Footer className="flex items-center pb-1">
+                {!mines ? (
+                    <div className=" w-full flex-1 flex items-center truncate pl-2 -ml-2 ">
+                        <ProfileDiv
+                            size='md'
+                            date={survey?.createdAt}
+                            profile={survey?.User} />
+                    </div>
+                ) : (
+                    <ModifBtnStack
+                        disabled2={ended}
+                        actions={actions}
+                        update={update}
+                    />
+                )}
+                <Button
+                    icon={{
+                        style: '-mt-[1px]',
+                        icon: survey?.IVoted ? 'list_alt_check' : 'list_alt_add',
+                        fill: survey?.IVoted,
+                        title: survey?.IVoted ? "Retirer mon vote" : "Je participe"
+                    }}
+                    size='medium'
+                    disabled={survey?.status !== PoolSurveyStatus.PENDING}
+                    onClick={() => vote(values)}
+                    variant={!survey?.IVoted ? "tonal" : "tonal"}
+                    color={color() as Md3Colors}
+                />
+
+            </CardMD.Footer>
+        </CardMD>
     );
 }

@@ -18,18 +18,16 @@ import DetailsHeadSection from "../../base/baseComps/DetailsHeadSection";
 export default function ConciationListPage() {
     const [notif, setNotif] = useState<string>('');
     const [tabSelected] = useState<string>('');
-    const [step, setStep] = useState<string>('');
     const [filter, setFilter] = useState<string>('');
-    const [category, setCategory] = useState<string>('');
 
     //// PARAMS
     const [Params, setParams] = useSearchParams();
-    const params = { filter: Params.get("filter"), category: Params.get("category") }
+    const params = { filter: Params.get("filter") }
     useEffect(() => { setFilter(params.filter || '') }, []);
 
     //// VIEW MODEL
-    const issueViewModelFactory = DI.resolve('issueViewModel');
-    const { issues, isLoading, error, fetchNextPage, hasNextPage, refetch, count } = issueViewModelFactory(step)
+    const issueViewModelFactory = (filter?: string) => DI.resolve('issueViewModel')(filter);
+    const { issues, isLoading, error, fetchNextPage, hasNextPage, refetch, count } = issueViewModelFactory(filter)
 
     //// STATE
     const user = useUserStore().user
@@ -40,11 +38,9 @@ export default function ConciationListPage() {
 
     //// FILTER TAB
     const filterTab = async (value?: IssueFilter) => {
-        setParams({ filter: value as string ?? '', category });
-        value !== filter && setCategory('')
+        setParams({ filter: value as string ?? '' });
         setFilter(value ?? '');
-        setStep(value ?? '')
-        setParams({ filter: value as string ?? '', category })
+        setParams({ filter: value as string ?? '' })
     }
 
     const serviceTabs: TabLabel[] = [
@@ -60,8 +56,7 @@ export default function ConciationListPage() {
     const search = (searchLabel: Label) => {
         const value = searchLabel.value;
         if (value) {
-            setCategory(value);
-            setParams({ search: tabSelected, category: value });
+            setParams({ search: tabSelected });
         }
     }
 
@@ -72,7 +67,7 @@ export default function ConciationListPage() {
             case (error): setNotif("Erreur lors du chargement, veuillez réessayer plus tard"); break;
             default: setNotif('');
         }
-    }, [issues, isLoading, error, filter, category, count, ImModo]);
+    }, [issues, isLoading, error, filter, count, ImModo]);
 
     //// HANDLE SCROLL
     const utils = DI.resolve('utils')
@@ -131,7 +126,6 @@ export default function ConciationListPage() {
             <DetailsHeadSection
                 hidden={hideNavBottom && !isLoading && !error && !notif}
                 infosChipValue={`${count > 0 ? 'conciliations' : 'aucune conciliation'} ${filterName()}`}
-
                 notif={notif}
                 error={error}
                 isLoading={isLoading}

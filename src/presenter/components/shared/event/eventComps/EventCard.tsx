@@ -44,10 +44,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                 <CardMD.Image
                     onClick={() => navigate(`/evenement/${id}`)}
                     src={image as string || '/image/placeholder.jpg'}
-                    alt={title}
-                    className={''} >
-
-
+                    alt={title} >
                     <IconAnimate
                         active={event?.Igo}
                         icon={'person'} />
@@ -62,6 +59,7 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                             title={title} />
                     </CardMD.Chips>
                 </CardMD.Image>}>
+
             <CardMD.Chips >
                 <Chip
                     variant="tonal"
@@ -83,7 +81,9 @@ export function EventCard({ event: initialEvent, change, mines, refetch, autoFit
                         prefix=" j-" />}
             </CardMD.Chips>
 
-            <CardMD.Headline className="line-clamp-1">
+            <CardMD.Headline
+                onClick={() => navigate(`/evenement/${id}`)}
+                className="line-clamp-1">
                 {title}
             </CardMD.Headline>
 

@@ -9,6 +9,7 @@ export const issueViewModel = () => {
     const { data: user, isLoading: userLoading } = useQuery({
       queryKey: ['user'],
       staleTime: 1000 * 60 * 15,
+      retry: true,
       queryFn: async () => await DI.resolve('getUserMeUseCase').execute(),
     })
 
@@ -17,17 +18,20 @@ export const issueViewModel = () => {
     const { data, isLoading, error, fetchNextPage, hasNextPage, refetch }
       = useInfiniteQuery({
         queryKey: ['issues', filter],
-        refetchOnWindowFocus: false,
         staleTime: 1000 * 60 * 15,
         retry: true,
-        queryFn: async ({ pageParam = 1 }) => await getIssues.execute(pageParam, filter) || [],
+        networkMode: 'offlineFirst',
+        queryFn: async ({ pageParam = 1 }) => await getIssues.execute(pageParam, filter) || { issues: [], count: 0 },
         initialPageParam: 1,
+
         getNextPageParam: (lastPage, pages) => lastPage?.issues?.length ? pages.length + 1 : undefined
       });
 
     const count = isLoading ? 0 : (data?.pages[data?.pages.length - 1].count)
-    const flat = (isLoading || !data) ? [] : data?.pages.flat().map(page => page.issues).flat()
-    const issues = userLoading || isLoading ? [] : flat?.map((issue: Issue) => new IssueView(issue, userId))
+    const flat = (isLoading) ? [] : data?.pages.flat().map(page => page.issues).flat()
+    const issues = (userLoading || !flat) ? [] : flat?.map((issue: Issue) => new IssueView(issue, userId))
+
+    console.log("issues", issues, data, filter)
 
     return {
       count,
