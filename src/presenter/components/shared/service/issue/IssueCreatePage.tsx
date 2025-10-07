@@ -32,6 +32,7 @@ export default function IssueEditPage() {
     const getModos = async () => await DI.resolve('getUsersModosUseCase').execute()
     const [modos, setModos] = useState<User[]>([])
     const { handleApiError, setAlertValues, setOpen } = useAlertStore(state => state)
+    const [expand, setExpand] = useState<boolean>(false);
 
     useEffect(() => {
         if (modos.length === 0) {
@@ -108,10 +109,13 @@ export default function IssueEditPage() {
                 {isLoading ?
                     <Skeleton className="w-respLarge !rounded-3xl !h-[calc(100vh-16rem)] shadow m-auto" /> :
                     <IssueForm
+
                         modos={modos}
                         issue={issue as IssueView}
                         service={service}
-                        formik={formik} />}
+                        formik={formik}
+                        expand={expand}
+                        setExpand={setExpand} />}
             </main>
             <footer className="CTA">
                 <Button

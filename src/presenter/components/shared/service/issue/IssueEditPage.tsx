@@ -26,6 +26,7 @@ export default function IssueEditPage() {
     const issueIdViewModelFactory = DI.resolve('issueIdViewModel')
     const { issue, isLoading, error } = issueIdViewModelFactory(idS);
     const updateIssue = async (id: number, data: IssueDTO) => await DI.resolve('updateIssueUseCase').execute(id, data)
+    const [expand, setExpand] = useState<boolean>(false);
 
 
     const redirectModal: ModalValues = {
@@ -96,6 +97,8 @@ export default function IssueEditPage() {
                 {isLoading || error ?
                     <Skeleton className="w-respLarge !rounded-3xl !h-[calc(100vh-16rem)] shadow m-auto" /> :
                     <IssueForm
+                        expand={expand}
+                        setExpand={setExpand}
                         modos={[]}
                         issue={issue}
                         formik={formik} />}
