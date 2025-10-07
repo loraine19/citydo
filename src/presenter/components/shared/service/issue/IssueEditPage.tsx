@@ -96,7 +96,6 @@ export default function IssueEditPage() {
                 {isLoading || error ?
                     <Skeleton className="w-respLarge !rounded-3xl !h-[calc(100vh-16rem)] shadow m-auto" /> :
                     <IssueForm
-                        modos={[]}
                         issue={issue}
                         formik={formik} />}
             </main>

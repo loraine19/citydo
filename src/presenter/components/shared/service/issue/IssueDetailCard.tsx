@@ -64,7 +64,7 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service }) 
         body: <>Voulez-vous vraiment supprimer la conciliation sur <br /><hr /> {issue?.Service?.title}</>,
         color: 'error',
         function: async () => {
-            const data = await deleteIssue(issue.serviceId);
+            const data = await deleteIssue(issue?.serviceId);
             data && navigate('/service?search=myservices')
         }
     }]
@@ -114,8 +114,8 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service }) 
             <div className='flex gap-8'>
                 <Input
                     label={`Pourcentage de ${userImodo?.Profile?.firstName}`}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPourcent({ ...pourcent, IModo: parseInt(e.target.value), other: 100 - parseInt(e.target.value) })}
-                    value={pourcent.IModo}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPourcent({ ...pourcent, IModo: parseInt(e.target?.value), other: 100 - parseInt(e.target?.value) })}
+                    value={pourcent?.IModo}
                     type="number"
                     name="pourcent"
                 />
@@ -131,33 +131,33 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service }) 
 
     const ModoActions = [
         {
-            icon: ((issue.ImModo && issue.statusS === IssueStep.STEP_1) || (issue.ImModoOn && issue.statusS === IssueStep.STEP_2))
-                ? `Accepter la conciliation pour ${issue.ImModo
-                    ? issue.Service.User?.Profile?.firstName ?? ''
+            icon: ((issue?.ImModo && issue?.statusS === IssueStep.STEP_1) || (issue?.ImModoOn && issue?.statusS === IssueStep.STEP_2))
+                ? `Accepter la conciliation pour ${issue?.ImModo
+                    ? issue?.Service?.User?.Profile?.firstName ?? ''
                     : issue?.Service?.UserResp?.Profile?.firstName ?? ''}`
                 : '',
             title: 'Vous avez été choisi comme modérateur ',
             body: (() => {
-                const contactUser = issue.ImModo ? issue.User : issue.UserOn;
+                const contactUser = issue?.ImModo ? issue?.User : issue?.UserOn;
                 return contactUser
                     ? `Vous pouvez contacter l'utilisateur qui vous à choisi : ${generateContact(contactUser)}`
                     : "Aucun utilisateur à contacter.";
             })(),
             function: async () => {
-                const update = issue.ImModo ? IssueStep.STEP_1 : IssueStep.STEP_2
-                const data = await respIssue(issue.serviceId, update)
+                const update = issue?.ImModo ? IssueStep.STEP_1 : IssueStep.STEP_2
+                const data = await respIssue(issue?.serviceId, update)
                 data && navigate('/service?search=myservices')
             }
         },
         {
             iconImg: 'check',
-            icon: (issue.stepValue > 2 && (((issue.ImModo && issue.statusS === IssueStep.STEP_3) || (issue.ImModoOn && issue.statusS === IssueStep.STEP_4))) ?
+            icon: (issue?.stepValue > 2 && (((issue?.ImModo && issue?.statusS === IssueStep.STEP_3) || (issue?.ImModoOn && issue?.statusS === IssueStep.STEP_4))) ?
                 'Cloturer le litige' :
                 issue.statusS),
             title: `Attribution de la moitié des points la conciliation`,
             body: pourcentInput,
             function: async () => {
-                const data = await finishIssue(issue.serviceId, pourcent.IModo)
+                const data = await finishIssue(issue?.serviceId, pourcent?.IModo)
                 data && navigate('/service?search=myservices')
             }
         }]
@@ -294,7 +294,7 @@ export const IssueForm: React.FC<IssueFormProps> = ({ issue, formik, service }) 
                         <CardLarge.Divider />
                         <CardLarge.SupportingText className="md:px-8 flex flex-col gap-2">
                             <h6>Description du probleme</h6>
-                            {formik?.values?.description ?? issue.description}
+                            {formik?.values?.description ?? issue?.description}
                         </CardLarge.SupportingText>
                         <CardLarge.Divider />
                         <CardLarge.MidSection className="md:px-8 gap-2 flex flex-col">
