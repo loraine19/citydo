@@ -19,7 +19,7 @@ export const Tabs: React.FC<tabButtonProps> = ({
     className,
 }) => {
     const [selectedValueState, setSelectedValueState] = useState(value);
-    const activeClasse = `md3-tab-button-active  md3-text-${color}  md3-${color}-border ;  `
+    const activeClasse = `md3-tab-button-active  md3-text-${color}  dark:brightness-[1.25] dark:contrast-[0.75]  md3-${color}-border ;  `
 
     return (
         <div className={`md3-tab-button-group ${className || ''} `}>

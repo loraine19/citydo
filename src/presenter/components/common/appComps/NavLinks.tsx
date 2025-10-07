@@ -29,7 +29,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
 
     //// CONTAINER STYLE 
     const isBottom = placement === "bottom"
-    const containerStyle = isBottom ? `rounded-t-[2rem] py-2 px-3 !flex-1 md3-elevation-5 !max-w-full !border-b-0 justify-between bg-gradient-to-t from-[var(--md3-primary-container)] to-[25%] to-[var(--md3-primary-container)]` :
+    const containerStyle = isBottom ? ` border-t-[1px] !border-[var(--md3-surface)] rounded-t-[2rem] py-2 px-3 !flex-1 md3-elevation-5 !max-w-full !border-b-0 justify-between bg-gradient-to-t from-[var(--md3-primary-container)] to-[25%] to-[var(--md3-primary-container)]` :
         `!shadow-none w-full md3-elevation-0 justify-around  md:pb-0  md:px-2`
 
 
@@ -97,7 +97,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
                     value={navValue}
                     onValueChange={(value) => setNavValue(value)}
                     className={` 
-                    ${containerStyle} border-t-[1px] !border-[var(--md3-surface)] items-center overflow-x-auto overflow-y-hidden flex h-full w-full `}>
+                    ${containerStyle} items-center overflow-x-auto overflow-y-hidden flex h-full w-full `}>
 
                     {navItems.map(({ to, icon, label, color }: NavItem, index) => {
                         const active = location.pathname === to;
@@ -111,7 +111,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
                                     ${isBottom ? active ?
                                         `md3-${color}-container md3-elevation-0 md3-animation-ripple `
                                         : `max-w-[50px] sm:max-w-maw last:mr-[2vw] first:ml-[2vw]` : ``}
-                                        ${!active && `md3-text-${color}`}
+                                        ${`md3-text-${color} dark:brightness-[1.25] dark:contrast-[0.75] `}
                                     
                                         `}
                                 active={active}
@@ -127,7 +127,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
                                         fill={active} />
                                 }
                                 label={
-                                    <span className={`hidden md:block
+                                    <span className={`hidden md:block dark:!font-medium
                                             ${isBottom ?
                                             ' text-[0.7rem] ' :
                                             ' !text-[0.8rem] pb-[4px] '

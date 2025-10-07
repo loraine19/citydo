@@ -92,7 +92,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub, groups }: Profi
                         <AvatarUser
                             Profile={{
                                 firstName: formik.values?.firstName,
-                                image: imgBlob as string ?? 'public/image/logo.svg',
+                                image: imgBlob as string ?? formik.values?.image ?? 'public/image/logo.svg',
                                 userId: user?.id || 0
                             } as any}
                             avatarSize="6xl"
@@ -123,7 +123,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub, groups }: Profi
                             <CardLarge.Header className="flex justify-start items-start flex-col pt-0 gap-2">
                                 <ImageBtn
                                     size={"small"}
-                                    imgBlob={formik.values.image ?? imgBlob as string ?? null}
+                                    imgBlob={formik.values.image ?? imgBlob as string}
                                     variant="tonal"
                                     color='slate'
                                     setImgBlob={setImgBlob}
@@ -166,6 +166,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub, groups }: Profi
                                     name="firstName"
                                     onChange={formik.handleChange}
                                     value={formik.values?.firstName}
+                                    helperText={formik.errors?.firstName ?? ' '}
                                 />
 
                                 <Input
@@ -174,6 +175,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub, groups }: Profi
                                     name="lastName"
                                     onChange={formik.handleChange}
                                     value={formik.values?.lastName}
+                                    helperText={formik.errors?.lastName ?? ' '}
                                 />
 
                             </CardLarge.MidSection>
@@ -187,6 +189,7 @@ export function ProfileForm({ formik, setAssistance, setMailSub, groups }: Profi
                                     onChange={formik.handleChange}
                                     value={formik.values?.phone}
                                     type='tel'
+                                    helperText={formik.errors?.phone ?? ' '}
                                 />
                                 <AddressInputOpen
                                     formik={formik}

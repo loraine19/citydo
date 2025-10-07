@@ -26,7 +26,7 @@ export const TextLength = {
 
 export enum Colors {
     CYAN = 'cyan',
-    RED = 'red',
+    RED = 'error',
     GREEN = 'green',
     AMBER = 'amber',
     PURPLE = 'purple',

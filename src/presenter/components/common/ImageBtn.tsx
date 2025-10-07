@@ -115,7 +115,7 @@ export const ImageBtn = (props: { formik: any; imgBlob: any; setImgBlob: any; im
                                 onClick: () => setOpenDialog(true)
                             }}
                         />
-                        {open &&
+                        {open && (imgBlob || formik?.values?.image || imgDef) &&
                             <DialogImage
                                 open={open}
                                 onClose={() => setOpenDialog(false)}
