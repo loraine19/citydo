@@ -24,7 +24,6 @@ const FlagForm: React.FC<FlagFormProps> = ({ loading, formik, alreadyFlag }) => 
 
 
     // AppBar Section
-    const label = formik.values.reasonS
     const { setDetailSection } = useNavStore((state) => state);
     const SearchSection = useMemo(() => (
         <>
@@ -36,10 +35,10 @@ const FlagForm: React.FC<FlagFormProps> = ({ loading, formik, alreadyFlag }) => 
                 }}
 
                 infosChipValue={(alreadyFlag ?
-                    "Modifier mon signalement" : "Créer mon signalement") + " / " + (formik.values.targetS ?? "") + " / " + (label ?? "...")} />
+                    "Modifier mon signalement" : "Créer mon signalement") + " / " + (formik.values.element?.title ?? "") + " / " + (formik.values.reasonS ?? "...")} />
 
         </>
-    ), [show, formik.values, label, formik.errors, showCard]);
+    ), [show, formik.values, formik.errors, showCard]);
 
     useEffect(() => {
 

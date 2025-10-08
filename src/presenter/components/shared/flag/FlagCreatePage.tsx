@@ -4,7 +4,6 @@ import { useFormik } from 'formik';
 import { object, string } from 'yup';
 import { FlagReason, FlagTarget } from '../../../../domain/entities/Flag';
 import DI from '../../../../di/ioc';
-import { FlagView } from '../../../views/viewsEntities/flagViewEntities'
 import FlagForm from './flagCards/FlagForm';
 import { FlagDTO } from '../../../../infrastructure/DTOs/FlagDTO';
 import { useAlertStore } from '../../../../application/stores/alert.store';
@@ -28,43 +27,39 @@ export default function FlagCreatePage() {
     const [isAlreadyFlag, setIsAlreadyFlag] = useState<boolean>(!!alreadyFlag);
 
     const fetch = async () => {
-        if (alreadyFlag) {
+        if (alreadyFlag.targetId === idS) {
             setIsAlreadyFlag(true);
-            formik.setValues(
-                new FlagView({
-                    ...alreadyFlag,
-                })
-            )
         }
-        else {
-            let fetchedElement: any = {};
-            switch (target as string) {
-                case FlagTarget.EVENT:
-                    fetchedElement = await getEventById(idS);
-                    break;
-                case FlagTarget.SERVICE:
-                    fetchedElement = await getServiceById(idS);
-                    break;
-                case FlagTarget.POST:
-                    fetchedElement = await getPostById(idS);
-                    break;
-            }
-            formik.setValues({
-                element: fetchedElement,
-                target: targetGet(target ?? '') as any,
-                targetId: idS
-            })
 
+        let fetchedElement: any = {};
+        switch (target as string) {
+            case FlagTarget.EVENT:
+                fetchedElement = await getEventById(idS);
+                break;
+            case FlagTarget.SERVICE:
+                fetchedElement = await getServiceById(idS);
+                break;
+            case FlagTarget.POST:
+                fetchedElement = await getPostById(idS);
+                break;
         }
+        formik.setValues({
+            ...alreadyFlag,
+            element: fetchedElement,
+            target: targetGet(target ?? '') as any,
+            targetId: idS
+        })
+        setLoading(false);
     };
 
     useEffect(() => {
         setIdS(id ? parseInt(id) : 0);
         setTargetKey(targetGet(target ?? ''));
-        if (!isLoading && loading) {
+        if ((!isLoading && loading) || !formik.values.element) {
             fetch();
-            setLoading(false);
+
         }
+
     }, [isLoading, id, target]);
 
     const formSchema = object(
@@ -142,7 +137,7 @@ export default function FlagCreatePage() {
 
     return (
         <>
-            {(!isLoading && !loading) ?
+            {(!isLoading) ?
                 <FlagForm
                     alreadyFlag={isAlreadyFlag}
                     loading={loading}

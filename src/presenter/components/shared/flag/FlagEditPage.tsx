@@ -82,7 +82,6 @@ export default function FlagEditPage() {
                                 placeholder='Choisir une raison'
                                 formik={formik}
                                 name="reason"
-
                             />
                         </div>
                     </div>
