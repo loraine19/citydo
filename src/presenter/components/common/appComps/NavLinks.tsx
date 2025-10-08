@@ -29,7 +29,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
 
     //// CONTAINER STYLE 
     const isBottom = placement === "bottom"
-    const containerStyle = isBottom ? ` border-t-[1px] !border-[var(--md3-surface)] rounded-t-[2rem] py-2 px-3 !flex-1 md3-elevation-5 !max-w-full !border-b-0 justify-between bg-gradient-to-t from-[var(--md3-primary-container)] to-[25%] to-[var(--md3-primary-container)]` :
+    const containerStyle = isBottom ? ` border-t-[1px] !border-[var(--md3-surface)] rounded-t-[2rem] py-2 px-3 !flex-1 md3-elevation-5 !max-w-full !border-b-0 justify-between md3-primary-container` :
         `!shadow-none w-full md3-elevation-0 justify-around  md:pb-0  md:px-2`
 
 
@@ -90,8 +90,8 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
             {/* CONTAINER */}
             <div className={
                 `${hideNavBottom ? 'md3-animation-slide-out-down' : 'md3-animation-slide-up'}
-                ${isBottom ? ` wRespXLMargin  ` : ' -mt-1.5   '}                 
-                 flex items-center w-full !z-[3] `
+                ${isBottom ? ` wRespXLMargin !z-[999]  ` : ' -mt-2.5   '}                 
+                 flex items-center w-full  `
             }>
                 <NavigationBar
                     value={navValue}
@@ -103,7 +103,6 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
                         const active = location.pathname === to;
                         if (active && navValue !== label) setNavValue(label);
                         return (
-
                             <NavigationBarItem
                                 row={!isBottom}
                                 className={`
@@ -148,14 +147,14 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
                 </NavigationBar>
                 {addFab &&
                     <FabMenu
-                        backdropBlur={true}
+                        backdropBlur={isBottom}
                         open={openFab}
                         setOpen={setOpenFab}
                         className={`${isBottom ?
                             'bottom-[calc(100%_+_1rem)] fixed right-2' :
-                            'absolute top-[calc(100dvh_-_6rem)] -right-[6rem] md:-right-[5.5rem]'} `}
+                            'absolute top-[calc(100dvh_-_5rem)] !-right-[6rem] md:!-right-[4.5rem]  !z-[9999]'}`}
                         mainProps={{
-                            className: ` rounded-[5rem]  `,
+                            className: `rounded-[5rem] ${isBottom ? 'md3-surface-container' : '!z-[9999]'} `,
                             size: 'large',
                             icon: { icon: openFab ? 'close' : 'add', size: '2xl' },
                             color: color as Md3Colors ?? 'slate'
@@ -164,7 +163,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
                     >
                         {addBtnItem.map(({ to, icon, label, color }: NavItem, index) =>
                             <Fab
-                                className="max-w-max self-end shadow-lg mr-4 gap-4"
+                                className="max-w-max self-end shadow-lg mr-4 gap-4  "
                                 variant="tonal"
                                 key={index}
                                 size="extended"

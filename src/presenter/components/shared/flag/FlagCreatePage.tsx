@@ -2,66 +2,75 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { object, string } from 'yup';
-import { Flag, FlagReason, FlagTarget } from '../../../../domain/entities/Flag';
+import { FlagReason, FlagTarget } from '../../../../domain/entities/Flag';
 import DI from '../../../../di/ioc';
 import { FlagView } from '../../../views/viewsEntities/flagViewEntities'
 import FlagForm from './flagCards/FlagForm';
 import { FlagDTO } from '../../../../infrastructure/DTOs/FlagDTO';
 import { useAlertStore } from '../../../../application/stores/alert.store';
 import { CardConfirmForm } from '../../common/CardConfirmForm';
-import { flagReasons } from '../../../constants';
+import { Skeleton } from '../../common/Skeleton';
 export default function FlagCreatePage() {
     const { id, target } = useParams();
-    const targetKey = (target: string) => Object.keys(FlagTarget).find(key => FlagTarget[key as keyof typeof FlagTarget] === target);
+    const targetGet = (target: string): FlagTarget => Object.keys(FlagTarget).find(key => FlagTarget[key as keyof typeof FlagTarget] === target) as FlagTarget || FlagTarget.POST;
+    const [targetKey, setTargetKey] = useState<FlagTarget>(targetGet(target ?? ''));
+    const [idS, setIdS] = useState<number>(id ? parseInt(id) : 0);
     const reasonKey = (reason: string) => Object.keys(FlagReason).find(key => FlagReason[key as keyof typeof FlagReason] === reason);
     const [loading, setLoading] = useState<boolean>(true);
-    const [flag, setFlag] = useState<Flag>({} as Flag);
     const navigate = useNavigate();
     const postFlag = async (data: any) => DI.resolve('postFlagUseCase').execute(data);
+    // 
     const getEventById = (id: number) => DI.resolve('getEventByIdUseCase').execute(id);
     const getServiceById = (id: number) => DI.resolve('getServiceByIdUseCase').execute(id);
     const getPostById = (id: number) => DI.resolve('getPostByIdUseCase').execute(id);
+    const flagFactory = (id: number, target: FlagTarget) => DI.resolve('flagByIdViewModel')(id, target);
+    const { flag: alreadyFlag, isLoading } = flagFactory(idS, targetKey);
+    const [isAlreadyFlag, setIsAlreadyFlag] = useState<boolean>(!!alreadyFlag);
 
-    const { flag: alreadyFlag, isLoading } = DI.resolve('flagByIdViewModel')(parseInt(id || '0'), targetKey)
-    const [isAlreadyFlag, setIsAlreadyFlag] = useState<boolean>(false);
-
-    const fetch = async (): Promise<FlagView> => {
-        setLoading(true);
-        const idS = id ? parseInt(id) : 0;
-        if (alreadyFlag && alreadyFlag.id) {
-            alert('Vous avez déjà signalé cet élément. Vous allez être redirigé vers la page de modification de votre signalement.');
-            setFlag(alreadyFlag);
+    const fetch = async () => {
+        if (alreadyFlag) {
             setIsAlreadyFlag(true);
-            return new FlagView(alreadyFlag);
+            formik.setValues(
+                new FlagView({
+                    ...alreadyFlag,
+                })
+            )
         }
-        let fetchedElement: any = {};
-        switch (target as string) {
-            case FlagTarget.EVENT:
-                fetchedElement = await getEventById(idS);
-                break;
-            case FlagTarget.SERVICE:
-                fetchedElement = await getServiceById(idS);
-                break;
-            case FlagTarget.POST:
-                fetchedElement = await getPostById(idS);
-                break;
-        }
-        flag.element = fetchedElement;
-        formik.setValues(
-            new FlagView({
-                ...flag,
+        else {
+            let fetchedElement: any = {};
+            switch (target as string) {
+                case FlagTarget.EVENT:
+                    fetchedElement = await getEventById(idS);
+                    break;
+                case FlagTarget.SERVICE:
+                    fetchedElement = await getServiceById(idS);
+                    break;
+                case FlagTarget.POST:
+                    fetchedElement = await getPostById(idS);
+                    break;
+            }
+            formik.setValues({
                 element: fetchedElement,
-                target: targetKey(target ?? '') as any,
+                target: targetGet(target ?? '') as any,
                 targetId: idS
             })
-        );
-        return new FlagView(flag);
+
+        }
     };
 
-
+    useEffect(() => {
+        setIdS(id ? parseInt(id) : 0);
+        setTargetKey(targetGet(target ?? ''));
+        if (!isLoading && loading) {
+            fetch();
+            setLoading(false);
+        }
+    }, [isLoading, id, target]);
 
     const formSchema = object(
         {
+            element: object(),
+            reasonS: string(),
             reason: string().required("La raison est obligatoire"),
             target: string().required("Le type d'élément est obligatoire"),
             targetId: string().required("L'élément à signaler est obligatoire"),
@@ -73,7 +82,6 @@ export default function FlagCreatePage() {
 
     const postFunction = async () => {
         const dataDTO = new FlagDTO(formik.values)
-        console.log(dataDTO)
         let data: any
         try {
             data = await postFlag(dataDTO);
@@ -89,15 +97,14 @@ export default function FlagCreatePage() {
     }
 
     const formik = useFormik({
-        initialValues: new FlagView(flag),
+        initialValues: {} as any,
         validationSchema: formSchema,
         onSubmit: async values => {
-
             const idS = id ? parseInt(id) : 0;
             formik.setValues(
-                new FlagView({
-                    ...flag,
-                    target: targetKey(target ?? '') as FlagTarget,
+                new FlagDTO({
+                    ...values,
+                    target: targetGet(target ?? '') as FlagTarget,
                     targetId: idS,
                     reason: reasonKey(values.reason ?? '') as FlagReason,
                 })
@@ -115,11 +122,11 @@ export default function FlagCreatePage() {
                 title: "Confimrer la création de l'événement",
                 element: (
                     <CardConfirmForm
-                        title={values.title}
+                        title={values.element?.title}
                         content={
                             <>
                                 <div className='font-semibold'> Motif</div>
-                                <div>{flagReasons.find((c: any) => c.value === values.reason)?.label ?? values.reason}</div>
+                                <div>{values.reasonS}</div>
                                 <div className='font-semibold'>{target}:</div>
                                 <div>{values.element?.title}</div>
 
@@ -131,19 +138,16 @@ export default function FlagCreatePage() {
         }
     });
 
-    useEffect(() => {
-        fetch().then(() => setFlag(new FlagView(flag))).finally(() => setLoading(false));
-    }, [id, target, isLoading]);
 
 
     return (
         <>
-
-            <FlagForm
-                alreadyFlag={isAlreadyFlag}
-                flag={flag}
-                loading={loading}
-                formik={formik} />
+            {(!isLoading && !loading) ?
+                <FlagForm
+                    alreadyFlag={isAlreadyFlag}
+                    loading={loading}
+                    formik={formik} /> :
+                <Skeleton />}
         </>
     );
 }

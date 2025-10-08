@@ -46,6 +46,13 @@ export const FabMenu: React.FC<FabMenuProps> = ({ mainProps, children, placement
     return (
         <>
 
+            {
+                <BackDropBlur
+                    blurKey={'fab-menu-blur' + (mainProps?.text || mainProps?.icon?.icon || 'default')}
+                    open={isOpen}
+                    setOpen={setIsOpen}
+                    className={`${backdropBlur ? 'z-[1]' : 'z-auto'}`} />}
+
 
             <div className={`md3-fab-${size} ${mainProps?.className || ''} max-w-max`}>
                 <div className={`md3-fab-container md3-fab-${size} ${className || ''} `}>
@@ -68,12 +75,7 @@ export const FabMenu: React.FC<FabMenuProps> = ({ mainProps, children, placement
                         }} />
                 </div>
             </div>
-            {backdropBlur &&
-                <BackDropBlur
-                    blurKey={'fab-menu-blur' + (mainProps?.text || mainProps?.icon?.icon || 'default')}
-                    open={isOpen}
-                    setOpen={setIsOpen}
-                    className="z-[1]" />}
+
 
 
         </>

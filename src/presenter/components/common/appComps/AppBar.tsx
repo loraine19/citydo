@@ -21,11 +21,11 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage, add
 
     return (
         <header className={`
-                ${!mainPage && 'md3-primary-container md3-elevation-2 !border-none rounded-b-3xl '} mx-auto top-0 flex-col flex gap-2 w-full `}>
+                ${!mainPage && 'md3-primary-container md3-elevation-2 !border-none rounded-b-3xl '} mx-auto top-0 flex-col flex gap-2 w-full  !z-[1] `}>
 
             {/* CONTAINER */}
             <div id='AppBar'
-                className={`pr-2 gap-2 ${!detailPage ? 'pt-2' : 'pt-1'} !border-none flex lg:px-0 slide justify-between items-center `} >
+                className={`${!detailPage ? 'pt-2' : 'pt-1'} !border-none flex lg:px-0 slide justify-between items-center pr-2 gap-2  `} >
 
 
                 {/* PROFILE MENU  */}
@@ -52,15 +52,24 @@ export default function AppBar({ mainPage, listPage, detailPage, singlePage, add
                     <NotifBadge onBoard={mainPage} />
                 </div>
             </div >
-            {/* INSERTION SEARCH BAR */}
 
+            {/* INSERTION SEARCH BAR */}
             {(searchSection && !hideNavBottom && !navBottom) &&
-                <div className="w-full  ">{searchSection}</div>}
+                <div className="w-full  ">
+                    {searchSection}
+                </div>}
+
             {tabSection &&
-                <div className={`"w-full  ${searchSection && ' pt-1.5 sm:pt-3'}`}>{tabSection}</div>
+                <div className={`"w-full ${searchSection && ' pt-1.5 sm:pt-3'}`}>
+                    {tabSection}
+                </div>
             }
+
+            {/* INSERTION DETAIL SECTION */}
             {detailSection &&
-                <div>{detailSection}</div>
+                <div>
+                    {detailSection}
+                </div>
             }
 
         </header >

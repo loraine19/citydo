@@ -18,7 +18,7 @@ interface SelectProps {
 }
 
 interface MultiSelectProps extends Omit<SelectProps, 'value' | 'setValue'> {
-    value?: string[];
+    value: string[];
     setValue?: (value: string[]) => void;
 }
 
@@ -37,22 +37,29 @@ export function Select({
     const { color } = useUxStore(state => state);
     const error = formik?.errors[name ?? ''];
     const [selected, setSelected] = useState(options?.find(opt => opt.value === ((formik?.values?.[name ?? ''] || value))));
-
-    const [displayLabel, setDisplayLabel] = useState<string | React.ReactNode>(selected?.label || placeholder);
+    const [displayLabel, setDisplayLabel] = useState<string | React.ReactNode>(selected?.label);
     const className = variant === 'Input' ? `md3-input-container md3-outlined  !rounded-md md3-input-size-lg ` : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
 
     const handleSelect = (option: { label: string | React.ReactNode, value: string }) => {
-        onChangeFunction && onChangeFunction(value);
-        if (formik) formik.setFieldValue(name, option?.value);
-        setValue && setValue(option?.value);
+        if (formik) {
+            formik.setFieldValue(name, value);
+            formik.values[name ?? ''] = option.value;
+        };
+        onChangeFunction && onChangeFunction(option.value);
+        setValue && setValue(option.value);
+        setSelected(option);
+        setDisplayLabel(option.label);
     }
 
-    useEffect(() => {
+    const handleDisplayLabel = () => {
         const selected2 = options?.find(opt => (opt.value === formik?.values?.[name ?? '']) ||
             options?.find(opt2 => opt2.value === value));
         setDisplayLabel(selected2?.label || placeholder)
-        setSelected(selected2)
-    }, [options, value, formik?.values?.[name ?? '']]);
+    }
+
+    useEffect(() => {
+        handleDisplayLabel();
+    }, [options]);
 
     const [open, setOpen] = useState(false)
 
@@ -87,16 +94,20 @@ export function Select({
                         }
                         title={placeholder}
                     >
-                        {options?.map((option) => (
+                        {options?.map((option: { label: string | React.ReactNode, value: string }) => (
                             <MenuItem
-                                key={option?.value}
-                                value={option?.value}
+                                key={option.value}
+                                value={option.value}
                                 onClick={() => {
                                     handleSelect(option);
                                     setOpen(false)
                                 }}
                                 trailingIcon={selected?.value === option?.value ? (
-                                    <Icon style='-mr-1' color={color ?? 'slate'} size="lg" icon="check" />
+                                    <Icon
+                                        style='-mr-1'
+                                        color={color ?? 'slate'}
+                                        size="lg"
+                                        icon="check" />
                                 ) : <div className="w-3" />}
                             >
                                 {option?.label}
@@ -105,7 +116,7 @@ export function Select({
                     </Menu>
                 </div>
             </div>
-            {displayLabel && variant === 'Input' && !error && placeholder !== displayLabel &&
+            {(displayLabel && variant === 'Input' && !error && placeholder !== displayLabel) &&
                 <InputError
                     style={`absolute mx-2 px-1 h-max pb-1 top-1 -mt-1 !z-[999] rounded bg-[${bgColor ?? 'var(--md3-surface)'}]`}
                     tips={placeholder} />}

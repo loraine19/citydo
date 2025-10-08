@@ -251,16 +251,7 @@ export function EventForm({ formik }: EventFormProps) {
                         <CardLarge.MidSection className="md:px-8 flex flex-col pb-6">
                             <h6>Participants</h6>
                             <div className="flex flex-1 flex-col  gap-4 ">
-                                {/* <Input
-                                    leadingIcon={<Icon icon='person' fill={true} size='lg' />}
-                                    error={!!formik.errors.participantsMin}
-                                    type='number'
-                                    label={""}
-                                    name="participantsMin"
-                                    onChange={formik.handleChange}
-                                    value={formik.values.participantsMin}
-                                    helperText={formik.errors.participantsMin ?? 'participants minimum pour valider l\'évenement'}
-                                /> */}
+
                                 <Slider
                                     size='medium'
                                     color='cyan'

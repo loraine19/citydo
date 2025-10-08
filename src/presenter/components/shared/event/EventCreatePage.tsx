@@ -59,7 +59,6 @@ export default function EventCreatePage() {
             formik.values = values
             setOpen(true)
             setAlertValues({
-
                 disableConfirm: false,
                 handleConfirm: async () => await postFunction(),
                 confirmString: "Enregistrer",

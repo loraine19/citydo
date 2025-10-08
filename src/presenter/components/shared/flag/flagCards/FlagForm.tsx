@@ -12,13 +12,12 @@ import { flagReasons } from '../../../../constants';
 import { InputError } from '../../../common/adaptatersComps/input';
 
 interface FlagFormProps {
-    flag: any;
     loading: boolean;
     formik: any;
     alreadyFlag?: boolean;
 }
 
-const FlagForm: React.FC<FlagFormProps> = ({ flag, loading, formik, alreadyFlag }) => {
+const FlagForm: React.FC<FlagFormProps> = ({ loading, formik, alreadyFlag }) => {
     const [show, setShow] = useState(true);
     const [showCard, setShowCard] = useState(false);
     const [expand, setExpand] = useState(false);
@@ -51,10 +50,9 @@ const FlagForm: React.FC<FlagFormProps> = ({ flag, loading, formik, alreadyFlag 
 
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
-            <main className="wRespXLMargin">
-                <section className={`"DetailCardDiv  "
-                     ${show ? 'overflow-hidden' : 'overflow-auto hideCTAForm'} `}>
-                    <div className={`p-2 max-h-max w-full flex flex-col  gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
+            <main className={`hBottomForm`}>
+                <section className={`pb-6 ${show ? 'overflow-hidden' : 'overflow-auto '}`}>
+                    <div className={`pt-2 max-h-max w-full flex flex-col  gap-2 ${(show) ? 'md3-animation-slide-down' : 'md3-animation-slide-out-up h-0'}`}>
                         <h6 className="md3-card-subhead pt-4">
                             {!alreadyFlag ? `Informations principales` : `Modifier mon signalement`}
                         </h6>
@@ -66,6 +64,7 @@ const FlagForm: React.FC<FlagFormProps> = ({ flag, loading, formik, alreadyFlag 
                                 formik={formik}
                                 name="reason"
                                 placeholder="Choisir la raison"
+                                onChangeFunction={() => formik.setFieldValue('reasonS', flagReasons.find(r => r.value === formik.values.reason)?.label)}
                             />
                             {!formik.errors.reason && formik.values.reason && (
                                 <Button
@@ -84,18 +83,20 @@ const FlagForm: React.FC<FlagFormProps> = ({ flag, loading, formik, alreadyFlag 
                     <CardLarge
                         image={
                             <img
-                                src={flag.element?.image as string ?? ''}
-                                alt={flag.element?.title} />}
+                                src={formik.values.element?.image as string ?? ''}
+                                alt={formik.values.element?.title} />}
                         className={` ${showCard && !show ? 'md3-animation-slide-up' : 'md3-animation-slide-out-down'}`}
                         form
                         expanded={expand}
                         setExpanded={setExpand}
                     >
-                        {formik.values.reasonS}
-                        {formik.values.reason}
                         <CardLarge.Headline>
                             {!alreadyFlag ? `Enregistrer mon signalement` : `Modifier mon signalement`}
                         </CardLarge.Headline>
+                        <CardLarge.Subhead>
+                            {`Pour le motif :
+                             ${formik.values.reasonS ?? ''} `}
+                        </CardLarge.Subhead>
 
                         <CardLarge.Divider />
                         <CardLarge.MidSection className="md:px-8 flex flex-col">
@@ -104,7 +105,7 @@ const FlagForm: React.FC<FlagFormProps> = ({ flag, loading, formik, alreadyFlag 
                                     <Skeleton className="w-respLarge m-auto !h-full !rounded-3xl" />
                                 ) : (
                                     <FlagDetailComp
-                                        flag={new FlagView(flag)}
+                                        flag={new FlagView(formik.values)}
                                         label={formik.values.targetS} />
                                 )}
                             </div>

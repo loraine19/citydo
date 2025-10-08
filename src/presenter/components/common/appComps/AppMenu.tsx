@@ -104,7 +104,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                 blurBack
                 left
                 MenuKey="profile-menu"
-                className={`rounded-l-none !absolute !top-0 !left-0 px-4 pb-2 !z-[999] h-[100dvh] !max-h-[100dvh]  overflow-auto !min-w-[70vw] sm:!min-w-max `}
+                className={`rounded-l-none !absolute !top-0 !left-0 px-4 pb-2 h-[100dvh] !max-h-[100dvh]  overflow-auto !min-w-[70vw] sm:!min-w-max `}
                 placement="free"
                 trigger={
                     <div className="flex items-center ">
