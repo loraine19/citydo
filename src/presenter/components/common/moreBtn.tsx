@@ -52,7 +52,7 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
                 closeIcon={openShare ? <> </> : undefined}
                 blurBack
                 MenuKey={`more-menu-${id}`}
-                className={className ?? '' + ' '}
+                className={className ?? '' + ' overflow-auto max-h-[60vh]'}
                 open={isOpen}
                 setOpen={(open: boolean) => { setIsOpen(open); setOpenShare(false) }}
                 placement={'bottom-left'}
@@ -67,10 +67,20 @@ export const MoreButton = ({ id, type, flagged, title, className }: moreButtonPr
 
 
                 {openShare ?
-                    <><MenuItem leadingIcon={
-                        <Icon onClick={() => setOpenShare(false)} bg fill size="md" icon="arrow_back" />}>
-                        Retour
-                    </MenuItem>
+                    <>
+                        <MenuItem
+                            className="!-mt-4 md3-primary-container "
+                            leadingIcon={
+                                <Icon
+                                    bg
+                                    color={'slate'}
+                                    fill
+                                    title="Retour"
+                                    onClick={() => setOpenShare(false)}
+                                    size="md"
+                                    icon="arrow_back" />}>
+                            Retour
+                        </MenuItem>
                         <ShareDiv
                             url={type && id ? `${window.location.origin}/${type}/${id}` : window.location.origin}
                             text={title} />

@@ -229,13 +229,13 @@ export const Menu: React.FC<MenuProps> = ({
             }
             else if (placement === 'bottom-left') {
                 if (spaceBottom >= menuHeight && spaceLeft >= menuWidth) {
-                    placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
+                    placeBottom({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'left' });
                 } else if (spaceBottom >= menuHeight && spaceRight >= menuWidth) {
-                    placeBottom({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
+                    placeBottom({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'right' });
                 } else if (spaceTop >= menuHeight && spaceLeft >= menuWidth) {
-                    placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'left' });
+                    placeTop({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'left' });
                 } else if (spaceTop >= menuHeight && spaceRight >= menuWidth) {
-                    placeTop({ triggerRect, menuCurrent, style, cropt: false, placeHor: 'right' });
+                    placeTop({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'right' });
                 } else {
                     placeBottom({ triggerRect, menuCurrent, style, cropt: true, placeHor: 'left' });
                 }

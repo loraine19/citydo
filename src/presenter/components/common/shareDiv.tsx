@@ -44,6 +44,14 @@ export const ShareDiv: React.FC<ShareDivProps> = ({ url, text }) => {
             label: 'Snapchat',
             icon: <Icon size="lg" bg fill color="orange" icon="snapchat" />,
             link: links.snapchat
+        },
+        {
+            label: 'Copier le lien',
+            icon: <Icon size="lg" fill bg color={'slate'} icon="content_copy" />,
+            link: '#',
+            onClick: () => {
+                navigator.clipboard.writeText(url);
+            }
         }
     ];
 
@@ -57,10 +65,10 @@ export const ShareDiv: React.FC<ShareDivProps> = ({ url, text }) => {
                     leadingIcon={item.icon}
                     key={item.label}
                     onClick={() => {
-                        window.open(item.link, "_blank");
+                        item.onClick ? item.onClick() :
+                            window.open(item.link, "_blank");
                     }}
                 >
-
                     {item.label}
                 </MenuItem>
             ))}
