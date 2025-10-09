@@ -55,7 +55,7 @@ export function FlagCard(props: FlagCardProps) {
             </CardMD.SupportingText>
 
             <CardMD.Footer className="justify-start flex-col items-start !gap-0">
-                <h6>gerer :</h6>
+                <p>gerer :</p>
                 <ModifBtnStack actions={MyActions} />
             </CardMD.Footer>
         </CardMD>
