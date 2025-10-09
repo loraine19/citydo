@@ -30,18 +30,17 @@ const FlagForm: React.FC<FlagFormProps> = ({ loading, formik, alreadyFlag }) => 
             <FormHeadSection
                 showProps={(!showCard) ? undefined : {
                     show, setShow,
-                    text: show ? "Saisir le motif" : "Modifier le motif",
+                    text: alreadyFlag ? "voir le motif" : show ? "Saisir le motif" : "Modifier le motif",
                     color: "slate"
                 }}
 
                 infosChipValue={(alreadyFlag ?
-                    "Modifier mon signalement" : "Créer mon signalement") + " / " + (formik.values.element?.title ?? "") + " / " + (formik.values.reasonS ?? "...")} />
+                    " mon signalement" : "Créer mon signalement") + " / " + (formik.values.element?.title ?? "") + " / " + (formik.values.reasonS ?? "...")} />
 
         </>
     ), [show, formik.values, formik.errors, showCard]);
 
     useEffect(() => {
-
         setDetailSection(SearchSection);
         return () => setDetailSection(undefined);
     }, [SearchSection]);
@@ -57,15 +56,17 @@ const FlagForm: React.FC<FlagFormProps> = ({ loading, formik, alreadyFlag }) => 
                         </h6>
                         <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
                             <Select
+                                disabled={alreadyFlag}
                                 variant="Input"
                                 value={formik.values.reason}
                                 options={flagReasons}
                                 formik={formik}
                                 name="reason"
                                 placeholder="Choisir la raison"
-                                onChangeFunction={() => formik.setFieldValue('reasonS', flagReasons.find(r => r.value === formik.values.reason)?.label)}
+                                onChangeFunction={() =>
+                                    formik.setFieldValue('reasonS', flagReasons.find(r => r.value === formik.values.reason)?.label)}
                             />
-                            {!formik.errors.reason && formik.values.reason && (
+                            {(!formik.errors.reason && formik.values.reason && formik.values.reasonS) && (
                                 <Button
                                     color="error"
                                     type="button"
@@ -94,16 +95,18 @@ const FlagForm: React.FC<FlagFormProps> = ({ loading, formik, alreadyFlag }) => 
                         </CardLarge.Headline>
                         <CardLarge.Subhead>
                             {`Pour le motif :
-                             ${formik.values.reasonS ?? ''} `}
+                             ${formik.values.reasonS ?? flagReasons.find(r => r.value === formik.values.reason)?.label} `}
                         </CardLarge.Subhead>
 
                         <CardLarge.Divider />
-                        <CardLarge.MidSection className="md:px-8 flex flex-col">
+                        <CardLarge.MidSection className=" flex flex-col">
+                            <h6>Élément signalé :</h6>
                             <div className="flex flex-1 flex-col gap-4">
                                 {loading ? (
                                     <Skeleton className="w-respLarge m-auto !h-full !rounded-3xl" />
                                 ) : (
                                     <FlagDetailComp
+                                        element={formik.values.element}
                                         flag={new FlagView(formik.values)}
                                         label={formik.values.targetS} />
                                 )}
@@ -120,11 +123,12 @@ const FlagForm: React.FC<FlagFormProps> = ({ loading, formik, alreadyFlag }) => 
                 <CTAMines
                     actions={[
                         {
+                            disabled: alreadyFlag,
                             color: 'error',
-                            iconImage: alreadyFlag ? 'check' : 'send',
-                            icon: 'Signaler',
-                            title: 'Signaler',
-                            function: () => { },
+                            iconImage: alreadyFlag ? 'close' : 'send',
+                            icon: alreadyFlag ? 'supprimer' : 'signaler',
+                            title: alreadyFlag ? "Supprimer le signalement" : "Signaler",
+                            function: () => formik.submitForm(),
                             direct: true,
                             type: 'submit',
                         },

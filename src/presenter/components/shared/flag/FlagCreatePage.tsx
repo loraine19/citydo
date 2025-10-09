@@ -9,6 +9,7 @@ import { FlagDTO } from '../../../../infrastructure/DTOs/FlagDTO';
 import { useAlertStore } from '../../../../application/stores/alert.store';
 import { CardConfirmForm } from '../../common/CardConfirmForm';
 import { Skeleton } from '../../common/Skeleton';
+import { flagReasons } from '../../../constants';
 export default function FlagCreatePage() {
     const { id, target } = useParams();
     const targetGet = (target: string): FlagTarget => Object.keys(FlagTarget).find(key => FlagTarget[key as keyof typeof FlagTarget] === target) as FlagTarget || FlagTarget.POST;
@@ -23,13 +24,12 @@ export default function FlagCreatePage() {
     const getServiceById = (id: number) => DI.resolve('getServiceByIdUseCase').execute(id);
     const getPostById = (id: number) => DI.resolve('getPostByIdUseCase').execute(id);
     const flagFactory = (id: number, target: FlagTarget) => DI.resolve('flagByIdViewModel')(id, target);
+
+    const deleteFlag = (id: number, targetKey: FlagTarget) => DI.resolve('deleteFlagUseCase').execute(id, targetKey)
     const { flag: alreadyFlag, isLoading } = flagFactory(idS, targetKey);
-    const [isAlreadyFlag, setIsAlreadyFlag] = useState<boolean>(!!alreadyFlag);
 
     const fetch = async () => {
-        if (alreadyFlag.targetId === idS) {
-            setIsAlreadyFlag(true);
-        }
+
 
         let fetchedElement: any = {};
         switch (target as string) {
@@ -45,6 +45,8 @@ export default function FlagCreatePage() {
         }
         formik.setValues({
             ...alreadyFlag,
+            reason: reasonKey(alreadyFlag?.reason ?? '') ?? '',
+            reasonS: alreadyFlag?.reason ? flagReasons.find(r => r.value === alreadyFlag.reason)?.label : null,
             element: fetchedElement,
             target: targetGet(target ?? '') as any,
             targetId: idS
@@ -75,12 +77,19 @@ export default function FlagCreatePage() {
 
     const { setAlertValues, setOpen, handleApiError } = useAlertStore(state => state)
 
-    const postFunction = async () => {
+    const sendFunction = async () => {
         const dataDTO = new FlagDTO(formik.values)
         let data: any
         try {
-            data = await postFlag(dataDTO);
-            if (data?.id) {
+            if (alreadyFlag.targetId === idS) {
+                data = await postFlag(dataDTO);
+                if (data?.id) {
+                    setOpen(false);
+                    navigate("/flag");
+                }
+            }
+            else {
+                await deleteFlag(idS, dataDTO.target as FlagTarget);
                 setOpen(false);
                 navigate("/flag");
             }
@@ -112,7 +121,7 @@ export default function FlagCreatePage() {
                 },
                 disableCancel: true,
                 disableConfirm: false,
-                handleConfirm: async () => await postFunction(),
+                handleConfirm: async () => await sendFunction(),
                 confirmString: "Enregistrer",
                 title: "Confimrer la création de l'événement",
                 element: (
@@ -137,9 +146,9 @@ export default function FlagCreatePage() {
 
     return (
         <>
-            {(!isLoading) ?
+            {(!isLoading && formik.values !== null) ?
                 <FlagForm
-                    alreadyFlag={isAlreadyFlag}
+                    alreadyFlag={alreadyFlag.targetId === idS}
                     loading={loading}
                     formik={formik} /> :
                 <Skeleton />}

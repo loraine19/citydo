@@ -135,7 +135,6 @@ function App() {
                                     {/* DETAILS PAGES */}
 
                                     <Route path="/service/:id" element={<ServiceDetailPage />} />
-
                                     <Route path="/annonce/:id" element={<PostDetailPage />} />
                                     <Route path="/groupe/:id" element={<GroupDetailPage />} />
                                     <Route path="/evenement/:id" element={<EventDetailPage />} />

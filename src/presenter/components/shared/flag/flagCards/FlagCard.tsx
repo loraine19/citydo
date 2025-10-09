@@ -35,15 +35,6 @@ export function FlagCard(props: FlagCardProps) {
                     <Chip value={targetS} color='cyan' />
                     <Chip value={reasonS} color='error' />
                 </div>
-                <ModifBtnStack actions={MyActions} />
-            </CardMD.Chips>
-
-            <CardMD.Subhead>
-                <h6 className="truncate">{element?.title}</h6>
-            </CardMD.Subhead>
-
-            <CardMD.Footer className="justify-between ">
-                <Chip value={'signalé le ' + new Date(createdAt).toLocaleDateString('fr-FR')} />
                 <Icon
                     icon="keyboard_arrow_right"
                     link={`/${targetS}/${targetId}`}
@@ -53,6 +44,19 @@ export function FlagCard(props: FlagCardProps) {
                     bg
                     fill
                 />
+            </CardMD.Chips>
+
+            <CardMD.Subhead>
+                <h6 className="truncate">{element?.title}</h6>
+            </CardMD.Subhead>
+
+            <CardMD.SupportingText>
+                <Chip value={'signalé le ' + new Date(createdAt).toLocaleDateString('fr-FR')} />
+            </CardMD.SupportingText>
+
+            <CardMD.Footer className="justify-start flex-col items-start !gap-0">
+                <h6>gerer :</h6>
+                <ModifBtnStack actions={MyActions} />
             </CardMD.Footer>
         </CardMD>
     );

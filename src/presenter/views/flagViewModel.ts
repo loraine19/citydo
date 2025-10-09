@@ -11,6 +11,7 @@ export const flagsViewModel = () => {
       queryKey: ['flags'],
       staleTime: 1000 * 60 * 15,
       retry: true,
+      refetchOnMount: true,
       networkMode: 'offlineFirst',
       queryFn: async () => await getFlags.execute() || [],
     })
@@ -34,6 +35,7 @@ export const flagByIdViewModel = () => {
         queryKey: ['flagById', id, target],
         staleTime: 1000 * 60 * 15,
         retry: true,
+        refetchOnMount: true,
         networkMode: 'offlineFirst',
         queryFn: async () => await getFlagById.execute(id, target) || [],
       })
