@@ -9,8 +9,7 @@ import ModifBtnStack from "../../../common/ModifBtnStack";
 
 type FlagCardProps = { flag: FlagView, update: () => void };
 
-export function FlagCard(props: FlagCardProps) {
-    const { flag, update } = props;
+export function FlagCard({ flag, update }: FlagCardProps) {
     const { targetId, createdAt, target, targetS, element, reasonS } = flag;
 
     const deleteFlag = (targetId: number, target: FlagTarget) =>
@@ -47,7 +46,9 @@ export function FlagCard(props: FlagCardProps) {
             </CardMD.Chips>
 
             <CardMD.Subhead>
-                <h6 className="truncate">{element?.title}</h6>
+                <h6 className="truncate">
+                    {element?.title}
+                </h6>
             </CardMD.Subhead>
 
             <CardMD.SupportingText>

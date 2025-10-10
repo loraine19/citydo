@@ -45,7 +45,7 @@ export default function FlagCreatePage() {
         }
         formik.setValues({
             ...alreadyFlag,
-            reason: reasonKey(alreadyFlag?.reason ?? '') ?? '',
+            reason: alreadyFlag?.reason,
             reasonS: alreadyFlag?.reason ? flagReasons.find(r => r.value === alreadyFlag.reason)?.label : null,
             element: fetchedElement,
             target: targetGet(target ?? '') as any,
@@ -81,7 +81,7 @@ export default function FlagCreatePage() {
         const dataDTO = new FlagDTO(formik.values)
         let data: any
         try {
-            if (alreadyFlag.targetId === idS) {
+            if (alreadyFlag.targetId !== idS) {
                 data = await postFlag(dataDTO);
                 if (data?.id) {
                     setOpen(false);
@@ -95,7 +95,7 @@ export default function FlagCreatePage() {
             }
         }
         catch (error: any) {
-            handleApiError(error ?? "Erreur lors de la création de l'événement");
+            handleApiError(error ?? "Erreur lors de la création du signalement");
         }
 
     }
@@ -123,7 +123,7 @@ export default function FlagCreatePage() {
                 disableConfirm: false,
                 handleConfirm: async () => await sendFunction(),
                 confirmString: "Enregistrer",
-                title: "Confimrer la création de l'événement",
+                title: !alreadyFlag ? "Enregistrer le signalement" : "Supprimer le signalement",
                 element: (
                     <CardConfirmForm
                         title={values.element?.title}

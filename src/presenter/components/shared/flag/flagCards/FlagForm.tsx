@@ -18,8 +18,8 @@ interface FlagFormProps {
 }
 
 const FlagForm: React.FC<FlagFormProps> = ({ loading, formik, alreadyFlag }) => {
-    const [show, setShow] = useState(true);
-    const [showCard, setShowCard] = useState(false);
+    const [show, setShow] = useState(!alreadyFlag);
+    const [showCard, setShowCard] = useState(alreadyFlag);
     const [expand, setExpand] = useState(false);
 
 
@@ -91,7 +91,7 @@ const FlagForm: React.FC<FlagFormProps> = ({ loading, formik, alreadyFlag }) => 
                         setExpanded={setExpand}
                     >
                         <CardLarge.Headline>
-                            {!alreadyFlag ? `Enregistrer mon signalement` : `Modifier mon signalement`}
+                            {!alreadyFlag ? `Enregistrer mon signalement` : `Supprimer mon signalement`}
                         </CardLarge.Headline>
                         <CardLarge.Subhead>
                             {`Pour le motif :
@@ -123,7 +123,6 @@ const FlagForm: React.FC<FlagFormProps> = ({ loading, formik, alreadyFlag }) => 
                 <CTAMines
                     actions={[
                         {
-                            disabled: alreadyFlag,
                             color: 'error',
                             iconImage: alreadyFlag ? 'close' : 'send',
                             icon: alreadyFlag ? 'supprimer' : 'signaler',
