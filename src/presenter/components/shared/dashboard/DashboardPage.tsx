@@ -21,7 +21,7 @@ export default function DashboardPage() {
     const { user, fetchUser, setIsLoggedIn, } = useUserStore((state) => state);
     const { setHideNavBottom, navBottom } = useUxStore((state) => state);
     useEffect(() => {
-        if (!user) {
+        if (!user || !user?.Profile) {
             setIsLoggedIn(false);
             setTimeout(() => {
                 setAlertValues({
@@ -36,10 +36,8 @@ export default function DashboardPage() {
             }, 10000);
         }
         else setIsLoggedIn(true);
-
         !user?.Profile && fetchUser()
         setHideNavBottom(false)
-
     }, [user])
     const navigate = useNavigate();
 
