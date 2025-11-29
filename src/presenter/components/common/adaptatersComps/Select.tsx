@@ -22,6 +22,7 @@ interface MultiSelectProps extends Omit<SelectProps, 'value' | 'setValue'> {
     setValue?: (value: string[]) => void;
 }
 
+//// Single Select component
 export function Select({
     formik,
     setValue,
@@ -38,7 +39,9 @@ export function Select({
     const error = formik?.errors[name ?? ''];
     const [selected, setSelected] = useState(options?.find(opt => opt.value === ((formik?.values?.[name ?? ''] || value))));
     const [displayLabel, setDisplayLabel] = useState<string | React.ReactNode>(selected?.label);
-    const className = variant === 'Input' ? `md3-input-container md3-outlined  !rounded-md md3-input-size-lg ` : `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
+    const className = variant === 'Input' ?
+        `md3-input-container md3-outlined  !rounded-md md3-input-size-lg ` :
+        `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
 
     const handleSelect = (option: { label: string | React.ReactNode, value: string }) => {
         if (formik) {
@@ -52,9 +55,10 @@ export function Select({
     }
 
     const handleDisplayLabel = () => {
-        const selected2 = options?.find(opt => (opt.value === formik?.values?.[name ?? '']) ||
-            options?.find(opt2 => opt2.value === value));
-        setDisplayLabel(selected2?.label || placeholder)
+        const selected2 = options?.find(opt => opt.value === formik?.values?.[name ?? '']) ??
+            options?.find(opt => opt.value === value)
+        console.log(name, options, selected2, value, formik.values);
+        setDisplayLabel(selected2?.label ?? placeholder)
     }
 
     useEffect(() => {
@@ -70,7 +74,6 @@ export function Select({
                 ${className} !px-[1rem] !min-h-[42px] gap-2 
                 ${displayLabel ? 'active border-2' : ''}
                 ${disabled ? 'opacity-50 pointer-events-none' : ''}`} >
-
                     <Menu
                         fitMax
                         open={open}

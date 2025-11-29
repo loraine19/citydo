@@ -17,8 +17,10 @@ import { useNavStore } from "../../../../../application/stores/nav.store";
 import FormHeadSection from "../../base/baseComps/FormHeadSection";
 import { Button } from "../../base/baseComps/Buttons";
 
-export function ServiceForm(props: { formik: any }) {
-    const { formik } = props;
+interface ServiceFormProps {
+    formik: any;
+}
+export function ServiceForm({ formik }: ServiceFormProps) {
     const { user } = useUserStore();
     const userProfile: Profile = user.Profile;
     const [imgBlob, setImgBlob] = useState<string | undefined>(formik.values.image);
@@ -28,6 +30,7 @@ export function ServiceForm(props: { formik: any }) {
     // Stepper logic
     const [show, setShow] = useState(true);
     const [showCard, setShowCard] = useState(false);
+
 
     // Points calculation
     const [points, setPoints] = useState<string>(formik.values.points?.join(' à ') || '0 à 1');
@@ -60,7 +63,7 @@ export function ServiceForm(props: { formik: any }) {
     useEffect(() => {
         setDetailSection(SearchSection);
         return () => setDetailSection(undefined);
-    }, [SearchSection, setDetailSection, formik.errors, formik.values, show]);
+    }, [SearchSection, setDetailSection, formik.values, label, formik.errors, show, showCard]);
 
     const start = formik.values.createdAt || new Date();
 
@@ -83,15 +86,17 @@ export function ServiceForm(props: { formik: any }) {
                                 onChangeProps={(val) => formik.setFieldValue("type", val)}
                                 disabled={formik.values.statusValue > 0}
                             />
-                            <Select
-                                variant="Input"
-                                options={serviceCategories}
-                                disabled={formik.values.statusValue > 0}
-                                name={"category"}
-                                value={formik.values.category}
-                                placeholder="Catégorie"
-                                formik={formik}
-                            />
+                            {formik.values.category &&
+
+                                <Select
+                                    disabled={formik.values.statusValue > 0}
+                                    variant="Input"
+                                    value={formik?.values?.category}
+                                    options={serviceCategories}
+                                    formik={formik}
+                                    name="category"
+                                    placeholder="Choisir la catégorie"
+                                />}
 
                             <GroupSelect
                                 groupId={groupId}
@@ -116,7 +121,8 @@ export function ServiceForm(props: { formik: any }) {
                     </div>
                     <CardLarge
                         className={`mb-8 ${(showCard && !show) ?
-                            `md3-animation-slide-up ` : 'md3-animation-slide-out-down'}`}
+                            `md3-animation-slide-up ` :
+                            'md3-animation-slide-out-down'}`}
                         form
                         expanded={expand}
                         setExpanded={setExpand}
@@ -179,7 +185,7 @@ export function ServiceForm(props: { formik: any }) {
                             <h6>Niveaux</h6>
                             <div className="flex flex-1 !py-2 flex-col gap-4">
                                 <div className="flex flex-col xs:flex-row gap-4 ">
-                                    <Select
+                                    {formik.values.skill && <Select
                                         bgColor="var(--md3-primary-container)"
                                         variant="Input"
                                         name={'skill'}
@@ -187,8 +193,8 @@ export function ServiceForm(props: { formik: any }) {
                                         value={formik.values.skill?.toString()}
                                         options={skillLevels}
                                         placeholder="Compétence"
-                                    />
-                                    <Select
+                                    />}
+                                    {formik.values.hard && <Select
                                         bgColor="var(--md3-primary-container)"
                                         placeholder="Pénibilité"
                                         variant="Input"
@@ -196,7 +202,7 @@ export function ServiceForm(props: { formik: any }) {
                                         formik={formik}
                                         value={formik.values.hard?.toString()}
                                         options={hardLevels}
-                                    />
+                                    />}
                                 </div>
                                 <Chip
                                     className="!px-3 h-[2.8rem] !rounded-md"

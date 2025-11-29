@@ -37,6 +37,15 @@ export default function ServiceEditPage() {
         groupId: string().required("obligatoire").notOneOf(["0"], "obligatoire"),
     })
 
+
+    //// HANDLE API ERROR
+    useEffect(() => {
+        //   if (service && !isLoading) navigate("/msg?msg=Vous n'avez pas le droit de modifier ce service")
+        if (!isLoading) {
+            setInitialValues(service as ServiceView)
+            formik.setValues(service as ServiceView)
+        }
+    }, [isLoading]);
     useEffect(() => {
         setInitialValues(service)
         if (!isLoading && service?.userId && user?.id && service.userId !== user.id)
@@ -46,7 +55,7 @@ export default function ServiceEditPage() {
 
     const formik = useFormik({
         enableReinitialize: true,
-        initialValues: initialValues as any,
+        initialValues: initialValues as ServiceView,
         validationSchema: formSchema,
         onSubmit: values => {
             formik.values = values
@@ -90,9 +99,12 @@ export default function ServiceEditPage() {
 
     return (
         <>
-            {isLoading || error ?
-                <Skeleton className={'w-24'} key={'S'} /> :
-                <ServiceForm formik={formik} />}
+            {isLoading || error || !formik.values ?
+                <Skeleton
+                    className={'w-24'}
+                    key={'S'} /> :
+                <ServiceForm
+                    formik={formik} />}
         </ >
     )
 }

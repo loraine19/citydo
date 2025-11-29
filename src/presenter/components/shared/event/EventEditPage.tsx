@@ -62,7 +62,6 @@ export default function EventDetailPage() {
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: initialValues as extendEventView,
-
         validationSchema: formSchema,
         onSubmit: async values => {
             formik.values = values

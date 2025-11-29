@@ -81,6 +81,7 @@ export function EventForm({ formik }: EventFormProps) {
     }, [SearchSection, setDetailSection, formik.values, label, formik.errors, show, showCard]);
 
     const [slidderValue, setSlidderValue] = useState(formik.values.participantsMin ?? 1);
+
     return (
         <form onSubmit={formik.handleSubmit} className="flex flex-col h-full overflow-hidden">
             <main className={`hBottomForm`}>
