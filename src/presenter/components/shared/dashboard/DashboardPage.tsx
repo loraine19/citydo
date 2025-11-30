@@ -165,15 +165,15 @@ export default function DashboardPage() {
                                     title="voir mes messages" />
                                 <span className={notifsMsg.length < 1 ? "hidden" : " absolute -top-0.5 right-0 w-3 h-3 rounded-full md3-cyan border-[2px] border-[var(--md3-primary-container)]"} />
                             </div>
-                            {count > 0 ?
-                                <>{count} {count > 1 ? 'notifications' : 'notification'} </> :
+                            {!error ?
+                                <>{count > 1 ? count : 'Aucune'} {count > 1 ? 'notifications' : 'notification'} </> :
                                 <NotifDiv
                                     isLoading={isLoading}
                                     error={error}
                                     refetch={refetch}
-                                    notif={isLoading ? 'Chargement...' :
-                                        error ??
-                                            notifs.length === 0 ? 'Aucune notification' : ''} />}
+                                    notif={isLoading ?
+                                        'Chargement...' :
+                                        error ?? 'erreur de chargement'} />}
 
                         </CardMD.Subhead>
 
@@ -183,9 +183,9 @@ export default function DashboardPage() {
                                 isLoading={isLoading}
                                 refetch={refetch}
                                 notif={error} />
-                            <div className="relative flex flex-col max-h-[1.5rem]  w-full overflow-y-auto"
-                                onScroll={() => handleScroll()}
-                                ref={divRef}>
+                            <div ref={divRef}
+                                className="relative flex flex-col max-h-[1.5rem] w-full overflow-y-auto"
+                                onScroll={() => handleScroll()}>
                                 <div className="relative overflow-auto gap-1 flex flex-col">
                                     {!isLoading && (notifs.map((notif: NotifView, index: number) => notif?.read === false &&
                                         <div key={index + 'div'}
@@ -209,7 +209,6 @@ export default function DashboardPage() {
                                                     </span>
                                                 </div>
                                                 <Icon
-
                                                     fill
                                                     icon={"cancel"}
                                                     onClick={async () => {
@@ -220,7 +219,6 @@ export default function DashboardPage() {
                                                     style="hover:cursor-pointer min-w-max opacity-60"
                                                     title={"fermer " + notif?.title} />
                                             </div>
-
                                         </div>))}
                                 </div>
                             </div>

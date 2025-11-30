@@ -86,17 +86,16 @@ export function ServiceForm({ formik }: ServiceFormProps) {
                                 onChangeProps={(val) => formik.setFieldValue("type", val)}
                                 disabled={formik.values.statusValue > 0}
                             />
-                            {formik.values.category &&
-
-                                <Select
-                                    disabled={formik.values.statusValue > 0}
-                                    variant="Input"
-                                    value={formik?.values?.category}
-                                    options={serviceCategories}
-                                    formik={formik}
-                                    name="category"
-                                    placeholder="Choisir la catégorie"
-                                />}
+                            <span className="hidden">{formik.values.category}</span>
+                            <Select
+                                disabled={formik.values.statusValue > 0}
+                                variant="Input"
+                                value={formik?.values?.category}
+                                options={serviceCategories}
+                                formik={formik}
+                                name="category"
+                                placeholder="Choisir la catégorie"
+                            />
 
                             <GroupSelect
                                 groupId={groupId}
@@ -181,7 +180,8 @@ export function ServiceForm({ formik }: ServiceFormProps) {
                             </div>
                         </CardLarge.MidSection>
                         <CardLarge.Divider />
-                        <CardLarge.MidSection className="md:px-8 max-h-max flex flex-col">
+                        <CardLarge.MidSection
+                            className="md:px-8 max-h-max flex flex-col">
                             <h6>Niveaux</h6>
                             <div className="flex flex-1 !py-2 flex-col gap-4">
                                 <div className="flex flex-col xs:flex-row gap-4 ">
