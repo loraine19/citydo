@@ -6,26 +6,25 @@ import { SurveyCategory } from "../domain/entities/PoolSurvey";
 import { PostCategory } from "../domain/entities/Post";
 import { ServiceCategory, SkillLevel, HardLevel } from "../domain/entities/Service";
 
-export const getEnumLabel = (enumArray: any, all?: boolean): Label[] => {
-    const allLabel = { label: 'tous', value: '' }
+export const getEnumLabel = (enumArray: any, name?: string): Label[] => {
     const array = [...Object.keys(enumArray).map(key => ({
         label: enumArray[key as keyof typeof enumArray],
         value: key,
     }))];
-    all && array.unshift(allLabel as Label);
+    name && array.unshift({ label: name, value: '' } as Label);
     return array
 };
 
-export const eventCategoriesS = getEnumLabel(EventCategory, true);
+export const eventCategoriesS = getEnumLabel(EventCategory, 'tous');
 export const eventCategories = getEnumLabel(EventCategory);
 export const flagReasons = getEnumLabel(FlagReason)
-export const serviceCategoriesS: Label[] = getEnumLabel(ServiceCategory, true);
+export const serviceCategoriesS: Label[] = getEnumLabel(ServiceCategory, 'tous');
 export const surveyCategories: Label[] = getEnumLabel(SurveyCategory);
-export const surveyCategoriesS: Label[] = getEnumLabel(SurveyCategory, true);
+export const surveyCategoriesS: Label[] = getEnumLabel(SurveyCategory, 'tous');
 export const serviceCategories: Label[] = getEnumLabel(ServiceCategory);
 export const skillLevels: Label[] = getEnumLabel(SkillLevel);
 export const hardLevels: Label[] = getEnumLabel(HardLevel);
-export const postCategoriesS: Label[] = getEnumLabel(PostCategory, true);
+export const postCategoriesS: Label[] = getEnumLabel(PostCategory, 'tous');
 export const postCategories: Label[] = getEnumLabel(PostCategory);
 export const groupCategories: Label[] = getEnumLabel(GroupCategory);
 

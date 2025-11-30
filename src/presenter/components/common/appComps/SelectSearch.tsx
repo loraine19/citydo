@@ -43,7 +43,6 @@ export default function SelectSearch(props: selectSearchProps) {
                             <MenuItem
                                 trailingIcon={searchCat.value === label.value ?
                                     <Icon
-
                                         style='-mr-1'
                                         color={color ?? 'slate'}
                                         size={"lg"}
@@ -65,7 +64,7 @@ export default function SelectSearch(props: selectSearchProps) {
                 <input
                     onClick={(e: React.MouseEvent<HTMLInputElement>) => {
                         e.stopPropagation();
-                        setSearchCat({ label: '', value: null })
+                        setSearchCat({ label: name, value: null })
                     }}
                     data-cy="input-search"
                     type="search"

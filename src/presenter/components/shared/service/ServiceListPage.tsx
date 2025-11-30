@@ -22,7 +22,7 @@ import { Icon } from "../../common/IconComp";
 export default function ServicesPage() {
     const [notif, setNotif] = useState<string>('');
     const [tabSelected] = useState<string>('');
-    const [searchCat, setSearchCat] = useState<Label>({ label: 'tous', value: '' });
+    const [searchCat, setSearchCat] = useState<Label>({ label: 'Services', value: '' });
     const [mine, setMine] = useState<boolean>(false);
     const [type, setType] = useState<string>('');
     const [step, setStep] = useState<string>('');

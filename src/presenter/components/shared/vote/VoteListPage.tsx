@@ -26,7 +26,7 @@ import { ViewButtonProps } from "../../common/appComps/ViewBtn";
 export default function VoteListPage() {
     const [notif, setNotif] = useState<string>('');
     const [tabSelected] = useState<string>('');
-    const [searchCat, setSearchCat] = useState<Label>({ label: 'tous', value: '' });
+    const [searchCat, setSearchCat] = useState<Label>({ label: 'Votes', value: '' });
     const [mine, setMine] = useState<boolean>(false);
     const [step, setStep] = useState<string>('');
     const [filter, setFilter] = useState<string>('');

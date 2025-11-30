@@ -23,7 +23,7 @@ import { ViewButtonProps } from "../../common/appComps/ViewBtn";
 export default function EventListPage() {
     const [notif, setNotif] = useState<string>("");
     const [tabSelected] = useState<string>('');
-    const [searchCat, setSearchCat] = useState<Label>({ label: 'tous', value: '' });
+    const [searchCat, setSearchCat] = useState<Label>({ label: 'Événements', value: '' });
     const [mines, setMines] = useState<boolean>(false);
     const [filter, setFilter] = useState<string>('');
     const [category, setCategory] = useState<string>('');

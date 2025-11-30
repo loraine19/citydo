@@ -20,7 +20,7 @@ import PostGridComp from "./PostComps/PostGridComp";
 export default function PostListPage() {
     const [notif, setNotif] = useState<string>("");
     const [tabSelected] = useState<string>('');
-    const [searchCat, setSearchCat] = useState<Label>({ label: 'tous', value: '' });
+    const [searchCat, setSearchCat] = useState<Label>({ label: 'Annonces', value: '' });
     const [mines, setMines] = useState<boolean>(false);
     const [filter, setFilter] = useState<string>('');
     const [category, setCategory] = useState<string>('');
