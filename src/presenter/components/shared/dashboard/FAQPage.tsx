@@ -39,7 +39,7 @@ export default function FAQPage() {
 
 
     const [openQuestionIndex, setOpenQuestionIndex] = useState<string | null>(null);
-    const [openCategoryIndex, setOpenCategoryIndex] = useState<number | null>(null);
+    const [openCategoryIndex, setOpenCategoryIndex] = useState<number | null>(Params.get('category') ? faqData.findIndex(faq => faq.id === Params.get('category')) : null);
 
     return (
         <main className="hBottomFab">
@@ -52,11 +52,11 @@ export default function FAQPage() {
                     <div className=' grid max-h-full h-full relative'>
                         <div className='overflow-y-auto overflow-x-hidden divide-y-4 '>
 
-                            {faqData.map(({ category, color, icon, items }, index) =>
+                            {faqData.map(({ category, id, color, icon, items }, index) =>
                                 <div className={`${openCategoryIndex === index ? "pb-6 " : ""} py-1  px-3 flex- justify-center items-center cursor-pointer`}>
                                     <div onClick={() => {
                                         setOpenCategoryIndex(openCategoryIndex === index ? null : index);
-                                        setParams({ category })
+                                        setParams({ category: id })
                                         console.log('PARAMS', Params.get('category'));
                                     }}
                                         className={` p-4 gap-4 flex  items-center `}>

@@ -31,7 +31,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
         {
             icon: 'question_mark', text: "FAQ",
             onClick: () => { setOpen(false); navigate('/FAQ'); }, color: "cyan",
-            divider: (!listPage || hideNavBottom) ? 'bottom' : '', style: ''
+            divider: (!listPage || hideNavBottom) ? 'bottom' : 'both', style: ''
         },
         {
             icon: dark ? "light_mode" : "dark_mode",

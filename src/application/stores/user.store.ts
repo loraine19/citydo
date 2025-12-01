@@ -26,6 +26,8 @@ interface UserStore {
     isLoggedIn: boolean;
     connected: boolean;
     setConnected: (value: boolean) => void;
+    userGroups: { id: string; name: string }[];
+    setUserGroups: (value: { id: string; name: string }[]) => void;
 }
 
 export const useUserStore = create<UserStore, [['zustand/persist', UserStore]]>(
@@ -46,6 +48,7 @@ export const useUserStore = create<UserStore, [['zustand/persist', UserStore]]>(
                 set({ user: userUpdated });
                 set({ profile: new ProfileView(userUpdated?.Profile) });
                 set({ isLoggedIn: loggedIn });
+                set({ userGroups: userUpdated?.GroupUser?.map((g: any) => ({ id: g?.groupId?.toString(), name: g?.Group?.name })) || [] });
             }
         }
 
@@ -60,6 +63,8 @@ export const useUserStore = create<UserStore, [['zustand/persist', UserStore]]>(
             setIsLoggedIn: (value: boolean) => set(() => ({ isLoggedIn: value })),
             connected: false,
             setConnected: (value: boolean) => set(() => ({ connected: value })),
+            userGroups: [],
+            setUserGroups: (value: { id: string; name: string }[]) => set(() => ({ userGroups: value })),
         }
     },
         {

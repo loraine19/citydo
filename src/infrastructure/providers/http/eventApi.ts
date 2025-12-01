@@ -18,7 +18,8 @@ export class EventApi {
         const sortR = sort ? `&sort=${sort}` : '';
         const reverseR = reverse ? `&reverse=${reverse}` : ''
         const searchR = search ? `&search=${search}` : '';
-        return this.api.get(`${this.dataType}${pageR}${filterR}${categoryR}${sortR}${reverseR}${searchR}`);
+        const groupIdR = paramss.groupId ? `&groupId=${paramss.groupId}` : '';
+        return this.api.get(`${this.dataType}${pageR}${filterR}${categoryR}${sortR}${reverseR}${searchR}${groupIdR}`);
     }
 
     async getEventById(id: number): Promise<Event> {

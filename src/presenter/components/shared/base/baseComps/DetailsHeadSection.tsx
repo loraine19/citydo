@@ -1,4 +1,6 @@
+import { useUserStore } from "../../../../../application/stores/user.store";
 import Chip from "../../../common/adaptatersComps/Chip";
+import { GroupFilterButton } from "../../../common/appComps/GroupFilterBtn";
 import { SortButton, SortButtonProps } from "../../../common/appComps/SortBtn";
 import { ViewButton, ViewButtonProps } from "../../../common/appComps/ViewBtn";
 import NotifDiv from "../../../common/NotifDiv";
@@ -9,6 +11,10 @@ interface DetailsHeadSectionProps {
     infosChipValue?: string;
     sortBtnProps?: SortButtonProps;
     viewBtnProps?: ViewButtonProps;
+    groupBtnProps?: {
+        setSelectedGroup: (value: string) => void;
+        selectedGroup: string
+    };
     notif?: string;
     error?: string;
     isLoading?: boolean;
@@ -21,6 +27,7 @@ const DetailsHeadSection: React.FC<DetailsHeadSectionProps> = ({
     infosChipValue,
     sortBtnProps,
     viewBtnProps,
+    groupBtnProps,
     notif,
     error,
     isLoading,
@@ -29,6 +36,8 @@ const DetailsHeadSection: React.FC<DetailsHeadSectionProps> = ({
     children
 
 }) => {
+    const { userGroups } = useUserStore(state => state);
+    console.log('groupList in DetailsHeadSection', userGroups);
 
     return (
         <div className={`flex flex-col gap-2 z-[99]  w-full wRespXLMargin
@@ -49,12 +58,28 @@ const DetailsHeadSection: React.FC<DetailsHeadSectionProps> = ({
                         iconPlacement="end"
                         icon={
                             <SortButton
+
                                 {...sortBtnProps}
                             />
                         }
                     />}
+
                 </div>
                 <div className="flex gap-2">
+                    {groupBtnProps &&
+                        <Chip
+                            variant="outlined"
+                            size="medium"
+                            value={`${userGroups.find(v => v.id === groupBtnProps.selectedGroup)?.name ?? "Groupe"}`}
+                            iconPlacement="end"
+                            icon={
+                                <GroupFilterButton
+                                    selectedGroup={groupBtnProps.selectedGroup}
+                                    setSelectedGroup={groupBtnProps.setSelectedGroup}
+                                    groupList={userGroups}
+                                />
+                            }
+                        />}
                     {viewBtnProps &&
                         <Chip
                             className=""

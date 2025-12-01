@@ -28,6 +28,7 @@ export default function PostListPage() {
     const [reverse, setReverse] = useState<boolean>(true);
     const [searchString, setSearchString] = useState<string>('');
     const [view, setView] = useState<'compact' | 'dashboard' | 'large'>("compact");
+    const [selectedGroup, setSelectedGroup] = useState<string>('');
 
     //// PARAMS
     const [Params, setParams] = useSearchParams();
@@ -44,7 +45,8 @@ export default function PostListPage() {
         category: category as PostCategory,
         sort: sort as PostSort,
         reverse,
-        search: searchString
+        search: searchString,
+        groupId: selectedGroup
     });
 
     useEffect(() => {
@@ -247,9 +249,9 @@ export default function PostListPage() {
                 viewBtnProps={{
                     viewList: viewList.concat(window.innerWidth > 768 && dashboardViewItem ? [dashboardViewItem] : []),
                     view: view,
-                }
+                }}
 
-                }
+                groupBtnProps={{ setSelectedGroup, selectedGroup }}
                 notif={notif}
                 error={error}
                 isLoading={isLoading}

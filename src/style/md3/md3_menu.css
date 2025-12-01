@@ -54,14 +54,14 @@
 }
 
 .md3-menu-item-divider-bottom {
-    @apply pb-2;
+    @apply pb-1;
 }
 .md3-menu-item-divider-bottom .md3-menu-item {
     @apply rounded-t-sm;
 }
 
 .md3-menu-item-divider-both {
-    @apply pt-0.5 pb-0.5;
+    @apply pt-1 pb-1;
 }
 
 .md3-menu-out {

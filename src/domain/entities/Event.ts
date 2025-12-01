@@ -37,7 +37,8 @@ export interface EventFindParams {
     mine?: boolean;
     filter?: EventFilter;
     step?: EventStatus
-    category?: EventCategory
+    category?: EventCategory;
+    groupId?: string;
     sort?: EventSort;
     reverse?: boolean;
     search?: string;

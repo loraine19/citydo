@@ -37,6 +37,7 @@ export interface PostFindParams {
     sort?: PostSort;
     reverse?: boolean;
     search?: string;
+    groupId?: string;
 }
 
 export class Post {

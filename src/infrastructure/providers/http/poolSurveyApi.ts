@@ -12,14 +12,15 @@ export class PoolSurveyApi {
     }
 
     async getPoolsSurveys(page?: number, params?: PoolSurveysFindParams): Promise<PoolSurveyPage> {
-        const { filter, step, sort, reverse, search } = params || {};
+        const { filter, step, sort, reverse, search, groupId } = params || {};
         const pageR = page ? `?page=${page}` : '';
         const filterR = filter ? `&filter=${filter}` : '';
         const stepR = step ? `&step=${step}` : '';
         const sortR = sort ? `&sort=${sort}` : '';
         const reverseR = reverse ? `&reverse=${reverse}` : '';
         const searchR = search ? `&search=${search}` : '';
-        return this.api.get(`${this.dataType}${pageR}${filterR}${stepR}${sortR}${reverseR}${searchR}`);
+        const groupIdR = groupId ? `&groupId=${groupId}` : '';
+        return this.api.get(`${this.dataType}${pageR}${filterR}${stepR}${sortR}${reverseR}${searchR}${groupIdR}`);
 
     }
 

@@ -34,6 +34,7 @@ export default function VoteListPage() {
     const [sort, setSort] = useState<PoolSurveySort>(PoolSurveySort.CREATED_AT);
     const [reverse, setReverse] = useState<boolean>(true);
     const [searchString, setSearchString] = useState<string>('');
+    const [selectedGroup, setSelectedGroup] = useState<string>('');
 
     //// PARAMS
     const [Params, setParams] = useSearchParams();
@@ -48,6 +49,7 @@ export default function VoteListPage() {
         reverse,
         search: searchString,
         category: category as SurveyCategory,
+        groupId: selectedGroup
     });
     useEffect(() => {
         setStep(params.step || '');
@@ -235,6 +237,7 @@ export default function VoteListPage() {
                 infosChipValue={`${count ?? 0} ${filterName() ? filterName() : 'cagnottes et sondages'}${categoryName() ? ' / ' + categoryName() : ''}`}
                 sortBtnProps={sortBtnProps}
                 viewBtnProps={viewBtnProps}
+                groupBtnProps={{ setSelectedGroup, selectedGroup }}
                 notif={notif}
                 error={error}
                 isLoading={isLoading}

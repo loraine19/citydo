@@ -11,7 +11,7 @@ export class ServiceApi {
 
     async getServices(page?: number, params?: ServiceFindParams): Promise<ServicePage> {
         let paramss: ServiceFindParams = params ?? {};
-        const { mine, type, step, category, sort, reverse, search } = paramss;
+        const { mine, type, step, category, sort, reverse, search, groupId } = paramss;
         const pageR = page ? `?page=${page}` : '';
         const mineR = mine ? `&mine=${mine}` : '';
         const typeR = type ? `&type=${type}` : '';
@@ -20,7 +20,8 @@ export class ServiceApi {
         const reverseR = reverse ? `&reverse=${reverse}` : '';
         const categoryR = category ? `&category=${category}` : '';
         const searchR = search ? `&search=${search}` : '';
-        return this.api.get(`${this.dataType}${pageR}${mineR}${typeR}${stepR}${categoryR}${sortR}${reverseR}${searchR}`)
+        const groupIdR = groupId ? `&groupId=${groupId}` : '';
+        return this.api.get(`${this.dataType}${pageR}${mineR}${typeR}${stepR}${categoryR}${sortR}${reverseR}${searchR}${groupIdR}`)
     }
 
     async getServiceById(id: number): Promise<Service> {

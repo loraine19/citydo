@@ -31,6 +31,8 @@ export default function EventListPage() {
     const [reverse, setReverse] = useState<boolean>(false);
     const [searchString, setSearchString] = useState<string>('');
     const [view, setView] = useState("view_agenda");
+    const [groupId, setGroupId] = useState<string>('');
+
 
     //// PARAMS
     const [Params, setParams] = useSearchParams();
@@ -47,6 +49,7 @@ export default function EventListPage() {
         category: category as EventCategory,
         sort: sort as EventSort,
         reverse,
+        groupId,
         search: searchString
     });
 
@@ -203,6 +206,11 @@ export default function EventListPage() {
         view: view === "event" ? "calendar" : view === "view_agenda" ? (compact ? "compact" : "large") : view
     }
 
+    const groupBtnProps: any = {
+        selectedGroup: groupId,
+        setSelectedGroup: setGroupId,
+    }
+
 
 
     //// RENDER
@@ -213,6 +221,7 @@ export default function EventListPage() {
                 infosChipValue={`${count ?? 0} événements${filterName() ? ' / ' + filterName() : ''}${categoryName() ? ' / ' + categoryName() : ''}`}
                 sortBtnProps={sortBtnProps}
                 viewBtnProps={viewBtnProps}
+                groupBtnProps={groupBtnProps}
                 notif={notif}
                 error={error}
                 isLoading={isLoading}

@@ -31,6 +31,7 @@ export default function ServicesPage() {
     const [sort, setSort] = useState<ServiceSort>(ServiceSort.CREATED_AT);
     const [reverse, setReverse] = useState<boolean>(true);
     const [searchString, setSearchString] = useState<string>('');
+    const [selectedGroup, setSelectedGroup] = useState<string>('');
 
     //// PARAMS
     const [Params, setParams] = useSearchParams();
@@ -47,6 +48,7 @@ export default function ServicesPage() {
         sort,
         reverse,
         search: searchString,
+        groupId: selectedGroup
     });
     useEffect(() => { setCategory(params.category || ''); setFilter(params.filter || '') }, []);
 
@@ -226,6 +228,7 @@ export default function ServicesPage() {
         view: compact ? 'compact' : 'large'
     }
 
+
     const [filterBox, setFilterBox] = useState<boolean>(false);
 
     //// RENDER
@@ -237,6 +240,7 @@ export default function ServicesPage() {
                 infosChipValue={`${count ?? 0} services ${filterName() ? '/ ' + filterName() : ''} ${categoryName() ? '/ ' + categoryName() : ''}`}
                 sortBtnProps={sortBtnProps}
                 viewBtnProps={viewBtnProps}
+                groupBtnProps={{ setSelectedGroup, selectedGroup }}
                 notif={notif}
                 error={error}
                 isLoading={isLoading}

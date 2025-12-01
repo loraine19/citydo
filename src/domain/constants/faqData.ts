@@ -12,11 +12,13 @@ export interface FaqSection {
     icon: IconName;
     color?: Md3Colors;
     items: FaqItem[];
+    id: string;
 }
 
 export const faqData: FaqSection[] = [
     {
         category: "Gestion de Compte & Profil",
+        id: "account",
         icon: "person",
         color: 'secondary',
         items: [
@@ -44,6 +46,7 @@ export const faqData: FaqSection[] = [
     },
     {
         category: "Géolocalisation & Carte",
+        id: "location",
         icon: "map",
         color: 'green',
         items: [
@@ -66,6 +69,7 @@ export const faqData: FaqSection[] = [
     },
     {
         category: "Services & Points",
+        id: "services",
         icon: "partner_exchange",
         color: 'sky',
         items: [
@@ -88,6 +92,7 @@ export const faqData: FaqSection[] = [
     },
     {
         category: "Événements & Agenda",
+        id: "events",
         icon: "event",
         color: 'cyan',
         items: [
@@ -110,6 +115,7 @@ export const faqData: FaqSection[] = [
     },
     {
         category: "Votes (Sondages & Cagnottes)",
+        id: "votes",
         icon: "how_to_vote",
         color: 'orange',
         items: [
@@ -132,6 +138,7 @@ export const faqData: FaqSection[] = [
     },
     {
         category: "Annonces & Messagerie",
+        id: "posts",
         icon: 'dashboard',
         color: 'rose',
         items: [
@@ -154,6 +161,7 @@ export const faqData: FaqSection[] = [
     },
     {
         category: "Modération & Sécurité",
+        id: "support",
         icon: "support_agent",
         color: 'error',
         items: [

@@ -11,14 +11,15 @@ export class PostApi {
 
     async getPosts(page?: number, params?: PostFindParams): Promise<PostPage> {
         let paramss: PostFindParams = params ?? {};
-        const { filter, category, sort, reverse, search } = paramss;
+        const { filter, category, sort, reverse, search, groupId } = paramss;
         const pageR = page ? `?page=${page}` : '';
         const filterR = filter ? `&filter=${filter}` : '';
         const categoryR = category ? `&category=${category}` : '';
         const sortR = sort ? `&sort=${sort}` : '';
         const reverseR = reverse ? `&reverse=${reverse}` : '';
         const searchR = search ? `&search=${search}` : '';
-        return this.api.get(`${this.dataType}${pageR}${filterR}${categoryR}${sortR}${reverseR}${searchR}`);
+        const groupIdR = groupId ? `&groupId=${groupId}` : '';
+        return this.api.get(`${this.dataType}${pageR}${filterR}${categoryR}${sortR}${reverseR}${searchR}${groupIdR}`);
     }
 
     async getPostById(id: number): Promise<Post> {
