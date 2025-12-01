@@ -122,7 +122,7 @@ export class ApiService implements ApiServiceI {
     };
 
     // --- REFRESH ---
-    private refreshAccess = async (): Promise<boolean> => {
+    refreshAccess = async (): Promise<boolean> => {
         try {
             const response = await axios.post(`${baseURL}/auth/refresh`, {}, { withCredentials: true });
             // Vérification souple (200 ou 201)
