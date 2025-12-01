@@ -37,7 +37,7 @@ export const Tabs: React.FC<tabButtonProps> = ({
                     }}
                     onChange={() => onChange(option.value)}
                 >
-                    <span className="md3-tab-button__content ">
+                    <span className="md3-tab-button__content scale-100 ">
 
                         {selectedValueState === option.value ? (
                             <Icon

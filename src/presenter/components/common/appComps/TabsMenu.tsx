@@ -29,14 +29,15 @@ export default function TabsMenu({ labels, defaultTab, sortList, setSelectedSort
     return (
         <div className="wRespXLMargin relative flex items-center justify-between gap-x-1 ">
 
-            {!hideNavBottom && <> <Tabs
-                className=""
-                options={labels}
-                value={defaultTab as string || labels[0].value}
-                onChange={() => { }}
-                color={color as any}
-                size="medium"
-            />
+            {!hideNavBottom && <>
+                <Tabs
+                    className=""
+                    options={labels}
+                    value={defaultTab as string || labels[0].value}
+                    onChange={() => { }}
+                    color={color as any}
+                    size="medium"
+                />
                 <div className="flex items-center ">   {sortList &&
                     <SortButton
                         action={action ?? (() => { })}

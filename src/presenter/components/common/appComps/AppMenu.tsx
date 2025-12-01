@@ -23,23 +23,27 @@ const AppMenu: React.FC<AppMenuProps> = ({
     ///// MENU ITEMS
     const [open, setOpen] = React.useState(false);
     const menuItems = [
-        { icon: "person_edit", text: "Modifier mon profil", link: '/myprofile', color: "cyan", divider: 'bottom' },
+        {
+            icon: "person_edit", text: "Modifier mon profil",
+            link: '/myprofile', color: "sky", divider: 'bottom'
+        },
+
+        {
+            icon: 'question_mark', text: "FAQ",
+            onClick: () => { setOpen(false); navigate('/FAQ'); }, color: "cyan",
+            divider: (!listPage || hideNavBottom) ? 'bottom' : '', style: ''
+        },
         {
             icon: dark ? "light_mode" : "dark_mode",
             text: dark ? "Désactiver le mode sombre" : "Activer le mode sombre",
             onClick: () => { setDark(!dark); setOpen(false); },
-            color: "cyan", divider: "top"
+            color: "green", divider: "top"
         },
         {
             icon: navBottom ? 'move_up' : 'move_down',
             text: navBottom ? "Cacher la barre" : "Afficher la barre",
             onClick: () => { setNavBottom(!navBottom); setOpen(false); },
-            color: 'cyan', divider: 'bottom'
-        },
-        {
-            icon: 'question_mark', text: "FAQ",
-            onClick: () => { setOpen(false); navigate('/FAQ'); }, color: "green",
-            divider: 'both', style: 'mb-1'
+            color: 'green', divider: 'bottom'
         },
         {
             icon: 'group', text: "Groupes",
@@ -53,11 +57,11 @@ const AppMenu: React.FC<AppMenuProps> = ({
 
         {
             icon: "exit_to_app", text: "Déconnexion",
-            onClick: () => { setOpen(false); navigate('/signin'); }, color: "error"
+            onClick: () => { setOpen(false); navigate('/signin'); }, color: "error", style: 'mt-1'
         },
     ]
 
-    if (!listPage || hideNavBottom) menuItems.unshift({ icon: "home", text: "Accueil", onClick: () => { setOpen(false); navigate('/') }, color: "slate", divider: 'bottom', style: '' })
+    if (!listPage || hideNavBottom) menuItems.splice(1, 0, { icon: "home", text: "Accueil", onClick: () => { setOpen(false); navigate('/') }, color: "cyan", divider: 'top', })
 
     const [installPrompt, setInstallPrompt] = useState<any>(null);
 
@@ -110,6 +114,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                 setOpen={setOpen}
                 blurBack
                 left
+                closeIcon={<Icon icon="arrow_back" size="sm" />}
                 MenuKey="profile-menu"
                 className={`rounded-l-none !absolute !top-0 !left-0 px-4 pb-2 h-[100dvh] !max-h-[100dvh]  overflow-auto !min-w-[70vw] sm:!min-w-max `}
                 placement="free"
@@ -179,7 +184,7 @@ const AppMenu: React.FC<AppMenuProps> = ({
                                 disabled={!item.onClick}
                                 bg
                                 fill
-                                size="xl"
+                                size="2xl"
                                 color={item.color ?? color}
                                 icon={item.icon as IconName}
                             />
