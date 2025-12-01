@@ -23,12 +23,12 @@ const AppMenu: React.FC<AppMenuProps> = ({
     ///// MENU ITEMS
     const [open, setOpen] = React.useState(false);
     const menuItems = [
-        { icon: "person_edit", text: "Modifier mon profil", link: '/myprofile', color: "cyan", divider: 'top' },
+        { icon: "person_edit", text: "Modifier mon profil", link: '/myprofile', color: "cyan", divider: 'bottom' },
         {
             icon: dark ? "light_mode" : "dark_mode",
             text: dark ? "Désactiver le mode sombre" : "Activer le mode sombre",
             onClick: () => { setDark(!dark); setOpen(false); },
-            color: "cyan", divider: "none", style: 'rounded-none'
+            color: "cyan", divider: "top"
         },
         {
             icon: navBottom ? 'move_up' : 'move_down',
@@ -36,14 +36,21 @@ const AppMenu: React.FC<AppMenuProps> = ({
             onClick: () => { setNavBottom(!navBottom); setOpen(false); },
             color: 'cyan', divider: 'bottom'
         },
-
+        {
+            icon: 'question_mark', text: "FAQ",
+            onClick: () => { setOpen(false); navigate('/FAQ'); }, color: "green",
+            divider: 'both', style: 'mb-1'
+        },
         {
             icon: 'group', text: "Groupes",
-            onClick: () => { setOpen(false); navigate('/groupe') }, color: "orange", divider: 'top',
+            onClick: () => { setOpen(false); navigate('/groupe') }, color: "orange",
+            divider: 'top',
         }, {
             icon: 'diversity_3', text: "Conciliation",
-            onClick: () => { setOpen(false); navigate('/conciliation'); }, color: 'orange', divider: 'bottom',
+            onClick: () => { setOpen(false); navigate('/conciliation'); }, color: 'orange',
+            divider: 'bottom',
         },
+
         {
             icon: "exit_to_app", text: "Déconnexion",
             onClick: () => { setOpen(false); navigate('/signin'); }, color: "error"

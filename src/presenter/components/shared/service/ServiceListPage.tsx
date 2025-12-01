@@ -22,7 +22,7 @@ import { Icon } from "../../common/IconComp";
 export default function ServicesPage() {
     const [notif, setNotif] = useState<string>('');
     const [tabSelected] = useState<string>('');
-    const [searchCat, setSearchCat] = useState<Label>({ label: 'Services', value: '' });
+    const [searchCat, setSearchCat] = useState<Label>({ label: 'Chercher dans Service', value: '' });
     const [mine, setMine] = useState<boolean>(false);
     const [type, setType] = useState<string>('');
     const [step, setStep] = useState<string>('');
@@ -177,12 +177,12 @@ export default function ServicesPage() {
     const { setSearchSection, setTabSection } = useNavStore((state) => state);
     const SearchSection = useMemo(() => (
         <div className={`flex items-center md:justify-end justify-between w-full gap-2`}>
-            {mine ?
+            {/* {mine ?
                 <CheckCard
                     categoriesArray={boxArray}
                     boxSelected={boxSelected}
                     setBoxSelected={setBoxSelected} />
-                :
+                : */
                 <SelectSearch
                     searchCat={searchCat}
                     setSearchCat={setSearchCat}

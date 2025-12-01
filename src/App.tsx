@@ -54,6 +54,7 @@ const BaseCreatePage = lazy(() => import("./presenter/components/shared/base/Bas
 const BaseEditPage = lazy(() => import("./presenter/components/shared/base/BaseEditPage"));
 const BaseListPage = lazy(() => import("./presenter/components/shared/base/BaseListPage"));
 const BaseDetailPage = lazy(() => import("./presenter/components/shared/base/BaseDetailPage"));
+const FAQPage = lazy(() => import("./presenter/components/shared/dashboard/FAQPage"));
 
 
 function App() {
@@ -95,6 +96,7 @@ function App() {
                             {/* Public routes */}
                             <Route path="/base" element={<BaseListPage />} />
                             <Route path="/test" element={<LoadingPage />} />
+
                             <Route path="/signin" element={<SignInPage />} />
                             <Route path="/signup" element={<SignUpPage />} />
                             <Route path="/profile/create" element={<ProfileCreatePage />} />
@@ -111,6 +113,7 @@ function App() {
                                 <Route element={<ConfigPage detailPage />}>
 
                                     {/* FORMS  */}
+
                                     <Route path="/myprofile" element={<MyInfosPage />} />
 
                                     <Route path="/service/create" element={<ServiceCreatePage />} />
@@ -133,7 +136,6 @@ function App() {
                                     <Route path="/flag/:target/:id" element={<FlagCreatePage />} />
 
                                     {/* DETAILS PAGES */}
-
                                     <Route path="/service/:id" element={<ServiceDetailPage />} />
                                     <Route path="/annonce/:id" element={<PostDetailPage />} />
                                     <Route path="/groupe/:id" element={<GroupDetailPage />} />
@@ -180,6 +182,7 @@ function App() {
                                 </Route>
                                 {/* LIST PAGES NO FAB */}
                                 <Route element={<ConfigPage listPage />}>
+                                    <Route path="/FAQ" element={<FAQPage />} />
                                     <Route path="/groupe" element={<GroupPage />} />
                                     <Route path="/conciliation" element={<ConciliationListPage />} />
                                 </Route>
