@@ -59,7 +59,7 @@ export function SurveyCard({ survey, change, mines, update, vote, autoFit }: Sur
                 >
                     <IconAnimate
                         active={survey?.IVoted}
-                        icon={'ballot'} />
+                        icon={'how_to_vote'} />
                     <CardMD.Chips className="px-0.5 max-h-max w-full justify-end">
                         <DateChip
                             start={survey?.createdAt}

@@ -39,7 +39,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
         { to: "/service", icon: "partner_exchange", label: "Service", color: 'sky' },
         { to: "/evenement", icon: "event", label: "Évenement", color: 'cyan' },
         { to: "/annonce", icon: "dashboard", label: "Annonce", color: 'rose' },
-        { to: "/vote", icon: "ballot", label: `Vote`, color: 'orange' },
+        { to: "/vote", icon: "how_to_vote", label: `Vote`, color: 'orange' },
     ]
 
     //// ADD BUTTON ITEM
@@ -49,7 +49,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
             service: "partner_exchange",
             evenement: "event",
             annonce: "dashboard",
-            vote: "ballot",
+            vote: "how_to_vote",
             groupe: "group"
         }[type] || "add") as IconName,
         label: `Ajouter un ${type}`,
@@ -74,7 +74,7 @@ export const NavLinks: React.FC<NavBarProps> = ({ placement, mainPage, addFab })
         },
         {
             to: `/vote/create`,
-            icon: "ballot" as IconName,
+            icon: "how_to_vote" as IconName,
             label: `Créer un Vote`,
             color: 'orange'
         }

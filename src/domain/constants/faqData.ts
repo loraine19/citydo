@@ -72,7 +72,7 @@ export const faqData: FaqSection[] = [
             {
                 question: "Comment sont calculés les points d'un service ?",
                 answer: "Le calcul prend en compte une base fixe (1 point) + des coefficients liés au niveau de compétence, à la pénibilité et à l'assistance requise.",
-                icon: "functions" // [cite: 238, 240]
+                icon: "toll" // [cite: 238, 240]
             },
             {
                 question: "Que faire si mon service ne trouve pas preneur ?",
