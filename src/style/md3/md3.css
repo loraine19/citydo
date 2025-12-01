@@ -1018,7 +1018,7 @@ html {
     transition: background-color var(--md3-anim-duration-short);
 }
 .md3-list-item:hover {
-    background-color: var(--md3-surface-variant);
+    background-color: var(--md3-hover-effect);
 }
 
 /* Tabs */
