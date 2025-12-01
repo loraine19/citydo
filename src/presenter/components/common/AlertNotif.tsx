@@ -81,7 +81,7 @@ export const AlertNotif = () => {
     }, [refetch, setUnReadMsgNotif, socketService]);
 
     // const [hidden, setHidden] = useState(notif ? false : true);
-    const [hidden, setHidden] = useState(true);
+    const [hidden, setHidden] = useState(notif ? false : true);
 
     return (
         <div className={`h-max w-full z-[1000] absolute left-0 top-0 flex justify-center `}>

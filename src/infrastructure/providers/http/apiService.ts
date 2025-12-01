@@ -14,6 +14,7 @@ class ApiError extends Error {
     }
 }
 
+// --- INTERFACE (Mise à jour pour inclure refreshAccess) ---
 export type ApiServiceI = {
     get(url: string): Promise<any>;
     delete(url: string): Promise<any>;
@@ -22,6 +23,7 @@ export type ApiServiceI = {
     patch(url: string, data?: any, config?: any): Promise<any>;
     createFormData(element: any): FormData;
     getBaseUrl(): string;
+    refreshAccess(): Promise<boolean>; // AJOUTÉ ICI pour les sockets
 }
 
 export class ApiService implements ApiServiceI {
@@ -59,18 +61,17 @@ export class ApiService implements ApiServiceI {
         const originalRequest = error.config as CustomAxiosRequestConfig;
         const status = error.response?.status || 500;
 
-        // 1. Nettoyage du message (Logique originale restaurée)
+        // 1. Nettoyage du message
         let message = error.response?.data?.message || error.message || '';
         if (typeof message === 'string') {
             if (message.includes('msg:')) message = message.split('msg:')[1];
-            if (message.includes('PRISMA ERROR')) message = ''; // Masquer les erreurs techniques DB
+            if (message.includes('PRISMA ERROR')) message = '';
         }
 
         // 2. GESTION TOKEN EXPIRÉ (401)
         if (status === 401 && originalRequest && !originalRequest._retry && originalRequest.url !== '/auth/refresh') {
 
             if (this.isRefreshing) {
-                // Mise en file d'attente
                 return new Promise((resolve, reject) => {
                     this.failedQueue.push({ resolve, reject });
                 }).then(() => {
@@ -89,26 +90,22 @@ export class ApiService implements ApiServiceI {
                     this.processQueue(null, true);
                     return this.api(originalRequest);
                 } else {
-                    // Échec refresh -> Erreur de session
                     throw new ApiError(401, 'Session expirée');
                 }
             } catch (refreshError) {
                 this.processQueue(refreshError, false);
-                // On transforme l'erreur de refresh en ApiError propre
                 return Promise.reject(new ApiError(401, 'Impossible de rafraîchir la session'));
             } finally {
                 this.isRefreshing = false;
             }
         }
 
-        // 3. GESTION DES AUTRES ERREURS (Switch case restauré)
+        // 3. GESTION DES AUTRES ERREURS
         let customMessage = message;
-
-        // Si le backend n'a pas renvoyé de message précis, on met des défauts
         if (!customMessage || customMessage.trim() === '') {
             switch (status) {
                 case 400: customMessage = 'Mauvaise requête'; break;
-                case 401: customMessage = 'Non autorisé'; break; // Cas hors refresh
+                case 401: customMessage = 'Non autorisé'; break;
                 case 403: customMessage = 'Accès interdit'; break;
                 case 404: customMessage = 'Ressource non trouvée'; break;
                 case 409: customMessage = 'Conflit de ressources'; break;
@@ -121,16 +118,17 @@ export class ApiService implements ApiServiceI {
         return Promise.reject(finalError);
     };
 
-    // --- REFRESH ---
-    refreshAccess = async (): Promise<boolean> => {
+    // --- REFRESH (Maintenant PUBLIC) ---
+    public refreshAccess = async (): Promise<boolean> => {
         try {
+            // Utilisation d'axios direct pour éviter les intercepteurs
             const response = await axios.post(`${baseURL}/auth/refresh`, {}, { withCredentials: true });
-            // Vérification souple (200 ou 201)
             if (response.status >= 200 && response.status < 300) {
                 return true;
             }
             return false;
         } catch (error) {
+            console.error("Erreur lors du refresh manuel (Socket/Auth)", error);
             return false;
         }
     }
