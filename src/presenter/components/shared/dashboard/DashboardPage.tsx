@@ -128,13 +128,16 @@ export default function DashboardPage() {
                         </CardMD.Media>
 
                         <CardMD.Subhead className="justify-center items-center !pt-5 ">
-                            <div className="rounded-full md3-slate-container px-12 m py-2 flex flex-col items-center justify-center shadow-sm my-2">
+                            <div className="rounded-full md3-orange-container px-12 m py-2 flex flex-col items-center justify-center  my-2">
                                 <span>
                                     Bienvenue&nbsp;
                                     {user?.Profile?.firstName ?? ""}   !
                                 </span>
-                                <span className="text-sm font-normal opacity-80">
+                                <span className="text-md font-normal opacity-80">
                                     vous avez  {user?.Profile?.points ?? 0} points
+                                </span>
+                                <span className="text-sm text-center italic font-normal opacity-70">
+                                    City'Do vos services, événements, annonces et décisions
                                 </span>
                             </div>
                         </CardMD.Subhead>
