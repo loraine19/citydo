@@ -26,7 +26,7 @@ import { ViewButtonProps } from "../../common/appComps/ViewBtn";
 export default function VoteListPage() {
     const [notif, setNotif] = useState<string>('');
     const [tabSelected] = useState<string>('');
-    const [searchCat, setSearchCat] = useState<Label>({ label: 'Recherche dans votes', value: '' });
+    const [searchCat, setSearchCat] = useState<Label>({ label: 'Votes', value: '' });
     const [mine, setMine] = useState<boolean>(false);
     const [step, setStep] = useState<string>('');
     const [filter, setFilter] = useState<string>('');
@@ -185,6 +185,7 @@ export default function VoteListPage() {
     const SearchSection = useMemo(() => (
         <div className="flex items-center md:justify-end justify-between w-full gap-2">
             <SelectSearch
+                setSearchString={setSearchString}
                 searchCat={searchCat}
                 setSearchCat={setSearchCat}
                 category={filter === PoolSurveyFilter.SURVEY ? surveyCategoriesS : []}

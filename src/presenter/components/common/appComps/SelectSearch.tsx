@@ -10,16 +10,17 @@ type selectSearchProps = {
     category: Label[]
     search: (label: Label) => void
     style?: string;
+    setSearchString: (value: string) => void
 };
 
 export default function SelectSearch(props: selectSearchProps) {
     const { color } = useUxStore((state) => state);
-    const { searchCat, setSearchCat, category, search, style = '' } = props
+    const { searchCat, setSearchCat, category, search, style = '', setSearchString } = props
     const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div className={`w-full relative  ${style} `} >
-            <div className={`flex items-center rounded-full md3-button-${color} md3-button-${'tonal'} !pr-[9px] pl-3 !h-[3.4rem] gap-2 md:gap-4 mx-1`} >
+            <div className={`flex items-center rounded-full md3-button-${color} md3-button-${'tonal'} !pr-[9px] pl-3 !h-[3.4rem] gap-1 md:gap-3 mx-1`} >
                 <Menu
                     MenuKey={'select-menu' + (color)}
                     blurBack
@@ -55,6 +56,7 @@ export default function SelectSearch(props: selectSearchProps) {
                                     setSearchCat(label);
                                     search(label)
                                     setIsOpen(false);
+                                    setSearchString('')
                                 }} >
                                 {label.label}
                             </MenuItem>
@@ -69,7 +71,7 @@ export default function SelectSearch(props: selectSearchProps) {
                     data-cy="input-search"
                     type="search"
                     placeholder="Rechercher"
-                    className={`md3-${color}-container hover:brightness-90 focus:brightness-80 pb-0 pt-0.5 rounded-full min-h-9 px-4 w-full placeholder:!text-current truncate`}
+                    className={`md3-${color}-container hover:brightness-90 focus:brightness-80 pb-0 pt-0.5 rounded-full min-h-10 px-3 w-full placeholder:!text-current truncate`}
                     key={searchCat.value}
                     value={searchCat.label}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

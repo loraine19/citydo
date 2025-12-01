@@ -60,74 +60,69 @@ export function GroupCard({
                 </CardMD.Image>
             }
         >
-            <>
-                <CardMD.Chips className=" justify-between">
-                    <Chip value={categoryS} />
-                    <div className="flex flex-1 gap-1 items-center justify-end">
 
-                        <MoreButton
-                            id={id}
-                            type={'groupe'}
-                            title={name}
-                        />
-                    </div>
+            <CardMD.Chips className="px-0.5 max-h-max w-full justify-between">
+                <Chip value={categoryS} />
+                {<MoreButton
+                    title={name}
+                    id={id}
+                    type={'groupe'}
+                    flagged={false} />}
+            </CardMD.Chips>
+            <CardMD.Headline onClick={() => navigate(`/groupe/${id}`)} className="line-clamp-1">
+                {name}
+            </CardMD.Headline>
+            <CardMD.Subhead className="flex flex-col flex-1 gap-1 justify-start items-start" >
+                <p > {(fullAddress || '')}  </p>
+                <i> {area ? ` ${area} mètres` : ''}</i>
 
-                </CardMD.Chips>
-                <CardMD.Headline onClick={() => navigate(`/groupe/${id}`)} className="line-clamp-1">
-                    {name}
-                </CardMD.Headline>
-                <CardMD.Subhead className="flex flex-col flex-1 gap-1 justify-start items-start" >
-                    <p > {(fullAddress || '')}  </p>
-                    <i> {area ? ` ${area} mètres` : ''}</i>
+            </CardMD.Subhead>
 
-                </CardMD.Subhead>
-
-                <CardMD.Footer className="flex items-center">
-                    {mines ?
-                        <ModifBtnStack
-                            disabled1={false}
-                            disabled2={false}
-                            actions={actions}
-                            update={refetch}
-                        />
-                        :
-                        <div className="flex items-center gap-4">
-                            <Button
-                                variant={'tonal'}
-                                icon={{
-                                    icon: ImModo ? 'diversity_3' : 'diversity_3',
-                                    fill: ImModo,
-
-                                    title: ImModo ? 'Je suis conciliateur' : 'Je ne suis pas conciliateur',
-                                }}
-                                color="orange"
-                                onClick={async () => {
-                                    const groupUpdated = toogleModo && (await toogleModo());
-                                    groupUpdated && setGroup(groupUpdated);
-                                }}
-                            >
-                                {ImModo ? '✓' : '+'}
-                            </Button>
-                            <Button
-                                icon={{
-                                    icon: 'groups',
-                                    fill: ImIn,
-                                    title: ImIn ? 'Je suis membre' : 'Je ne suis pas membre',
-                                }}
-                                variant={'tonal'}
-                                color="cyan"
-                                onClick={() => navigate(`/groupe/${id}`)}
-                            >{ImIn ? '✓' : '+'}
-                            </Button>
-                        </div>}
-                    <Icon
-                        icon="keyboard_arrow_right"
-                        link={`/groupe/${id}`}
-                        title={`voir les details de ${name}`}
-                        fill
+            <CardMD.Footer className="flex items-center">
+                {mines ?
+                    <ModifBtnStack
+                        disabled1={false}
+                        disabled2={false}
+                        actions={actions}
+                        update={refetch}
                     />
-                </CardMD.Footer>
-            </>
+                    :
+                    <div className="flex items-center gap-4">
+                        <Button
+                            variant={'tonal'}
+                            icon={{
+                                icon: ImModo ? 'diversity_3' : 'diversity_3',
+                                fill: ImModo,
+
+                                title: ImModo ? 'Je suis conciliateur' : 'Je ne suis pas conciliateur',
+                            }}
+                            color="orange"
+                            onClick={async () => {
+                                const groupUpdated = toogleModo && (await toogleModo());
+                                groupUpdated && setGroup(groupUpdated);
+                            }}
+                        >
+                            {ImModo ? '✓' : '+'}
+                        </Button>
+                        <Button
+                            icon={{
+                                icon: 'groups',
+                                fill: ImIn,
+                                title: ImIn ? 'Je suis membre' : 'Je ne suis pas membre',
+                            }}
+                            variant={'tonal'}
+                            color="cyan"
+                            onClick={() => navigate(`/groupe/${id}`)}
+                        >{ImIn ? '✓' : '+'}
+                        </Button>
+                    </div>}
+                <Icon
+                    icon="keyboard_arrow_right"
+                    link={`/groupe/${id}`}
+                    title={`voir les details de ${name}`}
+                    fill
+                />
+            </CardMD.Footer>
         </CardMD >
     );
 }

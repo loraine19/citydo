@@ -20,7 +20,7 @@ import PostGridComp from "./PostComps/PostGridComp";
 export default function PostListPage() {
     const [notif, setNotif] = useState<string>("");
     const [tabSelected] = useState<string>('');
-    const [searchCat, setSearchCat] = useState<Label>({ label: 'Chercher dans Annonce', value: '' });
+    const [searchCat, setSearchCat] = useState<Label>({ label: 'Annonce', value: '' });
     const [mines, setMines] = useState<boolean>(false);
     const [filter, setFilter] = useState<string>('');
     const [category, setCategory] = useState<string>('');
@@ -170,6 +170,7 @@ export default function PostListPage() {
             setSearchCat={setSearchCat}
             category={postCategoriesS}
             search={search}
+            setSearchString={setSearchString}
         />
     ), [searchCat, view, compact]);
 
