@@ -80,7 +80,7 @@ export const AlertNotif = () => {
         socketService.onNewMessage(handleNewMessage);
     }, [refetch, setUnReadMsgNotif, socketService]);
 
-    const [hidden, setHidden] = useState(true);
+    const [hidden, setHidden] = useState(notif ? false : true);
 
     return (
         <div className={`h-max w-full z-[1000] absolute left-0 top-0 flex justify-center `}>
@@ -100,12 +100,14 @@ export const AlertNotif = () => {
                         {link && <Chip onClick={() => navigate(link)} value='Voir' />}
                     </CardMD.Footer>
                     <Icon
-
                         color='error'
                         style='absolute right-3 top-3 '
                         icon='close'
                         size='sm'
-                        onClick={() => { setNotif(null); setTimeout(() => { setHidden(true) }, 7000) }}
+                        onClick={() => {
+                            setNotif(null);
+                            setTimeout(() => { setHidden(true) }, 7000)
+                        }}
                     />
                 </CardMD>
             </div>
