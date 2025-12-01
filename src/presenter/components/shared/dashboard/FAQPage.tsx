@@ -50,8 +50,7 @@ export default function FAQPage() {
                 <CardMD className={` 
                         '!min-h-full !min-h-[100%] p!-0 grid !static `}>
                     <div className=' grid max-h-full h-full relative'>
-                        <div className='overflow-y-auto overflow-x-hidden divide-y-4 '>
-
+                        <div className='overflow-y-auto overflow-x-hidden divide-y-2 '>
                             {faqData.map(({ category, id, color, icon, items }, index) =>
                                 <div className={`${openCategoryIndex === index ? "pb-6 " : ""} py-1  px-3 flex- justify-center items-center cursor-pointer`}>
                                     <div onClick={() => {
@@ -98,9 +97,7 @@ export default function FAQPage() {
                                     </List>
                                 </div>
                             )}
-
                         </div>
-
                     </div>
                 </CardMD>
             </section>

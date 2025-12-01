@@ -1,7 +1,11 @@
-import axios, { AxiosInstance } from "axios";
-//import { AuthService } from "../../services/authService";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from "axios";
 
+// Configuration URL
 const baseURL = import.meta.env.PROD ? import.meta.env.VITE_FETCH_URL : import.meta.env.VITE_FETCH_URL_DEV;
+
+interface CustomAxiosRequestConfig extends AxiosRequestConfig {
+    _retry?: boolean;
+}
 
 class ApiError extends Error {
     constructor(public status: number | string, message: string) {
@@ -9,6 +13,7 @@ class ApiError extends Error {
         this.status = status;
     }
 }
+
 export type ApiServiceI = {
     get(url: string): Promise<any>;
     delete(url: string): Promise<any>;
@@ -20,200 +25,140 @@ export type ApiServiceI = {
 }
 
 export class ApiService implements ApiServiceI {
-    private countRefresh: number = 0;
     private api: AxiosInstance;
+
+    // Gestion de la concurrence (Queue)
+    private isRefreshing = false;
+    private failedQueue: Array<{ resolve: (value?: unknown) => void; reject: (reason?: any) => void }> = [];
 
     constructor() {
         this.api = axios.create({ baseURL, withCredentials: true });
-        this.api.interceptors.request.use(this.handleRequest);
+
         this.api.interceptors.response.use(
-            response => this.handleResponse(response),
-            error => this.handleResponseError(error)
+            (response) => response,
+            async (error: AxiosError) => this.handleResponseError(error)
         );
     }
+
     getBaseUrl = () => baseURL;
 
-    private logWithTime = (message: string) => {
-        const now = new Date().toLocaleTimeString();
-        const milliseconds = new Date().getMilliseconds();
-        console.error(`[${now}+${milliseconds}] ${message}`);
+    // --- LOGIQUE DE FILE D'ATTENTE ---
+    private processQueue = (error: any, tokenRefreshed: boolean = false) => {
+        this.failedQueue.forEach((prom) => {
+            if (error) {
+                prom.reject(error);
+            } else {
+                prom.resolve(tokenRefreshed);
+            }
+        });
+        this.failedQueue = [];
     };
 
-    private requestPending: { config: any, status: boolean, inError: boolean, error: ApiError, count: number } = {
-        config: {},
-        status: false,
-        inError: false,
-        error: new ApiError(0, ''),
-        count: 0
-    }
-
-    private handleRequest = (config: any) => {
-        document.cookie = "user=; path=/; max-age=0";
-        this.logWithTime('handleRequest: ')
-        console.log("Request config:", config);
-        if (config.url !== '/auth/refresh') {
-            this.requestPending = {
-                config: config,
-                status: true,
-                inError: false,
-                error: new ApiError(0, ''),
-                count: this.requestPending.count + 1
-            }
-        }
-        return config
-    }
-
-    private handleResponse = async (response: any): Promise<any> => {
-        if (response && response.data) {
-            this.requestPending.status = false;
-            this.requestPending.inError = false;
-            this.requestPending.error = new ApiError(0, '');
-            this.requestPending.config = {};
-        }
-        return response
-    }
-
+    // --- GESTIONNAIRE D'ERREURS CENTRALISÉ ---
     private handleResponseError = async (error: any) => {
-        if (this.requestPending.status) {
-            this.requestPending.status = true;
-            this.requestPending.inError = true;
+        const originalRequest = error.config as CustomAxiosRequestConfig;
+        const status = error.response?.status || 500;
+
+        // 1. Nettoyage du message (Logique originale restaurée)
+        let message = error.response?.data?.message || error.message || '';
+        if (typeof message === 'string') {
+            if (message.includes('msg:')) message = message.split('msg:')[1];
+            if (message.includes('PRISMA ERROR')) message = ''; // Masquer les erreurs techniques DB
         }
-        const originalRequest = error.config || {};
-        originalRequest._retry = originalRequest._retry || false;
-        console.log('IS API ERROR??? ', error.response ?? typeof error)
-        const status = error.status || error.response?.status || error.response?.data?.statuscode || 500
-        let message = error.response?.data?.message || error.message || ''
-        if (message.includes('msg')) message = message.split('msg:')[1] || ''
-        if (message.includes('PRISMA ERROR')) message = ''
-        let newError = new ApiError(status, error);
-        switch (status) {
-            case 401:
-                this.logWithTime('token expired 401');
-                this.countRefresh++;
-                const refreshSuccess = await this.refreshAccess();
-                if (refreshSuccess) {
-                    this.logWithTime('token refreshed successfully');
-                    return refreshSuccess
+
+        // 2. GESTION TOKEN EXPIRÉ (401)
+        if (status === 401 && originalRequest && !originalRequest._retry && originalRequest.url !== '/auth/refresh') {
+
+            if (this.isRefreshing) {
+                // Mise en file d'attente
+                return new Promise((resolve, reject) => {
+                    this.failedQueue.push({ resolve, reject });
+                }).then(() => {
+                    return this.api(originalRequest);
+                }).catch((err) => {
+                    return Promise.reject(err);
+                });
+            }
+
+            originalRequest._retry = true;
+            this.isRefreshing = true;
+
+            try {
+                const refreshed = await this.refreshAccess();
+                if (refreshed) {
+                    this.processQueue(null, true);
+                    return this.api(originalRequest);
+                } else {
+                    // Échec refresh -> Erreur de session
+                    throw new ApiError(401, 'Session expirée');
                 }
-                else newError = new ApiError(status, 'Session expirée');
-                break;
-        }
-        if (newError.message) {
-            switch (status) {
-                case 400:
-                    newError = new ApiError(status, message || 'mauvaise requête');
-                    break;
-                case 403:
-                    newError = new ApiError(status, message || 'Accès interdit');
-                    break;
-                case 404:
-                    newError = new ApiError(status, message || 'Ressource non trouvée');
-                    break;
-                case 409:
-                    newError = new ApiError(status, message || 'Conflit de ressources');
-                    break;
-                case 500:
-                    newError = new ApiError(status, message || 'Erreur interne du serveur');
-                    break;
+            } catch (refreshError) {
+                this.processQueue(refreshError, false);
+                // On transforme l'erreur de refresh en ApiError propre
+                return Promise.reject(new ApiError(401, 'Impossible de rafraîchir la session'));
+            } finally {
+                this.isRefreshing = false;
             }
         }
 
-        if (
-            this.requestPending.count < 1 &&
-            this.requestPending.config &&
-            this.requestPending.config.method !== 'get'
-        ) {
-            // Set request as pending and retry the request
-            this.requestPending.status = true;
-            this.requestPending.error = newError;
-            this.requestPending.inError = false;
-            this.requestPending.count = this.requestPending.count + 1;
-            // Retry the original request
-            console.error('RETRY', this.requestPending.config,
-                'count:', this.requestPending.count);
-            return this.api.request(this.requestPending.config);
-        }
-        throw new Error(newError.message);
-        //  else return Promise.reject(newError);
+        // 3. GESTION DES AUTRES ERREURS (Switch case restauré)
+        let customMessage = message;
 
+        // Si le backend n'a pas renvoyé de message précis, on met des défauts
+        if (!customMessage || customMessage.trim() === '') {
+            switch (status) {
+                case 400: customMessage = 'Mauvaise requête'; break;
+                case 401: customMessage = 'Non autorisé'; break; // Cas hors refresh
+                case 403: customMessage = 'Accès interdit'; break;
+                case 404: customMessage = 'Ressource non trouvée'; break;
+                case 409: customMessage = 'Conflit de ressources'; break;
+                case 500: customMessage = 'Erreur interne du serveur'; break;
+                default: customMessage = 'Une erreur est survenue';
+            }
+        }
+
+        const finalError = new ApiError(status, customMessage);
+        return Promise.reject(finalError);
     };
 
-    //// REFRESH ACCESS
-    refreshAccess = async (): Promise<boolean | any> => {
-        const echec = () => {
-            this.logWithTime('refreshAccess echec');
-            if (this.countRefresh > 2) {
-                setTimeout(() => {
-                    //   window.location.href = `/signin?msg=Session expirée, veuillez vous reconnecter ${this.countRefresh}`;
-                    this.countRefresh++
-                    return false
-                }, 5000);
+    // --- REFRESH ---
+    private refreshAccess = async (): Promise<boolean> => {
+        try {
+            const response = await axios.post(`${baseURL}/auth/refresh`, {}, { withCredentials: true });
+            // Vérification souple (200 ou 201)
+            if (response.status >= 200 && response.status < 300) {
+                return true;
             }
-
-        }
-        if (window.location.pathname.includes('/sign')) return echec();
-        if (this.countRefresh > 2) return echec();
-        if (this.countRefresh > 1) {
-            this.logWithTime('refreshAccess already called, countRefresh: ' + this.countRefresh);
+            return false;
+        } catch (error) {
             return false;
         }
-        const { data } = await axios.post(`${baseURL}/auth/refresh`, {}, { withCredentials: true });
-        if (data?.message || data?.status === 201) {
-            this.countRefresh = 0;
-            this.logWithTime('refreshAccess message: ' + data.message);
-            return true;
-        }
-        else if (data?.status === 401) return echec();
     }
 
+    // --- MÉTHODES PUBLIQUES ---
     public async get(url: string): Promise<any> {
-        try {
-            const response = await this.api.get(url, { withCredentials: true });
-            this.handleResponse(response)
-            return response.data;
-        } catch (error) {
-            return this.handleResponseError(error);
-        }
-    }
-
-    public async delete(url: string): Promise<any> {
-        try {
-            const response = await this.api.delete(url, { withCredentials: true });
-            this.handleResponse(response)
-            return response.data;
-        } catch (error) {
-            return this.handleResponseError(error);
-        }
-    }
-
-    public async put(url: string, data?: any): Promise<any> {
-        try {
-            const response = await this.api.put(url, data, { withCredentials: true });
-            this.handleResponse(response)
-            return response.data;
-        } catch (error) {
-            return this.handleResponseError(error);
-        }
+        const response = await this.api.get(url);
+        return response.data;
     }
 
     public async post(url: string, data: any, config?: any): Promise<any> {
-        try {
-            const response = await this.api.post(url, data, { ...config, withCredentials: true });
-            this.handleResponse(response)
-            return response.data;
-        } catch (error) {
-            return this.handleResponseError(error);
-        }
+        const response = await this.api.post(url, data, config);
+        return response.data;
     }
 
-    public async patch(url: string, data: any, config?: any): Promise<any> {
-        try {
-            const response = await this.api.patch(url, data, { ...config, withCredentials: true });
-            this.handleResponse(response)
-            return response.data;
-        } catch (error) {
-            return this.handleResponseError(error);
-        }
+    public async put(url: string, data?: any): Promise<any> {
+        const response = await this.api.put(url, data);
+        return response.data;
+    }
+
+    public async patch(url: string, data?: any, config?: any): Promise<any> {
+        const response = await this.api.patch(url, data, config);
+        return response.data;
+    }
+
+    public async delete(url: string): Promise<any> {
+        const response = await this.api.delete(url);
+        return response.data;
     }
 
     public createFormData = (element: any): FormData => {
