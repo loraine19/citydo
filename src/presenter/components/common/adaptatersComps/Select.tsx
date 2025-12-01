@@ -57,7 +57,6 @@ export function Select({
     const handleDisplayLabel = () => {
         const selected2 = options?.find(opt => opt.value === formik?.values?.[name ?? '']) ??
             options?.find(opt => opt.value === value)
-        console.log(name, options, selected2, value, formik.values);
         setDisplayLabel(selected2?.label ?? placeholder)
     }
 

@@ -19,7 +19,7 @@ import DetailsHeadSection from "../../base/baseComps/DetailsHeadSection";
 export default function GroupPage() {
     const [notif, setNotif] = useState<string>('');
     const [filter, setFilter] = useState<string>('');
-    const [category, setCategory] = useState<string>('');
+    const [category, setCategory] = useState<string>('Groupe');
 
     const groupViewModelFactory = DI.resolve('groupViewModel');
     const { groups, count, isLoading, refetch, fetchNextPage, hasNextPage, error } = groupViewModelFactory(filter, category);
@@ -155,8 +155,6 @@ export default function GroupPage() {
                     ref={divRef}
                     onScroll={() => { onScroll(); handleHideCallback() }}
                     className="Grid">
-
-
                     {groups.map((group: GroupView, index: number) => (
                         <div className="SubGrid" key={index}>
                             <GroupCard
