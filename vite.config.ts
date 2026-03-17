@@ -121,10 +121,11 @@ export default defineConfig(({ mode }) => {
           manualChunks(id) {
             if (id.includes('node_modules')) {
               return 'vendor';
-            } else if (id.includes('/presenter/components/shared/')) {
-              return 'shared-components';
-            } else if (id.includes('/presenter/components/common/')) {
-              return 'common-components';
+              // } else if (id.includes('/presenter/components/shared/')) {
+              //   return 'shared-components';
+              // } else if (id.includes('/presenter/components/common/')) {
+              //   return 'common-components';
+
             }
           }
         }
