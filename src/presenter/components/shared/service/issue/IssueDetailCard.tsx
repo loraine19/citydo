@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { JSX, useEffect, useMemo, useState } from "react";
 import { CardLarge } from "../../base/baseComps/Cards";
 import { Input } from "../../base/baseComps/Inputs";
 import { Button } from "../../base/baseComps/Buttons";

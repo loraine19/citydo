@@ -80,21 +80,23 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
                 ${className || ''}
             `}
         >
-            {React.Children.map(children, (child) =>
-                React.isValidElement(child) && (child.type === Button || (child.props && 'variant' in child.props))
+            {React.Children.map(children, (child) => {
+                if (!React.isValidElement(child)) return child;
+                const element = child as React.ReactElement<any>;
+                return (element.type === Button || (element.props && 'variant' in element.props))
                     ? <Button
-                        {...child.props}
-                        variant={(child.props as ButtonProps).variant || variant}
-                        color={(child.props as ButtonProps).color || color}
-                        size={(child.props as ButtonProps).size || size}
+                        {...element.props as ButtonProps || {}}
+                        variant={(element.props as ButtonProps).variant || variant}
+                        color={(element.props as ButtonProps).color || color}
+                        size={(element.props as ButtonProps).size || size}
                         className={`md3-button-group-item flex-1 
-                            ${(child.props as any).className || ''} 
+                            ${(element.props as any).className || ''} 
                             ${rounded ? 'rounded-full px-0' : ''}`}
                         round={rounded}
-                    >{child.props.children}
+                    >{element.props.children}
                     </Button>
                     : child
-            )}
+            })}
         </div>
     );
 };

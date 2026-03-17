@@ -36,12 +36,13 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({ children, classNam
         <ul className={classes} data-md3 {...props}>
 
             {React.Children.map(children, (child) => {
+                const element = child as React.ReactElement<any>;
                 if (React.isValidElement(child) && child.type === NavigationBarItem) {
                     return cloneElement(child as ReactElement<NavigationBarItemProps>, {
-                        active: child.props.value === props.value,
+                        active: element.props.value === props.value,
                         onClickAction: () => {
-                            handleItemClick(child.props.value);
-                            child.props.onClickAction && child.props.onClickAction();
+                            handleItemClick(element.props.value);
+                            element.props.onClickAction && element.props.onClickAction();
                         },
                     });
                 }

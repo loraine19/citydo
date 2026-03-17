@@ -124,7 +124,7 @@ export const Menu: React.FC<MenuProps> = ({
     const [placement] = useState<string | null>(givenPlacement);
     type PlaceProps = {
         triggerRect: DOMRect,
-        menuCurrent: React.RefObject<HTMLDivElement>,
+        menuCurrent: React.RefObject<HTMLDivElement> | any,
         style: React.CSSProperties,
         cropt?: boolean,
         placeHor?: 'right' | 'left'
@@ -351,7 +351,7 @@ export const Menu: React.FC<MenuProps> = ({
                 className={`md3-menu-container ${containerClassName ?? ''}  ${(menuRef || menuRefAuto) ? "" : "relative"} `}>
 
                 {(trigger) && React.cloneElement(
-                    trigger as React.ReactElement,
+                    trigger as React.ReactElement<any>,
                     {
                         ref: root,
                         onClick: handleTriggerClick,
@@ -455,11 +455,12 @@ export const Tabs: React.FC<TabsProps> = ({ children, activeTab, onTabClick }) =
     return (
         <div className="md3-tabs" data-md3>
             {React.Children.map(children, (child) => {
+                const element = child as React.ReactElement<any>;
                 if (React.isValidElement(child)) {
-                    const tab = child.props.tab;
+                    const tab = element.props.tab;
                     const isActive = tab === activeTab;
                     const classes = `md3-tab ${isActive ? 'active' : ''}`;
-                    return <div className={classes} onClick={() => onTabClick(tab)}>{child.props.label}</div>;
+                    return <div className={classes} onClick={() => onTabClick(tab)}>{element.props.label}</div>;
                 }
                 return child;
             })}

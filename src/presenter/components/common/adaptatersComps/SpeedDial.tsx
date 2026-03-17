@@ -1,5 +1,5 @@
 import { Popover } from '@material-tailwind/react';
-import React from 'react'
+import React, { JSX } from 'react'
 
 export interface SpeedDialProps {
     placement?: 'top' | 'bottom' | 'left' | 'right';

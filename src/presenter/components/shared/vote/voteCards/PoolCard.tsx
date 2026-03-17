@@ -23,7 +23,7 @@ type PoolCardProps = {
     mines?: boolean,
     update: () => void,
     vote: (target: AlertValues) => void,
-    divRef?: React.RefObject<HTMLDivElement>
+    divRef?: React.RefObject<HTMLDivElement> | any
 }
 
 export function PoolCard({ pool, change, mines, update, vote, divRef }: PoolCardProps) {
