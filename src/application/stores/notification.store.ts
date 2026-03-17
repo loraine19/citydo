@@ -27,7 +27,7 @@ interface NotificationStore {
 
 }
 
-const storage = new cryptedStorage();
+// missing access beforeinit vite const storage = new cryptedStorage();
 
 export const useNotificationStore = create<NotificationStore, [['zustand/persist', NotificationStore]]>(
   persist((set) => {
@@ -54,6 +54,7 @@ export const useNotificationStore = create<NotificationStore, [['zustand/persist
         set({ notifListNotMessages: notMsg.notifs.map((notif: Notif) => new NotifView(notif)) });
         set({ notifListMap: notifMap.notifs.map((notif: Notif) => new NotifView(notif)) });
 
+        const storage = new cryptedStorage();
         storage.setItem('notifications', notifs);
       }
     }
@@ -112,7 +113,9 @@ export const useNotificationStore = create<NotificationStore, [['zustand/persist
   },
     {
       name: 'notifications',
-      storage: createJSONStorage(() => storage),
+      // storage: createJSONStorage(() => storage),
+      // Instanciation différée
+      storage: createJSONStorage(() => new cryptedStorage()),
     }
   )
 );
