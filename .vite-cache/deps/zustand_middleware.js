@@ -10,6 +10,7 @@ var reduxImpl = (reducer, initial) => (set, _get, api) => {
   return { dispatch: (...args) => api.dispatch(...args), ...initial };
 };
 var redux = reduxImpl;
+var shouldDispatchFromDevtools = (api) => !!api.dispatchFromDevtools && typeof api.dispatch === "function";
 var trackedConnections = /* @__PURE__ */ new Map();
 var getTrackedConnectionState = (name) => {
   const api = trackedConnections.get(name);
@@ -118,7 +119,7 @@ var devtoolsImpl = (fn, devtoolsOptions = {}) => (set, get, api) => {
       )
     );
   }
-  if (api.dispatchFromDevtools && typeof api.dispatch === "function") {
+  if (shouldDispatchFromDevtools(api)) {
     let didWarnAboutReservedActionType = false;
     const originalDispatch = api.dispatch;
     api.dispatch = (...args) => {
@@ -167,9 +168,9 @@ var devtoolsImpl = (fn, devtoolsOptions = {}) => (set, get, api) => {
               }
               return;
             }
-            if (!api.dispatchFromDevtools) return;
-            if (typeof api.dispatch !== "function") return;
-            api.dispatch(action);
+            if (shouldDispatchFromDevtools(api)) {
+              api.dispatch(action);
+            }
           }
         );
       case "DISPATCH":
@@ -325,7 +326,7 @@ var toThenable = (fn) => (input) => {
 };
 var persistImpl = (config, baseOptions) => (set, get, api) => {
   let options = {
-    storage: createJSONStorage(() => localStorage),
+    storage: createJSONStorage(() => window.localStorage),
     partialize: (state) => state,
     version: 0,
     merge: (persistedState, currentState) => ({
@@ -335,6 +336,7 @@ var persistImpl = (config, baseOptions) => (set, get, api) => {
     ...baseOptions
   };
   let hasHydrated = false;
+  let hydrationVersion = 0;
   const hydrationListeners = /* @__PURE__ */ new Set();
   const finishHydrationListeners = /* @__PURE__ */ new Set();
   let storage = options.storage;
@@ -375,6 +377,7 @@ var persistImpl = (config, baseOptions) => (set, get, api) => {
   const hydrate = () => {
     var _a, _b;
     if (!storage) return;
+    const currentVersion = ++hydrationVersion;
     hasHydrated = false;
     hydrationListeners.forEach((cb) => {
       var _a2;
@@ -404,6 +407,9 @@ var persistImpl = (config, baseOptions) => (set, get, api) => {
       return [false, void 0];
     }).then((migrationResult) => {
       var _a2;
+      if (currentVersion !== hydrationVersion) {
+        return;
+      }
       const [migrated, migratedState] = migrationResult;
       stateFromStorage = options.merge(
         migratedState,
@@ -414,11 +420,17 @@ var persistImpl = (config, baseOptions) => (set, get, api) => {
         return setItem();
       }
     }).then(() => {
-      postRehydrationCallback == null ? void 0 : postRehydrationCallback(stateFromStorage, void 0);
+      if (currentVersion !== hydrationVersion) {
+        return;
+      }
+      postRehydrationCallback == null ? void 0 : postRehydrationCallback(get(), void 0);
       stateFromStorage = get();
       hasHydrated = true;
       finishHydrationListeners.forEach((cb) => cb(stateFromStorage));
     }).catch((e) => {
+      if (currentVersion !== hydrationVersion) {
+        return;
+      }
       postRehydrationCallback == null ? void 0 : postRehydrationCallback(void 0, e);
     });
   };
@@ -457,12 +469,25 @@ var persistImpl = (config, baseOptions) => (set, get, api) => {
   return stateFromStorage || configResult;
 };
 var persist = persistImpl;
+function ssrSafe(config, isSSR = typeof window === "undefined") {
+  return (set, get, api) => {
+    if (!isSSR) {
+      return config(set, get, api);
+    }
+    const ssrSet = () => {
+      throw new Error("Cannot set state of Zustand store in SSR");
+    };
+    api.setState = ssrSet;
+    return config(ssrSet, get, api);
+  };
+}
 export {
   combine,
   createJSONStorage,
   devtools,
   persist,
   redux,
-  subscribeWithSelector
+  subscribeWithSelector,
+  ssrSafe as unstable_ssrSafe
 };
 //# sourceMappingURL=zustand_middleware.js.map

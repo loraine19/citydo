@@ -898,9 +898,11 @@ var Schema = class {
    * Run the configured transform pipeline over an input value.
    */
   cast(value, options = {}) {
-    let resolvedSchema = this.resolve(Object.assign({
+    let resolvedSchema = this.resolve(Object.assign({}, options, {
       value
-    }, options));
+      // parent: options.parent,
+      // context: options.context,
+    }));
     let allowOptionality = options.assert === "ignore-optionality";
     let result = resolvedSchema._cast(value, options);
     if (options.assert !== false && !resolvedSchema.isType(result)) {
@@ -917,7 +919,7 @@ attempted value: ${formattedValue}
     return result;
   }
   _cast(rawValue, options) {
-    let value = rawValue === void 0 ? rawValue : this.transforms.reduce((prevValue, fn) => fn.call(this, prevValue, rawValue, this), rawValue);
+    let value = rawValue === void 0 ? rawValue : this.transforms.reduce((prevValue, fn) => fn.call(this, prevValue, rawValue, this, options), rawValue);
     if (value === void 0) {
       value = this.getDefault(options);
     }
@@ -1391,8 +1393,8 @@ var BooleanSchema = class extends Schema {
       }
     });
     this.withMutation(() => {
-      this.transform((value, _raw, ctx) => {
-        if (ctx.spec.coerce && !ctx.isType(value)) {
+      this.transform((value, _raw) => {
+        if (this.spec.coerce && !this.isType(value)) {
           if (/^(true|1)$/i.test(String(value))) return true;
           if (/^(false|0)$/i.test(String(value))) return false;
         }
@@ -1519,8 +1521,8 @@ var StringSchema = class extends Schema {
       }
     });
     this.withMutation(() => {
-      this.transform((value, _raw, ctx) => {
-        if (!ctx.spec.coerce || ctx.isType(value)) return value;
+      this.transform((value, _raw) => {
+        if (!this.spec.coerce || this.isType(value)) return value;
         if (Array.isArray(value)) return value;
         const strValue = value != null && value.toString ? value.toString() : value;
         if (strValue === objStringTag) return value;
@@ -1722,15 +1724,15 @@ var NumberSchema = class extends Schema {
       }
     });
     this.withMutation(() => {
-      this.transform((value, _raw, ctx) => {
-        if (!ctx.spec.coerce) return value;
+      this.transform((value, _raw) => {
+        if (!this.spec.coerce) return value;
         let parsed = value;
         if (typeof parsed === "string") {
           parsed = parsed.replace(/\s/g, "");
           if (parsed === "") return NaN;
           parsed = +parsed;
         }
-        if (ctx.isType(parsed) || parsed === null) return parsed;
+        if (this.isType(parsed) || parsed === null) return parsed;
         return parseFloat(parsed);
       });
     });
@@ -1832,8 +1834,8 @@ var DateSchema = class _DateSchema extends Schema {
       }
     });
     this.withMutation(() => {
-      this.transform((value, _raw, ctx) => {
-        if (!ctx.spec.coerce || ctx.isType(value) || value === null) return value;
+      this.transform((value, _raw) => {
+        if (!this.spec.coerce || this.isType(value) || value === null) return value;
         value = parseIsoDate(value);
         return !isNaN(value) ? new Date(value) : _DateSchema.INVALID_DATE;
       });
@@ -1917,7 +1919,7 @@ function sortByKeyOrder(keys) {
     return findIndex(keys, a) - findIndex(keys, b);
   };
 }
-var parseJson = (value, _, ctx) => {
+var parseJson = (value, _, schema) => {
   if (typeof value !== "string") {
     return value;
   }
@@ -1926,7 +1928,7 @@ var parseJson = (value, _, ctx) => {
     parsed = JSON.parse(value);
   } catch (err) {
   }
-  return ctx.isType(parsed) ? parsed : value;
+  return schema.isType(parsed) ? parsed : value;
 };
 function deepPartial(schema) {
   if ("fields" in schema) {
@@ -2002,9 +2004,9 @@ var ObjectSchema = class extends Schema {
     for (const prop of props) {
       let field = fields[prop];
       let exists = prop in value;
+      let inputValue = value[prop];
       if (field) {
         let fieldValue;
-        let inputValue = value[prop];
         innerOptions.path = (options.path ? `${options.path}.` : "") + prop;
         field = field.resolve({
           value: inputValue,
@@ -2017,17 +2019,14 @@ var ObjectSchema = class extends Schema {
           isChanged = isChanged || prop in value;
           continue;
         }
-        fieldValue = !options.__validating || !strict ? (
-          // TODO: use _cast, this is double resolving
-          field.cast(value[prop], innerOptions)
-        ) : value[prop];
+        fieldValue = !options.__validating || !strict ? field.cast(inputValue, innerOptions) : inputValue;
         if (fieldValue !== void 0) {
           intermediateValue[prop] = fieldValue;
         }
       } else if (exists && !strip) {
-        intermediateValue[prop] = value[prop];
+        intermediateValue[prop] = inputValue;
       }
-      if (exists !== prop in intermediateValue || intermediateValue[prop] !== value[prop]) {
+      if (exists !== prop in intermediateValue || intermediateValue[prop] !== inputValue) {
         isChanged = true;
       }
     }
@@ -2288,7 +2287,11 @@ var ArraySchema = class extends Schema {
     let isChanged = false;
     const castArray = value.map((v, idx) => {
       const castElement = this.innerType.cast(v, Object.assign({}, _opts, {
-        path: `${_opts.path || ""}[${idx}]`
+        path: `${_opts.path || ""}[${idx}]`,
+        parent: value,
+        originalValue: v,
+        value: v,
+        index: idx
       }));
       if (castElement !== v) {
         isChanged = true;
@@ -2458,7 +2461,11 @@ var TupleSchema = class extends Schema {
     let isChanged = false;
     const castArray = types.map((type, idx) => {
       const castElement = type.cast(value[idx], Object.assign({}, options, {
-        path: `${options.path || ""}[${idx}]`
+        path: `${options.path || ""}[${idx}]`,
+        parent: value,
+        originalValue: value[idx],
+        value: value[idx],
+        index: idx
       }));
       if (castElement !== value[idx]) isChanged = true;
       return castElement;

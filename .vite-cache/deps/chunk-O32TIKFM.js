@@ -1,6 +1,6 @@
 import {
   require_react
-} from "./chunk-QLJLW6ED.js";
+} from "./chunk-VQJW32E7.js";
 import {
   __commonJS
 } from "./chunk-PR4QN5HX.js";
@@ -243,7 +243,7 @@ var require_react_dom_development = __commonJS({
       exports.useFormStatus = function() {
         return resolveDispatcher().useHostTransitionStatus();
       };
-      exports.version = "19.1.1";
+      exports.version = "19.2.4";
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
     })();
   }
@@ -277,4 +277,4 @@ react-dom/cjs/react-dom.development.js:
    * LICENSE file in the root directory of this source tree.
    *)
 */
-//# sourceMappingURL=chunk-2YVMFDJ2.js.map
+//# sourceMappingURL=chunk-O32TIKFM.js.map

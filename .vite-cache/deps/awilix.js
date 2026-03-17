@@ -369,9 +369,6 @@ function isClass(fn) {
 function isFunction(val) {
   return typeof val === "function";
 }
-function uniq(arr) {
-  return Array.from(new Set(arr));
-}
 function parseParameterList(source) {
   const { next: _next, done } = createTokenizer(source);
   const params = [];
@@ -588,10 +585,16 @@ function wrapWithLocals(container, locals) {
 }
 function createInjectorProxy(container, injector) {
   const locals = injector(container);
-  const allKeys = uniq([
-    ...Reflect.ownKeys(container.cradle),
-    ...Reflect.ownKeys(locals)
-  ]);
+  const keySet = new Set(Object.keys(container.registrations));
+  for (const s of Object.getOwnPropertySymbols(container.registrations)) {
+    keySet.add(s);
+  }
+  for (const k of Object.keys(locals)) {
+    keySet.add(k);
+  }
+  for (const s of Object.getOwnPropertySymbols(locals)) {
+    keySet.add(s);
+  }
   const proxy = new Proxy({}, {
     /**
      * Resolves the value by first checking the locals, then the container.
@@ -616,13 +619,13 @@ function createInjectorProxy(container, injector) {
      * Used for `Object.keys`.
      */
     ownKeys() {
-      return allKeys;
+      return [...keySet];
     },
     /**
      * Used for `Object.keys`.
      */
-    getOwnPropertyDescriptor(target, key) {
-      if (allKeys.indexOf(key) > -1) {
+    getOwnPropertyDescriptor(_target, key) {
+      if (keySet.has(key)) {
         return {
           enumerable: true,
           configurable: true
@@ -795,9 +798,20 @@ function createContainerInternal(options, parentContainer, parentResolutionStack
   function resolve(name, resolveOpts) {
     resolveOpts = resolveOpts || {};
     try {
+      let throwIfLifetimeLeakage = function(depName, depLifetime, dep) {
+        if (!options.strict || dep.isLeakSafe)
+          return;
+        for (let i = 0; i < resolutionStack.length; i++) {
+          if (isLifetimeLonger(resolutionStack[i].lifetime, depLifetime)) {
+            throw new AwilixResolutionError(depName, resolutionStack, `Dependency '${depName.toString()}' has a shorter lifetime than its ancestor: '${resolutionStack[i].name.toString()}'`);
+          }
+        }
+      };
       const resolver = getRegistration(name);
-      if (resolutionStack.some(({ name: parentName }) => parentName === name)) {
-        throw new AwilixResolutionError(name, resolutionStack, "Cyclic dependencies detected.");
+      for (let i = 0; i < resolutionStack.length; i++) {
+        if (resolutionStack[i].name === name) {
+          throw new AwilixResolutionError(name, resolutionStack, "Cyclic dependencies detected.");
+        }
       }
       if (name === "toJSON") {
         return toStringRepresentationFn;
@@ -829,34 +843,31 @@ function createContainerInternal(options, parentContainer, parentResolutionStack
         throw new AwilixResolutionError(name, resolutionStack);
       }
       const lifetime = resolver.lifetime || Lifetime.TRANSIENT;
-      if (options.strict && !resolver.isLeakSafe) {
-        const maybeLongerLifetimeParentIndex = resolutionStack.findIndex(({ lifetime: parentLifetime }) => isLifetimeLonger(parentLifetime, lifetime));
-        if (maybeLongerLifetimeParentIndex > -1) {
-          throw new AwilixResolutionError(name, resolutionStack, `Dependency '${name.toString()}' has a shorter lifetime than its ancestor: '${resolutionStack[maybeLongerLifetimeParentIndex].name.toString()}'`);
+      if (lifetime === Lifetime.SINGLETON) {
+        const cached = rootContainer.cache.get(name);
+        if (cached) {
+          return cached.value;
         }
       }
+      if (lifetime === Lifetime.SCOPED) {
+        const cached = container.cache.get(name);
+        if (cached !== void 0) {
+          throwIfLifetimeLeakage(name, lifetime, resolver);
+          return cached.value;
+        }
+      }
+      throwIfLifetimeLeakage(name, lifetime, resolver);
       resolutionStack.push({ name, lifetime });
-      let cached;
       let resolved;
       switch (lifetime) {
         case Lifetime.TRANSIENT:
           resolved = resolver.resolve(container);
           break;
         case Lifetime.SINGLETON:
-          cached = rootContainer.cache.get(name);
-          if (!cached) {
-            resolved = resolver.resolve(options.strict ? rootContainer : container);
-            rootContainer.cache.set(name, { resolver, value: resolved });
-          } else {
-            resolved = cached.value;
-          }
+          resolved = resolver.resolve(options.strict ? rootContainer : container);
+          rootContainer.cache.set(name, { resolver, value: resolved });
           break;
         case Lifetime.SCOPED:
-          cached = container.cache.get(name);
-          if (cached !== void 0) {
-            resolved = cached.value;
-            break;
-          }
           resolved = resolver.resolve(container);
           container.cache.set(name, { resolver, value: resolved });
           break;

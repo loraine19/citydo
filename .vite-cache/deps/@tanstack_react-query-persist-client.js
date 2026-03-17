@@ -7,13 +7,13 @@ import {
   matchQuery,
   notifyManager,
   partialMatchKey
-} from "./chunk-LDMAO4IK.js";
+} from "./chunk-WVMF22BO.js";
 import {
   require_jsx_runtime
-} from "./chunk-24WYNIL6.js";
+} from "./chunk-YE363OCX.js";
 import {
   require_react
-} from "./chunk-QLJLW6ED.js";
+} from "./chunk-VQJW32E7.js";
 import {
   __toESM
 } from "./chunk-PR4QN5HX.js";
@@ -128,6 +128,7 @@ function experimental_createQueryPersister({
   serialize = JSON.stringify,
   deserialize = JSON.parse,
   prefix = PERSISTER_KEY_PREFIX,
+  refetchOnRestore = true,
   filters
 }) {
   function isExpiredOrBusted(persistedQuery) {
@@ -148,7 +149,13 @@ function experimental_createQueryPersister({
       try {
         const storedData = await storage.getItem(storageKey);
         if (storedData) {
-          const persistedQuery = await deserialize(storedData);
+          let persistedQuery;
+          try {
+            persistedQuery = await deserialize(storedData);
+          } catch {
+            await storage.removeItem(storageKey);
+            return;
+          }
           if (isExpiredOrBusted(persistedQuery)) {
             await storage.removeItem(storageKey);
           } else {
@@ -211,12 +218,12 @@ function experimental_createQueryPersister({
             dataUpdatedAt: persistedQuery.state.dataUpdatedAt,
             errorUpdatedAt: persistedQuery.state.errorUpdatedAt
           });
-          if (query.isStale()) {
+          if (refetchOnRestore === "always" || refetchOnRestore === true && query.isStale()) {
             query.fetch();
           }
         }
       );
-      if (restoredData != null) {
+      if (restoredData !== void 0) {
         return Promise.resolve(restoredData);
       }
     }
@@ -230,10 +237,17 @@ function experimental_createQueryPersister({
   }
   async function persisterGc() {
     if (storage?.entries) {
+      const storageKeyPrefix = `${prefix}-`;
       const entries = await storage.entries();
       for (const [key, value] of entries) {
-        if (key.startsWith(prefix)) {
-          const persistedQuery = await deserialize(value);
+        if (key.startsWith(storageKeyPrefix)) {
+          let persistedQuery;
+          try {
+            persistedQuery = await deserialize(value);
+          } catch {
+            await storage.removeItem(key);
+            continue;
+          }
           if (isExpiredOrBusted(persistedQuery)) {
             await storage.removeItem(key);
           }
@@ -248,10 +262,17 @@ function experimental_createQueryPersister({
   async function restoreQueries(queryClient, filters2 = {}) {
     const { exact, queryKey } = filters2;
     if (storage?.entries) {
+      const storageKeyPrefix = `${prefix}-`;
       const entries = await storage.entries();
       for (const [key, value] of entries) {
-        if (key.startsWith(prefix)) {
-          const persistedQuery = await deserialize(value);
+        if (key.startsWith(storageKeyPrefix)) {
+          let persistedQuery;
+          try {
+            persistedQuery = await deserialize(value);
+          } catch {
+            await storage.removeItem(key);
+            continue;
+          }
           if (isExpiredOrBusted(persistedQuery)) {
             await storage.removeItem(key);
             continue;
@@ -280,13 +301,48 @@ function experimental_createQueryPersister({
       );
     }
   }
+  async function removeQueries(filters2 = {}) {
+    const { exact, queryKey } = filters2;
+    if (storage?.entries) {
+      const entries = await storage.entries();
+      const storageKeyPrefix = `${prefix}-`;
+      for (const [key, value] of entries) {
+        if (key.startsWith(storageKeyPrefix)) {
+          if (!queryKey) {
+            await storage.removeItem(key);
+            continue;
+          }
+          let persistedQuery;
+          try {
+            persistedQuery = await deserialize(value);
+          } catch {
+            await storage.removeItem(key);
+            continue;
+          }
+          if (exact) {
+            if (persistedQuery.queryHash !== hashKey(queryKey)) {
+              continue;
+            }
+          } else if (!partialMatchKey(persistedQuery.queryKey, queryKey)) {
+            continue;
+          }
+          await storage.removeItem(key);
+        }
+      }
+    } else if (true) {
+      throw new Error(
+        "Provided storage does not implement `entries` method. Removal of stored entries is not possible without ability to iterate over storage items."
+      );
+    }
+  }
   return {
     persisterFn,
     persistQuery,
     persistQueryByKey,
     retrieveQuery,
     persisterGc,
-    restoreQueries
+    restoreQueries,
+    removeQueries
   };
 }
 

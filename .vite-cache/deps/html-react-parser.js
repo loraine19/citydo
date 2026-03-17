@@ -1,6 +1,6 @@
 import {
   require_react
-} from "./chunk-QLJLW6ED.js";
+} from "./chunk-VQJW32E7.js";
 import {
   __commonJS,
   __toESM
@@ -678,7 +678,7 @@ var require_constants = __commonJS({
     }, {});
     exports.CARRIAGE_RETURN = "\r";
     exports.CARRIAGE_RETURN_REGEX = new RegExp(exports.CARRIAGE_RETURN, "g");
-    exports.CARRIAGE_RETURN_PLACEHOLDER = "__HTML_DOM_PARSER_CARRIAGE_RETURN_PLACEHOLDER_".concat(Date.now(), "__");
+    exports.CARRIAGE_RETURN_PLACEHOLDER = "__HTML_DOM_PARSER_CARRIAGE_RETURN_PLACEHOLDER_".concat(Date.now().toString(), "__");
     exports.CARRIAGE_RETURN_PLACEHOLDER_REGEX = new RegExp(exports.CARRIAGE_RETURN_PLACEHOLDER, "g");
   }
 });
@@ -689,6 +689,7 @@ var require_utilities = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.formatAttributes = formatAttributes;
+    exports.hasOpenTag = hasOpenTag;
     exports.escapeSpecialCharacters = escapeSpecialCharacters;
     exports.revertEscapedCharacters = revertEscapedCharacters;
     exports.formatDOM = formatDOM;
@@ -715,6 +716,15 @@ var require_utilities = __commonJS({
       }
       return tagName;
     }
+    function hasOpenTag(html, tagName) {
+      var openTag = "<" + tagName;
+      var index = html.toLowerCase().indexOf(openTag);
+      if (index === -1) {
+        return false;
+      }
+      var char = html[index + openTag.length];
+      return char === ">" || char === " " || char === "	" || char === "\n" || char === "\r" || char === "/";
+    }
     function escapeSpecialCharacters(html) {
       return html.replace(constants_1.CARRIAGE_RETURN_REGEX, constants_1.CARRIAGE_RETURN_PLACEHOLDER);
     }
@@ -722,6 +732,7 @@ var require_utilities = __commonJS({
       return text.replace(constants_1.CARRIAGE_RETURN_PLACEHOLDER_REGEX, constants_1.CARRIAGE_RETURN);
     }
     function formatDOM(nodes, parent, directive) {
+      var _a, _b, _c, _d;
       if (parent === void 0) {
         parent = null;
       }
@@ -743,15 +754,15 @@ var require_utilities = __commonJS({
             break;
           }
           case 3:
-            current = new domhandler_1.Text(revertEscapedCharacters(node.nodeValue));
+            current = new domhandler_1.Text(revertEscapedCharacters((_a = node.nodeValue) !== null && _a !== void 0 ? _a : ""));
             break;
           case 8:
-            current = new domhandler_1.Comment(node.nodeValue);
+            current = new domhandler_1.Comment((_b = node.nodeValue) !== null && _b !== void 0 ? _b : "");
             break;
           default:
             continue;
         }
-        var prev = domNodes[index - 1] || null;
+        var prev = (_c = domNodes[index - 1]) !== null && _c !== void 0 ? _c : null;
         if (prev) {
           prev.next = current;
         }
@@ -762,7 +773,7 @@ var require_utilities = __commonJS({
       }
       if (directive) {
         current = new domhandler_1.ProcessingInstruction(directive.substring(0, directive.indexOf(" ")).toLowerCase(), directive);
-        current.next = domNodes[0] || null;
+        current.next = (_d = domNodes[0]) !== null && _d !== void 0 ? _d : null;
         current.parent = parent;
         domNodes.unshift(current);
         if (domNodes[1]) {
@@ -785,8 +796,6 @@ var require_domparser = __commonJS({
     var HEAD = "head";
     var BODY = "body";
     var FIRST_TAG_REGEX = /<([a-zA-Z]+[0-9]?)/;
-    var HEAD_TAG_REGEX = /<head[^]*>/i;
-    var BODY_TAG_REGEX = /<body[^]*>/i;
     var parseFromDocument = function(html, tagName) {
       throw new Error("This browser does not support `document.implementation.createHTMLDocument`");
     };
@@ -830,29 +839,35 @@ var require_domparser = __commonJS({
         return template.content.childNodes;
       };
     }
+    var createNodeList = (
+      /* istanbul ignore next */
+      function() {
+        return document.createDocumentFragment().childNodes;
+      }
+    );
     function domparser(html) {
-      var _a, _b;
+      var _a, _b, _c, _d, _e, _f;
       html = (0, utilities_1.escapeSpecialCharacters)(html);
-      var match = html.match(FIRST_TAG_REGEX);
-      var firstTagName = match && match[1] ? match[1].toLowerCase() : "";
+      var match = FIRST_TAG_REGEX.exec(html);
+      var firstTagName = (_a = match === null || match === void 0 ? void 0 : match[1]) === null || _a === void 0 ? void 0 : _a.toLowerCase();
       switch (firstTagName) {
         case HTML: {
           var doc = parseFromString(html);
-          if (!HEAD_TAG_REGEX.test(html)) {
+          if (!(0, utilities_1.hasOpenTag)(html, HEAD)) {
             var element = doc.querySelector(HEAD);
-            (_a = element === null || element === void 0 ? void 0 : element.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(element);
-          }
-          if (!BODY_TAG_REGEX.test(html)) {
-            var element = doc.querySelector(BODY);
             (_b = element === null || element === void 0 ? void 0 : element.parentNode) === null || _b === void 0 ? void 0 : _b.removeChild(element);
+          }
+          if (!(0, utilities_1.hasOpenTag)(html, BODY)) {
+            var element = doc.querySelector(BODY);
+            (_c = element === null || element === void 0 ? void 0 : element.parentNode) === null || _c === void 0 ? void 0 : _c.removeChild(element);
           }
           return doc.querySelectorAll(HTML);
         }
         case HEAD:
         case BODY: {
           var elements = parseFromDocument(html).querySelectorAll(firstTagName);
-          if (BODY_TAG_REGEX.test(html) && HEAD_TAG_REGEX.test(html)) {
-            return elements[0].parentNode.childNodes;
+          if ((0, utilities_1.hasOpenTag)(html, BODY) && (0, utilities_1.hasOpenTag)(html, HEAD)) {
+            return (_e = (_d = elements[0].parentNode) === null || _d === void 0 ? void 0 : _d.childNodes) !== null && _e !== void 0 ? _e : createNodeList();
           }
           return elements;
         }
@@ -862,7 +877,7 @@ var require_domparser = __commonJS({
             return parseFromTemplate(html);
           }
           var element = parseFromDocument(html, BODY).querySelector(BODY);
-          return element.childNodes;
+          return (_f = element === null || element === void 0 ? void 0 : element.childNodes) !== null && _f !== void 0 ? _f : createNodeList();
         }
       }
     }
@@ -888,7 +903,7 @@ var require_html_to_dom = __commonJS({
       if (!html) {
         return [];
       }
-      var match = html.match(DIRECTIVE_REGEX);
+      var match = DIRECTIVE_REGEX.exec(html);
       var directive = match ? match[1] : void 0;
       return (0, utilities_1.formatDOM)((0, domparser_1.default)(html), null, directive);
     }
@@ -1857,9 +1872,10 @@ var require_lib3 = __commonJS({
   }
 });
 
-// node_modules/inline-style-parser/index.js
-var require_inline_style_parser = __commonJS({
-  "node_modules/inline-style-parser/index.js"(exports, module) {
+// node_modules/inline-style-parser/cjs/index.js
+var require_cjs = __commonJS({
+  "node_modules/inline-style-parser/cjs/index.js"(exports, module) {
+    "use strict";
     var COMMENT_REGEX = /\/\*[^*]*\*+([^/*][^*]*\*+)*\//g;
     var NEWLINE_REGEX = /\n/g;
     var WHITESPACE_REGEX = /^\s*/;
@@ -1874,7 +1890,7 @@ var require_inline_style_parser = __commonJS({
     var EMPTY_STRING = "";
     var TYPE_COMMENT = "comment";
     var TYPE_DECLARATION = "declaration";
-    module.exports = function(style, options) {
+    function index(style, options) {
       if (typeof style !== "string") {
         throw new TypeError("First argument must be a string");
       }
@@ -1902,7 +1918,6 @@ var require_inline_style_parser = __commonJS({
         this.source = options.source;
       }
       Position.prototype.content = style;
-      var errorsList = [];
       function error(msg) {
         var err = new Error(
           options.source + ":" + lineno + ":" + column + ": " + msg
@@ -1912,9 +1927,8 @@ var require_inline_style_parser = __commonJS({
         err.line = lineno;
         err.column = column;
         err.source = style;
-        if (options.silent) {
-          errorsList.push(err);
-        } else {
+        if (options.silent) ;
+        else {
           throw err;
         }
       }
@@ -1989,15 +2003,16 @@ var require_inline_style_parser = __commonJS({
       }
       whitespace();
       return declarations();
-    };
+    }
     function trim(str) {
       return str ? str.replace(TRIM_REGEX, EMPTY_STRING) : EMPTY_STRING;
     }
+    module.exports = index;
   }
 });
 
 // node_modules/style-to-object/cjs/index.js
-var require_cjs = __commonJS({
+var require_cjs2 = __commonJS({
   "node_modules/style-to-object/cjs/index.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
@@ -2005,19 +2020,19 @@ var require_cjs = __commonJS({
     };
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = StyleToObject;
-    var inline_style_parser_1 = __importDefault(require_inline_style_parser());
+    var inline_style_parser_1 = __importDefault(require_cjs());
     function StyleToObject(style, iterator) {
-      var styleObject = null;
+      let styleObject = null;
       if (!style || typeof style !== "string") {
         return styleObject;
       }
-      var declarations = (0, inline_style_parser_1.default)(style);
-      var hasIterator = typeof iterator === "function";
-      declarations.forEach(function(declaration) {
+      const declarations = (0, inline_style_parser_1.default)(style);
+      const hasIterator = typeof iterator === "function";
+      declarations.forEach((declaration) => {
         if (declaration.type !== "declaration") {
           return;
         }
-        var property = declaration.property, value = declaration.value;
+        const { property, value } = declaration;
         if (hasIterator) {
           iterator(property, value, declaration);
         } else if (value) {
@@ -2070,13 +2085,13 @@ var require_utilities2 = __commonJS({
 });
 
 // node_modules/style-to-js/cjs/index.js
-var require_cjs2 = __commonJS({
+var require_cjs3 = __commonJS({
   "node_modules/style-to-js/cjs/index.js"(exports, module) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    var style_to_object_1 = __importDefault(require_cjs());
+    var style_to_object_1 = __importDefault(require_cjs2());
     var utilities_1 = require_utilities2();
     function StyleToJS(style, options) {
       var output = {};
@@ -2107,7 +2122,7 @@ var require_utilities3 = __commonJS({
     exports.isCustomComponent = isCustomComponent;
     exports.setStyleProp = setStyleProp;
     var react_1 = require_react();
-    var style_to_js_1 = __importDefault(require_cjs2());
+    var style_to_js_1 = __importDefault(require_cjs3());
     var RESERVED_SVG_MATHML_ELEMENTS = /* @__PURE__ */ new Set([
       "annotation-xml",
       "color-profile",
@@ -2201,7 +2216,7 @@ var require_attributes_to_props = __commonJS({
             propName = getPropName("default" + attributeNameLowerCased);
           }
           props[propName] = attributeValue;
-          switch (propertyInfo && propertyInfo.type) {
+          switch (propertyInfo === null || propertyInfo === void 0 ? void 0 : propertyInfo.type) {
             case react_property_1.BOOLEAN:
               props[propName] = true;
               break;
@@ -2244,22 +2259,23 @@ var require_dom_to_react = __commonJS({
       isValidElement: react_1.isValidElement
     };
     function domToReact2(nodes, options) {
+      var _a, _b, _c, _d, _e;
       if (options === void 0) {
         options = {};
       }
       var reactElements = [];
       var hasReplace = typeof options.replace === "function";
-      var transform = options.transform || utilities_1.returnFirstArg;
-      var _a = options.library || React, cloneElement = _a.cloneElement, createElement = _a.createElement, isValidElement = _a.isValidElement;
+      var transform = (_a = options.transform) !== null && _a !== void 0 ? _a : utilities_1.returnFirstArg;
+      var _f = (_b = options.library) !== null && _b !== void 0 ? _b : React, cloneElement = _f.cloneElement, createElement = _f.createElement, isValidElement = _f.isValidElement;
       var nodesLength = nodes.length;
       for (var index = 0; index < nodesLength; index++) {
         var node = nodes[index];
         if (hasReplace) {
-          var replaceElement = options.replace(node, index);
+          var replaceElement = (_c = options.replace) === null || _c === void 0 ? void 0 : _c.call(options, node, index);
           if (isValidElement(replaceElement)) {
             if (nodesLength > 1) {
               replaceElement = cloneElement(replaceElement, {
-                key: replaceElement.key || index
+                key: (_d = replaceElement.key) !== null && _d !== void 0 ? _d : index
               });
             }
             reactElements.push(transform(replaceElement, node, index));
@@ -2298,7 +2314,7 @@ var require_dom_to_react = __commonJS({
           case "tag":
             if (node.name === "textarea" && node.children[0]) {
               props.defaultValue = node.children[0].data;
-            } else if (node.children && node.children.length) {
+            } else if ((_e = node.children) === null || _e === void 0 ? void 0 : _e.length) {
               children = domToReact2(node.children, options);
             }
             break;
@@ -2350,13 +2366,14 @@ var require_lib4 = __commonJS({
     } });
     var domParserOptions = { lowerCaseAttributeNames: false };
     function HTMLReactParser2(html, options) {
+      var _a;
       if (typeof html !== "string") {
         throw new TypeError("First argument must be a string");
       }
       if (!html) {
         return [];
       }
-      return (0, dom_to_react_1.default)((0, html_dom_parser_1.default)(html, (options === null || options === void 0 ? void 0 : options.htmlparser2) || domParserOptions), options);
+      return (0, dom_to_react_1.default)((0, html_dom_parser_1.default)(html, (_a = options === null || options === void 0 ? void 0 : options.htmlparser2) !== null && _a !== void 0 ? _a : domParserOptions), options);
     }
   }
 });

@@ -9,7 +9,8 @@ export default defineConfig(({ mode }) => {
     return {
       plugins: [react(), visualizer()],
       build: {
-        minify: 'terser',
+        //  minify: 'terser',
+        minify: false,
         rollupOptions: {
           output: {
             entryFileNames: `[name].js`,

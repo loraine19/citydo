@@ -1,9 +1,9 @@
 import {
   require_jsx_runtime
-} from "./chunk-24WYNIL6.js";
+} from "./chunk-YE363OCX.js";
 import {
   require_react
-} from "./chunk-QLJLW6ED.js";
+} from "./chunk-VQJW32E7.js";
 import {
   __toESM
 } from "./chunk-PR4QN5HX.js";
@@ -200,10 +200,11 @@ function partialMatchKey(a, b) {
   return false;
 }
 var hasOwn = Object.prototype.hasOwnProperty;
-function replaceEqualDeep(a, b) {
+function replaceEqualDeep(a, b, depth = 0) {
   if (a === b) {
     return a;
   }
+  if (depth > 500) return b;
   const array = isPlainArray(a) && isPlainArray(b);
   if (!array && !(isPlainObject(a) && isPlainObject(b))) return b;
   const aItems = array ? a : Object.keys(a);
@@ -225,7 +226,7 @@ function replaceEqualDeep(a, b) {
       copy[key] = bItem;
       continue;
     }
-    const v = replaceEqualDeep(aItem, bItem);
+    const v = replaceEqualDeep(aItem, bItem, depth + 1);
     copy[key] = v;
     if (v === aItem) equalItems++;
   }
@@ -324,6 +325,27 @@ function shouldThrowError(throwOnError, params) {
     return throwOnError(...params);
   }
   return !!throwOnError;
+}
+function addConsumeAwareSignal(object, getSignal, onCancelled) {
+  let consumed = false;
+  let signal;
+  Object.defineProperty(object, "signal", {
+    enumerable: true,
+    get: () => {
+      signal ??= getSignal();
+      if (consumed) {
+        return signal;
+      }
+      consumed = true;
+      if (signal.aborted) {
+        onCancelled();
+      } else {
+        signal.addEventListener("abort", onCancelled, { once: true });
+      }
+      return signal;
+    }
+  });
+  return object;
 }
 
 // node_modules/@tanstack/query-core/build/modern/focusManager.js
@@ -445,6 +467,21 @@ function dehydrateMutation(mutation) {
   };
 }
 function dehydrateQuery(query, serializeData, shouldRedactErrors) {
+  const dehydratePromise = () => {
+    const promise = query.promise?.then(serializeData).catch((error) => {
+      if (!shouldRedactErrors(error)) {
+        return Promise.reject(error);
+      }
+      if (true) {
+        console.error(
+          `A query that was dehydrated as pending ended up rejecting. [${query.queryHash}]: ${error}; The error will be redacted in production builds`
+        );
+      }
+      return Promise.reject(new Error("redacted"));
+    });
+    promise?.catch(noop);
+    return promise;
+  };
   return {
     dehydratedAt: Date.now(),
     state: {
@@ -456,17 +493,7 @@ function dehydrateQuery(query, serializeData, shouldRedactErrors) {
     queryKey: query.queryKey,
     queryHash: query.queryHash,
     ...query.state.status === "pending" && {
-      promise: query.promise?.then(serializeData).catch((error) => {
-        if (!shouldRedactErrors(error)) {
-          return Promise.reject(error);
-        }
-        if (true) {
-          console.error(
-            `A query that was dehydrated as pending ended up rejecting. [${query.queryHash}]: ${error}; The error will be redacted in production builds`
-          );
-        }
-        return Promise.reject(new Error("redacted"));
-      })
+      promise: dehydratePromise()
     },
     ...query.meta && { meta: query.meta }
   };
@@ -555,10 +582,10 @@ function hydrate(client, dehydratedState, options) {
       if (promise && !existingQueryIsPending && !existingQueryIsFetching && // Only hydrate if dehydration is newer than any existing data,
       // this is always true for new queries
       (dehydratedAt === void 0 || dehydratedAt > query.state.dataUpdatedAt)) {
-        void query.fetch(void 0, {
+        query.fetch(void 0, {
           // RSC transformed promises are not thenable
           initialPromise: Promise.resolve(promise).then(deserializeData)
-        });
+        }).catch(noop);
       }
     }
   );
@@ -882,10 +909,9 @@ var Query = class extends Removable {
     if (this.state && this.state.data === void 0) {
       const defaultState = getDefaultState(this.options);
       if (defaultState.data !== void 0) {
-        this.setData(defaultState.data, {
-          updatedAt: defaultState.dataUpdatedAt,
-          manual: true
-        });
+        this.setState(
+          successState(defaultState.data, defaultState.dataUpdatedAt)
+        );
         this.#initialState = defaultState;
       }
     }
@@ -1002,7 +1028,7 @@ var Query = class extends Removable {
     }
   }
   async fetch(options, fetchOptions) {
-    if (this.state.fetchStatus !== "idle" && // If the promise in the retyer is already rejected, we have to definitely
+    if (this.state.fetchStatus !== "idle" && // If the promise in the retryer is already rejected, we have to definitely
     // re-start the fetch; there is a chance that the query is still in a
     // pending state when that happens
     this.#retryer?.status() !== "rejected") {
@@ -1180,12 +1206,8 @@ var Query = class extends Removable {
         case "success":
           const newState = {
             ...state,
-            data: action.data,
+            ...successState(action.data, action.dataUpdatedAt),
             dataUpdateCount: state.dataUpdateCount + 1,
-            dataUpdatedAt: action.dataUpdatedAt ?? Date.now(),
-            error: null,
-            isInvalidated: false,
-            status: "success",
             ...!action.manual && {
               fetchStatus: "idle",
               fetchFailureCount: 0,
@@ -1204,7 +1226,10 @@ var Query = class extends Removable {
             fetchFailureCount: state.fetchFailureCount + 1,
             fetchFailureReason: error,
             fetchStatus: "idle",
-            status: "error"
+            status: "error",
+            // flag existing data as invalidated if we get a background error
+            // note that "no data" always means stale so we can set unconditionally here
+            isInvalidated: true
           };
         case "invalidate":
           return {
@@ -1236,6 +1261,15 @@ function fetchState(data, options) {
       error: null,
       status: "pending"
     }
+  };
+}
+function successState(data, dataUpdatedAt) {
+  return {
+    data,
+    dataUpdatedAt: dataUpdatedAt ?? Date.now(),
+    error: null,
+    isInvalidated: false,
+    status: "success"
   };
 }
 function getDefaultState(options) {
@@ -1379,12 +1413,15 @@ var QueryObserver = class extends Subscribable {
       get: (target, key) => {
         this.trackProp(key);
         onPropTracked?.(key);
-        if (key === "promise" && !this.options.experimental_prefetchInRender && this.#currentThenable.status === "pending") {
-          this.#currentThenable.reject(
-            new Error(
-              "experimental_prefetchInRender feature flag is not enabled"
-            )
-          );
+        if (key === "promise") {
+          this.trackProp("data");
+          if (!this.options.experimental_prefetchInRender && this.#currentThenable.status === "pending") {
+            this.#currentThenable.reject(
+              new Error(
+                "experimental_prefetchInRender feature flag is not enabled"
+              )
+            );
+          }
         }
         return Reflect.get(target, key);
       }
@@ -1580,10 +1617,12 @@ var QueryObserver = class extends Subscribable {
     };
     const nextResult = result;
     if (this.options.experimental_prefetchInRender) {
+      const hasResultData = nextResult.data !== void 0;
+      const isErrorWithoutData = nextResult.status === "error" && !hasResultData;
       const finalizeThenableIfPossible = (thenable) => {
-        if (nextResult.status === "error") {
+        if (isErrorWithoutData) {
           thenable.reject(nextResult.error);
-        } else if (nextResult.data !== void 0) {
+        } else if (hasResultData) {
           thenable.resolve(nextResult.data);
         }
       };
@@ -1599,12 +1638,12 @@ var QueryObserver = class extends Subscribable {
           }
           break;
         case "fulfilled":
-          if (nextResult.status === "error" || nextResult.data !== prevThenable.value) {
+          if (isErrorWithoutData || nextResult.data !== prevThenable.value) {
             recreateThenable();
           }
           break;
         case "rejected":
-          if (nextResult.status !== "error" || nextResult.error !== prevThenable.reason) {
+          if (!isErrorWithoutData || nextResult.error !== prevThenable.reason) {
             recreateThenable();
           }
           break;
@@ -1719,19 +1758,11 @@ function infiniteQueryBehavior(pages) {
       const fetchFn = async () => {
         let cancelled = false;
         const addSignalProperty = (object) => {
-          Object.defineProperty(object, "signal", {
-            enumerable: true,
-            get: () => {
-              if (context.signal.aborted) {
-                cancelled = true;
-              } else {
-                context.signal.addEventListener("abort", () => {
-                  cancelled = true;
-                });
-              }
-              return context.signal;
-            }
-          });
+          addConsumeAwareSignal(
+            object,
+            () => context.signal,
+            () => cancelled = true
+          );
         };
         const queryFn = ensureQueryFn(context.options, context.fetchOptions);
         const fetchPage = async (data, param, previous) => {
@@ -1976,11 +2007,13 @@ var Mutation = class extends Removable {
         onContinue();
       } else {
         this.#dispatch({ type: "pending", variables, isPaused });
-        await this.#mutationCache.config.onMutate?.(
-          variables,
-          this,
-          mutationFnContext
-        );
+        if (this.#mutationCache.config.onMutate) {
+          await this.#mutationCache.config.onMutate(
+            variables,
+            this,
+            mutationFnContext
+          );
+        }
         const context = await this.options.onMutate?.(
           variables,
           mutationFnContext
@@ -2034,12 +2067,20 @@ var Mutation = class extends Removable {
           this,
           mutationFnContext
         );
+      } catch (e) {
+        void Promise.reject(e);
+      }
+      try {
         await this.options.onError?.(
           error,
           variables,
           this.state.context,
           mutationFnContext
         );
+      } catch (e) {
+        void Promise.reject(e);
+      }
+      try {
         await this.#mutationCache.config.onSettled?.(
           void 0,
           error,
@@ -2048,6 +2089,10 @@ var Mutation = class extends Removable {
           this,
           mutationFnContext
         );
+      } catch (e) {
+        void Promise.reject(e);
+      }
+      try {
         await this.options.onSettled?.(
           void 0,
           error,
@@ -2055,10 +2100,11 @@ var Mutation = class extends Removable {
           this.state.context,
           mutationFnContext
         );
-        throw error;
-      } finally {
-        this.#dispatch({ type: "error", error });
+      } catch (e) {
+        void Promise.reject(e);
       }
+      this.#dispatch({ type: "error", error });
+      throw error;
     } finally {
       this.#mutationCache.runNext(this);
     }
@@ -2342,33 +2388,49 @@ var MutationObserver = class extends Subscribable {
           mutationKey: this.options.mutationKey
         };
         if (action?.type === "success") {
-          this.#mutateOptions.onSuccess?.(
-            action.data,
-            variables,
-            onMutateResult,
-            context
-          );
-          this.#mutateOptions.onSettled?.(
-            action.data,
-            null,
-            variables,
-            onMutateResult,
-            context
-          );
+          try {
+            this.#mutateOptions.onSuccess?.(
+              action.data,
+              variables,
+              onMutateResult,
+              context
+            );
+          } catch (e) {
+            void Promise.reject(e);
+          }
+          try {
+            this.#mutateOptions.onSettled?.(
+              action.data,
+              null,
+              variables,
+              onMutateResult,
+              context
+            );
+          } catch (e) {
+            void Promise.reject(e);
+          }
         } else if (action?.type === "error") {
-          this.#mutateOptions.onError?.(
-            action.error,
-            variables,
-            onMutateResult,
-            context
-          );
-          this.#mutateOptions.onSettled?.(
-            void 0,
-            action.error,
-            variables,
-            onMutateResult,
-            context
-          );
+          try {
+            this.#mutateOptions.onError?.(
+              action.error,
+              variables,
+              onMutateResult,
+              context
+            );
+          } catch (e) {
+            void Promise.reject(e);
+          }
+          try {
+            this.#mutateOptions.onSettled?.(
+              void 0,
+              action.error,
+              variables,
+              onMutateResult,
+              context
+            );
+          } catch (e) {
+            void Promise.reject(e);
+          }
         }
       }
       this.listeners.forEach((listener) => {
@@ -2397,6 +2459,7 @@ var QueriesObserver = class extends Subscribable {
   #combinedResult;
   #lastCombine;
   #lastResult;
+  #lastQueryHashes;
   #observerMatches = [];
   constructor(client, queries, options) {
     super();
@@ -2443,7 +2506,6 @@ var QueriesObserver = class extends Subscribable {
     notifyManager.batch(() => {
       const prevObservers = this.#observers;
       const newObserverMatches = this.#findMatchingObservers(this.#queries);
-      this.#observerMatches = newObserverMatches;
       newObserverMatches.forEach(
         (match) => match.observer.setOptions(match.defaultedQueryOptions)
       );
@@ -2462,6 +2524,7 @@ var QueriesObserver = class extends Subscribable {
       });
       if (!hasStructuralChange && !hasResultChange) return;
       if (hasStructuralChange) {
+        this.#observerMatches = newObserverMatches;
         this.#observers = newObservers;
       }
       this.#result = newResult;
@@ -2493,10 +2556,13 @@ var QueriesObserver = class extends Subscribable {
     const result = matches.map(
       (match) => match.observer.getOptimisticResult(match.defaultedQueryOptions)
     );
+    const queryHashes = matches.map(
+      (match) => match.defaultedQueryOptions.queryHash
+    );
     return [
       result,
       (r) => {
-        return this.#combineResult(r ?? result, combine);
+        return this.#combineResult(r ?? result, combine, queryHashes);
       },
       () => {
         return this.#trackResult(result, matches);
@@ -2513,11 +2579,16 @@ var QueriesObserver = class extends Subscribable {
       }) : observerResult;
     });
   }
-  #combineResult(input, combine) {
+  #combineResult(input, combine, queryHashes) {
     if (combine) {
-      if (!this.#combinedResult || this.#result !== this.#lastResult || combine !== this.#lastCombine) {
+      const lastHashes = this.#lastQueryHashes;
+      const queryHashesChanged = queryHashes !== void 0 && lastHashes !== void 0 && (lastHashes.length !== queryHashes.length || queryHashes.some((hash, i) => hash !== lastHashes[i]));
+      if (!this.#combinedResult || this.#result !== this.#lastResult || queryHashesChanged || combine !== this.#lastCombine) {
         this.#lastCombine = combine;
         this.#lastResult = this.#result;
+        if (queryHashes !== void 0) {
+          this.#lastQueryHashes = queryHashes;
+        }
         this.#combinedResult = replaceEqualDeep(
           this.#combinedResult,
           combine(input)
@@ -2528,24 +2599,26 @@ var QueriesObserver = class extends Subscribable {
     return input;
   }
   #findMatchingObservers(queries) {
-    const prevObserversMap = new Map(
-      this.#observers.map((observer) => [observer.options.queryHash, observer])
-    );
+    const prevObserversMap = /* @__PURE__ */ new Map();
+    this.#observers.forEach((observer) => {
+      const key = observer.options.queryHash;
+      if (!key) return;
+      const previousObservers = prevObserversMap.get(key);
+      if (previousObservers) {
+        previousObservers.push(observer);
+      } else {
+        prevObserversMap.set(key, [observer]);
+      }
+    });
     const observers = [];
     queries.forEach((options) => {
       const defaultedOptions = this.#client.defaultQueryOptions(options);
-      const match = prevObserversMap.get(defaultedOptions.queryHash);
-      if (match) {
-        observers.push({
-          defaultedQueryOptions: defaultedOptions,
-          observer: match
-        });
-      } else {
-        observers.push({
-          defaultedQueryOptions: defaultedOptions,
-          observer: new QueryObserver(this.#client, defaultedOptions)
-        });
-      }
+      const match = prevObserversMap.get(defaultedOptions.queryHash)?.shift();
+      const observer = match ?? new QueryObserver(this.#client, defaultedOptions);
+      observers.push({
+        defaultedQueryOptions: defaultedOptions,
+        observer
+      });
     });
     return observers;
   }
@@ -2968,23 +3041,37 @@ function streamedQuery({
       });
     }
     let result = initialValue;
-    const stream = await streamFn(context);
+    let cancelled = false;
+    const streamFnContext = addConsumeAwareSignal(
+      {
+        client: context.client,
+        meta: context.meta,
+        queryKey: context.queryKey,
+        pageParam: context.pageParam,
+        direction: context.direction
+      },
+      () => context.signal,
+      () => cancelled = true
+    );
+    const stream = await streamFn(streamFnContext);
+    const isReplaceRefetch = isRefetch && refetchMode === "replace";
     for await (const chunk of stream) {
-      if (context.signal.aborted) {
+      if (cancelled) {
         break;
       }
-      if (!isRefetch || refetchMode !== "replace") {
+      if (isReplaceRefetch) {
+        result = reducer(result, chunk);
+      } else {
         context.client.setQueryData(
           context.queryKey,
           (prev) => reducer(prev === void 0 ? initialValue : prev, chunk)
         );
       }
-      result = reducer(result, chunk);
     }
-    if (isRefetch && refetchMode === "replace" && !context.signal.aborted) {
+    if (isReplaceRefetch && !cancelled) {
       context.client.setQueryData(context.queryKey, result);
     }
-    return context.client.getQueryData(context.queryKey);
+    return context.client.getQueryData(context.queryKey) ?? initialValue;
   };
 }
 
@@ -3059,8 +3146,9 @@ var QueryErrorResetBoundary = ({
 
 // node_modules/@tanstack/react-query/build/modern/errorBoundaryUtils.js
 var React4 = __toESM(require_react(), 1);
-var ensurePreventErrorBoundaryRetry = (options, errorResetBoundary) => {
-  if (options.suspense || options.throwOnError || options.experimental_prefetchInRender) {
+var ensurePreventErrorBoundaryRetry = (options, errorResetBoundary, query) => {
+  const throwOnError = query?.state.error && typeof options.throwOnError === "function" ? shouldThrowError(options.throwOnError, [query.state.error, query]) : options.throwOnError;
+  if (options.suspense || options.experimental_prefetchInRender || throwOnError) {
     if (!errorResetBoundary.isReset()) {
       options.retryOnMount = false;
     }
@@ -3121,9 +3209,10 @@ function useQueries({
     }),
     [queries, client, isRestoring]
   );
-  defaultedQueries.forEach((query) => {
-    ensureSuspenseTimers(query);
-    ensurePreventErrorBoundaryRetry(query, errorResetBoundary);
+  defaultedQueries.forEach((queryOptions2) => {
+    ensureSuspenseTimers(queryOptions2);
+    const query = client.getQueryCache().get(queryOptions2.queryHash);
+    ensurePreventErrorBoundaryRetry(queryOptions2, errorResetBoundary, query);
   });
   useClearResetErrorBoundary(errorResetBoundary);
   const [observer] = React5.useState(
@@ -3157,13 +3246,9 @@ function useQueries({
   );
   const suspensePromises = shouldAtLeastOneSuspend ? optimisticResult.flatMap((result, index) => {
     const opts = defaultedQueries[index];
-    if (opts) {
+    if (opts && shouldSuspend(opts, result)) {
       const queryObserver = new QueryObserver(client, opts);
-      if (shouldSuspend(opts, result)) {
-        return fetchOptimistic(opts, queryObserver, errorResetBoundary);
-      } else if (willFetch(result, isRestoring)) {
-        void fetchOptimistic(opts, queryObserver, errorResetBoundary);
-      }
+      return fetchOptimistic(opts, queryObserver, errorResetBoundary);
     }
     return [];
   }) : [];
@@ -3205,6 +3290,7 @@ function useBaseQuery(options, Observer, queryClient) {
   client.getDefaultOptions().queries?._experimental_beforeQuery?.(
     defaultedOptions
   );
+  const query = client.getQueryCache().get(defaultedOptions.queryHash);
   if (true) {
     if (!defaultedOptions.queryFn) {
       console.error(
@@ -3214,7 +3300,7 @@ function useBaseQuery(options, Observer, queryClient) {
   }
   defaultedOptions._optimisticResults = isRestoring ? "isRestoring" : "optimistic";
   ensureSuspenseTimers(defaultedOptions);
-  ensurePreventErrorBoundaryRetry(defaultedOptions, errorResetBoundary);
+  ensurePreventErrorBoundaryRetry(defaultedOptions, errorResetBoundary, query);
   useClearResetErrorBoundary(errorResetBoundary);
   const isNewCacheEntry = !client.getQueryCache().get(defaultedOptions.queryHash);
   const [observer] = React6.useState(
@@ -3247,7 +3333,7 @@ function useBaseQuery(options, Observer, queryClient) {
     result,
     errorResetBoundary,
     throwOnError: defaultedOptions.throwOnError,
-    query: client.getQueryCache().get(defaultedOptions.queryHash),
+    query,
     suspense: defaultedOptions.suspense
   })) {
     throw result.error;
@@ -3263,7 +3349,7 @@ function useBaseQuery(options, Observer, queryClient) {
       fetchOptimistic(defaultedOptions, observer, errorResetBoundary)
     ) : (
       // subscribe to the "cache promise" so that we can finalize the currentThenable once data comes in
-      client.getQueryCache().get(defaultedOptions.queryHash)?.promise
+      query?.promise
     );
     promise?.catch(noop).finally(() => {
       observer.updateResult();
@@ -3376,7 +3462,9 @@ var HydrationBoundary = ({
 }) => {
   const client = useQueryClient(queryClient);
   const optionsRef = React7.useRef(options);
-  optionsRef.current = options;
+  React7.useEffect(() => {
+    optionsRef.current = options;
+  });
   const hydrationQueue = React7.useMemo(() => {
     if (state) {
       if (typeof state !== "object") {
@@ -3447,7 +3535,7 @@ function useMutationState(options = {}, queryClient) {
   const mutationCache = useQueryClient(queryClient).getMutationCache();
   const optionsRef = React9.useRef(options);
   const result = React9.useRef(null);
-  if (!result.current) {
+  if (result.current === null) {
     result.current = getResult(mutationCache, options);
   }
   React9.useEffect(() => {
@@ -3578,4 +3666,4 @@ export {
   mutationOptions,
   useInfiniteQuery
 };
-//# sourceMappingURL=chunk-LDMAO4IK.js.map
+//# sourceMappingURL=chunk-WVMF22BO.js.map

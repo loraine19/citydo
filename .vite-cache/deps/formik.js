@@ -1,6 +1,6 @@
 import {
   require_react
-} from "./chunk-QLJLW6ED.js";
+} from "./chunk-VQJW32E7.js";
 import {
   __commonJS,
   __toESM
@@ -2256,15 +2256,16 @@ function useFormik(_ref) {
     });
   }, []);
   var setFieldValue = useEventCallback(function(field, value, shouldValidate) {
+    var resolvedValue = isFunction2(value) ? value(getIn(state.values, field)) : value;
     dispatch({
       type: "SET_FIELD_VALUE",
       payload: {
         field,
-        value
+        value: resolvedValue
       }
     });
     var willValidate = shouldValidate === void 0 ? validateOnChange : shouldValidate;
-    return willValidate ? validateFormWithHighPriority(setIn(state.values, field, value)) : Promise.resolve();
+    return willValidate ? validateFormWithHighPriority(setIn(state.values, field, resolvedValue)) : Promise.resolve();
   });
   var executeChange = (0, import_react.useCallback)(function(eventOrTextValue, maybePath) {
     var field = maybePath;
