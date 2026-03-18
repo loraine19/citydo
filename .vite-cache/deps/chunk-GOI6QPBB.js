@@ -1,6 +1,6 @@
 import {
   require_react
-} from "./chunk-VQJW32E7.js";
+} from "./chunk-5C6DFZPZ.js";
 import {
   __toESM
 } from "./chunk-PR4QN5HX.js";
@@ -2601,7 +2601,6 @@ function createRouter(init) {
   };
   return router;
 }
-var UNSAFE_DEFERRED_SYMBOL = Symbol("deferred");
 function isSubmissionNavigation(opts) {
   return opts != null && ("formData" in opts && opts.formData != null || "body" in opts && opts.body !== void 0);
 }
@@ -4939,30 +4938,4 @@ export {
   mapRouteProperties,
   createMemoryRouter
 };
-/*! Bundled license information:
-
-@remix-run/router/dist/router.js:
-  (**
-   * @remix-run/router v1.23.2
-   *
-   * Copyright (c) Remix Software Inc.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.md file in the root directory of this source tree.
-   *
-   * @license MIT
-   *)
-
-react-router/dist/index.js:
-  (**
-   * React Router v6.30.3
-   *
-   * Copyright (c) Remix Software Inc.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.md file in the root directory of this source tree.
-   *
-   * @license MIT
-   *)
-*/
-//# sourceMappingURL=chunk-ZL7NI7NO.js.map
+//# sourceMappingURL=chunk-GOI6QPBB.js.map

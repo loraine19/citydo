@@ -1,9 +1,9 @@
 import {
   require_jsx_runtime
-} from "./chunk-YE363OCX.js";
+} from "./chunk-3AQ3GYV6.js";
 import {
   require_react
-} from "./chunk-VQJW32E7.js";
+} from "./chunk-5C6DFZPZ.js";
 import {
   __toESM
 } from "./chunk-PR4QN5HX.js";
@@ -303,7 +303,7 @@ function addToStart(items, item, max = 0) {
   const newItems = [item, ...items];
   return max && newItems.length > max ? newItems.slice(0, -1) : newItems;
 }
-var skipToken = Symbol();
+var skipToken = /* @__PURE__ */ Symbol();
 function ensureQueryFn(options, fetchOptions) {
   if (true) {
     if (options.queryFn === skipToken) {
@@ -3076,9 +3076,9 @@ function streamedQuery({
 }
 
 // node_modules/@tanstack/query-core/build/modern/types.js
-var dataTagSymbol = Symbol("dataTagSymbol");
-var dataTagErrorSymbol = Symbol("dataTagErrorSymbol");
-var unsetMarker = Symbol("unsetMarker");
+var dataTagSymbol = /* @__PURE__ */ Symbol("dataTagSymbol");
+var dataTagErrorSymbol = /* @__PURE__ */ Symbol("dataTagErrorSymbol");
+var unsetMarker = /* @__PURE__ */ Symbol("unsetMarker");
 
 // node_modules/@tanstack/react-query/build/modern/useQueries.js
 var React5 = __toESM(require_react(), 1);
@@ -3666,4 +3666,4 @@ export {
   mutationOptions,
   useInfiniteQuery
 };
-//# sourceMappingURL=chunk-WVMF22BO.js.map
+//# sourceMappingURL=chunk-JK5GKQC4.js.map

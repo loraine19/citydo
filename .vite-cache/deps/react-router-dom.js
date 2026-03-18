@@ -62,13 +62,13 @@ import {
   useRoutes,
   useRoutesImpl,
   warning
-} from "./chunk-ZL7NI7NO.js";
+} from "./chunk-GOI6QPBB.js";
 import {
   require_react_dom
-} from "./chunk-O32TIKFM.js";
+} from "./chunk-Q6RX7X5U.js";
 import {
   require_react
-} from "./chunk-VQJW32E7.js";
+} from "./chunk-5C6DFZPZ.js";
 import {
   __toESM
 } from "./chunk-PR4QN5HX.js";
@@ -1303,18 +1303,4 @@ export {
   useSubmit,
   useViewTransitionState
 };
-/*! Bundled license information:
-
-react-router-dom/dist/index.js:
-  (**
-   * React Router DOM v6.30.3
-   *
-   * Copyright (c) Remix Software Inc.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.md file in the root directory of this source tree.
-   *
-   * @license MIT
-   *)
-*/
 //# sourceMappingURL=react-router-dom.js.map

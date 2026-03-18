@@ -1,6 +1,6 @@
 import {
   require_react
-} from "./chunk-VQJW32E7.js";
+} from "./chunk-5C6DFZPZ.js";
 import {
   __commonJS,
   __toESM

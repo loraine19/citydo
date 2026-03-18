@@ -1,13 +1,13 @@
 "use client";
 import {
   require_react_dom
-} from "./chunk-O32TIKFM.js";
+} from "./chunk-Q6RX7X5U.js";
 import {
   require_jsx_runtime
-} from "./chunk-YE363OCX.js";
+} from "./chunk-3AQ3GYV6.js";
 import {
   require_react
-} from "./chunk-VQJW32E7.js";
+} from "./chunk-5C6DFZPZ.js";
 import {
   __commonJS,
   __toESM
@@ -28,7 +28,7 @@ var require_cjs = __commonJS({
       return stringValue === "[object RegExp]" || stringValue === "[object Date]" || isReactElement(value);
     }
     var canUseSymbol = typeof Symbol === "function" && Symbol.for;
-    var REACT_ELEMENT_TYPE = canUseSymbol ? Symbol.for("react.element") : 60103;
+    var REACT_ELEMENT_TYPE = canUseSymbol ? /* @__PURE__ */ Symbol.for("react.element") : 60103;
     function isReactElement(value) {
       return value.$$typeof === REACT_ELEMENT_TYPE;
     }
@@ -13714,36 +13714,4 @@ export {
   typographyTheme,
   useTheme
 };
-/*! Bundled license information:
-
-tabbable/dist/index.esm.js:
-  (*!
-  * tabbable 6.4.0
-  * @license MIT, https://github.com/focus-trap/tabbable/blob/master/LICENSE
-  *)
-
-@tanstack/ranger/build/esm/index.js:
-  (**
-   * ranger
-   *
-   * Copyright (c) TanStack
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.md file in the root directory of this source tree.
-   *
-   * @license MIT
-   *)
-
-@tanstack/react-ranger/build/esm/index.js:
-  (**
-   * react-ranger
-   *
-   * Copyright (c) TanStack
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.md file in the root directory of this source tree.
-   *
-   * @license MIT
-   *)
-*/
 //# sourceMappingURL=@material-tailwind_react.js.map

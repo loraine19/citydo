@@ -472,7 +472,7 @@ function parseParameterList(source) {
     return new SyntaxError(`Parsing parameter list, did not expect ${t.type} token${t.value ? ` (${t.value})` : ""}`);
   }
 }
-var RESOLVER = Symbol("Awilix Resolver Config");
+var RESOLVER = /* @__PURE__ */ Symbol("Awilix Resolver Config");
 function asValue(value) {
   return {
     resolve: () => value,
@@ -666,8 +666,8 @@ function parseDependencies(fn) {
   }
   return result;
 }
-var FAMILY_TREE = Symbol("familyTree");
-var ROLL_UP_REGISTRATIONS = Symbol("rollUpRegistrations");
+var FAMILY_TREE = /* @__PURE__ */ Symbol("familyTree");
+var ROLL_UP_REGISTRATIONS = /* @__PURE__ */ Symbol("rollUpRegistrations");
 var CRADLE_STRING_TAG = "AwilixContainerCradle";
 function createContainer(options = {}) {
   return createContainerInternal(options);

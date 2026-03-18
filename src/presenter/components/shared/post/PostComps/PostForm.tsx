@@ -62,7 +62,7 @@ export function PostFormCard({ formik }: PostFormCardProps) {
                         <div className="flex flex-col flex-wrap gap-4 flex-1 w-full">
                             <Select
                                 variant="Input"
-                                value={formik.values.category}
+                                value={formik.values.categoryS}
                                 options={postCategories}
                                 formik={formik}
                                 name="category"

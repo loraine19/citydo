@@ -62,12 +62,12 @@ export function Select({
 
     useEffect(() => {
         handleDisplayLabel();
-    }, [options]);
+    }, [options, formik?.values?.[name ?? ''], value, placeholder]);
 
     const [open, setOpen] = useState(false)
 
     return (
-        <div className={`flex-1 relative ${variant === 'Input' ? ' !font-roboto' : ''}`}>
+        <div className={` flex-1 relative ${variant === 'Input' ? ' !font-roboto' : ''}`}>
             <div className={`w-full relative`}>
                 <div className={` !relative flex items-center rounded-full md3-button-${error ? 'error' : color} 
                 ${className} !px-[1rem] !min-h-[42px] gap-2 
@@ -79,15 +79,14 @@ export function Select({
                         setOpen={setOpen}
                         MenuKey={'select-menu' + (color)}
                         closeIcon={<></>}
-                        className=''
                         containerClassName="w-full"
                         blurBack
                         placement="auto"
                         trigger={
-                            <div className="flex items-center justify-between flex-1 w-full">
+                            <div className="flex items-center justify-between flex-1 w-full ">
                                 <div className={`${variant === 'Input' ? '' : ''} 
-                        flex-1 flex w-full px-1 py-3 truncate`}>
-                                    {(error && variant === 'Input') ? placeholder : displayLabel}
+                        flex-1 flex w-full px-1 py-3 truncate last:uppercase`}>
+                                    {((error) && variant === 'Input') ? placeholder : displayLabel}
                                 </div>
                                 <Icon
                                     icon="arrow_drop_down"
@@ -98,6 +97,7 @@ export function Select({
                     >
                         {options?.map((option: { label: string | React.ReactNode, value: string }) => (
                             <MenuItem
+                                className="capitalize"
                                 key={option.value}
                                 value={option.value}
                                 onClick={() => {
