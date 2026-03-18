@@ -8,7 +8,7 @@ interface SelectProps {
     formik?: any;
     setValue?: (value: string) => void;
     value?: string;
-    name?: string;
+    name: string;
     placeholder?: string;
     disabled?: boolean;
     options: { label: string | React.ReactNode, value: string }[],
@@ -36,21 +36,17 @@ export function Select({
     bgColor
 }: SelectProps) {
     const { color } = useUxStore(state => state);
-    const error = formik?.errors[name ?? ''];
-    const [selected, setSelected] = useState(options?.find(opt => opt.value === ((formik?.values?.[name ?? ''] || value))));
+    const [selected, setSelected] = useState(options?.find(opt => opt.value === ((formik?.values?.[name] || value))));
     const [displayLabel, setDisplayLabel] = useState<string | React.ReactNode>(selected?.label);
     const className = variant === 'Input' ?
         `md3-input-container md3-outlined  !rounded-md md3-input-size-lg ` :
         `md3-button-${variant === 'text' ? 'text' : 'tonal'}`;
 
     const handleSelect = (option: { label: string | React.ReactNode, value: string }) => {
-        if (formik) {
-            formik.setFieldValue(name, value);
-            formik.values[name ?? ''] = option.value;
-        };
-        onChangeFunction && onChangeFunction(option.value);
-        setValue && setValue(option.value);
         setSelected(option);
+        if (onChangeFunction) onChangeFunction(option.value);
+        setValue && setValue(option.value);
+        if (formik) formik.setFieldValue(name, option.value);
         setDisplayLabel(option.label);
     }
 
@@ -62,14 +58,14 @@ export function Select({
 
     useEffect(() => {
         handleDisplayLabel();
-    }, [options, formik?.values?.[name ?? ''], value, placeholder]);
+    }, [options, formik?.values[name], value, placeholder]);
 
     const [open, setOpen] = useState(false)
 
     return (
         <div className={` flex-1 relative ${variant === 'Input' ? ' !font-roboto' : ''}`}>
             <div className={`w-full relative`}>
-                <div className={` !relative flex items-center rounded-full md3-button-${error ? 'error' : color} 
+                <div className={`!relative flex items-center rounded-full md3-button-${formik?.errors[name] ? 'error' : color} 
                 ${className} !px-[1rem] !min-h-[42px] gap-2 
                 ${displayLabel ? 'active border-2' : ''}
                 ${disabled ? 'opacity-50 pointer-events-none' : ''}`} >
@@ -86,7 +82,7 @@ export function Select({
                             <div className="flex items-center justify-between flex-1 w-full ">
                                 <div className={`${variant === 'Input' ? '' : ''} 
                         flex-1 flex w-full px-1 py-3 truncate last:uppercase`}>
-                                    {((error) && variant === 'Input') ? placeholder : displayLabel}
+                                    {(formik?.errors[name] && variant === 'Input') ? placeholder : displayLabel}
                                 </div>
                                 <Icon
                                     icon="arrow_drop_down"
@@ -102,7 +98,7 @@ export function Select({
                                 value={option.value}
                                 onClick={() => {
                                     handleSelect(option);
-                                    setOpen(false)
+                                    setOpen(false);
                                 }}
                                 trailingIcon={selected?.value === option?.value ? (
                                     <Icon
@@ -118,14 +114,14 @@ export function Select({
                     </Menu>
                 </div>
             </div>
-            {(displayLabel && variant === 'Input' && !error && placeholder !== displayLabel) &&
+            {(displayLabel && variant === 'Input' && !formik?.errors[name] && placeholder !== displayLabel) &&
                 <InputError
                     style={`absolute mx-2 px-1 h-max pb-1 top-1 -mt-1 !z-[999] rounded bg-[${bgColor ?? 'var(--md3-surface)'}]`}
                     tips={placeholder} />}
             {variant === 'Input' &&
                 <InputError
                     style="mt-1"
-                    error={error} />}
+                    error={formik?.errors[name]} />}
         </div >
 
     );

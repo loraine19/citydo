@@ -10,7 +10,16 @@ interface GroupSelectProps {
     variant?: 'filled' | 'tonal' | 'text' | 'Input';
 }
 
-export default function GroupSelect({ formik, user, groupId, disabled, variant = 'Input' }: GroupSelectProps) {
+export default function GroupSelect({ formik, user, groupId, setGroupId, disabled, variant = 'Input' }: GroupSelectProps) {
+    const updateGroupId = (groupId: string) => {
+        setGroupId && setGroupId(groupId);
+        const group = user?.GroupUser?.find((groupUser: any) => groupUser.Group.id === groupId);
+        formik.setFieldValue('groupLength', group?.Group?.GroupUser?.length ?? 0);
+    }
+    const options = user?.GroupUser?.map((group: any) => ({
+        label: group.Group.name,
+        value: group.Group.id
+    })) ?? [];
 
     return (
         <Select
@@ -18,17 +27,9 @@ export default function GroupSelect({ formik, user, groupId, disabled, variant =
             formik={formik}
             value={groupId}
             name={"groupId"}
-            placeholder={"Choisir le groupe"}
+            placeholder="Choisir un groupe"
             disabled={disabled}
-            onChangeFunction={() => {
-                const group = user?.GroupUser?.find((groupUser: any) => groupUser.Group.id === formik.values.groupId);
-                formik.setFieldValue('groupLength', group?.Group?.GroupUser?.length ?? 0)
-
-            }}
-            options={user?.GroupUser?.map((group: any) => ({
-                label: group.Group.name,
-                value: group.Group.id
-            }))} />
-
+            onChangeFunction={(groupId: string) => updateGroupId(groupId)}
+            options={options} />
     )
 }
